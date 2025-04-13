@@ -26,6 +26,5 @@ tasks.withType(JavaCompile).configureEach {
 }
 
 tasks.named('test') {
-    dependsOn "createTypeTable"
     useJUnitPlatform()
 }
