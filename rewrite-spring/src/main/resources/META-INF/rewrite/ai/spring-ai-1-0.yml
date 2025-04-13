@@ -11,7 +11,8 @@ recipeList:
   - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
       groupId: org.springframework.ai
       artifactId: "*"
-      newVersion: 1.0.0-M7
+      newVersion: 1.0.x
+      overrideManagedVersion: true
 
   # Artifact ID Changes - Models
   - org.openrewrite.java.dependencies.ChangeDependency:

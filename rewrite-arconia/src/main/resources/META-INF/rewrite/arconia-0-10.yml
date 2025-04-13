@@ -6,13 +6,14 @@ description: Migrate a Spring Boot application to the latest Arconia 0.10.x rele
 tags:
   - arconia
 recipeList:
+  - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
+      groupId: io.arconia
+      artifactId: "*"
+      newVersion: 0.10.x
+      overrideManagedVersion: true
   - io.arconia.rewrite.spring.boot.ChangeSpringBootPropertyKey:
       oldPropertyKey: "arconia.dev.profiles.development"
       newPropertyKey: "arconia.config.profiles.development"
   - io.arconia.rewrite.spring.boot.ChangeSpringBootPropertyKey:
       oldPropertyKey: "arconia.dev.profiles.test"
       newPropertyKey: "arconia.config.profiles.test"
-  - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
-      groupId: io.arconia
-      artifactId: "*"
-      newVersion: 0.10.x
