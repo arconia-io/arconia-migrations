@@ -9,8 +9,10 @@ repositories {
 
 ext {
     set("cycloneDxVersion", '2.2.0')
+    set("openRewriteBuildVersion", '1.131.0')
 }
 
 dependencies {
     implementation "org.cyclonedx:cyclonedx-gradle-plugin:${cycloneDxVersion}"
+    implementation("org.openrewrite.build.recipe-library-base:org.openrewrite.build.recipe-library-base.gradle.plugin:${openRewriteBuildVersion}")
 }

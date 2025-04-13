@@ -272,19 +272,30 @@ recipeList:
       groupId: org.springframework.ai
       artifactId: spring-ai-vector-store
       onlyIfUsing: org.springframework.ai.vectorstore.SimpleVectorStore
+      acceptTransitive: true
+      version: 1.0.x
   - org.openrewrite.java.dependencies.AddDependency:
       groupId: org.springframework.ai
       artifactId: spring-ai-rag
       onlyIfUsing: org.springframework.ai.chat.client.advisor.RetrievalAugmentationAdvisor
+      version: 1.0.x
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: org.springframework.ai
+      artifactId: spring-ai-rag
+      onlyIfUsing: org.springframework.ai.rag..*
+      version: 1.0.x
   - org.openrewrite.java.dependencies.AddDependency:
       groupId: org.springframework.ai
       artifactId: spring-ai-advisors-vector-store
       onlyIfUsing: org.springframework.ai.chat.client.advisor.QuestionAnswerAdvisor
+      version: 1.0.x
   - org.openrewrite.java.dependencies.AddDependency:
       groupId: org.springframework.ai
       artifactId: spring-ai-advisors-vector-store
       onlyIfUsing: org.springframework.ai.chat.client.advisor.VectorStoreChatMemoryAdvisor
+      version: 1.0.x
   - org.openrewrite.java.dependencies.AddDependency:
       groupId: org.springframework.ai
       artifactId: spring-ai-model-chat-memory-cassandra
       onlyIfUsing: org.springframework.ai.chat.memory.cassandra.CassandraChatMemory
+      version: 1.0.x

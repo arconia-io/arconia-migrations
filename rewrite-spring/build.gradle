@@ -17,27 +17,35 @@ dependencies {
     implementation "org.openrewrite:rewrite-yaml"
     implementation "org.openrewrite.recipe:rewrite-java-dependencies"
 
-    // OpenRewrite Refaster
-    annotationProcessor "org.openrewrite:rewrite-templating:${rewriteTemplatingVersion}"
-    implementation "org.openrewrite:rewrite-templating:${rewriteTemplatingVersion}"
-    implementation("jakarta.annotation:jakarta.annotation-api:${jakartaAnnotationVersion}")
-    compileOnly("com.google.errorprone:error_prone_core:${errorProneVersion}") {
-        exclude group: "com.google.auto.service", module: "auto-service-annotations"
-    }
+    // Re-enable if and when starting using Refaster
+//    annotationProcessor "org.openrewrite:rewrite-templating:${rewriteTemplatingVersion}"
+//    implementation "org.openrewrite:rewrite-templating:${rewriteTemplatingVersion}"
+//    implementation("jakarta.annotation:jakarta.annotation-api:${jakartaAnnotationVersion}")
+//    compileOnly("com.google.errorprone:error_prone_core:${errorProneVersion}") {
+//        exclude group: "com.google.auto.service", module: "auto-service-annotations"
+//    }
 
     runtimeOnly "org.openrewrite:rewrite-java-21"
 
+    testImplementation "org.openrewrite:rewrite-test"
     testImplementation "ch.qos.logback:logback-core:${logbackVersion}"
     testImplementation "org.assertj:assertj-core:${assertjVersion}"
     testImplementation "org.junit.jupiter:junit-jupiter:${jUnitVersion}"
     testImplementation "org.mockito:mockito-junit-jupiter:${mockitoVersion}"
     testImplementation "org.mockito:mockito-core:${mockitoVersion}"
-    testImplementation "org.openrewrite:rewrite-test"
+    testImplementation "org.gradle:gradle-tooling-api:${gradleToolingVersion}"
+    testImplementation "org.openrewrite.gradle.tooling:model:${openRewriteGradleToolingVersion}"
 }
 
-tasks.withType(JavaCompile).configureEach {
-    options.compilerArgs.add("-Arewrite.generatedAnnotation=jakarta.annotation.Generated")
+recipeDependencies {
+    parserClasspath "org.springframework.ai:spring-ai-cassandra-store:1.0.0-M6"
+    parserClasspath "org.springframework.ai:spring-ai-core:1.0.0-M6"
 }
+
+// Re-enable if and when starting using Refaster
+//tasks.withType(JavaCompile).configureEach {
+//    options.compilerArgs.add("-Arewrite.generatedAnnotation=jakarta.annotation.Generated")
+//}
 
 publishing {
     publications {

@@ -1,5 +1,6 @@
 plugins {
     id "java-library"
+    id "org.openrewrite.build.recipe-library-base"
 }
 
 java {
@@ -10,6 +11,8 @@ java {
 
 repositories {
     mavenCentral()
+    // Needed to fetch the Gradle Tooling API libraries because not on Maven Central anymore.
+    maven { url = 'https://repo.gradle.org/gradle/libs-releases' }
 }
 
 dependencies {
@@ -18,8 +21,11 @@ dependencies {
 
 tasks.withType(JavaCompile).configureEach {
     options.compilerArgs.add("-parameters")
+    // Needed because the OpenRewrite Build plugin forces Java 8 :(
+    options.release.set(21)
 }
 
 tasks.named('test') {
+    dependsOn "createTypeTable"
     useJUnitPlatform()
 }
