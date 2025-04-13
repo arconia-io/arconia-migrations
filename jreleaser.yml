@@ -1,0 +1,67 @@
+project:
+  name: arconia-migrations
+  description: Tools and OpenRewrite recipes to migrate Arconia projects. 
+  links:
+    homepage: https://{{repoHost}}/{{repoOwner}}/{{repoName}}
+    faq: https://{{repoHost}}/{{repoOwner}}/{{repoName}}/discussions
+  authors:
+    - Thomas Vitale
+  license: Apache-2.0
+  inceptionYear: "2025"
+
+checksum:
+  algorithms:
+    - SHA_256
+    - SHA_512
+
+signing:
+  active: ALWAYS
+  armored: true
+
+deploy:
+  maven:
+    nexus2:
+      central:
+        active: ALWAYS
+        applyMavenCentralRules: true
+        snapshotSupported: true
+        snapshotUrl: "https://s01.oss.sonatype.org/content/repositories/snapshots/"
+        url: "https://s01.oss.sonatype.org/service/local"
+        closeRepository: true
+        releaseRepository: true
+        stagingRepositories:
+          - build/staging-deploy
+
+release:
+  github:
+    releaseName: '{{tagName}}'
+    overwrite: true
+    sign: true
+    discussionCategoryName: Announcements
+    issues:
+      enabled: true
+    changelog:
+      formatted: ALWAYS
+      preset: conventional-commits
+      contributors:
+        format: '- {{contributorName}}{{#contributorUsernameAsLink}} ({{.}}){{/contributorUsernameAsLink}}'
+      extraProperties:
+        categorizeScopes: true
+      labelers:
+        - label: 'dependencies'
+          title: 'regex:^(?:deps(?:\(.*\))?!?):\s.*'
+          order: 120
+      categories:
+        - title: '⚙️ Dependencies'
+          key: 'dependencies'
+          order: 70
+          labels:
+            - 'dependencies'
+      hide:
+        categories:
+          - 'merge'
+        contributors:
+          - 'GitHub'
+          - 'dependabot'
+      replacers:
+        - search: 'deps: '

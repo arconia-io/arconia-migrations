@@ -1,0 +1,16 @@
+plugins {
+    id 'groovy-gradle-plugin'
+}
+
+repositories {
+    mavenCentral()
+    gradlePluginPortal()
+}
+
+ext {
+    set("cycloneDxVersion", '2.2.0')
+}
+
+dependencies {
+    implementation "org.cyclonedx:cyclonedx-gradle-plugin:${cycloneDxVersion}"
+}

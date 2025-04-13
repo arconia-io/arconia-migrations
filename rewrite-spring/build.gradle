@@ -1,0 +1,51 @@
+plugins {
+    id "code-quality-conventions"
+    id "java-conventions"
+    id "sbom-conventions"
+    id "release-conventions"
+}
+
+dependencies {
+    implementation "org.jspecify:jspecify:${jSpecifyVersion}"
+    implementation "org.slf4j:slf4j-api:${slf4jVersion}"
+
+    // OpenRewrite Core
+    implementation "org.openrewrite:rewrite-gradle"
+    implementation "org.openrewrite:rewrite-java"
+    implementation "org.openrewrite:rewrite-maven"
+    implementation "org.openrewrite:rewrite-properties"
+    implementation "org.openrewrite:rewrite-yaml"
+    implementation "org.openrewrite.recipe:rewrite-java-dependencies"
+
+    // OpenRewrite Refaster
+    annotationProcessor "org.openrewrite:rewrite-templating:${rewriteTemplatingVersion}"
+    implementation "org.openrewrite:rewrite-templating:${rewriteTemplatingVersion}"
+    implementation("jakarta.annotation:jakarta.annotation-api:${jakartaAnnotationVersion}")
+    compileOnly("com.google.errorprone:error_prone_core:${errorProneVersion}") {
+        exclude group: "com.google.auto.service", module: "auto-service-annotations"
+    }
+
+    runtimeOnly "org.openrewrite:rewrite-java-21"
+
+    testImplementation "ch.qos.logback:logback-core:${logbackVersion}"
+    testImplementation "org.assertj:assertj-core:${assertjVersion}"
+    testImplementation "org.junit.jupiter:junit-jupiter:${jUnitVersion}"
+    testImplementation "org.mockito:mockito-junit-jupiter:${mockitoVersion}"
+    testImplementation "org.mockito:mockito-core:${mockitoVersion}"
+    testImplementation "org.openrewrite:rewrite-test"
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.compilerArgs.add("-Arewrite.generatedAnnotation=jakarta.annotation.Generated")
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            pom {
+                name = "Arconia OpenRewrite Recipes for Spring"
+                description = "Arconia OpenRewrite Recipes for Spring."
+            }
+        }
+    }
+}

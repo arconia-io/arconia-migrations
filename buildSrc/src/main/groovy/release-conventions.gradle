@@ -1,0 +1,68 @@
+plugins {
+    id 'maven-publish'
+}
+
+if (!project.plugins.hasPlugin('java-platform')) {
+    java {
+        withJavadocJar()
+        withSourcesJar()
+    }
+
+    javadoc {
+        options.addStringOption("Xdoclint:none", "-quiet")
+    }
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            if (project.plugins.hasPlugin('java-platform')) {
+                from components.javaPlatform
+            } else {
+                from components.java
+
+                versionMapping {
+                    usage('java-api') {
+                        fromResolutionOf('runtimeClasspath')
+                    }
+                    usage('java-runtime') {
+                        fromResolutionResult()
+                    }
+                }
+            }
+
+            pom {
+                url = "https://github.com/arconia-io/arconia-migrations"
+                inceptionYear = '2025'
+                packaging = 'jar'
+
+                licenses {
+                    license {
+                        name = 'The Apache License, Version 2.0'
+                        url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+
+                developers {
+                    developer {
+                        id = "ThomasVitale"
+                        name = "Thomas Vitale"
+                        url = "https://thomasvitale.com"
+                    }
+                }
+
+                scm {
+                    connection = "scm:git:https://github.com/arconia-io/arconia-migrations.git"
+                    developerConnection = "scm:git:ssh://github.com/arconia-io/arconia-migrations.git"
+                    url = "https://github.com/arconia-io/arconia-migrations"
+                }
+            }
+        }
+    }
+
+    repositories {
+        maven {
+            url = rootProject.layout.buildDirectory.dir('staging-deploy')
+        }
+    }
+}

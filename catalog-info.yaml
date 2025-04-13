@@ -1,0 +1,14 @@
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: arconia-migrations
+  description: Tools and OpenRewrite recipes to migrate Arconia projects.
+  annotations:
+    backstage.io/techdocs-ref: dir:.
+    github.com/project-slug: arconia-io/arconia-migrations
+    sonarqube.org/project-key: arconia-io_arconia-migrations
+spec:
+  type: library
+  lifecycle: experimental
+  owner: arconia

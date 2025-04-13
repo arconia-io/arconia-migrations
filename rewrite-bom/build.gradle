@@ -1,0 +1,33 @@
+plugins {
+    id "java-platform"
+    id "release-conventions"
+}
+
+javaPlatform {
+    allowDependencies()
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    constraints {
+        api project(":rewrite-arconia")
+        api project(":rewrite-spring")
+    }
+
+    api platform("org.openrewrite.recipe:rewrite-recipe-bom:${openRewriteVersion}")
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            pom {
+                name = "Arconia Migrations BOM"
+                description = "Arconia Migrations Bill of Materials."
+                packaging = "pom"
+            } 
+        }
+    }
+}
