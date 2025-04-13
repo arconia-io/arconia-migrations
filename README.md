@@ -9,7 +9,7 @@ Tools and OpenRewrite recipes to migrate Java projects using Arconia and Spring 
 <img src="arconia-logo.png" alt="The Arconia logo" height="250px" />
 
 > [!NOTE]
-> The Arconia Migrations project is currently in active development. We're working hard to improve it and appreciate your patience as we refine the tool. Feel free to try it out and share your feedback!
+> The Arconia Migrations project is currently in active development. We're working hard to improve it and appreciate your patience as we refine the tool. Feel free to try it out and share your feedback! Thanks!
 
 ## ⚙️&nbsp; Requirements
 
