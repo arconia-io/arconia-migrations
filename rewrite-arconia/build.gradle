@@ -21,12 +21,18 @@ dependencies {
 
     runtimeOnly "org.openrewrite:rewrite-java-21"
 
+    testImplementation "org.openrewrite:rewrite-test"
     testImplementation "ch.qos.logback:logback-core:${logbackVersion}"
     testImplementation "org.assertj:assertj-core:${assertjVersion}"
     testImplementation "org.junit.jupiter:junit-jupiter:${jUnitVersion}"
     testImplementation "org.mockito:mockito-junit-jupiter:${mockitoVersion}"
     testImplementation "org.mockito:mockito-core:${mockitoVersion}"
-    testImplementation "org.openrewrite:rewrite-test"
+    testImplementation "org.gradle:gradle-tooling-api:${gradleToolingVersion}"
+    testImplementation "org.openrewrite.gradle.tooling:model:${openRewriteGradleToolingVersion}"
+}
+
+recipeDependencies {
+    parserClasspath "io.arconia:arconia-core:0.9.2"
 }
 
 publishing {
