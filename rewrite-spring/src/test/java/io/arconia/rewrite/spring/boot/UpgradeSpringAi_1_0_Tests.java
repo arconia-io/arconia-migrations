@@ -12,6 +12,7 @@ import static org.openrewrite.gradle.toolingapi.Assertions.withToolingApi;
 import static org.openrewrite.java.Assertions.java;
 import static org.openrewrite.java.Assertions.mavenProject;
 import static org.openrewrite.java.Assertions.srcMainJava;
+import static org.openrewrite.properties.Assertions.properties;
 
 public class UpgradeSpringAi_1_0_Tests implements RewriteTest {
 
@@ -640,6 +641,34 @@ public class UpgradeSpringAi_1_0_Tests implements RewriteTest {
                                   """
                         )
                 )
+        );
+    }
+
+    // Property Changes
+
+    @Test
+    void doesNotChangeProperties() {
+        rewriteRun(
+                //language=properties
+                properties("""
+                        spring.ai.chat.memory.jdbc.initialize-schema
+                        """,
+                        s -> s.path("src/main/resources/application.properties"))
+        );
+    }
+
+    @Test
+    void changeProperties() {
+        rewriteRun(
+                //language=properties
+                properties(
+                        """
+                        spring.ai.chat.memory.jdbc.initialize-schema=false
+                        """,
+                        """
+                        spring.ai.chat.memory.repository.jdbc.initialize-schema=false
+                        """,
+                        s -> s.path("src/main/resources/application.properties"))
         );
     }
 

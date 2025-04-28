@@ -299,3 +299,8 @@ recipeList:
       artifactId: spring-ai-model-chat-memory-cassandra
       onlyIfUsing: org.springframework.ai.chat.memory.cassandra.CassandraChatMemory
       version: 1.0.x
+
+  # Property Changes
+  - io.arconia.rewrite.spring.boot.ChangeSpringBootPropertyKey:
+      oldPropertyKey: "spring.ai.chat.memory.jdbc.initialize-schema"
+      newPropertyKey: "spring.ai.chat.memory.repository.jdbc.initialize-schema"
