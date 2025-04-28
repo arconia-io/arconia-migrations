@@ -1,4 +1,4 @@
-package io.arconia.rewrite.spring.boot;
+package io.arconia.rewrite.spring.ai;
 
 import org.intellij.lang.annotations.Language;
 import org.junit.jupiter.api.Test;
