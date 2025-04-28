@@ -264,6 +264,10 @@ recipeList:
       newFullyQualifiedTypeName: org.springframework.ai.content.MediaContent
 
   - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.ai.chat.client.advisor.QuestionAnswerAdvisor
+      newFullyQualifiedTypeName: org.springframework.ai.chat.client.advisor.vectorstore.QuestionAnswerAdvisor
+
+  - org.openrewrite.java.ChangeType:
       oldFullyQualifiedTypeName: org.springframework.ai.chat.client.advisor.RetrievalAugmentationAdvisor
       newFullyQualifiedTypeName: org.springframework.ai.rag.advisor.RetrievalAugmentationAdvisor
 

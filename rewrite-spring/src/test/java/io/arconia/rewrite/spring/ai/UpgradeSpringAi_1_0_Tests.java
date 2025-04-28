@@ -270,6 +270,47 @@ public class UpgradeSpringAi_1_0_Tests implements RewriteTest {
         );
     }
 
+    @Test
+    void doesNotChangeQuestionAnswerAdvisor() {
+        rewriteRun(
+                //language=java
+                java(
+                        """
+                        package com.yourorg;
+
+                        import org.springframework.ai.chat.client.advisor.vectorstore.QuestionAnswerAdvisor;
+                        """
+                )
+        );
+    }
+
+    @Test
+    void changesQuestionAnswerAdvisor() {
+        rewriteRun(
+                //language=java
+                java(
+                        """
+                        package com.yourorg;
+
+                        import org.springframework.ai.chat.client.advisor.QuestionAnswerAdvisor;
+
+                        class Demo {
+                            QuestionAnswerAdvisor advisor = null;
+                        }
+                        """,
+                        """
+                        package com.yourorg;
+
+                        import org.springframework.ai.chat.client.advisor.vectorstore.QuestionAnswerAdvisor;
+
+                        class Demo {
+                            QuestionAnswerAdvisor advisor = null;
+                        }
+                        """
+                )
+        );
+    }
+
     // Additional Dependencies
 
     @Language("java")
@@ -495,6 +536,15 @@ public class UpgradeSpringAi_1_0_Tests implements RewriteTest {
                                     package com.yourorg;
 
                                     import org.springframework.ai.chat.client.advisor.QuestionAnswerAdvisor;
+
+                                    class Demo {
+                                      QuestionAnswerAdvisor advisor = null;
+                                    }
+                                    """,
+                                        """
+                                    package com.yourorg;
+
+                                    import org.springframework.ai.chat.client.advisor.vectorstore.QuestionAnswerAdvisor;
 
                                     class Demo {
                                       QuestionAnswerAdvisor advisor = null;
