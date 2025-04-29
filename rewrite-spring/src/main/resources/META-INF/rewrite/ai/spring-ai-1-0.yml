@@ -271,6 +271,10 @@ recipeList:
       oldFullyQualifiedTypeName: org.springframework.ai.chat.client.advisor.RetrievalAugmentationAdvisor
       newFullyQualifiedTypeName: org.springframework.ai.rag.advisor.RetrievalAugmentationAdvisor
 
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.ai.chat.client.advisor.VectorStoreChatMemoryAdvisor
+      newFullyQualifiedTypeName: org.springframework.ai.chat.client.advisor.vectorstore.VectorStoreChatMemoryAdvisor
+
   # Additional Dependencies
   - org.openrewrite.java.dependencies.AddDependency:
       groupId: org.springframework.ai

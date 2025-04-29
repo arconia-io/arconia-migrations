@@ -311,6 +311,47 @@ public class UpgradeSpringAi_1_0_Tests implements RewriteTest {
         );
     }
 
+    @Test
+    void doesNotChangeVectorStoreChatMemoryAdvisor() {
+        rewriteRun(
+                //language=java
+                java(
+                        """
+                        package com.yourorg;
+
+                        import org.springframework.ai.chat.client.advisor.vectorstore.VectorStoreChatMemoryAdvisor;
+                        """
+                )
+        );
+    }
+
+    @Test
+    void changesVectorStoreChatMemoryAdvisor() {
+        rewriteRun(
+                //language=java
+                java(
+                        """
+                        package com.yourorg;
+
+                        import org.springframework.ai.chat.client.advisor.VectorStoreChatMemoryAdvisor;
+
+                        class Demo {
+                            VectorStoreChatMemoryAdvisor advisor = null;
+                        }
+                        """,
+                        """
+                        package com.yourorg;
+
+                        import org.springframework.ai.chat.client.advisor.vectorstore.VectorStoreChatMemoryAdvisor;
+
+                        class Demo {
+                            VectorStoreChatMemoryAdvisor advisor = null;
+                        }
+                        """
+                )
+        );
+    }
+
     // Additional Dependencies
 
     @Language("java")
@@ -591,6 +632,15 @@ public class UpgradeSpringAi_1_0_Tests implements RewriteTest {
                                     package com.yourorg;
 
                                     import org.springframework.ai.chat.client.advisor.VectorStoreChatMemoryAdvisor;
+
+                                    class Demo {
+                                      VectorStoreChatMemoryAdvisor advisor = null;
+                                    }
+                                    """,
+                                        """
+                                    package com.yourorg;
+
+                                    import org.springframework.ai.chat.client.advisor.vectorstore.VectorStoreChatMemoryAdvisor;
 
                                     class Demo {
                                       VectorStoreChatMemoryAdvisor advisor = null;
