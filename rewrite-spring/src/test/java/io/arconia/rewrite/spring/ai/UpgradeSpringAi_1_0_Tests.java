@@ -1,7 +1,6 @@
 package io.arconia.rewrite.spring.ai;
 
 import org.intellij.lang.annotations.Language;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.openrewrite.InMemoryExecutionContext;
 import org.openrewrite.java.JavaParser;
@@ -690,10 +689,10 @@ public class UpgradeSpringAi_1_0_Tests implements RewriteTest {
     // Method Changes
 
     @Test
-    @Disabled("requirement not implemented yet")
     void chatClientToolNames() {
         rewriteRun(r -> r
-                        .parser(JavaParser.fromJavaVersion().classpathFromResources(new InMemoryExecutionContext(), "spring-ai-client-chat-1.0.0-M7"))
+                        .parser(JavaParser.fromJavaVersion().classpathFromResources(new InMemoryExecutionContext(),
+                                "spring-ai-model-1.0.0-M7", "spring-ai-client-chat-1.0.0-M7"))
                         .typeValidationOptions(TypeValidation.builder().methodInvocations(false).build()),
                 //language=java
                 java(
@@ -703,10 +702,18 @@ public class UpgradeSpringAi_1_0_Tests implements RewriteTest {
                         import org.springframework.ai.chat.client.ChatClient;
 
                         class Demo {
-                            private void example(ChatClient chatClient) {
-                                ChatClient.ChatClientRequestSpec requestSpec = chatClient.prompt();
-                                requestSpec.tools("lizard", "George");
+                          private void example(ChatClient.ChatClientRequestSpec requestSpec) {
+                            requestSpec.tools("lizard", "George");
+                          }
+                          private void example2(ChatClient.ChatClientRequestSpec requestSpec) {
+                            requestSpec.tools(new MyTools());
+                          }
+
+                          public static class MyTools {
+                            public String getLizard() {
+                              return "lizard";
                             }
+                          }
                         }
                         """,
                         """
@@ -715,10 +722,128 @@ public class UpgradeSpringAi_1_0_Tests implements RewriteTest {
                         import org.springframework.ai.chat.client.ChatClient;
 
                         class Demo {
-                            private void example(ChatClient chatClient) {
-                                ChatClient.ChatClientRequestSpec requestSpec = chatClient.prompt();
-                                requestSpec.toolNames("lizard", "George");
+                          private void example(ChatClient.ChatClientRequestSpec requestSpec) {
+                            requestSpec.toolNames("lizard", "George");
+                          }
+                          private void example2(ChatClient.ChatClientRequestSpec requestSpec) {
+                            requestSpec.tools(new MyTools());
+                          }
+
+                          public static class MyTools {
+                            public String getLizard() {
+                              return "lizard";
                             }
+                          }
+                        }
+                        """
+                )
+        );
+    }
+
+    @Test
+    void chatClientToolCallbacks() {
+        rewriteRun(r -> r
+                        .parser(JavaParser.fromJavaVersion().classpathFromResources(new InMemoryExecutionContext(),
+                                "spring-ai-model-1.0.0-M7", "spring-ai-client-chat-1.0.0-M7"))
+                        .typeValidationOptions(TypeValidation.builder().methodInvocations(false).build()),
+                //language=java
+                java(
+                        """
+                        package com.yourorg;
+
+                        import java.util.List;
+                        import org.springframework.ai.chat.client.ChatClient;
+                        import org.springframework.ai.tool.ToolCallback;
+                        import org.springframework.ai.tool.function.FunctionToolCallback;
+                        import org.springframework.ai.tool.method.MethodToolCallback;
+
+                        class Demo {
+                          private void example(ChatClient.ChatClientRequestSpec requestSpec, org.springframework.ai.model.function.FunctionCallback toolCallback1, org.springframework.ai.model.function.FunctionCallback toolCallback2) {
+                            requestSpec.tools(toolCallback1, toolCallback2);
+                          }
+                          private void example(ChatClient.ChatClientRequestSpec requestSpec, ToolCallback toolCallback1, ToolCallback toolCallback2) {
+                            requestSpec.tools(toolCallback1, toolCallback2);
+                          }
+                          private void example2(ChatClient.ChatClientRequestSpec requestSpec, MethodToolCallback toolCallback1, MethodToolCallback toolCallback2) {
+                            requestSpec.tools(toolCallback1, toolCallback2);
+                          }
+                          private void example2(ChatClient.ChatClientRequestSpec requestSpec, FunctionToolCallback toolCallback1, FunctionToolCallback toolCallback2) {
+                            requestSpec.tools(toolCallback1);
+                          }
+                          private void example(ChatClient.ChatClientRequestSpec requestSpec, ToolCallback toolCallback1, ToolCallback toolCallback2) {
+                            requestSpec.tools(List.of(toolCallback1, toolCallback2));
+                          }
+                        }
+                        """,
+                        """
+                        package com.yourorg;
+
+                        import java.util.List;
+                        import org.springframework.ai.chat.client.ChatClient;
+                        import org.springframework.ai.tool.ToolCallback;
+                        import org.springframework.ai.tool.function.FunctionToolCallback;
+                        import org.springframework.ai.tool.method.MethodToolCallback;
+
+                        class Demo {
+                          private void example(ChatClient.ChatClientRequestSpec requestSpec, org.springframework.ai.model.function.FunctionCallback toolCallback1, org.springframework.ai.model.function.FunctionCallback toolCallback2) {
+                            requestSpec.toolCallbacks(toolCallback1, toolCallback2);
+                          }
+                          private void example(ChatClient.ChatClientRequestSpec requestSpec, ToolCallback toolCallback1, ToolCallback toolCallback2) {
+                            requestSpec.toolCallbacks(toolCallback1, toolCallback2);
+                          }
+                          private void example2(ChatClient.ChatClientRequestSpec requestSpec, MethodToolCallback toolCallback1, MethodToolCallback toolCallback2) {
+                            requestSpec.toolCallbacks(toolCallback1, toolCallback2);
+                          }
+                          private void example2(ChatClient.ChatClientRequestSpec requestSpec, FunctionToolCallback toolCallback1, FunctionToolCallback toolCallback2) {
+                            requestSpec.toolCallbacks(toolCallback1);
+                          }
+                          private void example(ChatClient.ChatClientRequestSpec requestSpec, ToolCallback toolCallback1, ToolCallback toolCallback2) {
+                            requestSpec.toolCallbacks(List.of(toolCallback1, toolCallback2));
+                          }
+                        }
+                        """
+                )
+        );
+    }
+
+    @Test
+    void chatClientToolCallbackProviders() {
+        rewriteRun(r -> r
+                        .parser(JavaParser.fromJavaVersion().classpathFromResources(new InMemoryExecutionContext(),
+                                "spring-ai-model-1.0.0-M7", "spring-ai-client-chat-1.0.0-M7"))
+                        .typeValidationOptions(TypeValidation.builder().methodInvocations(false).build()),
+                //language=java
+                java(
+                        """
+                        package com.yourorg;
+
+                        import org.springframework.ai.chat.client.ChatClient;
+                        import org.springframework.ai.tool.ToolCallbackProvider;
+                        import org.springframework.ai.tool.method.MethodToolCallbackProvider;
+
+                        class Demo {
+                          private void example(ChatClient.ChatClientRequestSpec requestSpec, ToolCallbackProvider toolCallback1, ToolCallbackProvider toolCallback2) {
+                            requestSpec.tools(toolCallback1, toolCallback2);
+                          }
+                          private void example2(ChatClient.ChatClientRequestSpec requestSpec, MethodToolCallbackProvider toolCallback1, MethodToolCallbackProvider toolCallback2) {
+                            requestSpec.tools(toolCallback1, toolCallback2);
+                          }
+                        }
+                        """,
+                        """
+                        package com.yourorg;
+
+                        import org.springframework.ai.chat.client.ChatClient;
+                        import org.springframework.ai.tool.ToolCallbackProvider;
+                        import org.springframework.ai.tool.method.MethodToolCallbackProvider;
+
+                        class Demo {
+                          private void example(ChatClient.ChatClientRequestSpec requestSpec, ToolCallbackProvider toolCallback1, ToolCallbackProvider toolCallback2) {
+                            requestSpec.toolCallbacks(toolCallback1, toolCallback2);
+                          }
+                          private void example2(ChatClient.ChatClientRequestSpec requestSpec, MethodToolCallbackProvider toolCallback1, MethodToolCallbackProvider toolCallback2) {
+                            requestSpec.toolCallbacks(toolCallback1, toolCallback2);
+                          }
                         }
                         """
                 )

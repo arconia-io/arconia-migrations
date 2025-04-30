@@ -65,7 +65,7 @@ Then, run the following command.
 ```shell
 ./gradlew rewriteRun \
     --init-script init.gradle \
-    -Dio.arconia.rewrite.spring.ai.UpgradeSpringAi_1_0
+    -DactiveRecipe=io.arconia.rewrite.spring.ai.UpgradeSpringAi_1_0
 ```
 
 Finally, you can remove the `init.gradle` file
