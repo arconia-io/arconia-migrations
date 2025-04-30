@@ -2,9 +2,10 @@
 
 ## Upgrade to Spring AI 1.0
 
-When upgrading Spring AI to a newer version, refer to the [https://docs.spring.io/spring-ai/reference/upgrade-notes.html](Upgrade Notes) to find out about newly introduced APIs, deprecated APIs, and information about breaking changes, if any.
+When upgrading Spring AI to a newer version, refer to the [Upgrade Notes](https://docs.spring.io/spring-ai/reference/upgrade-notes.html) to find out about newly introduced APIs, deprecated APIs, and information about breaking changes, if any.
 
-Using OpenRewrite, there are community recipes you can run to automatically aply some of the changes necessary to upgrade to a newer version of Spring AI.
+> [!NOTE]
+> The Arconia Migrations project is currently in active development and not GA yet. We're working hard to improve it and appreciate your patience as we refine the tool. Feel free to try it out and share your feedback!
 
 The `io.arconia.rewrite.spring.ai.UpgradeSpringAi_1_0` recipe automates most of the breaking changes introduced in Spring AI M7 and additional changes introduced in M8. And it will be kept up to date with future releases of Spring AI until the release of 1.0.0 GA.
 
