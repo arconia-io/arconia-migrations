@@ -352,3 +352,8 @@ recipeList:
       methodPattern: org.springframework.ai.chat.client.ChatClient.Builder defaultTools(org.springframework.ai.tool.ToolCallbackProvider...)
       newMethodName: defaultToolCallbacks
       matchOverrides: true
+
+  - org.openrewrite.java.AddNullMethodArgument:
+      methodPattern: org.springframework.ai.mistralai.api.MistralAiApi.ChatCompletionRequest.ResponseFormat <constructor>(String)
+      argumentIndex: 1
+      parameterType: java.util.Map

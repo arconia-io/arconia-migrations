@@ -1,4 +1,4 @@
 @NullMarked
-package io.arconia.core.support;
+package io.arconia.rewrite.spring;
 
 import org.jspecify.annotations.NullMarked;

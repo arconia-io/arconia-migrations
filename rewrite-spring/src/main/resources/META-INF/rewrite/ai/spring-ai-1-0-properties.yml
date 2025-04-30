@@ -10,3 +10,83 @@ recipeList:
   - io.arconia.rewrite.spring.boot.ChangeSpringBootPropertyKey:
       oldPropertyKey: "spring.ai.chat.memory.jdbc.initialize-schema"
       newPropertyKey: "spring.ai.chat.memory.repository.jdbc.initialize-schema"
+
+  - io.arconia.rewrite.spring.boot.ChangeSpringBootPropertyKey:
+      oldPropertyKey: "spring.ai.chat.observations.include-input"
+      newPropertyKey: "spring.ai.chat.observations.include-prompt"
+
+  - io.arconia.rewrite.spring.boot.DeleteSpringBootPropertyKey:
+      propertyKey: "spring.ai.anthropic.chat.enabled"
+
+  - io.arconia.rewrite.spring.boot.DeleteSpringBootPropertyKey:
+      propertyKey: "spring.ai.azure.openai.audio.transcription.enabled"
+  - io.arconia.rewrite.spring.boot.DeleteSpringBootPropertyKey:
+      propertyKey: "spring.ai.azure.openai.chat.enabled"
+  - io.arconia.rewrite.spring.boot.DeleteSpringBootPropertyKey:
+      propertyKey: "spring.ai.azure.openai.embedding.enabled"
+  - io.arconia.rewrite.spring.boot.DeleteSpringBootPropertyKey:
+      propertyKey: "spring.ai.azure.openai.image.enabled"
+
+  - io.arconia.rewrite.spring.boot.DeleteSpringBootPropertyKey:
+      propertyKey: "spring.ai.bedrock.cohere.embedding.enabled"
+  - io.arconia.rewrite.spring.boot.DeleteSpringBootPropertyKey:
+      propertyKey: "spring.ai.bedrock.converse.chat.enabled"
+  - io.arconia.rewrite.spring.boot.DeleteSpringBootPropertyKey:
+      propertyKey: "spring.ai.bedrock.titan.embedding.enabled"
+
+  - io.arconia.rewrite.spring.boot.DeleteSpringBootPropertyKey:
+      propertyKey: "spring.ai.huggingface.chat.enabled"
+
+  - io.arconia.rewrite.spring.boot.DeleteSpringBootPropertyKey:
+      propertyKey: "spring.ai.minimax.chat.enabled"
+  - io.arconia.rewrite.spring.boot.DeleteSpringBootPropertyKey:
+      propertyKey: "spring.ai.minimax.embedding.enabled"
+
+  - io.arconia.rewrite.spring.boot.DeleteSpringBootPropertyKey:
+      propertyKey: "spring.ai.mistralai.chat.enabled"
+  - io.arconia.rewrite.spring.boot.DeleteSpringBootPropertyKey:
+      propertyKey: "spring.ai.mistralai.embedding.enabled"
+
+  - io.arconia.rewrite.spring.boot.DeleteSpringBootPropertyKey:
+      propertyKey: "spring.ai.oci.genai.cohere.chat.enabled"
+  - io.arconia.rewrite.spring.boot.DeleteSpringBootPropertyKey:
+      propertyKey: "spring.ai.oci.genai.embedding.enabled"
+
+  - io.arconia.rewrite.spring.boot.DeleteSpringBootPropertyKey:
+      propertyKey: "spring.ai.ollama.chat.enabled"
+  - io.arconia.rewrite.spring.boot.DeleteSpringBootPropertyKey:
+      propertyKey: "spring.ai.ollama.embedding.enabled"
+
+  - io.arconia.rewrite.spring.boot.DeleteSpringBootPropertyKey:
+      propertyKey: "spring.ai.openai.audio.speech.enabled"
+  - io.arconia.rewrite.spring.boot.DeleteSpringBootPropertyKey:
+      propertyKey: "spring.ai.openai.audio.transcription.enabled"
+  - io.arconia.rewrite.spring.boot.DeleteSpringBootPropertyKey:
+      propertyKey: "spring.ai.openai.chat.enabled"
+  - io.arconia.rewrite.spring.boot.DeleteSpringBootPropertyKey:
+      propertyKey: "spring.ai.openai.embedding.enabled"
+  - io.arconia.rewrite.spring.boot.DeleteSpringBootPropertyKey:
+      propertyKey: "spring.ai.openai.image.enabled"
+
+  - io.arconia.rewrite.spring.boot.DeleteSpringBootPropertyKey:
+      propertyKey: "spring.ai.postgresml.embedding.enabled"
+
+  - io.arconia.rewrite.spring.boot.DeleteSpringBootPropertyKey:
+      propertyKey: "spring.ai.stabilityai.image.enabled"
+
+  - io.arconia.rewrite.spring.boot.DeleteSpringBootPropertyKey:
+      propertyKey: "spring.ai.vertex.ai.embedding.multimodal.enabled"
+  - io.arconia.rewrite.spring.boot.DeleteSpringBootPropertyKey:
+      propertyKey: "spring.ai.vertex.ai.embedding.text.enabled"
+
+  - io.arconia.rewrite.spring.boot.DeleteSpringBootPropertyKey:
+      propertyKey: "spring.ai.watson.ai.chat.enabled"
+  - io.arconia.rewrite.spring.boot.DeleteSpringBootPropertyKey:
+      propertyKey: "spring.ai.watson.ai.embedding.enabled"
+
+  - io.arconia.rewrite.spring.boot.DeleteSpringBootPropertyKey:
+      propertyKey: "spring.ai.zhipuai.chat.enabled"
+  - io.arconia.rewrite.spring.boot.DeleteSpringBootPropertyKey:
+      propertyKey: "spring.ai.zhipuai.embedding.enabled"
+  - io.arconia.rewrite.spring.boot.DeleteSpringBootPropertyKey:
+      propertyKey: "spring.ai.zhipuai.image.enabled"

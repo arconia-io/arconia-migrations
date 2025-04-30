@@ -23,9 +23,12 @@ public class UpgradeSpringAiProperties_1_0_Tests implements RewriteTest {
                 properties(
                         """
                         spring.ai.chat.memory.jdbc.initialize-schema=false
+                        spring.ai.chat.observations.include-input=true
+                        spring.ai.mistralai.chat.enabled=true
                         """,
                         """
                         spring.ai.chat.memory.repository.jdbc.initialize-schema=false
+                        spring.ai.chat.observations.include-prompt=true
                         """,
                         s -> s.path("src/main/resources/application.properties"))
         );

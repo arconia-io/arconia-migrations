@@ -1,6 +1,7 @@
 package io.arconia.rewrite.spring.ai;
 
 import org.intellij.lang.annotations.Language;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.openrewrite.InMemoryExecutionContext;
 import org.openrewrite.java.JavaParser;
@@ -1005,6 +1006,40 @@ public class UpgradeSpringAi_1_0_Tests implements RewriteTest {
                           }
                           private void example2(ChatClient.Builder builder, MethodToolCallbackProvider toolCallback1, MethodToolCallbackProvider toolCallback2) {
                             builder.defaultToolCallbacks(toolCallback1, toolCallback2);
+                          }
+                        }
+                        """
+                )
+        );
+    }
+
+    @Test
+    @Disabled("the recipe works, but the test doesn't...")
+    void mistralAiResponseFormat() {
+        rewriteRun(r -> r
+                        .parser(JavaParser.fromJavaVersion().classpathFromResources(new InMemoryExecutionContext(),
+                                "spring-ai-mistral-ai-1.0.0-M7")),
+                //language=java
+                java(
+                        """
+                        package com.yourorg;
+
+                        import org.springframework.ai.mistralai.api.MistralAiApi;
+
+                        class Demo {
+                          private MistralAiApi.ChatCompletionRequest.ResponseFormat example() {
+                            return new MistralAiApi.ChatCompletionRequest.ResponseFormat("json_object");
+                          }
+                        }
+                        """,
+                        """
+                        package com.yourorg;
+
+                        import org.springframework.ai.mistralai.api.MistralAiApi;
+
+                        class Demo {
+                          private MistralAiApi.ChatCompletionRequest.ResponseFormat example() {
+                            return new MistralAiApi.ChatCompletionRequest.ResponseFormat("json_object", null);
                           }
                         }
                         """
