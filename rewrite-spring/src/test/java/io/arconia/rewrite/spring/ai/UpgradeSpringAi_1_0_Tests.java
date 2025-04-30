@@ -850,4 +850,166 @@ public class UpgradeSpringAi_1_0_Tests implements RewriteTest {
         );
     }
 
+    @Test
+    void chatClientDefaultToolNames() {
+        rewriteRun(r -> r
+                        .parser(JavaParser.fromJavaVersion().classpathFromResources(new InMemoryExecutionContext(),
+                                "spring-ai-model-1.0.0-M7", "spring-ai-client-chat-1.0.0-M7"))
+                        .typeValidationOptions(TypeValidation.builder().methodInvocations(false).build()),
+                //language=java
+                java(
+                        """
+                        package com.yourorg;
+
+                        import org.springframework.ai.chat.client.ChatClient;
+
+                        class Demo {
+                          private void example(ChatClient.Builder builder) {
+                            builder.defaultTools("lizard", "George");
+                          }
+                          private void example2(ChatClient.Builder builder) {
+                            builder.defaultTools(new MyTools());
+                          }
+
+                          public static class MyTools {
+                            public String getLizard() {
+                              return "lizard";
+                            }
+                          }
+                        }
+                        """,
+                        """
+                        package com.yourorg;
+
+                        import org.springframework.ai.chat.client.ChatClient;
+
+                        class Demo {
+                          private void example(ChatClient.Builder builder) {
+                            builder.defaultToolNames("lizard", "George");
+                          }
+                          private void example2(ChatClient.Builder builder) {
+                            builder.defaultTools(new MyTools());
+                          }
+
+                          public static class MyTools {
+                            public String getLizard() {
+                              return "lizard";
+                            }
+                          }
+                        }
+                        """
+                )
+        );
+    }
+
+    @Test
+    void chatClientDefaultToolCallbacks() {
+        rewriteRun(r -> r
+                        .parser(JavaParser.fromJavaVersion().classpathFromResources(new InMemoryExecutionContext(),
+                                "spring-ai-model-1.0.0-M7", "spring-ai-client-chat-1.0.0-M7"))
+                        .typeValidationOptions(TypeValidation.builder().methodInvocations(false).build()),
+                //language=java
+                java(
+                        """
+                        package com.yourorg;
+
+                        import java.util.List;
+                        import org.springframework.ai.chat.client.ChatClient;
+                        import org.springframework.ai.tool.ToolCallback;
+                        import org.springframework.ai.tool.function.FunctionToolCallback;
+                        import org.springframework.ai.tool.method.MethodToolCallback;
+
+                        class Demo {
+                          private void example(ChatClient.Builder builder, org.springframework.ai.model.function.FunctionCallback toolCallback1, org.springframework.ai.model.function.FunctionCallback toolCallback2) {
+                            builder.defaultTools(toolCallback1, toolCallback2);
+                          }
+                          private void example(ChatClient.Builder builder, ToolCallback toolCallback1, ToolCallback toolCallback2) {
+                            builder.defaultTools(toolCallback1, toolCallback2);
+                          }
+                          private void example2(ChatClient.Builder builder, MethodToolCallback toolCallback1, MethodToolCallback toolCallback2) {
+                            builder.defaultTools(toolCallback1, toolCallback2);
+                          }
+                          private void example2(ChatClient.Builder builder, FunctionToolCallback toolCallback1, FunctionToolCallback toolCallback2) {
+                            builder.defaultTools(toolCallback1);
+                          }
+                          private void example(ChatClient.Builder builder, ToolCallback toolCallback1, ToolCallback toolCallback2) {
+                            builder.defaultTools(List.of(toolCallback1, toolCallback2));
+                          }
+                        }
+                        """,
+                        """
+                        package com.yourorg;
+
+                        import java.util.List;
+                        import org.springframework.ai.chat.client.ChatClient;
+                        import org.springframework.ai.tool.ToolCallback;
+                        import org.springframework.ai.tool.function.FunctionToolCallback;
+                        import org.springframework.ai.tool.method.MethodToolCallback;
+
+                        class Demo {
+                          private void example(ChatClient.Builder builder, org.springframework.ai.model.function.FunctionCallback toolCallback1, org.springframework.ai.model.function.FunctionCallback toolCallback2) {
+                            builder.defaultToolCallbacks(toolCallback1, toolCallback2);
+                          }
+                          private void example(ChatClient.Builder builder, ToolCallback toolCallback1, ToolCallback toolCallback2) {
+                            builder.defaultToolCallbacks(toolCallback1, toolCallback2);
+                          }
+                          private void example2(ChatClient.Builder builder, MethodToolCallback toolCallback1, MethodToolCallback toolCallback2) {
+                            builder.defaultToolCallbacks(toolCallback1, toolCallback2);
+                          }
+                          private void example2(ChatClient.Builder builder, FunctionToolCallback toolCallback1, FunctionToolCallback toolCallback2) {
+                            builder.defaultToolCallbacks(toolCallback1);
+                          }
+                          private void example(ChatClient.Builder builder, ToolCallback toolCallback1, ToolCallback toolCallback2) {
+                            builder.defaultToolCallbacks(List.of(toolCallback1, toolCallback2));
+                          }
+                        }
+                        """
+                )
+        );
+    }
+
+    @Test
+    void chatClientDefaultToolCallbackProviders() {
+        rewriteRun(r -> r
+                        .parser(JavaParser.fromJavaVersion().classpathFromResources(new InMemoryExecutionContext(),
+                                "spring-ai-model-1.0.0-M7", "spring-ai-client-chat-1.0.0-M7"))
+                        .typeValidationOptions(TypeValidation.builder().methodInvocations(false).build()),
+                //language=java
+                java(
+                        """
+                        package com.yourorg;
+
+                        import org.springframework.ai.chat.client.ChatClient;
+                        import org.springframework.ai.tool.ToolCallbackProvider;
+                        import org.springframework.ai.tool.method.MethodToolCallbackProvider;
+
+                        class Demo {
+                          private void example(ChatClient.Builder builder, ToolCallbackProvider toolCallback1, ToolCallbackProvider toolCallback2) {
+                            builder.defaultTools(toolCallback1, toolCallback2);
+                          }
+                          private void example2(ChatClient.Builder builder, MethodToolCallbackProvider toolCallback1, MethodToolCallbackProvider toolCallback2) {
+                            builder.defaultTools(toolCallback1, toolCallback2);
+                          }
+                        }
+                        """,
+                        """
+                        package com.yourorg;
+
+                        import org.springframework.ai.chat.client.ChatClient;
+                        import org.springframework.ai.tool.ToolCallbackProvider;
+                        import org.springframework.ai.tool.method.MethodToolCallbackProvider;
+
+                        class Demo {
+                          private void example(ChatClient.Builder builder, ToolCallbackProvider toolCallback1, ToolCallbackProvider toolCallback2) {
+                            builder.defaultToolCallbacks(toolCallback1, toolCallback2);
+                          }
+                          private void example2(ChatClient.Builder builder, MethodToolCallbackProvider toolCallback1, MethodToolCallbackProvider toolCallback2) {
+                            builder.defaultToolCallbacks(toolCallback1, toolCallback2);
+                          }
+                        }
+                        """
+                )
+        );
+    }
+
 }

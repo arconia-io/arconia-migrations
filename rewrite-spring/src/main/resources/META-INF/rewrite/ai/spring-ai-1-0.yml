@@ -315,23 +315,40 @@ recipeList:
       methodPattern: org.springframework.ai.chat.client.ChatClient.ChatClientRequestSpec tools(String...)
       newMethodName: toolNames
       matchOverrides: true
-
   - org.openrewrite.java.ChangeMethodName:
       methodPattern: org.springframework.ai.chat.client.ChatClient.ChatClientRequestSpec tools(java.util.List)
       newMethodName: toolCallbacks
       matchOverrides: true
-
   - org.openrewrite.java.ChangeMethodName:
       methodPattern: org.springframework.ai.chat.client.ChatClient.ChatClientRequestSpec tools(org.springframework.ai.model.function.FunctionCallback...)
       newMethodName: toolCallbacks
       matchOverrides: true
-
   - org.openrewrite.java.ChangeMethodName:
       methodPattern: org.springframework.ai.chat.client.ChatClient.ChatClientRequestSpec tools(org.springframework.ai.tool.ToolCallback...)
       newMethodName: toolCallbacks
       matchOverrides: true
-
   - org.openrewrite.java.ChangeMethodName:
       methodPattern: org.springframework.ai.chat.client.ChatClient.ChatClientRequestSpec tools(org.springframework.ai.tool.ToolCallbackProvider...)
       newMethodName: toolCallbacks
+      matchOverrides: true
+
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: org.springframework.ai.chat.client.ChatClient.Builder defaultTools(String...)
+      newMethodName: defaultToolNames
+      matchOverrides: true
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: org.springframework.ai.chat.client.ChatClient.Builder defaultTools(java.util.List)
+      newMethodName: defaultToolCallbacks
+      matchOverrides: true
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: org.springframework.ai.chat.client.ChatClient.Builder defaultTools(org.springframework.ai.model.function.FunctionCallback...)
+      newMethodName: defaultToolCallbacks
+      matchOverrides: true
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: org.springframework.ai.chat.client.ChatClient.Builder defaultTools(org.springframework.ai.tool.ToolCallback...)
+      newMethodName: defaultToolCallbacks
+      matchOverrides: true
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: org.springframework.ai.chat.client.ChatClient.Builder defaultTools(org.springframework.ai.tool.ToolCallbackProvider...)
+      newMethodName: defaultToolCallbacks
       matchOverrides: true
