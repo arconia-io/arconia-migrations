@@ -7,6 +7,9 @@ tags:
   - spring
   - ai
 recipeList:
+  # Configuration Properties
+  - io.arconia.rewrite.spring.ai.UpgradeSpringAiProperties_1_0
+
   # Dependency Versions
   - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
       groupId: org.springframework.ai
@@ -52,11 +55,6 @@ recipeList:
       newArtifactId: spring-ai-starter-model-mistral-ai
   - org.openrewrite.java.dependencies.ChangeDependency:
       oldGroupId: org.springframework.ai
-      oldArtifactId: spring-ai-moonshot-spring-boot-starter
-      newGroupId: org.springframework.ai
-      newArtifactId: spring-ai-starter-model-moonshot
-  - org.openrewrite.java.dependencies.ChangeDependency:
-      oldGroupId: org.springframework.ai
       oldArtifactId: spring-ai-oci-genai-spring-boot-starter
       newGroupId: org.springframework.ai
       newArtifactId: spring-ai-starter-model-oci-genai
@@ -75,11 +73,6 @@ recipeList:
       oldArtifactId: spring-ai-postgresml-embedding-spring-boot-starter
       newGroupId: org.springframework.ai
       newArtifactId: spring-ai-starter-model-postgresml-embedding
-  - org.openrewrite.java.dependencies.ChangeDependency:
-      oldGroupId: org.springframework.ai
-      oldArtifactId: spring-ai-qianfan-spring-boot-starter
-      newGroupId: org.springframework.ai
-      newArtifactId: spring-ai-starter-model-qianfan
   - org.openrewrite.java.dependencies.ChangeDependency:
       oldGroupId: org.springframework.ai
       oldArtifactId: spring-ai-stability-ai-spring-boot-starter
@@ -248,10 +241,23 @@ recipeList:
   # Package Name Changes
   - org.openrewrite.java.ChangeType:
       oldFullyQualifiedTypeName: org.springframework.ai.transformer.KeywordMetadataEnricher
-      newFullyQualifiedTypeName: org.springframework.ai.chat.transformer.KeywordMetadataEnricher
+      newFullyQualifiedTypeName: org.springframework.ai.model.transformer.KeywordMetadataEnricher
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.ai.chat.transformer.KeywordMetadataEnricher
+      newFullyQualifiedTypeName: org.springframework.ai.model.transformer.KeywordMetadataEnricher
   - org.openrewrite.java.ChangeType:
       oldFullyQualifiedTypeName: org.springframework.ai.transformer.SummaryMetadataEnricher
-      newFullyQualifiedTypeName: org.springframework.ai.chat.transformer.SummaryMetadataEnricher
+      newFullyQualifiedTypeName: org.springframework.ai.model.transformer.SummaryMetadataEnricher
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.ai.chat.transformer.SummaryMetadataEnricher
+      newFullyQualifiedTypeName: org.springframework.ai.model.transformer.SummaryMetadataEnricher
+
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.ai.evaluation.FactCheckingEvaluator
+      newFullyQualifiedTypeName: org.springframework.ai.chat.evaluation.FactCheckingEvaluator
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.ai.evaluation.RelevancyEvaluator
+      newFullyQualifiedTypeName: org.springframework.ai.chat.evaluation.RelevancyEvaluator
 
   - org.openrewrite.java.ChangeType:
       oldFullyQualifiedTypeName: org.springframework.ai.model.Content
@@ -264,13 +270,15 @@ recipeList:
       newFullyQualifiedTypeName: org.springframework.ai.content.MediaContent
 
   - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.ai.util.PromptAssert
+      newFullyQualifiedTypeName: org.springframework.ai.rag.util.PromptAssert
+
+  - org.openrewrite.java.ChangeType:
       oldFullyQualifiedTypeName: org.springframework.ai.chat.client.advisor.QuestionAnswerAdvisor
       newFullyQualifiedTypeName: org.springframework.ai.chat.client.advisor.vectorstore.QuestionAnswerAdvisor
-
   - org.openrewrite.java.ChangeType:
       oldFullyQualifiedTypeName: org.springframework.ai.chat.client.advisor.RetrievalAugmentationAdvisor
       newFullyQualifiedTypeName: org.springframework.ai.rag.advisor.RetrievalAugmentationAdvisor
-
   - org.openrewrite.java.ChangeType:
       oldFullyQualifiedTypeName: org.springframework.ai.chat.client.advisor.VectorStoreChatMemoryAdvisor
       newFullyQualifiedTypeName: org.springframework.ai.chat.client.advisor.vectorstore.VectorStoreChatMemoryAdvisor
@@ -302,7 +310,7 @@ recipeList:
       artifactId: spring-ai-model-chat-memory-cassandra
       onlyIfUsing: org.springframework.ai.chat.memory.cassandra.CassandraChatMemory
 
-  # Property Changes
-  - io.arconia.rewrite.spring.boot.ChangeSpringBootPropertyKey:
-      oldPropertyKey: "spring.ai.chat.memory.jdbc.initialize-schema"
-      newPropertyKey: "spring.ai.chat.memory.repository.jdbc.initialize-schema"
+  # Method Name Changes
+  #- org.openrewrite.java.ChangeMethodName:
+  #    methodPattern: org.springframework.ai.chat.client.ChatClient$ChatClientRequestSpec tools(java.lang.String[])
+  #    newMethodName: toolNames

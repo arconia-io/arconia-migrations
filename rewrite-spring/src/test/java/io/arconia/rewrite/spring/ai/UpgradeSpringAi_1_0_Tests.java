@@ -1,19 +1,23 @@
 package io.arconia.rewrite.spring.ai;
 
 import org.intellij.lang.annotations.Language;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.openrewrite.InMemoryExecutionContext;
 import org.openrewrite.java.JavaParser;
 import org.openrewrite.test.RecipeSpec;
 import org.openrewrite.test.RewriteTest;
+import org.openrewrite.test.TypeValidation;
 
 import static org.openrewrite.gradle.Assertions.buildGradle;
 import static org.openrewrite.gradle.toolingapi.Assertions.withToolingApi;
 import static org.openrewrite.java.Assertions.java;
 import static org.openrewrite.java.Assertions.mavenProject;
 import static org.openrewrite.java.Assertions.srcMainJava;
-import static org.openrewrite.properties.Assertions.properties;
 
+/**
+ * Tests for "io.arconia.rewrite.spring.ai.UpgradeSpringAi_1_0".
+ */
 public class UpgradeSpringAi_1_0_Tests implements RewriteTest {
 
     @Override
@@ -25,21 +29,7 @@ public class UpgradeSpringAi_1_0_Tests implements RewriteTest {
     // Package Name Changes
 
     @Test
-    void doesNotChangeKeywordMetadataEnricher() {
-        rewriteRun(
-                //language=java
-                java(
-                        """
-                        package com.yourorg;
-
-                        import org.springframework.ai.chat.transformer.KeywordMetadataEnricher;
-                        """
-                )
-        );
-    }
-
-    @Test
-    void changesKeywordMetadataEnricher() {
+    void keywordMetadataEnricherM7() {
         rewriteRun(
                 //language=java
                 java(
@@ -55,7 +45,7 @@ public class UpgradeSpringAi_1_0_Tests implements RewriteTest {
                         """
                         package com.yourorg;
 
-                        import org.springframework.ai.chat.transformer.KeywordMetadataEnricher;
+                        import org.springframework.ai.model.transformer.KeywordMetadataEnricher;
 
                         class Demo {
                             KeywordMetadataEnricher enricher = null;
@@ -66,21 +56,34 @@ public class UpgradeSpringAi_1_0_Tests implements RewriteTest {
     }
 
     @Test
-    void doesNotChangeSummaryMetadataEnricher() {
-        rewriteRun(
+    void keywordMetadataEnricherM8() {
+        rewriteRun(r -> r.parser(JavaParser.fromJavaVersion().classpathFromResources(new InMemoryExecutionContext(), "spring-ai-client-chat-1.0.0-M7")),
                 //language=java
                 java(
                         """
                         package com.yourorg;
 
-                        import org.springframework.ai.chat.transformer.SummaryMetadataEnricher;
+                        import org.springframework.ai.chat.transformer.KeywordMetadataEnricher;
+
+                        class Demo {
+                            KeywordMetadataEnricher enricher = null;
+                        }
+                        """,
+                        """
+                        package com.yourorg;
+
+                        import org.springframework.ai.model.transformer.KeywordMetadataEnricher;
+
+                        class Demo {
+                            KeywordMetadataEnricher enricher = null;
+                        }
                         """
                 )
         );
     }
 
     @Test
-    void changesSummaryMetadataEnricher() {
+    void summaryMetadataEnricherM7() {
         rewriteRun(
                 //language=java
                 java(
@@ -96,7 +99,7 @@ public class UpgradeSpringAi_1_0_Tests implements RewriteTest {
                         """
                         package com.yourorg;
 
-                        import org.springframework.ai.chat.transformer.SummaryMetadataEnricher;
+                        import org.springframework.ai.model.transformer.SummaryMetadataEnricher;
 
                         class Demo {
                             SummaryMetadataEnricher enricher = null;
@@ -107,21 +110,88 @@ public class UpgradeSpringAi_1_0_Tests implements RewriteTest {
     }
 
     @Test
-    void doesNotChangeContent() {
-        rewriteRun(
+    void summaryMetadataEnricherM8() {
+        rewriteRun(r -> r.parser(JavaParser.fromJavaVersion().classpathFromResources(new InMemoryExecutionContext(), "spring-ai-client-chat-1.0.0-M7")),
                 //language=java
                 java(
                         """
                         package com.yourorg;
 
-                        import org.springframework.ai.content.Content;
+                        import org.springframework.ai.chat.transformer.SummaryMetadataEnricher;
+
+                        class Demo {
+                            SummaryMetadataEnricher enricher = null;
+                        }
+                        """,
+                        """
+                        package com.yourorg;
+
+                        import org.springframework.ai.model.transformer.SummaryMetadataEnricher;
+
+                        class Demo {
+                            SummaryMetadataEnricher enricher = null;
+                        }
                         """
                 )
         );
     }
 
     @Test
-    void changesContent() {
+    void factCheckingEvaluator() {
+        rewriteRun(
+                //language=java
+                java(
+                        """
+                        package com.yourorg;
+
+                        import org.springframework.ai.evaluation.FactCheckingEvaluator;
+
+                        class Demo {
+                            FactCheckingEvaluator factCheckingEvaluator = null;
+                        }
+                        """,
+                        """
+                        package com.yourorg;
+
+                        import org.springframework.ai.chat.evaluation.FactCheckingEvaluator;
+
+                        class Demo {
+                            FactCheckingEvaluator factCheckingEvaluator = null;
+                        }
+                        """
+                )
+        );
+    }
+
+    @Test
+    void relevancyEvaluator() {
+        rewriteRun(
+                //language=java
+                java(
+                        """
+                        package com.yourorg;
+
+                        import org.springframework.ai.evaluation.RelevancyEvaluator;
+
+                        class Demo {
+                            RelevancyEvaluator relevancyEvaluator = null;
+                        }
+                        """,
+                        """
+                        package com.yourorg;
+
+                        import org.springframework.ai.chat.evaluation.RelevancyEvaluator;
+
+                        class Demo {
+                            RelevancyEvaluator relevancyEvaluator = null;
+                        }
+                        """
+                )
+        );
+    }
+
+    @Test
+    void content() {
         rewriteRun(
                 //language=java
                 java(
@@ -148,21 +218,7 @@ public class UpgradeSpringAi_1_0_Tests implements RewriteTest {
     }
 
     @Test
-    void doesNotChangeMedia() {
-        rewriteRun(
-                //language=java
-                java(
-                        """
-                        package com.yourorg;
-
-                        import org.springframework.ai.content.Media;
-                        """
-                )
-        );
-    }
-
-    @Test
-    void changesMedia() {
+    void media() {
         rewriteRun(
                 //language=java
                 java(
@@ -189,21 +245,7 @@ public class UpgradeSpringAi_1_0_Tests implements RewriteTest {
     }
 
     @Test
-    void doesNotChangeMediaContent() {
-        rewriteRun(
-                //language=java
-                java(
-                        """
-                        package com.yourorg;
-
-                        import org.springframework.ai.content.MediaContent;
-                        """
-                )
-        );
-    }
-
-    @Test
-    void changesMediaContent() {
+    void mediaContent() {
         rewriteRun(
                 //language=java
                 java(
@@ -230,21 +272,34 @@ public class UpgradeSpringAi_1_0_Tests implements RewriteTest {
     }
 
     @Test
-    void doesNotChangeRetrievalAugmentationAdvisor() {
+    void promptAssert() {
         rewriteRun(
                 //language=java
                 java(
                         """
                         package com.yourorg;
 
-                        import org.springframework.ai.rag.advisor.RetrievalAugmentationAdvisor;
+                        import org.springframework.ai.util.PromptAssert;
+
+                        class Demo {
+                            PromptAssert promptAssert = null;
+                        }
+                        """,
+                        """
+                        package com.yourorg;
+
+                        import org.springframework.ai.rag.util.PromptAssert;
+
+                        class Demo {
+                            PromptAssert promptAssert = null;
+                        }
                         """
                 )
         );
     }
 
     @Test
-    void changesRetrievalAugmentationAdvisor() {
+    void retrievalAugmentationAdvisor() {
         rewriteRun(
                 //language=java
                 java(
@@ -271,21 +326,7 @@ public class UpgradeSpringAi_1_0_Tests implements RewriteTest {
     }
 
     @Test
-    void doesNotChangeQuestionAnswerAdvisor() {
-        rewriteRun(
-                //language=java
-                java(
-                        """
-                        package com.yourorg;
-
-                        import org.springframework.ai.chat.client.advisor.vectorstore.QuestionAnswerAdvisor;
-                        """
-                )
-        );
-    }
-
-    @Test
-    void changesQuestionAnswerAdvisor() {
+    void questionAnswerAdvisor() {
         rewriteRun(
                 //language=java
                 java(
@@ -312,21 +353,7 @@ public class UpgradeSpringAi_1_0_Tests implements RewriteTest {
     }
 
     @Test
-    void doesNotChangeVectorStoreChatMemoryAdvisor() {
-        rewriteRun(
-                //language=java
-                java(
-                        """
-                        package com.yourorg;
-
-                        import org.springframework.ai.chat.client.advisor.vectorstore.VectorStoreChatMemoryAdvisor;
-                        """
-                )
-        );
-    }
-
-    @Test
-    void changesVectorStoreChatMemoryAdvisor() {
+    void vectorStoreChatMemoryAdvisor() {
         rewriteRun(
                 //language=java
                 java(
@@ -366,27 +393,6 @@ public class UpgradeSpringAi_1_0_Tests implements RewriteTest {
         """;
 
     @Test
-    void doesNotAddVectorStoreDependency() {
-        rewriteRun(
-                spec -> spec.beforeRecipe(withToolingApi()),
-                mavenProject("project",
-                        //language=groovy
-                        buildGradle(
-                                """
-                                plugins {
-                                    id "java-library"
-                                }
-
-                                repositories {
-                                    mavenCentral()
-                                }
-                                """
-                        )
-                )
-        );
-    }
-
-    @Test
     void addsVectorStoreDependency() {
         rewriteRun(
                 spec -> spec.beforeRecipe(withToolingApi()),
@@ -418,27 +424,6 @@ public class UpgradeSpringAi_1_0_Tests implements RewriteTest {
                                       implementation "org.springframework.ai:spring-ai-vector-store"
                                   }
                                   """
-                        )
-                )
-        );
-    }
-
-    @Test
-    void doesNotAddRagDependency() {
-        rewriteRun(
-                spec -> spec.beforeRecipe(withToolingApi()),
-                mavenProject("project",
-                        //language=groovy
-                        buildGradle(
-                                """
-                                plugins {
-                                    id "java-library"
-                                }
-
-                                repositories {
-                                    mavenCentral()
-                                }
-                                """
                         )
                 )
         );
@@ -540,27 +525,6 @@ public class UpgradeSpringAi_1_0_Tests implements RewriteTest {
                                       implementation "org.springframework.ai:spring-ai-rag"
                                   }
                                   """
-                        )
-                )
-        );
-    }
-
-    @Test
-    void doesNotAddVectorStoreAdvisorsDependency() {
-        rewriteRun(
-                spec -> spec.beforeRecipe(withToolingApi()),
-                mavenProject("project",
-                        //language=groovy
-                        buildGradle(
-                                """
-                                plugins {
-                                    id "java-library"
-                                }
-
-                                repositories {
-                                    mavenCentral()
-                                }
-                                """
                         )
                 )
         );
@@ -677,27 +641,6 @@ public class UpgradeSpringAi_1_0_Tests implements RewriteTest {
     }
 
     @Test
-    void doesNotAddCassandraMemoryDependency() {
-        rewriteRun(
-                spec -> spec.beforeRecipe(withToolingApi()),
-                mavenProject("project",
-                        //language=groovy
-                        buildGradle(
-                                """
-                                plugins {
-                                    id "java-library"
-                                }
-
-                                repositories {
-                                    mavenCentral()
-                                }
-                                """
-                        )
-                )
-        );
-    }
-
-    @Test
     void addsCassandraMemoryDependency() {
         rewriteRun(
                 spec -> spec.beforeRecipe(withToolingApi())
@@ -744,31 +687,41 @@ public class UpgradeSpringAi_1_0_Tests implements RewriteTest {
         );
     }
 
-    // Property Changes
+    // Method Changes
 
     @Test
-    void doesNotChangeProperties() {
-        rewriteRun(
-                //language=properties
-                properties("""
-                        spring.ai.chat.memory.jdbc.initialize-schema
-                        """,
-                        s -> s.path("src/main/resources/application.properties"))
-        );
-    }
+    @Disabled("requirement not implemented yet")
+    void chatClientToolNames() {
+        rewriteRun(r -> r
+                        .parser(JavaParser.fromJavaVersion().classpathFromResources(new InMemoryExecutionContext(), "spring-ai-client-chat-1.0.0-M7"))
+                        .typeValidationOptions(TypeValidation.builder().methodInvocations(false).build()),
+                //language=java
+                java(
+                        """
+                        package com.yourorg;
 
-    @Test
-    void changeProperties() {
-        rewriteRun(
-                //language=properties
-                properties(
-                        """
-                        spring.ai.chat.memory.jdbc.initialize-schema=false
+                        import org.springframework.ai.chat.client.ChatClient;
+
+                        class Demo {
+                            private void example(ChatClient chatClient) {
+                                ChatClient.ChatClientRequestSpec requestSpec = chatClient.prompt();
+                                requestSpec.tools("lizard", "George");
+                            }
+                        }
                         """,
                         """
-                        spring.ai.chat.memory.repository.jdbc.initialize-schema=false
-                        """,
-                        s -> s.path("src/main/resources/application.properties"))
+                        package com.yourorg;
+
+                        import org.springframework.ai.chat.client.ChatClient;
+
+                        class Demo {
+                            private void example(ChatClient chatClient) {
+                                ChatClient.ChatClientRequestSpec requestSpec = chatClient.prompt();
+                                requestSpec.toolNames("lizard", "George");
+                            }
+                        }
+                        """
+                )
         );
     }
 

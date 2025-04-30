@@ -1,0 +1,12 @@
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.ai.UpgradeSpringAiProperties_1_0
+displayName: Migrate Spring AI properties to 1.0
+description: Migrate Spring AI properties found in configuration data files (YAML and Properties).
+tags:
+  - spring
+  - ai
+recipeList:
+  - io.arconia.rewrite.spring.boot.ChangeSpringBootPropertyKey:
+      oldPropertyKey: "spring.ai.chat.memory.jdbc.initialize-schema"
+      newPropertyKey: "spring.ai.chat.memory.repository.jdbc.initialize-schema"

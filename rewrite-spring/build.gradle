@@ -40,6 +40,8 @@ dependencies {
 recipeDependencies {
     parserClasspath "org.springframework.ai:spring-ai-cassandra-store:1.0.0-M6"
     parserClasspath "org.springframework.ai:spring-ai-core:1.0.0-M6"
+
+    parserClasspath "org.springframework.ai:spring-ai-client-chat:1.0.0-M7"
 }
 
 // Re-enable if and when starting using Refaster
