@@ -151,7 +151,7 @@ class UpgradeArconia_0_10_Tests implements RewriteTest {
                                 }
 
                                 dependencies {
-                                    implementation "io.arconia:arconia-spring-boot-starter:0.10.1"
+                                    implementation "io.arconia:arconia-spring-boot-starter:0.10.3"
                                 }
                                 """
                         )
