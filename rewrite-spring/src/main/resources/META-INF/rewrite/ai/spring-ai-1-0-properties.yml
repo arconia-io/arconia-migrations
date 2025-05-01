@@ -12,8 +12,8 @@ recipeList:
       newPropertyKey: "spring.ai.chat.memory.repository.jdbc.initialize-schema"
 
   - io.arconia.rewrite.spring.boot.ChangeSpringBootPropertyKey:
-      oldPropertyKey: "spring.ai.chat.observations.include-input"
-      newPropertyKey: "spring.ai.chat.observations.include-prompt"
+      oldPropertyKey: "spring.ai.chat.client.observations.include-input"
+      newPropertyKey: "spring.ai.chat.client.observations.include-prompt"
 
   - io.arconia.rewrite.spring.boot.DeleteSpringBootPropertyKey:
       propertyKey: "spring.ai.anthropic.chat.enabled"
