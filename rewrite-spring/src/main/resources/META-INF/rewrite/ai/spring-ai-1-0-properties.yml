@@ -12,8 +12,56 @@ recipeList:
       newPropertyKey: "spring.ai.chat.memory.repository.jdbc.initialize-schema"
 
   - io.arconia.rewrite.spring.boot.ChangeSpringBootPropertyKey:
+      oldPropertyKey: "spring.ai.chat.memory.cassandra.initialize-schema"
+      newPropertyKey: "spring.ai.chat.memory.repository.cassandra.initialize-schema"
+  - io.arconia.rewrite.spring.boot.ChangeSpringBootPropertyKey:
+      oldPropertyKey: "spring.ai.chat.memory.cassandra.keyspace"
+      newPropertyKey: "spring.ai.chat.memory.repository.cassandra.keyspace"
+  - io.arconia.rewrite.spring.boot.ChangeSpringBootPropertyKey:
+      oldPropertyKey: "spring.ai.chat.memory.cassandra.table"
+      newPropertyKey: "spring.ai.chat.memory.repository.cassandra.table"
+  - io.arconia.rewrite.spring.boot.ChangeSpringBootPropertyKey:
+      oldPropertyKey: "spring.ai.chat.memory.cassandra.time-to-live"
+      newPropertyKey: "spring.ai.chat.memory.repository.cassandra.time-to-live"
+
+  # Update after PR in Spring AI is merged
+  - io.arconia.rewrite.spring.boot.ChangeSpringBootPropertyKey:
+      oldPropertyKey: "spring.ai.chat.memory.neo4j.media-label"
+      newPropertyKey: "spring.ai.chat.memory.neo4j.media-label"
+  - io.arconia.rewrite.spring.boot.ChangeSpringBootPropertyKey:
+      oldPropertyKey: "spring.ai.chat.memory.neo4j.message-label"
+      newPropertyKey: "spring.ai.chat.memory.neo4j.message-label"
+  - io.arconia.rewrite.spring.boot.ChangeSpringBootPropertyKey:
+      oldPropertyKey: "spring.ai.chat.memory.neo4j.metadata-label"
+      newPropertyKey: "spring.ai.chat.memory.neo4j.metadata-label"
+  - io.arconia.rewrite.spring.boot.ChangeSpringBootPropertyKey:
+      oldPropertyKey: "spring.ai.chat.memory.neo4j.session-label"
+      newPropertyKey: "spring.ai.chat.memory.neo4j.session-label"
+  - io.arconia.rewrite.spring.boot.ChangeSpringBootPropertyKey:
+      oldPropertyKey: "spring.ai.chat.memory.neo4j.tool-call-label"
+      newPropertyKey: "spring.ai.chat.memory.neo4j.tool-call-label"
+  - io.arconia.rewrite.spring.boot.ChangeSpringBootPropertyKey:
+      oldPropertyKey: "spring.ai.chat.memory.neo4j.tool-response-label"
+      newPropertyKey: "spring.ai.chat.memory.neo4j.tool-response-label"
+
+  - io.arconia.rewrite.spring.boot.ChangeSpringBootPropertyKey:
       oldPropertyKey: "spring.ai.chat.client.observations.include-input"
-      newPropertyKey: "spring.ai.chat.client.observations.include-prompt"
+      newPropertyKey: "spring.ai.chat.client.observations.log-prompt"
+  - io.arconia.rewrite.spring.boot.ChangeSpringBootPropertyKey:
+      oldPropertyKey: "spring.ai.chat.client.observations.include-prompt"
+      newPropertyKey: "spring.ai.chat.client.observations.log-prompt"
+  - io.arconia.rewrite.spring.boot.ChangeSpringBootPropertyKey:
+      oldPropertyKey: "spring.ai.chat.observations.include-prompt"
+      newPropertyKey: "spring.ai.chat.observations.log-prompt"
+  - io.arconia.rewrite.spring.boot.ChangeSpringBootPropertyKey:
+      oldPropertyKey: "spring.ai.chat.observations.include-completion"
+      newPropertyKey: "spring.ai.chat.observations.log-completion"
+  - io.arconia.rewrite.spring.boot.ChangeSpringBootPropertyKey:
+      oldPropertyKey: "spring.ai.image.observations.include-prompt"
+      newPropertyKey: "spring.ai.image.observations.log-prompt"
+  - io.arconia.rewrite.spring.boot.ChangeSpringBootPropertyKey:
+      oldPropertyKey: "spring.ai.vectorstore.observations.include-query-response"
+      newPropertyKey: "spring.ai.vectorstore.observations.log-query-response"
 
   - io.arconia.rewrite.spring.boot.DeleteSpringBootPropertyKey:
       propertyKey: "spring.ai.anthropic.chat.enabled"
