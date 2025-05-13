@@ -24,25 +24,24 @@ recipeList:
       oldPropertyKey: "spring.ai.chat.memory.cassandra.time-to-live"
       newPropertyKey: "spring.ai.chat.memory.repository.cassandra.time-to-live"
 
-  # Update after PR in Spring AI is merged
   - io.arconia.rewrite.spring.boot.ChangeSpringBootPropertyKey:
       oldPropertyKey: "spring.ai.chat.memory.neo4j.media-label"
-      newPropertyKey: "spring.ai.chat.memory.neo4j.media-label"
+      newPropertyKey: "spring.ai.chat.memory.repository.neo4j.media-label"
   - io.arconia.rewrite.spring.boot.ChangeSpringBootPropertyKey:
       oldPropertyKey: "spring.ai.chat.memory.neo4j.message-label"
-      newPropertyKey: "spring.ai.chat.memory.neo4j.message-label"
+      newPropertyKey: "spring.ai.chat.memory.repository.neo4j.message-label"
   - io.arconia.rewrite.spring.boot.ChangeSpringBootPropertyKey:
       oldPropertyKey: "spring.ai.chat.memory.neo4j.metadata-label"
-      newPropertyKey: "spring.ai.chat.memory.neo4j.metadata-label"
+      newPropertyKey: "spring.ai.chat.memory.repository.neo4j.metadata-label"
   - io.arconia.rewrite.spring.boot.ChangeSpringBootPropertyKey:
       oldPropertyKey: "spring.ai.chat.memory.neo4j.session-label"
-      newPropertyKey: "spring.ai.chat.memory.neo4j.session-label"
+      newPropertyKey: "spring.ai.chat.memory.repository.neo4j.session-label"
   - io.arconia.rewrite.spring.boot.ChangeSpringBootPropertyKey:
       oldPropertyKey: "spring.ai.chat.memory.neo4j.tool-call-label"
-      newPropertyKey: "spring.ai.chat.memory.neo4j.tool-call-label"
+      newPropertyKey: "spring.ai.chat.memory.repository.neo4j.tool-call-label"
   - io.arconia.rewrite.spring.boot.ChangeSpringBootPropertyKey:
       oldPropertyKey: "spring.ai.chat.memory.neo4j.tool-response-label"
-      newPropertyKey: "spring.ai.chat.memory.neo4j.tool-response-label"
+      newPropertyKey: "spring.ai.chat.memory.repository.neo4j.tool-response-label"
 
   - io.arconia.rewrite.spring.boot.ChangeSpringBootPropertyKey:
       oldPropertyKey: "spring.ai.chat.client.observations.include-input"
