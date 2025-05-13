@@ -640,53 +640,6 @@ public class UpgradeSpringAi_1_0_Tests implements RewriteTest {
         );
     }
 
-    @Test
-    void addsCassandraMemoryDependency() {
-        rewriteRun(
-                spec -> spec.beforeRecipe(withToolingApi())
-                        .parser(JavaParser.fromJavaVersion().classpathFromResources(new InMemoryExecutionContext(), "spring-ai-cassandra-store-1.0.0-M6")),
-                mavenProject("project",
-                        srcMainJava(
-                                //language=java
-                                java("""
-                                    package com.yourorg;
-
-                                    import org.springframework.ai.chat.memory.cassandra.CassandraChatMemory;
-
-                                    class Demo {
-                                      CassandraChatMemory advisor = null;
-                                    }
-                                    """)
-                        ),
-                        //language=groovy
-                        buildGradle(
-                                """
-                                plugins {
-                                    id "java-library"
-                                }
-
-                                repositories {
-                                    mavenCentral()
-                                }
-                                """,
-                                """
-                                  plugins {
-                                      id "java-library"
-                                  }
-
-                                  repositories {
-                                      mavenCentral()
-                                  }
-
-                                  dependencies {
-                                      implementation "org.springframework.ai:spring-ai-model-chat-memory-cassandra"
-                                  }
-                                  """
-                        )
-                )
-        );
-    }
-
     // Method Changes
 
     @Test

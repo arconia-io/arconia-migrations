@@ -371,10 +371,6 @@ recipeList:
       groupId: org.springframework.ai
       artifactId: spring-ai-advisors-vector-store
       onlyIfUsing: org.springframework.ai.chat.client.advisor.VectorStoreChatMemoryAdvisor
-  - org.openrewrite.java.dependencies.AddDependency:
-      groupId: org.springframework.ai
-      artifactId: spring-ai-model-chat-memory-cassandra
-      onlyIfUsing: org.springframework.ai.chat.memory.cassandra.CassandraChatMemory
 
   # Method Name Changes
   - org.openrewrite.java.ChangeMethodName:
