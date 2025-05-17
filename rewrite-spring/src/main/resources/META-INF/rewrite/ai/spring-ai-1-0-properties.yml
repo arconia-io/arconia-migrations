@@ -10,6 +10,14 @@ recipeList:
   - io.arconia.rewrite.spring.boot.ChangeSpringBootPropertyKey:
       oldPropertyKey: "spring.ai.chat.memory.jdbc.initialize-schema"
       newPropertyKey: "spring.ai.chat.memory.repository.jdbc.initialize-schema"
+  - io.arconia.rewrite.spring.boot.ChangeSpringBootPropertyValue:
+      propertyKey: "spring.ai.chat.memory.repository.jdbc.initialize-schema"
+      oldPropertyValue: "true"
+      newPropertyValue: "always"
+  - io.arconia.rewrite.spring.boot.ChangeSpringBootPropertyValue:
+      propertyKey: "spring.ai.chat.memory.repository.jdbc.initialize-schema"
+      oldPropertyValue: "false"
+      newPropertyValue: "never"
 
   - io.arconia.rewrite.spring.boot.ChangeSpringBootPropertyKey:
       oldPropertyKey: "spring.ai.chat.memory.cassandra.initialize-schema"
