@@ -1,0 +1,47 @@
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.UpgradeArconia_0_11
+displayName: Migrate to Arconia 0.11
+description: Migrate a Spring Boot application to the latest Arconia 0.11.x release.
+tags:
+  - arconia
+recipeList:
+  # Dependency Versions
+  - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
+      groupId: io.arconia
+      artifactId: "*"
+      newVersion: 0.11.x
+      overrideManagedVersion: true
+
+  # Dependency Changes
+  - org.openrewrite.java.dependencies.ChangeDependency:
+      oldGroupId: io.arconia
+      oldArtifactId: arconia-dev-services-opentelemetry-lgtm
+      newGroupId: io.arconia
+      newArtifactId: arconia-dev-services-lgtm
+
+  # Property Changes
+  - io.arconia.rewrite.spring.boot.ChangeSpringBootPropertyKey:
+      oldPropertyKey: "arconia.dev.services.lgtm.reusable"
+      newPropertyKey: "arconia.dev.services.lgtm.shared"
+  - io.arconia.rewrite.spring.boot.ChangeSpringBootPropertyKey:
+      oldPropertyKey: "arconia.dev.services.ollama.reusable"
+      newPropertyKey: "arconia.dev.services.ollama.shared"
+  - io.arconia.rewrite.spring.boot.ChangeSpringBootPropertyKey:
+      oldPropertyKey: "arconia.dev.services.postgresql.reusable"
+      newPropertyKey: "arconia.dev.services.postgresql.shared"
+  - io.arconia.rewrite.spring.boot.ChangeSpringBootPropertyKey:
+      oldPropertyKey: "arconia.dev.services.redis.community.environment"
+      newPropertyKey: "arconia.dev.services.redis.environment"
+  - io.arconia.rewrite.spring.boot.ChangeSpringBootPropertyKey:
+      oldPropertyKey: "arconia.dev.services.redis.community.image-name"
+      newPropertyKey: "arconia.dev.services.redis.image-name"
+  - io.arconia.rewrite.spring.boot.ChangeSpringBootPropertyKey:
+      oldPropertyKey: "arconia.dev.services.redis.community.reusable"
+      newPropertyKey: "arconia.dev.services.redis.shared"
+  - io.arconia.rewrite.spring.boot.DeleteSpringBootPropertyKey:
+      propertyKey: "arconia.dev.services.redis.stack.environment"
+  - io.arconia.rewrite.spring.boot.DeleteSpringBootPropertyKey:
+      propertyKey: "arconia.dev.services.redis.stack.image-name"
+  - io.arconia.rewrite.spring.boot.DeleteSpringBootPropertyKey:
+      propertyKey: "arconia.dev.services.redis.stack.reusable"
