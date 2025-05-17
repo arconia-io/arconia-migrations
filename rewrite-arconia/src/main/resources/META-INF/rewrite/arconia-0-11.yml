@@ -20,7 +20,7 @@ recipeList:
       newGroupId: io.arconia
       newArtifactId: arconia-dev-services-lgtm
 
-  # Property Changes
+  # Property Key Changes
   - io.arconia.rewrite.spring.boot.ChangeSpringBootPropertyKey:
       oldPropertyKey: "arconia.dev.services.lgtm.reusable"
       newPropertyKey: "arconia.dev.services.lgtm.shared"
@@ -39,6 +39,42 @@ recipeList:
   - io.arconia.rewrite.spring.boot.ChangeSpringBootPropertyKey:
       oldPropertyKey: "arconia.dev.services.redis.community.reusable"
       newPropertyKey: "arconia.dev.services.redis.shared"
+
+  # Property Value Changes
+  - io.arconia.rewrite.spring.boot.ChangeSpringBootPropertyValue:
+      propertyKey: "arconia.dev.services.lgtm.shared"
+      oldPropertyValue: "true"
+      newPropertyValue: "dev-mode"
+  - io.arconia.rewrite.spring.boot.ChangeSpringBootPropertyValue:
+      propertyKey: "arconia.dev.services.lgtm.shared"
+      oldPropertyValue: "false"
+      newPropertyValue: "never"
+  - io.arconia.rewrite.spring.boot.ChangeSpringBootPropertyValue:
+      propertyKey: "arconia.dev.services.ollama.shared"
+      oldPropertyValue: "true"
+      newPropertyValue: "dev-mode"
+  - io.arconia.rewrite.spring.boot.ChangeSpringBootPropertyValue:
+      propertyKey: "arconia.dev.services.ollama.shared"
+      oldPropertyValue: "false"
+      newPropertyValue: "never"
+  - io.arconia.rewrite.spring.boot.ChangeSpringBootPropertyValue:
+      propertyKey: "arconia.dev.services.postgresql.shared"
+      oldPropertyValue: "true"
+      newPropertyValue: "dev-mode"
+  - io.arconia.rewrite.spring.boot.ChangeSpringBootPropertyValue:
+      propertyKey: "arconia.dev.services.postgresql.shared"
+      oldPropertyValue: "false"
+      newPropertyValue: "never"
+  - io.arconia.rewrite.spring.boot.ChangeSpringBootPropertyValue:
+      propertyKey: "arconia.dev.services.redis.shared"
+      oldPropertyValue: "true"
+      newPropertyValue: "dev-mode"
+  - io.arconia.rewrite.spring.boot.ChangeSpringBootPropertyValue:
+      propertyKey: "arconia.dev.services.redis.shared"
+      oldPropertyValue: "false"
+      newPropertyValue: "never"
+
+  # Delete Deprecated Properties
   - io.arconia.rewrite.spring.boot.DeleteSpringBootPropertyKey:
       propertyKey: "arconia.dev.services.redis.stack.environment"
   - io.arconia.rewrite.spring.boot.DeleteSpringBootPropertyKey:
