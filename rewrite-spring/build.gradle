@@ -44,7 +44,7 @@ recipeDependencies {
     parserClasspath "org.springframework.ai:spring-ai-model:1.0.0-M7"
     parserClasspath "org.springframework.ai:spring-ai-client-chat:1.0.0-M7"
 
-    parserClasspath "org.springframework.ai:spring-ai-mistral-ai:1.0.0-M7"
+    parserClasspath "org.springframework.ai:spring-ai-mistral-ai:1.0.0-RC1"
 }
 
 // Re-enable if and when starting using Refaster
