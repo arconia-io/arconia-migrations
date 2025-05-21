@@ -1,0 +1,22 @@
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.UpgradeArconia_0_12
+displayName: Migrate to Arconia 0.12
+description: Migrate a Spring Boot application to the latest Arconia 0.12.x release.
+tags:
+  - arconia
+recipeList:
+  # Dependency Versions
+  - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
+      groupId: io.arconia
+      artifactId: "*"
+      newVersion: 0.12.x
+      overrideManagedVersion: true
+
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: io.arconia.opentelemetry.autoconfigure.sdk.metrics.SdkMeterProviderBuilderCustomizer
+      newFullyQualifiedTypeName: io.arconia.opentelemetry.autoconfigure.sdk.metrics.OpenTelemetryMeterProviderBuilderCustomizer
+
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: io.arconia.opentelemetry.autoconfigure.sdk.resource.SdkResourceBuilderCustomizer
+      newFullyQualifiedTypeName: io.arconia.opentelemetry.autoconfigure.sdk.resource.OpenTelemetryResourceBuilderCustomizer
