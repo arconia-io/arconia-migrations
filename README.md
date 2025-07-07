@@ -14,7 +14,6 @@ Tools and OpenRewrite recipes to migrate Java projects using Arconia and Spring 
 ## ⚙️&nbsp; Requirements
 
 * Java 21+
-* Spring Boot 3.4+
 
 ## 📙&nbsp; Documentation
 
