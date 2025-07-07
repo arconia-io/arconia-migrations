@@ -1,4 +1,4 @@
-package io.arconia.rewrite.spring.boot;
+package io.arconia.rewrite.spring.boot.properties;
 
 import java.util.List;
 

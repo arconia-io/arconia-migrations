@@ -1,4 +1,4 @@
-package io.arconia.rewrite.spring.boot;
+package io.arconia.rewrite.spring.boot.properties;
 
 import java.util.List;
 import java.util.Objects;
@@ -16,7 +16,14 @@ import org.openrewrite.properties.tree.Properties;
 import org.openrewrite.yaml.tree.Yaml;
 
 /**
- * Changes a property value in Spring Boot configuration files, including both YAML and properties files.
+ * Changes a property value in Spring Boot configuration files, including YAML and properties files.
+ * <p>
+ * This recipe is a convenient wrapper around the existing {@link org.openrewrite.yaml.ChangePropertyValue} and
+ * {@link org.openrewrite.properties.ChangePropertyValue} recipes, allowing you to change the value of a property
+ * in Spring Boot configuration files at once, without needing to specify the file format.
+ * <p>
+ * It relies on the {@link FindSpringBootConfigFiles} recipe to find the relevant configuration files based on
+ * the provided path matchers.
  */
 public class ChangeSpringBootPropertyValue extends Recipe {
 
@@ -37,10 +44,11 @@ public class ChangeSpringBootPropertyValue extends Recipe {
             example = "always")
     private final String newPropertyValue;
 
-    @Option(displayName = "Use Regex",
+    @Option(displayName = "Use regular expressions to match the old value",
             description = """
-                    Default is `false`. If enabled, `oldValue` will be treated as a regular expression,
-                    and only matching parts will be replaced. You can use capturing groups in `newValue`.
+                    Treats the old property value as a regular expression for matching.
+                    When enabled, only matching portions are replaced, and capture groups
+                    can be referenced in the new value. Defaults to `false`.
                     """,
             required = false)
     @Nullable
@@ -54,10 +62,9 @@ public class ChangeSpringBootPropertyValue extends Recipe {
 
     @Option(displayName = "Configuration files path matchers",
             description = """
-                    A list of glob expressions used to match which files contain Spring Boot configuration properties
-                    and therefore will be modified. If no value is provided, default path expressions will be used to
-                    match the main YAML and Properties files supported by Spring Boot for configuration.
-                    If multiple patterns are supplied, any of the patterns matching will be interpreted as a match.
+                    Glob expressions to match Spring Boot configuration files to modify.
+                    Defaults to standard `application.yml`, `application.yaml`, and `application.properties` files (including profile-specific variants).
+                    Multiple patterns are OR-ed together.
                     """,
             required = false)
     @Nullable
@@ -75,12 +82,12 @@ public class ChangeSpringBootPropertyValue extends Recipe {
 
     @Override
     public String getDisplayName() {
-        return "Change value of a Spring Boot configuration property key";
+        return "Change the value of a Spring Boot configuration property key";
     }
 
     @Override
     public String getDescription() {
-        return "Change the value of a property in Spring Boot configuration files, including both YAML and properties files.";
+        return "Change the value of a property in Spring Boot configuration files.";
     }
 
     @Override
@@ -137,7 +144,7 @@ public class ChangeSpringBootPropertyValue extends Recipe {
     }
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(@Nullable Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
         ChangeSpringBootPropertyValue that = (ChangeSpringBootPropertyValue) o;

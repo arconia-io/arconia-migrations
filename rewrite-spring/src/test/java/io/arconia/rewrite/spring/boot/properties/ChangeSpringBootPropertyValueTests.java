@@ -1,4 +1,4 @@
-package io.arconia.rewrite.spring.boot;
+package io.arconia.rewrite.spring.boot.properties;
 
 import java.util.List;
 
@@ -26,7 +26,7 @@ class ChangeSpringBootPropertyValueTests implements RewriteTest {
     }
 
     @Test
-    void yamlValueIsOld() {
+    void yamlValue() {
         rewriteRun(
                 //language=yaml
                 yaml(
@@ -45,7 +45,7 @@ class ChangeSpringBootPropertyValueTests implements RewriteTest {
     }
 
     @Test
-    void yamlValueIsOldWithDifferentPath() {
+    void yamlValueWithDifferentPath() {
         rewriteRun(
                 spec -> spec.recipe(new ChangeSpringBootPropertyValue(
                         "custom.property.value",
@@ -71,7 +71,7 @@ class ChangeSpringBootPropertyValueTests implements RewriteTest {
     }
 
     @Test
-    void propertyValueIsOld() {
+    void propertyValue() {
         rewriteRun(
                 //language=properties
                 properties(
@@ -86,7 +86,7 @@ class ChangeSpringBootPropertyValueTests implements RewriteTest {
     }
 
     @Test
-    void propertyValueIsOldWithDifferentPath() {
+    void propertyValueWithDifferentPath() {
         rewriteRun(
                 spec -> spec.recipe(new ChangeSpringBootPropertyValue(
                         "custom.property.value",
@@ -108,7 +108,7 @@ class ChangeSpringBootPropertyValueTests implements RewriteTest {
     }
 
     @Test
-    void yamlValueIsOldRegex() {
+    void yamlValueRegex() {
         rewriteRun(
                 spec -> spec.recipe(new ChangeSpringBootPropertyValue(
                         "arconia.service.url",
@@ -134,7 +134,7 @@ class ChangeSpringBootPropertyValueTests implements RewriteTest {
     }
 
     @Test
-    void propertyValueIsOldRegex() {
+    void propertyValueRegex() {
         rewriteRun(
                 spec -> spec.recipe(new ChangeSpringBootPropertyValue(
                         "arconia.service.url",

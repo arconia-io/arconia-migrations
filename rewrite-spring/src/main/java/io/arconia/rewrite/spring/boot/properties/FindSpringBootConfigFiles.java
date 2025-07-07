@@ -1,4 +1,4 @@
-package io.arconia.rewrite.spring.boot;
+package io.arconia.rewrite.spring.boot.properties;
 
 import java.util.List;
 
@@ -14,7 +14,7 @@ import org.openrewrite.TreeVisitor;
 /**
  * Finds Spring Boot configuration files based on the provided path matchers.
  * <p>
- * This recipe is used to identify configuration files that may need to be modified or processed in some way.
+ * This recipe is used to identify configuration files that may need to be modified or processed in some way by other recipes.
  *
  * @link <a href="https://docs.spring.io/spring-boot/reference/features/external-config.html">Spring Boot Externalized Configuration</a>
  */

@@ -1,4 +1,4 @@
-package io.arconia.rewrite.spring.boot;
+package io.arconia.rewrite.spring.boot.properties;
 
 import java.util.List;
 
@@ -10,34 +10,20 @@ import static org.openrewrite.properties.Assertions.properties;
 import static org.openrewrite.yaml.Assertions.yaml;
 
 /**
- * Unit tests for {@link ChangeSpringBootPropertyKey}.
+ * Unit tests for {@link RenameSpringBootPropertyKey}.
  */
-class ChangeSpringBootPropertyKeyTests implements RewriteTest {
+class RenameSpringBootPropertyKeyTests implements RewriteTest {
 
     @Override
     public void defaults(RecipeSpec spec) {
-        spec.recipe(new ChangeSpringBootPropertyKey(
+        spec.recipe(new RenameSpringBootPropertyKey(
                 "arconia.dev.profiles.test",
                 "arconia.config.profiles.test",
                 true, List.of()));
     }
 
     @Test
-    void yamlKeyIsAlreadyChanged() {
-        rewriteRun(
-                //language=yaml
-                yaml("""
-                        arconia:
-                          config:
-                            profiles:
-                              test: local
-                        """,
-                        s -> s.path("src/main/resources/application.yml"))
-        );
-    }
-
-    @Test
-    void yamlKeyIsOld() {
+    void yamlKey() {
         rewriteRun(
                 //language=yaml
                 yaml(
@@ -56,18 +42,7 @@ class ChangeSpringBootPropertyKeyTests implements RewriteTest {
     }
 
     @Test
-    void propertyKeyIsAlreadyChanged() {
-        rewriteRun(
-                //language=properties
-                properties("""
-                        arconia.config.profiles.test=local
-                        """,
-                        s -> s.path("src/main/resources/application.properties"))
-        );
-    }
-
-    @Test
-    void propertyKeyIsOld() {
+    void propertyKey() {
         rewriteRun(
                 //language=properties
                 properties(

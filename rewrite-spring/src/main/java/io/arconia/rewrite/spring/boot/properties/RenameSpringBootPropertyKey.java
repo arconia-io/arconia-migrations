@@ -1,4 +1,4 @@
-package io.arconia.rewrite.spring.boot;
+package io.arconia.rewrite.spring.boot.properties;
 
 import java.util.List;
 import java.util.Objects;
@@ -16,18 +16,25 @@ import org.openrewrite.properties.tree.Properties;
 import org.openrewrite.yaml.tree.Yaml;
 
 /**
- * Renames a property key in Spring Boot configuration files, including both YAML and properties files.
+ * Renames a property key in Spring Boot configuration files, including YAML and properties files.
+ * <p>
+ * This recipe is a convenient wrapper around the existing {@link org.openrewrite.yaml.ChangePropertyKey} and
+ * {@link org.openrewrite.properties.ChangePropertyKey} recipes, allowing you to rename the key of a property
+ * in Spring Boot configuration files at once, without needing to specify the file format.
+ * <p>
+ * It relies on the {@link FindSpringBootConfigFiles} recipe to find the relevant configuration files based on
+ * the provided path matchers.
  */
-public class ChangeSpringBootPropertyKey extends Recipe {
+public class RenameSpringBootPropertyKey extends Recipe {
 
     @Option(displayName = "Old property key",
             description = "The property key to rename.",
-            example = "arconia.dev.profiles.test")
+            example = "arconia.config.profiles.test")
     private final String oldPropertyKey;
 
     @Option(displayName = "New property key",
             description = "The new name for the property key.",
-            example = "arconia.config.profiles.test")
+            example = "arconia.test.profiles")
     private final String newPropertyKey;
 
     @Option(displayName = "Use relaxed binding",
@@ -38,17 +45,16 @@ public class ChangeSpringBootPropertyKey extends Recipe {
 
     @Option(displayName = "Configuration files path matchers",
             description = """
-                    A list of glob expressions used to match which files contain Spring Boot configuration properties
-                    and therefore will be modified. If no value is provided, default path expressions will be used to
-                    match the main YAML and Properties files supported by Spring Boot for configuration.
-                    If multiple patterns are supplied, any of the patterns matching will be interpreted as a match.
+                    Glob expressions to match Spring Boot configuration files to modify.
+                    Defaults to standard `application.yml`, `application.yaml`, and `application.properties` files (including profile-specific variants).
+                    Multiple patterns are OR-ed together.
                     """,
             required = false)
     @Nullable
     private final List<String> pathExpressions;
 
     @JsonCreator
-    public ChangeSpringBootPropertyKey(String oldPropertyKey, String newPropertyKey, @Nullable Boolean relaxedBinding, @Nullable List<String> pathExpressions) {
+    public RenameSpringBootPropertyKey(String oldPropertyKey, String newPropertyKey, @Nullable Boolean relaxedBinding, @Nullable List<String> pathExpressions) {
         this.oldPropertyKey = oldPropertyKey;
         this.newPropertyKey = newPropertyKey;
         this.relaxedBinding = relaxedBinding;
@@ -57,29 +63,29 @@ public class ChangeSpringBootPropertyKey extends Recipe {
 
     @Override
     public String getDisplayName() {
-        return "Change Spring Boot configuration property key";
+        return "Rename Spring Boot configuration property key";
     }
 
     @Override
     public String getDescription() {
-        return "Change the key of a property in Spring Boot configuration files, including both YAML and properties files.";
+        return "Rename the key of a property in Spring Boot configuration files.";
     }
 
     @Override
     public TreeVisitor<?, ExecutionContext> getVisitor() {
         return Preconditions.check(
                 new FindSpringBootConfigFiles(pathExpressions).getVisitor(),
-                new ChangeSpringBootPropertyKeyVisitor(oldPropertyKey, newPropertyKey, relaxedBinding));
+                new RenameSpringBootPropertyKeyVisitor(oldPropertyKey, newPropertyKey, relaxedBinding));
     }
 
-    private static class ChangeSpringBootPropertyKeyVisitor extends TreeVisitor<Tree, ExecutionContext> {
+    private static class RenameSpringBootPropertyKeyVisitor extends TreeVisitor<Tree, ExecutionContext> {
 
         private final String oldPropertyKey;
         private final String newPropertyKey;
         @Nullable
         private final Boolean relaxedBinding;
 
-        public ChangeSpringBootPropertyKeyVisitor(String oldPropertyKey, String newPropertyKey, @Nullable Boolean relaxedBinding) {
+        public RenameSpringBootPropertyKeyVisitor(String oldPropertyKey, String newPropertyKey, @Nullable Boolean relaxedBinding) {
             this.oldPropertyKey = oldPropertyKey;
             this.newPropertyKey = newPropertyKey;
             this.relaxedBinding = relaxedBinding;
@@ -116,21 +122,22 @@ public class ChangeSpringBootPropertyKey extends Recipe {
     public boolean equals(@Nullable Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
-        ChangeSpringBootPropertyKey that = (ChangeSpringBootPropertyKey) o;
-        return Objects.equals(oldPropertyKey, that.oldPropertyKey) && Objects.equals(newPropertyKey, that.newPropertyKey) && Objects.equals(relaxedBinding, that.relaxedBinding);
+        RenameSpringBootPropertyKey that = (RenameSpringBootPropertyKey) o;
+        return Objects.equals(oldPropertyKey, that.oldPropertyKey) && Objects.equals(newPropertyKey, that.newPropertyKey) && Objects.equals(relaxedBinding, that.relaxedBinding) && Objects.equals(pathExpressions, that.pathExpressions);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), oldPropertyKey, newPropertyKey, relaxedBinding);
+        return Objects.hash(super.hashCode(), oldPropertyKey, newPropertyKey, relaxedBinding, pathExpressions);
     }
 
     @Override
     public String toString() {
-        return "ChangePropertyKey{" +
+        return "RenameSpringBootPropertyKey{" +
                 "oldPropertyKey='" + oldPropertyKey + '\'' +
                 ", newPropertyKey='" + newPropertyKey + '\'' +
                 ", relaxedBinding=" + relaxedBinding +
+                ", pathExpressions=" + pathExpressions +
                 '}';
     }
 

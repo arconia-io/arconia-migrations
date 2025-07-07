@@ -31,9 +31,9 @@ recipeList:
       version: 0.10.x
 
   # Property Changes
-  - io.arconia.rewrite.spring.boot.ChangeSpringBootPropertyKey:
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: "arconia.dev.profiles.development"
       newPropertyKey: "arconia.config.profiles.development"
-  - io.arconia.rewrite.spring.boot.ChangeSpringBootPropertyKey:
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: "arconia.dev.profiles.test"
       newPropertyKey: "arconia.config.profiles.test"

@@ -1,4 +1,4 @@
-package io.arconia.rewrite.spring.boot;
+package io.arconia.rewrite.spring.boot.properties;
 
 import java.util.List;
 import java.util.Objects;
@@ -16,12 +16,19 @@ import org.openrewrite.properties.tree.Properties;
 import org.openrewrite.yaml.tree.Yaml;
 
 /**
- * Deletes a property in Spring Boot configuration files, including both YAML and properties files.
+ * Deletes a property in Spring Boot configuration files, including YAML and properties files.
+ * <p>
+ * This recipe is a convenient wrapper around the existing {@link org.openrewrite.yaml.DeleteProperty} and
+ * {@link org.openrewrite.properties.DeleteProperty} recipes, allowing you to delete a property
+ * in Spring Boot configuration files at once, without needing to specify the file format.
+ * <p>
+ * It relies on the {@link FindSpringBootConfigFiles} recipe to find the relevant configuration files based on
+ * the provided path matchers.
  */
-public class DeleteSpringBootPropertyKey extends Recipe {
+public class DeleteSpringBootProperty extends Recipe {
 
     @Option(displayName = "Property key",
-            description = "Key for the property to delete.",
+            description = "The key of the property to delete.",
             example = "arconia.modes.name")
     private final String propertyKey;
 
@@ -33,17 +40,16 @@ public class DeleteSpringBootPropertyKey extends Recipe {
 
     @Option(displayName = "Configuration files path matchers",
             description = """
-                    A list of glob expressions used to match which files contain Spring Boot configuration properties
-                    and therefore will be modified. If no value is provided, default path expressions will be used to
-                    match the main YAML and Properties files supported by Spring Boot for configuration.
-                    If multiple patterns are supplied, any of the patterns matching will be interpreted as a match.
+                    Glob expressions to match Spring Boot configuration files to modify.
+                    Defaults to standard `application.yml`, `application.yaml`, and `application.properties` files (including profile-specific variants).
+                    Multiple patterns are OR-ed together.
                     """,
             required = false)
     @Nullable
     private final List<String> pathExpressions;
 
     @JsonCreator
-    public DeleteSpringBootPropertyKey(String propertyKey, @Nullable Boolean relaxedBinding, @Nullable List<String> pathExpressions) {
+    public DeleteSpringBootProperty(String propertyKey, @Nullable Boolean relaxedBinding, @Nullable List<String> pathExpressions) {
         this.propertyKey = propertyKey;
         this.relaxedBinding = relaxedBinding;
         this.pathExpressions = pathExpressions;
@@ -51,12 +57,12 @@ public class DeleteSpringBootPropertyKey extends Recipe {
 
     @Override
     public String getDisplayName() {
-        return "Delete Spring Boot configuration property key";
+        return "Delete a Spring Boot configuration property";
     }
 
     @Override
     public String getDescription() {
-        return "Delete a property in Spring Boot configuration files, including both YAML and properties files.";
+        return "Delete a property in Spring Boot configuration files.";
     }
 
     @Override
@@ -105,10 +111,10 @@ public class DeleteSpringBootPropertyKey extends Recipe {
     }
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(@Nullable Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
-        DeleteSpringBootPropertyKey that = (DeleteSpringBootPropertyKey) o;
+        DeleteSpringBootProperty that = (DeleteSpringBootProperty) o;
         return Objects.equals(propertyKey, that.propertyKey) && Objects.equals(relaxedBinding, that.relaxedBinding) && Objects.equals(pathExpressions, that.pathExpressions);
     }
 
@@ -119,7 +125,7 @@ public class DeleteSpringBootPropertyKey extends Recipe {
 
     @Override
     public String toString() {
-        return "DeleteSpringBootPropertyKey{" +
+        return "DeleteSpringBootProperty{" +
                 "propertyKey='" + propertyKey + '\'' +
                 ", relaxedBinding=" + relaxedBinding +
                 ", pathExpressions=" + pathExpressions +

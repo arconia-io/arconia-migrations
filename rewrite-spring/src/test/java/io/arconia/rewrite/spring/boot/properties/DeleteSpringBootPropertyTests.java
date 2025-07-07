@@ -1,4 +1,4 @@
-package io.arconia.rewrite.spring.boot;
+package io.arconia.rewrite.spring.boot.properties;
 
 import java.util.List;
 
@@ -10,19 +10,19 @@ import static org.openrewrite.properties.Assertions.properties;
 import static org.openrewrite.yaml.Assertions.yaml;
 
 /**
- * Unit tests for {@link DeleteSpringBootPropertyKey}.
+ * Unit tests for {@link DeleteSpringBootProperty}.
  */
-class DeleteSpringBootPropertyKeyTests implements RewriteTest {
+class DeleteSpringBootPropertyTests implements RewriteTest {
 
     @Override
     public void defaults(RecipeSpec spec) {
-        spec.recipe(new DeleteSpringBootPropertyKey(
+        spec.recipe(new DeleteSpringBootProperty(
                 "arconia.modes.name",
                 true, List.of()));
     }
 
     @Test
-    void deleteYamlProperty() {
+    void deleteYaml() {
         rewriteRun(
                 //language=yaml
                 yaml(

@@ -7,141 +7,141 @@ tags:
   - spring
   - ai
 recipeList:
-  - io.arconia.rewrite.spring.boot.ChangeSpringBootPropertyKey:
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: "spring.ai.chat.memory.jdbc.initialize-schema"
       newPropertyKey: "spring.ai.chat.memory.repository.jdbc.initialize-schema"
-  - io.arconia.rewrite.spring.boot.ChangeSpringBootPropertyValue:
+  - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
       propertyKey: "spring.ai.chat.memory.repository.jdbc.initialize-schema"
       oldPropertyValue: "true"
       newPropertyValue: "always"
-  - io.arconia.rewrite.spring.boot.ChangeSpringBootPropertyValue:
+  - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
       propertyKey: "spring.ai.chat.memory.repository.jdbc.initialize-schema"
       oldPropertyValue: "false"
       newPropertyValue: "never"
 
-  - io.arconia.rewrite.spring.boot.ChangeSpringBootPropertyKey:
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: "spring.ai.chat.memory.cassandra.initialize-schema"
       newPropertyKey: "spring.ai.chat.memory.repository.cassandra.initialize-schema"
-  - io.arconia.rewrite.spring.boot.ChangeSpringBootPropertyKey:
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: "spring.ai.chat.memory.cassandra.keyspace"
       newPropertyKey: "spring.ai.chat.memory.repository.cassandra.keyspace"
-  - io.arconia.rewrite.spring.boot.ChangeSpringBootPropertyKey:
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: "spring.ai.chat.memory.cassandra.table"
       newPropertyKey: "spring.ai.chat.memory.repository.cassandra.table"
-  - io.arconia.rewrite.spring.boot.ChangeSpringBootPropertyKey:
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: "spring.ai.chat.memory.cassandra.time-to-live"
       newPropertyKey: "spring.ai.chat.memory.repository.cassandra.time-to-live"
 
-  - io.arconia.rewrite.spring.boot.ChangeSpringBootPropertyKey:
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: "spring.ai.chat.memory.neo4j.media-label"
       newPropertyKey: "spring.ai.chat.memory.repository.neo4j.media-label"
-  - io.arconia.rewrite.spring.boot.ChangeSpringBootPropertyKey:
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: "spring.ai.chat.memory.neo4j.message-label"
       newPropertyKey: "spring.ai.chat.memory.repository.neo4j.message-label"
-  - io.arconia.rewrite.spring.boot.ChangeSpringBootPropertyKey:
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: "spring.ai.chat.memory.neo4j.metadata-label"
       newPropertyKey: "spring.ai.chat.memory.repository.neo4j.metadata-label"
-  - io.arconia.rewrite.spring.boot.ChangeSpringBootPropertyKey:
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: "spring.ai.chat.memory.neo4j.session-label"
       newPropertyKey: "spring.ai.chat.memory.repository.neo4j.session-label"
-  - io.arconia.rewrite.spring.boot.ChangeSpringBootPropertyKey:
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: "spring.ai.chat.memory.neo4j.tool-call-label"
       newPropertyKey: "spring.ai.chat.memory.repository.neo4j.tool-call-label"
-  - io.arconia.rewrite.spring.boot.ChangeSpringBootPropertyKey:
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: "spring.ai.chat.memory.neo4j.tool-response-label"
       newPropertyKey: "spring.ai.chat.memory.repository.neo4j.tool-response-label"
 
-  - io.arconia.rewrite.spring.boot.ChangeSpringBootPropertyKey:
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: "spring.ai.chat.client.observations.include-input"
       newPropertyKey: "spring.ai.chat.client.observations.log-prompt"
-  - io.arconia.rewrite.spring.boot.ChangeSpringBootPropertyKey:
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: "spring.ai.chat.client.observations.include-prompt"
       newPropertyKey: "spring.ai.chat.client.observations.log-prompt"
-  - io.arconia.rewrite.spring.boot.ChangeSpringBootPropertyKey:
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: "spring.ai.chat.observations.include-prompt"
       newPropertyKey: "spring.ai.chat.observations.log-prompt"
-  - io.arconia.rewrite.spring.boot.ChangeSpringBootPropertyKey:
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: "spring.ai.chat.observations.include-completion"
       newPropertyKey: "spring.ai.chat.observations.log-completion"
-  - io.arconia.rewrite.spring.boot.ChangeSpringBootPropertyKey:
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: "spring.ai.image.observations.include-prompt"
       newPropertyKey: "spring.ai.image.observations.log-prompt"
-  - io.arconia.rewrite.spring.boot.ChangeSpringBootPropertyKey:
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: "spring.ai.vectorstore.observations.include-query-response"
       newPropertyKey: "spring.ai.vectorstore.observations.log-query-response"
 
-  - io.arconia.rewrite.spring.boot.DeleteSpringBootPropertyKey:
+  - io.arconia.rewrite.spring.boot.properties.DeleteSpringBootProperty:
       propertyKey: "spring.ai.anthropic.chat.enabled"
 
-  - io.arconia.rewrite.spring.boot.DeleteSpringBootPropertyKey:
+  - io.arconia.rewrite.spring.boot.properties.DeleteSpringBootProperty:
       propertyKey: "spring.ai.azure.openai.audio.transcription.enabled"
-  - io.arconia.rewrite.spring.boot.DeleteSpringBootPropertyKey:
+  - io.arconia.rewrite.spring.boot.properties.DeleteSpringBootProperty:
       propertyKey: "spring.ai.azure.openai.chat.enabled"
-  - io.arconia.rewrite.spring.boot.DeleteSpringBootPropertyKey:
+  - io.arconia.rewrite.spring.boot.properties.DeleteSpringBootProperty:
       propertyKey: "spring.ai.azure.openai.embedding.enabled"
-  - io.arconia.rewrite.spring.boot.DeleteSpringBootPropertyKey:
+  - io.arconia.rewrite.spring.boot.properties.DeleteSpringBootProperty:
       propertyKey: "spring.ai.azure.openai.image.enabled"
 
-  - io.arconia.rewrite.spring.boot.DeleteSpringBootPropertyKey:
+  - io.arconia.rewrite.spring.boot.properties.DeleteSpringBootProperty:
       propertyKey: "spring.ai.bedrock.cohere.embedding.enabled"
-  - io.arconia.rewrite.spring.boot.DeleteSpringBootPropertyKey:
+  - io.arconia.rewrite.spring.boot.properties.DeleteSpringBootProperty:
       propertyKey: "spring.ai.bedrock.converse.chat.enabled"
-  - io.arconia.rewrite.spring.boot.DeleteSpringBootPropertyKey:
+  - io.arconia.rewrite.spring.boot.properties.DeleteSpringBootProperty:
       propertyKey: "spring.ai.bedrock.titan.embedding.enabled"
 
-  - io.arconia.rewrite.spring.boot.DeleteSpringBootPropertyKey:
+  - io.arconia.rewrite.spring.boot.properties.DeleteSpringBootProperty:
       propertyKey: "spring.ai.huggingface.chat.enabled"
 
-  - io.arconia.rewrite.spring.boot.DeleteSpringBootPropertyKey:
+  - io.arconia.rewrite.spring.boot.properties.DeleteSpringBootProperty:
       propertyKey: "spring.ai.minimax.chat.enabled"
-  - io.arconia.rewrite.spring.boot.DeleteSpringBootPropertyKey:
+  - io.arconia.rewrite.spring.boot.properties.DeleteSpringBootProperty:
       propertyKey: "spring.ai.minimax.embedding.enabled"
 
-  - io.arconia.rewrite.spring.boot.DeleteSpringBootPropertyKey:
+  - io.arconia.rewrite.spring.boot.properties.DeleteSpringBootProperty:
       propertyKey: "spring.ai.mistralai.chat.enabled"
-  - io.arconia.rewrite.spring.boot.DeleteSpringBootPropertyKey:
+  - io.arconia.rewrite.spring.boot.properties.DeleteSpringBootProperty:
       propertyKey: "spring.ai.mistralai.embedding.enabled"
 
-  - io.arconia.rewrite.spring.boot.DeleteSpringBootPropertyKey:
+  - io.arconia.rewrite.spring.boot.properties.DeleteSpringBootProperty:
       propertyKey: "spring.ai.oci.genai.cohere.chat.enabled"
-  - io.arconia.rewrite.spring.boot.DeleteSpringBootPropertyKey:
+  - io.arconia.rewrite.spring.boot.properties.DeleteSpringBootProperty:
       propertyKey: "spring.ai.oci.genai.embedding.enabled"
 
-  - io.arconia.rewrite.spring.boot.DeleteSpringBootPropertyKey:
+  - io.arconia.rewrite.spring.boot.properties.DeleteSpringBootProperty:
       propertyKey: "spring.ai.ollama.chat.enabled"
-  - io.arconia.rewrite.spring.boot.DeleteSpringBootPropertyKey:
+  - io.arconia.rewrite.spring.boot.properties.DeleteSpringBootProperty:
       propertyKey: "spring.ai.ollama.embedding.enabled"
 
-  - io.arconia.rewrite.spring.boot.DeleteSpringBootPropertyKey:
+  - io.arconia.rewrite.spring.boot.properties.DeleteSpringBootProperty:
       propertyKey: "spring.ai.openai.audio.speech.enabled"
-  - io.arconia.rewrite.spring.boot.DeleteSpringBootPropertyKey:
+  - io.arconia.rewrite.spring.boot.properties.DeleteSpringBootProperty:
       propertyKey: "spring.ai.openai.audio.transcription.enabled"
-  - io.arconia.rewrite.spring.boot.DeleteSpringBootPropertyKey:
+  - io.arconia.rewrite.spring.boot.properties.DeleteSpringBootProperty:
       propertyKey: "spring.ai.openai.chat.enabled"
-  - io.arconia.rewrite.spring.boot.DeleteSpringBootPropertyKey:
+  - io.arconia.rewrite.spring.boot.properties.DeleteSpringBootProperty:
       propertyKey: "spring.ai.openai.embedding.enabled"
-  - io.arconia.rewrite.spring.boot.DeleteSpringBootPropertyKey:
+  - io.arconia.rewrite.spring.boot.properties.DeleteSpringBootProperty:
       propertyKey: "spring.ai.openai.image.enabled"
 
-  - io.arconia.rewrite.spring.boot.DeleteSpringBootPropertyKey:
+  - io.arconia.rewrite.spring.boot.properties.DeleteSpringBootProperty:
       propertyKey: "spring.ai.postgresml.embedding.enabled"
 
-  - io.arconia.rewrite.spring.boot.DeleteSpringBootPropertyKey:
+  - io.arconia.rewrite.spring.boot.properties.DeleteSpringBootProperty:
       propertyKey: "spring.ai.stabilityai.image.enabled"
 
-  - io.arconia.rewrite.spring.boot.DeleteSpringBootPropertyKey:
+  - io.arconia.rewrite.spring.boot.properties.DeleteSpringBootProperty:
       propertyKey: "spring.ai.vertex.ai.embedding.multimodal.enabled"
-  - io.arconia.rewrite.spring.boot.DeleteSpringBootPropertyKey:
+  - io.arconia.rewrite.spring.boot.properties.DeleteSpringBootProperty:
       propertyKey: "spring.ai.vertex.ai.embedding.text.enabled"
 
-  - io.arconia.rewrite.spring.boot.DeleteSpringBootPropertyKey:
+  - io.arconia.rewrite.spring.boot.properties.DeleteSpringBootProperty:
       propertyKey: "spring.ai.watson.ai.chat.enabled"
-  - io.arconia.rewrite.spring.boot.DeleteSpringBootPropertyKey:
+  - io.arconia.rewrite.spring.boot.properties.DeleteSpringBootProperty:
       propertyKey: "spring.ai.watson.ai.embedding.enabled"
 
-  - io.arconia.rewrite.spring.boot.DeleteSpringBootPropertyKey:
+  - io.arconia.rewrite.spring.boot.properties.DeleteSpringBootProperty:
       propertyKey: "spring.ai.zhipuai.chat.enabled"
-  - io.arconia.rewrite.spring.boot.DeleteSpringBootPropertyKey:
+  - io.arconia.rewrite.spring.boot.properties.DeleteSpringBootProperty:
       propertyKey: "spring.ai.zhipuai.embedding.enabled"
-  - io.arconia.rewrite.spring.boot.DeleteSpringBootPropertyKey:
+  - io.arconia.rewrite.spring.boot.properties.DeleteSpringBootProperty:
       propertyKey: "spring.ai.zhipuai.image.enabled"
