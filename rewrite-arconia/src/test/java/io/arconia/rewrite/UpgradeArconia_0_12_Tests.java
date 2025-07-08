@@ -11,6 +11,9 @@ import static org.openrewrite.gradle.toolingapi.Assertions.withToolingApi;
 import static org.openrewrite.java.Assertions.java;
 import static org.openrewrite.maven.Assertions.pomXml;
 
+/**
+ * Unit tests for "io.arconia.rewrite.UpgradeArconia_0_12".
+ */
 class UpgradeArconia_0_12_Tests implements RewriteTest {
 
     @Override

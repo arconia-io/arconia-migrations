@@ -6,6 +6,7 @@ description: Migrate a Spring Boot application to the latest Arconia 0.12.x rele
 tags:
   - arconia
 recipeList:
+  - io.arconia.rewrite.UpgradeArconia_0_11
   # Dependency Versions
   - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
       groupId: io.arconia

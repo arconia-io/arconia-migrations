@@ -1,0 +1,32 @@
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.UpgradeArconia_0_13
+displayName: Migrate to Arconia 0.13
+description: Migrate a Spring Boot application to the latest Arconia 0.13.x release.
+tags:
+  - arconia
+recipeList:
+  - io.arconia.rewrite.UpgradeArconia_0_12
+
+  # Dependency Versions
+  - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
+      groupId: io.arconia
+      artifactId: "*"
+      newVersion: 0.13.x
+      overrideManagedVersion: true
+
+  # Rename Properties
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "arconia.config.profiles.enabled"
+      newPropertyKey: "arconia.bootstrap.profiles.enabled"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "arconia.config.profiles.development"
+      newPropertyKey: "arconia.dev.profiles"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "arconia.config.profiles.test"
+      newPropertyKey: "arconia.test.profiles"
+
+  # Removed Properties
+  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
+      propertyKey: "arconia.config.profiles.prod"
+      comment: "Removed. Use 'spring.profiles.active' to specify the profiles to activate in production mode."
