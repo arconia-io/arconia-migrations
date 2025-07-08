@@ -1,0 +1,38 @@
+# Based on https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-3.5-Release-Notes
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot.UpgradeSpringBoot_3_5
+displayName: Migrate to Spring Boot 3.5
+description: Migrate a Spring Boot application to the latest Spring Boot 3.5.x release.
+tags:
+  - spring
+  - boot
+recipeList:
+  # Configuration Properties
+  - io.arconia.rewrite.spring.boot.UpgradeSpringBootProperties_3_5
+
+  # Dependency Versions
+  - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
+      groupId: org.springframework.boot
+      artifactId: "*"
+      newVersion: 3.5.x
+      overrideManagedVersion: false
+  - org.openrewrite.gradle.plugins.UpgradePluginVersion:
+      pluginIdPattern: org.springframework.boot
+      newVersion: 3.5.x
+  - org.openrewrite.maven.UpgradePluginVersion:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-maven-plugin
+      newVersion: 3.5.x
+  - org.openrewrite.maven.UpgradeParentVersion:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-parent
+      newVersion: 3.5.x
+
+  # Type Changes
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.security.servlet.RequestMatcherProvider
+      newFullyQualifiedTypeName: org.springframework.boot.actuate.autoconfigure.security.servlet.RequestMatcherProvider
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.security.oauth2.client.servlet.OAuth2ClientAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.autoconfigure.security.oauth2.client.OAuth2ClientAutoConfiguration
