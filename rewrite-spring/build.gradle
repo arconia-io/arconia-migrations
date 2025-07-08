@@ -46,7 +46,7 @@ recipeDependencies {
 
     parserClasspath "org.springframework.ai:spring-ai-mistral-ai:1.0.0-M7"
 
-    parserClasspath "org.springframework.boot:spring-boot-autoconfigure:3.4.7"
+    parserClasspath "org.springframework.boot:spring-boot-autoconfigure:3.5.3"
 }
 
 // Re-enable if and when starting using Refaster
