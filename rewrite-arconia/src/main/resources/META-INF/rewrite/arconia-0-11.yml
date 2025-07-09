@@ -12,7 +12,7 @@ recipeList:
       groupId: io.arconia
       artifactId: "*"
       newVersion: 0.11.x
-      overrideManagedVersion: true
+      overrideManagedVersion: false
 
   # Dependency Changes
   - org.openrewrite.java.dependencies.ChangeDependency:

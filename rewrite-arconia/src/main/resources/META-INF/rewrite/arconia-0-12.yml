@@ -12,7 +12,7 @@ recipeList:
       groupId: io.arconia
       artifactId: "*"
       newVersion: 0.12.x
-      overrideManagedVersion: true
+      overrideManagedVersion: false
 
   - org.openrewrite.java.ChangeType:
       oldFullyQualifiedTypeName: io.arconia.opentelemetry.autoconfigure.sdk.metrics.SdkMeterProviderBuilderCustomizer

@@ -13,7 +13,7 @@ recipeList:
       groupId: io.arconia
       artifactId: "*"
       newVersion: 0.13.x
-      overrideManagedVersion: true
+      overrideManagedVersion: false
 
   # Rename Properties
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
