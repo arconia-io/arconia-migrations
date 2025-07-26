@@ -1,4 +1,4 @@
-# Based on https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-3.5-Release-Notes
+# Based on https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-4.0-Migration-Guide
 ---
 type: specs.openrewrite.org/v1beta/recipe
 name: io.arconia.rewrite.spring.boot.UpgradeSpringBoot_4_0
