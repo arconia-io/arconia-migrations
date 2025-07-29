@@ -1,0 +1,189 @@
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.UpgradeArconia_0_14
+displayName: Migrate to Arconia 0.14
+description: Migrate a Spring Boot application to the latest Arconia 0.14.x release.
+tags:
+  - arconia
+recipeList:
+  - io.arconia.rewrite.UpgradeArconia_0_13
+
+  # Dependency Versions
+  - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
+      groupId: io.arconia
+      artifactId: "*"
+      newVersion: 0.14.x
+      overrideManagedVersion: false
+
+  ###############################
+  # Dev Services
+  ###############################
+
+  # Dependency Changes
+  - org.openrewrite.java.dependencies.ChangeDependency:
+      oldGroupId: io.arconia
+      oldArtifactId: arconia-dev-services-connections
+      newGroupId: io.arconia
+      newArtifactId: arconia-opentelemetry
+
+  # Type Changes
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: io.arconia.dev.services.mariadb.MariaDBDevServicesAutoConfiguration
+      newFullyQualifiedTypeName: io.arconia.dev.services.mariadb.MariaDbDevServicesAutoConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: io.arconia.dev.services.rabbitmq.RabbitMQDevServicesAutoConfiguration
+      newFullyQualifiedTypeName: io.arconia.dev.services.rabbitmq.RabbitMqDevServicesAutoConfiguration
+
+  ###############################
+  # Multitenancy
+  ###############################
+
+  # Dependency Changes
+  - org.openrewrite.java.dependencies.ChangeDependency:
+      oldGroupId: io.arconia
+      oldArtifactId: arconia-multitenancy-spring-boot-autoconfigure
+      newGroupId: io.arconia
+      newArtifactId: arconia-multitenancy-core
+
+  # Package Changes
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: io.arconia.multitenancy.autoconfigure.core
+      newPackageName: io.arconia.multitenancy.core.autoconfigure
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: io.arconia.multitenancy.autoconfigure.web
+      newPackageName: io.arconia.multitenancy.web.autoconfigure
+
+  ###############################
+  # OpenTelemetry
+  ###############################
+
+  # Dependency Changes
+  - org.openrewrite.java.dependencies.ChangeDependency:
+      oldGroupId: io.arconia
+      oldArtifactId: arconia-opentelemetry-sdk-spring-boot-autoconfigure
+      newGroupId: io.arconia
+      newArtifactId: arconia-opentelemetry
+
+  # Package Changes
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: io.arconia.opentelemetry.autoconfigure.sdk
+      newPackageName: io.arconia.opentelemetry.autoconfigure
+
+  # Type Changes
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: io.arconia.opentelemetry.autoconfigure.instrumentation.logback.LogbackAppenderInstrumentationAutoConfiguration
+      newFullyQualifiedTypeName: io.arconia.opentelemetry.logback.autoconfigure.LogbackOpenTelemetryBridgeAutoConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: io.arconia.opentelemetry.autoconfigure.instrumentation.logback.LogbackAppenderProperties
+      newFullyQualifiedTypeName: io.arconia.opentelemetry.logback.autoconfigure.LogbackOpenTelemetryBridgeProperties
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: io.arconia.opentelemetry.autoconfigure.instrumentation.micrometer.MicrometerInstrumentationAutoConfiguration
+      newFullyQualifiedTypeName: io.arconia.opentelemetry.micrometer.metrics.autoconfigure.MicrometerMetricsOpenTelemetryBridgeAutoConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: io.arconia.opentelemetry.autoconfigure.instrumentation.micrometer.MicrometerProperties
+      newFullyQualifiedTypeName: io.arconia.opentelemetry.micrometer.metrics.autoconfigure.MicrometerMetricsOpenTelemetryBridgeProperties
+
+  # Rename Properties
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "arconia.otel.instrumentation.logback-appender.enabled"
+      newPropertyKey: "arconia.otel.logs.logback-bridge.enabled"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "arconia.otel.instrumentation.logback-appender.capture-arguments"
+      newPropertyKey: "arconia.otel.logs.logback-bridge.capture-arguments"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "arconia.otel.instrumentation.logback-appender.capture-code-attributes"
+      newPropertyKey: "arconia.otel.logs.logback-bridge.capture-code-attributes"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "arconia.otel.instrumentation.logback-appender.capture-experimental-attributes"
+      newPropertyKey: "arconia.otel.logs.logback-bridge.capture-experimental-attributes"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "arconia.otel.instrumentation.logback-appender.capture-key-value-pair-attributes"
+      newPropertyKey: "arconia.otel.logs.logback-bridge.capture-key-value-pair-attributes"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "arconia.otel.instrumentation.logback-appender.capture-logger-context"
+      newPropertyKey: "arconia.otel.logs.logback-bridge.capture-logger-context"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "arconia.otel.instrumentation.logback-appender.capture-logstash-attributes"
+      newPropertyKey: "arconia.otel.logs.logback-bridge.capture-logstash-attributes"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "arconia.otel.instrumentation.logback-appender.capture-marker-attribute"
+      newPropertyKey: "arconia.otel.logs.logback-bridge.capture-marker-attribute"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "arconia.otel.instrumentation.logback-appender.capture-mdc-attributes"
+      newPropertyKey: "arconia.otel.logs.logback-bridge.capture-mdc-attributes"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "arconia.otel.instrumentation.logback-appender.num-logs-captured-before-otel-install"
+      newPropertyKey: "arconia.otel.logs.logback-bridge.num-logs-captured-before-otel-install"
+
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "arconia.otel.instrumentation.micrometer.enabled"
+      newPropertyKey: "arconia.otel.metrics.micrometer-bridge.enabled"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "arconia.otel.instrumentation.micrometer.base-time-unit"
+      newPropertyKey: "arconia.otel.metrics.micrometer-bridge.base-time-unit"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "arconia.otel.instrumentation.micrometer.histogram-gauges"
+      newPropertyKey: "arconia.otel.metrics.micrometer-bridge.histogram-gauges"
+
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "arconia.otel.logs.logs-limits.max-attribute-value-length"
+      newPropertyKey: "arconia.otel.logs.limits.max-attribute-value-length"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "arconia.otel.logs.logs-limits.max-number-of-attributes"
+      newPropertyKey: "arconia.otel.logs.limits.max-number-of-attributes"
+
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "arconia.otel.metrics.exemplar-filter"
+      newPropertyKey: "arconia.otel.metrics.exemplars.filter"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "arconia.otel.metrics.interval"
+      newPropertyKey: "arconia.otel.metrics.exporter.interval"
+
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "arconia.otel.traces.span-limits.max-attribute-value-length"
+      newPropertyKey: "arconia.otel.traces.limits.max-attribute-value-length"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "arconia.otel.traces.span-limits.max-number-of-attributes"
+      newPropertyKey: "arconia.otel.traces.limits.max-number-of-attributes"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "arconia.otel.traces.span-limits.max-number-of-events"
+      newPropertyKey: "arconia.otel.traces.limits.max-number-of-events"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "arconia.otel.traces.span-limits.max-number-of-links"
+      newPropertyKey: "arconia.otel.traces.limits.max-number-of-links"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "arconia.otel.traces.span-limits.max-number-of-attributes-per-event"
+      newPropertyKey: "arconia.otel.traces.limits.max-number-of-attributes-per-event"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "arconia.otel.traces.span-limits.max-number-of-attributes-per-link"
+      newPropertyKey: "arconia.otel.traces.limits.max-number-of-attributes-per-link"
+
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "arconia.otel.compatibility.opentelemetry"
+      newPropertyKey: "arconia.otel.compatibility.environment-variable-specification"
+
+  # Removed Properties
+  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
+      propertyKey: "arconia.otel.instrumentation.resource.enabled"
+      comment: "Removed. Check the Arconia documentation for options to bring back this experimental functionality."
+  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
+      propertyKey: "arconia.otel.resource.contributors.container.enabled"
+      comment: "Removed. Check the Arconia documentation for options to bring back this experimental functionality."
+  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
+      propertyKey: "arconia.otel.resource.contributors.host-id.enabled"
+      comment: "Removed. Check the Arconia documentation for options to bring back this experimental functionality."
+
+  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
+      propertyKey: "arconia.otel.compatibility.actuator"
+      comment: "Removed. Check the OpenTelemetry Migration Guides in the Arconia documentation for alternative options."
+
+  ###############################
+  # Spring Boot
+  ###############################
+
+  # Dependency Changes
+  - org.openrewrite.java.dependencies.ChangeDependency:
+      oldGroupId: io.arconia
+      oldArtifactId: arconia-spring-boot-autoconfigure
+      newGroupId: io.arconia
+      newArtifactId: arconia-spring-boot

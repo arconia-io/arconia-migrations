@@ -1,0 +1,110 @@
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.MigrateSpringBoot3OtlpToArconiaOpenTelemetry
+displayName: Migrate from Spring Boot 3 OTLP to Arconia OpenTelemetry
+description: Migrate a Spring Boot 3 application from the Spring Boot OTLP partial support to Arconia OpenTelemetry.
+tags:
+  - arconia
+  - opentelemetry
+recipeList:
+  - io.arconia.rewrite.UpgradeArconia_0_14
+
+  # Rename Properties
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "management.opentelemetry.resource-attributes"
+      newPropertyKey: "arconia.otel.resource.attributes"
+
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "management.otlp.logging.export.enabled"
+      newPropertyKey: "arconia.otel.logs.enabled"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "management.otlp.logging.transport"
+      newPropertyKey: "arconia.otel.logs.exporter.otlp.protocol"
+  - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
+      propertyKey: "arconia.otel.logs.exporter.otlp.protocol"
+      oldPropertyValue: "http"
+      newPropertyValue: "http_protobuf"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "management.otlp.logging.endpoint"
+      newPropertyKey: "arconia.otel.logs.exporter.otlp.endpoint"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "management.otlp.logging.headers"
+      newPropertyKey: "arconia.otel.logs.exporter.otlp.headers"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "management.otlp.logging.compression"
+      newPropertyKey: "arconia.otel.logs.exporter.otlp.compression"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "management.otlp.logging.timeout"
+      newPropertyKey: "arconia.otel.logs.exporter.otlp.timeout"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "management.otlp.logging.connect-timeout"
+      newPropertyKey: "arconia.otel.logs.exporter.otlp.connect-timeout"
+
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "management.otlp.metrics.export.enabled"
+      newPropertyKey: "arconia.otel.metrics.enabled"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "management.otlp.metrics.export.aggregation-temporality"
+      newPropertyKey: "arconia.otel.metrics.exporter.aggregation-temporality"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "management.otlp.metrics.export.headers"
+      newPropertyKey: "arconia.otel.metrics.exporter.otlp.headers"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "management.otlp.metrics.export.histogram-flavor"
+      newPropertyKey: "arconia.otel.metrics.exporter.histogram-aggregation"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "management.otlp.metrics.export.read-timeout"
+      newPropertyKey: "arconia.otel.metrics.exporter.otlp.timeout"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "management.otlp.metrics.export.step"
+      newPropertyKey: "arconia.otel.metrics.exporter.interval"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "management.otlp.metrics.export.url"
+      newPropertyKey: "arconia.otel.metrics.exporter.otlp.endpoint"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "management.otlp.metrics.export.connect-timeout"
+      newPropertyKey: "arconia.otel.metrics.exporter.otlp.connect-timeout"
+
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "management.otlp.tracing.export.enabled"
+      newPropertyKey: "arconia.otel.traces.enabled"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "management.otlp.tracing.transport"
+      newPropertyKey: "arconia.otel.traces.exporter.otlp.protocol"
+  - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
+      propertyKey: "arconia.otel.traces.exporter.otlp.protocol"
+      oldPropertyValue: "http"
+      newPropertyValue: "http_protobuf"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "management.otlp.tracing.endpoint"
+      newPropertyKey: "arconia.otel.traces.exporter.otlp.endpoint"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "management.otlp.tracing.headers"
+      newPropertyKey: "arconia.otel.traces.exporter.otlp.headers"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "management.otlp.tracing.compression"
+      newPropertyKey: "arconia.otel.traces.exporter.otlp.compression"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "management.otlp.tracing.timeout"
+      newPropertyKey: "arconia.otel.traces.exporter.otlp.timeout"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "management.otlp.tracing.connect-timeout"
+      newPropertyKey: "arconia.otel.traces.exporter.otlp.connect-timeout"
+
+  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
+      propertyKey: "management.otlp.metrics.export.batch-size"
+      comment: "Not supported by Arconia OpenTelemetry."
+  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
+      propertyKey: "management.otlp.metrics.export.max-bucket-count"
+      comment: "Not supported by Arconia OpenTelemetry."
+  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
+      propertyKey: "management.otlp.metrics.export.max-scale"
+      comment: "Not supported by Arconia OpenTelemetry."
+
+  # Change Types
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.autoconfigure.logging.SdkLoggerProviderBuilderCustomizer
+      newFullyQualifiedTypeName: io.arconia.opentelemetry.autoconfigure.logs.OpenTelemetryLoggerProviderBuilderCustomizer
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.autoconfigure.tracing.SdkTracerProviderBuilderCustomizer
+      newFullyQualifiedTypeName: io.arconia.opentelemetry.autoconfigure.traces.OpenTelemetryTracerProviderBuilderCustomizer

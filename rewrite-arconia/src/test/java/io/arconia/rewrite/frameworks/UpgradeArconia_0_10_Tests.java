@@ -1,4 +1,4 @@
-package io.arconia.rewrite;
+package io.arconia.rewrite.frameworks;
 
 import org.junit.jupiter.api.Test;
 import org.openrewrite.InMemoryExecutionContext;
