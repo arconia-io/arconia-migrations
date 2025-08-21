@@ -44,7 +44,7 @@ recipeDependencies {
 
     parserClasspath "io.arconia:arconia-opentelemetry:0.14.0"
 
-    parserClasspath "org.springframework.boot:spring-boot-actuator-autoconfigure:3.5.4"
+    parserClasspath "org.springframework.boot:spring-boot-actuator-autoconfigure:3.5.5"
 }
 
 publishing {
