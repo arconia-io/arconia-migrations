@@ -46,6 +46,9 @@ recipeDependencies {
 
     parserClasspath "org.springframework.ai:spring-ai-mistral-ai:1.0.0-M7"
 
+    parserClasspath "org.springframework.ai:spring-ai-autoconfigure-mcp-client:1.0.2"
+    parserClasspath "org.springframework.ai:spring-ai-autoconfigure-mcp-server:1.0.2"
+
     parserClasspath "org.springframework.boot:spring-boot-autoconfigure:3.4.7"
 }
 
