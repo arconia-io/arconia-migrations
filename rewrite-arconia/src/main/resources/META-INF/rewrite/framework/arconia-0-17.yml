@@ -1,0 +1,16 @@
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.UpgradeArconia_0_17
+displayName: Migrate to Arconia 0.17
+description: Migrate a Spring Boot application to the latest Arconia 0.17.x release.
+tags:
+  - arconia
+recipeList:
+  - io.arconia.rewrite.UpgradeArconia_0_16
+
+  # Dependency Versions
+  - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
+      groupId: io.arconia
+      artifactId: "*"
+      newVersion: 0.17.x
+      overrideManagedVersion: false
