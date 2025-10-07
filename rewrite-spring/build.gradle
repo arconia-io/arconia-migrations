@@ -49,7 +49,7 @@ recipeDependencies {
     parserClasspath "org.springframework.ai:spring-ai-autoconfigure-mcp-client:1.0.2"
     parserClasspath "org.springframework.ai:spring-ai-autoconfigure-mcp-server:1.0.2"
 
-    parserClasspath "org.springframework.boot:spring-boot-autoconfigure:3.4.7"
+    parserClasspath "org.springframework.boot:spring-boot-autoconfigure:3.5.6"
 }
 
 // Re-enable if and when starting using Refaster
