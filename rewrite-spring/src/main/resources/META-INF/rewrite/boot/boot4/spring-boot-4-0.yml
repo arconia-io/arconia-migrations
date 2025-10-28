@@ -35,7 +35,7 @@ recipeList:
   # Modularization
   - io.arconia.rewrite.spring.boot.UpgradeSpringBootModules_4_0
 
-  # Type Changes
+  # Type Changes: Core
   - org.openrewrite.java.ChangeType:
       oldFullyQualifiedTypeName: org.springframework.lang.Nullable
       newFullyQualifiedTypeName: org.jspecify.annotations.Nullable
@@ -45,6 +45,8 @@ recipeList:
   - org.openrewrite.java.ChangeType:
       oldFullyQualifiedTypeName: org.springframework.boot.env.EnvironmentPostProcessor
       newFullyQualifiedTypeName: org.springframework.boot.EnvironmentPostProcessor #TODO: spring.factories
+
+  # Type Changes: Data
   - org.openrewrite.java.ChangeType:
       oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.domain.EntityScan
       newFullyQualifiedTypeName: org.springframework.boot.persistence.autoconfigure.EntityScan
@@ -54,6 +56,20 @@ recipeList:
   - org.openrewrite.java.ChangeType:
       oldFullyQualifiedTypeName: org.springframework.boot.test.autoconfigure.properties.SkipPropertyMapping
       newFullyQualifiedTypeName: org.springframework.boot.test.context.PropertyMapping.Skip
+
+  # Type Changes: Web
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.test.web.client.TestRestTemplate
+      newFullyQualifiedTypeName: org.springframework.boot.web.server.test.client.TestRestTemplate
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.test.web.server.LocalServerPort
+      newFullyQualifiedTypeName: org.springframework.boot.web.server.test.LocalServerPort
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.test.mock.mockito.MockBean
+      newFullyQualifiedTypeName: org.springframework.test.context.bean.override.mockito.MockitoBean
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.security.servlet.PathRequest
+      newFullyQualifiedTypeName: org.springframework.boot.security.autoconfigure.servlet.PathRequest
 
   # Additional Dependencies
   - org.openrewrite.java.dependencies.AddDependency:
