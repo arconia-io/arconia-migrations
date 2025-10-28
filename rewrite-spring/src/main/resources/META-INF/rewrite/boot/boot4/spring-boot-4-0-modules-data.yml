@@ -1,0 +1,296 @@
+# Based on https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-4.0-Migration-Guide
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot.UpgradeSpringBootModulesData_4_0
+displayName: Migrate to Spring Boot 4.0 Modules Data
+description: Upgrade the data Spring Boot dependencies based on the new modularization.
+tags:
+  - spring
+  - boot
+recipeList:
+  - io.arconia.rewrite.spring.boot.AddDataCassandraStarterTest
+  - io.arconia.rewrite.spring.boot.AddDataCassandraReactiveStarterTest
+  - io.arconia.rewrite.spring.boot.AddDataCouchbaseStarterTest
+  - io.arconia.rewrite.spring.boot.AddDataCouchbaseReactiveStarterTest
+  - io.arconia.rewrite.spring.boot.AddDataElasticsearchStarterTest
+  - io.arconia.rewrite.spring.boot.AddDataJdbcStarterTest
+  - io.arconia.rewrite.spring.boot.AddDataJpaStarterTest
+  - io.arconia.rewrite.spring.boot.AddDataLdapStarterTest
+  - io.arconia.rewrite.spring.boot.AddDataMongoDbStarterTest
+  - io.arconia.rewrite.spring.boot.AddDataMongoDbReactiveStarterTest
+  - io.arconia.rewrite.spring.boot.AddDataNeo4jStarterTest
+  - io.arconia.rewrite.spring.boot.AddDataR2dbcStarterTest
+  - io.arconia.rewrite.spring.boot.AddDataRedisStarterTest
+  - io.arconia.rewrite.spring.boot.AddDataRedisReactiveStarterTest
+  - io.arconia.rewrite.spring.boot.AddDataRestStarterTest
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot.AddDataCassandraStarterTest
+displayName: Add Data Cassandra Starter Test
+tags:
+  - spring
+  - boot
+preconditions:
+  - org.openrewrite.java.dependencies.DependencyInsight:
+      groupIdPattern: org.springframework.boot
+      artifactIdPattern: spring-boot-starter-data-cassandra
+recipeList:
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-data-cassandra-test
+      acceptTransitive: true
+      configuration: testImplementation
+      scope: test
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot.AddDataCassandraReactiveStarterTest
+displayName: Add Data Cassandra Reactive Starter Test
+tags:
+  - spring
+  - boot
+preconditions:
+  - org.openrewrite.java.dependencies.DependencyInsight:
+      groupIdPattern: org.springframework.boot
+      artifactIdPattern: spring-boot-starter-data-cassandra-reactive
+recipeList:
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-data-cassandra-reactive-test
+      acceptTransitive: true
+      configuration: testImplementation
+      scope: test
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot.AddDataCouchbaseStarterTest
+displayName: Add Data Couchbase Starter Test
+tags:
+  - spring
+  - boot
+preconditions:
+  - org.openrewrite.java.dependencies.DependencyInsight:
+      groupIdPattern: org.springframework.boot
+      artifactIdPattern: spring-boot-starter-data-couchbase
+recipeList:
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-data-couchbase-test
+      acceptTransitive: true
+      configuration: testImplementation
+      scope: test
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot.AddDataCouchbaseReactiveStarterTest
+displayName: Add Data Couchbase Reactive Starter Test
+tags:
+  - spring
+  - boot
+preconditions:
+  - org.openrewrite.java.dependencies.DependencyInsight:
+      groupIdPattern: org.springframework.boot
+      artifactIdPattern: spring-boot-starter-data-couchbase-reactive
+recipeList:
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-data-couchbase-reactive-test
+      acceptTransitive: true
+      configuration: testImplementation
+      scope: test
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot.AddDataElasticsearchStarterTest
+displayName: Add Data Elasticsearch Starter Test
+tags:
+  - spring
+  - boot
+preconditions:
+  - org.openrewrite.java.dependencies.DependencyInsight:
+      groupIdPattern: org.springframework.boot
+      artifactIdPattern: spring-boot-starter-data-elasticsearch
+recipeList:
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-data-elasticsearch-test
+      acceptTransitive: true
+      configuration: testImplementation
+      scope: test
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot.AddDataJdbcStarterTest
+displayName: Add Data JDBC Starter Test
+tags:
+  - spring
+  - boot
+preconditions:
+  - org.openrewrite.java.dependencies.DependencyInsight:
+      groupIdPattern: org.springframework.boot
+      artifactIdPattern: spring-boot-starter-data-jdbc
+recipeList:
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-data-jdbc-test
+      acceptTransitive: true
+      configuration: testImplementation
+      scope: test
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot.AddDataJpaStarterTest
+displayName: Add Data JPA Starter Test
+tags:
+  - spring
+  - boot
+preconditions:
+  - org.openrewrite.java.dependencies.DependencyInsight:
+      groupIdPattern: org.springframework.boot
+      artifactIdPattern: spring-boot-starter-data-jpa
+recipeList:
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-data-jpa-test
+      acceptTransitive: true
+      configuration: testImplementation
+      scope: test
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot.AddDataLdapStarterTest
+displayName: Add Data LDAP Starter Test
+tags:
+  - spring
+  - boot
+preconditions:
+  - org.openrewrite.java.dependencies.DependencyInsight:
+      groupIdPattern: org.springframework.boot
+      artifactIdPattern: spring-boot-starter-data-ldap
+recipeList:
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-data-ldap-test
+      acceptTransitive: true
+      configuration: testImplementation
+      scope: test
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot.AddDataMongoDbStarterTest
+displayName: Add Data MongoDB Starter Test
+tags:
+  - spring
+  - boot
+preconditions:
+  - org.openrewrite.java.dependencies.DependencyInsight:
+      groupIdPattern: org.springframework.boot
+      artifactIdPattern: spring-boot-starter-data-mongodb
+recipeList:
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-data-mongodb-test
+      acceptTransitive: true
+      configuration: testImplementation
+      scope: test
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot.AddDataMongoDbReactiveStarterTest
+displayName: Add Data MongoDB Reactive Starter Test
+tags:
+  - spring
+  - boot
+preconditions:
+  - org.openrewrite.java.dependencies.DependencyInsight:
+      groupIdPattern: org.springframework.boot
+      artifactIdPattern: spring-boot-starter-data-mongodb-reactive
+recipeList:
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-data-mongodb-reactive-test
+      acceptTransitive: true
+      configuration: testImplementation
+      scope: test
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot.AddDataNeo4jStarterTest
+displayName: Add Data Neo4J Starter Test
+tags:
+  - spring
+  - boot
+preconditions:
+  - org.openrewrite.java.dependencies.DependencyInsight:
+      groupIdPattern: org.springframework.boot
+      artifactIdPattern: spring-boot-starter-data-neo4j
+recipeList:
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-data-neo4j-test
+      acceptTransitive: true
+      configuration: testImplementation
+      scope: test
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot.AddDataR2dbcStarterTest
+displayName: Add Data R2DBC Starter Test
+tags:
+  - spring
+  - boot
+preconditions:
+  - org.openrewrite.java.dependencies.DependencyInsight:
+      groupIdPattern: org.springframework.boot
+      artifactIdPattern: spring-boot-starter-data-r2dbc
+recipeList:
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-data-r2dbc-test
+      acceptTransitive: true
+      configuration: testImplementation
+      scope: test
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot.AddDataRedisStarterTest
+displayName: Add Data Redis Starter Test
+tags:
+  - spring
+  - boot
+preconditions:
+  - org.openrewrite.java.dependencies.DependencyInsight:
+      groupIdPattern: org.springframework.boot
+      artifactIdPattern: spring-boot-starter-data-redis
+recipeList:
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-data-redis-test
+      acceptTransitive: true
+      configuration: testImplementation
+      scope: test
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot.AddDataRedisReactiveStarterTest
+displayName: Add Data Redis Reactive Starter Test
+tags:
+  - spring
+  - boot
+preconditions:
+  - org.openrewrite.java.dependencies.DependencyInsight:
+      groupIdPattern: org.springframework.boot
+      artifactIdPattern: spring-boot-starter-data-redis-reactive
+recipeList:
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-data-redis-reactive-test
+      acceptTransitive: true
+      configuration: testImplementation
+      scope: test
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot.AddDataRestStarterTest
+displayName: Add Data REST Starter Test
+tags:
+  - spring
+  - boot
+preconditions:
+  - org.openrewrite.java.dependencies.DependencyInsight:
+      groupIdPattern: org.springframework.boot
+      artifactIdPattern: spring-boot-starter-data-rest
+recipeList:
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-data-rest-test
+      acceptTransitive: true
+      configuration: testImplementation
+      scope: test

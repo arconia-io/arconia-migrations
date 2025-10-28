@@ -1,0 +1,96 @@
+# Based on https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-4.0-Migration-Guide
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot.UpgradeSpringBootModulesJson_4_0
+displayName: Migrate to Spring Boot 4.0 Modules JSON
+description: Upgrade the JSON Spring Boot dependencies based on the new modularization.
+tags:
+  - spring
+  - boot
+recipeList:
+  - io.arconia.rewrite.spring.boot.AddGsonStarter
+  - io.arconia.rewrite.spring.boot.AddGsonStarterTest
+  - io.arconia.rewrite.spring.boot.AddJacksonStarter
+  - io.arconia.rewrite.spring.boot.AddJacksonStarterTest
+  - io.arconia.rewrite.spring.boot.AddJsonbStarterTest
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot.AddGsonStarter
+displayName: Add GSON Starter
+tags:
+  - spring
+  - boot
+recipeList:
+  - org.openrewrite.java.dependencies.ChangeDependency:
+      oldGroupId: com.google.code.gson
+      oldArtifactId: gson
+      newGroupId: org.springframework.boot
+      newArtifactId: spring-boot-starter-gson
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot.AddGsonStarterTest
+displayName: Add GSON Starter Test
+tags:
+  - spring
+  - boot
+preconditions:
+  - org.openrewrite.java.dependencies.DependencyInsight:
+      groupIdPattern: org.springframework.boot
+      artifactIdPattern: spring-boot-starter-gson
+recipeList:
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-gson-test
+      acceptTransitive: true
+      configuration: testImplementation
+      scope: test
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot.AddJacksonStarter
+displayName: Add Jackson Starter
+tags:
+  - spring
+  - boot
+recipeList:
+  - org.openrewrite.java.dependencies.ChangeDependency:
+      oldGroupId: org.springframework.boot
+      oldArtifactId: spring-boot-starter-json
+      newGroupId: org.springframework.boot
+      newArtifactId: spring-boot-starter-jackson
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot.AddJacksonStarterTest
+displayName: Add Jackson Starter Test
+tags:
+  - spring
+  - boot
+preconditions:
+  - org.openrewrite.java.dependencies.DependencyInsight:
+      groupIdPattern: org.springframework.boot
+      artifactIdPattern: spring-boot-starter-jackson
+recipeList:
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-jackson-test
+      acceptTransitive: true
+      configuration: testImplementation
+      scope: test
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot.AddJsonbStarterTest
+displayName: Add JSONB Starter Test
+tags:
+  - spring
+  - boot
+preconditions:
+  - org.openrewrite.java.dependencies.DependencyInsight:
+      groupIdPattern: org.springframework.boot
+      artifactIdPattern: spring-boot-starter-jsonb
+recipeList:
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-jsonb-test
+      acceptTransitive: true
+      configuration: testImplementation
+      scope: test

@@ -11,6 +11,9 @@ recipeList:
   # Previous Version
   - io.arconia.rewrite.spring.boot.UpgradeSpringBoot_3_5
 
+  # Configuration Properties
+  - io.arconia.rewrite.spring.boot.UpgradeSpringBootProperties_4_0
+
   # Dependency Versions
   - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
       groupId: org.springframework.boot
@@ -29,34 +32,32 @@ recipeList:
       artifactId: spring-boot-starter-parent
       newVersion: 4.0.x
 
-  # Dependency Changes
-  - org.openrewrite.java.dependencies.ChangeDependency:
-      oldGroupId: org.springframework.boot
-      oldArtifactId: spring-boot-starter-oauth2-authorization-server
-      newGroupId: org.springframework.boot
-      newArtifactId: spring-boot-starter-security-oauth2-authorization-server
-  - org.openrewrite.java.dependencies.ChangeDependency:
-      oldGroupId: org.springframework.boot
-      oldArtifactId: spring-boot-starter-oauth2-authorization-server
-      newGroupId: org.springframework.boot
-      newArtifactId: spring-boot-starter-security-oauth2-authorization-server
-  - org.openrewrite.java.dependencies.ChangeDependency:
-      oldGroupId: org.springframework.boot
-      oldArtifactId: spring-boot-starter-oauth2-client
-      newGroupId: org.springframework.boot
-      newArtifactId: spring-boot-starter-security-oauth2-client
-  - org.openrewrite.java.dependencies.ChangeDependency:
-      oldGroupId: org.springframework.boot
-      oldArtifactId: spring-boot-starter-oauth2-resource-server
-      newGroupId: org.springframework.boot
-      newArtifactId: spring-boot-starter-security-oauth2-resource-server
-  - org.openrewrite.java.dependencies.ChangeDependency:
-      oldGroupId: org.springframework.boot
-      oldArtifactId: spring-boot-starter-web
-      newGroupId: org.springframework.boot
-      newArtifactId: spring-boot-starter-webmvc
-  - org.openrewrite.java.dependencies.ChangeDependency:
-      oldGroupId: org.springframework.boot
-      oldArtifactId: spring-boot-starter-web-services
-      newGroupId: org.springframework.boot
-      newArtifactId: spring-boot-starter-webservices
+  # Modularization
+  - io.arconia.rewrite.spring.boot.UpgradeSpringBootModules_4_0
+
+  # Type Changes
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.lang.Nullable
+      newFullyQualifiedTypeName: org.jspecify.annotations.Nullable
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.BootstrapRegistry
+      newFullyQualifiedTypeName: org.springframework.boot.bootstrap.BootstrapRegistry #TODO: spring.factories
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.env.EnvironmentPostProcessor
+      newFullyQualifiedTypeName: org.springframework.boot.EnvironmentPostProcessor #TODO: spring.factories
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.domain.EntityScan
+      newFullyQualifiedTypeName: org.springframework.boot.persistence.autoconfigure.EntityScan
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.test.autoconfigure.properties.PropertyMapping
+      newFullyQualifiedTypeName: org.springframework.boot.test.context.PropertyMapping
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.test.autoconfigure.properties.SkipPropertyMapping
+      newFullyQualifiedTypeName: org.springframework.boot.test.context.PropertyMapping.Skip
+
+  # Additional Dependencies
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-persistence
+      onlyIfUsing: org.springframework.boot.persistence.autoconfigure.EntityScan
+      acceptTransitive: true

@@ -237,23 +237,23 @@ class UpgradeSpringBootProperties_3_5_Tests implements RewriteTest {
                         """,
                         """
                         # Deprecated in Micrometer 1.15.0.
-                        management.signalfx.metrics.export.access-token=my-token
+                        # management.signalfx.metrics.export.access-token=my-token
                         # Deprecated in Micrometer 1.15.0.
-                        management.signalfx.metrics.export.batch-size=10000
+                        # management.signalfx.metrics.export.batch-size=10000
                         # Deprecated in Micrometer 1.15.0.
-                        management.signalfx.metrics.export.connect-timeout=1s
+                        # management.signalfx.metrics.export.connect-timeout=1s
                         # Deprecated in Micrometer 1.15.0.
-                        management.signalfx.metrics.export.enabled=true
+                        # management.signalfx.metrics.export.enabled=true
                         # Deprecated in Micrometer 1.15.0.
-                        management.signalfx.metrics.export.published-histogram-type=cumulative
+                        # management.signalfx.metrics.export.published-histogram-type=cumulative
                         # Deprecated in Micrometer 1.15.0.
-                        management.signalfx.metrics.export.read-timeout=10s
+                        # management.signalfx.metrics.export.read-timeout=10s
                         # Deprecated in Micrometer 1.15.0.
-                        management.signalfx.metrics.export.source=my-source
+                        # management.signalfx.metrics.export.source=my-source
                         # Deprecated in Micrometer 1.15.0.
-                        management.signalfx.metrics.export.step=1m
+                        # management.signalfx.metrics.export.step=1m
                         # Deprecated in Micrometer 1.15.0.
-                        management.signalfx.metrics.export.uri=https://ingest.signalfx.com
+                        # management.signalfx.metrics.export.uri=https://ingest.signalfx.com
                         """,
                         s -> s.path("src/main/resources/application.properties"))
         );

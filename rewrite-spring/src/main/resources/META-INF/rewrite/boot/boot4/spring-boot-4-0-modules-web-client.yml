@@ -1,0 +1,95 @@
+# Based on https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-4.0-Migration-Guide
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot.UpgradeSpringBootModulesWebClient_4_0
+displayName: Migrate to Spring Boot 4.0 Modules Web Client
+description: Upgrade the web client Spring Boot dependencies based on the new modularization.
+tags:
+  - spring
+  - boot
+recipeList:
+  - io.arconia.rewrite.spring.boot.AddRestClientStarter
+  - io.arconia.rewrite.spring.boot.AddRestClientStarterTest
+  - io.arconia.rewrite.spring.boot.AddWebClientStarter
+  - io.arconia.rewrite.spring.boot.AddWebClientStarterTest
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot.AddRestClientStarter
+displayName: Add Rest Client Starter
+tags:
+  - spring
+  - boot
+recipeList:
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-restclient
+      onlyIfUsing: org.springframework.web.client.RestClient
+      acceptTransitive: true
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot.AddRestClientStarterTest
+displayName: Add Rest Client Starter Test
+tags:
+  - spring
+  - boot
+preconditions:
+  - org.openrewrite.java.dependencies.DependencyInsight:
+      groupIdPattern: org.springframework.boot
+      artifactIdPattern: spring-boot-starter-restclient
+recipeList:
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-restclient-test
+      acceptTransitive: true
+      configuration: testImplementation
+      scope: test
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot.AddWebClientStarter
+displayName: Add Web Client Starter
+tags:
+  - spring
+  - boot
+recipeList:
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-webclient
+      onlyIfUsing: org.springframework.web.reactive.function.client.WebClient
+      acceptTransitive: true
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot.AddWebClientStarterTest
+displayName: Add WebClient Starter Test
+tags:
+  - spring
+  - boot
+preconditions:
+  - org.openrewrite.java.dependencies.DependencyInsight:
+      groupIdPattern: org.springframework.boot
+      artifactIdPattern: spring-boot-starter-webclient
+recipeList:
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-webclient-test
+      acceptTransitive: true
+      configuration: testImplementation
+      scope: test
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot.AddWebClientStarterTest
+displayName: Add WebClient Starter Test
+tags:
+  - spring
+  - boot
+preconditions:
+  - org.openrewrite.java.dependencies.DependencyInsight:
+      groupIdPattern: org.springframework.boot
+      artifactIdPattern: spring-boot-starter-webclient
+recipeList:
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-webclient-test
+      acceptTransitive: true
+      configuration: testImplementation
+      scope: test

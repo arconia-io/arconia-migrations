@@ -1,0 +1,82 @@
+# Based on https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-4.0-Migration-Guide
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot.UpgradeSpringBootModulesProduction_4_0
+displayName: Migrate to Spring Boot 4.0 Modules Production
+description: Upgrade the production-ready Spring Boot dependencies based on the new modularization.
+tags:
+  - spring
+  - boot
+recipeList:
+  - io.arconia.rewrite.spring.boot.AddActuatorStarterTest
+  - io.arconia.rewrite.spring.boot.AddOpenTelemetryStarterTest
+  - io.arconia.rewrite.spring.boot.AddZipkinStarter
+  - io.arconia.rewrite.spring.boot.AddZipkinStarterTest
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot.AddActuatorStarterTest
+displayName: Add Actuator Test
+tags:
+  - spring
+  - boot
+preconditions:
+  - org.openrewrite.java.dependencies.DependencyInsight:
+      groupIdPattern: org.springframework.boot
+      artifactIdPattern: spring-boot-starter-actuator
+recipeList:
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-actuator-test
+      acceptTransitive: true
+      configuration: testImplementation
+      scope: test
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot.AddOpenTelemetryStarterTest
+displayName: Add OpenTelemetry Test
+tags:
+  - spring
+  - boot
+preconditions:
+  - org.openrewrite.java.dependencies.DependencyInsight:
+      groupIdPattern: org.springframework.boot
+      artifactIdPattern: spring-boot-starter-opentelemetry
+recipeList:
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-opentelemetry-test
+      acceptTransitive: true
+      configuration: testImplementation
+      scope: test
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot.AddZipkinStarter
+displayName: Add Zipkin Starter
+tags:
+  - spring
+  - boot
+recipeList:
+  - org.openrewrite.java.dependencies.ChangeDependency:
+      oldGroupId: io.zipkin.reporter2
+      oldArtifactId: zipkin-reporter-brave
+      newArtifactId: org.springframework.boot
+      artifactId: spring-boot-starter-zipkin
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot.AddZipkinStarterTest
+displayName: Add Zipkin Test
+tags:
+  - spring
+  - boot
+preconditions:
+  - org.openrewrite.java.dependencies.DependencyInsight:
+      groupIdPattern: org.springframework.boot
+      artifactIdPattern: spring-boot-starter-zipkin
+recipeList:
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-zipkin-test
+      acceptTransitive: true
+      configuration: testImplementation
+      scope: test
