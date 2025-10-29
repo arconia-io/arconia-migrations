@@ -13,9 +13,11 @@ recipeList:
   - io.arconia.rewrite.spring.boot.AddJmsStarter
   - io.arconia.rewrite.spring.boot.AddJmsStarterTest
   - io.arconia.rewrite.spring.boot.AddRsocketStarterTest
+  - io.arconia.rewrite.spring.boot.MigrateAmqpTest
   - io.arconia.rewrite.spring.boot.AddAmqpStarterTest
   - io.arconia.rewrite.spring.boot.AddIntegrationStarterTest
   - io.arconia.rewrite.spring.boot.AddKafkaStarter
+  - io.arconia.rewrite.spring.boot.MigrateKafkaTest
   - io.arconia.rewrite.spring.boot.AddKafkaStarterTest
   - io.arconia.rewrite.spring.boot.AddPulsarStarterTest
   - io.arconia.rewrite.spring.boot.AddWebSocketStarterTest
@@ -107,6 +109,19 @@ recipeList:
       scope: test
 ---
 type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot.MigrateAmqpTest
+displayName: Migrate AMQP Test
+tags:
+  - spring
+  - boot
+recipeList:
+  - org.openrewrite.java.dependencies.ChangeDependency:
+      oldGroupId: org.springframework.amqp
+      oldArtifactId: spring-rabbit-test
+      newGroupId: org.springframework.boot
+      newArtifactId: spring-boot-starter-amqp-test
+---
+type: specs.openrewrite.org/v1beta/recipe
 name: io.arconia.rewrite.spring.boot.AddAmqpStarterTest
 displayName: Add AMQP Starter Test
 tags:
@@ -154,6 +169,19 @@ recipeList:
       oldArtifactId: spring-kafka
       newGroupId: org.springframework.boot
       newArtifactId: spring-boot-starter-kafka
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot.MigrateKafkaTest
+displayName: Migrate Kafka Test
+tags:
+  - spring
+  - boot
+recipeList:
+  - org.openrewrite.java.dependencies.ChangeDependency:
+      oldGroupId: org.springframework.kafka
+      oldArtifactId: spring-kafka-test
+      newGroupId: org.springframework.boot
+      newArtifactId: spring-boot-starter-kafka-test
 ---
 type: specs.openrewrite.org/v1beta/recipe
 name: io.arconia.rewrite.spring.boot.AddKafkaStarterTest

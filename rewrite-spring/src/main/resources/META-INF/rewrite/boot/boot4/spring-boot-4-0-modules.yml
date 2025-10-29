@@ -19,3 +19,4 @@ recipeList:
   - io.arconia.rewrite.spring.boot.UpgradeSpringBootModulesSecurity_4_0
   - io.arconia.rewrite.spring.boot.UpgradeSpringBootModulesTemplating_4_0
   - io.arconia.rewrite.spring.boot.UpgradeSpringBootModulesProduction_4_0
+  - io.arconia.rewrite.spring.boot.UpgradeSpringBootModulesTesting_4_0

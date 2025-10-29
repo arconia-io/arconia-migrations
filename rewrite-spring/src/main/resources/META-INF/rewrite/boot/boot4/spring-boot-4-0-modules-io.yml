@@ -15,6 +15,7 @@ recipeList:
   - io.arconia.rewrite.spring.boot.AddSendGridStarterTest
   - io.arconia.rewrite.spring.boot.AddCacheStarterTest
   - io.arconia.rewrite.spring.boot.AddBatchJdbcStarterTest
+  - io.arconia.rewrite.spring.boot.MigrateBatchTest
   - io.arconia.rewrite.spring.boot.AddBatchStarterTest
 
 ---
@@ -138,6 +139,19 @@ recipeList:
       acceptTransitive: true
       configuration: testImplementation
       scope: test
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot.MigrateBatchTest
+displayName: Migrate Batch Test
+tags:
+  - spring
+  - boot
+recipeList:
+  - org.openrewrite.java.dependencies.ChangeDependency:
+      oldGroupId: org.springframework.batch
+      oldArtifactId: spring-batch-test
+      newGroupId: org.springframework.boot
+      newArtifactId: spring-boot-starter-batch-test
 ---
 type: specs.openrewrite.org/v1beta/recipe
 name: io.arconia.rewrite.spring.boot.AddBatchStarterTest

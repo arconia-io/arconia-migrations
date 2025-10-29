@@ -194,7 +194,6 @@ recipeList:
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: server.undertow.accesslog.suffix
       comment: "Deprecated property removed in Spring Boot 4.0."
-      # TODO server.undertow.allow-encoded-slash
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: server.undertow.always-set-keep-alive
       comment: "Deprecated property removed in Spring Boot 4.0."
