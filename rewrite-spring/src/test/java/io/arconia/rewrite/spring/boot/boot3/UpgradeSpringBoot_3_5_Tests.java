@@ -16,7 +16,7 @@ class UpgradeSpringBoot_3_5_Tests implements RewriteTest {
     @Override
     public void defaults(RecipeSpec spec) {
         spec.recipeFromResources("io.arconia.rewrite.spring.boot.UpgradeSpringBoot_3_5")
-                .parser(JavaParser.fromJavaVersion().classpathFromResources(new InMemoryExecutionContext(), "spring-boot-autoconfigure-3.4.7"));
+                .parser(JavaParser.fromJavaVersion().classpathFromResources(new InMemoryExecutionContext(), "spring-boot-autoconfigure-3.4.*"));
     }
 
     @Test

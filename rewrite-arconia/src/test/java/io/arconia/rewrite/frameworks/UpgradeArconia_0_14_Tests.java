@@ -22,11 +22,11 @@ class UpgradeArconia_0_14_Tests implements RewriteTest {
     public void defaults(RecipeSpec spec) {
         spec.recipeFromResources("io.arconia.rewrite.UpgradeArconia_0_14")
             .parser(JavaParser.fromJavaVersion().classpathFromResources(new InMemoryExecutionContext(),
-            "arconia-dev-services-mariadb-0.13.0",
-            "arconia-dev-services-rabbitmq-0.13.0",
-            "arconia-multitenancy-spring-boot-autoconfigure-0.13.0",
-            "arconia-opentelemetry-sdk-spring-boot-autoconfigure-0.13.0",
-            "arconia-opentelemetry-instrumentation-spring-boot-autoconfigure-0.13.0"));
+            "arconia-dev-services-mariadb-0.13.*",
+            "arconia-dev-services-rabbitmq-0.13.*",
+            "arconia-multitenancy-spring-boot-autoconfigure-0.13.*",
+            "arconia-opentelemetry-sdk-spring-boot-autoconfigure-0.13.*",
+            "arconia-opentelemetry-instrumentation-spring-boot-autoconfigure-0.13.*"));
     }
 
     /********************

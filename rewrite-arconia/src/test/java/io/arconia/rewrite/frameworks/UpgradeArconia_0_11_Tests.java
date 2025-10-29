@@ -19,7 +19,7 @@ class UpgradeArconia_0_11_Tests implements RewriteTest {
     @Override
     public void defaults(RecipeSpec spec) {
         spec.recipeFromResources("io.arconia.rewrite.UpgradeArconia_0_11")
-            .parser(JavaParser.fromJavaVersion().classpathFromResources(new InMemoryExecutionContext(), "arconia-core-0.10.3"));
+            .parser(JavaParser.fromJavaVersion().classpathFromResources(new InMemoryExecutionContext(), "arconia-core-0.10.*"));
     }
 
     // Dependency Version Changes
