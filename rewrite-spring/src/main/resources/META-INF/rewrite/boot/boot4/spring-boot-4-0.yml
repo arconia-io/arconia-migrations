@@ -1,7 +1,7 @@
 # Based on https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-4.0-Migration-Guide
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: io.arconia.rewrite.spring.boot.UpgradeSpringBoot_4_0
+name: io.arconia.rewrite.spring.boot4.UpgradeSpringBoot_4_0
 displayName: Migrate to Spring Boot 4.0
 description: Migrate a Spring Boot application to the latest Spring Boot 4.0.x release.
 tags:
@@ -9,14 +9,24 @@ tags:
   - boot
 recipeList:
   # Previous Version
-  - io.arconia.rewrite.spring.boot.UpgradeSpringBoot_3_5
+  - io.arconia.rewrite.spring.boot3.UpgradeSpringBoot_3_5
+
+  # Spring Framework
+  - io.arconia.rewrite.spring.framework7.UpgradeSpringFramework_7_0
+
+  # Configuration Properties
+  - io.arconia.rewrite.spring.boot4.UpgradeSpringBootProperties_4_0
 
   # Dependency Versions
   - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
       groupId: org.springframework.boot
       artifactId: "*"
       newVersion: 4.0.x
-      overrideManagedVersion: false
+  - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-dependencies
+      newVersion: 4.0.x
+      overrideManagedVersion: true
   - org.openrewrite.gradle.plugins.UpgradePluginVersion:
       pluginIdPattern: org.springframework.boot
       newVersion: 4.0.x
@@ -29,34 +39,52 @@ recipeList:
       artifactId: spring-boot-starter-parent
       newVersion: 4.0.x
 
-  # Dependency Changes
-  - org.openrewrite.java.dependencies.ChangeDependency:
-      oldGroupId: org.springframework.boot
-      oldArtifactId: spring-boot-starter-oauth2-authorization-server
-      newGroupId: org.springframework.boot
-      newArtifactId: spring-boot-starter-security-oauth2-authorization-server
-  - org.openrewrite.java.dependencies.ChangeDependency:
-      oldGroupId: org.springframework.boot
-      oldArtifactId: spring-boot-starter-oauth2-authorization-server
-      newGroupId: org.springframework.boot
-      newArtifactId: spring-boot-starter-security-oauth2-authorization-server
-  - org.openrewrite.java.dependencies.ChangeDependency:
-      oldGroupId: org.springframework.boot
-      oldArtifactId: spring-boot-starter-oauth2-client
-      newGroupId: org.springframework.boot
-      newArtifactId: spring-boot-starter-security-oauth2-client
-  - org.openrewrite.java.dependencies.ChangeDependency:
-      oldGroupId: org.springframework.boot
-      oldArtifactId: spring-boot-starter-oauth2-resource-server
-      newGroupId: org.springframework.boot
-      newArtifactId: spring-boot-starter-security-oauth2-resource-server
-  - org.openrewrite.java.dependencies.ChangeDependency:
-      oldGroupId: org.springframework.boot
-      oldArtifactId: spring-boot-starter-web
-      newGroupId: org.springframework.boot
-      newArtifactId: spring-boot-starter-webmvc
-  - org.openrewrite.java.dependencies.ChangeDependency:
-      oldGroupId: org.springframework.boot
-      oldArtifactId: spring-boot-starter-web-services
-      newGroupId: org.springframework.boot
-      newArtifactId: spring-boot-starter-webservices
+  # Modularization
+  - io.arconia.rewrite.spring.boot4.UpgradeSpringBootModules_4_0
+
+  # Jackson
+  - org.openrewrite.java.jackson.UpgradeJackson_2_3
+
+  # Type Changes: Core
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.BootstrapRegistry
+      newFullyQualifiedTypeName: org.springframework.boot.bootstrap.BootstrapRegistry
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.env.EnvironmentPostProcessor
+      newFullyQualifiedTypeName: org.springframework.boot.EnvironmentPostProcessor
+  - org.openrewrite.text.FindAndReplace:
+      find: org.springframework.boot.env.EnvironmentPostProcessor
+      replace: org.springframework.boot.EnvironmentPostProcessor
+      caseSensitive: true
+      filePattern: "**/spring.factories"
+
+  # Type Changes: Data
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.domain.EntityScan
+      newFullyQualifiedTypeName: org.springframework.boot.persistence.autoconfigure.EntityScan
+
+  # Type Changes: Security
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.security.servlet.PathRequest
+      newFullyQualifiedTypeName: org.springframework.boot.security.autoconfigure.servlet.PathRequest
+
+  # Type Changes: Test
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.test.autoconfigure.properties.PropertyMapping
+      newFullyQualifiedTypeName: org.springframework.boot.test.context.PropertyMapping
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.test.autoconfigure.properties.SkipPropertyMapping
+      newFullyQualifiedTypeName: org.springframework.boot.test.context.PropertyMapping.Skip
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.test.web.client.TestRestTemplate
+      newFullyQualifiedTypeName: org.springframework.boot.web.server.test.client.TestRestTemplate
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.test.web.server.LocalServerPort
+      newFullyQualifiedTypeName: org.springframework.boot.web.server.test.LocalServerPort
+
+  # Additional Dependencies
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-persistence
+      onlyIfUsing: org.springframework.boot.persistence.autoconfigure.EntityScan
+      acceptTransitive: true

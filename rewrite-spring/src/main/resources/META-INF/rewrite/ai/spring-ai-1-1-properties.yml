@@ -1,0 +1,42 @@
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.ai.UpgradeSpringAiProperties_1_1
+displayName: Migrate Spring AI properties to 1.1
+description: Migrate Spring AI properties found in configuration data files (YAML and Properties).
+tags:
+  - spring
+  - ai
+recipeList:
+  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
+      propertyKey: "spring.ai.ollama.chat.options.use-n-u-m-a"
+      comment: "Deprecated. Not supported by Ollama Server any longer."
+  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
+      propertyKey: "spring.ai.ollama.chat.options.low-v-r-a-m"
+      comment: "Deprecated. Not supported by Ollama Server any longer."
+  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
+      propertyKey: "spring.ai.ollama.chat.options.f16-k-v"
+      comment: "Deprecated. Not supported by Ollama Server any longer."
+  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
+      propertyKey: "spring.ai.ollama.chat.options.logits-all"
+      comment: "Deprecated. Not supported by Ollama Server any longer."
+  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
+      propertyKey: "spring.ai.ollama.chat.options.vocab-only"
+      comment: "Deprecated. Not supported by Ollama Server any longer."
+  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
+      propertyKey: "spring.ai.ollama.chat.options.use-m-lock"
+      comment: "Deprecated. Not supported by Ollama Server any longer."
+  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
+      propertyKey: "spring.ai.ollama.chat.options.tfs-z"
+      comment: "Deprecated. Not supported by Ollama Server any longer."
+  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
+      propertyKey: "spring.ai.ollama.chat.options.mirostat"
+      comment: "Deprecated. Not supported by Ollama Server any longer."
+  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
+      propertyKey: "spring.ai.ollama.chat.options.mirostat-tau"
+      comment: "Deprecated. Not supported by Ollama Server any longer."
+  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
+      propertyKey: "spring.ai.ollama.chat.options.mirostat-eta"
+      comment: "Deprecated. Not supported by Ollama Server any longer."
+  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
+      propertyKey: "spring.ai.ollama.chat.options.penalize-newline"
+      comment: "Deprecated. Not supported by Ollama Server any longer."

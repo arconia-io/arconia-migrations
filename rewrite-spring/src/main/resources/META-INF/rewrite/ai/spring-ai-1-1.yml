@@ -1,0 +1,109 @@
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.ai.UpgradeSpringAi_1_1
+displayName: Migrate to Spring AI 1.1
+description: Migrate a Spring Boot application to the latest Spring AI 1.1.x release.
+tags:
+  - spring
+  - ai
+recipeList:
+  # Configuration Properties
+  - io.arconia.rewrite.spring.ai.UpgradeSpringAiProperties_1_1
+
+  # Dependency Versions
+  - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
+      groupId: org.springframework.ai
+      artifactId: "*"
+      newVersion: 1.1.x
+      overrideManagedVersion: false
+
+  # Type Changes
+
+  ## MCP Client Common
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.ai.mcp.client.autoconfigure.McpClientAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.ai.mcp.client.common.autoconfigure.McpClientAutoConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.ai.mcp.client.autoconfigure.McpToolCallbackAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.ai.mcp.client.common.autoconfigure.McpToolCallbackAutoConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.ai.mcp.client.autoconfigure.NamedClientMcpTransport
+      newFullyQualifiedTypeName: org.springframework.ai.mcp.client.common.autoconfigure.NamedClientMcpTransport
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.ai.mcp.client.autoconfigure.StdioTransportAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.ai.mcp.client.common.autoconfigure.StdioTransportAutoConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.ai.mcp.client.autoconfigure.configurer.McpAsyncClientConfigurer
+      newFullyQualifiedTypeName: org.springframework.ai.mcp.client.common.autoconfigure.configurer.McpAsyncClientConfigurer
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.ai.mcp.client.autoconfigure.configurer.McpSyncClientConfigurer
+      newFullyQualifiedTypeName: org.springframework.ai.mcp.client.common.autoconfigure.configurer.McpSyncClientConfigurer
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.ai.mcp.client.autoconfigure.properties.McpClientCommonProperties
+      newFullyQualifiedTypeName: org.springframework.ai.mcp.client.common.autoconfigure.properties.McpClientCommonProperties
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.ai.mcp.client.autoconfigure.properties.McpSseClientProperties
+      newFullyQualifiedTypeName: org.springframework.ai.mcp.client.common.autoconfigure.properties.McpSseClientProperties
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.ai.mcp.client.autoconfigure.properties.McpStdioClientProperties
+      newFullyQualifiedTypeName: org.springframework.ai.mcp.client.common.autoconfigure.properties.McpStdioClientProperties
+  ## MCP Client HTTP
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.ai.mcp.client.autoconfigure.SseHttpClientTransportAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.ai.mcp.client.httpclient.autoconfigure.SseHttpClientTransportAutoConfiguration
+  ## MCP Client WebFlux
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.ai.mcp.client.autoconfigure.SseWebFluxTransportAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.ai.mcp.client.webflux.autoconfigure.SseWebFluxTransportAutoConfiguration
+  ## MCP Server Common
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.ai.mcp.server.autoconfigure.McpServerAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.ai.mcp.server.common.autoconfigure.McpServerAutoConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.ai.mcp.server.autoconfigure.McpServerStdioDisabledCondition
+      newFullyQualifiedTypeName: org.springframework.ai.mcp.server.common.autoconfigure.McpServerStdioDisabledCondition
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.ai.mcp.server.autoconfigure.McpServerProperties
+      newFullyQualifiedTypeName: org.springframework.ai.mcp.server.common.autoconfigure.properties.McpServerProperties
+  ## MCP Server WebFlux
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.ai.mcp.server.autoconfigure.McpWebFluxServerAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.ai.mcp.server.autoconfigure.McpServerSseWebFluxAutoConfiguration
+  ## MCP Server WebMVC
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.ai.mcp.server.autoconfigure.McpWebMvcServerAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.ai.mcp.server.autoconfigure.McpServerSseWebMvcAutoConfiguration
+
+  # Artifact ID Changes
+  - org.openrewrite.java.dependencies.ChangeDependency:
+      oldGroupId: org.springframework.ai
+      oldArtifactId: spring-ai-autoconfigure-mcp-client
+      newGroupId: org.springframework.ai
+      newArtifactId: spring-ai-autoconfigure-mcp-client-common
+  - org.openrewrite.java.dependencies.ChangeDependency:
+      oldGroupId: org.springframework.ai
+      oldArtifactId: spring-ai-autoconfigure-mcp-server
+      newGroupId: org.springframework.ai
+      newArtifactId: spring-ai-autoconfigure-mcp-server-common
+
+  # Additional Dependencies
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: org.springframework.ai
+      artifactId: spring-ai-autoconfigure-mcp-client-httpclient
+      onlyIfUsing: org.springframework.ai.mcp.client.autoconfigure.SseHttpClientTransportAutoConfiguration
+      acceptTransitive: true
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: org.springframework.ai
+      artifactId: spring-ai-autoconfigure-mcp-client-webflux
+      onlyIfUsing: org.springframework.ai.mcp.client.autoconfigure.SseWebFluxTransportAutoConfiguration
+      acceptTransitive: true
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: org.springframework.ai
+      artifactId: spring-ai-autoconfigure-mcp-server-webflux
+      onlyIfUsing: org.springframework.ai.mcp.server.autoconfigure.McpWebFluxServerAutoConfiguration
+      acceptTransitive: true
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: org.springframework.ai
+      artifactId: spring-ai-autoconfigure-mcp-server-webmvc
+      onlyIfUsing: org.springframework.ai.mcp.server.autoconfigure.McpWebMvcServerAutoConfiguration
+      acceptTransitive: true
