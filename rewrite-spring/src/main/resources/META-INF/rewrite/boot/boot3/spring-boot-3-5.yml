@@ -11,6 +11,9 @@ recipeList:
   # Configuration Properties
   - io.arconia.rewrite.spring.boot.UpgradeSpringBootProperties_3_5
 
+  # Spring Framework
+  - io.arconia.rewrite.spring.framework.UpgradeSpringFramework_6_2
+
   # Dependency Versions
   - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
       groupId: org.springframework.boot

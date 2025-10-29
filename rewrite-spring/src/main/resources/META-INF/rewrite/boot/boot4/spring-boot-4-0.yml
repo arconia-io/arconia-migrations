@@ -11,6 +11,9 @@ recipeList:
   # Previous Version
   - io.arconia.rewrite.spring.boot.UpgradeSpringBoot_3_5
 
+  # Spring Framework
+  - io.arconia.rewrite.spring.framework.UpgradeSpringFramework_7_0
+
   # Configuration Properties
   - io.arconia.rewrite.spring.boot.UpgradeSpringBootProperties_4_0
 
