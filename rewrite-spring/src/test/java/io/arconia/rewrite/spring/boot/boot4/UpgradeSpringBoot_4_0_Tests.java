@@ -7,15 +7,16 @@ import org.openrewrite.test.RecipeSpec;
 import org.openrewrite.test.RewriteTest;
 
 import static org.openrewrite.java.Assertions.java;
+import static org.openrewrite.test.SourceSpecs.text;
 
 /**
- * Unit tests for "io.arconia.rewrite.spring.boot.UpgradeSpringBoot_4_0".
+ * Unit tests for "io.arconia.rewrite.spring.boot4.UpgradeSpringBoot_4_0".
  */
 class UpgradeSpringBoot_4_0_Tests implements RewriteTest {
 
     @Override
     public void defaults(RecipeSpec spec) {
-        spec.recipeFromResources("io.arconia.rewrite.spring.boot.UpgradeSpringBoot_4_0");
+        spec.recipeFromResources("io.arconia.rewrite.spring.boot4.UpgradeSpringBoot_4_0");
     }
 
     @Test
@@ -47,7 +48,17 @@ class UpgradeSpringBoot_4_0_Tests implements RewriteTest {
                             EnvironmentPostProcessor environmentPostProcessor = null;
                         }
                         """
-                )
+                ),
+                //language=text
+                text("""
+                     org.springframework.boot.env.EnvironmentPostProcessor=\
+                     io.arconia.openinference.observation.autoconfigure.ai.OpenInferenceEnvironmentPostProcessor
+                     """,
+                        """
+                        org.springframework.boot.EnvironmentPostProcessor=\
+                        io.arconia.openinference.observation.autoconfigure.ai.OpenInferenceEnvironmentPostProcessor
+                        """,
+                        s -> s.path("src/main/resources/META-INF/spring.factories"))
         );
     }
 

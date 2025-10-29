@@ -1,29 +1,29 @@
 # Based on https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-4.0-Migration-Guide
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: io.arconia.rewrite.spring.boot.UpgradeSpringBootModulesWeb_4_0
+name: io.arconia.rewrite.spring.boot4.UpgradeSpringBootModulesWeb_4_0
 displayName: Migrate to Spring Boot 4.0 Modules Web
 description: Upgrade the web Spring Boot dependencies based on the new modularization.
 tags:
   - spring
   - boot
 recipeList:
-  - io.arconia.rewrite.spring.boot.MigrateGraphQlTest
-  - io.arconia.rewrite.spring.boot.AddGraphQlStarterTest
-  - io.arconia.rewrite.spring.boot.AddHateoasStarterTest
-  - io.arconia.rewrite.spring.boot.AddSessionDataRedisStarter
-  - io.arconia.rewrite.spring.boot.AddSessionDataRedisStarterTest
-  - io.arconia.rewrite.spring.boot.AddSessionJdbcStarter
-  - io.arconia.rewrite.spring.boot.AddSessionJdbcStarterTest
-  - io.arconia.rewrite.spring.boot.MigrateWebStarter
-  - io.arconia.rewrite.spring.boot.AddWebMvcStarterTest
-  - io.arconia.rewrite.spring.boot.AddWebFluxStarterTest
-  - io.arconia.rewrite.spring.boot.MigrateWebServicesStarter
-  - io.arconia.rewrite.spring.boot.AddWebServicesStarterTest
+  - io.arconia.rewrite.spring.boot4.MigrateGraphQlTest
+  - io.arconia.rewrite.spring.boot4.AddGraphQlStarterTest
+  - io.arconia.rewrite.spring.boot4.AddHateoasStarterTest
+  - io.arconia.rewrite.spring.boot4.AddSessionDataRedisStarter
+  - io.arconia.rewrite.spring.boot4.AddSessionDataRedisStarterTest
+  - io.arconia.rewrite.spring.boot4.AddSessionJdbcStarter
+  - io.arconia.rewrite.spring.boot4.AddSessionJdbcStarterTest
+  - io.arconia.rewrite.spring.boot4.MigrateWebStarter
+  - io.arconia.rewrite.spring.boot4.AddWebMvcStarterTest
+  - io.arconia.rewrite.spring.boot4.AddWebFluxStarterTest
+  - io.arconia.rewrite.spring.boot4.MigrateWebServicesStarter
+  - io.arconia.rewrite.spring.boot4.AddWebServicesStarterTest
 
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: io.arconia.rewrite.spring.boot.MigrateGraphQlTest
+name: io.arconia.rewrite.spring.boot4.MigrateGraphQlTest
 displayName: Migrate GraphQL Test
 tags:
   - spring
@@ -36,7 +36,7 @@ recipeList:
       newArtifactId: spring-boot-starter-graphql-test
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: io.arconia.rewrite.spring.boot.AddGraphQlStarterTest
+name: io.arconia.rewrite.spring.boot4.AddGraphQlStarterTest
 displayName: Add GraphQL Starter Test
 tags:
   - spring
@@ -54,7 +54,7 @@ recipeList:
       scope: test
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: io.arconia.rewrite.spring.boot.AddHateoasStarterTest
+name: io.arconia.rewrite.spring.boot4.AddHateoasStarterTest
 displayName: Add HATEOAS Starter Test
 tags:
   - spring
@@ -72,7 +72,7 @@ recipeList:
       scope: test
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: io.arconia.rewrite.spring.boot.AddSessionDataRedisStarter
+name: io.arconia.rewrite.spring.boot4.AddSessionDataRedisStarter
 displayName: Add Session Data Redis Starter
 tags:
   - spring
@@ -85,7 +85,7 @@ recipeList:
       newArtifactId: spring-boot-starter-session-data-redis
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: io.arconia.rewrite.spring.boot.AddSessionDataRedisStarterTest
+name: io.arconia.rewrite.spring.boot4.AddSessionDataRedisStarterTest
 displayName: Add Session Data Redis Starter Test
 tags:
   - spring
@@ -103,7 +103,7 @@ recipeList:
       scope: test
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: io.arconia.rewrite.spring.boot.AddSessionJdbcStarter
+name: io.arconia.rewrite.spring.boot4.AddSessionJdbcStarter
 displayName: Add Session JDBC Starter
 tags:
   - spring
@@ -116,7 +116,7 @@ recipeList:
       newArtifactId: spring-boot-starter-session-jdbc
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: io.arconia.rewrite.spring.boot.AddSessionJdbcStarterTest
+name: io.arconia.rewrite.spring.boot4.AddSessionJdbcStarterTest
 displayName: Add Session JDBC Starter Test
 tags:
   - spring
@@ -134,7 +134,7 @@ recipeList:
       scope: test
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: io.arconia.rewrite.spring.boot.MigrateWebStarter
+name: io.arconia.rewrite.spring.boot4.MigrateWebStarter
 displayName: Migrate Web Starter
 tags:
   - spring
@@ -147,7 +147,7 @@ recipeList:
       newArtifactId: spring-boot-starter-webmvc
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: io.arconia.rewrite.spring.boot.AddWebMvcStarterTest
+name: io.arconia.rewrite.spring.boot4.AddWebMvcStarterTest
 displayName: Add Web MVC Starter Test
 tags:
   - spring
@@ -165,7 +165,7 @@ recipeList:
       scope: test
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: io.arconia.rewrite.spring.boot.AddWebFluxStarterTest
+name: io.arconia.rewrite.spring.boot4.AddWebFluxStarterTest
 displayName: Add Web Flux Starter Test
 tags:
   - spring
@@ -183,7 +183,7 @@ recipeList:
       scope: test
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: io.arconia.rewrite.spring.boot.MigrateWebServicesStarter
+name: io.arconia.rewrite.spring.boot4.MigrateWebServicesStarter
 displayName: Migrate Web Services Starter
 tags:
   - spring
@@ -196,7 +196,7 @@ recipeList:
       newArtifactId: spring-boot-starter-webservices
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: io.arconia.rewrite.spring.boot.AddWebServicesStarterTest
+name: io.arconia.rewrite.spring.boot4.AddWebServicesStarterTest
 displayName: Add Web Services Starter Test
 tags:
   - spring

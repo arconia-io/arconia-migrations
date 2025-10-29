@@ -1,4 +1,4 @@
-package io.arconia.rewrite.spring.framework;
+package io.arconia.rewrite.spring.framework.framework7;
 
 import org.junit.jupiter.api.Test;
 import org.openrewrite.InMemoryExecutionContext;
@@ -9,13 +9,13 @@ import org.openrewrite.test.RewriteTest;
 import static org.openrewrite.java.Assertions.java;
 
 /**
- * Unit tests for "io.arconia.rewrite.spring.framework.UpgradeSpringFramework_7_0".
+ * Unit tests for "io.arconia.rewrite.spring.framework7.UpgradeSpringFramework_7_0".
  */
 class UpgradeSpringFramework_7_0_Tests implements RewriteTest {
 
     @Override
     public void defaults(RecipeSpec spec) {
-        spec.recipeFromResources("io.arconia.rewrite.spring.framework.UpgradeSpringFramework_7_0")
+        spec.recipeFromResources("io.arconia.rewrite.spring.framework7.UpgradeSpringFramework_7_0")
                 .parser(JavaParser.fromJavaVersion().classpathFromResources(new InMemoryExecutionContext(),
                         "spring-core-6.2.*"));
     }

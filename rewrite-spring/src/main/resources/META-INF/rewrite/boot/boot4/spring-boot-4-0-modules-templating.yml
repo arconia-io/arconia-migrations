@@ -1,21 +1,21 @@
 # Based on https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-4.0-Migration-Guide
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: io.arconia.rewrite.spring.boot.UpgradeSpringBootModulesTemplating_4_0
+name: io.arconia.rewrite.spring.boot4.UpgradeSpringBootModulesTemplating_4_0
 displayName: Migrate to Spring Boot 4.0 Modules Templating
 description: Upgrade the templating Spring Boot dependencies based on the new modularization.
 tags:
   - spring
   - boot
 recipeList:
-  - io.arconia.rewrite.spring.boot.AddFreemarkerStarterTest
-  - io.arconia.rewrite.spring.boot.AddGroovyTemplatesStarterTest
-  - io.arconia.rewrite.spring.boot.AddMustacheStarterTest
-  - io.arconia.rewrite.spring.boot.AddThymeleafStarterTest
+  - io.arconia.rewrite.spring.boot4.AddFreemarkerStarterTest
+  - io.arconia.rewrite.spring.boot4.AddGroovyTemplatesStarterTest
+  - io.arconia.rewrite.spring.boot4.AddMustacheStarterTest
+  - io.arconia.rewrite.spring.boot4.AddThymeleafStarterTest
 
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: io.arconia.rewrite.spring.boot.AddFreemarkerStarterTest
+name: io.arconia.rewrite.spring.boot4.AddFreemarkerStarterTest
 displayName: Add Freemarker Test
 tags:
   - spring
@@ -33,7 +33,7 @@ recipeList:
       scope: test
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: io.arconia.rewrite.spring.boot.AddGroovyTemplatesStarterTest
+name: io.arconia.rewrite.spring.boot4.AddGroovyTemplatesStarterTest
 displayName: Add Groovy Templates Test
 tags:
   - spring
@@ -51,7 +51,7 @@ recipeList:
       scope: test
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: io.arconia.rewrite.spring.boot.AddMustacheStarterTest
+name: io.arconia.rewrite.spring.boot4.AddMustacheStarterTest
 displayName: Add Mustache Test
 tags:
   - spring
@@ -69,7 +69,7 @@ recipeList:
       scope: test
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: io.arconia.rewrite.spring.boot.AddThymeleafStarterTest
+name: io.arconia.rewrite.spring.boot4.AddThymeleafStarterTest
 displayName: Add Thymeleaf Test
 tags:
   - spring

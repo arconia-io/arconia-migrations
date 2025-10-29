@@ -1,22 +1,22 @@
 # Based on https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-4.0-Migration-Guide
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: io.arconia.rewrite.spring.boot.UpgradeSpringBootModules_4_0
+name: io.arconia.rewrite.spring.boot4.UpgradeSpringBootModules_4_0
 displayName: Migrate to Spring Boot 4.0 Modules
 description: Upgrade Spring Boot dependencies based on the new modularization.
 tags:
   - spring
   - boot
 recipeList:
-  - io.arconia.rewrite.spring.boot.UpgradeSpringBootModulesCore_4_0
-  - io.arconia.rewrite.spring.boot.UpgradeSpringBootModulesData_4_0
-  - io.arconia.rewrite.spring.boot.UpgradeSpringBootModulesDatabase_4_0
-  - io.arconia.rewrite.spring.boot.UpgradeSpringBootModulesIo_4_0
-  - io.arconia.rewrite.spring.boot.UpgradeSpringBootModulesJson_4_0
-  - io.arconia.rewrite.spring.boot.UpgradeSpringBootModulesMessaging_4_0
-  - io.arconia.rewrite.spring.boot.UpgradeSpringBootModulesProduction_4_0
-  - io.arconia.rewrite.spring.boot.UpgradeSpringBootModulesSecurity_4_0
-  - io.arconia.rewrite.spring.boot.UpgradeSpringBootModulesTemplating_4_0
-  - io.arconia.rewrite.spring.boot.UpgradeSpringBootModulesTesting_4_0
-  - io.arconia.rewrite.spring.boot.UpgradeSpringBootModulesWeb_4_0
-  - io.arconia.rewrite.spring.boot.UpgradeSpringBootModulesWebClient_4_0
+  - io.arconia.rewrite.spring.boot4.UpgradeSpringBootModulesCore_4_0
+  - io.arconia.rewrite.spring.boot4.UpgradeSpringBootModulesData_4_0
+  - io.arconia.rewrite.spring.boot4.UpgradeSpringBootModulesDatabase_4_0
+  - io.arconia.rewrite.spring.boot4.UpgradeSpringBootModulesIo_4_0
+  - io.arconia.rewrite.spring.boot4.UpgradeSpringBootModulesJson_4_0
+  - io.arconia.rewrite.spring.boot4.UpgradeSpringBootModulesMessaging_4_0
+  - io.arconia.rewrite.spring.boot4.UpgradeSpringBootModulesProduction_4_0
+  - io.arconia.rewrite.spring.boot4.UpgradeSpringBootModulesSecurity_4_0
+  - io.arconia.rewrite.spring.boot4.UpgradeSpringBootModulesTemplating_4_0
+  - io.arconia.rewrite.spring.boot4.UpgradeSpringBootModulesTesting_4_0
+  - io.arconia.rewrite.spring.boot4.UpgradeSpringBootModulesWeb_4_0
+  - io.arconia.rewrite.spring.boot4.UpgradeSpringBootModulesWebClient_4_0

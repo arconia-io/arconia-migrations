@@ -4,13 +4,13 @@ import org.junit.jupiter.api.Test;
 import org.openrewrite.test.RewriteTest;
 
 /**
- * Unit tests for "io.arconia.rewrite.spring.boot.UpgradeSpringBootModulesWeb_4_0".
+ * Unit tests for "io.arconia.rewrite.spring.boot4.UpgradeSpringBootModulesWeb_4_0".
  */
 class UpgradeSpringBootModulesWeb_4_0_Tests implements RewriteTest {
 
     @Test
     void recipeConfigured() {
-        assertRecipesConfigure("io.arconia.rewrite.spring.boot.UpgradeSpringBootModulesWeb_4_0");
+        assertRecipesConfigure("io.arconia.rewrite.spring.boot4.UpgradeSpringBootModulesWeb_4_0");
     }
 
 }

@@ -1,21 +1,21 @@
 # Based on https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-4.0-Migration-Guide
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: io.arconia.rewrite.spring.boot.UpgradeSpringBootModulesProduction_4_0
+name: io.arconia.rewrite.spring.boot4.UpgradeSpringBootModulesProduction_4_0
 displayName: Migrate to Spring Boot 4.0 Modules Production
 description: Upgrade the production-ready Spring Boot dependencies based on the new modularization.
 tags:
   - spring
   - boot
 recipeList:
-  - io.arconia.rewrite.spring.boot.AddActuatorStarterTest
-  - io.arconia.rewrite.spring.boot.AddOpenTelemetryStarterTest
-  - io.arconia.rewrite.spring.boot.AddZipkinStarter
-  - io.arconia.rewrite.spring.boot.AddZipkinStarterTest
+  - io.arconia.rewrite.spring.boot4.AddActuatorStarterTest
+  - io.arconia.rewrite.spring.boot4.AddOpenTelemetryStarterTest
+  - io.arconia.rewrite.spring.boot4.AddZipkinStarter
+  - io.arconia.rewrite.spring.boot4.AddZipkinStarterTest
 
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: io.arconia.rewrite.spring.boot.AddActuatorStarterTest
+name: io.arconia.rewrite.spring.boot4.AddActuatorStarterTest
 displayName: Add Actuator Test
 tags:
   - spring
@@ -33,7 +33,7 @@ recipeList:
       scope: test
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: io.arconia.rewrite.spring.boot.AddOpenTelemetryStarterTest
+name: io.arconia.rewrite.spring.boot4.AddOpenTelemetryStarterTest
 displayName: Add OpenTelemetry Test
 tags:
   - spring
@@ -51,7 +51,7 @@ recipeList:
       scope: test
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: io.arconia.rewrite.spring.boot.AddZipkinStarter
+name: io.arconia.rewrite.spring.boot4.AddZipkinStarter
 displayName: Add Zipkin Starter
 tags:
   - spring
@@ -64,7 +64,7 @@ recipeList:
       artifactId: spring-boot-starter-zipkin
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: io.arconia.rewrite.spring.boot.AddZipkinStarterTest
+name: io.arconia.rewrite.spring.boot4.AddZipkinStarterTest
 displayName: Add Zipkin Test
 tags:
   - spring

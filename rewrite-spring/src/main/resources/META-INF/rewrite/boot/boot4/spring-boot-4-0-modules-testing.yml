@@ -1,19 +1,19 @@
 # Based on https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-4.0-Migration-Guide
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: io.arconia.rewrite.spring.boot.UpgradeSpringBootModulesTesting_4_0
+name: io.arconia.rewrite.spring.boot4.UpgradeSpringBootModulesTesting_4_0
 displayName: Migrate to Spring Boot 4.0 Modules Testing
 description: Upgrade the testing Spring Boot dependencies based on the new modularization.
 tags:
   - spring
   - boot
 recipeList:
-  - io.arconia.rewrite.spring.boot.RemoveReactorTest
-  - io.arconia.rewrite.spring.boot.RemoveSpringBootTest
+  - io.arconia.rewrite.spring.boot4.RemoveReactorTest
+  - io.arconia.rewrite.spring.boot4.RemoveSpringBootTest
 
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: io.arconia.rewrite.spring.boot.RemoveReactorTest
+name: io.arconia.rewrite.spring.boot4.RemoveReactorTest
 displayName: Remove Reactor Test
 tags:
   - spring
@@ -24,7 +24,7 @@ recipeList:
       artifactId: reactor-test
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: io.arconia.rewrite.spring.boot.RemoveSpringBootTest
+name: io.arconia.rewrite.spring.boot4.RemoveSpringBootTest
 displayName: Remove Spring Boot Test
 tags:
   - spring

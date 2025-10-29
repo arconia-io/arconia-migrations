@@ -1,32 +1,32 @@
 # Based on https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-4.0-Migration-Guide
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: io.arconia.rewrite.spring.boot.UpgradeSpringBootModulesData_4_0
+name: io.arconia.rewrite.spring.boot4.UpgradeSpringBootModulesData_4_0
 displayName: Migrate to Spring Boot 4.0 Modules Data
 description: Upgrade the data Spring Boot dependencies based on the new modularization.
 tags:
   - spring
   - boot
 recipeList:
-  - io.arconia.rewrite.spring.boot.AddDataCassandraStarterTest
-  - io.arconia.rewrite.spring.boot.AddDataCassandraReactiveStarterTest
-  - io.arconia.rewrite.spring.boot.AddDataCouchbaseStarterTest
-  - io.arconia.rewrite.spring.boot.AddDataCouchbaseReactiveStarterTest
-  - io.arconia.rewrite.spring.boot.AddDataElasticsearchStarterTest
-  - io.arconia.rewrite.spring.boot.AddDataJdbcStarterTest
-  - io.arconia.rewrite.spring.boot.AddDataJpaStarterTest
-  - io.arconia.rewrite.spring.boot.AddDataLdapStarterTest
-  - io.arconia.rewrite.spring.boot.AddDataMongoDbStarterTest
-  - io.arconia.rewrite.spring.boot.AddDataMongoDbReactiveStarterTest
-  - io.arconia.rewrite.spring.boot.AddDataNeo4jStarterTest
-  - io.arconia.rewrite.spring.boot.AddDataR2dbcStarterTest
-  - io.arconia.rewrite.spring.boot.AddDataRedisStarterTest
-  - io.arconia.rewrite.spring.boot.AddDataRedisReactiveStarterTest
-  - io.arconia.rewrite.spring.boot.AddDataRestStarterTest
+  - io.arconia.rewrite.spring.boot4.AddDataCassandraStarterTest
+  - io.arconia.rewrite.spring.boot4.AddDataCassandraReactiveStarterTest
+  - io.arconia.rewrite.spring.boot4.AddDataCouchbaseStarterTest
+  - io.arconia.rewrite.spring.boot4.AddDataCouchbaseReactiveStarterTest
+  - io.arconia.rewrite.spring.boot4.AddDataElasticsearchStarterTest
+  - io.arconia.rewrite.spring.boot4.AddDataJdbcStarterTest
+  - io.arconia.rewrite.spring.boot4.AddDataJpaStarterTest
+  - io.arconia.rewrite.spring.boot4.AddDataLdapStarterTest
+  - io.arconia.rewrite.spring.boot4.AddDataMongoDbStarterTest
+  - io.arconia.rewrite.spring.boot4.AddDataMongoDbReactiveStarterTest
+  - io.arconia.rewrite.spring.boot4.AddDataNeo4jStarterTest
+  - io.arconia.rewrite.spring.boot4.AddDataR2dbcStarterTest
+  - io.arconia.rewrite.spring.boot4.AddDataRedisStarterTest
+  - io.arconia.rewrite.spring.boot4.AddDataRedisReactiveStarterTest
+  - io.arconia.rewrite.spring.boot4.AddDataRestStarterTest
 
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: io.arconia.rewrite.spring.boot.AddDataCassandraStarterTest
+name: io.arconia.rewrite.spring.boot4.AddDataCassandraStarterTest
 displayName: Add Data Cassandra Starter Test
 tags:
   - spring
@@ -44,7 +44,7 @@ recipeList:
       scope: test
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: io.arconia.rewrite.spring.boot.AddDataCassandraReactiveStarterTest
+name: io.arconia.rewrite.spring.boot4.AddDataCassandraReactiveStarterTest
 displayName: Add Data Cassandra Reactive Starter Test
 tags:
   - spring
@@ -62,7 +62,7 @@ recipeList:
       scope: test
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: io.arconia.rewrite.spring.boot.AddDataCouchbaseStarterTest
+name: io.arconia.rewrite.spring.boot4.AddDataCouchbaseStarterTest
 displayName: Add Data Couchbase Starter Test
 tags:
   - spring
@@ -80,7 +80,7 @@ recipeList:
       scope: test
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: io.arconia.rewrite.spring.boot.AddDataCouchbaseReactiveStarterTest
+name: io.arconia.rewrite.spring.boot4.AddDataCouchbaseReactiveStarterTest
 displayName: Add Data Couchbase Reactive Starter Test
 tags:
   - spring
@@ -98,7 +98,7 @@ recipeList:
       scope: test
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: io.arconia.rewrite.spring.boot.AddDataElasticsearchStarterTest
+name: io.arconia.rewrite.spring.boot4.AddDataElasticsearchStarterTest
 displayName: Add Data Elasticsearch Starter Test
 tags:
   - spring
@@ -116,7 +116,7 @@ recipeList:
       scope: test
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: io.arconia.rewrite.spring.boot.AddDataJdbcStarterTest
+name: io.arconia.rewrite.spring.boot4.AddDataJdbcStarterTest
 displayName: Add Data JDBC Starter Test
 tags:
   - spring
@@ -134,7 +134,7 @@ recipeList:
       scope: test
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: io.arconia.rewrite.spring.boot.AddDataJpaStarterTest
+name: io.arconia.rewrite.spring.boot4.AddDataJpaStarterTest
 displayName: Add Data JPA Starter Test
 tags:
   - spring
@@ -152,7 +152,7 @@ recipeList:
       scope: test
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: io.arconia.rewrite.spring.boot.AddDataLdapStarterTest
+name: io.arconia.rewrite.spring.boot4.AddDataLdapStarterTest
 displayName: Add Data LDAP Starter Test
 tags:
   - spring
@@ -170,7 +170,7 @@ recipeList:
       scope: test
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: io.arconia.rewrite.spring.boot.AddDataMongoDbStarterTest
+name: io.arconia.rewrite.spring.boot4.AddDataMongoDbStarterTest
 displayName: Add Data MongoDB Starter Test
 tags:
   - spring
@@ -188,7 +188,7 @@ recipeList:
       scope: test
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: io.arconia.rewrite.spring.boot.AddDataMongoDbReactiveStarterTest
+name: io.arconia.rewrite.spring.boot4.AddDataMongoDbReactiveStarterTest
 displayName: Add Data MongoDB Reactive Starter Test
 tags:
   - spring
@@ -206,7 +206,7 @@ recipeList:
       scope: test
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: io.arconia.rewrite.spring.boot.AddDataNeo4jStarterTest
+name: io.arconia.rewrite.spring.boot4.AddDataNeo4jStarterTest
 displayName: Add Data Neo4J Starter Test
 tags:
   - spring
@@ -224,7 +224,7 @@ recipeList:
       scope: test
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: io.arconia.rewrite.spring.boot.AddDataR2dbcStarterTest
+name: io.arconia.rewrite.spring.boot4.AddDataR2dbcStarterTest
 displayName: Add Data R2DBC Starter Test
 tags:
   - spring
@@ -242,7 +242,7 @@ recipeList:
       scope: test
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: io.arconia.rewrite.spring.boot.AddDataRedisStarterTest
+name: io.arconia.rewrite.spring.boot4.AddDataRedisStarterTest
 displayName: Add Data Redis Starter Test
 tags:
   - spring
@@ -260,7 +260,7 @@ recipeList:
       scope: test
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: io.arconia.rewrite.spring.boot.AddDataRedisReactiveStarterTest
+name: io.arconia.rewrite.spring.boot4.AddDataRedisReactiveStarterTest
 displayName: Add Data Redis Reactive Starter Test
 tags:
   - spring
@@ -278,7 +278,7 @@ recipeList:
       scope: test
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: io.arconia.rewrite.spring.boot.AddDataRestStarterTest
+name: io.arconia.rewrite.spring.boot4.AddDataRestStarterTest
 displayName: Add Data REST Starter Test
 tags:
   - spring

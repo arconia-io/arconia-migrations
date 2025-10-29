@@ -1,7 +1,7 @@
 # Based on https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-4.0-Configuration-Changelog
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: io.arconia.rewrite.spring.boot.UpgradeSpringBootProperties_4_0
+name: io.arconia.rewrite.spring.boot4.UpgradeSpringBootProperties_4_0
 displayName: Migrate Spring Boot properties to 4.0
 description: Migrate Spring Boot properties found in configuration data files (YAML and Properties).
 tags:

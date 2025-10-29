@@ -1,30 +1,30 @@
 # Based on https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-4.0-Migration-Guide
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: io.arconia.rewrite.spring.boot.UpgradeSpringBootModulesMessaging_4_0
+name: io.arconia.rewrite.spring.boot4.UpgradeSpringBootModulesMessaging_4_0
 displayName: Migrate to Spring Boot 4.0 Modules Messaging
 description: Upgrade the messaging Spring Boot dependencies based on the new modularization.
 tags:
   - spring
   - boot
 recipeList:
-  - io.arconia.rewrite.spring.boot.AddActiveMqStarterTest
-  - io.arconia.rewrite.spring.boot.AddArtemisStarterTest
-  - io.arconia.rewrite.spring.boot.AddJmsStarter
-  - io.arconia.rewrite.spring.boot.AddJmsStarterTest
-  - io.arconia.rewrite.spring.boot.AddRsocketStarterTest
-  - io.arconia.rewrite.spring.boot.MigrateAmqpTest
-  - io.arconia.rewrite.spring.boot.AddAmqpStarterTest
-  - io.arconia.rewrite.spring.boot.AddIntegrationStarterTest
-  - io.arconia.rewrite.spring.boot.AddKafkaStarter
-  - io.arconia.rewrite.spring.boot.MigrateKafkaTest
-  - io.arconia.rewrite.spring.boot.AddKafkaStarterTest
-  - io.arconia.rewrite.spring.boot.AddPulsarStarterTest
-  - io.arconia.rewrite.spring.boot.AddWebSocketStarterTest
+  - io.arconia.rewrite.spring.boot4.AddActiveMqStarterTest
+  - io.arconia.rewrite.spring.boot4.AddArtemisStarterTest
+  - io.arconia.rewrite.spring.boot4.AddJmsStarter
+  - io.arconia.rewrite.spring.boot4.AddJmsStarterTest
+  - io.arconia.rewrite.spring.boot4.AddRsocketStarterTest
+  - io.arconia.rewrite.spring.boot4.MigrateAmqpTest
+  - io.arconia.rewrite.spring.boot4.AddAmqpStarterTest
+  - io.arconia.rewrite.spring.boot4.AddIntegrationStarterTest
+  - io.arconia.rewrite.spring.boot4.AddKafkaStarter
+  - io.arconia.rewrite.spring.boot4.MigrateKafkaTest
+  - io.arconia.rewrite.spring.boot4.AddKafkaStarterTest
+  - io.arconia.rewrite.spring.boot4.AddPulsarStarterTest
+  - io.arconia.rewrite.spring.boot4.AddWebSocketStarterTest
 
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: io.arconia.rewrite.spring.boot.AddActiveMqStarterTest
+name: io.arconia.rewrite.spring.boot4.AddActiveMqStarterTest
 displayName: Add ActiveMQ Starter Test
 tags:
   - spring
@@ -42,7 +42,7 @@ recipeList:
       scope: test
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: io.arconia.rewrite.spring.boot.AddArtemisStarterTest
+name: io.arconia.rewrite.spring.boot4.AddArtemisStarterTest
 displayName: Add Artemis Starter Test
 tags:
   - spring
@@ -60,7 +60,7 @@ recipeList:
       scope: test
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: io.arconia.rewrite.spring.boot.AddJmsStarter
+name: io.arconia.rewrite.spring.boot4.AddJmsStarter
 displayName: Add JMS Starter
 tags:
   - spring
@@ -73,7 +73,7 @@ recipeList:
       newArtifactId: spring-boot-starter-jms
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: io.arconia.rewrite.spring.boot.AddJmsStarterTest
+name: io.arconia.rewrite.spring.boot4.AddJmsStarterTest
 displayName: Add JMS Starter Test
 tags:
   - spring
@@ -91,7 +91,7 @@ recipeList:
       scope: test
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: io.arconia.rewrite.spring.boot.AddRsocketStarterTest
+name: io.arconia.rewrite.spring.boot4.AddRsocketStarterTest
 displayName: Add RSocket Starter Test
 tags:
   - spring
@@ -109,7 +109,7 @@ recipeList:
       scope: test
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: io.arconia.rewrite.spring.boot.MigrateAmqpTest
+name: io.arconia.rewrite.spring.boot4.MigrateAmqpTest
 displayName: Migrate AMQP Test
 tags:
   - spring
@@ -122,7 +122,7 @@ recipeList:
       newArtifactId: spring-boot-starter-amqp-test
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: io.arconia.rewrite.spring.boot.AddAmqpStarterTest
+name: io.arconia.rewrite.spring.boot4.AddAmqpStarterTest
 displayName: Add AMQP Starter Test
 tags:
   - spring
@@ -140,7 +140,7 @@ recipeList:
       scope: test
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: io.arconia.rewrite.spring.boot.AddIntegrationStarterTest
+name: io.arconia.rewrite.spring.boot4.AddIntegrationStarterTest
 displayName: Add Integration Starter Test
 tags:
   - spring
@@ -158,7 +158,7 @@ recipeList:
       scope: test
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: io.arconia.rewrite.spring.boot.AddKafkaStarter
+name: io.arconia.rewrite.spring.boot4.AddKafkaStarter
 displayName: Add Kafka Starter
 tags:
   - spring
@@ -171,7 +171,7 @@ recipeList:
       newArtifactId: spring-boot-starter-kafka
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: io.arconia.rewrite.spring.boot.MigrateKafkaTest
+name: io.arconia.rewrite.spring.boot4.MigrateKafkaTest
 displayName: Migrate Kafka Test
 tags:
   - spring
@@ -184,7 +184,7 @@ recipeList:
       newArtifactId: spring-boot-starter-kafka-test
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: io.arconia.rewrite.spring.boot.AddKafkaStarterTest
+name: io.arconia.rewrite.spring.boot4.AddKafkaStarterTest
 displayName: Add Kafka Starter Test
 tags:
   - spring
@@ -202,7 +202,7 @@ recipeList:
       scope: test
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: io.arconia.rewrite.spring.boot.AddPulsarStarterTest
+name: io.arconia.rewrite.spring.boot4.AddPulsarStarterTest
 displayName: Add Pulsar Starter Test
 tags:
   - spring
@@ -220,7 +220,7 @@ recipeList:
       scope: test
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: io.arconia.rewrite.spring.boot.AddWebSocketStarterTest
+name: io.arconia.rewrite.spring.boot4.AddWebSocketStarterTest
 displayName: Add WebSocket Starter Test
 tags:
   - spring

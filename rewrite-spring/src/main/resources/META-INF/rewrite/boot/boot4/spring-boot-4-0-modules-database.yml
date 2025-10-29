@@ -1,30 +1,30 @@
 # Based on https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-4.0-Migration-Guide
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: io.arconia.rewrite.spring.boot.UpgradeSpringBootModulesDatabase_4_0
+name: io.arconia.rewrite.spring.boot4.UpgradeSpringBootModulesDatabase_4_0
 displayName: Migrate to Spring Boot 4.0 Modules Database
 description: Upgrade the database Spring Boot dependencies based on the new modularization.
 tags:
   - spring
   - boot
 recipeList:
-  - io.arconia.rewrite.spring.boot.AddCassandraStarterTest
-  - io.arconia.rewrite.spring.boot.AddCouchbaseStarterTest
-  - io.arconia.rewrite.spring.boot.AddElasticsearchStarterTest
-  - io.arconia.rewrite.spring.boot.AddFlywayStarter
-  - io.arconia.rewrite.spring.boot.AddFlywayStarterTest
-  - io.arconia.rewrite.spring.boot.AddJdbcStarterTest
-  - io.arconia.rewrite.spring.boot.AddJooqStarterTest
-  - io.arconia.rewrite.spring.boot.AddLiquibaseStarter
-  - io.arconia.rewrite.spring.boot.AddLiquibaseStarterTest
-  - io.arconia.rewrite.spring.boot.AddLdapStarterTest
-  - io.arconia.rewrite.spring.boot.AddMongoDbStarterTest
-  - io.arconia.rewrite.spring.boot.AddNeo4jStarterTest
-  - io.arconia.rewrite.spring.boot.AddR2dbcStarterTest
+  - io.arconia.rewrite.spring.boot4.AddCassandraStarterTest
+  - io.arconia.rewrite.spring.boot4.AddCouchbaseStarterTest
+  - io.arconia.rewrite.spring.boot4.AddElasticsearchStarterTest
+  - io.arconia.rewrite.spring.boot4.AddFlywayStarter
+  - io.arconia.rewrite.spring.boot4.AddFlywayStarterTest
+  - io.arconia.rewrite.spring.boot4.AddJdbcStarterTest
+  - io.arconia.rewrite.spring.boot4.AddJooqStarterTest
+  - io.arconia.rewrite.spring.boot4.AddLiquibaseStarter
+  - io.arconia.rewrite.spring.boot4.AddLiquibaseStarterTest
+  - io.arconia.rewrite.spring.boot4.AddLdapStarterTest
+  - io.arconia.rewrite.spring.boot4.AddMongoDbStarterTest
+  - io.arconia.rewrite.spring.boot4.AddNeo4jStarterTest
+  - io.arconia.rewrite.spring.boot4.AddR2dbcStarterTest
 
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: io.arconia.rewrite.spring.boot.AddCassandraStarterTest
+name: io.arconia.rewrite.spring.boot4.AddCassandraStarterTest
 displayName: Add Cassandra Starter Test
 tags:
   - spring
@@ -43,7 +43,7 @@ recipeList:
 
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: io.arconia.rewrite.spring.boot.AddCouchbaseStarterTest
+name: io.arconia.rewrite.spring.boot4.AddCouchbaseStarterTest
 displayName: Add Couchbase Starter Test
 tags:
   - spring
@@ -61,7 +61,7 @@ recipeList:
       scope: test
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: io.arconia.rewrite.spring.boot.AddElasticsearchStarterTest
+name: io.arconia.rewrite.spring.boot4.AddElasticsearchStarterTest
 displayName: Add Elasticsearch Starter Test
 tags:
   - spring
@@ -79,7 +79,7 @@ recipeList:
       scope: test
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: io.arconia.rewrite.spring.boot.AddFlywayStarter
+name: io.arconia.rewrite.spring.boot4.AddFlywayStarter
 displayName: Add Flyway Starter
 tags:
   - spring
@@ -92,7 +92,7 @@ recipeList:
       artifactId: spring-boot-starter-flyway
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: io.arconia.rewrite.spring.boot.AddFlywayStarterTest
+name: io.arconia.rewrite.spring.boot4.AddFlywayStarterTest
 displayName: Add Flyway Starter Test
 tags:
   - spring
@@ -110,7 +110,7 @@ recipeList:
       scope: test
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: io.arconia.rewrite.spring.boot.AddJdbcStarterTest
+name: io.arconia.rewrite.spring.boot4.AddJdbcStarterTest
 displayName: Add Jdbc Starter Test
 tags:
   - spring
@@ -128,7 +128,7 @@ recipeList:
       scope: test
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: io.arconia.rewrite.spring.boot.AddJooqStarterTest
+name: io.arconia.rewrite.spring.boot4.AddJooqStarterTest
 displayName: Add jOOQ Starter Test
 tags:
   - spring
@@ -146,7 +146,7 @@ recipeList:
       scope: test
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: io.arconia.rewrite.spring.boot.AddLiquibaseStarter
+name: io.arconia.rewrite.spring.boot4.AddLiquibaseStarter
 displayName: Add Liquibase Starter
 tags:
   - spring
@@ -159,7 +159,7 @@ recipeList:
       artifactId: spring-boot-starter-liquibase
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: io.arconia.rewrite.spring.boot.AddLiquibaseStarterTest
+name: io.arconia.rewrite.spring.boot4.AddLiquibaseStarterTest
 displayName: Add Liquibase Starter Test
 tags:
   - spring
@@ -177,7 +177,7 @@ recipeList:
       scope: test
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: io.arconia.rewrite.spring.boot.AddLdapStarterTest
+name: io.arconia.rewrite.spring.boot4.AddLdapStarterTest
 displayName: Add LDAP Starter Test
 tags:
   - spring
@@ -195,7 +195,7 @@ recipeList:
       scope: test
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: io.arconia.rewrite.spring.boot.AddMongoDbStarterTest
+name: io.arconia.rewrite.spring.boot4.AddMongoDbStarterTest
 displayName: Add MongoDB Starter Test
 tags:
   - spring
@@ -213,7 +213,7 @@ recipeList:
       scope: test
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: io.arconia.rewrite.spring.boot.AddNeo4jStarterTest
+name: io.arconia.rewrite.spring.boot4.AddNeo4jStarterTest
 displayName: Add Neo4J Starter Test
 tags:
   - spring
@@ -231,7 +231,7 @@ recipeList:
       scope: test
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: io.arconia.rewrite.spring.boot.AddR2dbcStarterTest
+name: io.arconia.rewrite.spring.boot4.AddR2dbcStarterTest
 displayName: Add R2DBC Starter Test
 tags:
   - spring

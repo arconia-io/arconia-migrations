@@ -1,7 +1,7 @@
 # Based on https://github.com/spring-projects/spring-framework/wiki/Spring-Framework-7.0-Release-Notes
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: io.arconia.rewrite.spring.framework.UpgradeSpringFramework_7_0
+name: io.arconia.rewrite.spring.framework7.UpgradeSpringFramework_7_0
 displayName: Migrate to Spring Framework 7.0
 description: Migrate a Spring application to the latest Spring Framework 7.0.x release.
 tags:

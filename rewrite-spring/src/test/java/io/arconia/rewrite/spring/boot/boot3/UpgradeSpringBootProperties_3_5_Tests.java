@@ -8,13 +8,13 @@ import static org.openrewrite.properties.Assertions.properties;
 import static org.openrewrite.yaml.Assertions.yaml;
 
 /**
- * Tests for "io.arconia.rewrite.spring.boot.UpgradeSpringBootProperties_3_5".
+ * Tests for "io.arconia.rewrite.spring.boot3.UpgradeSpringBootProperties_3_5".
  */
 class UpgradeSpringBootProperties_3_5_Tests implements RewriteTest {
 
     @Override
     public void defaults(RecipeSpec spec) {
-        spec.recipeFromResources("io.arconia.rewrite.spring.boot.UpgradeSpringBootProperties_3_5");
+        spec.recipeFromResources("io.arconia.rewrite.spring.boot3.UpgradeSpringBootProperties_3_5");
     }
 
     @Test

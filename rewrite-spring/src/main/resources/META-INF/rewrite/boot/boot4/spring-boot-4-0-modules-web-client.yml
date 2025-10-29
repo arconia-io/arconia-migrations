@@ -1,21 +1,21 @@
 # Based on https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-4.0-Migration-Guide
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: io.arconia.rewrite.spring.boot.UpgradeSpringBootModulesWebClient_4_0
+name: io.arconia.rewrite.spring.boot4.UpgradeSpringBootModulesWebClient_4_0
 displayName: Migrate to Spring Boot 4.0 Modules Web Client
 description: Upgrade the web client Spring Boot dependencies based on the new modularization.
 tags:
   - spring
   - boot
 recipeList:
-  - io.arconia.rewrite.spring.boot.AddRestClientStarter
-  - io.arconia.rewrite.spring.boot.AddRestClientStarterTest
-  - io.arconia.rewrite.spring.boot.AddWebClientStarter
-  - io.arconia.rewrite.spring.boot.AddWebClientStarterTest
+  - io.arconia.rewrite.spring.boot4.AddRestClientStarter
+  - io.arconia.rewrite.spring.boot4.AddRestClientStarterTest
+  - io.arconia.rewrite.spring.boot4.AddWebClientStarter
+  - io.arconia.rewrite.spring.boot4.AddWebClientStarterTest
 
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: io.arconia.rewrite.spring.boot.AddRestClientStarter
+name: io.arconia.rewrite.spring.boot4.AddRestClientStarter
 displayName: Add Rest Client Starter
 tags:
   - spring
@@ -28,7 +28,7 @@ recipeList:
       acceptTransitive: true
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: io.arconia.rewrite.spring.boot.AddRestClientStarterTest
+name: io.arconia.rewrite.spring.boot4.AddRestClientStarterTest
 displayName: Add Rest Client Starter Test
 tags:
   - spring
@@ -46,7 +46,7 @@ recipeList:
       scope: test
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: io.arconia.rewrite.spring.boot.AddWebClientStarter
+name: io.arconia.rewrite.spring.boot4.AddWebClientStarter
 displayName: Add Web Client Starter
 tags:
   - spring
@@ -59,7 +59,7 @@ recipeList:
       acceptTransitive: true
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: io.arconia.rewrite.spring.boot.AddWebClientStarterTest
+name: io.arconia.rewrite.spring.boot4.AddWebClientStarterTest
 displayName: Add WebClient Starter Test
 tags:
   - spring
@@ -77,7 +77,7 @@ recipeList:
       scope: test
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: io.arconia.rewrite.spring.boot.AddWebClientStarterTest
+name: io.arconia.rewrite.spring.boot4.AddWebClientStarterTest
 displayName: Add WebClient Starter Test
 tags:
   - spring

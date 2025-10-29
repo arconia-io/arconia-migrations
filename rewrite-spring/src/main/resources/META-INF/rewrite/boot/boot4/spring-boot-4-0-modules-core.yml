@@ -1,23 +1,23 @@
 # Based on https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-4.0-Migration-Guide
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: io.arconia.rewrite.spring.boot.UpgradeSpringBootModulesCore_4_0
+name: io.arconia.rewrite.spring.boot4.UpgradeSpringBootModulesCore_4_0
 displayName: Migrate to Spring Boot 4.0 Modules Core
 description: Upgrade the core Spring Boot dependencies based on the new modularization.
 tags:
   - spring
   - boot
 recipeList:
-  - io.arconia.rewrite.spring.boot.MigrateAspectjStarter
-  - io.arconia.rewrite.spring.boot.AddAspectjStarterTest
-  - io.arconia.rewrite.spring.boot.AddCloudFoundryStarterTest
-  - io.arconia.rewrite.spring.boot.AddJakartaValidationStarterTest
-  - io.arconia.rewrite.spring.boot.AddKotlinSerializationStarterTest
-  - io.arconia.rewrite.spring.boot.AddReactorStarterTest
+  - io.arconia.rewrite.spring.boot4.MigrateAspectjStarter
+  - io.arconia.rewrite.spring.boot4.AddAspectjStarterTest
+  - io.arconia.rewrite.spring.boot4.AddCloudFoundryStarterTest
+  - io.arconia.rewrite.spring.boot4.AddJakartaValidationStarterTest
+  - io.arconia.rewrite.spring.boot4.AddKotlinSerializationStarterTest
+  - io.arconia.rewrite.spring.boot4.AddReactorStarterTest
 
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: io.arconia.rewrite.spring.boot.MigrateAspectjStarter
+name: io.arconia.rewrite.spring.boot4.MigrateAspectjStarter
 displayName: Migrate Aspectj Starter
 tags:
   - spring
@@ -30,7 +30,7 @@ recipeList:
       newArtifactId: spring-boot-starter-aspectj
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: io.arconia.rewrite.spring.boot.AddAspectjStarterTest
+name: io.arconia.rewrite.spring.boot4.AddAspectjStarterTest
 displayName: Add Aspectj Starter Test
 tags:
   - spring
@@ -48,7 +48,7 @@ recipeList:
       scope: test
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: io.arconia.rewrite.spring.boot.AddCloudFoundryStarterTest
+name: io.arconia.rewrite.spring.boot4.AddCloudFoundryStarterTest
 displayName: Add CloudFoundry Starter Test
 tags:
   - spring
@@ -66,7 +66,7 @@ recipeList:
       scope: test
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: io.arconia.rewrite.spring.boot.AddJakartaValidationStarterTest
+name: io.arconia.rewrite.spring.boot4.AddJakartaValidationStarterTest
 displayName: Add Jakarta Validation Starter Test
 tags:
   - spring
@@ -84,7 +84,7 @@ recipeList:
       scope: test
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: io.arconia.rewrite.spring.boot.AddKotlinSerializationStarterTest
+name: io.arconia.rewrite.spring.boot4.AddKotlinSerializationStarterTest
 displayName: Add Kotlin Serialization Starter Test
 tags:
   - spring
@@ -102,7 +102,7 @@ recipeList:
       scope: test
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: io.arconia.rewrite.spring.boot.AddReactorStarterTest
+name: io.arconia.rewrite.spring.boot4.AddReactorStarterTest
 displayName: Add Reactor Starter Test
 tags:
   - spring

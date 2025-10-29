@@ -1,7 +1,7 @@
 # Based on https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-4.0-Migration-Guide
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: io.arconia.rewrite.spring.boot.UpgradeSpringBoot_4_0
+name: io.arconia.rewrite.spring.boot4.UpgradeSpringBoot_4_0
 displayName: Migrate to Spring Boot 4.0
 description: Migrate a Spring Boot application to the latest Spring Boot 4.0.x release.
 tags:
@@ -9,13 +9,13 @@ tags:
   - boot
 recipeList:
   # Previous Version
-  - io.arconia.rewrite.spring.boot.UpgradeSpringBoot_3_5
+  - io.arconia.rewrite.spring.boot3.UpgradeSpringBoot_3_5
 
   # Spring Framework
-  - io.arconia.rewrite.spring.framework.UpgradeSpringFramework_7_0
+  - io.arconia.rewrite.spring.framework7.UpgradeSpringFramework_7_0
 
   # Configuration Properties
-  - io.arconia.rewrite.spring.boot.UpgradeSpringBootProperties_4_0
+  - io.arconia.rewrite.spring.boot4.UpgradeSpringBootProperties_4_0
 
   # Dependency Versions
   - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
@@ -40,7 +40,7 @@ recipeList:
       newVersion: 4.0.x
 
   # Modularization
-  - io.arconia.rewrite.spring.boot.UpgradeSpringBootModules_4_0
+  - io.arconia.rewrite.spring.boot4.UpgradeSpringBootModules_4_0
 
   # Jackson
   - org.openrewrite.java.jackson.UpgradeJackson_2_3
@@ -48,10 +48,15 @@ recipeList:
   # Type Changes: Core
   - org.openrewrite.java.ChangeType:
       oldFullyQualifiedTypeName: org.springframework.boot.BootstrapRegistry
-      newFullyQualifiedTypeName: org.springframework.boot.bootstrap.BootstrapRegistry #TODO: spring.factories
+      newFullyQualifiedTypeName: org.springframework.boot.bootstrap.BootstrapRegistry
   - org.openrewrite.java.ChangeType:
       oldFullyQualifiedTypeName: org.springframework.boot.env.EnvironmentPostProcessor
-      newFullyQualifiedTypeName: org.springframework.boot.EnvironmentPostProcessor #TODO: spring.factories
+      newFullyQualifiedTypeName: org.springframework.boot.EnvironmentPostProcessor
+  - org.openrewrite.text.FindAndReplace:
+      find: org.springframework.boot.env.EnvironmentPostProcessor
+      replace: org.springframework.boot.EnvironmentPostProcessor
+      caseSensitive: true
+      filePattern: "**/spring.factories"
 
   # Type Changes: Data
   - org.openrewrite.java.ChangeType:

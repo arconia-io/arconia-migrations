@@ -1,22 +1,22 @@
 # Based on https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-4.0-Migration-Guide
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: io.arconia.rewrite.spring.boot.UpgradeSpringBootModulesJson_4_0
+name: io.arconia.rewrite.spring.boot4.UpgradeSpringBootModulesJson_4_0
 displayName: Migrate to Spring Boot 4.0 Modules JSON
 description: Upgrade the JSON Spring Boot dependencies based on the new modularization.
 tags:
   - spring
   - boot
 recipeList:
-  - io.arconia.rewrite.spring.boot.AddGsonStarter
-  - io.arconia.rewrite.spring.boot.AddGsonStarterTest
-  - io.arconia.rewrite.spring.boot.AddJacksonStarter
-  - io.arconia.rewrite.spring.boot.AddJacksonStarterTest
-  - io.arconia.rewrite.spring.boot.AddJsonbStarterTest
+  - io.arconia.rewrite.spring.boot4.AddGsonStarter
+  - io.arconia.rewrite.spring.boot4.AddGsonStarterTest
+  - io.arconia.rewrite.spring.boot4.AddJacksonStarter
+  - io.arconia.rewrite.spring.boot4.AddJacksonStarterTest
+  - io.arconia.rewrite.spring.boot4.AddJsonbStarterTest
 
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: io.arconia.rewrite.spring.boot.AddGsonStarter
+name: io.arconia.rewrite.spring.boot4.AddGsonStarter
 displayName: Add GSON Starter
 tags:
   - spring
@@ -29,7 +29,7 @@ recipeList:
       newArtifactId: spring-boot-starter-gson
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: io.arconia.rewrite.spring.boot.AddGsonStarterTest
+name: io.arconia.rewrite.spring.boot4.AddGsonStarterTest
 displayName: Add GSON Starter Test
 tags:
   - spring
@@ -47,7 +47,7 @@ recipeList:
       scope: test
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: io.arconia.rewrite.spring.boot.AddJacksonStarter
+name: io.arconia.rewrite.spring.boot4.AddJacksonStarter
 displayName: Add Jackson Starter
 tags:
   - spring
@@ -60,7 +60,7 @@ recipeList:
       newArtifactId: spring-boot-starter-jackson
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: io.arconia.rewrite.spring.boot.AddJacksonStarterTest
+name: io.arconia.rewrite.spring.boot4.AddJacksonStarterTest
 displayName: Add Jackson Starter Test
 tags:
   - spring
@@ -78,7 +78,7 @@ recipeList:
       scope: test
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: io.arconia.rewrite.spring.boot.AddJsonbStarterTest
+name: io.arconia.rewrite.spring.boot4.AddJsonbStarterTest
 displayName: Add JSONB Starter Test
 tags:
   - spring

@@ -9,13 +9,13 @@ import org.openrewrite.test.RewriteTest;
 import static org.openrewrite.java.Assertions.java;
 
 /**
- * Unit tests for "io.arconia.rewrite.spring.boot.UpgradeSpringBoot_3_5".
+ * Unit tests for "io.arconia.rewrite.spring.boot3.UpgradeSpringBoot_3_5".
  */
 class UpgradeSpringBoot_3_5_Tests implements RewriteTest {
 
     @Override
     public void defaults(RecipeSpec spec) {
-        spec.recipeFromResources("io.arconia.rewrite.spring.boot.UpgradeSpringBoot_3_5")
+        spec.recipeFromResources("io.arconia.rewrite.spring.boot3.UpgradeSpringBoot_3_5")
                 .parser(JavaParser.fromJavaVersion().classpathFromResources(new InMemoryExecutionContext(), "spring-boot-autoconfigure-3.4.*"));
     }
 

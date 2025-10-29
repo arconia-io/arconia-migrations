@@ -1,27 +1,27 @@
 # Based on https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-4.0-Migration-Guide
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: io.arconia.rewrite.spring.boot.UpgradeSpringBootModulesSecurity_4_0
+name: io.arconia.rewrite.spring.boot4.UpgradeSpringBootModulesSecurity_4_0
 displayName: Migrate to Spring Boot 4.0 Modules Security
 description: Upgrade the security Spring Boot dependencies based on the new modularization.
 tags:
   - spring
   - boot
 recipeList:
-  - io.arconia.rewrite.spring.boot.MigrateSecurityTest
-  - io.arconia.rewrite.spring.boot.AddSecurityStarterTest
-  - io.arconia.rewrite.spring.boot.MigrateSecurityOAuthAuthorizationServerStarter
-  - io.arconia.rewrite.spring.boot.AddSecurityOAuthAuthorizationServerStarterTest
-  - io.arconia.rewrite.spring.boot.MigrateSecurityOAuthClientStarter
-  - io.arconia.rewrite.spring.boot.AddSecurityOAuthClientStarterTest
-  - io.arconia.rewrite.spring.boot.MigrateSecurityOAuthResourceServerStarter
-  - io.arconia.rewrite.spring.boot.AddSecurityOAuthResourceServerStarterTest
-  - io.arconia.rewrite.spring.boot.AddSecuritySamlStarter
-  - io.arconia.rewrite.spring.boot.AddSecuritySamlStarterTest
+  - io.arconia.rewrite.spring.boot4.MigrateSecurityTest
+  - io.arconia.rewrite.spring.boot4.AddSecurityStarterTest
+  - io.arconia.rewrite.spring.boot4.MigrateSecurityOAuthAuthorizationServerStarter
+  - io.arconia.rewrite.spring.boot4.AddSecurityOAuthAuthorizationServerStarterTest
+  - io.arconia.rewrite.spring.boot4.MigrateSecurityOAuthClientStarter
+  - io.arconia.rewrite.spring.boot4.AddSecurityOAuthClientStarterTest
+  - io.arconia.rewrite.spring.boot4.MigrateSecurityOAuthResourceServerStarter
+  - io.arconia.rewrite.spring.boot4.AddSecurityOAuthResourceServerStarterTest
+  - io.arconia.rewrite.spring.boot4.AddSecuritySamlStarter
+  - io.arconia.rewrite.spring.boot4.AddSecuritySamlStarterTest
 
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: io.arconia.rewrite.spring.boot.MigrateSecurityTest
+name: io.arconia.rewrite.spring.boot4.MigrateSecurityTest
 displayName: Migrate Security Test
 tags:
   - spring
@@ -34,7 +34,7 @@ recipeList:
       newArtifactId: spring-boot-starter-security-test
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: io.arconia.rewrite.spring.boot.AddSecurityStarterTest
+name: io.arconia.rewrite.spring.boot4.AddSecurityStarterTest
 displayName: Add Security Starter Test
 tags:
   - spring
@@ -52,7 +52,7 @@ recipeList:
       scope: test
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: io.arconia.rewrite.spring.boot.MigrateSecurityOAuthAuthorizationServerStarter
+name: io.arconia.rewrite.spring.boot4.MigrateSecurityOAuthAuthorizationServerStarter
 displayName: Migrate Security OAuth Authorization Server Starter
 tags:
   - spring
@@ -65,7 +65,7 @@ recipeList:
       newArtifactId: spring-boot-starter-security-oauth2-authorization-server
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: io.arconia.rewrite.spring.boot.AddSecurityOAuthAuthorizationServerStarterTest
+name: io.arconia.rewrite.spring.boot4.AddSecurityOAuthAuthorizationServerStarterTest
 displayName: Add Security OAuth Authorization Server Starter Test
 tags:
   - spring
@@ -83,7 +83,7 @@ recipeList:
       scope: test
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: io.arconia.rewrite.spring.boot.MigrateSecurityOAuthClientStarter
+name: io.arconia.rewrite.spring.boot4.MigrateSecurityOAuthClientStarter
 displayName: Migrate Security OAuth Client Starter
 tags:
   - spring
@@ -96,7 +96,7 @@ recipeList:
       newArtifactId: spring-boot-starter-security-oauth2-client
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: io.arconia.rewrite.spring.boot.AddSecurityOAuthClientStarterTest
+name: io.arconia.rewrite.spring.boot4.AddSecurityOAuthClientStarterTest
 displayName: Add Security OAuth Client Starter Test
 tags:
   - spring
@@ -114,7 +114,7 @@ recipeList:
       scope: test
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: io.arconia.rewrite.spring.boot.MigrateSecurityOAuthResourceServerStarter
+name: io.arconia.rewrite.spring.boot4.MigrateSecurityOAuthResourceServerStarter
 displayName: Migrate Security OAuth Resource Server Starter
 tags:
   - spring
@@ -127,7 +127,7 @@ recipeList:
       newArtifactId: spring-boot-starter-security-oauth2-resource-server
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: io.arconia.rewrite.spring.boot.AddSecurityOAuthResourceServerStarterTest
+name: io.arconia.rewrite.spring.boot4.AddSecurityOAuthResourceServerStarterTest
 displayName: Add Security OAuth Resource Server Starter Test
 tags:
   - spring
@@ -145,7 +145,7 @@ recipeList:
       scope: test
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: io.arconia.rewrite.spring.boot.AddSecuritySamlStarter
+name: io.arconia.rewrite.spring.boot4.AddSecuritySamlStarter
 displayName: Add Security SAML Starter
 tags:
   - spring
@@ -158,7 +158,7 @@ recipeList:
       newArtifactId: spring-boot-starter-security-saml2
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: io.arconia.rewrite.spring.boot.AddSecuritySamlStarterTest
+name: io.arconia.rewrite.spring.boot4.AddSecuritySamlStarterTest
 displayName: Add Security SAML Starter Test
 tags:
   - spring
