@@ -1,0 +1,120 @@
+# Based on https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-4.0-Migration-Guide
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.UpgradeSpringBootModulesCore_4_0
+displayName: Migrate to Spring Boot 4.0 Modules Core
+description: Upgrade the core Spring Boot dependencies based on the new modularization.
+tags:
+  - spring
+  - boot
+recipeList:
+  - io.arconia.rewrite.spring.boot4.MigrateAspectjStarter
+  - io.arconia.rewrite.spring.boot4.AddAspectjStarterTest
+  - io.arconia.rewrite.spring.boot4.AddCloudFoundryStarterTest
+  - io.arconia.rewrite.spring.boot4.AddJakartaValidationStarterTest
+  - io.arconia.rewrite.spring.boot4.AddKotlinSerializationStarterTest
+  - io.arconia.rewrite.spring.boot4.AddReactorStarterTest
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.MigrateAspectjStarter
+displayName: Migrate Aspectj Starter
+tags:
+  - spring
+  - boot
+recipeList:
+  - org.openrewrite.java.dependencies.ChangeDependency:
+      oldGroupId: org.springframework.boot
+      oldArtifactId: spring-boot-starter-aop
+      newGroupId: org.springframework.boot
+      newArtifactId: spring-boot-starter-aspectj
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.AddAspectjStarterTest
+displayName: Add Aspectj Starter Test
+tags:
+  - spring
+  - boot
+preconditions:
+  - org.openrewrite.java.dependencies.DependencyInsight:
+      groupIdPattern: org.springframework.boot
+      artifactIdPattern: spring-boot-starter-aspectj
+recipeList:
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-aspectj-test
+      acceptTransitive: true
+      configuration: testImplementation
+      scope: test
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.AddCloudFoundryStarterTest
+displayName: Add CloudFoundry Starter Test
+tags:
+  - spring
+  - boot
+preconditions:
+  - org.openrewrite.java.dependencies.DependencyInsight:
+      groupIdPattern: org.springframework.boot
+      artifactIdPattern: spring-boot-starter-cloudfoundry
+recipeList:
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-cloudfoundry-test
+      acceptTransitive: true
+      configuration: testImplementation
+      scope: test
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.AddJakartaValidationStarterTest
+displayName: Add Jakarta Validation Starter Test
+tags:
+  - spring
+  - boot
+preconditions:
+  - org.openrewrite.java.dependencies.DependencyInsight:
+      groupIdPattern: org.springframework.boot
+      artifactIdPattern: spring-boot-starter-validation
+recipeList:
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-validation-test
+      acceptTransitive: true
+      configuration: testImplementation
+      scope: test
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.AddKotlinSerializationStarterTest
+displayName: Add Kotlin Serialization Starter Test
+tags:
+  - spring
+  - boot
+preconditions:
+  - org.openrewrite.java.dependencies.DependencyInsight:
+      groupIdPattern: org.springframework.boot
+      artifactIdPattern: spring-boot-starter-kotlin-serialization
+recipeList:
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-kotlin-serialization-test
+      acceptTransitive: true
+      configuration: testImplementation
+      scope: test
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.AddReactorStarterTest
+displayName: Add Reactor Starter Test
+tags:
+  - spring
+  - boot
+preconditions:
+  - org.openrewrite.java.dependencies.DependencyInsight:
+      groupIdPattern: org.springframework.boot
+      artifactIdPattern: spring-boot-starter-reactor
+recipeList:
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-reactor-test
+      acceptTransitive: true
+      configuration: testImplementation
+      scope: test

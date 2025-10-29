@@ -1,0 +1,176 @@
+# Based on https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-4.0-Migration-Guide
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.UpgradeSpringBootModulesSecurity_4_0
+displayName: Migrate to Spring Boot 4.0 Modules Security
+description: Upgrade the security Spring Boot dependencies based on the new modularization.
+tags:
+  - spring
+  - boot
+recipeList:
+  - io.arconia.rewrite.spring.boot4.MigrateSecurityTest
+  - io.arconia.rewrite.spring.boot4.AddSecurityStarterTest
+  - io.arconia.rewrite.spring.boot4.MigrateSecurityOAuthAuthorizationServerStarter
+  - io.arconia.rewrite.spring.boot4.AddSecurityOAuthAuthorizationServerStarterTest
+  - io.arconia.rewrite.spring.boot4.MigrateSecurityOAuthClientStarter
+  - io.arconia.rewrite.spring.boot4.AddSecurityOAuthClientStarterTest
+  - io.arconia.rewrite.spring.boot4.MigrateSecurityOAuthResourceServerStarter
+  - io.arconia.rewrite.spring.boot4.AddSecurityOAuthResourceServerStarterTest
+  - io.arconia.rewrite.spring.boot4.AddSecuritySamlStarter
+  - io.arconia.rewrite.spring.boot4.AddSecuritySamlStarterTest
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.MigrateSecurityTest
+displayName: Migrate Security Test
+tags:
+  - spring
+  - boot
+recipeList:
+  - org.openrewrite.java.dependencies.ChangeDependency:
+      oldGroupId: org.springframework.security
+      oldArtifactId: spring-security-test
+      newGroupId: org.springframework.boot
+      newArtifactId: spring-boot-starter-security-test
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.AddSecurityStarterTest
+displayName: Add Security Starter Test
+tags:
+  - spring
+  - boot
+preconditions:
+  - org.openrewrite.java.dependencies.DependencyInsight:
+      groupIdPattern: org.springframework.boot
+      artifactIdPattern: spring-boot-starter-security
+recipeList:
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-security-test
+      acceptTransitive: true
+      configuration: testImplementation
+      scope: test
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.MigrateSecurityOAuthAuthorizationServerStarter
+displayName: Migrate Security OAuth Authorization Server Starter
+tags:
+  - spring
+  - boot
+recipeList:
+  - org.openrewrite.java.dependencies.ChangeDependency:
+      oldGroupId: org.springframework.boot
+      oldArtifactId: spring-boot-starter-oauth2-authorization-server
+      newGroupId: org.springframework.boot
+      newArtifactId: spring-boot-starter-security-oauth2-authorization-server
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.AddSecurityOAuthAuthorizationServerStarterTest
+displayName: Add Security OAuth Authorization Server Starter Test
+tags:
+  - spring
+  - boot
+preconditions:
+  - org.openrewrite.java.dependencies.DependencyInsight:
+      groupIdPattern: org.springframework.boot
+      artifactIdPattern: spring-boot-starter-security-oauth2-authorization-server
+recipeList:
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-security-oauth2-authorization-server-test
+      acceptTransitive: true
+      configuration: testImplementation
+      scope: test
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.MigrateSecurityOAuthClientStarter
+displayName: Migrate Security OAuth Client Starter
+tags:
+  - spring
+  - boot
+recipeList:
+  - org.openrewrite.java.dependencies.ChangeDependency:
+      oldGroupId: org.springframework.boot
+      oldArtifactId: spring-boot-starter-oauth2-client
+      newGroupId: org.springframework.boot
+      newArtifactId: spring-boot-starter-security-oauth2-client
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.AddSecurityOAuthClientStarterTest
+displayName: Add Security OAuth Client Starter Test
+tags:
+  - spring
+  - boot
+preconditions:
+  - org.openrewrite.java.dependencies.DependencyInsight:
+      groupIdPattern: org.springframework.boot
+      artifactIdPattern: spring-boot-starter-security-oauth2-client
+recipeList:
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-security-oauth2-client-test
+      acceptTransitive: true
+      configuration: testImplementation
+      scope: test
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.MigrateSecurityOAuthResourceServerStarter
+displayName: Migrate Security OAuth Resource Server Starter
+tags:
+  - spring
+  - boot
+recipeList:
+  - org.openrewrite.java.dependencies.ChangeDependency:
+      oldGroupId: org.springframework.boot
+      oldArtifactId: spring-boot-starter-oauth2-resource-server
+      newGroupId: org.springframework.boot
+      newArtifactId: spring-boot-starter-security-oauth2-resource-server
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.AddSecurityOAuthResourceServerStarterTest
+displayName: Add Security OAuth Resource Server Starter Test
+tags:
+  - spring
+  - boot
+preconditions:
+  - org.openrewrite.java.dependencies.DependencyInsight:
+      groupIdPattern: org.springframework.boot
+      artifactIdPattern: spring-boot-starter-security-oauth2-resource-server
+recipeList:
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-security-oauth2-resource-server-test
+      acceptTransitive: true
+      configuration: testImplementation
+      scope: test
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.AddSecuritySamlStarter
+displayName: Add Security SAML Starter
+tags:
+  - spring
+  - boot
+recipeList:
+  - org.openrewrite.java.dependencies.ChangeDependency:
+      oldGroupId: org.springframework.security
+      oldArtifactId: spring-security-saml2-service-provider
+      newGroupId: org.springframework.boot
+      newArtifactId: spring-boot-starter-security-saml2
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.AddSecuritySamlStarterTest
+displayName: Add Security SAML Starter Test
+tags:
+  - spring
+  - boot
+preconditions:
+  - org.openrewrite.java.dependencies.DependencyInsight:
+      groupIdPattern: org.springframework.boot
+      artifactIdPattern: spring-boot-starter-security-saml2
+recipeList:
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-security-saml2-test
+      acceptTransitive: true
+      configuration: testImplementation
+      scope: test

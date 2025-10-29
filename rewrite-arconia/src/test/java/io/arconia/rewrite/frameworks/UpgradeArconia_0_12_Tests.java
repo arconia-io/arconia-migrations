@@ -19,7 +19,7 @@ class UpgradeArconia_0_12_Tests implements RewriteTest {
     @Override
     public void defaults(RecipeSpec spec) {
         spec.recipeFromResources("io.arconia.rewrite.UpgradeArconia_0_12")
-            .parser(JavaParser.fromJavaVersion().classpathFromResources(new InMemoryExecutionContext(), "arconia-opentelemetry-sdk-spring-boot-autoconfigure-0.11.0"));
+            .parser(JavaParser.fromJavaVersion().classpathFromResources(new InMemoryExecutionContext(), "arconia-opentelemetry-sdk-spring-boot-autoconfigure-0.11.*"));
     }
 
     // Dependency Version Changes

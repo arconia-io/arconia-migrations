@@ -1,0 +1,16 @@
+# Based on https://github.com/spring-projects/spring-framework/wiki/Spring-Framework-6.2-Release-Notes
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.framework6.UpgradeSpringFramework_6_2
+displayName: Migrate to Spring Framework 6.2
+description: Migrate a Spring application to the latest Spring Framework 6.2.x release.
+tags:
+  - spring
+  - framework
+recipeList:
+
+  # Dependency Versions
+  - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
+      groupId: org.springframework
+      artifactId: "*"
+      newVersion: 6.2.x

@@ -8,8 +8,8 @@ repositories {
 }
 
 ext {
-    set("cycloneDxVersion", '2.3.1')
-    set("openRewriteBuildVersion", '2.3.0')
+    set("cycloneDxVersion", '2.4.1')
+    set("openRewriteBuildVersion", '2.6.7')
 }
 
 dependencies {
