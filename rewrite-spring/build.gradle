@@ -15,6 +15,7 @@ dependencies {
     implementation "org.openrewrite:rewrite-maven"
     implementation "org.openrewrite:rewrite-properties"
     implementation "org.openrewrite:rewrite-yaml"
+    implementation "org.openrewrite.recipe:rewrite-jackson"
     implementation "org.openrewrite.recipe:rewrite-java-dependencies"
 
     // Re-enable if and when starting using Refaster

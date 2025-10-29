@@ -35,6 +35,9 @@ recipeList:
   # Modularization
   - io.arconia.rewrite.spring.boot.UpgradeSpringBootModules_4_0
 
+  # Jackson
+  - org.openrewrite.java.jackson.UpgradeJackson_2_3
+
   # Type Changes: Core
   - org.openrewrite.java.ChangeType:
       oldFullyQualifiedTypeName: org.springframework.lang.Nullable
