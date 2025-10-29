@@ -14,3 +14,8 @@ recipeList:
       groupId: org.springframework
       artifactId: "*"
       newVersion: 7.0.x
+
+  # Type Changes: Core
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.lang.Nullable
+      newFullyQualifiedTypeName: org.jspecify.annotations.Nullable

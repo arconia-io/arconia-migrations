@@ -9,14 +9,14 @@ tags:
   - boot
 recipeList:
   - io.arconia.rewrite.spring.boot.UpgradeSpringBootModulesCore_4_0
-  - io.arconia.rewrite.spring.boot.UpgradeSpringBootModulesWebClient_4_0
-  - io.arconia.rewrite.spring.boot.UpgradeSpringBootModulesWeb_4_0
-  - io.arconia.rewrite.spring.boot.UpgradeSpringBootModulesDatabase_4_0
   - io.arconia.rewrite.spring.boot.UpgradeSpringBootModulesData_4_0
+  - io.arconia.rewrite.spring.boot.UpgradeSpringBootModulesDatabase_4_0
   - io.arconia.rewrite.spring.boot.UpgradeSpringBootModulesIo_4_0
   - io.arconia.rewrite.spring.boot.UpgradeSpringBootModulesJson_4_0
   - io.arconia.rewrite.spring.boot.UpgradeSpringBootModulesMessaging_4_0
+  - io.arconia.rewrite.spring.boot.UpgradeSpringBootModulesProduction_4_0
   - io.arconia.rewrite.spring.boot.UpgradeSpringBootModulesSecurity_4_0
   - io.arconia.rewrite.spring.boot.UpgradeSpringBootModulesTemplating_4_0
-  - io.arconia.rewrite.spring.boot.UpgradeSpringBootModulesProduction_4_0
   - io.arconia.rewrite.spring.boot.UpgradeSpringBootModulesTesting_4_0
+  - io.arconia.rewrite.spring.boot.UpgradeSpringBootModulesWeb_4_0
+  - io.arconia.rewrite.spring.boot.UpgradeSpringBootModulesWebClient_4_0

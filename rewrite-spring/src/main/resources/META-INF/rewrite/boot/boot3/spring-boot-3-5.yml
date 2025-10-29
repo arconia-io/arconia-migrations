@@ -43,3 +43,29 @@ recipeList:
   - org.openrewrite.java.ChangeType:
       oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.security.oauth2.client.servlet.OAuth2ClientAutoConfiguration
       newFullyQualifiedTypeName: org.springframework.boot.autoconfigure.security.oauth2.client.OAuth2ClientAutoConfiguration
+
+  # @MockitoBean
+  - org.openrewrite.java.RemoveAnnotationAttribute:
+      annotationType: org.springframework.boot.test.mock.mockito.MockBean
+      attributeName: classes
+  - org.openrewrite.java.ChangeAnnotationAttributeName:
+      annotationType: org.springframework.boot.test.mock.mockito.MockBean
+      oldAttributeName: answer
+      newAttributeName: answers
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.test.mock.mockito.MockReset
+      newFullyQualifiedTypeName: org.springframework.test.context.bean.override.mockito.MockReset
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.test.mock.mockito.MockBean
+      newFullyQualifiedTypeName: org.springframework.test.context.bean.override.mockito.MockitoBean
+
+  # @MockitoSpyBean
+  - org.openrewrite.java.RemoveAnnotationAttribute:
+      annotationType: org.springframework.boot.test.mock.mockito.SpyBean
+      attributeName: value
+  - org.openrewrite.java.RemoveAnnotationAttribute:
+      annotationType: org.springframework.boot.test.mock.mockito.SpyBean
+      attributeName: classes
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.test.mock.mockito.SpyBean
+      newFullyQualifiedTypeName: org.springframework.test.context.bean.override.mockito.MockitoSpyBean

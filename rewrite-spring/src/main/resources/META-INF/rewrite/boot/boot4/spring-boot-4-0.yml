@@ -47,9 +47,6 @@ recipeList:
 
   # Type Changes: Core
   - org.openrewrite.java.ChangeType:
-      oldFullyQualifiedTypeName: org.springframework.lang.Nullable
-      newFullyQualifiedTypeName: org.jspecify.annotations.Nullable
-  - org.openrewrite.java.ChangeType:
       oldFullyQualifiedTypeName: org.springframework.boot.BootstrapRegistry
       newFullyQualifiedTypeName: org.springframework.boot.bootstrap.BootstrapRegistry #TODO: spring.factories
   - org.openrewrite.java.ChangeType:
@@ -60,26 +57,25 @@ recipeList:
   - org.openrewrite.java.ChangeType:
       oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.domain.EntityScan
       newFullyQualifiedTypeName: org.springframework.boot.persistence.autoconfigure.EntityScan
+
+  # Type Changes: Security
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.security.servlet.PathRequest
+      newFullyQualifiedTypeName: org.springframework.boot.security.autoconfigure.servlet.PathRequest
+
+  # Type Changes: Test
   - org.openrewrite.java.ChangeType:
       oldFullyQualifiedTypeName: org.springframework.boot.test.autoconfigure.properties.PropertyMapping
       newFullyQualifiedTypeName: org.springframework.boot.test.context.PropertyMapping
   - org.openrewrite.java.ChangeType:
       oldFullyQualifiedTypeName: org.springframework.boot.test.autoconfigure.properties.SkipPropertyMapping
       newFullyQualifiedTypeName: org.springframework.boot.test.context.PropertyMapping.Skip
-
-  # Type Changes: Web
   - org.openrewrite.java.ChangeType:
       oldFullyQualifiedTypeName: org.springframework.boot.test.web.client.TestRestTemplate
       newFullyQualifiedTypeName: org.springframework.boot.web.server.test.client.TestRestTemplate
   - org.openrewrite.java.ChangeType:
       oldFullyQualifiedTypeName: org.springframework.boot.test.web.server.LocalServerPort
       newFullyQualifiedTypeName: org.springframework.boot.web.server.test.LocalServerPort
-  - org.openrewrite.java.ChangeType:
-      oldFullyQualifiedTypeName: org.springframework.boot.test.mock.mockito.MockBean
-      newFullyQualifiedTypeName: org.springframework.test.context.bean.override.mockito.MockitoBean
-  - org.openrewrite.java.ChangeType:
-      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.security.servlet.PathRequest
-      newFullyQualifiedTypeName: org.springframework.boot.security.autoconfigure.servlet.PathRequest
 
   # Additional Dependencies
   - org.openrewrite.java.dependencies.AddDependency:

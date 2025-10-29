@@ -50,4 +50,47 @@ class UpgradeSpringBoot_3_5_Tests implements RewriteTest {
         );
     }
 
+    @Test
+    void typeChangesMockito() {
+        rewriteRun(
+                r -> r.parser(JavaParser.fromJavaVersion().classpathFromResources(new InMemoryExecutionContext(),
+                        "spring-boot-test-3.4.*")),
+                //language=java
+                java(
+                        """
+                        package com.yourorg;
+
+                        import org.mockito.Answers;
+                        import org.springframework.boot.test.mock.mockito.MockBean;
+                        import org.springframework.boot.test.mock.mockito.MockReset;
+                        import org.springframework.boot.test.mock.mockito.SpyBean;
+
+                        class Demo {
+                            @MockBean(classes = {com.yourorg.Demo.class}, answer = Answers.RETURNS_DEFAULTS, reset = MockReset.BEFORE)
+                            private String someDependency;
+
+                            @SpyBean(value = {com.yourorg.Demo.class}, classes = {com.yourorg.Demo.class}, reset = MockReset.BEFORE)
+                            private String someOtherDependency;
+                        }
+                        """,
+                        """
+                        package com.yourorg;
+
+                        import org.mockito.Answers;
+                        import org.springframework.test.context.bean.override.mockito.MockReset;
+                        import org.springframework.test.context.bean.override.mockito.MockitoBean;
+                        import org.springframework.test.context.bean.override.mockito.MockitoSpyBean;
+
+                        class Demo {
+                            @MockitoBean(answers = Answers.RETURNS_DEFAULTS, reset = MockReset.BEFORE)
+                            private String someDependency;
+
+                            @MockitoSpyBean(reset = MockReset.BEFORE)
+                            private String someOtherDependency;
+                        }
+                        """
+                )
+        );
+    }
+
 }

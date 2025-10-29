@@ -1,7 +1,7 @@
 # Based on https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-4.0-Migration-Guide
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: io.arconia.rewrite.spring.boot.UpgradeSpringBootModulesCore_4_0
+name: io.arconia.rewrite.spring.boot.UpgradeSpringBootModulesTesting_4_0
 displayName: Migrate to Spring Boot 4.0 Modules Testing
 description: Upgrade the testing Spring Boot dependencies based on the new modularization.
 tags:
