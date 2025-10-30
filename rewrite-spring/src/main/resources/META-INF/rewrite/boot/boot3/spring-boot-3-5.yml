@@ -1,6 +1,16 @@
 # Based on https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-3.5-Release-Notes
 ---
 type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot.UpgradeSpringBoot_3_5
+displayName: Migrate to Spring Boot 3.5
+description: Migrate a Spring Boot application to the latest Spring Boot 3.5.x release.
+tags:
+  - spring
+  - boot
+recipeList:
+  - io.arconia.rewrite.spring.boot3.UpgradeSpringBoot_3_5
+---
+type: specs.openrewrite.org/v1beta/recipe
 name: io.arconia.rewrite.spring.boot3.UpgradeSpringBoot_3_5
 displayName: Migrate to Spring Boot 3.5
 description: Migrate a Spring Boot application to the latest Spring Boot 3.5.x release.
