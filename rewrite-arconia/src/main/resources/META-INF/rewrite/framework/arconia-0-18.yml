@@ -1,0 +1,67 @@
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.UpgradeArconia_0_18
+displayName: Migrate to Arconia 0.18
+description: Migrate a Spring Boot application to the latest Arconia 0.18.x release.
+tags:
+  - arconia
+recipeList:
+  - io.arconia.rewrite.UpgradeArconia_0_17
+
+  # Dependency Versions
+  - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
+      groupId: io.arconia
+      artifactId: "*"
+      newVersion: 0.18.x
+
+  # Rename Properties
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "arconia.observability.openinference.enabled"
+      newPropertyKey: "arconia.observations.generative-ai.openinference.enabled"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "arconia.observability.openinference.include-only-ai-observations"
+      newPropertyKey: "arconia.observations.generative-ai.openinference.exclusive"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "arconia.observability.openinference.traces.base64-image-max-length"
+      newPropertyKey: "arconia.observations.generative-ai.openinference.traces.base64-image-max-length"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "arconia.observability.openinference.traces.hide-embedding-vectors"
+      newPropertyKey: "arconia.observations.generative-ai.openinference.traces.hide-embedding-vectors"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "arconia.observability.openinference.traces.hide-input-images"
+      newPropertyKey: "arconia.observations.generative-ai.openinference.traces.hide-input-images"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "arconia.observability.openinference.traces.hide-input-messages"
+      newPropertyKey: "arconia.observations.generative-ai.openinference.traces.hide-input-messages"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "arconia.observability.openinference.traces.hide-input-text"
+      newPropertyKey: "arconia.observations.generative-ai.openinference.traces.hide-input-text"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "arconia.observability.openinference.traces.hide-inputs"
+      newPropertyKey: "arconia.observations.generative-ai.openinference.traces.hide-inputs"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "arconia.observability.openinference.traces.hide-llm-invocation-parameters"
+      newPropertyKey: "arconia.observations.generative-ai.openinference.traces.hide-llm-invocation-parameters"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "arconia.observability.openinference.traces.hide-output-messages"
+      newPropertyKey: "arconia.observations.generative-ai.openinference.traces.hide-output-messages"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "arconia.observability.openinference.traces.hide-output-text"
+      newPropertyKey: "arconia.observations.generative-ai.openinference.traces.hide-output-text"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "arconia.observability.openinference.traces.hide-outputs"
+      newPropertyKey: "arconia.observations.generative-ai.openinference.traces.hide-outputs"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "arconia.observability.openinference.traces.hide-prompts"
+      newPropertyKey: "arconia.observations.generative-ai.openinference.traces.hide-prompts"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "arconia.otel.logs.logback-bridge.capture-logstash-attributes"
+      newPropertyKey: "arconia.otel.logs.logback-bridge.capture-logstash-marker-attributes"
+
+  # Type Changes
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: io.arconia.dev.services.mongodb.MongoDbAtlasDevServicesAutoConfiguration
+      newFullyQualifiedTypeName: io.arconia.dev.services.mongodb.atlas.MongoDbAtlasDevServicesAutoConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: io.arconia.dev.services.mongodb.MongoDbAtlasDevServicesProperties
+      newFullyQualifiedTypeName: io.arconia.dev.services.mongodb.atlas.MongoDbAtlasDevServicesProperties

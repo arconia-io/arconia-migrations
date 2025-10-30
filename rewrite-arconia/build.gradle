@@ -44,6 +44,8 @@ recipeDependencies {
 
     parserClasspath "io.arconia:arconia-opentelemetry:0.14.0"
 
+    parserClasspath "io.arconia:arconia-dev-services-mongodb-atlas:0.17.1"
+
     parserClasspath "org.springframework.boot:spring-boot-actuator-autoconfigure:3.5.7"
 }
 
