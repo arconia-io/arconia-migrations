@@ -15,6 +15,10 @@ recipeList:
       artifactId: "*"
       newVersion: 7.0.x
 
+  # Managed Dependencies
+  - org.openrewrite.java.jackson.UpgradeJackson_2_3
+  - io.arconia.rewrite.test.junit.UpgradeJUnit_6
+
   # Type Changes: Core
   - org.openrewrite.java.ChangeType:
       oldFullyQualifiedTypeName: org.springframework.lang.Nullable
