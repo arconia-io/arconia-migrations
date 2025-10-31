@@ -28,7 +28,7 @@ dependencies {
 }
 
 recipeDependencies {
-    parserClasspath "org.testcontainers:testcontainers:1.21.3"
+    parserClasspath "org.testcontainers:testcontainers:2.0.1"
 }
 
 publishing {
