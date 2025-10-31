@@ -8,6 +8,9 @@ tags:
 recipeList:
   - io.arconia.rewrite.UpgradeArconia_0_16
 
+  # Spring Boot
+  - io.arconia.rewrite.spring.boot3.UpgradeSpringBoot_3_5
+
   # Dependency Versions
   - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
       groupId: io.arconia

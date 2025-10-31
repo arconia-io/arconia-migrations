@@ -39,11 +39,17 @@ recipeList:
       artifactId: spring-boot-starter-parent
       newVersion: 4.0.x
 
+  # Gradle Wrapper
+  - org.openrewrite.gradle.UpdateGradleWrapper:
+      version: ^9.2
+      addIfMissing: false
+
   # Modularization
   - io.arconia.rewrite.spring.boot4.UpgradeSpringBootModules_4_0
 
-  # Jackson
+  # Managed Dependencies
   - org.openrewrite.java.jackson.UpgradeJackson_2_3
+  - io.arconia.rewrite.test.testcontainers.UpgradeTestcontainers_2_0
 
   # Type Changes: Core
   - org.openrewrite.java.ChangeType:

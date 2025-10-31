@@ -6,6 +6,8 @@ plugins {
 }
 
 dependencies {
+    implementation project(":rewrite-test")
+
     implementation "org.jspecify:jspecify:${jSpecifyVersion}"
     implementation "org.slf4j:slf4j-api:${slf4jVersion}"
 
