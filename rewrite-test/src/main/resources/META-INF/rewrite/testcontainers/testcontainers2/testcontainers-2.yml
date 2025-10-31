@@ -1,9 +1,9 @@
 # Based on https://github.com/testcontainers/testcontainers-java/releases/tag/2.0.0
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: io.arconia.rewrite.test.testcontainers.UpgradeTestcontainers_2_0
-displayName: Migrate to Testcontainers 2.0.x
-description: Migrate a Java application to the latest Testcontainers 2.0.x release.
+name: io.arconia.rewrite.test.testcontainers.UpgradeTestcontainers_2
+displayName: Migrate to Testcontainers 2.x
+description: Migrate a Java application to the latest Testcontainers 2.x release.
 tags:
   - junit
   - testcontainers
