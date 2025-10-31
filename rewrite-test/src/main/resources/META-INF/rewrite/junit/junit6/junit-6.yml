@@ -1,0 +1,30 @@
+# Based on https://docs.junit.org/6.0.0/release-notes/
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.test.junit.UpgradeJUnit_6
+displayName: Migrate to JUnit 6.x
+description: Migrate a Java application to the latest JUnit 6.x release.
+tags:
+  - junit
+recipeList:
+
+  # Dependency Changes
+  - org.openrewrite.gradle.AddDependency:
+      groupId: org.junit.platform
+      artifactId: junit-platform-launcher
+      configuration: testRuntimeOnly
+  - org.openrewrite.java.dependencies.RemoveDependency:
+      groupId: org.junit.platform
+      artifactId: junit-platform-jfr
+  - org.openrewrite.java.dependencies.RemoveDependency:
+      groupId: org.junit.platform
+      artifactId: junit-platform-runner
+  - org.openrewrite.java.dependencies.RemoveDependency:
+      groupId: org.junit.platform
+      artifactId: junit-platform-suite-common
+
+  # Dependency Versions
+  - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
+      groupId: org.junit.jupiter
+      artifactId: junit-jupiter*
+      newVersion: 6.x
