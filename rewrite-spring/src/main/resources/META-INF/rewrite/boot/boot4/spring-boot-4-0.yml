@@ -49,6 +49,7 @@ recipeList:
 
   # Managed Dependencies
   - org.openrewrite.java.jackson.UpgradeJackson_2_3
+  - io.arconia.rewrite.test.junit.UpgradeJUnit_6
   - io.arconia.rewrite.test.testcontainers.UpgradeTestcontainers_2
 
   # Type Changes: Core
