@@ -37,11 +37,11 @@ recipeDependencies {
     parserClasspath "io.arconia:arconia-core:0.10.3"
     parserClasspath "io.arconia:arconia-opentelemetry-sdk-spring-boot-autoconfigure:0.11.0"
 
-    parserClasspath "io.arconia:arconia-dev-services-mariadb:0.13.0"
-    parserClasspath "io.arconia:arconia-dev-services-rabbitmq:0.13.0"
-    parserClasspath "io.arconia:arconia-multitenancy-spring-boot-autoconfigure:0.13.0"
-    parserClasspath "io.arconia:arconia-opentelemetry-sdk-spring-boot-autoconfigure:0.13.0"
-    parserClasspath "io.arconia:arconia-opentelemetry-instrumentation-spring-boot-autoconfigure:0.13.0"
+    parserClasspath "io.arconia:arconia-dev-services-mariadb:0.18.0"
+    parserClasspath "io.arconia:arconia-dev-services-rabbitmq:0.18.0"
+    parserClasspath "io.arconia:arconia-multitenancy-spring-boot-autoconfigure:0.18.0"
+    parserClasspath "io.arconia:arconia-opentelemetry-sdk-spring-boot-autoconfigure:0.18.0"
+    parserClasspath "io.arconia:arconia-opentelemetry-instrumentation-spring-boot-autoconfigure:0.18.0"
 
     parserClasspath "io.arconia:arconia-opentelemetry:0.14.0"
 
