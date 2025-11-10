@@ -171,10 +171,8 @@ class MigrateSpringBoot3OtlpToArconiaOpenTelemetryTests implements RewriteTest {
                         """
                         # Not supported by Arconia OpenTelemetry.
                         # management.otlp.metrics.export.batch-size=512
-                        # Not supported by Arconia OpenTelemetry.
-                        # management.otlp.metrics.export.max-bucket-count=160
-                        # Not supported by Arconia OpenTelemetry.
-                        # management.otlp.metrics.export.max-scale=20
+                        arconia.otel.exporter.otlp.micrometer.max-bucket-count=160
+                        arconia.otel.exporter.otlp.micrometer.max-scale=20
                         """,
                         s -> s.path("src/main/resources/application.properties")
                 )
