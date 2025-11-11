@@ -23,3 +23,8 @@ recipeList:
   - org.openrewrite.java.ChangeType:
       oldFullyQualifiedTypeName: org.springframework.lang.Nullable
       newFullyQualifiedTypeName: org.jspecify.annotations.Nullable
+
+  # Type Changes: Jackson
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.http.converter.json.Jackson2ObjectMapperBuilder
+      newFullyQualifiedTypeName: tools.jackson.databind.json.JsonMapper.Builder

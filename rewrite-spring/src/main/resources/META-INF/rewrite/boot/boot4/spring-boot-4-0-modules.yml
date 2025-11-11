@@ -20,3 +20,10 @@ recipeList:
   - io.arconia.rewrite.spring.boot4.UpgradeSpringBootModulesTesting_4_0
   - io.arconia.rewrite.spring.boot4.UpgradeSpringBootModulesWeb_4_0
   - io.arconia.rewrite.spring.boot4.UpgradeSpringBootModulesWebClient_4_0
+
+  - org.openrewrite.java.dependencies.RemoveDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter
+  - org.openrewrite.java.dependencies.RemoveDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-test

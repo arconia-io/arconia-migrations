@@ -93,3 +93,552 @@ recipeList:
       artifactId: spring-boot-persistence
       onlyIfUsing: org.springframework.boot.persistence.autoconfigure.EntityScan
       acceptTransitive: true
+
+  - io.arconia.rewrite.spring.boot4.MigrateActiveMQModule
+  - io.arconia.rewrite.spring.boot4.MigrateAmqpModule
+  - io.arconia.rewrite.spring.boot4.MigrateArtemisModule
+  - io.arconia.rewrite.spring.boot4.MigrateBatchJdbcModule
+  - io.arconia.rewrite.spring.boot4.MigrateBatchModule
+  - io.arconia.rewrite.spring.boot4.MigrateCacheModule
+  - io.arconia.rewrite.spring.boot4.MigrateCassandraModule
+  - io.arconia.rewrite.spring.boot4.MigrateCloudFoundryModule
+  - io.arconia.rewrite.spring.boot4.MigrateCouchbaseModule
+  - io.arconia.rewrite.spring.boot4.MigrateDataCassandraModule
+  - io.arconia.rewrite.spring.boot4.MigrateDataCommonsModule
+  - io.arconia.rewrite.spring.boot4.MigrateDataCouchbaseModule
+  - io.arconia.rewrite.spring.boot4.MigrateDataElasticsearchModule
+  - io.arconia.rewrite.spring.boot4.MigrateDataJdbcModule
+  - io.arconia.rewrite.spring.boot4.MigrateDataJpaModule
+  - io.arconia.rewrite.spring.boot4.MigrateDataLdapModule
+  - io.arconia.rewrite.spring.boot4.MigrateDataMongoDbModule
+  - io.arconia.rewrite.spring.boot4.MigrateDataNeo4jModule
+  - io.arconia.rewrite.spring.boot4.MigrateDataR2dbcModule
+  - io.arconia.rewrite.spring.boot4.MigrateDataRedisModule
+  - io.arconia.rewrite.spring.boot4.MigrateDataRestModule
+  - io.arconia.rewrite.spring.boot4.MigrateElasticsearchModule
+  - io.arconia.rewrite.spring.boot4.MigrateFlywayModule
+  - io.arconia.rewrite.spring.boot4.MigrateFreemarkerModule
+  - io.arconia.rewrite.spring.boot4.MigrateGraphQlModule
+  - io.arconia.rewrite.spring.boot4.MigrateGroovyTemplatesModule
+  - io.arconia.rewrite.spring.boot4.MigrateGsonModule
+  - io.arconia.rewrite.spring.boot4.MigrateH2ConsoleModule
+  - io.arconia.rewrite.spring.boot4.MigrateHateoasModule
+  - io.arconia.rewrite.spring.boot4.MigrateJacksonModule
+  - io.arconia.rewrite.spring.boot4.MigrateRestClientModule
+  - io.arconia.rewrite.spring.boot4.MigrateWebClientModule
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.MigrateActiveMQModule
+displayName: Migrate ActiveMQ Module
+recipeList:
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.autoconfigure.jms.activemq
+      newPackageName: org.springframework.boot.activemq.autoconfigure
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.MigrateAmqpModule
+displayName: Migrate Amqp Module
+recipeList:
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.autoconfigure.amqp
+      newPackageName: org.springframework.boot.amqp.autoconfigure
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.actuate.autoconfigure.amqp
+      newPackageName: org.springframework.boot.amqp.autoconfigure.health
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.actuate.autoconfigure.metrics.amqp
+      newPackageName: org.springframework.boot.amqp.autoconfigure.metrics
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.actuate.amqp
+      newPackageName: org.springframework.boot.amqp.health
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.actuate.metrics.amqp
+      newPackageName: org.springframework.boot.amqp.metrics
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.MigrateArtemisModule
+displayName: Migrate Artemis Module
+recipeList:
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.autoconfigure.jms.artemis
+      newPackageName: org.springframework.boot.artemis.autoconfigure
+
+
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.MigrateBatchJdbcModule
+displayName: Migrate Batch Jdbc Module
+recipeList:
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.batch.BatchDataSource
+      newFullyQualifiedTypeName: org.springframework.boot.batch.jdbc.autoconfigure.BatchDataSource
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.batch.BatchDataSourceScriptDatabaseInitializer
+      newFullyQualifiedTypeName: org.springframework.boot.batch.jdbc.autoconfigure.BatchDataSourceScriptDatabaseInitializer
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.MigrateBatchModule
+displayName: Migrate Batch Module
+recipeList:
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.autoconfigure.batch
+      newPackageName: org.springframework.boot.batch.autoconfigure
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.actuate.autoconfigure.observation.batch
+      newPackageName: org.springframework.boot.batch.autoconfigure.observation
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.MigrateCacheModule
+displayName: Migrate Cache Module
+recipeList:
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.autoconfigure.cache
+      newPackageName: org.springframework.boot.cache.autoconfigure
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.actuate.autoconfigure.cache
+      newPackageName: org.springframework.boot.cache.autoconfigure
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.actuate.autoconfigure.metrics.cache
+      newPackageName: org.springframework.boot.cache.autoconfigure.metrics
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.actuate.metrics.cache
+      newPackageName: org.springframework.boot.cache.metrics
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.actuate.cache
+      newPackageName: org.springframework.boot.cache.actuate.endpoint
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.MigrateCassandraModule
+displayName: Migrate Cassandra Module
+recipeList:
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.autoconfigure.cassandra
+      newPackageName: org.springframework.boot.cassandra.autoconfigure
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.actuate.autoconfigure.cassandra
+      newPackageName: org.springframework.boot.cassandra.autoconfigure.health
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.actuate.cassandra
+      newPackageName: org.springframework.boot.cassandra.health
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.MigrateCloudFoundryModule
+displayName: Migrate Cloud Foundry Module
+recipeList:
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.autoconfigure.cassandra
+      newPackageName: org.springframework.boot.cassandra.autoconfigure
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.MigrateCouchbaseModule
+displayName: Migrate Couchbase Module
+recipeList:
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.autoconfigure.couchbase
+      newPackageName: org.springframework.boot.couchbase.autoconfigure
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.actuate.autoconfigure.couchbase
+      newPackageName: org.springframework.boot.couchbase.autoconfigure.health
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.actuate.couchbase
+      newPackageName: org.springframework.boot.couchbase.health
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.MigrateDataCassandraModule
+displayName: Migrate Data Cassandra Module
+recipeList:
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.data.cassandra.CassandraDataAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.data.cassandra.autoconfigure.DataCassandraAutoConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.data.cassandra.CassandraReactiveDataAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.data.cassandra.autoconfigure.DataCassandraReactiveAutoConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.data.cassandra.CassandraReactiveRepositoriesAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.data.cassandra.autoconfigure.DataCassandraReactiveRepositoriesAutoConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.data.cassandra.CassandraRepositoriesAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.data.cassandra.autoconfigure.DataCassandraRepositoriesAutoConfiguration
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.MigrateDataCommonsModule
+displayName: Migrate Data Commons Module
+recipeList:
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.data.web.SpringDataWebAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.data.autoconfigure.web.DataWebAutoConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties
+      newFullyQualifiedTypeName: org.springframework.boot.data.autoconfigure.web.DataWebProperties
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.autoconfigure.metrics.data.RepositoryMetricsAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.data.autoconfigure.metrics.DataRepositoryMetricsAutoConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.autoconfigure.metrics.PropertiesAutoTimer
+      newFullyQualifiedTypeName: org.springframework.boot.data.autoconfigure.metrics.PropertiesAutoTimer
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.metrics.AutoTimer
+      newFullyQualifiedTypeName: org.springframework.boot.data.metrics.AutoTimer
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.metrics.AutoTimer
+      newFullyQualifiedTypeName: org.springframework.boot.data.metrics.AutoTimer
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.metrics.annotation.TimedAnnotations
+      newFullyQualifiedTypeName: org.springframework.boot.data.metrics.TimedAnnotations
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.actuate.metrics.data
+      newPackageName: org.springframework.boot.data.metrics
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.MigrateDataCouchbaseModule
+displayName: Migrate Data Couchbase Module
+recipeList:
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.data.couchbase.CouchbaseDataAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.data.couchbase.autoconfigure.DataCouchbaseAutoConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.data.couchbase.CouchbaseDataProperties
+      newFullyQualifiedTypeName: org.springframework.boot.data.couchbase.autoconfigure.DataCouchbaseProperties
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.data.couchbase.CouchbaseReactiveDataAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.data.couchbase.autoconfigure.DataCouchbaseReactiveAutoConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.data.couchbase.CouchbaseReactiveRepositoriesAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.data.couchbase.autoconfigure.DataCouchbaseReactiveRepositoriesAutoConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.data.couchbase.CouchbaseRepositoriesAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.data.couchbase.autoconfigure.DataCouchbaseRepositoriesAutoConfiguration
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.MigrateDataElasticsearchModule
+displayName: Migrate Data Elasticsearch Module
+recipeList:
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.data.elasticsearch.ElasticsearchDataAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.data.elasticsearch.autoconfigure.DataElasticsearchAutoConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.data.elasticsearch.ElasticsearchRepositoriesAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.data.elasticsearch.autoconfigure.DataElasticsearchReactiveRepositoriesAutoConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.data.elasticsearch.ReactiveElasticsearchRepositoriesAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.data.elasticsearch.autoconfigure.DataElasticsearchRepositoriesAutoConfiguration
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.actuate.autoconfigure.data.elasticsearch
+      newPackageName: org.springframework.boot.data.elasticsearch.autoconfigure.health
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.actuate.data.elasticsearch
+      newPackageName: org.springframework.boot.data.elasticsearch.health
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.MigrateDataJdbcModule
+displayName: Migrate Data Jdbc Module
+recipeList:
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.data.jdbc.autoconfigure.JdbcDatabaseDialect
+      newFullyQualifiedTypeName: org.springframework.boot.autoconfigure.data.jdbc.DataJdbcDatabaseDialect
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.data.jdbc.autoconfigure.JdbcDataProperties
+      newFullyQualifiedTypeName: org.springframework.boot.autoconfigure.data.jdbc.DataJdbcProperties
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.data.jdbc.autoconfigure.JdbcRepositoriesAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.autoconfigure.data.jdbc.DataJdbcRepositoriesAutoConfiguration
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.MigrateDataJpaModule
+displayName: Migrate Data Jpa Module
+recipeList:
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.data.jpa.JpaRepositoriesAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.data.jpa.autoconfigure.DataJpaRepositoriesAutoConfiguration
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.MigrateDataLdapModule
+displayName: Migrate Data Ldap Module
+recipeList:
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.data.ldap.LdapRepositoriesAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.data.ldap.autoconfigure.DataLdapRepositoriesAutoConfiguration
+
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.MigrateDataMongoDbModule
+displayName: Migrate Data MongoDB Module
+recipeList:
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.data.mongo.MongoDataAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.data.mongodb.autoconfigure.DataMongoAutoConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.data.mongo.MongoReactiveDataAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.data.mongodb.autoconfigure.DataMongoReactiveAutoConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.data.mongo.MongoReactiveRepositoriesAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.data.mongodb.autoconfigure.DataMongoReactiveRepositoriesAutoConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.data.mongo.MongoRepositoriesAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.data.mongodb.autoconfigure.DataMongoRepositoriesAutoConfiguration
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.MigrateDataNeo4jModule
+displayName: Migrate Data Neo4J Module
+recipeList:
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.data.neo4j.Neo4jDataAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.data.neo4j.autoconfigure.DataNeo4jAutoConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.data.neo4j.Neo4jDataProperties
+      newFullyQualifiedTypeName: org.springframework.boot.data.neo4j.autoconfigure.DataNeo4jProperties
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.data.neo4j.Neo4jReactiveDataAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.data.neo4j.autoconfigure.DataNeo4jReactiveAutoConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.data.neo4j.Neo4jReactiveRepositoriesAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.data.neo4j.autoconfigure.DataNeo4jReactiveRepositoriesAutoConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.data.neo4j.Neo4jRepositoriesAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.data.neo4j.autoconfigure.DataNeo4jRepositoriesAutoConfiguration
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.MigrateDataR2dbcModule
+displayName: Migrate Data R2DBC Module
+recipeList:
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.data.r2dbc.R2dbcDataAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.data.r2dbc.autoconfigure.R2dbcRepositoriesAutoConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.data.r2dbc.DataR2dbcAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.data.r2dbc.autoconfigure.DataR2dbcRepositoriesAutoConfiguration
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.MigrateDataRedisModule
+displayName: Migrate Data Redis Module
+recipeList:
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.data.redis.autoconfigure.DataRedisAutoConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.data.redis.RedisConnectionDetails
+      newFullyQualifiedTypeName: org.springframework.boot.data.redis.autoconfigure.DataRedisConnectionDetails
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.data.redis.RedisProperties
+      newFullyQualifiedTypeName: org.springframework.boot.data.redis.autoconfigure.DataRedisProperties
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.data.redis.RedisReactiveAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.data.redis.autoconfigure.DataRedisReactiveAutoConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.data.redis.RedisRepositoriesAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.data.redis.autoconfigure.DataRedisRepositoriesAutoConfiguration
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.autoconfigure.data.redis
+      newPackageName: org.springframework.boot.data.redis.autoconfigure
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.data.redis.RedisHealthContributorAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.data.redis.autoconfigure.health.DataRedisHealthContributorAutoConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.data.redis.RedisReactiveHealthContributorAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.data.redis.autoconfigure.health.DataRedisReactiveHealthContributorAutoConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.autoconfigure.metrics.redis.LettuceMetricsAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.data.redis.autoconfigure.observation.LettuceObservationAutoConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.data.redis.RedisHealth
+      newFullyQualifiedTypeName: org.springframework.boot.data.redis.health.DataRedisHealth
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.data.redis.RedisHealthIndicator
+      newFullyQualifiedTypeName: org.springframework.boot.data.redis.health.DataRedisHealthIndicator
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.data.redis.RedisReactiveHealthIndicator
+      newFullyQualifiedTypeName: org.springframework.boot.data.redis.health.DataRedisReactiveHealthIndicator
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.MigrateDataRestModule
+displayName: Migrate Data REST Module
+recipeList:
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.data.rest.RepositoryRestMvcAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.data.rest.autoconfigure.DataRestAutoConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.data.rest.RepositoryRestProperties
+      newFullyQualifiedTypeName: org.springframework.boot.data.rest.autoconfigure.DataRestProperties
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.MigrateElasticsearchModule
+displayName: Migrate Elasticsearch Module
+recipeList:
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.elasticsearch.ReactiveElasticsearchClientAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.elasticsearch.autoconfigure.ElasticsearchReactiveClientAutoConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.elasticsearch.RestClientBuilderCustomizer
+      newFullyQualifiedTypeName: org.springframework.boot.elasticsearch.autoconfigure.Rest5ClientBuilderCustomizer
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.autoconfigure.elasticsearch
+      newPackageName: org.springframework.boot.elasticsearch.autoconfigure
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.actuate.autoconfigure.elasticsearch
+      newPackageName: org.springframework.boot.elasticsearch.autoconfigure.health
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.actuate.elasticsearch
+      newPackageName: org.springframework.boot.elasticsearch.health
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.MigrateFlywayModule
+displayName: Migrate Flyway Module
+recipeList:
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.autoconfigure.flyway
+      newPackageName: org.springframework.boot.flyway.autoconfigure
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.actuate.autoconfigure.flyway
+      newPackageName: org.springframework.boot.flyway.autoconfigure
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.actuate.flyway
+      newPackageName: org.springframework.boot.flyway.actuate.endpoint
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.MigrateFreemarkerModule
+displayName: Migrate Freemarker Module
+recipeList:
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.autoconfigure.freemarker
+      newPackageName: org.springframework.boot.freemarker.autoconfigure
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.MigrateGraphQlModule
+displayName: Migrate GraphQL Module
+recipeList:
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.autoconfigure.graphql
+      newPackageName: org.springframework.boot.graphql.autoconfigure
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.actuate.autoconfigure.observation.graphql
+      newPackageName: org.springframework.boot.graphql.autoconfigure.observation
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.MigrateGroovyTemplatesModule
+displayName: Migrate GroovyTemplates Module
+recipeList:
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.autoconfigure.groovy.template
+      newPackageName: org.springframework.boot.groovy.template.autoconfigure
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.MigrateGsonModule
+displayName: Migrate GSON Module
+recipeList:
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.autoconfigure.gson
+      newPackageName: org.springframework.boot.gson.autoconfigure
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.MigrateH2ConsoleModule
+displayName: Migrate H2 Console Module
+recipeList:
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.autoconfigure.h2
+      newPackageName: org.springframework.boot.h2console.autoconfigure
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.MigrateHateoasModule
+displayName: Migrate Hateoas Module
+recipeList:
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.autoconfigure.hateoas
+      newPackageName: org.springframework.boot.hateoas.autoconfigure
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.MigrateHazelcastModule
+displayName: Migrate Hazelcast Module
+recipeList:
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.autoconfigure.hazelcast
+      newPackageName: org.springframework.boot.hazelcast.autoconfigure
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.actuate.autoconfigure.hazelcast
+      newPackageName: org.springframework.boot.hazelcast.autoconfigure.health
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.actuate.hazelcast
+      newPackageName: org.springframework.boot.hazelcast.health
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.MigrateJacksonModule
+displayName: Migrate Jackson Module
+recipeList:
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.jackson.Jackson2ObjectMapperBuilderCustomizer
+      newFullyQualifiedTypeName: org.springframework.boot.jackson.autoconfigure.JsonMapperBuilderCustomizer
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.jackson.autoconfigure.JacksonAutoConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.jackson.JacksonProperties
+      newFullyQualifiedTypeName: org.springframework.boot.jackson.autoconfigure.JacksonProperties
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.jackson.JsonComponent
+      newFullyQualifiedTypeName: org.springframework.boot.jackson.JacksonComponent
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.jackson.JsonComponentModule
+      newFullyQualifiedTypeName: org.springframework.boot.jackson.JacksonComponentModule
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.jackson.JsonMixin
+      newFullyQualifiedTypeName: org.springframework.boot.jackson.JacksonMixin
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.jackson.JsonMixinModule
+      newFullyQualifiedTypeName: org.springframework.boot.jackson.JacksonMixinModule
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.jackson.JsonMixinModuleEntries
+      newFullyQualifiedTypeName: org.springframework.boot.jackson.JacksonMixinModuleEntries
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.jackson.JsonObjectDeserializer
+      newFullyQualifiedTypeName: org.springframework.boot.jackson.ObjectValueDeserializer
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.jackson.JsonObjectSerializer
+      newFullyQualifiedTypeName: org.springframework.boot.jackson.ObjectValueSerializer
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.MigrateRestClientModule
+displayName: Migrate Rest Client Module
+recipeList:
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.autoconfigure.web.client
+      newPackageName: org.springframework.boot.restclient.autoconfigure
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.MigrateWebClientModule
+displayName: Migrate Web Client Module
+recipeList:
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.autoconfigure.web.reactive.function.client
+      newPackageName: org.springframework.boot.webclient.autoconfigure

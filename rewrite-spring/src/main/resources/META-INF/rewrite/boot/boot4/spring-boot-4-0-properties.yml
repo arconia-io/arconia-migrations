@@ -45,9 +45,9 @@ recipeList:
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: management.health.probes.enabled
       newPropertyKey: management.endpoint.health.probes.enabled
-  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
-      oldPropertyKey: management.logging.export.enabled
-      newPropertyKey: management.opentelemetry.logging.export.enabled
+#  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+#      oldPropertyKey: management.logging.export.enabled
+#      newPropertyKey: management.opentelemetry.logging.export.enabled
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: management.metrics.mongo.command.enabled
       newPropertyKey: management.metrics.mongodb.command.enabled
@@ -59,34 +59,73 @@ recipeList:
       newPropertyKey: management.metrics.observations.ignored-meters
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: management.otlp.logging
-      newPropertyKey: management.opentelemetry.logging.export
+      newPropertyKey: management.opentelemetry.logging.export.otlp
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: management.otlp.logging.compression
-      newPropertyKey: management.opentelemetry.logging.export.compression
+      newPropertyKey: management.opentelemetry.logging.export.otlp.compression
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: management.otlp.logging.connect-timeout
-      newPropertyKey: management.opentelemetry.logging.export.connect-timeout
+      newPropertyKey: management.opentelemetry.logging.export.otlp.connect-timeout
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: management.otlp.logging.endpoint
-      newPropertyKey: management.opentelemetry.logging.export.endpoint
+      newPropertyKey: management.opentelemetry.logging.export.otlp.endpoint
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: management.otlp.logging.export.enabled
-      newPropertyKey: management.opentelemetry.logging.export.enabled
+      newPropertyKey: management.opentelemetry.logging.export.otlp.enabled
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: management.otlp.logging.headers
-      newPropertyKey: management.opentelemetry.logging.export.headers
+      newPropertyKey: management.opentelemetry.logging.export.otlp.headers
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: management.otlp.logging.timeout
-      newPropertyKey: management.opentelemetry.logging.export.timeout
+      newPropertyKey: management.opentelemetry.logging.export.otlp.timeout
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: management.otlp.logging.transport
-      newPropertyKey: management.opentelemetry.logging.export.transport
+      newPropertyKey: management.opentelemetry.logging.export.otlp.transport
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: management.otlp.tracing.compression
+      newPropertyKey: management.opentelemetry.tracing.export.otlp.compression
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: management.otlp.tracing.connect-timeout
+      newPropertyKey: management.opentelemetry.tracing.export.otlp.connect-timeout
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: management.otlp.tracing.endpoint
+      newPropertyKey: management.opentelemetry.tracing.export.otlp.endpoint
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: management.otlp.tracing.export.enabled
+      newPropertyKey: management.opentelemetry.tracing.export.otlp.enabled
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: management.otlp.tracing.headers
+      newPropertyKey: management.opentelemetry.tracing.export.otlp.headers
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: management.otlp.tracing.timeout
+      newPropertyKey: management.opentelemetry.tracing.export.otlp.timeout
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: management.otlp.tracing.transport
+      newPropertyKey: management.opentelemetry.tracing.export.otlp.transport
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: management.server.undertow.accesslog.prefix
       comment: "Deprecated property removed in Spring Boot 4.0."
-  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
-      propertyKey: management.tracing.enabled
-      comment: "Deprecated property removed in Spring Boot 4.0."
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: management.tracing.brave.span-joining-supported
+      newPropertyKey: management.brave.tracing.span-joining-supported
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: management.tracing.enabled
+      newPropertyKey: management.tracing.export.enabled
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: management.tracing.opentelemetry.export.include-unsampled
+      newPropertyKey: management.opentelemetry.tracing.export.include-unsampled
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: management.tracing.opentelemetry.export.max-batch-size
+      newPropertyKey: management.opentelemetry.tracing.export.max-batch-size
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: management.tracing.opentelemetry.export.max-queue-size
+      newPropertyKey: management.opentelemetry.tracing.export.max-queue-size
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: management.tracing.opentelemetry.export.schedule-delay
+      newPropertyKey: management.opentelemetry.tracing.export.schedule-delay
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: management.tracing.opentelemetry.export.timeout
+      newPropertyKey: management.opentelemetry.tracing.export.timeout
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: management.wavefront.api-token
       comment: "Deprecated property removed in Spring Boot 4.0. Wavefront is end-of-life."
@@ -159,6 +198,21 @@ recipeList:
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: management.wavefront.uri
       comment: "Deprecated property removed in Spring Boot 4.0. Wavefront is end-of-life."
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: management.zipkin.tracing.connect-timeout
+      newPropertyKey: management.tracing.export.zipkin.connect-timeout
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: management.zipkin.tracing.encoding
+      newPropertyKey: management.tracing.export.zipkin.encoding
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: management.zipkin.tracing.endpoint
+      newPropertyKey: management.tracing.export.zipkin.endpoint
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: management.zipkin.tracing.export.enabled
+      newPropertyKey: management.tracing.export.zipkin.enabled
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: management.zipkin.tracing.read-timeout
+      newPropertyKey: management.tracing.export.zipkin.read-timeout
 
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: server.servlet.encoding.charset
@@ -194,6 +248,9 @@ recipeList:
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: server.undertow.accesslog.suffix
       comment: "Deprecated property removed in Spring Boot 4.0."
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: server.undertow.allow-encoded-slash
+      newPropertyKey: server.undertow.decode-slash
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: server.undertow.always-set-keep-alive
       comment: "Deprecated property removed in Spring Boot 4.0."
@@ -293,7 +350,6 @@ recipeList:
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: spring.flyway.clean-on-validation-error
       comment: "Deprecated property removed in Spring Boot 4.0. Deprecated in Flyway 10.18 and removed in Flyway 11.0."
-
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: spring.flyway.oracle-kerberos-cache-file
       newPropertyKey: spring.flyway.oracle.kerberos-cache-file
@@ -311,6 +367,13 @@ recipeList:
       newPropertyKey: spring.flyway.sqlserver.kerberos-login-file
 
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
+      propertyKey: spring.freemarker.enabled
+      comment: "Deprecated property removed in Spring Boot 4.0. No longer required."
+  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
+      propertyKey: spring.groovy.template.enabled
+      comment: "Deprecated property removed in Spring Boot 4.0. No longer required."
+
+  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: spring.jackson.generator
       comment: "Deprecated property removed in Spring Boot 4.0. Partially replaced by 'spring.jackson.json.read'."
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
@@ -323,25 +386,13 @@ recipeList:
       oldPropertyKey: spring.jackson.write
       newPropertyKey: spring.jackson.json.write
 
-  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
-      propertyKey: spring.jersey.application-path
-      comment: "Deprecated property removed in Spring Boot 4.0."
-  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
-      propertyKey: spring.jersey.filter.order
-      comment: "Deprecated property removed in Spring Boot 4.0."
-  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
-      propertyKey: spring.jersey.init
-      comment: "Deprecated property removed in Spring Boot 4.0."
-  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
-      propertyKey: spring.jersey.servlet.load-on-startup
-      comment: "Deprecated property removed in Spring Boot 4.0."
-  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
-      propertyKey: spring.jersey.type
-      comment: "Deprecated property removed in Spring Boot 4.0."
-
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: spring.kafka.retry.topic.backoff.random
       newPropertyKey: spring.kafka.retry.topic.backoff.jitter
+
+  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
+      propertyKey: spring.mustache.enabled
+      comment: "Deprecated property removed in Spring Boot 4.0. No longer required."
 
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: spring.neo4j.pool.metrics-enabled
@@ -382,3 +433,7 @@ recipeList:
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: spring.test.observability.auto-configure
       comment: "Deprecated property removed in Spring Boot 4.0. Superseded by 'spring.test.metrics.export' and 'spring.test.tracing.export'."
+
+  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
+      propertyKey: spring.thymeleaf.enabled
+      comment: "Deprecated property removed in Spring Boot 4.0. No longer required."
