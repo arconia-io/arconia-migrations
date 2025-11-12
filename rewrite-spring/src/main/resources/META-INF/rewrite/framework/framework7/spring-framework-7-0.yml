@@ -30,7 +30,7 @@ recipeList:
       newFullyQualifiedTypeName: tools.jackson.databind.json.JsonMapper$Builder
 
   # Jackson 2 -> 3
-  # To be removed after is merged
+  # To be removed after https://github.com/openrewrite/rewrite-jackson/pull/41 is merged
   - org.openrewrite.java.ChangeMethodName:
       methodPattern: com.fasterxml.jackson.core.JsonGenerator getCodec()
       newMethodName: objectWriteContext
