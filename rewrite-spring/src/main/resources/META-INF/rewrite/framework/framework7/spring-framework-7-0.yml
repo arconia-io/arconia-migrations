@@ -19,12 +19,94 @@ recipeList:
   - org.openrewrite.java.jackson.UpgradeJackson_2_3
   - io.arconia.rewrite.test.junit.UpgradeJUnit_6
 
-  # Type Changes: Core
+  # Spring Framework Modules
+  - io.arconia.rewrite.spring.framework7.MigrateSpringAot_7_0
+  - io.arconia.rewrite.spring.framework7.MigrateSpringCore_7_0
+  - io.arconia.rewrite.spring.framework7.MigrateSpringTest_7_0
+  - io.arconia.rewrite.spring.framework7.MigrateSpringWeb_7_0
+  - io.arconia.rewrite.spring.framework7.MigrateSpringWebFlux_7_0
+  - io.arconia.rewrite.spring.framework7.MigrateSpringWebMvc_7_0
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.framework7.MigrateSpringAot_7_0
+displayName: Migrate the Spring AOT module to Spring Framework 7.0
+recipeList:
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: org.springframework.aot.hint.support.FilePatternResourceHintsRegistrar withClasspathLocations(..)
+      newMethodName: withClassPathLocations
+  - org.openrewrite.java.ReplaceConstantWithAnotherConstant:
+      existingFullyQualifiedConstantName: org.springframework.aot.hint.MemberCategory.DECLARED_FIELDS
+      fullyQualifiedConstantName: org.springframework.aot.hint.MemberCategory.INVOKE_DECLARED_FIELDS
+  - org.openrewrite.java.ReplaceConstantWithAnotherConstant:
+      existingFullyQualifiedConstantName: org.springframework.aot.hint.MemberCategory.PUBLIC_FIELDS
+      fullyQualifiedConstantName: org.springframework.aot.hint.MemberCategory.INVOKE_PUBLIC_FIELDS
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.framework7.MigrateSpringCore_7_0
+displayName: Migrate the Spring Core module to Spring Framework 7.0
+recipeList:
   - org.openrewrite.java.ChangeType:
       oldFullyQualifiedTypeName: org.springframework.lang.Nullable
       newFullyQualifiedTypeName: org.jspecify.annotations.Nullable
 
-  # Type Changes: Jackson
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.framework7.MigrateSpringTest_7_0
+displayName: Migrate the Spring Test module to Spring Framework 7.0
+recipeList:
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: org.springframework.test.web.servlet.result.StatusResultMatchers isPayloadTooLarge()
+      newMethodName: isContentTooLarge
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: org.springframework.test.web.servlet.result.StatusResultMatchers isUnprocessableEntity()
+      newMethodName: isUnprocessableContent
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.framework7.MigrateSpringWeb_7_0
+displayName: Migrate the Spring Web module to Spring Framework 7.0
+recipeList:
   - org.openrewrite.java.ChangeType:
       oldFullyQualifiedTypeName: org.springframework.http.converter.json.Jackson2ObjectMapperBuilder
       newFullyQualifiedTypeName: tools.jackson.databind.json.JsonMapper$Builder
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.web.client.HttpClientErrorException$UnprocessableEntity
+      newFullyQualifiedTypeName: org.springframework.web.client.HttpClientErrorException$UnprocessableContent
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.web.server.PayloadTooLargeException
+      newFullyQualifiedTypeName: org.springframework.web.server.ContentTooLargeException
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: org.springframework.http.ResponseEntity unprocessableEntity()
+      newMethodName: unprocessableContent
+  - org.openrewrite.java.ReplaceConstantWithAnotherConstant:
+      existingFullyQualifiedConstantName: org.springframework.http.HttpStatus.PAYLOAD_TOO_LARGE
+      fullyQualifiedConstantName: org.springframework.http.HttpStatus.CONTENT_TOO_LARGE
+  - org.openrewrite.java.ReplaceConstantWithAnotherConstant:
+      existingFullyQualifiedConstantName: org.springframework.http.HttpStatus.UNPROCESSABLE_ENTITY
+      fullyQualifiedConstantName: org.springframework.http.HttpStatus.UNPROCESSABLE_CONTENT
+  - org.openrewrite.java.ReplaceConstantWithAnotherConstant:
+      existingFullyQualifiedConstantName: org.springframework.web.servlet.support.RequestContext.jstlPresent
+      fullyQualifiedConstantName: org.springframework.web.servlet.support.RequestContext.JSTL_PRESENT
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.framework7.MigrateSpringWebFlux_7_0
+displayName: Migrate the Spring WebFlux module to Spring Framework 7.0
+recipeList:
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: org.springframework.web.reactive.function.server.ServerResponse unprocessableEntity()
+      newMethodName: unprocessableContent
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.web.reactive.function.client.WebClientResponseException$UnprocessableEntity
+      newFullyQualifiedTypeName: org.springframework.web.reactive.function.client.WebClientResponseException$UnprocessableContent
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.framework7.MigrateSpringWebMvc_7_0
+displayName: Migrate the Spring WebMVC module to Spring Framework 7.0
+recipeList:
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: org.springframework.web.servlet.function.ServerResponse unprocessableEntity()
+      newMethodName: unprocessableContent
