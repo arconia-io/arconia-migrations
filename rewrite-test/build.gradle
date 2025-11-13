@@ -23,8 +23,9 @@ dependencies {
     testImplementation "org.junit.jupiter:junit-jupiter:${jUnitVersion}"
     testImplementation "org.mockito:mockito-junit-jupiter:${mockitoVersion}"
     testImplementation "org.mockito:mockito-core:${mockitoVersion}"
-    testImplementation "org.gradle:gradle-tooling-api:${gradleToolingVersion}"
-    testImplementation "org.openrewrite.gradle.tooling:model:${openRewriteGradleToolingVersion}"
+    testImplementation "org.openrewrite.gradle.tooling:model"
+
+    testRuntimeOnly gradleApi()
 }
 
 recipeDependencies {
