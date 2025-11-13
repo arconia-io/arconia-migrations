@@ -94,7 +94,7 @@ recipeList:
       onlyIfUsing: org.springframework.boot.persistence.autoconfigure.EntityScan
       acceptTransitive: true
 
-  - io.arconia.rewrite.spring.boot4.MigrateActiveMQModule
+  - io.arconia.rewrite.spring.boot4.MigrateActiveMqModule
   - io.arconia.rewrite.spring.boot4.MigrateAmqpModule
   - io.arconia.rewrite.spring.boot4.MigrateArtemisModule
   - io.arconia.rewrite.spring.boot4.MigrateBatchJdbcModule
@@ -137,15 +137,6 @@ recipeList:
 
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: io.arconia.rewrite.spring.boot4.MigrateActiveMQModule
-displayName: Migrate ActiveMQ Module
-recipeList:
-  - org.openrewrite.java.ChangePackage:
-      oldPackageName: org.springframework.boot.autoconfigure.jms.activemq
-      newPackageName: org.springframework.boot.activemq.autoconfigure
-
----
-type: specs.openrewrite.org/v1beta/recipe
 name: io.arconia.rewrite.spring.boot4.MigrateAmqpModule
 displayName: Migrate Amqp Module
 recipeList:
@@ -164,17 +155,6 @@ recipeList:
   - org.openrewrite.java.ChangePackage:
       oldPackageName: org.springframework.boot.actuate.metrics.amqp
       newPackageName: org.springframework.boot.amqp.metrics
-
----
-type: specs.openrewrite.org/v1beta/recipe
-name: io.arconia.rewrite.spring.boot4.MigrateArtemisModule
-displayName: Migrate Artemis Module
-recipeList:
-  - org.openrewrite.java.ChangePackage:
-      oldPackageName: org.springframework.boot.autoconfigure.jms.artemis
-      newPackageName: org.springframework.boot.artemis.autoconfigure
-
-
 
 ---
 type: specs.openrewrite.org/v1beta/recipe

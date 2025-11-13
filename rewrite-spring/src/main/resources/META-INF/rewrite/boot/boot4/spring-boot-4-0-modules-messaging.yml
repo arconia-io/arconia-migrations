@@ -8,8 +8,6 @@ tags:
   - spring
   - boot
 recipeList:
-  - io.arconia.rewrite.spring.boot4.AddActiveMqStarterTest
-  - io.arconia.rewrite.spring.boot4.AddArtemisStarterTest
   - io.arconia.rewrite.spring.boot4.AddJmsStarter
   - io.arconia.rewrite.spring.boot4.AddJmsStarterTest
   - io.arconia.rewrite.spring.boot4.AddRsocketStarterTest
@@ -22,42 +20,6 @@ recipeList:
   - io.arconia.rewrite.spring.boot4.AddPulsarStarterTest
   - io.arconia.rewrite.spring.boot4.AddWebSocketStarterTest
 
----
-type: specs.openrewrite.org/v1beta/recipe
-name: io.arconia.rewrite.spring.boot4.AddActiveMqStarterTest
-displayName: Add ActiveMQ Starter Test
-tags:
-  - spring
-  - boot
-preconditions:
-  - org.openrewrite.java.dependencies.DependencyInsight:
-      groupIdPattern: org.springframework.boot
-      artifactIdPattern: spring-boot-starter-activemq
-recipeList:
-  - org.openrewrite.java.dependencies.AddDependency:
-      groupId: org.springframework.boot
-      artifactId: spring-boot-starter-activemq-test
-      acceptTransitive: true
-      configuration: testImplementation
-      scope: test
----
-type: specs.openrewrite.org/v1beta/recipe
-name: io.arconia.rewrite.spring.boot4.AddArtemisStarterTest
-displayName: Add Artemis Starter Test
-tags:
-  - spring
-  - boot
-preconditions:
-  - org.openrewrite.java.dependencies.DependencyInsight:
-      groupIdPattern: org.springframework.boot
-      artifactIdPattern: spring-boot-starter-artemis
-recipeList:
-  - org.openrewrite.java.dependencies.AddDependency:
-      groupId: org.springframework.boot
-      artifactId: spring-boot-starter-artemis-test
-      acceptTransitive: true
-      configuration: testImplementation
-      scope: test
 ---
 type: specs.openrewrite.org/v1beta/recipe
 name: io.arconia.rewrite.spring.boot4.AddJmsStarter
