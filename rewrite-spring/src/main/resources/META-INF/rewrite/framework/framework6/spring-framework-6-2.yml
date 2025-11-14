@@ -48,6 +48,7 @@ recipeList:
   - org.openrewrite.java.ChangeMethodName:
       methodPattern: org.springframework.validation.method.MethodValidationResult getAllValidationResults()
       newMethodName: getParameterValidationResults
+      matchOverrides: true
 
 ---
 type: specs.openrewrite.org/v1beta/recipe
@@ -57,21 +58,26 @@ recipeList:
   - org.openrewrite.java.ChangeMethodName:
       methodPattern: org.springframework.messaging.handler.invocation.AsyncHandlerMethodReturnValueHandler toListenableFuture(..)
       newMethodName: toCompletableFuture
+      matchOverrides: true
   - org.openrewrite.java.ChangeMethodName:
       methodPattern: org.springframework.messaging.simp.stomp.ConnectionHandlingStompSession getSessionFuture()
       newMethodName: getSession
+      matchOverrides: true
   - org.openrewrite.java.ChangeMethodName:
       methodPattern: org.springframework.messaging.simp.stomp.ReactorNettyTcpStompClient connect(..)
       newMethodName: connectAsync
   - org.openrewrite.java.ChangeMethodName:
       methodPattern: org.springframework.messaging.tcp.TcpConnection send(..)
       newMethodName: sendAsync
+      matchOverrides: true
   - org.openrewrite.java.ChangeMethodName:
       methodPattern: org.springframework.messaging.tcp.TcpOperations connect(..)
       newMethodName: connectAsync
+      matchOverrides: true
   - org.openrewrite.java.ChangeMethodName:
       methodPattern: org.springframework.messaging.tcp.TcpOperations shutdown()
       newMethodName: shutdownAsync
+      matchOverrides: true
 
 ---
 type: specs.openrewrite.org/v1beta/recipe
@@ -82,23 +88,29 @@ recipeList:
       methodPattern: org.springframework.test.web.reactive.server.ExchangeResult getRawStatusCode()
       newMethodName: getStatus
   - org.openrewrite.java.ChangeMethodName:
+      methodPattern: org.springframework.test.web.reactive.server.WebTestClient$Builder exchangeStrategies(..)
+      newMethodName: codecs
+      matchOverrides: true
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: org.springframework.test.web.reactive.server.WebTestClient$RequestBodySpec syncBody(..)
+      newMethodName: bodyValue
+      matchOverrides: true
+  - org.openrewrite.java.ChangeMethodName:
       methodPattern: org.springframework.test.web.servlet.result.StatusResultMatchers isMovedTemporarily()
       newMethodName: isFound
+      matchOverrides: true
   - org.openrewrite.java.ChangeMethodName:
       methodPattern: org.springframework.test.web.servlet.result.StatusResultMatchers isRequestEntityTooLarge()
       newMethodName: isPayloadTooLarge
+      matchOverrides: true
   - org.openrewrite.java.ChangeMethodName:
       methodPattern: org.springframework.test.web.servlet.result.StatusResultMatchers isRequestUriTooLong()
       newMethodName: isUriTooLong
-  - org.openrewrite.java.ChangeMethodName:
-      methodPattern: org.springframework.test.web.reactive.server.WebTestClient exchangeStrategies(..)
-      newMethodName: codecs
-  - org.openrewrite.java.ChangeMethodName:
-      methodPattern: org.springframework.test.web.reactive.server.WebTestClient syncBody(..)
-      newMethodName: bodyValue
+      matchOverrides: true
   - org.openrewrite.java.ChangeMethodName:
       methodPattern: org.springframework.test.web.servlet.result.StatusResultMatchers isCheckpoint()
       newMethodName: isEarlyHints
+      matchOverrides: true
 
 ---
 type: specs.openrewrite.org/v1beta/recipe
@@ -106,22 +118,25 @@ name: io.arconia.rewrite.spring.framework6.MigrateSpringWeb_6_2
 displayName: Migrate the Spring Web module to Spring Framework 6.2
 recipeList:
   - org.openrewrite.java.ChangeMethodName:
+      methodPattern: org.springframework.http.ResponseEntity getStatusCodeValue()
+      newMethodName: getStatusCode
+  - org.openrewrite.java.ChangeMethodName:
       methodPattern: org.springframework.http.client.ClientHttpResponse getRawStatusCode()
       newMethodName: getStatusCode
+      matchOverrides: true
   - org.openrewrite.java.ChangeMethodName:
       methodPattern: org.springframework.http.client.reactive.ClientHttpResponse getRawStatusCode()
       newMethodName: getStatusCode
+      matchOverrides: true
   - org.openrewrite.java.ChangeMethodName:
       methodPattern: org.springframework.http.server.reactive.ServerHttpResponse getRawStatusCode()
       newMethodName: getStatusCode
-  - org.openrewrite.java.ChangeMethodName:
-      methodPattern: org.springframework.web.server.handler.ResponseStatusExceptionHandler determineRawStatusCode(..)
-      newMethodName: determineStatus
-  - org.openrewrite.java.ChangeMethodName:
-      methodPattern: org.springframework.web.util.UriComponentsBuilder fromOriginHeader(..)
-      newMethodName: fromUriString
+      matchOverrides: true
   - org.openrewrite.java.ChangeMethodName:
       methodPattern: org.springframework.web.client.RestClientResponseException getRawStatusCode()
+      newMethodName: getStatusCode
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: org.springframework.web.client.UnknownContentTypeException getRawStatusCode()
       newMethodName: getStatusCode
   - org.openrewrite.java.ChangeMethodName:
       methodPattern: org.springframework.web.server.MethodNotAllowedException getResponseHeaders()
@@ -136,14 +151,17 @@ recipeList:
       methodPattern: org.springframework.web.server.UnsupportedMediaTypeStatusException getResponseHeaders()
       newMethodName: getHeaders
   - org.openrewrite.java.ChangeMethodName:
-      methodPattern: org.springframework.http.ResponseEntity getStatusCodeValue()
-      newMethodName: getStatusCode
-  - org.openrewrite.java.ChangeMethodName:
-      methodPattern: org.springframework.web.client.UnknownContentTypeException getRawStatusCode()
-      newMethodName: getStatusCode
+      methodPattern: org.springframework.web.server.handler.ResponseStatusExceptionHandler determineRawStatusCode(..)
+      newMethodName: determineStatus
+      matchOverrides: true
   - org.openrewrite.java.ChangeMethodName:
       methodPattern: org.springframework.web.util.UriComponentsBuilder fromHttpUrl(String)
       newMethodName: fromUriString
+      matchOverrides: true
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: org.springframework.web.util.UriComponentsBuilder fromOriginHeader(..)
+      newMethodName: fromUriString
+      matchOverrides: true
 
   - org.openrewrite.java.ReplaceConstantWithAnotherConstant:
       existingFullyQualifiedConstantName: org.springframework.http.MediaType.APPLICATION_GRAPHQL
@@ -165,10 +183,10 @@ recipeList:
       fullyQualifiedConstantName: org.springframework.http.MediaType.APPLICATION_PROBLEM_JSON_VALUE
   - org.openrewrite.java.ReplaceConstantWithAnotherConstant:
       existingFullyQualifiedConstantName: org.springframework.http.MediaType.APPLICATION_STREAM_JSON
-      fullyQualifiedConstantName: org.springframework.http.MediaType.APPLICATION_STREAM_JSON_VALUE
+      fullyQualifiedConstantName: org.springframework.http.MediaType.APPLICATION_NDJSON
   - org.openrewrite.java.ReplaceConstantWithAnotherConstant:
       existingFullyQualifiedConstantName: org.springframework.http.MediaType.APPLICATION_STREAM_JSON_VALUE
-      fullyQualifiedConstantName: org.springframework.http.MediaType.APPLICATION_NDJSON
+      fullyQualifiedConstantName: org.springframework.http.MediaType.APPLICATION_NDJSON_VALUE
 
   - org.openrewrite.java.ReplaceConstantWithAnotherConstant:
       existingFullyQualifiedConstantName: org.springframework.http.HttpStatus.MOVED_TEMPORARILY
@@ -186,58 +204,55 @@ name: io.arconia.rewrite.spring.framework6.MigrateSpringWebFlux_6_2
 displayName: Migrate the Spring WebFlux module to Spring Framework 6.2
 recipeList:
   - org.openrewrite.java.ChangeMethodName:
-      methodPattern: org.springframework.web.reactive.function.client.ClientResponse rawStatusCode()
-      newMethodName: statusCode
-  - org.openrewrite.java.ChangeMethodName:
-      methodPattern: org.springframework.web.reactive.function.server.ServerResponse rawStatusCode()
-      newMethodName: statusCode
-  - org.openrewrite.java.ChangeMethodName:
-      methodPattern: org.springframework.web.reactive.result.view.FragmentsRendering with(..)
-      newMethodName: fragment
-  - org.openrewrite.java.ChangeMethodName:
-      methodPattern: org.springframework.web.reactive.result.view.FragmentsRendering withCollection(..)
-      newMethodName: fragments
-  - org.openrewrite.java.ChangeMethodName:
-      methodPattern: org.springframework.web.reactive.result.view.FragmentsRendering withPublisher(..)
-      newMethodName: fragmentsPublisher
-  - org.openrewrite.java.ChangeMethodName:
-      methodPattern: org.springframework.web.reactive.result.view.FragmentsRendering withProducer(..)
-      newMethodName: fragmentsProducer
-  - org.openrewrite.java.ChangeMethodName:
       methodPattern: org.springframework.web.reactive.function.BodyInserters fromObject(..)
       newMethodName: fromValue
+      matchOverrides: true
   - org.openrewrite.java.ChangeMethodName:
       methodPattern: org.springframework.web.reactive.function.client.ClientRequest method(..)
       newMethodName: create
+      matchOverrides: true
   - org.openrewrite.java.ChangeMethodName:
-      methodPattern: org.springframework.web.reactive.function.client.WebClient exchangeStrategies(..)
+      methodPattern: org.springframework.web.reactive.function.client.ClientResponse rawStatusCode()
+      newMethodName: statusCode
+      matchOverrides: true
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: org.springframework.web.reactive.function.client.WebClient$Builder exchangeStrategies(..)
       newMethodName: codecs
+      matchOverrides: true
   - org.openrewrite.java.ChangeMethodName:
-      methodPattern: org.springframework.web.reactive.function.client.WebClient syncBody(..)
+      methodPattern: org.springframework.web.reactive.function.client.WebClient$RequestBodySpec syncBody(..)
       newMethodName: bodyValue
+      matchOverrides: true
   - org.openrewrite.java.ChangeMethodName:
       methodPattern: org.springframework.web.reactive.function.client.WebClientResponseException getRawStatusCode()
       newMethodName: getStatusCode
   - org.openrewrite.java.ChangeMethodName:
       methodPattern: org.springframework.web.reactive.function.server.ServerRequest methodName()
       newMethodName: method
+      matchOverrides: true
   - org.openrewrite.java.ChangeMethodName:
       methodPattern: org.springframework.web.reactive.function.server.ServerRequest pathContainer()
       newMethodName: requestPath
+      matchOverrides: true
   - org.openrewrite.java.ChangeMethodName:
-      methodPattern: org.springframework.web.reactive.function.server.ServerResponse syncBody(..)
+      methodPattern: org.springframework.web.reactive.function.server.ServerResponse rawStatusCode()
+      newMethodName: statusCode
+      matchOverrides: true
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: org.springframework.web.reactive.function.server.ServerResponse$BodyBuilder syncBody(..)
       newMethodName: bodyValue
-  - org.openrewrite.java.ChangeMethodName:
-      methodPattern: org.springframework.web.reactive.socket.client.ReactorNettyWebSocketClient getMaxFramePayloadLength()
-      newMethodName: getWebsocketClientSpec
+      matchOverrides: true
   - org.openrewrite.java.ChangeMethodName:
       methodPattern: org.springframework.web.reactive.socket.client.ReactorNettyWebSocketClient getHandlePing()
       newMethodName: getWebsocketClientSpec
   - org.openrewrite.java.ChangeMethodName:
-      methodPattern: org.springframework.web.reactive.socket.server.upgrade.ReactorNettyRequestUpgradeStrategy getMaxFramePayloadLength()
-      newMethodName: getWebsocketServerSpec
+      methodPattern: org.springframework.web.reactive.socket.client.ReactorNettyWebSocketClient getMaxFramePayloadLength()
+      newMethodName: getWebsocketClientSpec
   - org.openrewrite.java.ChangeMethodName:
       methodPattern: org.springframework.web.reactive.socket.server.upgrade.ReactorNettyRequestUpgradeStrategy getHandlePing()
+      newMethodName: getWebsocketServerSpec
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: org.springframework.web.reactive.socket.server.upgrade.ReactorNettyRequestUpgradeStrategy getMaxFramePayloadLength()
       newMethodName: getWebsocketServerSpec
 
 ---
@@ -246,41 +261,40 @@ name: io.arconia.rewrite.spring.framework6.MigrateSpringWebMvc_6_2
 displayName: Migrate the Spring WebMVC module to Spring Framework 6.2
 recipeList:
   - org.openrewrite.java.ChangeMethodName:
+      methodPattern: org.springframework.web.servlet.function.ServerRequest methodName()
+      newMethodName: method
+      matchOverrides: true
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: org.springframework.web.servlet.function.ServerRequest pathContainer()
+      newMethodName: requestPath
+      matchOverrides: true
+  - org.openrewrite.java.ChangeMethodName:
       methodPattern: org.springframework.web.servlet.function.ServerResponse rawStatusCode()
       newMethodName: statusCode
+      matchOverrides: true
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: org.springframework.web.servlet.handler.AbstractHandlerMethodMapping getMappingPathPatterns(..)
+      newMethodName: getDirectPaths
+      matchOverrides: true
   - org.openrewrite.java.ChangeMethodName:
       methodPattern: org.springframework.web.servlet.handler.MappedInterceptor getPathPatterns()
       newMethodName: getIncludePathPatterns
   - org.openrewrite.java.ChangeMethodName:
-      methodPattern: org.springframework.web.servlet.view.FragmentsRendering with(String)
-      newMethodName: fragment
-  - org.openrewrite.java.ChangeMethodName:
-      methodPattern: org.springframework.web.servlet.view.FragmentsRendering with(String, Map)
-      newMethodName: fragment
-  - org.openrewrite.java.ChangeMethodName:
-      methodPattern: org.springframework.web.servlet.view.FragmentsRendering with(Collection)
-      newMethodName: fragments
-  - org.openrewrite.java.ChangeMethodName:
-      methodPattern: org.springframework.web.servlet.function.ServerRequest methodName()
-      newMethodName: method
-  - org.openrewrite.java.ChangeMethodName:
-      methodPattern: org.springframework.web.servlet.function.ServerRequest pathContainer()
-      newMethodName: requestPath
-  - org.openrewrite.java.ChangeMethodName:
-      methodPattern: org.springframework.web.servlet.handler.AbstractHandlerMethodMapping getMappingPathPatterns(..)
-      newMethodName: getDirectPaths
-  - org.openrewrite.java.ChangeMethodName:
       methodPattern: org.springframework.web.servlet.i18n.CookieLocaleResolver determineDefaultLocale(..)
       newMethodName: setDefaultLocaleFunction
+      matchOverrides: true
   - org.openrewrite.java.ChangeMethodName:
       methodPattern: org.springframework.web.servlet.i18n.CookieLocaleResolver determineDefaultTimeZone(..)
       newMethodName: setDefaultTimeZoneFunction
+      matchOverrides: true
   - org.openrewrite.java.ChangeMethodName:
       methodPattern: org.springframework.web.servlet.i18n.SessionLocaleResolver determineDefaultLocale(..)
       newMethodName: setDefaultLocaleFunction
+      matchOverrides: true
   - org.openrewrite.java.ChangeMethodName:
       methodPattern: org.springframework.web.servlet.i18n.SessionLocaleResolver determineDefaultTimeZone(..)
       newMethodName: setDefaultTimeZoneFunction
+      matchOverrides: true
 
 ---
 type: specs.openrewrite.org/v1beta/recipe
@@ -290,9 +304,11 @@ recipeList:
   - org.openrewrite.java.ChangeMethodName:
       methodPattern: org.springframework.web.socket.client.AbstractWebSocketClient doHandshakeInternal(..)
       newMethodName: executeInternal
+      matchOverrides: true
   - org.openrewrite.java.ChangeMethodName:
       methodPattern: org.springframework.web.socket.client.WebSocketClient doHandshake(..)
       newMethodName: execute
+      matchOverrides: true
   - org.openrewrite.java.ChangeMethodName:
       methodPattern: org.springframework.web.socket.config.WebSocketMessageBrokerStats getWebSocketSessionStatsInfo()
       newMethodName: getWebSocketSessionStats
@@ -308,3 +324,4 @@ recipeList:
   - org.openrewrite.java.ChangeMethodName:
       methodPattern: org.springframework.web.socket.sockjs.client.Transport connect(..)
       newMethodName: connectAsync
+      matchOverrides: true
