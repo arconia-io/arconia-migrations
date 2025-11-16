@@ -22,8 +22,8 @@ dependencies {
 
     // Re-enable if and when starting using Refaster
 //    annotationProcessor "org.openrewrite:rewrite-templating:${rewriteTemplatingVersion}"
-//    implementation "org.openrewrite:rewrite-templating:${rewriteTemplatingVersion}"
-//    implementation("jakarta.annotation:jakarta.annotation-api:${jakartaAnnotationVersion}")
+//    implementation "org.openrewrite:rewrite-templating"
+//    implementation "jakarta.annotation:jakarta.annotation-api:${jakartaAnnotationVersion}"
 //    compileOnly("com.google.errorprone:error_prone_core:${errorProneVersion}") {
 //        exclude group: "com.google.auto.service", module: "auto-service-annotations"
 //    }
