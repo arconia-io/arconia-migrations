@@ -1,6 +1,6 @@
 # Spring AI
 
-## Upgrade to Spring AI 1.0
+## Upgrade to Spring AI 1.1
 
 When upgrading Spring AI to a newer version, refer to the [Upgrade Notes](https://docs.spring.io/spring-ai/reference/upgrade-notes.html) to find out about newly introduced APIs, deprecated APIs, and information about breaking changes, if any.
 
