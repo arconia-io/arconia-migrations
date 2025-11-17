@@ -55,14 +55,14 @@ recipeDependencies {
 
     parserClasspath "org.springframework.ai:spring-ai-mistral-ai:1.0.0-M7"
 
-    parserClasspath "org.springframework.ai:spring-ai-advisors-vector-store:1.0.3"
-    parserClasspath "org.springframework.ai:spring-ai-bedrock:1.0.3"
-    parserClasspath "org.springframework.ai:spring-ai-client-chat:1.0.3"
-    parserClasspath "org.springframework.ai:spring-ai-model:1.0.3"
-    parserClasspath "org.springframework.ai:spring-ai-openai:1.0.3"
-    parserClasspath "org.springframework.ai:spring-ai-vector-store:1.0.3"
-    parserClasspath "org.springframework.ai:spring-ai-autoconfigure-mcp-client:1.0.3"
-    parserClasspath "org.springframework.ai:spring-ai-autoconfigure-mcp-server:1.0.3"
+    parserClasspath "org.springframework.ai:spring-ai-advisors-vector-store:1.1.0"
+    parserClasspath "org.springframework.ai:spring-ai-bedrock:1.1.0"
+    parserClasspath "org.springframework.ai:spring-ai-client-chat:1.1.0"
+    parserClasspath "org.springframework.ai:spring-ai-model:1.1.0"
+    parserClasspath "org.springframework.ai:spring-ai-openai:1.1.0"
+    parserClasspath "org.springframework.ai:spring-ai-vector-store:1.1.0"
+    parserClasspath "org.springframework.ai:spring-ai-autoconfigure-mcp-client:1.1.0"
+    parserClasspath "org.springframework.ai:spring-ai-autoconfigure-mcp-server:1.1.0"
 
     parserClasspath "org.springframework.ai:spring-ai-advisors-vector-store:1.1.0"
     parserClasspath "org.springframework.ai:spring-ai-client-chat:1.1.0"
