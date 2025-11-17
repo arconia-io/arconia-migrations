@@ -7,9 +7,9 @@ When upgrading Spring AI to a newer version, refer to the [Upgrade Notes](https:
 > [!NOTE]
 > The Arconia Migrations project is currently in active development and not GA yet. We're working hard to improve it and appreciate your patience as we refine the tool. Feel free to try it out and share your feedback!
 
-The `io.arconia.rewrite.spring.ai.UpgradeSpringAi_1_0` recipe automates many of the breaking changes introduced in Spring AI M7, M8 and RC1. You can use it to update your project to the latest Spring AI 1.0.x release.
+The `io.arconia.rewrite.spring.ai.UpgradeSpringAi_1_1` recipe automates many of the changes introduced in Spring 1.1.0. You can use it to update your project to the latest Spring AI 1.1.x release.
 
-There are multiple options for applying such a recipe to your project. In any case, you might need to update the version number of the Spring AI BOM manually after running the recipe (e.g. `1.0.0-M6` -> `1.0.0`) since it's not always updated automatically depending on how your project is configured.
+There are multiple options for applying such a recipe to your project. In any case, you might need to update the version number of the Spring AI BOM manually after running the recipe (e.g. `1.0.0-M6` -> `1.1.0`) since it's not always updated automatically depending on how your project is configured.
 
 ### Using the Arconia CLI
 
@@ -26,7 +26,7 @@ Using the [OpenRewrite Maven Plugin](https://docs.openrewrite.org), you can appl
 ```shell
 ./mvnw -U org.openrewrite.maven:rewrite-maven-plugin:run \
   -Drewrite.recipeArtifactCoordinates=io.arconia.migrations:rewrite-spring:LATEST \
-  -Drewrite.activeRecipes=io.arconia.rewrite.spring.ai.UpgradeSpringAi_1_0
+  -Drewrite.activeRecipes=io.arconia.rewrite.spring.ai.UpgradeSpringAi_1_1
 ```
 
 ### Using the OpenRewrite Gradle Plugin
@@ -66,7 +66,7 @@ Then, run the following command.
 ```shell
 ./gradlew rewriteRun \
     --init-script init.gradle \
-    -DactiveRecipe=io.arconia.rewrite.spring.ai.UpgradeSpringAi_1_0
+    -DactiveRecipe=io.arconia.rewrite.spring.ai.UpgradeSpringAi_1_1
 ```
 
 Finally, you can remove the `init.gradle` file
