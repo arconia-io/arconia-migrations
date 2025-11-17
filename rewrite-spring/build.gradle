@@ -43,7 +43,7 @@ dependencies {
 }
 
 recipeDependencies {
-    parserClasspath "jakarta.servlet:jakarta.servlet-api:6.0.0"
+    parserClasspath "jakarta.servlet:jakarta.servlet-api:6.1.0"
 
     parserClasspath "org.reactivestreams:reactive-streams:1.0.4"
 
