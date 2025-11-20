@@ -48,6 +48,11 @@ recipeList:
       oldArtifactId: spring-boot-starter-json
       newGroupId: org.springframework.boot
       newArtifactId: spring-boot-starter-jackson
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-jackson
+      acceptTransitive: true
+      onlyIfUsing: org.springframework.boot.autoconfigure.jackson.Jackson2ObjectMapperBuilderCustomizer
 
 ---
 type: specs.openrewrite.org/v1beta/recipe

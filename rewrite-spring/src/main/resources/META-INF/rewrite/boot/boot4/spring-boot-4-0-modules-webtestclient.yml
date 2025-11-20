@@ -4,6 +4,7 @@ name: io.arconia.rewrite.spring.boot4.MigrateWebTestClientModule
 displayName: Migrate Spring Boot WebTestClient module to Spring Boot 4.0
 description: Migrate Spring Boot WebTestClient module to Spring Boot 4.0.
 recipeList:
+  - io.arconia.rewrite.spring.boot4.AddWebTestClientModule
   - org.openrewrite.java.ChangeType:
       oldFullyQualifiedTypeName: org.springframework.boot.test.autoconfigure.web.reactive.AutoConfigureWebTestClient
       newFullyQualifiedTypeName: org.springframework.boot.webtestclient.autoconfigure.AutoConfigureWebTestClient
@@ -16,3 +17,16 @@ recipeList:
   - org.openrewrite.java.ChangeType:
       oldFullyQualifiedTypeName: org.springframework.boot.test.web.reactive.server.WebTestClientBuilderCustomizer
       newFullyQualifiedTypeName: org.springframework.boot.webtestclient.autoconfigure.WebTestClientBuilderCustomizer
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.AddWebTestClientModule
+displayName: Add WebTestClient Module
+recipeList:
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-webtestclient
+      onlyIfUsing: org.springframework.test.web.reactive.server.WebTestClient
+      acceptTransitive: true
+      configuration: testImplementation
+      scope: test

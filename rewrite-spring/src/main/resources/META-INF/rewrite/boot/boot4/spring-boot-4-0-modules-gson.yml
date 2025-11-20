@@ -21,6 +21,11 @@ recipeList:
       oldArtifactId: gson
       newGroupId: org.springframework.boot
       newArtifactId: spring-boot-starter-gson
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-gson
+      acceptTransitive: true
+      onlyIfUsing: org.springframework.boot.autoconfigure.gson.GsonBuilderCustomizer
 
 ---
 type: specs.openrewrite.org/v1beta/recipe
