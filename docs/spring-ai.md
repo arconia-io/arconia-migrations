@@ -9,6 +9,8 @@ When upgrading Spring AI to a newer version, refer to the [Upgrade Notes](https:
 
 The `io.arconia.rewrite.spring.ai.UpgradeSpringAi_1_1` recipe automates many of the changes introduced in Spring 1.1.0. You can use it to update your project to the latest Spring AI 1.1.x release.
 
+The recipes use the foundational recipes from [OpenRewrite](https://docs.openrewrite.org), including recipes for working with Java, Gradle, and Maven.
+
 There are multiple options for applying such a recipe to your project. In any case, you might need to update the version number of the Spring AI BOM manually after running the recipe (e.g. `1.0.0-M6` -> `1.1.0`) since it's not always updated automatically depending on how your project is configured.
 
 ### Using the Arconia CLI

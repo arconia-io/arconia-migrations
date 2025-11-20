@@ -19,6 +19,8 @@ If your project uses Gradle, the recipe will also:
 
 * Upgrade Gradle to 9.x ([OpenRewrite Recipe](https://docs.openrewrite.org/recipes/gradle/updategradlewrapper))
 
+The recipes use the foundational recipes from [OpenRewrite](https://docs.openrewrite.org), including recipes for working with Java, Gradle, and Maven.
+
 There are multiple options for applying such a recipe to your project. In any case, you might need to update the version number of the Spring Boot BOM manually after running the recipe (e.g. `3.5.8` -> `4.0.0`) since it's not always updated automatically depending on how your project is configured.
 
 ### Using the Arconia CLI
