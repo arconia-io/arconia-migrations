@@ -123,23 +123,19 @@ class UpgradeSpringBoot_4_0_Tests implements RewriteTest {
                         """
                         import org.springframework.boot.test.autoconfigure.properties.PropertyMapping;
                         import org.springframework.boot.test.web.client.TestRestTemplate;
-                        import org.springframework.boot.test.web.server.LocalServerPort;
 
                         class Demo {
                             PropertyMapping propertyMapping = null;
                             TestRestTemplate testRestTemplate = null;
-                            LocalServerPort localServerPort = null;
                         }
                         """,
                         """
                         import org.springframework.boot.resttestclient.TestRestTemplate;
                         import org.springframework.boot.test.context.PropertyMapping;
-                        import org.springframework.boot.web.server.test.LocalServerPort;
 
                         class Demo {
                             PropertyMapping propertyMapping = null;
                             TestRestTemplate testRestTemplate = null;
-                            LocalServerPort localServerPort = null;
                         }
                         """
                 )

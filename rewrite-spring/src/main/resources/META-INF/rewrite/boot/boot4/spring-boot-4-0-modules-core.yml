@@ -30,6 +30,3 @@ recipeList:
   - org.openrewrite.java.ChangeType:
       oldFullyQualifiedTypeName: org.springframework.boot.test.autoconfigure.properties.SkipPropertyMapping
       newFullyQualifiedTypeName: org.springframework.boot.test.context.PropertyMapping.Skip
-  - org.openrewrite.java.ChangeType:
-      oldFullyQualifiedTypeName: org.springframework.boot.test.web.server.LocalServerPort
-      newFullyQualifiedTypeName: org.springframework.boot.web.server.test.LocalServerPort
