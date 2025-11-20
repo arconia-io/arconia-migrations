@@ -30,7 +30,6 @@ on:
       - '.github/*.md'
       - '.github/*.yml'
       - '.github/*.yaml'
-  workflow_dispatch:
 
 permissions:
   contents: read
