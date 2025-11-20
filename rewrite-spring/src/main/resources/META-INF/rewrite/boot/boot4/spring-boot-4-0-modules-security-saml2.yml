@@ -1,0 +1,39 @@
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.MigrateSecuritySaml2Module
+displayName: Migrate Spring Boot Security SAML2 module to Spring Boot 4.0
+description: Migrate Spring Boot Security SAML2 module to Spring Boot 4.0.
+recipeList:
+  - io.arconia.rewrite.spring.boot4.AddSecuritySamlStarter
+  - io.arconia.rewrite.spring.boot4.AddSecuritySamlStarterTest
+
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.autoconfigure.security.saml2
+      newPackageName: org.springframework.boot.security.saml2.autoconfigure
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.AddSecuritySamlStarter
+displayName: Add Security SAML Starter
+recipeList:
+  - org.openrewrite.java.dependencies.ChangeDependency:
+      oldGroupId: org.springframework.security
+      oldArtifactId: spring-security-saml2-service-provider
+      newGroupId: org.springframework.boot
+      newArtifactId: spring-boot-starter-security-saml2
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.AddSecuritySamlStarterTest
+displayName: Add Security SAML Starter Test
+preconditions:
+  - org.openrewrite.java.dependencies.FindDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-security-saml2
+recipeList:
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-security-saml2-test
+      acceptTransitive: true
+      configuration: testImplementation
+      scope: test

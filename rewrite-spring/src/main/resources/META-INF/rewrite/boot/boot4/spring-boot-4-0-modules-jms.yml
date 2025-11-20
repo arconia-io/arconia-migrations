@@ -1,0 +1,45 @@
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.MigrateJmsModule
+displayName: Migrate Spring Boot JMS module to Spring Boot 4.0
+description: Migrate Spring Boot JMS module to Spring Boot 4.0.
+recipeList:
+  - io.arconia.rewrite.spring.boot4.AddJmsStarter
+  - io.arconia.rewrite.spring.boot4.AddJmsStarterTest
+
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.autoconfigure.jms.JmsHealthContributorAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.jms.autoconfigure.health.JmsHealthContributorAutoConfiguration
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.autoconfigure.jms
+      newPackageName: org.springframework.boot.jms.autoconfigure
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.jms.JmsHealthIndicator
+      newFullyQualifiedTypeName: org.springframework.boot.jms.health.JmsHealthIndicator
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.AddJmsStarter
+displayName: Add JMS Starter
+recipeList:
+  - org.openrewrite.java.dependencies.ChangeDependency:
+      oldGroupId: org.springframework
+      oldArtifactId: spring-jms
+      newGroupId: org.springframework.boot
+      newArtifactId: spring-boot-starter-jms
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.AddJmsStarterTest
+displayName: Add JMS Starter Test
+preconditions:
+  - org.openrewrite.java.dependencies.FindDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-jms
+recipeList:
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-jms-test
+      acceptTransitive: true
+      configuration: testImplementation
+      scope: test

@@ -1,0 +1,36 @@
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.MigrateLdapModule
+displayName: Migrate Spring Boot LDAP module to Spring Boot 4.0
+description: Migrate Spring Boot LDAP module to Spring Boot 4.0.
+recipeList:
+  - io.arconia.rewrite.spring.boot4.AddLdapStarterTest
+
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.autoconfigure.ldap
+      newPackageName: org.springframework.boot.ldap.autoconfigure
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.autoconfigure.ldap.embedded
+      newPackageName: org.springframework.boot.ldap.autoconfigure.embedded
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.autoconfigure.ldap.LdapHealthContributorAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.ldap.autoconfigure.health.LdapHealthContributorAutoConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.ldap.LdapHealthIndicator
+      newFullyQualifiedTypeName: org.springframework.boot.ldap.health.LdapHealthIndicator
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.AddLdapStarterTest
+displayName: Add LDAP Starter Test
+preconditions:
+  - org.openrewrite.java.dependencies.FindDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-ldap
+recipeList:
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-ldap-test
+      acceptTransitive: true
+      configuration: testImplementation
+      scope: test

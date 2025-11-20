@@ -1,0 +1,19 @@
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.MigrateSqlModule
+displayName: Migrate Spring Boot SQL module to Spring Boot 4.0
+description: Migrate Spring Boot SQL module to Spring Boot 4.0.
+recipeList:
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.orm.jpa
+      newPackageName: org.springframework.boot.jpa
+
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.sql.init.OnDatabaseInitializationCondition
+      newFullyQualifiedTypeName: org.springframework.boot.sql.autoconfigure.init.OnDatabaseInitializationCondition
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.sql.init.SettingsCreator
+      newFullyQualifiedTypeName: org.springframework.boot.sql.autoconfigure.init.SettingsCreator
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.sql.init.SqlInitializationProperties
+      newFullyQualifiedTypeName: org.springframework.boot.sql.autoconfigure.init.SqlInitializationProperties

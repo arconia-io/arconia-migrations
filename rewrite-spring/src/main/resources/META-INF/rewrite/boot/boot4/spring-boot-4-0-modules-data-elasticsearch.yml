@@ -1,0 +1,45 @@
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.MigrateDataElasticsearchModule
+displayName: Migrate Spring Boot Data Elasticsearch module to Spring Boot 4.0
+description: Migrate Spring Boot Data Elasticsearch module to Spring Boot 4.0.
+recipeList:
+  - io.arconia.rewrite.spring.boot4.AddDataElasticsearchStarterTest
+
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.data.elasticsearch.ElasticsearchDataAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.data.elasticsearch.autoconfigure.DataElasticsearchAutoConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.data.elasticsearch.ElasticsearchRepositoriesAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.data.elasticsearch.autoconfigure.DataElasticsearchReactiveRepositoriesAutoConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.data.elasticsearch.ReactiveElasticsearchRepositoriesAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.data.elasticsearch.autoconfigure.DataElasticsearchRepositoriesAutoConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.autoconfigure.data.elasticsearch.ElasticsearchReactiveHealthContributorAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.data.elasticsearch.autoconfigure.health.DataElasticsearchReactiveHealthContributorAutoConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.data.elasticsearch.ElasticsearchReactiveHealthIndicator
+      newFullyQualifiedTypeName: org.springframework.boot.data.elasticsearch.health.DataElasticsearchReactiveHealthIndicator
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.test.autoconfigure.data.elasticsearch.AutoConfigureDataElasticsearch
+      newFullyQualifiedTypeName: org.springframework.boot.data.elasticsearch.test.autoconfigure.AutoConfigureDataElasticsearch
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.test.autoconfigure.data.elasticsearch.DataElasticsearchTest
+      newFullyQualifiedTypeName: org.springframework.boot.data.elasticsearch.test.autoconfigure.DataElasticsearchTest
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.AddDataElasticsearchStarterTest
+displayName: Add Data Elasticsearch Starter Test
+preconditions:
+  - org.openrewrite.java.dependencies.FindDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-data-elasticsearch
+recipeList:
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-data-elasticsearch-test
+      acceptTransitive: true
+      configuration: testImplementation
+      scope: test

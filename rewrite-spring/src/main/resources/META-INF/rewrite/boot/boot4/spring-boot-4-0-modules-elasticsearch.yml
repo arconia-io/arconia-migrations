@@ -1,0 +1,45 @@
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.MigrateElasticsearchModule
+displayName: Migrate Spring Boot Elasticsearch module to Spring Boot 4.0
+description: Migrate Spring Boot Elasticsearch module to Spring Boot 4.0.
+recipeList:
+  - io.arconia.rewrite.spring.boot4.AddElasticsearchStarterTest
+
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.elasticsearch.ReactiveElasticsearchClientAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.elasticsearch.autoconfigure.ElasticsearchClientAutoConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.elasticsearch.ElasticsearchConnectionDetails
+      newFullyQualifiedTypeName: org.springframework.boot.elasticsearch.autoconfigure.ElasticsearchConnectionDetails
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.elasticsearch.ElasticsearchProperties
+      newFullyQualifiedTypeName: org.springframework.boot.elasticsearch.autoconfigure.ElasticsearchProperties
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.elasticsearch.ElasticsearchRestClientAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.elasticsearch.autoconfigure.ElasticsearchRestClientAutoConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.elasticsearch.RestClientBuilderCustomizer
+      newFullyQualifiedTypeName: org.springframework.boot.elasticsearch.autoconfigure.Rest5ClientBuilderCustomizer
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.autoconfigure.elasticsearch.ElasticsearchRestHealthContributorAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.elasticsearch.autoconfigure.health.ElasticsearchRestHealthContributorAutoConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.elasticsearch.ElasticsearchRestClientHealthIndicator
+      newFullyQualifiedTypeName: org.springframework.boot.elasticsearch.health.ElasticsearchRestClientHealthIndicator
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.AddElasticsearchStarterTest
+displayName: Add Elasticsearch Starter Test
+preconditions:
+  - org.openrewrite.java.dependencies.FindDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-elasticsearch
+recipeList:
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-elasticsearch-test
+      acceptTransitive: true
+      configuration: testImplementation
+      scope: test

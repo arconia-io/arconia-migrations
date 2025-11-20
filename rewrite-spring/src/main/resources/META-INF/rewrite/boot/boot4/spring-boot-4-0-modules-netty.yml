@@ -1,0 +1,9 @@
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.MigrateNettyModule
+displayName: Migrate Spring Boot Netty module to Spring Boot 4.0
+description: Migrate Spring Boot Netty module to Spring Boot 4.0.
+recipeList:
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.autoconfigure.netty
+      newPackageName: org.springframework.boot.netty.autoconfigure

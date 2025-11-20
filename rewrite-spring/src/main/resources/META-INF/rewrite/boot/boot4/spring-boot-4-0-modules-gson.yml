@@ -1,0 +1,39 @@
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.MigrateGsonModule
+displayName: Migrate Spring Boot GSON module to Spring Boot 4.0
+description: Migrate Spring Boot GSON module to Spring Boot 4.0.
+recipeList:
+  - io.arconia.rewrite.spring.boot4.AddGsonStarter
+  - io.arconia.rewrite.spring.boot4.AddGsonStarterTest
+
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.autoconfigure.gson
+      newPackageName: org.springframework.boot.gson.autoconfigure
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.AddGsonStarter
+displayName: Add GSON Starter
+recipeList:
+  - org.openrewrite.java.dependencies.ChangeDependency:
+      oldGroupId: com.google.code.gson
+      oldArtifactId: gson
+      newGroupId: org.springframework.boot
+      newArtifactId: spring-boot-starter-gson
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.AddGsonStarterTest
+displayName: Add GSON Starter Test
+preconditions:
+  - org.openrewrite.java.dependencies.FindDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-gson
+recipeList:
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-gson-test
+      acceptTransitive: true
+      configuration: testImplementation
+      scope: test

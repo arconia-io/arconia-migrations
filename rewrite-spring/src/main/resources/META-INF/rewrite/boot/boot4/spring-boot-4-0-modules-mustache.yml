@@ -1,0 +1,39 @@
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.MigrateMustacheModule
+displayName: Migrate Spring Boot Mustache module to Spring Boot 4.0
+description: Migrate Spring Boot Mustache module to Spring Boot 4.0.
+recipeList:
+  - io.arconia.rewrite.spring.boot4.AddMustacheStarterTest
+
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.autoconfigure.mustache
+      newPackageName: org.springframework.boot.mustache.autoconfigure
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.web.reactive.result.view.MustacheView
+      newFullyQualifiedTypeName: org.springframework.boot.mustache.reactive.view.MustacheView
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.web.reactive.result.view.MustacheViewResolver
+      newFullyQualifiedTypeName: org.springframework.boot.mustache.reactive.view.MustacheViewResolver
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.web.servlet.view.MustacheView
+      newFullyQualifiedTypeName: org.springframework.boot.mustache.servlet.view.MustacheView
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.web.servlet.view.MustacheViewResolver
+      newFullyQualifiedTypeName: org.springframework.boot.mustache.servlet.view.MustacheViewResolver
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.AddMustacheStarterTest
+displayName: Add Mustache Test
+preconditions:
+  - org.openrewrite.java.dependencies.FindDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-mustache
+recipeList:
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-mustache-test
+      acceptTransitive: true
+      configuration: testImplementation
+      scope: test

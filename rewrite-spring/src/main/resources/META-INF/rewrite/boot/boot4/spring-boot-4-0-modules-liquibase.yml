@@ -1,0 +1,45 @@
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.MigrateLiquibaseModule
+displayName: Migrate Spring Boot Liquibase module to Spring Boot 4.0
+description: Migrate Spring Boot Liquibase module to Spring Boot 4.0.
+recipeList:
+  - io.arconia.rewrite.spring.boot4.AddLiquibaseStarter
+  - io.arconia.rewrite.spring.boot4.AddLiquibaseStarterTest
+
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.liquibase.LiquibaseEndpoint
+      newFullyQualifiedTypeName: org.springframework.boot.liquibase.actuate.endpoint.LiquibaseEndpoint
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.autoconfigure.liquibase.LiquibaseEndpointAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.liquibase.autoconfigure.LiquibaseEndpointAutoConfiguration
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.autoconfigure.liquibase
+      newPackageName: org.springframework.boot.liquibase.autoconfigure
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.AddLiquibaseStarter
+displayName: Add Liquibase Starter
+recipeList:
+  - org.openrewrite.java.dependencies.ChangeDependency:
+      oldGroupId: org.liquibase
+      oldArtifactId: liquibase-core
+      newArtifactId: org.springframework.boot
+      artifactId: spring-boot-starter-liquibase
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.AddLiquibaseStarterTest
+displayName: Add Liquibase Starter Test
+preconditions:
+  - org.openrewrite.java.dependencies.FindDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-liquibase
+recipeList:
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-liquibase-test
+      acceptTransitive: true
+      configuration: testImplementation
+      scope: test

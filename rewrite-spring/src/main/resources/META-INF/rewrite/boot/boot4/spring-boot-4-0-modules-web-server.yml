@@ -1,0 +1,81 @@
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.MigrateWebServerModule
+displayName: Migrate Spring Boot Web Server module to Spring Boot 4.0
+description: Migrate Spring Boot Web Server module to Spring Boot 4.0.
+recipeList:
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.web.ServerProperties
+      newFullyQualifiedTypeName: org.springframework.boot.web.server.autoconfigure.ServerProperties
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.web.reactive.ReactiveWebServerFactoryCustomizer
+      newFullyQualifiedTypeName: org.springframework.boot.web.server.autoconfigure.reactive.ReactiveWebServerFactoryCustomizer
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.web.servlet.ServletWebServerFactoryCustomizer
+      newFullyQualifiedTypeName: org.springframework.boot.web.server.autoconfigure.servlet.ServletWebServerFactoryCustomizer
+
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.web.reactive.server.AbstractReactiveWebServerFactory
+      newFullyQualifiedTypeName: org.springframework.boot.web.server.reactive.AbstractReactiveWebServerFactory
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.web.reactive.server.ConfigurableReactiveWebServerFactory
+      newFullyQualifiedTypeName: org.springframework.boot.web.server.reactive.ConfigurableReactiveWebServerFactory
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.web.reactive.server.ReactiveWebServerFactory
+      newFullyQualifiedTypeName: org.springframework.boot.web.server.reactive.ReactiveWebServerFactory
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.web.reactive.context.AnnotationConfigReactiveWebServerApplicationContext
+      newFullyQualifiedTypeName: org.springframework.boot.web.server.reactive.context.AnnotationConfigReactiveWebServerApplicationContext
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.web.reactive.context.ReactiveWebServerApplicationContext
+      newFullyQualifiedTypeName: org.springframework.boot.web.server.reactive.context.ReactiveWebServerApplicationContext
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.web.reactive.context.ReactiveWebServerInitializedEvent
+      newFullyQualifiedTypeName: org.springframework.boot.web.server.reactive.context.ReactiveWebServerInitializedEvent
+
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.web.servlet.server.ConfigurableServletWebServerFactory
+      newFullyQualifiedTypeName: org.springframework.boot.web.server.servlet.ConfigurableServletWebServerFactory
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.web.servlet.server.CookieSameSiteSupplier
+      newFullyQualifiedTypeName: org.springframework.boot.web.server.servlet.CookieSameSiteSupplier
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.web.servlet.server.DocumentRoot
+      newFullyQualifiedTypeName: org.springframework.boot.web.server.servlet.DocumentRoot
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.web.servlet.server.Jsp
+      newFullyQualifiedTypeName: org.springframework.boot.web.server.servlet.Jsp
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.web.servlet.server.ServletWebServerFactory
+      newFullyQualifiedTypeName: org.springframework.boot.web.server.servlet.ServletWebServerFactory
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.web.servlet.server.Session
+      newFullyQualifiedTypeName: org.springframework.boot.web.server.servlet.Session
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.web.servlet.server.SessionStoreDirectory
+      newFullyQualifiedTypeName: org.springframework.boot.web.server.servlet.SessionStoreDirectory
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.web.servlet.WebListenerRegistrar
+      newFullyQualifiedTypeName: org.springframework.boot.web.server.servlet.WebListenerRegistrar
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.web.servlet.WebListenerRegistry
+      newFullyQualifiedTypeName: org.springframework.boot.web.server.servlet.WebListenerRegistry
+
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext
+      newFullyQualifiedTypeName: org.springframework.boot.web.server.servlet.context.AnnotationConfigServletWebServerApplicationContext
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.web.servlet.ServletComponentScan
+      newFullyQualifiedTypeName: org.springframework.boot.web.server.servlet.context.ServletComponentScan
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext
+      newFullyQualifiedTypeName: org.springframework.boot.web.server.servlet.context.ServletWebServerApplicationContext
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.web.servlet.context.ServletWebServerInitializedEvent
+      newFullyQualifiedTypeName: org.springframework.boot.web.server.servlet.context.ServletWebServerInitializedEvent
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.web.servlet.context.WebApplicationContextServletContextAwareProcessor
+      newFullyQualifiedTypeName: org.springframework.boot.web.server.servlet.context.WebApplicationContextServletContextAwareProcessor
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.web.servlet.context.XmlServletWebServerApplicationContext
+      newFullyQualifiedTypeName: org.springframework.boot.web.server.servlet.context.XmlServletWebServerApplicationContext

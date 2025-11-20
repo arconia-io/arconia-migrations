@@ -1,0 +1,36 @@
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.MigratePulsarModule
+displayName: Migrate Spring Boot Pulsar module to Spring Boot 4.0
+description: Migrate Spring Boot Pulsar module to Spring Boot 4.0.
+recipeList:
+  - io.arconia.rewrite.spring.boot4.AddPulsarStarterTest
+
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.pulsar.PulsarAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.pulsar.autoconfigure.PulsarAutoConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.pulsar.PulsarConnectionDetails
+      newFullyQualifiedTypeName: org.springframework.boot.pulsar.autoconfigure.PulsarConnectionDetails
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.pulsar.PulsarContainerFactoryCustomizer
+      newFullyQualifiedTypeName: org.springframework.boot.pulsar.autoconfigure.PulsarContainerFactoryCustomizer
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.pulsar.PulsarProperties
+      newFullyQualifiedTypeName: org.springframework.boot.pulsar.autoconfigure.PulsarProperties
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.AddPulsarStarterTest
+displayName: Add Pulsar Starter Test
+preconditions:
+  - org.openrewrite.java.dependencies.FindDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-pulsar
+recipeList:
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-pulsar-test
+      acceptTransitive: true
+      configuration: testImplementation
+      scope: test

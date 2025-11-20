@@ -1,0 +1,9 @@
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.MigrateH2ConsoleModule
+displayName: Migrate Spring Boot H2 Console module to Spring Boot 4.0
+description: Migrate Spring Boot H2 Console module to Spring Boot 4.0.
+recipeList:
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.autoconfigure.h2
+      newPackageName: org.springframework.boot.h2console.autoconfigure

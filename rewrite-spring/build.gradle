@@ -39,7 +39,6 @@ dependencies {
     testImplementation "org.openrewrite.gradle.tooling:model"
 
     testRuntimeOnly gradleApi()
-    testRuntimeOnly "org.openrewrite:rewrite-java-21"
 }
 
 recipeDependencies {
@@ -76,6 +75,9 @@ recipeDependencies {
     parserClasspath "org.springframework.boot:spring-boot-test-autoconfigure:3.5.7"
     parserClasspath "org.springframework.boot:spring-boot-test:3.5.7"
 
+    parserClasspath "org.springframework.boot:spring-boot-test:4.0.0-RC2"
+    parserClasspath "org.springframework.boot:spring-boot-webtestclient:4.0.0-RC2"
+
     parserClasspath "org.springframework:spring-beans:6.1.21"
     parserClasspath "org.springframework:spring-context:6.1.21"
     parserClasspath "org.springframework:spring-core:6.1.21"
@@ -93,6 +95,9 @@ recipeDependencies {
     parserClasspath "org.springframework:spring-web:6.2.13"
     parserClasspath "org.springframework:spring-webflux:6.2.13"
     parserClasspath "org.springframework:spring-webmvc:6.2.13"
+
+    parserClasspath "org.springframework:spring-beans:7.0.0"
+    parserClasspath "org.springframework:spring-test:7.0.0"
 }
 
 // Re-enable if and when starting using Refaster

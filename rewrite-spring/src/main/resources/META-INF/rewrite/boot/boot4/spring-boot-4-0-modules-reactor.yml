@@ -1,0 +1,40 @@
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.MigrateReactorModule
+displayName: Migrate Spring Boot Reactor module to Spring Boot 4.0
+description: Migrate Spring Boot Reactor module to Spring Boot 4.0.
+recipeList:
+  - io.arconia.rewrite.spring.boot4.AddReactorStarterTest
+  - io.arconia.rewrite.spring.boot4.RemoveReactorTest
+
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.reactor.ReactorAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.reactor.autoconfigure.ReactorAutoConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.reactor.ReactorProperties
+      newFullyQualifiedTypeName: org.springframework.boot.reactor.autoconfigure.ReactorProperties
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.AddReactorStarterTest
+displayName: Add Reactor Starter Test
+preconditions:
+  - org.openrewrite.java.dependencies.FindDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-reactor
+recipeList:
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-reactor-test
+      acceptTransitive: true
+      configuration: testImplementation
+      scope: test
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.RemoveReactorTest
+displayName: Remove Reactor Test
+recipeList:
+  - org.openrewrite.java.dependencies.RemoveDependency:
+      groupId: io.projectreactor
+      artifactId: reactor-test

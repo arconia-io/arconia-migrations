@@ -1,0 +1,77 @@
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.MigrateJdbcModule
+displayName: Migrate Spring Boot JDBC module to Spring Boot 4.0
+description: Migrate Spring Boot JDBC module to Spring Boot 4.0.
+recipeList:
+  - io.arconia.rewrite.spring.boot4.AddJdbcStarterTest
+
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.autoconfigure.jdbc.DataSourceHealthContributorAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.jdbc.autoconfigure.health.DataSourceHealthContributorAutoConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.autoconfigure.jdbc.DataSourceHealthIndicatorProperties
+      newFullyQualifiedTypeName: org.springframework.boot.jdbc.autoconfigure.health.DataSourceHealthIndicatorProperties
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.autoconfigure.metrics.jdbc.DataSourcePoolMetricsAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.jdbc.autoconfigure.metrics.DataSourcePoolMetricsAutoConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.jdbc.metadata.DataSourcePoolMetadataProvidersConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.jdbc.autoconfigure.DataSourcePoolMetadataProvidersConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.jdbc.autoconfigure.DataSourceAutoConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.jdbc.DataSourceProperties
+      newFullyQualifiedTypeName: org.springframework.boot.jdbc.autoconfigure.DataSourceProperties
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.jdbc.DataSourceTransactionManagerAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.jdbc.autoconfigure.DataSourceTransactionManagerAutoConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.jdbc.EmbeddedDataSourceConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.jdbc.autoconfigure.EmbeddedDataSourceConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.jdbc.JdbcClientAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.jdbc.autoconfigure.JdbcClientAutoConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.jdbc.JdbcConnectionDetails
+      newFullyQualifiedTypeName: org.springframework.boot.jdbc.autoconfigure.JdbcConnectionDetails
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.jdbc.JdbcProperties
+      newFullyQualifiedTypeName: org.springframework.boot.jdbc.autoconfigure.JdbcProperties
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.jdbc.JdbcTemplateAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.jdbc.autoconfigure.JdbcTemplateAutoConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.jdbc.JndiDataSourceAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.jdbc.autoconfigure.JndiDataSourceAutoConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.jdbc.XADataSourceAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.jdbc.autoconfigure.XADataSourceAutoConfiguration
+
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.jdbc.DataSourceHealthIndicator
+      newFullyQualifiedTypeName: org.springframework.boot.jdbc.health.DataSourceHealthIndicator
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.metrics.jdbc.DataSourcePoolMetrics
+      newFullyQualifiedTypeName: org.springframework.boot.jdbc.metrics.DataSourcePoolMetrics
+
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.test.autoconfigure.jdbc
+      newPackageName: org.springframework.boot.jdbc.test.autoconfigure
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.AddJdbcStarterTest
+displayName: Add Jdbc Starter Test
+preconditions:
+  - org.openrewrite.java.dependencies.FindDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-jdbc
+recipeList:
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-jdbc-test
+      acceptTransitive: true
+      configuration: testImplementation
+      scope: test

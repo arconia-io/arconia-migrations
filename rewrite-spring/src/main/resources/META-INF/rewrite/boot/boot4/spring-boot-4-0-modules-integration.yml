@@ -1,0 +1,33 @@
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.MigrateIntegrationModule
+displayName: Migrate Spring Boot Integration module to Spring Boot 4.0
+description: Migrate Spring Boot Integration module to Spring Boot 4.0.
+recipeList:
+  - io.arconia.rewrite.spring.boot4.AddIntegrationStarterTest
+
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.integration.IntegrationGraphEndpoint
+      newFullyQualifiedTypeName: org.springframework.boot.integration.actuate.endpoint.IntegrationGraphEndpoint
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.autoconfigure.integration
+      newPackageName: org.springframework.boot.integration.autoconfigure
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.autoconfigure.metrics.integration.IntegrationMetricsAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.integration.autoconfigure.metrics.IntegrationMetricsAutoConfiguration
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.AddIntegrationStarterTest
+displayName: Add Integration Starter Test
+preconditions:
+  - org.openrewrite.java.dependencies.FindDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-integration
+recipeList:
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-integration-test
+      acceptTransitive: true
+      configuration: testImplementation
+      scope: test

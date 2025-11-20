@@ -1,0 +1,22 @@
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.MigrateSessionModule
+displayName: Migrate Spring Boot Session module to Spring Boot 4.0
+description: Migrate Spring Boot Session module to Spring Boot 4.0.
+recipeList:
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.actuate.session
+      newPackageName: org.springframework.boot.session.actuate.endpoint
+
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.session.DefaultCookieSerializerCustomizer
+      newFullyQualifiedTypeName: org.springframework.boot.session.autoconfigure.DefaultCookieSerializerCustomizer
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.session.SessionAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.session.autoconfigure.SessionAutoConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.session.SessionProperties
+      newFullyQualifiedTypeName: org.springframework.boot.session.autoconfigure.SessionProperties
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.autoconfigure.session.SessionsEndpointAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.session.autoconfigure.SessionsEndpointAutoConfiguration

@@ -1,0 +1,15 @@
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.MigrateMicrometerObservationModule
+displayName: Migrate Spring Boot Micrometer Observation module to Spring Boot 4.0
+description: Migrate Spring Boot Micrometer Observation module to Spring Boot 4.0.
+recipeList:
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.autoconfigure.observation.ObservationAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.micrometer.observation.autoconfigure.ObservationAutoConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.autoconfigure.observation.ObservationProperties
+      newFullyQualifiedTypeName: org.springframework.boot.micrometer.observation.autoconfigure.ObservationProperties
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.autoconfigure.observation.ObservationRegistryCustomizer
+      newFullyQualifiedTypeName: org.springframework.boot.micrometer.observation.autoconfigure.ObservationRegistryCustomizer

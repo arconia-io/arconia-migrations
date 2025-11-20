@@ -1,0 +1,12 @@
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.MigrateHttpCodecModule
+displayName: Migrate Spring Boot HTTP Coded module to Spring Boot 4.0
+description: Migrate Spring Boot HTTP Coded module to Spring Boot 4.0.
+recipeList:
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.web.codec.CodecCustomizer
+      newFullyQualifiedTypeName: org.springframework.boot.http.codec.CodecCustomizer
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.autoconfigure.http.codec
+      newPackageName: org.springframework.boot.http.codec.autoconfigure

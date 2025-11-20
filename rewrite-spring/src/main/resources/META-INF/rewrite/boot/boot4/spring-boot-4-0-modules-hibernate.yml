@@ -1,0 +1,24 @@
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.MigrateHibernateModule
+displayName: Migrate Spring Boot Hibernate module to Spring Boot 4.0
+description: Migrate Spring Boot Hibernate module to Spring Boot 4.0.
+recipeList:
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.orm.jpa.hibernate
+      newPackageName: org.springframework.boot.hibernate
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.hibernate.autoconfigure.HibernateJpaAutoConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.orm.jpa.HibernateProperties
+      newFullyQualifiedTypeName: org.springframework.boot.hibernate.autoconfigure.HibernateProperties
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.orm.jpa.HibernatePropertiesCustomizer
+      newFullyQualifiedTypeName: org.springframework.boot.hibernate.autoconfigure.HibernatePropertiesCustomizer
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.orm.jpa.HibernateSettings
+      newFullyQualifiedTypeName: org.springframework.boot.hibernate.autoconfigure.HibernateSettings
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.autoconfigure.metrics.orm.jpa.HibernateMetricsAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.hibernate.autoconfigure.metrics.HibernateMetricsAutoConfiguration

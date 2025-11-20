@@ -1,0 +1,99 @@
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.MigrateWebFluxModule
+displayName: Migrate Spring Boot WebFlux module to Spring Boot 4.0
+description: Migrate Spring Boot WebFlux module to Spring Boot 4.0.
+recipeList:
+  - io.arconia.rewrite.spring.boot4.AddWebFluxTest
+  - io.arconia.rewrite.spring.boot4.AddWebFluxStarterTest
+
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.actuate.endpoint.web.reactive
+      newPackageName: org.springframework.boot.webflux.actuate.endpoint.web
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.actuate.web.exchanges.reactive
+      newPackageName: org.springframework.boot.webflux.actuate.web.exchanges
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.actuate.web.mappings.reactive
+      newPackageName: org.springframework.boot.webflux.actuate.web.mappings
+
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.web.reactive.HttpHandlerAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.webflux.autoconfigure.HttpHandlerAutoConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.web.reactive.ReactiveMultipartAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.webflux.autoconfigure.ReactiveMultipartAutoConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.web.reactive.ReactiveMultipartProperties
+      newFullyQualifiedTypeName: org.springframework.boot.webflux.autoconfigure.ReactiveMultipartProperties
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.web.reactive.ResourceHandlerRegistrationCustomizer
+      newFullyQualifiedTypeName: org.springframework.boot.webflux.autoconfigure.ResourceHandlerRegistrationCustomizer
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.web.reactive.WebFluxAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.webflux.autoconfigure.WebFluxAutoConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.autoconfigure.observation.web.reactive.WebFluxObservationAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.webflux.autoconfigure.WebFluxObservationAutoConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.web.reactive.WebFluxProperties
+      newFullyQualifiedTypeName: org.springframework.boot.webflux.autoconfigure.WebFluxProperties
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.web.reactive.WebFluxRegistrations
+      newFullyQualifiedTypeName: org.springframework.boot.webflux.autoconfigure.WebFluxRegistrations
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.web.reactive.WebHttpHandlerBuilderCustomizer
+      newFullyQualifiedTypeName: org.springframework.boot.webflux.autoconfigure.WebHttpHandlerBuilderCustomizer
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.web.reactive.WebSessionIdResolverAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.webflux.autoconfigure.WebSessionIdResolverAutoConfiguration
+
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.autoconfigure.endpoint.web.reactive.WebFluxEndpointManagementContextConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.webflux.autoconfigure.actuate.web.WebFluxEndpointManagementContextConfiguration
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.autoconfigure.web.reactive.error
+      newPackageName: org.springframework.boot.webflux.autoconfigure.error
+
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.web.reactive.error
+      newPackageName: org.springframework.boot.webflux.error
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.web.reactive.filter
+      newPackageName: org.springframework.boot.webflux.filter
+
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.test.autoconfigure.web.reactive.AutoConfigureWebFlux
+      newFullyQualifiedTypeName: org.springframework.boot.webflux.test.autoconfigure.AutoConfigureWebFlux
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.test.autoconfigure.web.reactive.WebFluxTest
+      newFullyQualifiedTypeName: org.springframework.boot.webflux.test.autoconfigure.WebFluxTest
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.AddWebFluxTest
+displayName: Add Web Flux Test
+recipeList:
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-webflux-test
+      onlyIfUsing: org.springframework.test.web.reactive.server.WebTestClient
+      acceptTransitive: true
+      configuration: testImplementation
+      scope: test
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.AddWebFluxStarterTest
+displayName: Add Web Flux Starter Test
+preconditions:
+  - org.openrewrite.java.dependencies.FindDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-webflux
+recipeList:
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-webflux-test
+      acceptTransitive: true
+      configuration: testImplementation
+      scope: test

@@ -1,0 +1,59 @@
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.MigrateDataCassandraModule
+displayName: Migrate Spring Boot Data Cassandra module to Spring Boot 4.0
+description: Migrate Spring Boot Data Cassandra module to Spring Boot 4.0.
+recipeList:
+  - io.arconia.rewrite.spring.boot4.AddDataCassandraStarterTest
+  - io.arconia.rewrite.spring.boot4.AddDataCassandraReactiveStarterTest
+
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.data.cassandra.CassandraDataAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.data.cassandra.autoconfigure.DataCassandraAutoConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.data.cassandra.CassandraReactiveDataAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.data.cassandra.autoconfigure.DataCassandraReactiveAutoConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.data.cassandra.CassandraReactiveRepositoriesAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.data.cassandra.autoconfigure.DataCassandraReactiveRepositoriesAutoConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.data.cassandra.CassandraRepositoriesAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.data.cassandra.autoconfigure.DataCassandraRepositoriesAutoConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.test.autoconfigure.data.cassandra.AutoConfigureDataCassandra
+      newFullyQualifiedTypeName: org.springframework.boot.data.cassandra.test.autoconfigure.AutoConfigureDataCassandra
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.test.autoconfigure.data.cassandra.DataCassandraTest
+      newFullyQualifiedTypeName: org.springframework.boot.data.cassandra.test.autoconfigure.DataCassandraTest
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.AddDataCassandraStarterTest
+displayName: Add Data Cassandra Starter Test
+preconditions:
+  - org.openrewrite.java.dependencies.FindDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-data-cassandra
+recipeList:
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-data-cassandra-test
+      acceptTransitive: true
+      configuration: testImplementation
+      scope: test
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.AddDataCassandraReactiveStarterTest
+displayName: Add Data Cassandra Reactive Starter Test
+preconditions:
+  - org.openrewrite.java.dependencies.FindDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-data-cassandra-reactive
+recipeList:
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-data-cassandra-reactive-test
+      acceptTransitive: true
+      configuration: testImplementation
+      scope: test

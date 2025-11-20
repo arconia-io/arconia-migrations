@@ -1,0 +1,23 @@
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.MigrateKotlinxModule
+displayName: Migrate Spring Boot Kotlinx module to Spring Boot 4.0
+description: Migrate Spring Boot Kotlinx module to Spring Boot 4.0.
+recipeList:
+  - io.arconia.rewrite.spring.boot4.AddKotlinSerializationStarterTest
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.AddKotlinSerializationStarterTest
+displayName: Add Kotlin Serialization Starter Test
+preconditions:
+  - org.openrewrite.java.dependencies.FindDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-kotlin-serialization
+recipeList:
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-kotlin-serialization-test
+      acceptTransitive: true
+      configuration: testImplementation
+      scope: test

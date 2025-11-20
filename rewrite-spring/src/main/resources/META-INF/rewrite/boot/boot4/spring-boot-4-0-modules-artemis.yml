@@ -1,10 +1,11 @@
 ---
 type: specs.openrewrite.org/v1beta/recipe
 name: io.arconia.rewrite.spring.boot4.MigrateArtemisModule
-displayName: Migrate Artemis Module
+displayName: Migrate Spring Boot Artemis module to Spring Boot 4.0
 description: Migrate Spring Boot Artemis module to Spring Boot 4.0.
 recipeList:
   - io.arconia.rewrite.spring.boot4.AddArtemisStarterTest
+
   - org.openrewrite.java.ChangeType:
       oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.jms.artemis.ArtemisAutoConfiguration
       newFullyQualifiedTypeName: org.springframework.boot.artemis.autoconfigure.ArtemisAutoConfiguration
@@ -28,13 +29,10 @@ recipeList:
 type: specs.openrewrite.org/v1beta/recipe
 name: io.arconia.rewrite.spring.boot4.AddArtemisStarterTest
 displayName: Add Artemis Starter Test
-tags:
-  - spring
-  - boot
 preconditions:
-  - org.openrewrite.java.dependencies.DependencyInsight:
-      groupIdPattern: org.springframework.boot
-      artifactIdPattern: spring-boot-starter-artemis
+  - org.openrewrite.java.dependencies.FindDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-artemis
 recipeList:
   - org.openrewrite.java.dependencies.AddDependency:
       groupId: org.springframework.boot

@@ -1,0 +1,59 @@
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.MigrateDataMongoDbModule
+displayName: Migrate Spring Boot Data MongoDB module to Spring Boot 4.0
+description: Migrate Spring Boot Data MongoDB module to Spring Boot 4.0.
+recipeList:
+  - io.arconia.rewrite.spring.boot4.AddDataMongoDbStarterTest
+  - io.arconia.rewrite.spring.boot4.AddDataMongoDbReactiveStarterTest
+
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.data.mongo.MongoDataAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.data.mongodb.autoconfigure.DataMongoAutoConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.data.mongo.MongoReactiveDataAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.data.mongodb.autoconfigure.DataMongoReactiveAutoConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.data.mongo.MongoReactiveRepositoriesAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.data.mongodb.autoconfigure.DataMongoReactiveRepositoriesAutoConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.data.mongo.MongoRepositoriesAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.data.mongodb.autoconfigure.DataMongoRepositoriesAutoConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.test.autoconfigure.data.mongo.AutoConfigureDataMongo
+      newFullyQualifiedTypeName: org.springframework.boot.data.mongodb.test.autoconfigure.AutoConfigureDataMongo
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest
+      newFullyQualifiedTypeName: org.springframework.boot.data.mongodb.test.autoconfigure.DataMongoTest
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.AddDataMongoDbStarterTest
+displayName: Add Data MongoDB Starter Test
+preconditions:
+  - org.openrewrite.java.dependencies.FindDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-data-mongodb
+recipeList:
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-data-mongodb-test
+      acceptTransitive: true
+      configuration: testImplementation
+      scope: test
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.AddDataMongoDbReactiveStarterTest
+displayName: Add Data MongoDB Reactive Starter Test
+preconditions:
+  - org.openrewrite.java.dependencies.FindDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-data-mongodb-reactive
+recipeList:
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-data-mongodb-reactive-test
+      acceptTransitive: true
+      configuration: testImplementation
+      scope: test

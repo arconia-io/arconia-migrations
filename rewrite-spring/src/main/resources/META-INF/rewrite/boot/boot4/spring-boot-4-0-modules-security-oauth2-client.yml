@@ -1,0 +1,48 @@
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.MigrateSecurityOAuth2ClientModule
+displayName: Migrate Spring Boot Security OAuth2 Client module to Spring Boot 4.0
+description: Migrate Spring Boot Security OAuth2 Client module to Spring Boot 4.0.
+recipeList:
+  - io.arconia.rewrite.spring.boot4.MigrateSecurityOAuthClientStarter
+  - io.arconia.rewrite.spring.boot4.AddSecurityOAuthClientStarterTest
+
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.autoconfigure.security.oauth2.client
+      newPackageName: org.springframework.boot.security.oauth2.client.autoconfigure
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.autoconfigure.security.oauth2.client.reactive
+      newPackageName: org.springframework.boot.security.oauth2.client.autoconfigure.reactive
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.security.oauth2.client.servlet.OAuth2ClientWebSecurityAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.security.oauth2.client.autoconfigure.servlet.OAuth2ClientWebSecurityAutoConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.security.oauth2.client.servlet.OAuth2ClientWebSecurityAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.security.oauth2.client.autoconfigure.servlet.OAuth2ClientWebSecurityAutoConfiguration
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.MigrateSecurityOAuthClientStarter
+displayName: Migrate Security OAuth Client Starter
+recipeList:
+  - org.openrewrite.java.dependencies.ChangeDependency:
+      oldGroupId: org.springframework.boot
+      oldArtifactId: spring-boot-starter-oauth2-client
+      newGroupId: org.springframework.boot
+      newArtifactId: spring-boot-starter-security-oauth2-client
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.AddSecurityOAuthClientStarterTest
+displayName: Add Security OAuth Client Starter Test
+preconditions:
+  - org.openrewrite.java.dependencies.FindDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-security-oauth2-client
+recipeList:
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-security-oauth2-client-test
+      acceptTransitive: true
+      configuration: testImplementation
+      scope: test

@@ -1,0 +1,40 @@
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.MigrateMicrometerTracingOpenTelemetryModule
+displayName: Migrate Spring Boot Micrometer Tracing OpenTelemetry module to Spring Boot 4.0
+description: Migrate Spring Boot Micrometer Tracing OpenTelemetry module to Spring Boot 4.0.
+recipeList:
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.autoconfigure.tracing.OpenTelemetryEventPublisherBeansApplicationListener
+      newFullyQualifiedTypeName: org.springframework.boot.micrometer.tracing.opentelemetry.autoconfigure.OpenTelemetryEventPublisherBeansApplicationListener
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.autoconfigure.tracing.OpenTelemetryEventPublisherBeansTestExecutionListener
+      newFullyQualifiedTypeName: org.springframework.boot.micrometer.tracing.opentelemetry.autoconfigure.OpenTelemetryEventPublisherBeansTestExecutionListener
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.autoconfigure.tracing.SdkTracerProviderBuilderCustomizer
+      newFullyQualifiedTypeName: org.springframework.boot.micrometer.tracing.opentelemetry.autoconfigure.SdkTracerProviderBuilderCustomizer
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.autoconfigure.tracing.SpanExporters
+      newFullyQualifiedTypeName: org.springframework.boot.micrometer.tracing.opentelemetry.autoconfigure.SpanExporters
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.autoconfigure.tracing.SpanProcessors
+      newFullyQualifiedTypeName: org.springframework.boot.micrometer.tracing.opentelemetry.autoconfigure.SpanProcessors
+
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.autoconfigure.tracing.otlp.OtlpGrpcSpanExporterBuilderCustomizer
+      newFullyQualifiedTypeName: org.springframework.boot.micrometer.tracing.opentelemetry.autoconfigure.otlp.OtlpGrpcSpanExporterBuilderCustomizer
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.autoconfigure.tracing.otlp.OtlpHttpSpanExporterBuilderCustomizer
+      newFullyQualifiedTypeName: org.springframework.boot.micrometer.tracing.opentelemetry.autoconfigure.otlp.OtlpHttpSpanExporterBuilderCustomizer
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.autoconfigure.tracing.otlp.OtlpTracingAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.micrometer.tracing.opentelemetry.autoconfigure.otlp.OtlpTracingAutoConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.autoconfigure.tracing.otlp.OtlpTracingConnectionDetails
+      newFullyQualifiedTypeName: org.springframework.boot.micrometer.tracing.opentelemetry.autoconfigure.otlp.OtlpTracingConnectionDetails
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.autoconfigure.tracing.otlp.OtlpTracingProperties
+      newFullyQualifiedTypeName: org.springframework.boot.micrometer.tracing.opentelemetry.autoconfigure.otlp.OtlpTracingProperties
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.autoconfigure.tracing.otlp.Transport
+      newFullyQualifiedTypeName: org.springframework.boot.micrometer.tracing.opentelemetry.autoconfigure.otlp.Transport

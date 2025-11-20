@@ -1,0 +1,21 @@
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.MigrateHttpClientModule
+displayName: Migrate Spring Boot HTTP Client module to Spring Boot 4.0
+description: Migrate Spring Boot HTTP Client module to Spring Boot 4.0.
+recipeList:
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.http.client.ClientHttpRequestFactoryBuilderCustomizer
+      newFullyQualifiedTypeName: org.springframework.boot.http.client.autoconfigure.ClientHttpRequestFactoryBuilderCustomizer
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.http.client.HttpClientAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.http.client.autoconfigure.HttpClientAutoConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.http.client.HttpClientProperties
+      newFullyQualifiedTypeName: org.springframework.boot.http.client.autoconfigure.HttpClientProperties
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.http.client.ClientHttpConnectorBuilderCustomizer
+      newFullyQualifiedTypeName: org.springframework.boot.http.client.autoconfigure.reactive.ClientHttpConnectorBuilderCustomizer
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.autoconfigure.observation.web.client.HttpClientObservationsAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.http.client.autoconfigure.metrics.HttpClientMetricsAutoConfiguration

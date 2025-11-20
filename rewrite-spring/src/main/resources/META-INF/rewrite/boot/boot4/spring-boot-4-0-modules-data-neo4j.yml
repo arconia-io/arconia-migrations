@@ -1,0 +1,45 @@
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.MigrateDataNeo4jModule
+displayName: Migrate Spring Boot Data Neo4J module to Spring Boot 4.0
+description: Migrate Spring Boot Data Neo4J module to Spring Boot 4.0.
+recipeList:
+  - io.arconia.rewrite.spring.boot4.AddDataNeo4jStarterTest
+
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.data.neo4j.Neo4jDataAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.data.neo4j.autoconfigure.DataNeo4jAutoConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.data.neo4j.Neo4jDataProperties
+      newFullyQualifiedTypeName: org.springframework.boot.data.neo4j.autoconfigure.DataNeo4jProperties
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.data.neo4j.Neo4jReactiveDataAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.data.neo4j.autoconfigure.DataNeo4jReactiveAutoConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.data.neo4j.Neo4jReactiveRepositoriesAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.data.neo4j.autoconfigure.DataNeo4jReactiveRepositoriesAutoConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.data.neo4j.Neo4jRepositoriesAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.data.neo4j.autoconfigure.DataNeo4jRepositoriesAutoConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.test.autoconfigure.data.neo4j.AutoConfigureDataNeo4j
+      newFullyQualifiedTypeName: org.springframework.boot.data.neo4j.test.autoconfigure.AutoConfigureDataNeo4j
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.test.autoconfigure.data.neo4j.DataNeo4jTest
+      newFullyQualifiedTypeName: org.springframework.boot.data.neo4j.test.autoconfigure.DataNeo4jTest
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.AddDataNeo4jStarterTest
+displayName: Add Data Neo4J Starter Test
+preconditions:
+  - org.openrewrite.java.dependencies.FindDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-data-neo4j
+recipeList:
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-data-neo4j-test
+      acceptTransitive: true
+      configuration: testImplementation
+      scope: test

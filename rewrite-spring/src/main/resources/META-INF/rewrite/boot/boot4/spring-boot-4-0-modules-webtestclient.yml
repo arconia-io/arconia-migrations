@@ -1,0 +1,31 @@
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.MigrateWebTestClientModule
+displayName: Migrate Spring Boot WebTestClient module to Spring Boot 4.0
+description: Migrate Spring Boot WebTestClient module to Spring Boot 4.0.
+recipeList:
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.test.autoconfigure.web.reactive.AutoConfigureWebTestClient
+      newFullyQualifiedTypeName: org.springframework.boot.webtestclient.autoconfigure.AutoConfigureWebTestClient
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.test.autoconfigure.web.reactive.SpringBootWebTestClientBuilderCustomizer
+      newFullyQualifiedTypeName: org.springframework.boot.webtestclient.autoconfigure.SpringBootWebTestClientBuilderCustomizer
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.test.autoconfigure.web.reactive.WebTestClientAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.webtestclient.autoconfigure.WebTestClientAutoConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.test.web.reactive.server.WebTestClientBuilderCustomizer
+      newFullyQualifiedTypeName: org.springframework.boot.webtestclient.autoconfigure.WebTestClientBuilderCustomizer
+
+  - io.arconia.rewrite.spring.boot4.ConfigureWebTestClientForWebMvc
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.ConfigureWebTestClientForWebMvc
+displayName: Configure WebTestClient for Web MVC
+preconditions:
+  - org.openrewrite.java.dependencies.FindDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-webmvc
+recipeList:
+  - io.arconia.rewrite.spring.boot.boot4.AddAutoConfigureWebTestClientAnnotation

@@ -1,0 +1,57 @@
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.MigrateWebClientModule
+displayName: Migrate Spring Boot WebClient module to Spring Boot 4.0
+description: Migrate Spring Boot WebClient module to Spring Boot 4.0.
+recipeList:
+  - io.arconia.rewrite.spring.boot4.AddWebClientStarter
+  - io.arconia.rewrite.spring.boot4.AddWebClientStarterTest
+
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.web.reactive.function.client.WebClientCustomizer
+      newFullyQualifiedTypeName: org.springframework.boot.webclient.WebClientCustomizer
+
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.metrics.web.reactive.client.ObservationWebClientCustomizer
+      newFullyQualifiedTypeName: org.springframework.boot.webclient.observation.ObservationWebClientCustomizer
+
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.web.reactive.function.client.WebClientAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.webclient.autoconfigure.WebClientAutoConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.web.reactive.function.client.WebClientCodecCustomizer
+      newFullyQualifiedTypeName: org.springframework.boot.webclient.autoconfigure.WebClientCodecCustomizer
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.web.reactive.function.client.WebClientSsl
+      newFullyQualifiedTypeName: org.springframework.boot.webclient.autoconfigure.WebClientSsl
+
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.test.autoconfigure.web.client.AutoConfigureWebClient
+      newFullyQualifiedTypeName: org.springframework.boot.webclient.observation.AutoConfigureWebClient
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.AddWebClientStarter
+displayName: Add Web Client Starter
+recipeList:
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-webclient
+      onlyIfUsing: org.springframework.web.reactive.function.client.WebClient
+      acceptTransitive: true
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.AddWebClientStarterTest
+displayName: Add WebClient Starter Test
+preconditions:
+  - org.openrewrite.java.dependencies.FindDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-webclient
+recipeList:
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-webclient-test
+      acceptTransitive: true
+      configuration: testImplementation
+      scope: test

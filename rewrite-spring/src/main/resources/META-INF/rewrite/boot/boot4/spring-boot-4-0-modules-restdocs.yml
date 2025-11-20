@@ -1,0 +1,27 @@
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.MigrateRestDocsModule
+displayName: Migrate Spring Boot REST Docs module to Spring Boot 4.0
+description: Migrate Spring Boot REST Docs module to Spring Boot 4.0.
+recipeList:
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.test.autoconfigure.restdocs.AutoConfigureRestDocs
+      newFullyQualifiedTypeName: org.springframework.boot.restdocs.test.autoconfigure.AutoConfigureRestDocs
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.test.autoconfigure.restdocs.RestDocsAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.restdocs.test.autoconfigure.RestDocsAutoConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.test.autoconfigure.restdocs.RestDocsMockMvcBuilderCustomizer
+      newFullyQualifiedTypeName: org.springframework.boot.restdocs.test.autoconfigure.RestDocsMockMvcBuilderCustomizer
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.test.autoconfigure.restdocs.RestDocsMockMvcConfigurationCustomizer
+      newFullyQualifiedTypeName: org.springframework.boot.restdocs.test.autoconfigure.RestDocsMockMvcConfigurationCustomizer
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.test.autoconfigure.restdocs.RestDocsProperties
+      newFullyQualifiedTypeName: org.springframework.boot.restdocs.test.autoconfigure.RestDocsProperties
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener
+      newFullyQualifiedTypeName: org.springframework.boot.restdocs.test.autoconfigure.RestDocsTestExecutionListener
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.test.autoconfigure.restdocs.RestDocsWebTestClientConfigurationCustomizer
+      newFullyQualifiedTypeName: org.springframework.boot.restdocs.test.autoconfigure.RestDocsWebTestClientConfigurationCustomizer

@@ -1,0 +1,33 @@
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.MigrateJooqModule
+displayName: Migrate Spring Boot JOOQ module to Spring Boot 4.0
+description: Migrate Spring Boot JOOQ module to Spring Boot 4.0.
+recipeList:
+  - io.arconia.rewrite.spring.boot4.AddJooqStarterTest
+
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.autoconfigure.jooq
+      newPackageName: org.springframework.boot.jooq.autoconfigure
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.test.autoconfigure.jooq.AutoConfigureJooq
+      newFullyQualifiedTypeName: org.springframework.boot.jooq.test.autoconfigure.AutoConfigureJooq
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.test.autoconfigure.jooq.JooqTest
+      newFullyQualifiedTypeName: org.springframework.boot.jooq.test.autoconfigure.JooqTest
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.AddJooqStarterTest
+displayName: Add jOOQ Starter Test
+preconditions:
+  - org.openrewrite.java.dependencies.FindDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-jooq
+recipeList:
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-jooq-test
+      acceptTransitive: true
+      configuration: testImplementation
+      scope: test

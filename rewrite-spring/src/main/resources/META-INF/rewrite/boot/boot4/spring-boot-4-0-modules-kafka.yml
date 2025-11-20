@@ -1,0 +1,54 @@
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.MigrateKafkaModule
+displayName: Migrate Spring Boot Kafka module to Spring Boot 4.0
+description: Migrate Spring Boot Kafka module to Spring Boot 4.0.
+recipeList:
+  - io.arconia.rewrite.spring.boot4.AddKafkaStarter
+  - io.arconia.rewrite.spring.boot4.MigrateKafkaTest
+  - io.arconia.rewrite.spring.boot4.AddKafkaStarterTest
+
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.autoconfigure.kafka
+      newPackageName: org.springframework.boot.kafka.autoconfigure
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.autoconfigure.metrics.KafkaMetricsAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.kafka.autoconfigure.metrics.KafkaMetricsAutoConfiguration
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.AddKafkaStarter
+displayName: Add Kafka Starter
+recipeList:
+  - org.openrewrite.java.dependencies.ChangeDependency:
+      oldGroupId: org.springframework.kafka
+      oldArtifactId: spring-kafka
+      newGroupId: org.springframework.boot
+      newArtifactId: spring-boot-starter-kafka
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.MigrateKafkaTest
+displayName: Migrate Kafka Test
+recipeList:
+  - org.openrewrite.java.dependencies.ChangeDependency:
+      oldGroupId: org.springframework.kafka
+      oldArtifactId: spring-kafka-test
+      newGroupId: org.springframework.boot
+      newArtifactId: spring-boot-starter-kafka-test
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.AddKafkaStarterTest
+displayName: Add Kafka Starter Test
+preconditions:
+  - org.openrewrite.java.dependencies.FindDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-kafka
+recipeList:
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-kafka-test
+      acceptTransitive: true
+      configuration: testImplementation
+      scope: test

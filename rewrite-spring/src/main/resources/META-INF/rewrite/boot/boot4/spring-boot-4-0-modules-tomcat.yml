@@ -1,0 +1,61 @@
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.MigrateTomcatModule
+displayName: Migrate Spring Boot Tomcat module to Spring Boot 4.0
+description: Migrate Spring Boot Tomcat module to Spring Boot 4.0.
+recipeList:
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.web.embedded.tomcat.CompressionConnectorCustomizer
+      newFullyQualifiedTypeName: org.springframework.boot.tomcat.CompressionConnectorCustomizer
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.web.embedded.tomcat.ConfigurableTomcatWebServerFactory
+      newFullyQualifiedTypeName: org.springframework.boot.tomcat.ConfigurableTomcatWebServerFactory
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.web.embedded.tomcat.ConnectorStartFailedException
+      newFullyQualifiedTypeName: org.springframework.boot.tomcat.ConnectorStartFailedException
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.web.embedded.tomcat.DisableReferenceClearingContextCustomizer
+      newFullyQualifiedTypeName: org.springframework.boot.tomcat.DisableReferenceClearingContextCustomizer
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.web.embedded.tomcat.SslConnectorCustomizer
+      newFullyQualifiedTypeName: org.springframework.boot.tomcat.SslConnectorCustomizer
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.web.embedded.tomcat.TomcatConnectorCustomizer
+      newFullyQualifiedTypeName: org.springframework.boot.tomcat.TomcatConnectorCustomizer
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.web.embedded.tomcat.TomcatContextCustomizer
+      newFullyQualifiedTypeName: org.springframework.boot.tomcat.TomcatContextCustomizer
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.web.embedded.tomcat.TomcatEmbeddedContext
+      newFullyQualifiedTypeName: org.springframework.boot.tomcat.TomcatEmbeddedContext
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.web.embedded.tomcat.TomcatEmbeddedWebappClassLoader
+      newFullyQualifiedTypeName: org.springframework.boot.tomcat.TomcatEmbeddedWebappClassLoader
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.web.embedded.tomcat.TomcatProtocolHandlerCustomizer
+      newFullyQualifiedTypeName: org.springframework.boot.tomcat.TomcatProtocolHandlerCustomizer
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.web.embedded.tomcat.TomcatWebServer
+      newFullyQualifiedTypeName: org.springframework.boot.tomcat.TomcatWebServer
+
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.web.embedded.TomcatVirtualThreadsWebServerFactoryCustomizer
+      newFullyQualifiedTypeName: org.springframework.boot.tomcat.autoconfigure.TomcatVirtualThreadsWebServerFactoryCustomizer
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.web.embedded.TomcatWebServerFactoryCustomizer
+      newFullyQualifiedTypeName: org.springframework.boot.tomcat.autoconfigure.TomcatWebServerFactoryCustomizer
+
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.autoconfigure.metrics.web.tomcat.TomcatMetricsAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.tomcat.autoconfigure.metrics.TomcatMetricsAutoConfiguration
+
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.metrics.web.tomcat.TomcatMetricsBinder
+      newFullyQualifiedTypeName: org.springframework.boot.tomcat.metrics.TomcatMetricsBinder
+
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.web.embedded.tomcat.TomcatReactiveWebServerFactory
+      newFullyQualifiedTypeName: org.springframework.boot.tomcat.reactive.TomcatReactiveWebServerFactory
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory
+      newFullyQualifiedTypeName: org.springframework.boot.tomcat.servlet.TomcatServletWebServerFactory

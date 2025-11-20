@@ -1,0 +1,43 @@
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.MigrateJettyModule
+displayName: Migrate Spring Boot Jetty module to Spring Boot 4.0
+description: Migrate Spring Boot Jetty module to Spring Boot 4.0.
+recipeList:
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.web.embedded.jetty.ConfigurableJettyWebServerFactory
+      newFullyQualifiedTypeName: org.springframework.boot.jetty.ConfigurableJettyWebServerFactory
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.web.embedded.jetty.ForwardHeadersCustomizer
+      newFullyQualifiedTypeName: org.springframework.boot.jetty.ForwardHeadersCustomizer
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.web.embedded.jetty.JettyServerCustomizer
+      newFullyQualifiedTypeName: org.springframework.boot.jetty.JettyServerCustomizer
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.web.embedded.jetty.JettyWebServer
+      newFullyQualifiedTypeName: org.springframework.boot.jetty.JettyWebServer
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.web.embedded.jetty.SslServerCustomizer
+      newFullyQualifiedTypeName: org.springframework.boot.jetty.SslServerCustomizer
+
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.web.embedded.JettyVirtualThreadsWebServerFactoryCustomizer
+      newFullyQualifiedTypeName: org.springframework.boot.jetty.autoconfigure.JettyVirtualThreadsWebServerFactoryCustomizer
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.web.embedded.JettyWebServerFactoryCustomizer
+      newFullyQualifiedTypeName: org.springframework.boot.jetty.autoconfigure.JettyWebServerFactoryCustomizer
+
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.autoconfigure.metrics.web.jetty.JettyMetricsAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.jetty.autoconfigure.metrics.JettyMetricsAutoConfiguration
+
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.actuate.metrics.web.jetty
+      newPackageName: org.springframework.boot.jetty.metrics
+
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.web.embedded.jetty.JettyReactiveWebServerFactory
+      newFullyQualifiedTypeName: org.springframework.boot.jetty.reactive.JettyReactiveWebServerFactory
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.web.embedded.jetty.JettyServletWebServerFactory
+      newFullyQualifiedTypeName: org.springframework.boot.jetty.servlet.JettyServletWebServerFactory

@@ -1,0 +1,33 @@
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.MigrateCassandraModule
+displayName: Migrate Spring Boot Cassandra module to Spring Boot 4.0
+description: Migrate Spring Boot Cassandra module to Spring Boot 4.0.
+recipeList:
+  - io.arconia.rewrite.spring.boot4.AddCassandraStarterTest
+
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.autoconfigure.cassandra
+      newPackageName: org.springframework.boot.cassandra.autoconfigure
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.actuate.autoconfigure.cassandra
+      newPackageName: org.springframework.boot.cassandra.autoconfigure.health
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.actuate.cassandra
+      newPackageName: org.springframework.boot.cassandra.health
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.AddCassandraStarterTest
+displayName: Add Cassandra Starter Test
+preconditions:
+  - org.openrewrite.java.dependencies.FindDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-cassandra
+recipeList:
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-cassandra-test
+      acceptTransitive: true
+      configuration: testImplementation
+      scope: test

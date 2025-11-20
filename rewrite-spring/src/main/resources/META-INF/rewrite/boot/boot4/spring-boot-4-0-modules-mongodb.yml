@@ -1,0 +1,36 @@
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.MigrateMongoDbModule
+displayName: Migrate Spring Boot MongoDB module to Spring Boot 4.0
+description: Migrate Spring Boot MongoDB module to Spring Boot 4.0.
+recipeList:
+  - io.arconia.rewrite.spring.boot4.AddMongoDbStarterTest
+
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.autoconfigure.mongo
+      newPackageName: org.springframework.boot.mongodb.autoconfigure
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.actuate.autoconfigure.data.mongo
+      newPackageName: org.springframework.boot.mongodb.autoconfigure.health
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.autoconfigure.metrics.mongo.MongoMetricsAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.mongodb.autoconfigure.metrics.MongoMetricsAutoConfiguration
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.actuate.data.mongo
+      newPackageName: org.springframework.boot.mongodb.health
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.AddMongoDbStarterTest
+displayName: Add MongoDB Starter Test
+preconditions:
+  - org.openrewrite.java.dependencies.FindDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-mongodb
+recipeList:
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-mongodb-test
+      acceptTransitive: true
+      configuration: testImplementation
+      scope: test

@@ -1,0 +1,55 @@
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.MigrateSecurityOAuth2ResourceServerModule
+displayName: Migrate Spring Boot Security OAuth2 Resource Server module to Spring Boot 4.0
+description: Migrate Spring Boot Security OAuth2 Resource Server module to Spring Boot 4.0.
+recipeList:
+  - io.arconia.rewrite.spring.boot4.MigrateSecurityOAuthResourceServerStarter
+  - io.arconia.rewrite.spring.boot4.AddSecurityOAuthResourceServerStarterTest
+
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.autoconfigure.security.oauth2.resource
+      newPackageName: org.springframework.boot.security.oauth2.server.resource.autoconfigure
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.autoconfigure.security.oauth2.resource.reactive
+      newPackageName: org.springframework.boot.security.oauth2.server.resource.autoconfigure.reactive
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.autoconfigure.security.oauth2.resource.servlet
+      newPackageName: org.springframework.boot.security.oauth2.server.resource.autoconfigure.servlet
+
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.autoconfigure.security.oauth2.client.reactive
+      newPackageName: org.springframework.boot.security.oauth2.client.autoconfigure.reactive
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.security.oauth2.client.servlet.OAuth2ClientWebSecurityAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.security.oauth2.client.autoconfigure.servlet.OAuth2ClientWebSecurityAutoConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.security.oauth2.client.servlet.OAuth2ClientWebSecurityAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.security.oauth2.client.autoconfigure.servlet.OAuth2ClientWebSecurityAutoConfiguration
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.MigrateSecurityOAuthResourceServerStarter
+displayName: Migrate Security OAuth Resource Server Starter
+recipeList:
+  - org.openrewrite.java.dependencies.ChangeDependency:
+      oldGroupId: org.springframework.boot
+      oldArtifactId: spring-boot-starter-oauth2-resource-server
+      newGroupId: org.springframework.boot
+      newArtifactId: spring-boot-starter-security-oauth2-resource-server
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.AddSecurityOAuthResourceServerStarterTest
+displayName: Add Security OAuth Resource Server Starter Test
+preconditions:
+  - org.openrewrite.java.dependencies.FindDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-security-oauth2-resource-server
+recipeList:
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-security-oauth2-resource-server-test
+      acceptTransitive: true
+      configuration: testImplementation
+      scope: test

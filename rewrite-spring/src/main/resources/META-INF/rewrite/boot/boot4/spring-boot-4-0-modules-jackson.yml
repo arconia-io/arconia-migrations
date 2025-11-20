@@ -1,0 +1,66 @@
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.MigrateJacksonModule
+displayName: Migrate Spring Boot Jackson module to Spring Boot 4.0
+description: Migrate Spring Boot Jackson module to Spring Boot 4.0.
+recipeList:
+  - io.arconia.rewrite.spring.boot4.AddJacksonStarter
+  - io.arconia.rewrite.spring.boot4.AddJacksonStarterTest
+
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.jackson.Jackson2ObjectMapperBuilderCustomizer
+      newFullyQualifiedTypeName: org.springframework.boot.jackson.autoconfigure.JsonMapperBuilderCustomizer
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.jackson.autoconfigure.JacksonAutoConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.jackson.JacksonProperties
+      newFullyQualifiedTypeName: org.springframework.boot.jackson.autoconfigure.JacksonProperties
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.jackson.JsonComponent
+      newFullyQualifiedTypeName: org.springframework.boot.jackson.JacksonComponent
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.jackson.JsonComponentModule
+      newFullyQualifiedTypeName: org.springframework.boot.jackson.JacksonComponentModule
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.jackson.JsonMixin
+      newFullyQualifiedTypeName: org.springframework.boot.jackson.JacksonMixin
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.jackson.JsonMixinModule
+      newFullyQualifiedTypeName: org.springframework.boot.jackson.JacksonMixinModule
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.jackson.JsonMixinModuleEntries
+      newFullyQualifiedTypeName: org.springframework.boot.jackson.JacksonMixinModuleEntries
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.jackson.JsonObjectDeserializer
+      newFullyQualifiedTypeName: org.springframework.boot.jackson.ObjectValueDeserializer
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.jackson.JsonObjectSerializer
+      newFullyQualifiedTypeName: org.springframework.boot.jackson.ObjectValueSerializer
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.AddJacksonStarter
+displayName: Add Jackson Starter
+recipeList:
+  - org.openrewrite.java.dependencies.ChangeDependency:
+      oldGroupId: org.springframework.boot
+      oldArtifactId: spring-boot-starter-json
+      newGroupId: org.springframework.boot
+      newArtifactId: spring-boot-starter-jackson
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.AddJacksonStarterTest
+displayName: Add Jackson Starter Test
+preconditions:
+  - org.openrewrite.java.dependencies.FindDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-jackson
+recipeList:
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-jackson-test
+      acceptTransitive: true
+      configuration: testImplementation
+      scope: test

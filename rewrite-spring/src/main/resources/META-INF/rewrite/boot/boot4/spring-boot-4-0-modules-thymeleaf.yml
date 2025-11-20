@@ -1,0 +1,27 @@
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.MigrateThymeleafModule
+displayName: Migrate Spring Boot Thymeleaf module to Spring Boot 4.0
+description: Migrate Spring Boot Thymeleaf module to Spring Boot 4.0.
+recipeList:
+  - io.arconia.rewrite.spring.boot4.AddThymeleafStarterTest
+
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.autoconfigure.thymeleaf
+      newPackageName: org.springframework.boot.thymeleaf.autoconfigure
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.AddThymeleafStarterTest
+displayName: Add Thymeleaf Test
+preconditions:
+  - org.openrewrite.java.dependencies.FindDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-thymeleaf
+recipeList:
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-thymeleaf-test
+      acceptTransitive: true
+      configuration: testImplementation
+      scope: test

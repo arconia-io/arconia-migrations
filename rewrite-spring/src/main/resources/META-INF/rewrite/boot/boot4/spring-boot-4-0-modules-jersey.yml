@@ -1,0 +1,57 @@
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.MigrateJerseyModule
+displayName: Migrate Spring Boot Jersey module to Spring Boot 4.0
+description: Migrate Spring Boot Jersey module to Spring Boot 4.0.
+recipeList:
+  - io.arconia.rewrite.spring.boot4.AddJerseyStarterTest
+
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.actuate.endpoint.web.jersey
+      newPackageName: org.springframework.boot.jersey.actuate.endpoint.web
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.web.servlet.DefaultJerseyApplicationPath
+      newFullyQualifiedTypeName: org.springframework.boot.jersey.autoconfigure.DefaultJerseyApplicationPath
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.web.servlet.JerseyApplicationPath
+      newFullyQualifiedTypeName: org.springframework.boot.jersey.autoconfigure.JerseyApplicationPath
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.jersey.JerseyAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.jersey.autoconfigure.JerseyAutoConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.jersey.JerseyProperties
+      newFullyQualifiedTypeName: org.springframework.boot.jersey.autoconfigure.JerseyProperties
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.jersey.ResourceConfigCustomizer
+      newFullyQualifiedTypeName: org.springframework.boot.jersey.autoconfigure.ResourceConfigCustomizer
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.autoconfigure.web.jersey.JerseyChildManagementContextConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.jersey.autoconfigure.actuate.web.JerseyChildManagementContextConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.autoconfigure.endpoint.web.ServletEndpointManagementContextConfiguration$JerseyServletEndpointManagementContextConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.jersey.autoconfigure.actuate.web.JerseyEndpointManagementContextConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.autoconfigure.web.jersey.JerseySameManagementContextConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.jersey.autoconfigure.actuate.web.JerseySameManagementContextConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.autoconfigure.web.jersey.ManagementContextResourceConfigCustomizer
+      newFullyQualifiedTypeName: org.springframework.boot.jersey.autoconfigure.actuate.web.ManagementContextResourceConfigCustomizer
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.autoconfigure.metrics.jersey.JerseyServerMetricsAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.jersey.autoconfigure.metrics.JerseyServerMetricsAutoConfiguration
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.AddJerseyStarterTest
+displayName: Add Jersey Starter Test
+preconditions:
+  - org.openrewrite.java.dependencies.FindDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-jersey
+recipeList:
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-jersey-test
+      acceptTransitive: true
+      configuration: testImplementation
+      scope: test

@@ -1,0 +1,12 @@
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.MigrateTransactionModule
+displayName: Migrate Spring Boot Transaction module to Spring Boot 4.0
+description: Migrate Spring Boot Transaction module to Spring Boot 4.0.
+recipeList:
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.transaction.jta.JtaAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.transaction.jta.autoconfigure.JtaAutoConfiguration
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.autoconfigure.transaction
+      newPackageName: org.springframework.boot.transaction.autoconfigure

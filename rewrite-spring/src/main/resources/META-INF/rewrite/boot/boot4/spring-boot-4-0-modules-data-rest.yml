@@ -1,0 +1,30 @@
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.MigrateDataRestModule
+displayName: Migrate Spring Boot Data REST module to Spring Boot 4.0
+description: Migrate Spring Boot Data REST module to Spring Boot 4.0.
+recipeList:
+  - io.arconia.rewrite.spring.boot4.AddDataRestStarterTest
+
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.data.rest.RepositoryRestMvcAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.data.rest.autoconfigure.DataRestAutoConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.data.rest.RepositoryRestProperties
+      newFullyQualifiedTypeName: org.springframework.boot.data.rest.autoconfigure.DataRestProperties
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.AddDataRestStarterTest
+displayName: Add Data REST Starter Test
+preconditions:
+  - org.openrewrite.java.dependencies.FindDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-data-rest
+recipeList:
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-data-rest-test
+      acceptTransitive: true
+      configuration: testImplementation
+      scope: test

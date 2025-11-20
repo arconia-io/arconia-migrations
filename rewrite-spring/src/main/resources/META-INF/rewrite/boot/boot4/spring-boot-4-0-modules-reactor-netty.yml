@@ -1,0 +1,18 @@
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.MigrateReactorNettyModule
+displayName: Migrate Spring Boot Reactor Netty module to Spring Boot 4.0
+description: Migrate Spring Boot Reactor Netty module to Spring Boot 4.0.
+recipeList:
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.web.embedded.netty
+      newPackageName: org.springframework.boot.reactor.netty
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.web.embedded.NettyWebServerFactoryCustomizer
+      newFullyQualifiedTypeName: org.springframework.boot.reactor.netty.autoconfigure.NettyReactiveWebServerFactoryCustomizer
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.reactor.netty.ReactorNettyConfigurations
+      newFullyQualifiedTypeName: org.springframework.boot.reactor.netty.autoconfigure.ReactorNettyConfigurations
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.reactor.netty.ReactorNettyProperties
+      newFullyQualifiedTypeName: org.springframework.boot.reactor.netty.autoconfigure.ReactorNettyProperties

@@ -1,0 +1,30 @@
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.MigrateJpaModule
+displayName: Migrate Spring Boot JPA module to Spring Boot 4.0
+description: Migrate Spring Boot JPA module to Spring Boot 4.0.
+recipeList:
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.orm.jpa
+      newPackageName: org.springframework.boot.jpa
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.orm.jpa.EntityManagerFactoryBuilderCustomizer
+      newFullyQualifiedTypeName: org.springframework.boot.jpa.autoconfigure.EntityManagerFactoryBuilderCustomizer
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.orm.jpa.EntityManagerFactoryDependsOnPostProcessor
+      newFullyQualifiedTypeName: org.springframework.boot.jpa.autoconfigure.EntityManagerFactoryDependsOnPostProcessor
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.jpa.autoconfigure.JpaBaseConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.orm.jpa.JpaProperties
+      newFullyQualifiedTypeName: org.springframework.boot.jpa.autoconfigure.JpaProperties
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.test.autoconfigure.orm.jpa.AutoConfigureTestEntityManager
+      newFullyQualifiedTypeName: org.springframework.boot.jpa.test.autoconfigure.AutoConfigureTestEntityManager
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager
+      newFullyQualifiedTypeName: org.springframework.boot.jpa.test.autoconfigure.TestEntityManager
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManagerAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.jpa.test.autoconfigure.TestEntityManagerAutoConfiguration

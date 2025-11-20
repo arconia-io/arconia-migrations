@@ -9,9 +9,6 @@ import org.openrewrite.test.RewriteTest;
 import static org.openrewrite.java.Assertions.java;
 import static org.openrewrite.test.SourceSpecs.text;
 
-/**
- * Unit tests for "io.arconia.rewrite.spring.boot4.UpgradeSpringBoot_4_0".
- */
 class UpgradeSpringBoot_4_0_Tests implements RewriteTest {
 
     @Override
@@ -99,8 +96,6 @@ class UpgradeSpringBoot_4_0_Tests implements RewriteTest {
                 //language=java
                 java(
                         """
-                        package com.yourorg;
-
                         import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 
                         class Demo {
@@ -108,9 +103,7 @@ class UpgradeSpringBoot_4_0_Tests implements RewriteTest {
                         }
                         """,
                         """
-                        package com.yourorg;
-
-                        import org.springframework.boot.security.autoconfigure.servlet.PathRequest;
+                        import org.springframework.boot.security.autoconfigure.web.servlet.PathRequest;
 
                         class Demo {
                             PathRequest pathRequest = null;
@@ -128,8 +121,6 @@ class UpgradeSpringBoot_4_0_Tests implements RewriteTest {
                 //language=java
                 java(
                         """
-                        package com.yourorg;
-
                         import org.springframework.boot.test.autoconfigure.properties.PropertyMapping;
                         import org.springframework.boot.test.web.client.TestRestTemplate;
                         import org.springframework.boot.test.web.server.LocalServerPort;
@@ -141,11 +132,9 @@ class UpgradeSpringBoot_4_0_Tests implements RewriteTest {
                         }
                         """,
                         """
-                        package com.yourorg;
-
+                        import org.springframework.boot.resttestclient.TestRestTemplate;
                         import org.springframework.boot.test.context.PropertyMapping;
                         import org.springframework.boot.web.server.test.LocalServerPort;
-                        import org.springframework.boot.web.server.test.client.TestRestTemplate;
 
                         class Demo {
                             PropertyMapping propertyMapping = null;

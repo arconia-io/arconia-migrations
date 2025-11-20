@@ -1,0 +1,12 @@
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.MigrateHttpConverterModule
+displayName: Migrate Spring Boot HTTP Converter module to Spring Boot 4.0
+description: Migrate Spring Boot HTTP Converter module to Spring Boot 4.0.
+recipeList:
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.http.HttpMessageConverters
+      newFullyQualifiedTypeName: org.springframework.boot.http.converter.autoconfigure.HttpMessageConverters
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.http.HttpMessageConvertersAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.http.converter.autoconfigure.HttpMessageConvertersAutoConfiguration

@@ -1,0 +1,42 @@
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.MigrateCacheModule
+displayName: Migrate Spring Boot Cache module to Spring Boot 4.0
+description: Migrate Spring Boot Cache module to Spring Boot 4.0.
+recipeList:
+  - io.arconia.rewrite.spring.boot4.AddCacheStarterTest
+
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.actuate.cache
+      newPackageName: org.springframework.boot.cache.actuate.endpoint
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.autoconfigure.cache
+      newPackageName: org.springframework.boot.cache.autoconfigure
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.autoconfigure.cache.CachesEndpointAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.cache.autoconfigure.CachesEndpointAutoConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.autoconfigure.metrics.cache.CacheMetricsAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.cache.autoconfigure.metrics.CacheMetricsAutoConfiguration
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.actuate.metrics.cache
+      newPackageName: org.springframework.boot.cache.metrics
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.test.autoconfigure.core.AutoConfigureCache
+      newFullyQualifiedTypeName: org.springframework.boot.cache.test.autoconfigure.AutoConfigureCache
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.AddCacheStarterTest
+displayName: Add Cache Starter Test
+preconditions:
+  - org.openrewrite.java.dependencies.FindDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-cache
+recipeList:
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-cache-test
+      acceptTransitive: true
+      configuration: testImplementation
+      scope: test

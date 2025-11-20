@@ -1,0 +1,91 @@
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.MigrateOpenTelemetryModule
+displayName: Migrate Spring Boot OpenTelemetry module to Spring Boot 4.0
+description: Migrate Spring Boot OpenTelemetry module to Spring Boot 4.0.
+recipeList:
+  - io.arconia.rewrite.spring.boot4.AddOpenTelemetryStarterForMetrics
+  - io.arconia.rewrite.spring.boot4.AddOpenTelemetryStarterForTracing
+  - io.arconia.rewrite.spring.boot4.AddOpenTelemetryStarterTest
+
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.autoconfigure.opentelemetry.OpenTelemetryAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.opentelemetry.autoconfigure.OpenTelemetrySdkAutoConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.autoconfigure.opentelemetry.OpenTelemetryResourceAttributes
+      newFullyQualifiedTypeName: org.springframework.boot.opentelemetry.autoconfigure.OpenTelemetryResourceAttributes
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.autoconfigure.opentelemetry.OpenTelemetryProperties
+      newFullyQualifiedTypeName: org.springframework.boot.opentelemetry.autoconfigure.OpenTelemetryProperties
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.autoconfigure.logging.OpenTelemetryLoggingAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.opentelemetry.autoconfigure.logging.OpenTelemetryLoggingAutoConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.autoconfigure.logging.SdkLoggerProviderBuilderCustomizer
+      newFullyQualifiedTypeName: org.springframework.boot.opentelemetry.autoconfigure.logging.SdkLoggerProviderBuilderCustomizer
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.actuate.autoconfigure.logging.otlp
+      newPackageName: org.springframework.boot.opentelemetry.autoconfigure.logging.otlp
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.AddOpenTelemetryStarterForMetrics
+displayName: Add OpenTelemetry Starter for Metrics
+preconditions:
+  - org.openrewrite.java.dependencies.FindDependency:
+      groupId: io.micrometer
+      artifactId: micrometer-registry-otlp
+recipeList:
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-opentelemetry
+      acceptTransitive: true
+      configuration: implementation
+      scope: compile
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.AddOpenTelemetryStarterForTracing
+displayName: Add OpenTelemetry Starter for Tracing
+preconditions:
+  - org.openrewrite.java.dependencies.FindDependency:
+      groupId: io.micrometer
+      artifactId: micrometer-tracing-bridge-otel
+recipeList:
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-opentelemetry
+      acceptTransitive: true
+      configuration: implementation
+      scope: compile
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.AddOpenTelemetryStarterTest
+displayName: Add OpenTelemetry Test
+preconditions:
+  - org.openrewrite.java.dependencies.FindDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-opentelemetry
+recipeList:
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-opentelemetry-test
+      acceptTransitive: true
+      configuration: testImplementation
+      scope: test
+  - org.openrewrite.java.dependencies.RemoveDependency:
+      groupId: io.micrometer
+      artifactId: micrometer-registry-otlp
+  - org.openrewrite.java.dependencies.RemoveDependency:
+      groupId: io.micrometer
+      artifactId: micrometer-tracing-bridge-otel
+  - org.openrewrite.java.dependencies.RemoveDependency:
+      groupId: io.opentelemetry
+      artifactId: opentelemetry-api
+  - org.openrewrite.java.dependencies.RemoveDependency:
+      groupId: io.opentelemetry
+      artifactId: opentelemetry-sdk
+  - org.openrewrite.java.dependencies.RemoveDependency:
+      groupId: io.opentelemetry
+      artifactId: opentelemetry-exporter-otlp

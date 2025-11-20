@@ -1,0 +1,33 @@
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.MigrateCouchbaseModule
+displayName: Migrate Spring Boot Couchbase module to Spring Boot 4.0
+description: Migrate Spring Boot Couchbase module to Spring Boot 4.0.
+recipeList:
+  - io.arconia.rewrite.spring.boot4.AddCouchbaseStarterTest
+
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.autoconfigure.couchbase
+      newPackageName: org.springframework.boot.couchbase.autoconfigure
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.actuate.autoconfigure.couchbase
+      newPackageName: org.springframework.boot.couchbase.autoconfigure.health
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.actuate.couchbase
+      newPackageName: org.springframework.boot.couchbase.health
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.AddCouchbaseStarterTest
+displayName: Add Couchbase Starter Test
+preconditions:
+  - org.openrewrite.java.dependencies.FindDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-couchbase
+recipeList:
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-couchbase-test
+      acceptTransitive: true
+      configuration: testImplementation
+      scope: test

@@ -1,0 +1,52 @@
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.MigrateServletModule
+displayName: Migrate Spring Boot Servlet module to Spring Boot 4.0
+description: Migrate Spring Boot Servlet module to Spring Boot 4.0.
+recipeList:
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.web.servlet.MultipartConfigFactory
+      newFullyQualifiedTypeName: org.springframework.boot.servlet.MultipartConfigFactory
+
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.servlet.actuate.web.exchanges.HttpExchangesFilter
+      newFullyQualifiedTypeName: org.springframework.boot.actuate.web.exchanges.servlet.HttpExchangesFilter
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.web.mappings.servlet.FilterRegistrationMappingDescription
+      newFullyQualifiedTypeName: org.springframework.boot.servlet.actuate.web.mappings.FilterRegistrationMappingDescription
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.web.mappings.servlet.FiltersMappingDescriptionProvider
+      newFullyQualifiedTypeName: org.springframework.boot.servlet.actuate.web.mappings.FiltersMappingDescriptionProvider
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.web.mappings.servlet.RegistrationMappingDescription
+      newFullyQualifiedTypeName: org.springframework.boot.servlet.actuate.web.mappings.RegistrationMappingDescription
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.web.mappings.servlet.ServletRegistrationMappingDescription
+      newFullyQualifiedTypeName: org.springframework.boot.servlet.actuate.web.mappings.ServletRegistrationMappingDescription
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.web.mappings.servlet.ServletsMappingDescriptionProvider
+      newFullyQualifiedTypeName: org.springframework.boot.servlet.actuate.web.mappings.ServletsMappingDescriptionProvider
+
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.web.servlet.HttpEncodingAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.servlet.autoconfigure.HttpEncodingAutoConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.web.servlet.MultipartAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.servlet.autoconfigure.MultipartAutoConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.web.servlet.MultipartProperties
+      newFullyQualifiedTypeName: org.springframework.boot.servlet.autoconfigure.MultipartProperties
+
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.autoconfigure.web.servlet.ManagementServletContext
+      newFullyQualifiedTypeName: org.springframework.boot.servlet.autoconfigure.actuate.web.ManagementServletContext
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.autoconfigure.endpoint.web.ServletEndpointManagementContextConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.servlet.autoconfigure.actuate.web.ServletEndpointManagementContextConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.autoconfigure.web.servlet.ServletManagementContextAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.servlet.autoconfigure.actuate.web.ServletManagementContextAutoConfiguration
+
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.web.servlet.filter
+      newPackageName: org.springframework.boot.servlet.filter

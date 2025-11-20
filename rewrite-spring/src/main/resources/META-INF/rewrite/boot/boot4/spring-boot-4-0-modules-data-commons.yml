@@ -1,0 +1,33 @@
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.MigrateDataCommonsModule
+displayName: Migrate Spring Boot Data Commons module to Spring Boot 4.0
+description: Migrate Spring Boot Data Commons module to Spring Boot 4.0.
+recipeList:
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.autoconfigure.metrics.data.RepositoryMetricsAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.data.autoconfigure.metrics.DataRepositoryMetricsAutoConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.autoconfigure.metrics.PropertiesAutoTimer
+      newFullyQualifiedTypeName: org.springframework.boot.data.autoconfigure.metrics.PropertiesAutoTimer
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.data.web.SpringDataWebAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.data.autoconfigure.web.DataWebAutoConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties
+      newFullyQualifiedTypeName: org.springframework.boot.data.autoconfigure.web.DataWebProperties
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.metrics.AutoTimer
+      newFullyQualifiedTypeName: org.springframework.boot.data.metrics.AutoTimer
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.metrics.data.DefaultRepositoryTagsProvider
+      newFullyQualifiedTypeName: org.springframework.boot.data.metrics.DefaultRepositoryTagsProvider
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.metrics.data.MetricsRepositoryMethodInvocationListener
+      newFullyQualifiedTypeName: org.springframework.boot.data.metrics.MetricsRepositoryMethodInvocationListener
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.metrics.data.RepositoryTagsProvider
+      newFullyQualifiedTypeName: org.springframework.boot.data.metrics.RepositoryTagsProvider
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.metrics.annotation.TimedAnnotations
+      newFullyQualifiedTypeName: org.springframework.boot.data.metrics.TimedAnnotations

@@ -1,0 +1,141 @@
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.MigrateMicrometerMetricsModule
+displayName: Migrate Spring Boot Micrometer Metrics module to Spring Boot 4.0
+description: Migrate Spring Boot Micrometer Metrics module to Spring Boot 4.0.
+recipeList:
+  - io.arconia.rewrite.spring.boot4.AddMicrometerMetricsStarterTest
+
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.metrics.MetricsEndpoint
+      newFullyQualifiedTypeName: org.springframework.boot.micrometer.metrics.actuate.endpoint.MetricsEndpoint
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.metrics.export.prometheus.PrometheusPushGatewayManager
+      newFullyQualifiedTypeName: org.springframework.boot.micrometer.metrics.export.prometheus.PrometheusPushGatewayManager
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.metrics.startup.StartupTimeMetricsListener
+      newFullyQualifiedTypeName: org.springframework.boot.micrometer.metrics.startup.StartupTimeMetricsListener
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.metrics.system.DiskSpaceMetricsBinder
+      newFullyQualifiedTypeName: org.springframework.boot.micrometer.metrics.system.DiskSpaceMetricsBinder
+
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.autoconfigure.metrics.CompositeMeterRegistryAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.micrometer.metrics.autoconfigure.CompositeMeterRegistryAutoConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.autoconfigure.metrics.MeterRegistryCustomizer
+      newFullyQualifiedTypeName: org.springframework.boot.micrometer.metrics.autoconfigure.MeterRegistryCustomizer
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.autoconfigure.metrics.MeterValue
+      newFullyQualifiedTypeName: org.springframework.boot.micrometer.metrics.autoconfigure.MeterValue
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.autoconfigure.metrics.MetricsAspectsAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.micrometer.metrics.autoconfigure.MetricsAspectsAutoConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.autoconfigure.metrics.MetricsAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.micrometer.metrics.autoconfigure.MetricsAutoConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.autoconfigure.metrics.MetricsEndpointAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.micrometer.metrics.autoconfigure.MetricsEndpointAutoConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.autoconfigure.metrics.MetricsProperties
+      newFullyQualifiedTypeName: org.springframework.boot.micrometer.metrics.autoconfigure.MetricsProperties
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.autoconfigure.metrics.PropertiesMeterFilter
+      newFullyQualifiedTypeName: org.springframework.boot.micrometer.metrics.autoconfigure.PropertiesMeterFilter
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.autoconfigure.metrics.ServiceLevelObjectiveBoundary
+      newFullyQualifiedTypeName: org.springframework.boot.micrometer.metrics.autoconfigure.ServiceLevelObjectiveBoundary
+
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.actuate.autoconfigure.metrics.export
+      newPackageName: org.springframework.boot.micrometer.metrics.autoconfigure.export
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.actuate.autoconfigure.metrics.export.appoptics
+      newPackageName: org.springframework.boot.micrometer.metrics.autoconfigure.export.appoptics
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.actuate.autoconfigure.metrics.export.atlas
+      newPackageName: org.springframework.boot.micrometer.metrics.autoconfigure.export.atlas
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.actuate.autoconfigure.metrics.export.datadog
+      newPackageName: org.springframework.boot.micrometer.metrics.autoconfigure.export.datadog
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.actuate.autoconfigure.metrics.export.dynatrace
+      newPackageName: org.springframework.boot.micrometer.metrics.autoconfigure.export.dynatrace
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.actuate.autoconfigure.metrics.export.elastic
+      newPackageName: org.springframework.boot.micrometer.metrics.autoconfigure.export.elastic
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.actuate.autoconfigure.metrics.export.ganglia
+      newPackageName: org.springframework.boot.micrometer.metrics.autoconfigure.export.ganglia
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.actuate.autoconfigure.metrics.export.graphite
+      newPackageName: org.springframework.boot.micrometer.metrics.autoconfigure.export.graphite
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.actuate.autoconfigure.metrics.export.humio
+      newPackageName: org.springframework.boot.micrometer.metrics.autoconfigure.export.humio
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.actuate.autoconfigure.metrics.export.influx
+      newPackageName: org.springframework.boot.micrometer.metrics.autoconfigure.export.influx
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.actuate.autoconfigure.metrics.export.jmx
+      newPackageName: org.springframework.boot.micrometer.metrics.autoconfigure.export.jmx
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.actuate.autoconfigure.metrics.export.kairos
+      newPackageName: org.springframework.boot.micrometer.metrics.autoconfigure.export.kairos
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.actuate.autoconfigure.metrics.export.newrelic
+      newPackageName: org.springframework.boot.micrometer.metrics.autoconfigure.export.newrelic
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.actuate.autoconfigure.metrics.export.otlp
+      newPackageName: org.springframework.boot.micrometer.metrics.autoconfigure.export.otlp
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.actuate.autoconfigure.metrics.export.prometheus
+      newPackageName: org.springframework.boot.micrometer.metrics.autoconfigure.export.prometheus
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.actuate.autoconfigure.metrics.export.properties
+      newPackageName: org.springframework.boot.micrometer.metrics.autoconfigure.export.properties
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.actuate.autoconfigure.metrics.export.simple
+      newPackageName: org.springframework.boot.micrometer.metrics.autoconfigure.export.simple
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.actuate.autoconfigure.metrics.export.stackdriver
+      newPackageName: org.springframework.boot.micrometer.metrics.autoconfigure.export.stackdriver
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.actuate.autoconfigure.metrics.export.statsd
+      newPackageName: org.springframework.boot.micrometer.metrics.autoconfigure.export.statsd
+
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.autoconfigure.metrics.JvmMetricsAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.micrometer.metrics.autoconfigure.jvm.JvmMetricsAutoConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.autoconfigure.metrics.Log4J2MetricsAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.micrometer.metrics.autoconfigure.logging.log4j2.Log4J2MetricsAutoConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.autoconfigure.metrics.LogbackMetricsAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.micrometer.metrics.autoconfigure.logging.logback.LogbackMetricsAutoConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.autoconfigure.metrics.startup.StartupTimeMetricsListenerAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.micrometer.metrics.autoconfigure.startup.StartupTimeMetricsListenerAutoConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.autoconfigure.metrics.SystemMetricsAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.micrometer.metrics.autoconfigure.system.SystemMetricsAutoConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.autoconfigure.metrics.task.TaskExecutorMetricsAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.micrometer.metrics.autoconfigure.task.TaskExecutorMetricsAutoConfiguration
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.AddMicrometerMetricsStarterTest
+displayName: Add Micrometer Metrics Starter Test
+preconditions:
+  - org.openrewrite.java.dependencies.FindDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-micrometer-metrics
+recipeList:
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-micrometer-metrics-test
+      acceptTransitive: true
+      configuration: testImplementation
+      scope: test

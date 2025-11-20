@@ -1,0 +1,9 @@
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.MigrateMicrometerTracingBraveModule
+displayName: Migrate Spring Boot Micrometer Tracing Brave module to Spring Boot 4.0
+description: Migrate Spring Boot Micrometer Tracing Brave module to Spring Boot 4.0.
+recipeList:
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.autoconfigure.tracing.BraveAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.micrometer.tracing.brave.autoconfigure.BraveAutoConfiguration

@@ -1,0 +1,33 @@
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.MigrateDataJpaModule
+displayName: Migrate Spring Boot Data JPA module to Spring Boot 4.0
+description: Migrate Spring Boot Data JPA module to Spring Boot 4.0.
+recipeList:
+  - io.arconia.rewrite.spring.boot4.AddDataJpaStarterTest
+
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.data.jpa.JpaRepositoriesAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.data.jpa.autoconfigure.DataJpaRepositoriesAutoConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.test.autoconfigure.orm.jpa.AutoConfigureDataJpa
+      newFullyQualifiedTypeName: org.springframework.boot.data.jpa.test.autoconfigure.AutoConfigureDataJpa
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest
+      newFullyQualifiedTypeName: org.springframework.boot.data.jpa.test.autoconfigure.DataJpaTest
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.AddDataJpaStarterTest
+displayName: Add Data JPA Starter Test
+preconditions:
+  - org.openrewrite.java.dependencies.FindDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-data-jpa
+recipeList:
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-data-jpa-test
+      acceptTransitive: true
+      configuration: testImplementation
+      scope: test

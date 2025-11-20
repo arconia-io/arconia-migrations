@@ -1,0 +1,27 @@
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.MigrateFreemarkerModule
+displayName: Migrate Spring Boot Freemarker module to Spring Boot 4.0
+description: Migrate Spring Boot Freemarker module to Spring Boot 4.0.
+recipeList:
+  - io.arconia.rewrite.spring.boot4.AddFreemarkerStarterTest
+
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.autoconfigure.freemarker
+      newPackageName: org.springframework.boot.freemarker.autoconfigure
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.AddFreemarkerStarterTest
+displayName: Add Freemarker Test
+preconditions:
+  - org.openrewrite.java.dependencies.FindDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-freemarker
+recipeList:
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-freemarker-test
+      acceptTransitive: true
+      configuration: testImplementation
+      scope: test

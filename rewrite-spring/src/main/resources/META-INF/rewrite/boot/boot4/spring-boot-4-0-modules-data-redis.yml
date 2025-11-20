@@ -1,0 +1,95 @@
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.MigrateDataRedisModule
+displayName: Migrate Spring Boot Data Redis module to Spring Boot 4.0
+description: Migrate Spring Boot Data Redis module to Spring Boot 4.0.
+recipeList:
+  - io.arconia.rewrite.spring.boot4.AddDataRedisStarterTest
+  - io.arconia.rewrite.spring.boot4.AddDataRedisReactiveStarterTest
+
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.data.redis.ClientResourcesBuilderCustomizer
+      newFullyQualifiedTypeName: org.springframework.boot.data.redis.autoconfigure.ClientResourcesBuilderCustomizer
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.data.redis.autoconfigure.DataRedisAutoConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.data.redis.RedisConnectionDetails
+      newFullyQualifiedTypeName: org.springframework.boot.data.redis.autoconfigure.DataRedisConnectionDetails
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.data.redis.RedisProperties
+      newFullyQualifiedTypeName: org.springframework.boot.data.redis.autoconfigure.DataRedisProperties
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.data.redis.RedisReactiveAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.data.redis.autoconfigure.DataRedisReactiveAutoConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.data.redis.RedisRepositoriesAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.data.redis.autoconfigure.DataRedisRepositoriesAutoConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.data.redis.RedisUrl
+      newFullyQualifiedTypeName: org.springframework.boot.data.redis.autoconfigure.DataRedisUrl
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.data.redis.JedisClientConfigurationBuilderCustomizer
+      newFullyQualifiedTypeName: org.springframework.boot.data.redis.autoconfigure.JedisClientConfigurationBuilderCustomizer
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.data.redis.LettuceClientConfigurationBuilderCustomizer
+      newFullyQualifiedTypeName: org.springframework.boot.data.redis.autoconfigure.LettuceClientConfigurationBuilderCustomizer
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.data.redis.LettuceClientOptionsBuilderCustomizer
+      newFullyQualifiedTypeName: org.springframework.boot.data.redis.autoconfigure.LettuceClientOptionsBuilderCustomizer
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.data.redis.RedisHealthContributorAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.data.redis.autoconfigure.health.DataRedisHealthContributorAutoConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.data.redis.RedisReactiveHealthContributorAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.data.redis.autoconfigure.health.DataRedisReactiveHealthContributorAutoConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.autoconfigure.metrics.redis.LettuceMetricsAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.data.redis.autoconfigure.observation.LettuceObservationAutoConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.data.redis.RedisHealth
+      newFullyQualifiedTypeName: org.springframework.boot.data.redis.health.DataRedisHealth
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.data.redis.RedisHealthIndicator
+      newFullyQualifiedTypeName: org.springframework.boot.data.redis.health.DataRedisHealthIndicator
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.data.redis.RedisReactiveHealthIndicator
+      newFullyQualifiedTypeName: org.springframework.boot.data.redis.health.DataRedisReactiveHealthIndicator
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.test.autoconfigure.data.redis.AutoConfigureDataRedis
+      newFullyQualifiedTypeName: org.springframework.boot.data.redis.test.autoconfigure.AutoConfigureDataRedis
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.test.autoconfigure.data.redis.DataRedisTest
+      newFullyQualifiedTypeName: org.springframework.boot.data.redis.test.autoconfigure.DataRedisTest
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.AddDataRedisStarterTest
+displayName: Add Data Redis Starter Test
+preconditions:
+  - org.openrewrite.java.dependencies.FindDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-data-redis
+recipeList:
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-data-redis-test
+      acceptTransitive: true
+      configuration: testImplementation
+      scope: test
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.AddDataRedisReactiveStarterTest
+displayName: Add Data Redis Reactive Starter Test
+preconditions:
+  - org.openrewrite.java.dependencies.FindDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-data-redis-reactive
+recipeList:
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-data-redis-reactive-test
+      acceptTransitive: true
+      configuration: testImplementation
+      scope: test

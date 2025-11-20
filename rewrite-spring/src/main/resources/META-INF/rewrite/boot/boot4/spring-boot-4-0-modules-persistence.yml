@@ -1,0 +1,18 @@
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.MigratePersistenceModule
+displayName: Migrate Spring Boot Persistence module to Spring Boot 4.0
+description: Migrate Spring Boot Persistence module to Spring Boot 4.0.
+recipeList:
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.domain.EntityScan
+      newFullyQualifiedTypeName: org.springframework.boot.persistence.autoconfigure.EntityScan
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.domain.EntityScanner
+      newFullyQualifiedTypeName: org.springframework.boot.persistence.autoconfigure.EntityScanner
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.domain.EntityScanPackages
+      newFullyQualifiedTypeName: org.springframework.boot.persistence.autoconfigure.EntityScanPackages
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.dao.PersistenceExceptionTranslationAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.persistence.autoconfigure.PersistenceExceptionTranslationAutoConfiguration

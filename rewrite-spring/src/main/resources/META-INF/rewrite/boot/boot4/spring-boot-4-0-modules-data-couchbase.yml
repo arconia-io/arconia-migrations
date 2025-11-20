@@ -1,0 +1,62 @@
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.MigrateDataCouchbaseModule
+displayName: Migrate Spring Boot Data Couchbase module to Spring Boot 4.0
+description: Migrate Spring Boot Data Couchbase module to Spring Boot 4.0.
+recipeList:
+  - io.arconia.rewrite.spring.boot4.AddDataCouchbaseStarterTest
+  - io.arconia.rewrite.spring.boot4.AddDataCouchbaseReactiveStarterTest
+
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.data.couchbase.CouchbaseDataAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.data.couchbase.autoconfigure.DataCouchbaseAutoConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.data.couchbase.CouchbaseDataProperties
+      newFullyQualifiedTypeName: org.springframework.boot.data.couchbase.autoconfigure.DataCouchbaseProperties
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.data.couchbase.CouchbaseReactiveDataAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.data.couchbase.autoconfigure.DataCouchbaseReactiveAutoConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.data.couchbase.CouchbaseReactiveRepositoriesAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.data.couchbase.autoconfigure.DataCouchbaseReactiveRepositoriesAutoConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.data.couchbase.CouchbaseRepositoriesAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.data.couchbase.autoconfigure.DataCouchbaseRepositoriesAutoConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.test.autoconfigure.data.couchbase.AutoConfigureDataCouchbase
+      newFullyQualifiedTypeName: org.springframework.boot.data.couchbase.test.autoconfigure.AutoConfigureDataCouchbase
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.test.autoconfigure.data.couchbase.DataCouchbaseTest
+      newFullyQualifiedTypeName: org.springframework.boot.data.couchbase.test.autoconfigure.DataCouchbaseTest
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.AddDataCouchbaseStarterTest
+displayName: Add Data Couchbase Starter Test
+preconditions:
+  - org.openrewrite.java.dependencies.FindDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-data-couchbase
+recipeList:
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-data-couchbase-test
+      acceptTransitive: true
+      configuration: testImplementation
+      scope: test
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.AddDataCouchbaseReactiveStarterTest
+displayName: Add Data Couchbase Reactive Starter Test
+preconditions:
+  - org.openrewrite.java.dependencies.FindDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-data-couchbase-reactive
+recipeList:
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-data-couchbase-reactive-test
+      acceptTransitive: true
+      configuration: testImplementation
+      scope: test

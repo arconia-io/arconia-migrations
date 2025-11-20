@@ -1,0 +1,27 @@
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.MigrateValidationModule
+displayName: Migrate Spring Boot Validation module to Spring Boot 4.0
+description: Migrate Spring Boot Validation module to Spring Boot 4.0.
+recipeList:
+  - io.arconia.rewrite.spring.boot4.AddValidationStarterTest
+
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.autoconfigure.validation
+      newPackageName: org.springframework.boot.validation.autoconfigure
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.AddValidationStarterTest
+displayName: Add Jakarta Validation Starter Test
+preconditions:
+  - org.openrewrite.java.dependencies.FindDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-validation
+recipeList:
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-validation-test
+      acceptTransitive: true
+      configuration: testImplementation
+      scope: test

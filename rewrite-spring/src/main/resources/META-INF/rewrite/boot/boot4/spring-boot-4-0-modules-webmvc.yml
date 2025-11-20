@@ -1,0 +1,128 @@
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.MigrateWebMvcModule
+displayName: Migrate Spring Boot Web MVC module to Spring Boot 4.0
+description: Migrate Spring Boot Web MVC module to Spring Boot 4.0.
+recipeList:
+  - io.arconia.rewrite.spring.boot4.MigrateWebMvcStarter
+  - io.arconia.rewrite.spring.boot4.AddWebMvcStarterTest
+
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.actuate.endpoint.web.servlet
+      newPackageName: org.springframework.boot.webmvc.actuate.endpoint.web
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.web.mappings.servlet.DispatcherServletMappingDescription
+      newFullyQualifiedTypeName: org.springframework.boot.webmvc.actuate.web.mappings.DispatcherServletMappingDescription
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.web.mappings.servlet.DispatcherServletMappingDetails
+      newFullyQualifiedTypeName: org.springframework.boot.webmvc.actuate.web.mappings.DispatcherServletMappingDetails
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.web.mappings.servlet.DispatcherServletsMappingDescriptionProvider
+      newFullyQualifiedTypeName: org.springframework.boot.webmvc.actuate.web.mappings.DispatcherServletsMappingDescriptionProvider
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.web.mappings.servlet.HandlerFunctionDescription
+      newFullyQualifiedTypeName: org.springframework.boot.webmvc.actuate.web.mappings.HandlerFunctionDescription
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.web.mappings.servlet.RequestMappingConditionsDescription
+      newFullyQualifiedTypeName: org.springframework.boot.webmvc.actuate.web.mappings.RequestMappingConditionsDescription
+
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.web.servlet.DispatcherServletAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.webmvc.autoconfigure.DispatcherServletAutoConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.web.servlet.DispatcherServletPath
+      newFullyQualifiedTypeName: org.springframework.boot.webmvc.autoconfigure.DispatcherServletPath
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.web.servlet.DispatcherServletRegistrationBean
+      newFullyQualifiedTypeName: org.springframework.boot.webmvc.autoconfigure.DispatcherServletRegistrationBean
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.web.servlet.JspTemplateAvailabilityProvider
+      newFullyQualifiedTypeName: org.springframework.boot.webmvc.autoconfigure.JspTemplateAvailabilityProvider
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.web.servlet.WebMvcAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.webmvc.autoconfigure.WebMvcAutoConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.autoconfigure.observation.web.servlet.WebMvcObservationAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.webmvc.autoconfigure.WebMvcObservationAutoConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.web.servlet.WebMvcProperties
+      newFullyQualifiedTypeName: org.springframework.boot.webmvc.autoconfigure.WebMvcProperties
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.web.servlet.WebMvcRegistrations
+      newFullyQualifiedTypeName: org.springframework.boot.webmvc.autoconfigure.WebMvcRegistrations
+
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.autoconfigure.web.servlet.ManagementErrorEndpoint
+      newFullyQualifiedTypeName: org.springframework.boot.webmvc.autoconfigure.actuate.web.ManagementErrorEndpoint
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.autoconfigure.endpoint.web.servlet.WebMvcEndpointManagementContextConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.webmvc.autoconfigure.actuate.web.WebMvcEndpointManagementContextConfiguration
+
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.autoconfigure.web.servlet.error
+      newPackageName: org.springframework.boot.webmvc.autoconfigure.error
+
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.web.servlet.error
+      newPackageName: org.springframework.boot.webmvc.error
+
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc
+      newFullyQualifiedTypeName: org.springframework.boot.webmvc.test.autoconfigure.AutoConfigureMockMvc
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureWebMvc
+      newFullyQualifiedTypeName: org.springframework.boot.webmvc.test.autoconfigure.AutoConfigureWebMvc
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.test.autoconfigure.web.servlet.MockMvcAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.webmvc.test.autoconfigure.MockMvcAutoConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.test.autoconfigure.web.servlet.MockMvcBuilderCustomizer
+      newFullyQualifiedTypeName: org.springframework.boot.webmvc.test.autoconfigure.MockMvcBuilderCustomizer
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrint
+      newFullyQualifiedTypeName: org.springframework.boot.webmvc.test.autoconfigure.MockMvcPrint
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.test.autoconfigure.web.servlet.MockMvcWebClientAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.webmvc.test.autoconfigure.MockMvcWebClientAutoConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.test.autoconfigure.web.servlet.MockMvcWebDriverAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.webmvc.test.autoconfigure.MockMvcWebDriverAutoConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.test.autoconfigure.web.servlet.SpringBootMockMvcBuilderCustomizer
+      newFullyQualifiedTypeName: org.springframework.boot.webmvc.test.autoconfigure.SpringBootMockMvcBuilderCustomizer
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.test.autoconfigure.web.servlet.WebDriverScope
+      newFullyQualifiedTypeName: org.springframework.boot.webmvc.test.autoconfigure.WebDriverScope
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener
+      newFullyQualifiedTypeName: org.springframework.boot.webmvc.test.autoconfigure.WebDriverTestExecutionListener
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
+      newFullyQualifiedTypeName: org.springframework.boot.webmvc.test.autoconfigure.WebMvcTest
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.MigrateWebMvcStarter
+displayName: Migrate Web MVC Starter
+recipeList:
+  - org.openrewrite.java.dependencies.ChangeDependency:
+      oldGroupId: org.springframework.boot
+      oldArtifactId: spring-boot-starter-web
+      newGroupId: org.springframework.boot
+      newArtifactId: spring-boot-starter-webmvc
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.AddWebMvcStarterTest
+displayName: Add Web MVC Starter Test
+preconditions:
+  - org.openrewrite.java.dependencies.FindDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-webmvc
+recipeList:
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-webmvc-test
+      acceptTransitive: true
+      configuration: testImplementation
+      scope: test

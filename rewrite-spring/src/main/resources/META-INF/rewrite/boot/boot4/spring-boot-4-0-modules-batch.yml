@@ -1,0 +1,63 @@
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.MigrateBatchModule
+displayName: Migrate Spring Boot Batch module to Spring Boot 4.0
+description: Migrate Spring Boot Batch module to Spring Boot 4.0.
+recipeList:
+  - io.arconia.rewrite.spring.boot4.MigrateBatchTest
+  - io.arconia.rewrite.spring.boot4.AddBatchStarterTest
+
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.batch.BatchAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.batch.autoconfigure.BatchAutoConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.batch.BatchConversionServiceCustomizer
+      newFullyQualifiedTypeName: org.springframework.boot.batch.autoconfigure.BatchConversionServiceCustomizer
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.batch.BatchProperties
+      newFullyQualifiedTypeName: org.springframework.boot.batch.autoconfigure.BatchProperties
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.batch.BatchTaskExecutor
+      newFullyQualifiedTypeName: org.springframework.boot.batch.autoconfigure.BatchTaskExecutor
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.batch.BatchTransactionManager
+      newFullyQualifiedTypeName: org.springframework.boot.batch.autoconfigure.BatchTransactionManager
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.batch.JobExecutionEvent
+      newFullyQualifiedTypeName: org.springframework.boot.batch.autoconfigure.JobExecutionEvent
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.batch.JobExecutionExitCodeGenerator
+      newFullyQualifiedTypeName: org.springframework.boot.batch.autoconfigure.JobExecutionExitCodeGenerator
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.batch.JobLauncherApplicationRunner
+      newFullyQualifiedTypeName: org.springframework.boot.batch.autoconfigure.JobLauncherApplicationRunner
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.autoconfigure.observation.batch.BatchObservationAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.batch.autoconfigure.observation.BatchObservationAutoConfiguration
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.MigrateBatchTest
+displayName: Migrate Batch Test
+recipeList:
+  - org.openrewrite.java.dependencies.ChangeDependency:
+      oldGroupId: org.springframework.batch
+      oldArtifactId: spring-batch-test
+      newGroupId: org.springframework.boot
+      newArtifactId: spring-boot-starter-batch-test
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.AddBatchStarterTest
+displayName: Add Batch Starter Test
+preconditions:
+  - org.openrewrite.java.dependencies.FindDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-batch
+recipeList:
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-batch-test
+      acceptTransitive: true
+      configuration: testImplementation
+      scope: test

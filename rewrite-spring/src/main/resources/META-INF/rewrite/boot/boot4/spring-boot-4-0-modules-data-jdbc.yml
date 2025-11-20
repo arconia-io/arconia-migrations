@@ -1,0 +1,39 @@
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.MigrateDataJdbcModule
+displayName: Migrate Spring Boot Data JDBC module to Spring Boot 4.0
+description: Migrate Spring Boot Data JDBC module to Spring Boot 4.0.
+recipeList:
+  - io.arconia.rewrite.spring.boot4.AddDataJdbcStarterTest
+
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.data.jdbc.autoconfigure.JdbcDatabaseDialect
+      newFullyQualifiedTypeName: org.springframework.boot.autoconfigure.data.jdbc.DataJdbcDatabaseDialect
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.data.jdbc.autoconfigure.JdbcDataProperties
+      newFullyQualifiedTypeName: org.springframework.boot.autoconfigure.data.jdbc.DataJdbcProperties
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.data.jdbc.autoconfigure.JdbcRepositoriesAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.autoconfigure.data.jdbc.DataJdbcRepositoriesAutoConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.test.autoconfigure.data.jdbc.AutoConfigureDataJdbc
+      newFullyQualifiedTypeName: org.springframework.boot.data.jdbc.test.autoconfigure.AutoConfigureDataJdbc
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.test.autoconfigure.data.jdbc.DataJdbcTest
+      newFullyQualifiedTypeName: org.springframework.boot.data.jdbc.test.autoconfigure.DataJdbcTest
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.AddDataJdbcStarterTest
+displayName: Add Data JDBC Starter Test
+preconditions:
+  - org.openrewrite.java.dependencies.FindDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-data-jdbc
+recipeList:
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-data-jdbc-test
+      acceptTransitive: true
+      configuration: testImplementation
+      scope: test

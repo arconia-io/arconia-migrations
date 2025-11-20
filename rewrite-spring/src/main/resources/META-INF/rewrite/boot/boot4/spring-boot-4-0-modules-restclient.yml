@@ -1,0 +1,87 @@
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.MigrateRestClientModule
+displayName: Migrate Spring Boot RestClient module to Spring Boot 4.0
+description: Migrate Spring Boot RestClient module to Spring Boot 4.0.
+recipeList:
+  - io.arconia.rewrite.spring.boot4.AddRestClientStarter
+  - io.arconia.rewrite.spring.boot4.AddRestClientStarterTest
+
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.web.client.RestClientCustomizer
+      newFullyQualifiedTypeName: org.springframework.boot.restclient.RestClientCustomizer
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.web.client.RestTemplateBuilder
+      newFullyQualifiedTypeName: org.springframework.boot.restclient.RestTemplateBuilder
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.web.client.RestTemplateCustomizer
+      newFullyQualifiedTypeName: org.springframework.boot.restclient.RestTemplateCustomizer
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.web.client.RestTemplateRequestCustomizer
+      newFullyQualifiedTypeName: org.springframework.boot.restclient.RestTemplateRequestCustomizer
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.web.client.RootUriBuilderFactory
+      newFullyQualifiedTypeName: org.springframework.boot.restclient.RootUriBuilderFactory
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.web.client.RootUriTemplateHandler
+      newFullyQualifiedTypeName: org.springframework.boot.restclient.RootUriTemplateHandler
+
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.autoconfigure.web.client
+      newPackageName: org.springframework.boot.restclient.autoconfigure
+
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.metrics.web.client.ObservationRestClientCustomizer
+      newFullyQualifiedTypeName: org.springframework.boot.restclient.observation.ObservationRestClientCustomizer
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.metrics.web.client.ObservationRestTemplateCustomizer
+      newFullyQualifiedTypeName: org.springframework.boot.restclient.observation.ObservationRestTemplateCustomizer
+
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.test.web.client.MockServerRestClientCustomizer
+      newFullyQualifiedTypeName: org.springframework.boot.restclient.test.MockServerRestClientCustomizer
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.test.web.client.MockServerRestTemplateCustomizer
+      newFullyQualifiedTypeName: org.springframework.boot.restclient.test.MockServerRestTemplateCustomizer
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.test.web.client.RootUriRequestExpectationManager
+      newFullyQualifiedTypeName: org.springframework.boot.restclient.test.RootUriRequestExpectationManager
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.test.autoconfigure.web.client.AutoConfigureMockRestServiceServer
+      newFullyQualifiedTypeName: org.springframework.boot.restclient.test.autoconfigure.AutoConfigureMockRestServiceServer
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.restclient.test.autoconfigure.MockRestServiceServerAutoConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.test.autoconfigure.web.client.RestClientTest
+      newFullyQualifiedTypeName: org.springframework.boot.restclient.test.autoconfigure.RestClientTest
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.test.autoconfigure.web.client.AutoConfigureMockRestServiceServer
+      newFullyQualifiedTypeName: org.springframework.boot.restclient.test.autoconfigure.AutoConfigureMockRestServiceServer
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.AddRestClientStarter
+displayName: Add Rest Client Starter
+recipeList:
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-restclient
+      onlyIfUsing: org.springframework.web.client.RestClient
+      acceptTransitive: true
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.AddRestClientStarterTest
+displayName: Add Rest Client Starter Test
+preconditions:
+  - org.openrewrite.java.dependencies.FindDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-restclient
+recipeList:
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-restclient-test
+      acceptTransitive: true
+      configuration: testImplementation
+      scope: test
