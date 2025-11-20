@@ -143,3 +143,8 @@ recipeList:
   - io.arconia.rewrite.spring.boot4.MigrateWebSocketModule
   - io.arconia.rewrite.spring.boot4.MigrateWebTestClientModule
   - io.arconia.rewrite.spring.boot4.MigrateZipkinModule
+
+  # Breaking Changes for Testing Setup
+  - io.arconia.rewrite.spring.boot.boot4.AddAutoConfigureRestTestClientAnnotation
+  - io.arconia.rewrite.spring.boot.boot4.AddAutoConfigureTestRestTemplateAnnotation
+  - io.arconia.rewrite.spring.boot.boot4.AddAutoConfigureWebTestClientAnnotation

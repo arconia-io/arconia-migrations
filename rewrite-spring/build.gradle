@@ -75,7 +75,9 @@ recipeDependencies {
     parserClasspath "org.springframework.boot:spring-boot-test-autoconfigure:3.5.7"
     parserClasspath "org.springframework.boot:spring-boot-test:3.5.7"
 
+    parserClasspath "org.springframework.boot:spring-boot-resttestclient:4.0.0-RC2"
     parserClasspath "org.springframework.boot:spring-boot-test:4.0.0-RC2"
+    parserClasspath "org.springframework.boot:spring-boot-webmvc-test:4.0.0-RC2"
     parserClasspath "org.springframework.boot:spring-boot-webtestclient:4.0.0-RC2"
 
     parserClasspath "org.springframework:spring-beans:6.1.21"
@@ -97,6 +99,7 @@ recipeDependencies {
     parserClasspath "org.springframework:spring-webmvc:6.2.13"
 
     parserClasspath "org.springframework:spring-beans:7.0.0"
+    parserClasspath "org.springframework:spring-context:7.0.0"
     parserClasspath "org.springframework:spring-test:7.0.0"
 }
 

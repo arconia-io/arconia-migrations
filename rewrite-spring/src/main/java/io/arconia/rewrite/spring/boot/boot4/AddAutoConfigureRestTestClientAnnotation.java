@@ -16,40 +16,36 @@ import org.openrewrite.java.tree.JavaType;
 import org.openrewrite.java.tree.TypeUtils;
 
 /**
- * In Spring Boot 3, many projects using Spring Web MVC or WebFlux rely on WebTestClient
- * in @SpringBootTest or @WebMvcTest integration tests, which are automatically configured
- * when Spring WebFlux is on the classpath. In Spring Boot 4, this is no longer
- * the case, so we need to add the @AutoConfigureWebTestClient annotation
- * explicitly. This recipe should run after the recipes addressing package and
- * dependency changes for Spring Boot 4.
+ * In Spring Boot 4, projects using RestTestClient in @SpringBootTest or @WebMvcTest
+ * integration tests will need to explicitly add the @AutoConfigureTestRestTemplate annotation.
  */
-public class AddAutoConfigureWebTestClientAnnotation extends Recipe {
+public class AddAutoConfigureRestTestClientAnnotation extends Recipe {
 
-    private static final String AUTO_CONFIGURE_WEB_TEST_CLIENT = "AutoConfigureWebTestClient";
-    private static final String FQN_AUTO_CONFIGURE_WEB_TEST_CLIENT = "org.springframework.boot.webtestclient.autoconfigure.AutoConfigureWebTestClient";
+    private static final String AUTO_CONFIGURE_REST_TEST_CLIENT = "AutoConfigureRestTestClient";
+    private static final String FQN_AUTO_CONFIGURE_REST_TEST_CLIENT = "org.springframework.boot.resttestclient.autoconfigure.AutoConfigureRestTestClient";
     private static final String FQN_SPRING_BOOT_TEST = "org.springframework.boot.test.context.SpringBootTest";
     private static final String FQN_WEB_MVC_TEST = "org.springframework.boot.webmvc.test.autoconfigure.WebMvcTest";
-    private static final String FQN_WEB_TEST_CLIENT = "org.springframework.test.web.reactive.server.WebTestClient";
+    private static final String FQN_REST_TEST_CLIENT = "org.springframework.test.web.servlet.client.RestTestClient";
 
-    private static final AnnotationMatcher AUTO_CONFIGURE_ANNOTATION_MATCHER = new AnnotationMatcher("@" + FQN_AUTO_CONFIGURE_WEB_TEST_CLIENT, true);
+    private static final AnnotationMatcher AUTO_CONFIGURE_REST_TEST_CLIENT_ANNOTATION_MATCHER = new AnnotationMatcher("@" + FQN_AUTO_CONFIGURE_REST_TEST_CLIENT, true);
     private static final AnnotationMatcher SPRING_BOOT_TEST_ANNOTATION_MATCHER = new AnnotationMatcher("@" + FQN_SPRING_BOOT_TEST, true);
     private static final AnnotationMatcher WEB_MVC_TEST_ANNOTATION_MATCHER = new AnnotationMatcher("@" + FQN_WEB_MVC_TEST, true);
 
     @Override
     public String getDisplayName() {
-        return "Add missing `@AutoConfigureWebTestClient` annotation";
+        return "Add missing `@AutoConfigureRestTestClient` annotation";
     }
 
     @Override
     public String getDescription() {
-        return "Add missing `@AutoConfigureWebTestClient` annotation to classes annotated with " +
-                "`@SpringBootTest` or `@WebMvcTest` that use `WebTestClient`.";
+        return "Add missing `@AutoConfigureRestTestClient` annotation to classes annotated with " +
+                "`@SpringBootTest` or `@WebMvcTest` that use `RestTestClient`.";
     }
 
     @Override
     public TreeVisitor<?, ExecutionContext> getVisitor() {
         return Preconditions.check(
-                new UsesType<>(FQN_WEB_TEST_CLIENT, false),
+                new UsesType<>(FQN_REST_TEST_CLIENT, false),
                 new SpringBootTestVisitor()
         );
     }
@@ -66,10 +62,10 @@ public class AddAutoConfigureWebTestClientAnnotation extends Recipe {
         }
 
         private J.ClassDeclaration addMissingAnnotation(J.ClassDeclaration c, ExecutionContext ctx) {
-            maybeAddImport(FQN_AUTO_CONFIGURE_WEB_TEST_CLIENT);
-            return JavaTemplate.builder("@" + AUTO_CONFIGURE_WEB_TEST_CLIENT)
-                    .imports(FQN_AUTO_CONFIGURE_WEB_TEST_CLIENT)
-                    .javaParser(JavaParser.fromJavaVersion().classpathFromResources(ctx, "spring-boot-webtestclient-4.0.*"))
+            maybeAddImport(FQN_AUTO_CONFIGURE_REST_TEST_CLIENT);
+            return JavaTemplate.builder("@" + AUTO_CONFIGURE_REST_TEST_CLIENT)
+                    .imports(FQN_AUTO_CONFIGURE_REST_TEST_CLIENT)
+                    .javaParser(JavaParser.fromJavaVersion().classpathFromResources(ctx, "spring-boot-resttestclient-4.0.*"))
                     .build()
                     .apply(
                             getCursor(),
@@ -78,11 +74,11 @@ public class AddAutoConfigureWebTestClientAnnotation extends Recipe {
         }
 
         private boolean isApplicableClass(J.ClassDeclaration classDeclaration) {
-            // Check if the class is already annotated with @AutoConfigureWebTestClient
+            // Check if the class is already annotated with @AutoConfigureRestTestClient
             for (J.Annotation annotation : classDeclaration.getLeadingAnnotations()) {
                 JavaType.FullyQualified annotationType = TypeUtils.asFullyQualified(annotation.getType());
-                if (annotationType != null && AUTO_CONFIGURE_ANNOTATION_MATCHER.matchesAnnotationOrMetaAnnotation(annotationType)) {
-                    // Already annotated with @AutoConfigureWebTestClient. No changes are needed.
+                if (annotationType != null && AUTO_CONFIGURE_REST_TEST_CLIENT_ANNOTATION_MATCHER.matchesAnnotationOrMetaAnnotation(annotationType)) {
+                    // Already annotated with @AutoConfigureRestTestClient. No changes are needed.
                     return false;
                 }
             }
@@ -92,10 +88,10 @@ public class AddAutoConfigureWebTestClientAnnotation extends Recipe {
                 JavaType.FullyQualified aType = TypeUtils.asFullyQualified(annotation.getType());
                 if (aType != null) {
                     if (SPRING_BOOT_TEST_ANNOTATION_MATCHER.matchesAnnotationOrMetaAnnotation(aType)) {
-                        // Annotated with @SpringBootTest, so we need to add @AutoConfigureWebTestClient.
+                        // Annotated with @SpringBootTest, so we need to add @AutoConfigureRestTestClient.
                         return true;
                     } else if (WEB_MVC_TEST_ANNOTATION_MATCHER.matchesAnnotationOrMetaAnnotation(aType)) {
-                        // Annotated with @WebMvcTest, so we need to add @AutoConfigureWebTestClient.
+                        // Annotated with @WebMvcTest, so we need to add @AutoConfigureRestTestClient.
                         return true;
                     }
                 }

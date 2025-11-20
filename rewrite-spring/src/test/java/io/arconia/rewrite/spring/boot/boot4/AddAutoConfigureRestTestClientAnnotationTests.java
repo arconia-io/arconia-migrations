@@ -10,46 +10,68 @@ import org.openrewrite.test.RewriteTest;
 import static org.openrewrite.java.Assertions.java;
 
 /**
- * Unit tests for {@link AddAutoConfigureWebTestClientAnnotation}.
+ * Unit tests for {@link AddAutoConfigureRestTestClientAnnotation}.
  */
-class AddAutoConfigureWebTestClientAnnotationTests implements RewriteTest {
+class AddAutoConfigureRestTestClientAnnotationTests implements RewriteTest {
 
     @Override
     public void defaults(RecipeSpec spec) {
-        spec.recipe(new AddAutoConfigureWebTestClientAnnotation())
+        spec.recipe(new AddAutoConfigureRestTestClientAnnotation())
                 .parser(JavaParser.fromJavaVersion().classpathFromResources(new InMemoryExecutionContext(),
-                        "spring-beans-7.0.*", "spring-boot-test-4.0.*", "spring-boot-webtestclient-4.0.*",
+                        "spring-beans-7.0.*", "spring-boot-test-4.0.*", "spring-boot-resttestclient-4.0.*",
                         "spring-boot-webmvc-test-4.0.*", "spring-context-7.0.*", "spring-test-7.0.*"));
     }
 
     @DocumentExample
     @Test
-    void springBootTestWithWebTestClient() {
+    void springBootTestWithRestTestClient() {
         rewriteRun(
             //language=java
             java(
-                  """
-                  import org.springframework.beans.factory.annotation.Autowired;
-                  import org.springframework.boot.test.context.SpringBootTest;
-                  import org.springframework.test.web.reactive.server.WebTestClient;
+                """
+                import org.springframework.beans.factory.annotation.Autowired;
+                import org.springframework.boot.test.context.SpringBootTest;
+                import org.springframework.test.web.servlet.client.RestTestClient;
 
-                  @SpringBootTest
-                  class MyControllerTest {
-                    @Autowired
-                    private WebTestClient webTestClient;
-                  }
-                  """,
+                @SpringBootTest
+                class MyControllerTest {
+                  @Autowired
+                  private RestTestClient restTestClient;
+                }
+                """,
+                """
+                import org.springframework.beans.factory.annotation.Autowired;
+                import org.springframework.boot.resttestclient.autoconfigure.AutoConfigureRestTestClient;
+                import org.springframework.boot.test.context.SpringBootTest;
+                import org.springframework.test.web.servlet.client.RestTestClient;
+
+                @AutoConfigureRestTestClient
+                @SpringBootTest
+                class MyControllerTest {
+                  @Autowired
+                  private RestTestClient restTestClient;
+                }
+                """
+            )
+        );
+    }
+
+    @Test
+    void springBootTestAlreadyHasAutoConfigureRestTestClientAnnotation() {
+        rewriteRun(
+            //language=java
+            java(
                 """
                   import org.springframework.beans.factory.annotation.Autowired;
+                  import org.springframework.boot.resttestclient.autoconfigure.AutoConfigureRestTestClient;
                   import org.springframework.boot.test.context.SpringBootTest;
-                  import org.springframework.boot.webtestclient.autoconfigure.AutoConfigureWebTestClient;
-                  import org.springframework.test.web.reactive.server.WebTestClient;
+                  import org.springframework.test.web.servlet.client.RestTestClient;
 
-                  @AutoConfigureWebTestClient
+                  @AutoConfigureRestTestClient
                   @SpringBootTest
                   class MyControllerTest {
                     @Autowired
-                    private WebTestClient webTestClient;
+                    private RestTestClient restTestClient;
                   }
                   """
             )
@@ -57,29 +79,7 @@ class AddAutoConfigureWebTestClientAnnotationTests implements RewriteTest {
     }
 
     @Test
-    void springBootTestAlreadyHasAutoConfigureWebTestClientAnnotation() {
-        rewriteRun(
-            //language=java
-            java(
-                """
-                  import org.springframework.beans.factory.annotation.Autowired;
-                  import org.springframework.boot.test.context.SpringBootTest;
-                  import org.springframework.boot.webtestclient.autoconfigure.AutoConfigureWebTestClient;
-                  import org.springframework.test.web.reactive.server.WebTestClient;
-
-                  @AutoConfigureWebTestClient
-                  @SpringBootTest
-                  class MyControllerTest {
-                    @Autowired
-                    private WebTestClient webTestClient;
-                  }
-                  """
-            )
-        );
-    }
-
-    @Test
-    void springBootTestWithoutWebTestClient() {
+    void springBootTestWithoutRestTestClient() {
         rewriteRun(
             //language=java
             java(
@@ -98,17 +98,17 @@ class AddAutoConfigureWebTestClientAnnotationTests implements RewriteTest {
     }
 
     @Test
-    void noTestAnnotationWithWebTestClient() {
+    void noTestAnnotationWithRestTestClient() {
         rewriteRun(
             //language=java
             java(
                 """
                   import org.springframework.beans.factory.annotation.Autowired;
-                  import org.springframework.test.web.reactive.server.WebTestClient;
+                  import org.springframework.test.web.servlet.client.RestTestClient;
 
                   class MyControllerTest {
                     @Autowired
-                    private WebTestClient webTestClient;
+                    private RestTestClient restTestClient;
                   }
                   """
             )
@@ -124,26 +124,26 @@ class AddAutoConfigureWebTestClientAnnotationTests implements RewriteTest {
                   import org.springframework.beans.factory.annotation.Autowired;
                   import org.springframework.boot.test.context.SpringBootTest;
                   import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
-                  import org.springframework.test.web.reactive.server.WebTestClient;
+                  import org.springframework.test.web.servlet.client.RestTestClient;
 
                   @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
                   class MyControllerTest {
                     @Autowired
-                    private WebTestClient webTestClient;
+                    private RestTestClient restTestClient;
                   }
                   """,
                 """
                   import org.springframework.beans.factory.annotation.Autowired;
+                  import org.springframework.boot.resttestclient.autoconfigure.AutoConfigureRestTestClient;
                   import org.springframework.boot.test.context.SpringBootTest;
                   import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
-                  import org.springframework.boot.webtestclient.autoconfigure.AutoConfigureWebTestClient;
-                  import org.springframework.test.web.reactive.server.WebTestClient;
+                  import org.springframework.test.web.servlet.client.RestTestClient;
 
-                  @AutoConfigureWebTestClient
+                  @AutoConfigureRestTestClient
                   @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
                   class MyControllerTest {
                     @Autowired
-                    private WebTestClient webTestClient;
+                    private RestTestClient restTestClient;
                   }
                   """
             )
@@ -151,32 +151,32 @@ class AddAutoConfigureWebTestClientAnnotationTests implements RewriteTest {
     }
 
     @Test
-    void webMvcTestWithWebTestClient() {
+    void webMvcTestWithRestTestClient() {
         rewriteRun(
             //language=java
             java(
                 """
                 import org.springframework.beans.factory.annotation.Autowired;
                 import org.springframework.boot.webmvc.test.autoconfigure.WebMvcTest;
-                import org.springframework.test.web.reactive.server.WebTestClient;
+                import org.springframework.test.web.servlet.client.RestTestClient;
 
                 @WebMvcTest
                 class MyControllerTest {
                   @Autowired
-                  private WebTestClient webTestClient;
+                  private RestTestClient restTestClient;
                 }
                 """,
                 """
                 import org.springframework.beans.factory.annotation.Autowired;
+                import org.springframework.boot.resttestclient.autoconfigure.AutoConfigureRestTestClient;
                 import org.springframework.boot.webmvc.test.autoconfigure.WebMvcTest;
-                import org.springframework.boot.webtestclient.autoconfigure.AutoConfigureWebTestClient;
-                import org.springframework.test.web.reactive.server.WebTestClient;
+                import org.springframework.test.web.servlet.client.RestTestClient;
 
-                @AutoConfigureWebTestClient
+                @AutoConfigureRestTestClient
                 @WebMvcTest
                 class MyControllerTest {
                   @Autowired
-                  private WebTestClient webTestClient;
+                  private RestTestClient restTestClient;
                 }
                 """
             )
@@ -184,21 +184,21 @@ class AddAutoConfigureWebTestClientAnnotationTests implements RewriteTest {
     }
 
     @Test
-    void webMvcTestAlreadyHasAutoConfigureWebTestClientAnnotation() {
+    void webMvcTestAlreadyHasAutoConfigureRestTestClientAnnotation() {
         rewriteRun(
             //language=java
             java(
                 """
                 import org.springframework.beans.factory.annotation.Autowired;
+                import org.springframework.boot.resttestclient.autoconfigure.AutoConfigureRestTestClient;
                 import org.springframework.boot.webmvc.test.autoconfigure.WebMvcTest;
-                import org.springframework.boot.webtestclient.autoconfigure.AutoConfigureWebTestClient;
-                import org.springframework.test.web.reactive.server.WebTestClient;
+                import org.springframework.test.web.servlet.client.RestTestClient;
 
-                @AutoConfigureWebTestClient
+                @AutoConfigureRestTestClient
                 @WebMvcTest
                 class MyControllerTest {
                   @Autowired
-                  private WebTestClient webTestClient;
+                  private RestTestClient restTestClient;
                 }
                 """
             )
@@ -206,7 +206,7 @@ class AddAutoConfigureWebTestClientAnnotationTests implements RewriteTest {
     }
 
     @Test
-    void webMvcTestWithoutWebTestClient() {
+    void webMvcTestWithoutRestTestClient() {
         rewriteRun(
             //language=java
             java(
@@ -225,34 +225,34 @@ class AddAutoConfigureWebTestClientAnnotationTests implements RewriteTest {
     }
 
     @Test
-    void webMvcTestWithWebEnvironment() {
+    void webMvcTestWithController() {
         rewriteRun(
             //language=java
             java(
                 """
                 import org.springframework.beans.factory.annotation.Autowired;
                 import org.springframework.boot.webmvc.test.autoconfigure.WebMvcTest;
-                import org.springframework.test.web.reactive.server.WebTestClient;
+                import org.springframework.test.web.servlet.client.RestTestClient;
 
                 @WebMvcTest(SomeController.class)
                 class MyControllerTest {
                   @Autowired
-                  private WebTestClient webTestClient;
+                  private RestTestClient restTestClient;
                 }
 
                 class SomeController {}
                 """,
                 """
                 import org.springframework.beans.factory.annotation.Autowired;
+                import org.springframework.boot.resttestclient.autoconfigure.AutoConfigureRestTestClient;
                 import org.springframework.boot.webmvc.test.autoconfigure.WebMvcTest;
-                import org.springframework.boot.webtestclient.autoconfigure.AutoConfigureWebTestClient;
-                import org.springframework.test.web.reactive.server.WebTestClient;
+                import org.springframework.test.web.servlet.client.RestTestClient;
 
-                @AutoConfigureWebTestClient
+                @AutoConfigureRestTestClient
                 @WebMvcTest(SomeController.class)
                 class MyControllerTest {
                   @Autowired
-                  private WebTestClient webTestClient;
+                  private RestTestClient restTestClient;
                 }
 
                 class SomeController {}
