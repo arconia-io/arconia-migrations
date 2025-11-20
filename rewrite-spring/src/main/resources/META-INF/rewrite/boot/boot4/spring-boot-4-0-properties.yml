@@ -39,6 +39,10 @@ recipeList:
       oldPropertyKey: spring.http.reactiveclient.ssl.bundle
       newPropertyKey: spring.http.clients.ssl.bundle
 
+  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
+      propertyKey: management.endpoints.jackson.isolated-object-mapper
+      comment: "Deprecated property removed in Spring Boot 4.0."
+
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: management.health.mongo.enabled
       newPropertyKey: management.health.mongodb.enabled
@@ -57,9 +61,6 @@ recipeList:
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: management.observations.long-task-timer.enabled
       newPropertyKey: management.metrics.observations.ignored-meters
-  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
-      oldPropertyKey: management.otlp.logging
-      newPropertyKey: management.opentelemetry.logging.export.otlp
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: management.otlp.logging.compression
       newPropertyKey: management.opentelemetry.logging.export.otlp.compression
@@ -213,6 +214,28 @@ recipeList:
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: management.zipkin.tracing.read-timeout
       newPropertyKey: management.tracing.export.zipkin.read-timeout
+
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: server.error.include-binding-errors
+      newPropertyKey: spring.web.error.include-binding-errors
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: server.error.include-exception
+      newPropertyKey: spring.web.error.include-exception
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: server.error.include-message
+      newPropertyKey: spring.web.error.include-message
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: server.error.include-path
+      newPropertyKey: spring.web.error.include-path
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: server.error.include-stacktrace
+      newPropertyKey: spring.web.error.include-stacktrace
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: server.error.path
+      newPropertyKey: spring.web.error.path
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: server.error.whitelabel.enabled
+      newPropertyKey: spring.web.error.whitelabel.enabled
 
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: server.servlet.encoding.charset
@@ -398,6 +421,16 @@ recipeList:
       propertyKey: spring.neo4j.pool.metrics-enabled
       comment: "Deprecated property removed in Spring Boot 4.0. Use 'management.metrics.enable' to restrict certain metrics."
 
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: spring.rabbitmq.listener.direct.retry.max-attempts
+      newPropertyKey: spring.rabbitmq.listener.direct.retry.max-retries
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: spring.rabbitmq.listener.simple.retry.max-attempts
+      newPropertyKey: spring.rabbitmq.listener.simple.retry.max-retries
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: spring.rabbitmq.template.retry.max-attempts
+      newPropertyKey: spring.rabbitmq.template.retry.max-retries
+
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: spring.session.hazelcast.flush-mode
       comment: "Deprecated property removed in Spring Boot 4.0."
@@ -433,6 +466,14 @@ recipeList:
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: spring.test.observability.auto-configure
       comment: "Deprecated property removed in Spring Boot 4.0. Superseded by 'spring.test.metrics.export' and 'spring.test.tracing.export'."
+
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: spring.test.webclient.mockrestserviceserver.enabled
+      newPropertyKey: spring.test.restclient.mockrestserviceserver.enabled
+
+  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
+      propertyKey: spring.test.webclient.register-rest-template
+      comment: "Deprecated property removed in Spring Boot 4.0."
 
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: spring.thymeleaf.enabled
