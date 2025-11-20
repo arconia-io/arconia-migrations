@@ -20,6 +20,7 @@ recipeList:
   - io.arconia.rewrite.spring.ai.MigrateSpringAiBedrock_1_1
   - io.arconia.rewrite.spring.ai.MigrateSpringAiModel_1_1
   - io.arconia.rewrite.spring.ai.MigrateSpringAiMpc_1_1
+  - io.arconia.rewrite.spring.ai.UseQuestionAnswerAdvisorBuilder
 
 ---
 type: specs.openrewrite.org/v1beta/recipe
