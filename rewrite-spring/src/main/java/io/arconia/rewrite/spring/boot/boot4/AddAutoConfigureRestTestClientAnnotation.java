@@ -17,7 +17,8 @@ import org.openrewrite.java.tree.TypeUtils;
 
 /**
  * In Spring Boot 4, projects using RestTestClient in @SpringBootTest or @WebMvcTest
- * integration tests will need to explicitly add the @AutoConfigureTestRestTemplate annotation.
+ * integration tests will need to explicitly add the @AutoConfigureTestRestTemplate
+ * annotation.
  */
 public class AddAutoConfigureRestTestClientAnnotation extends Recipe {
 
