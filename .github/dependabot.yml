@@ -1,16 +1,16 @@
 version: 2
 updates:
-  - package-ecosystem: gradle
-    directory: "/"
-    schedule:
-      interval: daily
-      time: "23:00"
-      timezone: Europe/Copenhagen
-    open-pull-requests-limit: 10
-    labels:
-      - "dependencies"
-    commit-message:
-      prefix: "deps:"
+#  - package-ecosystem: gradle
+#    directory: "/"
+#    schedule:
+#      interval: daily
+#      time: "23:00"
+#      timezone: Europe/Copenhagen
+#    open-pull-requests-limit: 10
+#    labels:
+#      - "dependencies"
+#    commit-message:
+#      prefix: "deps:"
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
