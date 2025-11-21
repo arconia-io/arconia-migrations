@@ -57,7 +57,8 @@ public class ConvertToRawType extends Recipe {
 
             J.Identifier rawType = convertToRawTypeIfNeeded(v.getTypeExpression());
             if (rawType != null) {
-                v = v.withTypeExpression(rawType);
+                // Preserve prefix when replacing in type expressions (e.g., final modifier)
+                v = v.withTypeExpression(rawType.withPrefix((v.getTypeExpression()).getPrefix()));
             }
 
             return v;
@@ -69,7 +70,8 @@ public class ConvertToRawType extends Recipe {
 
             J.Identifier rawType = convertToRawTypeIfNeeded(m.getReturnTypeExpression());
             if (rawType != null) {
-                m = m.withReturnTypeExpression(rawType);
+                // Preserve prefix when replacing in method return expressions (e.g., static modifier)
+                m = m.withReturnTypeExpression(rawType.withPrefix((m.getReturnTypeExpression()).getPrefix()));
             }
 
             return m;
@@ -82,7 +84,7 @@ public class ConvertToRawType extends Recipe {
             J.Identifier rawType = convertToRawTypeIfNeeded(n.getClazz());
             if (rawType != null) {
                 // Preserve prefix when replacing in new class expressions
-                n = n.withClazz(rawType.withPrefix(((J.ParameterizedType) n.getClazz()).getPrefix()));
+                n = n.withClazz(rawType.withPrefix((n.getClazz()).getPrefix()));
             }
 
             return n;

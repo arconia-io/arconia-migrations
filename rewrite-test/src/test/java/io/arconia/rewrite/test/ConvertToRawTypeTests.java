@@ -32,6 +32,7 @@ class ConvertToRawTypeTests implements RewriteTest {
                             ArrayList<?> items5 = new ArrayList<>();
                             ArrayList items6;
                             ArrayList<ArrayList<String>> items7;
+                            final ArrayList<?> theFinalItems = new ArrayList<>();
 
                             void process(ArrayList<?> items) {
                             }
@@ -42,6 +43,10 @@ class ConvertToRawTypeTests implements RewriteTest {
 
                             void moreProcess() {
                                 ArrayList<?> items = new ArrayList<>();
+                            }
+
+                            static ArrayList<?> getMoreItems() {
+                                return new ArrayList<>();
                             }
                         }
                         """,
@@ -56,6 +61,7 @@ class ConvertToRawTypeTests implements RewriteTest {
                             ArrayList items5 = new ArrayList();
                             ArrayList items6;
                             ArrayList items7;
+                            final ArrayList theFinalItems = new ArrayList();
 
                             void process(ArrayList items) {
                             }
@@ -66,6 +72,10 @@ class ConvertToRawTypeTests implements RewriteTest {
 
                             void moreProcess() {
                                 ArrayList items = new ArrayList();
+                            }
+
+                            static ArrayList getMoreItems() {
+                                return new ArrayList();
                             }
                         }
                         """
