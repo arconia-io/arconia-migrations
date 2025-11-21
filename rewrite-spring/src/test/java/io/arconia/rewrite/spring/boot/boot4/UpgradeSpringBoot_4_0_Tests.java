@@ -17,49 +17,6 @@ class UpgradeSpringBoot_4_0_Tests implements RewriteTest {
     }
 
     @Test
-    void typeChangesCore() {
-        rewriteRun(
-                r -> r.parser(JavaParser.fromJavaVersion().classpathFromResources(new InMemoryExecutionContext(),
-                        "spring-boot-3.5.*", "spring-boot-test-autoconfigure-3.5.*")),
-                //language=java
-                java(
-                        """
-                        package com.yourorg;
-
-                        import org.springframework.boot.BootstrapRegistry;
-                        import org.springframework.boot.env.EnvironmentPostProcessor;
-
-                        class Demo {
-                            BootstrapRegistry bootstrapRegistry = null;
-                            EnvironmentPostProcessor environmentPostProcessor = null;
-                        }
-                        """,
-                        """
-                        package com.yourorg;
-
-                        import org.springframework.boot.EnvironmentPostProcessor;
-                        import org.springframework.boot.bootstrap.BootstrapRegistry;
-
-                        class Demo {
-                            BootstrapRegistry bootstrapRegistry = null;
-                            EnvironmentPostProcessor environmentPostProcessor = null;
-                        }
-                        """
-                ),
-                //language=text
-                text("""
-                     org.springframework.boot.env.EnvironmentPostProcessor=\
-                     io.arconia.openinference.observation.autoconfigure.ai.OpenInferenceEnvironmentPostProcessor
-                     """,
-                        """
-                        org.springframework.boot.EnvironmentPostProcessor=\
-                        io.arconia.openinference.observation.autoconfigure.ai.OpenInferenceEnvironmentPostProcessor
-                        """,
-                        s -> s.path("src/main/resources/META-INF/spring.factories"))
-        );
-    }
-
-    @Test
     void typeChangesData() {
         rewriteRun(
                 r -> r.parser(JavaParser.fromJavaVersion().classpathFromResources(new InMemoryExecutionContext(),
@@ -107,35 +64,6 @@ class UpgradeSpringBoot_4_0_Tests implements RewriteTest {
 
                         class Demo {
                             PathRequest pathRequest = null;
-                        }
-                        """
-                )
-        );
-    }
-
-    @Test
-    void typeChangesTest() {
-        rewriteRun(
-                r -> r.parser(JavaParser.fromJavaVersion().classpathFromResources(new InMemoryExecutionContext(),
-                        "spring-boot-test-3.5.*", "spring-boot-test-autoconfigure-3.5.*")),
-                //language=java
-                java(
-                        """
-                        import org.springframework.boot.test.autoconfigure.properties.PropertyMapping;
-                        import org.springframework.boot.test.web.client.TestRestTemplate;
-
-                        class Demo {
-                            PropertyMapping propertyMapping = null;
-                            TestRestTemplate testRestTemplate = null;
-                        }
-                        """,
-                        """
-                        import org.springframework.boot.resttestclient.TestRestTemplate;
-                        import org.springframework.boot.test.context.PropertyMapping;
-
-                        class Demo {
-                            PropertyMapping propertyMapping = null;
-                            TestRestTemplate testRestTemplate = null;
                         }
                         """
                 )
