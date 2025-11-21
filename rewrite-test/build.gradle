@@ -30,6 +30,8 @@ dependencies {
 
 recipeDependencies {
     parserClasspath "org.testcontainers:testcontainers:1.21.3"
+
+    parserClasspath "org.testcontainers:postgresql:1.21.3"
 }
 
 publishing {

@@ -269,84 +269,138 @@ recipeList:
   - org.openrewrite.java.ChangeType:
       oldFullyQualifiedTypeName: org.testcontainers.containers.CassandraContainer
       newFullyQualifiedTypeName: org.testcontainers.cassandra.CassandraContainer
+  - io.arconia.rewrite.test.ConvertToRawType:
+      fullyQualifiedTypeName: org.testcontainers.cassandra.CassandraContainer
   - org.openrewrite.java.ChangeType:
       oldFullyQualifiedTypeName: org.testcontainers.containers.ClickHouseContainer
       newFullyQualifiedTypeName: org.testcontainers.clickhouse.ClickHouseContainer
+  - io.arconia.rewrite.test.ConvertToRawType:
+      fullyQualifiedTypeName: org.testcontainers.clickhouse.ClickHouseContainer
   - org.openrewrite.java.ChangeType:
       oldFullyQualifiedTypeName: org.testcontainers.containers.CockroachContainer
       newFullyQualifiedTypeName: org.testcontainers.cockroachdb.CockroachContainer
+  - io.arconia.rewrite.test.ConvertToRawType:
+      fullyQualifiedTypeName: org.testcontainers.cockroachdb.CockroachContainer
   - org.openrewrite.java.ChangeType:
       oldFullyQualifiedTypeName: org.testcontainers.containers.Db2Container
       newFullyQualifiedTypeName: org.testcontainers.db2.Db2Container
+  - io.arconia.rewrite.test.ConvertToRawType:
+      fullyQualifiedTypeName: org.testcontainers.db2.Db2Container
   - org.openrewrite.java.ChangeType:
       oldFullyQualifiedTypeName: org.testcontainers.containers.BigQueryEmulatorContainer
       newFullyQualifiedTypeName: org.testcontainers.gcloud.BigQueryEmulatorContainer
+  - io.arconia.rewrite.test.ConvertToRawType:
+      fullyQualifiedTypeName: org.testcontainers.gcloud.BigQueryEmulatorContainer
   - org.openrewrite.java.ChangeType:
       oldFullyQualifiedTypeName: org.testcontainers.containers.BigtableEmulatorContainer
       newFullyQualifiedTypeName: org.testcontainers.gcloud.BigtableEmulatorContainer
+  - io.arconia.rewrite.test.ConvertToRawType:
+      fullyQualifiedTypeName: org.testcontainers.gcloud.BigtableEmulatorContainer
   - org.openrewrite.java.ChangeType:
       oldFullyQualifiedTypeName: org.testcontainers.containers.DatastoreEmulatorContainer
       newFullyQualifiedTypeName: org.testcontainers.gcloud.DatastoreEmulatorContainer
+  - io.arconia.rewrite.test.ConvertToRawType:
+      fullyQualifiedTypeName: org.testcontainers.gcloud.DatastoreEmulatorContainer
   - org.openrewrite.java.ChangeType:
       oldFullyQualifiedTypeName: org.testcontainers.containers.FirestoreEmulatorContainer
       newFullyQualifiedTypeName: org.testcontainers.gcloud.FirestoreEmulatorContainer
+  - io.arconia.rewrite.test.ConvertToRawType:
+      fullyQualifiedTypeName: org.testcontainers.gcloud.FirestoreEmulatorContainer
   - org.openrewrite.java.ChangeType:
       oldFullyQualifiedTypeName: org.testcontainers.containers.PubSubEmulatorContainer
       newFullyQualifiedTypeName: org.testcontainers.gcloud.PubSubEmulatorContainer
+  - io.arconia.rewrite.test.ConvertToRawType:
+      fullyQualifiedTypeName: org.testcontainers.gcloud.PubSubEmulatorContainer
   - org.openrewrite.java.ChangeType:
       oldFullyQualifiedTypeName: org.testcontainers.containers.SpannerEmulatorContainer
       newFullyQualifiedTypeName: org.testcontainers.gcloud.SpannerEmulatorContainer
+  - io.arconia.rewrite.test.ConvertToRawType:
+      fullyQualifiedTypeName: org.testcontainers.gcloud.SpannerEmulatorContainer
   - org.openrewrite.java.ChangeType:
       oldFullyQualifiedTypeName: org.testcontainers.containers.KafkaContainer
       newFullyQualifiedTypeName: org.testcontainers.kafka.KafkaContainer
+  - io.arconia.rewrite.test.ConvertToRawType:
+      fullyQualifiedTypeName: org.testcontainers.kafka.KafkaContainer
   - org.openrewrite.java.ChangeType:
       oldFullyQualifiedTypeName: org.testcontainers.containers.localstack.LocalStackContainer
       newFullyQualifiedTypeName: org.testcontainers.localstack.LocalStackContainer
+  - io.arconia.rewrite.test.ConvertToRawType:
+      fullyQualifiedTypeName: org.testcontainers.localstack.LocalStackContainer
   - org.openrewrite.java.ChangeType:
       oldFullyQualifiedTypeName: org.testcontainers.containers.MariaDBContainer
       newFullyQualifiedTypeName: org.testcontainers.mariadb.MariaDBContainer
+  - io.arconia.rewrite.test.ConvertToRawType:
+      fullyQualifiedTypeName: org.testcontainers.mariadb.MariaDBContainer
   - org.openrewrite.java.ChangeType:
       oldFullyQualifiedTypeName: org.testcontainers.containers.MockServerContainer
       newFullyQualifiedTypeName: org.testcontainers.mockserver.MockServerContainer
+  - io.arconia.rewrite.test.ConvertToRawType:
+      fullyQualifiedTypeName: org.testcontainers.mockserver.MockServerContainer
   - org.openrewrite.java.ChangeType:
       oldFullyQualifiedTypeName: org.testcontainers.containers.MongoDBContainer
       newFullyQualifiedTypeName: org.testcontainers.mongodb.MongoDBContainer
+  - io.arconia.rewrite.test.ConvertToRawType:
+      fullyQualifiedTypeName: org.testcontainers.mongodb.MongoDBContainer
   - org.openrewrite.java.ChangeType:
       oldFullyQualifiedTypeName: org.testcontainers.containers.MSSQLServerContainer
       newFullyQualifiedTypeName: org.testcontainers.mssqlserver.MSSQLServerContainer
+  - io.arconia.rewrite.test.ConvertToRawType:
+      fullyQualifiedTypeName: org.testcontainers.mssqlserver.MSSQLServerContainer
   - org.openrewrite.java.ChangeType:
       oldFullyQualifiedTypeName: org.testcontainers.containers.MySQLContainer
       newFullyQualifiedTypeName: org.testcontainers.mysql.MySQLContainer
+  - io.arconia.rewrite.test.ConvertToRawType:
+      fullyQualifiedTypeName: org.testcontainers.mysql.MySQLContainer
   - org.openrewrite.java.ChangeType:
       oldFullyQualifiedTypeName: org.testcontainers.containers.Neo4jContainer
       newFullyQualifiedTypeName: org.testcontainers.neo4j.Neo4jContainer
+  - io.arconia.rewrite.test.ConvertToRawType:
+      fullyQualifiedTypeName: org.testcontainers.neo4j.Neo4jContainer
   - org.openrewrite.java.ChangeType:
       oldFullyQualifiedTypeName: org.testcontainers.containers.NginxContainer
       newFullyQualifiedTypeName: org.testcontainers.nginx.NginxContainer
+  - io.arconia.rewrite.test.ConvertToRawType:
+      fullyQualifiedTypeName: org.testcontainers.nginx.NginxContainer
   - org.openrewrite.java.ChangeType:
       oldFullyQualifiedTypeName: org.testcontainers.containers.OrientDBContainer
       newFullyQualifiedTypeName: org.testcontainers.orientdb.OrientDBContainer
+  - io.arconia.rewrite.test.ConvertToRawType:
+      fullyQualifiedTypeName: org.testcontainers.orientdb.OrientDBContainer
   - org.openrewrite.java.ChangeType:
       oldFullyQualifiedTypeName: org.testcontainers.containers.PostgreSQLContainer
       newFullyQualifiedTypeName: org.testcontainers.postgresql.PostgreSQLContainer
+  - io.arconia.rewrite.test.ConvertToRawType:
+      fullyQualifiedTypeName: org.testcontainers.postgresql.PostgreSQLContainer
   - org.openrewrite.java.ChangeType:
       oldFullyQualifiedTypeName: org.testcontainers.containers.PulsarContainer
       newFullyQualifiedTypeName: org.testcontainers.pulsar.PulsarContainer
+  - io.arconia.rewrite.test.ConvertToRawType:
+      fullyQualifiedTypeName: org.testcontainers.pulsar.PulsarContainer
   - org.openrewrite.java.ChangeType:
       oldFullyQualifiedTypeName: org.testcontainers.containers.RabbitMQContainer
       newFullyQualifiedTypeName: org.testcontainers.rabbitmq.RabbitMQContainer
+  - io.arconia.rewrite.test.ConvertToRawType:
+      fullyQualifiedTypeName: org.testcontainers.rabbitmq.RabbitMQContainer
   - org.openrewrite.java.ChangeType:
       oldFullyQualifiedTypeName: org.testcontainers.containers.BrowserWebDriverContainer
       newFullyQualifiedTypeName: org.testcontainers.selenium.BrowserWebDriverContainer
+  - io.arconia.rewrite.test.ConvertToRawType:
+      fullyQualifiedTypeName: org.testcontainers.selenium.BrowserWebDriverContainer
   - org.openrewrite.java.ChangeType:
       oldFullyQualifiedTypeName: org.testcontainers.containers.SolrContainer
       newFullyQualifiedTypeName: org.testcontainers.solr.SolrContainer
+  - io.arconia.rewrite.test.ConvertToRawType:
+      fullyQualifiedTypeName: org.testcontainers.solr.SolrContainer
   - org.openrewrite.java.ChangeType:
       oldFullyQualifiedTypeName: org.testcontainers.containers.ToxiproxyContainer
       newFullyQualifiedTypeName: org.testcontainers.toxiproxy.ToxiproxyContainer
+  - io.arconia.rewrite.test.ConvertToRawType:
+      fullyQualifiedTypeName: org.testcontainers.toxiproxy.ToxiproxyContainer
   - org.openrewrite.java.ChangeType:
       oldFullyQualifiedTypeName: org.testcontainers.containers.TrinoContainer
       newFullyQualifiedTypeName: org.testcontainers.trino.TrinoContainer
+  - io.arconia.rewrite.test.ConvertToRawType:
+      fullyQualifiedTypeName: org.testcontainers.trino.TrinoContainer
 
   # Method Name Changes
   - org.openrewrite.java.ChangeMethodName:
