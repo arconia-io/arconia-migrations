@@ -39,19 +39,12 @@ recipeList:
       oldPropertyKey: spring.http.reactiveclient.ssl.bundle
       newPropertyKey: spring.http.clients.ssl.bundle
 
-  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
-      propertyKey: management.endpoints.jackson.isolated-object-mapper
-      comment: "Deprecated property removed in Spring Boot 4.0."
-
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: management.health.mongo.enabled
       newPropertyKey: management.health.mongodb.enabled
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: management.health.probes.enabled
       newPropertyKey: management.endpoint.health.probes.enabled
-#  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
-#      oldPropertyKey: management.logging.export.enabled
-#      newPropertyKey: management.opentelemetry.logging.export.enabled
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: management.metrics.mongo.command.enabled
       newPropertyKey: management.metrics.mongodb.command.enabled
