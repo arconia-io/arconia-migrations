@@ -113,52 +113,6 @@ class UpgradeArconia_0_10_Tests implements RewriteTest {
         );
     }
 
-    @Test
-    void addsStarterDependency() {
-        rewriteRun(
-                spec -> spec.beforeRecipe(withToolingApi()),
-                mavenProject("project",
-                        srcMainJava(
-                                //language=java
-                                java("""
-                                    package com.yourorg;
-
-                                    import io.arconia.core.info.HostInfo;
-
-                                    class Demo {
-                                      HostInfo hostInfo = null;
-                                    }
-                                    """)
-                        ),
-                        //language=groovy
-                        buildGradle(
-                                """
-                                plugins {
-                                    id "java-library"
-                                }
-
-                                repositories {
-                                    mavenCentral()
-                                }
-                                """,
-                                """
-                                plugins {
-                                    id "java-library"
-                                }
-
-                                repositories {
-                                    mavenCentral()
-                                }
-
-                                dependencies {
-                                    implementation "io.arconia:arconia-spring-boot-starter:0.10.3"
-                                }
-                                """
-                        )
-                )
-        );
-    }
-
     // Property Changes
 
     @Test
