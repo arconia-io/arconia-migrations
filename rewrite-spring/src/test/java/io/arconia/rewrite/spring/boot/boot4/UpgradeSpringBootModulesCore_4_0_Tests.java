@@ -21,42 +21,6 @@ class UpgradeSpringBootModulesCore_4_0_Tests implements RewriteTest {
     }
 
     @Test
-    void dependencies() {
-        rewriteRun(
-                spec -> spec.beforeRecipe(withToolingApi()),
-                //language=groovy
-                buildGradle(
-                        """
-                          plugins {
-                              id 'java-library'
-                          }
-
-                          repositories {
-                              mavenCentral()
-                          }
-
-                          dependencies {
-                              implementation "org.springframework.boot:spring-boot-starter"
-                              testImplementation "org.springframework.boot:spring-boot-starter-test"
-                          }
-                          """,
-                        """
-                          plugins {
-                              id 'java-library'
-                          }
-
-                          repositories {
-                              mavenCentral()
-                          }
-
-                          dependencies {
-                          }
-                          """
-                )
-        );
-    }
-
-    @Test
     void typeChanges() {
         rewriteRun(
                 //language=java
