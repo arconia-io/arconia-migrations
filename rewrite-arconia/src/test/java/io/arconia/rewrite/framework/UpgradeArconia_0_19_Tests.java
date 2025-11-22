@@ -48,16 +48,21 @@ class UpgradeArconia_0_19_Tests implements RewriteTest {
     }
 
     @Test
-    void convertDocumentRequestChanges() {
+    void convertDocumentRequestHttpChanges() {
         rewriteRun(
                 //language=java
                 java(
                         """
                         import io.arconia.docling.client.convert.request.ConvertDocumentRequest;
+                        import io.arconia.docling.client.convert.request.source.HttpSource;
+
+                        import java.net.URI;
+                        import java.util.List;
 
                         class Demo {
                             void call() {
                                 ConvertDocumentRequest convertDocumentRequest = ConvertDocumentRequest.builder()
+                                    .httpSources(List.of(HttpSource.builder().url(URI.create("https://example.net")).build()))
                                     .options(null)
                                     .target(null)
                                     .build();
@@ -66,14 +71,31 @@ class UpgradeArconia_0_19_Tests implements RewriteTest {
                                 convertDocumentRequest.sources();
                                 convertDocumentRequest.target();
                             }
+
+                            void call2() {
+                                ConvertDocumentRequest convertDocumentRequest = ConvertDocumentRequest.builder()
+                                    .addHttpSources("https://example.net")
+                                    .build();
+                            }
+
+                            void call3() {
+                                ConvertDocumentRequest convertDocumentRequest = ConvertDocumentRequest.builder()
+                                    .addHttpSources(URI.create("https://example.net"))
+                                    .build();
+                            }
                         }
                         """,
                         """
                         import ai.docling.api.serve.convert.request.ConvertDocumentRequest;
+                        import ai.docling.api.serve.convert.request.source.HttpSource;
+
+                        import java.net.URI;
+                        import java.util.List;
 
                         class Demo {
                             void call() {
                                 ConvertDocumentRequest convertDocumentRequest = ConvertDocumentRequest.builder()
+                                    .sources(List.of(HttpSource.builder().url(URI.create("https://example.net")).build()))
                                     .options(null)
                                     .target(null)
                                     .build();
@@ -81,6 +103,67 @@ class UpgradeArconia_0_19_Tests implements RewriteTest {
                                 convertDocumentRequest.getOptions();
                                 convertDocumentRequest.getSources();
                                 convertDocumentRequest.getTarget();
+                            }
+
+                            void call2() {
+                                ConvertDocumentRequest convertDocumentRequest = ConvertDocumentRequest.builder()
+                                    .source(HttpSource.builder().url(URI.create("https://example.net")).build())
+                                    .build();
+                            }
+
+                            void call3() {
+                                ConvertDocumentRequest convertDocumentRequest = ConvertDocumentRequest.builder()
+                                    .source(HttpSource.builder().url(URI.create("https://example.net")).build())
+                                    .build();
+                            }
+                        }
+                        """
+                )
+        );
+    }
+
+    @Test
+    void convertDocumentRequestFileChanges() {
+        rewriteRun(
+                //language=java
+                java(
+                        """
+                        import io.arconia.docling.client.convert.request.ConvertDocumentRequest;
+                        import io.arconia.docling.client.convert.request.source.FileSource;
+
+                        import java.util.List;
+
+                        class Demo {
+                            void call() {
+                                ConvertDocumentRequest convertDocumentRequest = ConvertDocumentRequest.builder()
+                                    .fileSources(List.of(FileSource.builder().filename("beep").base64String("boop").build()))
+                                    .build();
+                            }
+
+                            void call2() {
+                                ConvertDocumentRequest convertDocumentRequest = ConvertDocumentRequest.builder()
+                                    .addFileSources("beep", "boop")
+                                    .build();
+                            }
+                        }
+                        """,
+                        """
+                        import ai.docling.api.serve.convert.request.ConvertDocumentRequest;
+                        import ai.docling.api.serve.convert.request.source.FileSource;
+
+                        import java.util.List;
+
+                        class Demo {
+                            void call() {
+                                ConvertDocumentRequest convertDocumentRequest = ConvertDocumentRequest.builder()
+                                    .sources(List.of(FileSource.builder().filename("beep").base64String("boop").build()))
+                                    .build();
+                            }
+
+                            void call2() {
+                                ConvertDocumentRequest convertDocumentRequest = ConvertDocumentRequest.builder()
+                                    .source(FileSource.builder().filename("beep").base64String("boop").build())
+                                    .build();
                             }
                         }
                         """

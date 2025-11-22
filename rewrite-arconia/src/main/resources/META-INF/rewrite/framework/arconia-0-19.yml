@@ -20,9 +20,15 @@ recipeList:
       newFullyQualifiedTypeName: ai.docling.api.serve.DoclingServeApi
 
   # ConvertDocumentRequest
-  - org.openrewrite.java.ChangeType:
-      oldFullyQualifiedTypeName: io.arconia.docling.client.convert.request.ConvertDocumentRequest
-      newFullyQualifiedTypeName: ai.docling.api.serve.convert.request.ConvertDocumentRequest
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: io.arconia.docling.client.convert.request
+      newPackageName: ai.docling.api.serve.convert.request
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: ai.docling.api.serve.convert.request.ConvertDocumentRequest$Builder httpSources(*)
+      newMethodName: sources
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: ai.docling.api.serve.convert.request.ConvertDocumentRequest$Builder fileSources(*)
+      newMethodName: sources
   - org.openrewrite.java.ChangeMethodName:
       methodPattern: ai.docling.api.serve.convert.request.ConvertDocumentRequest options()
       newMethodName: getOptions
@@ -32,6 +38,7 @@ recipeList:
   - org.openrewrite.java.ChangeMethodName:
       methodPattern: ai.docling.api.serve.convert.request.ConvertDocumentRequest target()
       newMethodName: getTarget
+  - io.arconia.rewrite.framework.docling.UseConvertDocumentRequestSourcesMethod
 
   # Options
   - org.openrewrite.java.ChangePackage:
