@@ -11,6 +11,9 @@ recipeList:
       oldFullyQualifiedTypeName: org.springframework.boot.actuate.autoconfigure.tracing.OpenTelemetryEventPublisherBeansTestExecutionListener
       newFullyQualifiedTypeName: org.springframework.boot.micrometer.tracing.opentelemetry.autoconfigure.OpenTelemetryEventPublisherBeansTestExecutionListener
   - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.autoconfigure.tracing.OpenTelemetryTracingAutoConfiguration
+      newFullyQualifiedTypeName: org.springframework.boot.micrometer.tracing.opentelemetry.autoconfigure.OpenTelemetryTracingAutoConfiguration
+  - org.openrewrite.java.ChangeType:
       oldFullyQualifiedTypeName: org.springframework.boot.actuate.autoconfigure.tracing.SdkTracerProviderBuilderCustomizer
       newFullyQualifiedTypeName: org.springframework.boot.micrometer.tracing.opentelemetry.autoconfigure.SdkTracerProviderBuilderCustomizer
   - org.openrewrite.java.ChangeType:

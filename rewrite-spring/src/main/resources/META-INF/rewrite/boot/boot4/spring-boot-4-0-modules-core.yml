@@ -19,6 +19,10 @@ recipeList:
       filePattern: "**/spring.factories"
 
   - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.thread.Threading
+      newFullyQualifiedTypeName: org.springframework.boot.thread.Threading
+
+  - org.openrewrite.java.ChangeType:
       oldFullyQualifiedTypeName: org.springframework.boot.test.autoconfigure.properties.PropertyMapping
       newFullyQualifiedTypeName: org.springframework.boot.test.context.PropertyMapping
   - org.openrewrite.java.ChangeType:

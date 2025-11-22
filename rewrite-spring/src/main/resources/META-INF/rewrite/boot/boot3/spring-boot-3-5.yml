@@ -37,12 +37,10 @@ recipeList:
   - org.openrewrite.gradle.plugins.UpgradePluginVersion:
       pluginIdPattern: org.springframework.boot
       newVersion: 3.5.x
-  - org.openrewrite.gradle.plugins.UpgradePluginVersion:
-      pluginIdPattern: io.spring.dependency-management
-      newVersion: 1.1.x
-  - org.openrewrite.gradle.plugins.UpgradePluginVersion:
-      pluginIdPattern: org.graalvm.buildtools.native
-      newVersion: 0.10.x
+  - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-gradle-plugin
+      newVersion: 3.5.x
   - org.openrewrite.maven.UpgradePluginVersion:
       groupId: org.springframework.boot
       artifactId: spring-boot-maven-plugin
@@ -51,6 +49,33 @@ recipeList:
       groupId: org.springframework.boot
       artifactId: spring-boot-starter-parent
       newVersion: 3.5.x
+
+  # Dependency Management
+  - org.openrewrite.gradle.plugins.UpgradePluginVersion:
+      pluginIdPattern: io.spring.dependency-management
+      newVersion: 1.1.x
+  - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
+      groupId: io.spring.gradle
+      artifactId: dependency-management-plugin
+      newVersion: 1.1.x
+
+  # GraalVM
+  - org.openrewrite.gradle.plugins.UpgradePluginVersion:
+      pluginIdPattern: org.graalvm.buildtools.native
+      newVersion: 0.10.x
+  - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
+      groupId: org.graalvm.buildtools
+      artifactId: native-gradle-plugin
+      newVersion: 0.10.x
+
+  # CycloneDX
+  - org.openrewrite.gradle.plugins.UpgradePluginVersion:
+      pluginIdPattern: org.cyclonedx.bom
+      newVersion: 2.x
+  - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
+      groupId: org.cyclonedx
+      artifactId: cyclonedx-gradle-plugin
+      newVersion: 2.x
 
   # Gradle Wrapper
   - org.openrewrite.gradle.UpdateGradleWrapper:

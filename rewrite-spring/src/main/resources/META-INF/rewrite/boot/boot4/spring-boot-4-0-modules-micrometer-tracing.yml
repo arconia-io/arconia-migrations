@@ -19,6 +19,21 @@ recipeList:
       oldFullyQualifiedTypeName: org.springframework.boot.actuate.autoconfigure.tracing.TracingProperties
       newFullyQualifiedTypeName: org.springframework.boot.micrometer.tracing.autoconfigure.TracingProperties
   - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.autoconfigure.tracing.TracingProperties$Sampling
+      newFullyQualifiedTypeName: org.springframework.boot.micrometer.tracing.autoconfigure.TracingProperties$Sampling
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.autoconfigure.tracing.TracingProperties$Baggage
+      newFullyQualifiedTypeName: org.springframework.boot.micrometer.tracing.autoconfigure.TracingProperties$Baggage
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.autoconfigure.tracing.TracingProperties$Baggage$Correlation
+      newFullyQualifiedTypeName: org.springframework.boot.micrometer.tracing.autoconfigure.TracingProperties$Baggage$Correlation
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.autoconfigure.tracing.TracingProperties$Propagation
+      newFullyQualifiedTypeName: org.springframework.boot.micrometer.tracing.autoconfigure.TracingProperties$Propagation
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.autoconfigure.tracing.TracingProperties$Propagation$PropagationType
+      newFullyQualifiedTypeName: org.springframework.boot.micrometer.tracing.autoconfigure.TracingProperties$Propagation$PropagationType
+  - org.openrewrite.java.ChangeType:
       oldFullyQualifiedTypeName: org.springframework.boot.actuate.autoconfigure.tracing.prometheus.PrometheusExemplarsAutoConfiguration
       newFullyQualifiedTypeName: org.springframework.boot.micrometer.tracing.autoconfigure.prometheus.PrometheusExemplarsAutoConfiguration
 
