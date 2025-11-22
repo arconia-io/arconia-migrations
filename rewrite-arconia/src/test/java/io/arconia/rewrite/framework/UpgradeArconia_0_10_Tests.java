@@ -1,4 +1,4 @@
-package io.arconia.rewrite.frameworks;
+package io.arconia.rewrite.framework;
 
 import org.junit.jupiter.api.Test;
 import org.openrewrite.InMemoryExecutionContext;
@@ -13,9 +13,6 @@ import static org.openrewrite.java.Assertions.mavenProject;
 import static org.openrewrite.java.Assertions.srcMainJava;
 import static org.openrewrite.yaml.Assertions.yaml;
 
-/**
- * Unit tests for "io.arconia.rewrite.UpgradeArconia_0_10".
- */
 class UpgradeArconia_0_10_Tests implements RewriteTest {
 
     @Override

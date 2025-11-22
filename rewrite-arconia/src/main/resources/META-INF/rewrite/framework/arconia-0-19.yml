@@ -1,0 +1,285 @@
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.UpgradeArconia_0_19
+displayName: Migrate to Arconia 0.19
+description: Migrate a Spring Boot application to the latest Arconia 0.19.x release.
+tags:
+  - arconia
+recipeList:
+  - io.arconia.rewrite.UpgradeArconia_0_18
+
+  # Dependency Versions
+  - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
+      groupId: io.arconia
+      artifactId: "*"
+      newVersion: 0.19.x
+
+  # Client
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: io.arconia.docling.client.DoclingClient
+      newFullyQualifiedTypeName: ai.docling.api.serve.DoclingServeApi
+
+  # ConvertDocumentRequest
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: io.arconia.docling.client.convert.request.ConvertDocumentRequest
+      newFullyQualifiedTypeName: ai.docling.api.serve.convert.request.ConvertDocumentRequest
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: ai.docling.api.serve.convert.request.ConvertDocumentRequest options()
+      newMethodName: getOptions
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: ai.docling.api.serve.convert.request.ConvertDocumentRequest sources()
+      newMethodName: getSources
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: ai.docling.api.serve.convert.request.ConvertDocumentRequest target()
+      newMethodName: getTarget
+
+  # Options
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: io.arconia.docling.client.convert.request.options
+      newPackageName: ai.docling.api.serve.convert.request.options
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: ai.docling.api.serve.convert.request.options.ConvertDocumentOptions fromFormats()
+      newMethodName: getFromFormats
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: ai.docling.api.serve.convert.request.options.ConvertDocumentOptions toFormats()
+      newMethodName: getToFormats
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: ai.docling.api.serve.convert.request.options.ConvertDocumentOptions imageExportMode()
+      newMethodName: getImageExportMode
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: ai.docling.api.serve.convert.request.options.ConvertDocumentOptions doOcr()
+      newMethodName: getDoOcr
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: ai.docling.api.serve.convert.request.options.ConvertDocumentOptions forceOcr()
+      newMethodName: getForceOcr
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: ai.docling.api.serve.convert.request.options.ConvertDocumentOptions ocrEngine()
+      newMethodName: getOcrEngine
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: ai.docling.api.serve.convert.request.options.ConvertDocumentOptions ocrLang()
+      newMethodName: getOcrLang
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: ai.docling.api.serve.convert.request.options.ConvertDocumentOptions pdfBackend()
+      newMethodName: getPdfBackend
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: ai.docling.api.serve.convert.request.options.ConvertDocumentOptions tableMode()
+      newMethodName: getTableMode
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: ai.docling.api.serve.convert.request.options.ConvertDocumentOptions tableCellMatching()
+      newMethodName: getTableCellMatching
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: ai.docling.api.serve.convert.request.options.ConvertDocumentOptions pipeline()
+      newMethodName: getPipeline
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: ai.docling.api.serve.convert.request.options.ConvertDocumentOptions pageRange()
+      newMethodName: getPageRange
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: ai.docling.api.serve.convert.request.options.ConvertDocumentOptions documentTimeout()
+      newMethodName: getDocumentTimeout
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: ai.docling.api.serve.convert.request.options.ConvertDocumentOptions abortOnError()
+      newMethodName: getAbortOnError
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: ai.docling.api.serve.convert.request.options.ConvertDocumentOptions doTableStructure()
+      newMethodName: getDoTableStructure
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: ai.docling.api.serve.convert.request.options.ConvertDocumentOptions includeImages()
+      newMethodName: getIncludeImages
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: ai.docling.api.serve.convert.request.options.ConvertDocumentOptions imagesScale()
+      newMethodName: getImagesScale
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: ai.docling.api.serve.convert.request.options.ConvertDocumentOptions mdPageBreakPlaceholder()
+      newMethodName: getPageBreakPlaceholder
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: ai.docling.api.serve.convert.request.options.ConvertDocumentOptions doCodeEnrichment()
+      newMethodName: getDoCodeEnrichment
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: ai.docling.api.serve.convert.request.options.ConvertDocumentOptions doFormulaEnrichment()
+      newMethodName: getDoFormulaEnrichment
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: ai.docling.api.serve.convert.request.options.ConvertDocumentOptions doPictureClassification()
+      newMethodName: getDoPictureClassification
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: ai.docling.api.serve.convert.request.options.ConvertDocumentOptions doPictureDescription()
+      newMethodName: getDoPictureDescription
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: ai.docling.api.serve.convert.request.options.ConvertDocumentOptions pictureDescriptionAreaThreshold()
+      newMethodName: getPictureDescriptionAreaThreshold
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: ai.docling.api.serve.convert.request.options.ConvertDocumentOptions pictureDescriptionLocal()
+      newMethodName: getPictureDescriptionLocal
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: ai.docling.api.serve.convert.request.options.ConvertDocumentOptions pictureDescriptionApi()
+      newMethodName: getPictureDescriptionApi
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: ai.docling.api.serve.convert.request.options.ConvertDocumentOptions vlmPipelineModel()
+      newMethodName: getVlmPipelineModel
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: ai.docling.api.serve.convert.request.options.ConvertDocumentOptions vlmPipelineModelLocal()
+      newMethodName: getVlmPipelineModelLocal
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: ai.docling.api.serve.convert.request.options.ConvertDocumentOptions vlmPipelineModelApi()
+      newMethodName: getVlmPipelineModelApi
+
+  # Picture Description
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: ai.docling.api.serve.convert.request.options.PictureDescriptionApi url()
+      newMethodName: getUrl
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: ai.docling.api.serve.convert.request.options.PictureDescriptionApi headers()
+      newMethodName: getHeaders
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: ai.docling.api.serve.convert.request.options.PictureDescriptionApi params()
+      newMethodName: getParams
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: ai.docling.api.serve.convert.request.options.PictureDescriptionApi timeout()
+      newMethodName: getTimeout
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: ai.docling.api.serve.convert.request.options.PictureDescriptionApi concurrency()
+      newMethodName: getConcurrency
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: ai.docling.api.serve.convert.request.options.PictureDescriptionApi prompt()
+      newMethodName: getPrompt
+
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: ai.docling.api.serve.convert.request.options.PictureDescriptionLocal repoId()
+      newMethodName: getRepoId
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: ai.docling.api.serve.convert.request.options.PictureDescriptionLocal prompt()
+      newMethodName: getPrompt
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: ai.docling.api.serve.convert.request.options.PictureDescriptionLocal generationConfig()
+      newMethodName: getGenerationConfig
+
+  # VLM Model
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: ai.docling.api.serve.convert.request.options.VlmModelApi url()
+      newMethodName: getUrl
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: ai.docling.api.serve.convert.request.options.VlmModelApi headers()
+      newMethodName: getHeaders
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: ai.docling.api.serve.convert.request.options.VlmModelApi params()
+      newMethodName: getParams
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: ai.docling.api.serve.convert.request.options.VlmModelApi timeout()
+      newMethodName: getTimeout
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: ai.docling.api.serve.convert.request.options.VlmModelApi concurrency()
+      newMethodName: getConcurrency
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: ai.docling.api.serve.convert.request.options.VlmModelApi prompt()
+      newMethodName: getPrompt
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: ai.docling.api.serve.convert.request.options.VlmModelApi scale()
+      newMethodName: getScale
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: ai.docling.api.serve.convert.request.options.VlmModelApi responseFormat()
+      newMethodName: getResponseFormat
+
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: ai.docling.api.serve.convert.request.options.VlmModelLocal repoId()
+      newMethodName: getRepoId
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: ai.docling.api.serve.convert.request.options.VlmModelLocal prompt()
+      newMethodName: getPrompt
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: ai.docling.api.serve.convert.request.options.VlmModelLocal scale()
+      newMethodName: getScale
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: ai.docling.api.serve.convert.request.options.VlmModelLocal responseFormat()
+      newMethodName: getResponseFormat
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: ai.docling.api.serve.convert.request.options.VlmModelLocal inferenceFramework()
+      newMethodName: getInferenceFramework
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: ai.docling.api.serve.convert.request.options.VlmModelLocal transformersModelType()
+      newMethodName: getTransformersModelType
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: ai.docling.api.serve.convert.request.options.VlmModelLocal extraGenerationConfig()
+      newMethodName: getExtraGenerationConfig
+
+  # Source
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: io.arconia.docling.client.convert.request.source
+      newPackageName: ai.docling.api.serve.convert.request.source
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: ai.docling.api.serve.convert.request.source.FileSource base64String()
+      newMethodName: getBase64String
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: ai.docling.api.serve.convert.request.source.FileSource filename()
+      newMethodName: getFilename
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: ai.docling.api.serve.convert.request.source.HttpSource url()
+      newMethodName: getUrl
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: ai.docling.api.serve.convert.request.source.HttpSource headers()
+      newMethodName: getHeaders
+
+  # Target
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: io.arconia.docling.client.convert.request.target
+      newPackageName: ai.docling.api.serve.convert.request.target
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: ai.docling.api.serve.convert.request.target.PutTarget url()
+      newMethodName: getUrl
+
+  # ConvertDocumentResponse
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: io.arconia.docling.client.convert.response
+      newPackageName: ai.docling.api.serve.convert.response
+
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: ai.docling.api.serve.convert.response.ConvertDocumentResponse document()
+      newMethodName: getDocument
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: ai.docling.api.serve.convert.response.ConvertDocumentResponse errors()
+      newMethodName: getErrors
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: ai.docling.api.serve.convert.response.ConvertDocumentResponse processingTime()
+      newMethodName: getProcessingTime
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: ai.docling.api.serve.convert.response.ConvertDocumentResponse status()
+      newMethodName: getStatus
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: ai.docling.api.serve.convert.response.ConvertDocumentResponse timings()
+      newMethodName: getTimings
+
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: ai.docling.api.serve.convert.response.DocumentResponse doctagsContent()
+      newMethodName: getDoctagsContent
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: ai.docling.api.serve.convert.response.DocumentResponse filename()
+      newMethodName: getFilename
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: ai.docling.api.serve.convert.response.DocumentResponse htmlContent()
+      newMethodName: getHtmlContent
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: ai.docling.api.serve.convert.response.DocumentResponse jsonContent()
+      newMethodName: getJsonContent
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: ai.docling.api.serve.convert.response.DocumentResponse markdownContent()
+      newMethodName: getMarkdownContent
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: ai.docling.api.serve.convert.response.DocumentResponse textContent()
+      newMethodName: getTextContent
+
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: ai.docling.api.serve.convert.response.ErrorItem componentType()
+      newMethodName: getComponentType
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: ai.docling.api.serve.convert.response.ErrorItem errorMessage()
+      newMethodName: getErrorMessage
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: ai.docling.api.serve.convert.response.ErrorItem moduleName()
+      newMethodName: getModuleName
+
+  # HealthCheckResponse
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: io.arconia.docling.client.health.HealthCheckResponse
+      newFullyQualifiedTypeName: ai.docling.api.serve.health.HealthCheckResponse
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: ai.docling.api.serve.health.HealthCheckResponse status()
+      newMethodName: getStatus
+  - io.arconia.rewrite.framework.docling.UseHealthCheckResponseBuilder

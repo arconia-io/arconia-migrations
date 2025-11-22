@@ -1,4 +1,4 @@
-package io.arconia.rewrite.frameworks;
+package io.arconia.rewrite.framework;
 
 import org.junit.jupiter.api.Test;
 import org.openrewrite.test.RecipeSpec;
@@ -6,9 +6,6 @@ import org.openrewrite.test.RewriteTest;
 
 import static org.openrewrite.properties.Assertions.properties;
 
-/**
- * Unit tests for "io.arconia.rewrite.UpgradeArconia_0_13".
- */
 class UpgradeArconia_0_13_Tests implements RewriteTest {
 
     @Override

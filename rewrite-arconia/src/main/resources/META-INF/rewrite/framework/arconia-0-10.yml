@@ -20,16 +20,6 @@ recipeList:
       newGroupId: org.springframework.boot
       newArtifactId: spring-boot-devtools
 
-  # New Dependencies
-  - org.openrewrite.java.dependencies.AddDependency:
-      groupId: io.arconia
-      artifactId: arconia-spring-boot-starter
-      configuration: implementation
-      onlyIfUsing: io.arconia..*
-      scope: compile
-      acceptTransitive: true
-      version: 0.10.x
-
   # Property Changes
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: "arconia.dev.profiles.development"
