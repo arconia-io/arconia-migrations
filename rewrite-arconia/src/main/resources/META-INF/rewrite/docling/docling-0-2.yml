@@ -1,0 +1,19 @@
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.docling.UpgradeDocling_0_2
+displayName: Migrate to Docling 0.2
+description: Migrate a Java application to the latest Docling 0.2.x release.
+tags:
+  - docling
+recipeList:
+  - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
+      groupId: ai.docling
+      artifactId: "*"
+      newVersion: 0.2.x
+
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: ai.docling.api.serve
+      newPackageName: ai.docling.serve.api
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: ai.docling.client.serve
+      newPackageName: ai.docling.serve.client
