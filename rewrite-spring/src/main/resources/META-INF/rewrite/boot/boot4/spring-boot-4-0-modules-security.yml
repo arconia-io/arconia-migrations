@@ -82,6 +82,7 @@ recipeList:
 type: specs.openrewrite.org/v1beta/recipe
 name: io.arconia.rewrite.spring.boot4.MigrateSecurityTest
 displayName: Migrate Security Test
+description: Migrate Security Test.
 recipeList:
   - org.openrewrite.java.dependencies.ChangeDependency:
       oldGroupId: org.springframework.security
@@ -93,6 +94,7 @@ recipeList:
 type: specs.openrewrite.org/v1beta/recipe
 name: io.arconia.rewrite.spring.boot4.AddSecurityStarterTest
 displayName: Add Security Starter Test
+description: Add Security Starter Test.
 preconditions:
   - org.openrewrite.java.dependencies.FindDependency:
       groupId: org.springframework.boot

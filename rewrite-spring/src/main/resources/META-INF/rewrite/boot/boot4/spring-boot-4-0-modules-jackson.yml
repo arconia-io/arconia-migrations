@@ -42,6 +42,7 @@ recipeList:
 type: specs.openrewrite.org/v1beta/recipe
 name: io.arconia.rewrite.spring.boot4.AddJacksonStarter
 displayName: Add Jackson Starter
+description: Add Jackson Starter.
 recipeList:
   - org.openrewrite.java.dependencies.ChangeDependency:
       oldGroupId: org.springframework.boot
@@ -58,6 +59,7 @@ recipeList:
 type: specs.openrewrite.org/v1beta/recipe
 name: io.arconia.rewrite.spring.boot4.AddJacksonStarterTest
 displayName: Add Jackson Starter Test
+description: Add Jackson Starter Test.
 preconditions:
   - org.openrewrite.java.dependencies.FindDependency:
       groupId: org.springframework.boot

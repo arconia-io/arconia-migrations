@@ -15,6 +15,7 @@ recipeList:
 type: specs.openrewrite.org/v1beta/recipe
 name: io.arconia.rewrite.spring.boot4.AddSecuritySamlStarter
 displayName: Add Security SAML Starter
+description: Add Security SAML Starter.
 recipeList:
   - org.openrewrite.java.dependencies.ChangeDependency:
       oldGroupId: org.springframework.security
@@ -26,6 +27,7 @@ recipeList:
 type: specs.openrewrite.org/v1beta/recipe
 name: io.arconia.rewrite.spring.boot4.AddSecuritySamlStarterTest
 displayName: Add Security SAML Starter Test
+description: Add Security SAML Starter Test.
 preconditions:
   - org.openrewrite.java.dependencies.FindDependency:
       groupId: org.springframework.boot

@@ -24,6 +24,7 @@ recipeList:
 type: specs.openrewrite.org/v1beta/recipe
 name: io.arconia.rewrite.spring.boot4.MigrateSecurityOAuthClientStarter
 displayName: Migrate Security OAuth Client Starter
+description: Migrate Security OAuth Client Starter.
 recipeList:
   - org.openrewrite.java.dependencies.ChangeDependency:
       oldGroupId: org.springframework.boot
@@ -35,6 +36,7 @@ recipeList:
 type: specs.openrewrite.org/v1beta/recipe
 name: io.arconia.rewrite.spring.boot4.AddSecurityOAuthClientStarterTest
 displayName: Add Security OAuth Client Starter Test
+description: Add Security OAuth Client Starter Test.
 preconditions:
   - org.openrewrite.java.dependencies.FindDependency:
       groupId: org.springframework.boot

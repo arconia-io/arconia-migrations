@@ -27,6 +27,7 @@ recipeList:
 type: specs.openrewrite.org/v1beta/recipe
 name: io.arconia.rewrite.spring.boot4.MigrateAmqpTest
 displayName: Migrate AMQP Test
+description: Migrate AMQP Test.
 recipeList:
   - org.openrewrite.java.dependencies.ChangeDependency:
       oldGroupId: org.springframework.amqp
@@ -38,6 +39,7 @@ recipeList:
 type: specs.openrewrite.org/v1beta/recipe
 name: io.arconia.rewrite.spring.boot4.AddAmqpStarterTest
 displayName: Add AMQP Starter Test
+description: Add AMQP Starter Test.
 preconditions:
   - org.openrewrite.java.dependencies.FindDependency:
       groupId: org.springframework.boot

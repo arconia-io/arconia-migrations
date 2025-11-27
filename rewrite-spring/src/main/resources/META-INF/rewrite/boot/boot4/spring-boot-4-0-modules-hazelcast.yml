@@ -21,6 +21,7 @@ recipeList:
 type: specs.openrewrite.org/v1beta/recipe
 name: io.arconia.rewrite.spring.boot4.AddHazelcastStarter
 displayName: Add Hazelcast Starter
+description: Add Hazelcast Starter.
 recipeList:
   - org.openrewrite.java.dependencies.ChangeDependency:
       oldGroupId: com.hazelcast
@@ -32,6 +33,7 @@ recipeList:
 type: specs.openrewrite.org/v1beta/recipe
 name: io.arconia.rewrite.spring.boot4.AddHazelcastStarterTest
 displayName: Add Hazelcast Starter Test
+description: Add Hazelcast Starter Test.
 preconditions:
   - org.openrewrite.java.dependencies.FindDependency:
       groupId: org.springframework.boot

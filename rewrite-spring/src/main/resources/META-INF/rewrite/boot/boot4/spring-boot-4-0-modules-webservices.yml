@@ -21,6 +21,7 @@ recipeList:
 type: specs.openrewrite.org/v1beta/recipe
 name: io.arconia.rewrite.spring.boot4.MigrateWebServicesStarter
 displayName: Migrate Web Services Starter
+description: Migrate Web Services Starter.
 recipeList:
   - org.openrewrite.java.dependencies.ChangeDependency:
       oldGroupId: org.springframework.boot
@@ -32,6 +33,7 @@ recipeList:
 type: specs.openrewrite.org/v1beta/recipe
 name: io.arconia.rewrite.spring.boot4.AddWebServicesStarterTest
 displayName: Add Web Services Starter Test
+description: Add Web Services Starter Test.
 preconditions:
   - org.openrewrite.java.dependencies.FindDependency:
       groupId: org.springframework.boot

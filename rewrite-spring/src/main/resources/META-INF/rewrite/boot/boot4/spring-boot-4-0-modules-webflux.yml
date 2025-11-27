@@ -72,6 +72,7 @@ recipeList:
 type: specs.openrewrite.org/v1beta/recipe
 name: io.arconia.rewrite.spring.boot4.AddWebFluxStarterTest
 displayName: Add Web Flux Starter Test
+description: Add Web Flux Starter Test.
 preconditions:
   - org.openrewrite.java.dependencies.FindDependency:
       groupId: org.springframework.boot

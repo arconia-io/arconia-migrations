@@ -66,6 +66,7 @@ recipeList:
 type: specs.openrewrite.org/v1beta/recipe
 name: io.arconia.rewrite.spring.boot4.AddDataRedisStarterTest
 displayName: Add Data Redis Starter Test
+description: Add Data Redis Starter Test.
 preconditions:
   - org.openrewrite.java.dependencies.FindDependency:
       groupId: org.springframework.boot
@@ -82,6 +83,7 @@ recipeList:
 type: specs.openrewrite.org/v1beta/recipe
 name: io.arconia.rewrite.spring.boot4.AddDataRedisReactiveStarterTest
 displayName: Add Data Redis Reactive Starter Test
+description: Add Data Redis Reactive Starter Test.
 preconditions:
   - org.openrewrite.java.dependencies.FindDependency:
       groupId: org.springframework.boot

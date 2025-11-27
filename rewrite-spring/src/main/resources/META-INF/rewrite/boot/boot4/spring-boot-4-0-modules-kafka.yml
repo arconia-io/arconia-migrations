@@ -19,6 +19,7 @@ recipeList:
 type: specs.openrewrite.org/v1beta/recipe
 name: io.arconia.rewrite.spring.boot4.AddKafkaStarter
 displayName: Add Kafka Starter
+description: Add Kafka Starter.
 recipeList:
   - org.openrewrite.java.dependencies.ChangeDependency:
       oldGroupId: org.springframework.kafka
@@ -30,6 +31,7 @@ recipeList:
 type: specs.openrewrite.org/v1beta/recipe
 name: io.arconia.rewrite.spring.boot4.MigrateKafkaTest
 displayName: Migrate Kafka Test
+description: Migrate Kafka Test.
 recipeList:
   - org.openrewrite.java.dependencies.ChangeDependency:
       oldGroupId: org.springframework.kafka
@@ -41,6 +43,7 @@ recipeList:
 type: specs.openrewrite.org/v1beta/recipe
 name: io.arconia.rewrite.spring.boot4.AddKafkaStarterTest
 displayName: Add Kafka Starter Test
+description: Add Kafka Starter Test.
 preconditions:
   - org.openrewrite.java.dependencies.FindDependency:
       groupId: org.springframework.boot

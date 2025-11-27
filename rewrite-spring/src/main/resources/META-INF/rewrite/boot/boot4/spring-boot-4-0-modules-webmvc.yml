@@ -104,6 +104,7 @@ recipeList:
 type: specs.openrewrite.org/v1beta/recipe
 name: io.arconia.rewrite.spring.boot4.MigrateWebMvcStarter
 displayName: Migrate Web MVC Starter
+description: Migrate Web MVC Starter.
 recipeList:
   - org.openrewrite.java.dependencies.ChangeDependency:
       oldGroupId: org.springframework.boot
@@ -115,6 +116,7 @@ recipeList:
 type: specs.openrewrite.org/v1beta/recipe
 name: io.arconia.rewrite.spring.boot4.AddWebMvcStarterTest
 displayName: Add Web MVC Starter Test
+description: Add Web MVC Starter Test.
 preconditions:
   - org.openrewrite.java.dependencies.FindDependency:
       groupId: org.springframework.boot

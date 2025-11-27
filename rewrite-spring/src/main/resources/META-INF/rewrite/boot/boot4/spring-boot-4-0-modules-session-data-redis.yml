@@ -15,6 +15,7 @@ recipeList:
 type: specs.openrewrite.org/v1beta/recipe
 name: io.arconia.rewrite.spring.boot4.AddSessionDataRedisStarter
 displayName: Add Session Data Redis Starter
+description: Add Session Data Redis Starter.
 recipeList:
   - org.openrewrite.java.dependencies.ChangeDependency:
       oldGroupId: org.springframework.session
@@ -26,6 +27,7 @@ recipeList:
 type: specs.openrewrite.org/v1beta/recipe
 name: io.arconia.rewrite.spring.boot4.AddSessionDataRedisStarterTest
 displayName: Add Session Data Redis Starter Test
+description: Add Session Data Redis Starter Test.
 preconditions:
   - org.openrewrite.java.dependencies.FindDependency:
       groupId: org.springframework.boot

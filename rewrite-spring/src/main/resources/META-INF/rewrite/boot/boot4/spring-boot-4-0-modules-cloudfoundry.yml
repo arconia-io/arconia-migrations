@@ -15,6 +15,7 @@ recipeList:
 type: specs.openrewrite.org/v1beta/recipe
 name: io.arconia.rewrite.spring.boot4.AddCloudFoundryStarterTest
 displayName: Add CloudFoundry Starter Test
+description: Add CloudFoundry Starter Test.
 preconditions:
   - org.openrewrite.java.dependencies.FindDependency:
       groupId: org.springframework.boot

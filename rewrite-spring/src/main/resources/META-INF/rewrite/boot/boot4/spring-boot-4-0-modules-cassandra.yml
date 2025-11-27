@@ -20,6 +20,7 @@ recipeList:
 type: specs.openrewrite.org/v1beta/recipe
 name: io.arconia.rewrite.spring.boot4.AddCassandraStarterTest
 displayName: Add Cassandra Starter Test
+description: Add Cassandra Starter Test.
 preconditions:
   - org.openrewrite.java.dependencies.FindDependency:
       groupId: org.springframework.boot

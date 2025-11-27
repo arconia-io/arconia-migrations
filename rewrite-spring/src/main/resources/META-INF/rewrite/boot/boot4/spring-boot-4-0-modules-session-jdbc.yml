@@ -18,6 +18,7 @@ recipeList:
 type: specs.openrewrite.org/v1beta/recipe
 name: io.arconia.rewrite.spring.boot4.AddSessionJdbcStarter
 displayName: Add Session JDBC Starter
+description: Add Session JDBC Starter.
 recipeList:
   - org.openrewrite.java.dependencies.ChangeDependency:
       oldGroupId: org.springframework.session
@@ -29,6 +30,7 @@ recipeList:
 type: specs.openrewrite.org/v1beta/recipe
 name: io.arconia.rewrite.spring.boot4.AddSessionJdbcStarterTest
 displayName: Add Session JDBC Starter Test
+description: Add Session JDBC Starter Test.
 preconditions:
   - org.openrewrite.java.dependencies.FindDependency:
       groupId: org.springframework.boot

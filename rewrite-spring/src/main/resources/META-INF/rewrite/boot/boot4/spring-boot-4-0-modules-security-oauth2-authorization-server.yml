@@ -15,6 +15,7 @@ recipeList:
 type: specs.openrewrite.org/v1beta/recipe
 name: io.arconia.rewrite.spring.boot4.MigrateSecurityOAuthAuthorizationServerStarter
 displayName: Migrate Security OAuth Authorization Server Starter
+description: Migrate Security OAuth Authorization Server Starter.
 recipeList:
   - org.openrewrite.java.dependencies.ChangeDependency:
       oldGroupId: org.springframework.boot
@@ -26,6 +27,7 @@ recipeList:
 type: specs.openrewrite.org/v1beta/recipe
 name: io.arconia.rewrite.spring.boot4.AddSecurityOAuthAuthorizationServerStarterTest
 displayName: Add Security OAuth Authorization Server Starter Test
+description: Add Security OAuth Authorization Server Starter Test.
 preconditions:
   - org.openrewrite.java.dependencies.FindDependency:
       groupId: org.springframework.boot

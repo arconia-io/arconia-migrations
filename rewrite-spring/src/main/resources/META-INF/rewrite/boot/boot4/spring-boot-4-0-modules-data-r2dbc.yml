@@ -23,6 +23,7 @@ recipeList:
 type: specs.openrewrite.org/v1beta/recipe
 name: io.arconia.rewrite.spring.boot4.AddDataR2dbcStarterTest
 displayName: Add Data R2DBC Starter Test
+description: Add Data R2DBC Starter Test.
 preconditions:
   - org.openrewrite.java.dependencies.FindDependency:
       groupId: org.springframework.boot

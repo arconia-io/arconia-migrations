@@ -22,6 +22,7 @@ recipeList:
 type: specs.openrewrite.org/v1beta/recipe
 name: io.arconia.rewrite.spring.boot4.AddWebTestClientModule
 displayName: Add WebTestClient Module
+description: Add WebTestClient Module.
 recipeList:
   - org.openrewrite.java.dependencies.AddDependency:
       groupId: org.springframework.boot

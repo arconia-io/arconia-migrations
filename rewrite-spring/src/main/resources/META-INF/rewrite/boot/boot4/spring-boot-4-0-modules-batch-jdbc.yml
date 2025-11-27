@@ -17,6 +17,7 @@ recipeList:
 type: specs.openrewrite.org/v1beta/recipe
 name: io.arconia.rewrite.spring.boot4.AddBatchJdbcStarterTest
 displayName: Add Batch Jdbc Starter Test
+description: Add Batch Jdbc Starter Test.
 preconditions:
   - org.openrewrite.java.dependencies.FindDependency:
       groupId: org.springframework.boot

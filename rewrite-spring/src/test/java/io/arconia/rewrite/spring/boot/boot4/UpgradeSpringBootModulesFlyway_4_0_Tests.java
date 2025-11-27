@@ -7,7 +7,7 @@ class UpgradeSpringBootModulesFlyway_4_0_Tests implements RewriteTest {
 
     @Test
     void recipeConfigured() {
-        assertRecipesConfigure("io.arconia.rewrite.spring.boot4.UpgradeSpringBootModulesFlyway_4_0");
+        assertRecipesConfigure("io.arconia.rewrite.spring.boot4");
     }
 
 }

@@ -10,6 +10,7 @@ recipeList:
 type: specs.openrewrite.org/v1beta/recipe
 name: io.arconia.rewrite.spring.boot4.AddKotlinSerializationStarterTest
 displayName: Add Kotlin Serialization Starter Test
+description: Add Kotlin Serialization Starter Test.
 preconditions:
   - org.openrewrite.java.dependencies.FindDependency:
       groupId: org.springframework.boot

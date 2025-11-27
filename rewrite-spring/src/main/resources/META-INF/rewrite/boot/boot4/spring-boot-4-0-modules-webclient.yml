@@ -33,6 +33,7 @@ recipeList:
 type: specs.openrewrite.org/v1beta/recipe
 name: io.arconia.rewrite.spring.boot4.AddWebClientStarter
 displayName: Add Web Client Starter
+description: Add Web Client Starter.
 recipeList:
   - org.openrewrite.java.dependencies.AddDependency:
       groupId: org.springframework.boot
@@ -44,6 +45,7 @@ recipeList:
 type: specs.openrewrite.org/v1beta/recipe
 name: io.arconia.rewrite.spring.boot4.AddWebClientStarterTest
 displayName: Add WebClient Starter Test
+description: Add WebClient Starter Test.
 preconditions:
   - org.openrewrite.java.dependencies.FindDependency:
       groupId: org.springframework.boot

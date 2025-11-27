@@ -21,6 +21,7 @@ recipeList:
 type: specs.openrewrite.org/v1beta/recipe
 name: io.arconia.rewrite.spring.boot4.AddLiquibaseStarter
 displayName: Add Liquibase Starter
+description: Add Liquibase Starter.
 recipeList:
   - org.openrewrite.java.dependencies.ChangeDependency:
       oldGroupId: org.liquibase
@@ -32,6 +33,7 @@ recipeList:
 type: specs.openrewrite.org/v1beta/recipe
 name: io.arconia.rewrite.spring.boot4.AddLiquibaseStarterTest
 displayName: Add Liquibase Starter Test
+description: Add Liquibase Starter Test.
 preconditions:
   - org.openrewrite.java.dependencies.FindDependency:
       groupId: org.springframework.boot

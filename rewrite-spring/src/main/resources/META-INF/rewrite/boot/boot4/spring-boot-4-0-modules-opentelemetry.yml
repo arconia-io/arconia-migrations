@@ -31,6 +31,7 @@ recipeList:
 type: specs.openrewrite.org/v1beta/recipe
 name: io.arconia.rewrite.spring.boot4.AddOpenTelemetryStarterForMetrics
 displayName: Add OpenTelemetry Starter for Metrics
+description: Add OpenTelemetry Starter for Metrics.
 preconditions:
   - org.openrewrite.java.dependencies.FindDependency:
       groupId: io.micrometer
@@ -47,6 +48,7 @@ recipeList:
 type: specs.openrewrite.org/v1beta/recipe
 name: io.arconia.rewrite.spring.boot4.AddOpenTelemetryStarterForTracing
 displayName: Add OpenTelemetry Starter for Tracing
+description: Add OpenTelemetry Starter for Tracing.
 preconditions:
   - org.openrewrite.java.dependencies.FindDependency:
       groupId: io.micrometer
@@ -63,6 +65,7 @@ recipeList:
 type: specs.openrewrite.org/v1beta/recipe
 name: io.arconia.rewrite.spring.boot4.AddOpenTelemetryStarterTest
 displayName: Add OpenTelemetry Test
+description: Add OpenTelemetry Test.
 preconditions:
   - org.openrewrite.java.dependencies.FindDependency:
       groupId: org.springframework.boot

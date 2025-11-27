@@ -15,6 +15,7 @@ recipeList:
 type: specs.openrewrite.org/v1beta/recipe
 name: io.arconia.rewrite.spring.boot4.AddZipkinStarter
 displayName: Add Zipkin Starter
+description: Add Zipkin Starter.
 recipeList:
   - org.openrewrite.java.dependencies.ChangeDependency:
       oldGroupId: io.zipkin.reporter2
@@ -26,6 +27,7 @@ recipeList:
 type: specs.openrewrite.org/v1beta/recipe
 name: io.arconia.rewrite.spring.boot4.AddZipkinStarterTest
 displayName: Add Zipkin Test
+description: Add Zipkin Test.
 preconditions:
   - org.openrewrite.java.dependencies.FindDependency:
       groupId: org.springframework.boot

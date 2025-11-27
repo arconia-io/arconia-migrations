@@ -33,6 +33,7 @@ recipeList:
 type: specs.openrewrite.org/v1beta/recipe
 name: io.arconia.rewrite.spring.boot4.AddDataCouchbaseStarterTest
 displayName: Add Data Couchbase Starter Test
+description: Add Data Couchbase Starter Test.
 preconditions:
   - org.openrewrite.java.dependencies.FindDependency:
       groupId: org.springframework.boot
@@ -49,6 +50,7 @@ recipeList:
 type: specs.openrewrite.org/v1beta/recipe
 name: io.arconia.rewrite.spring.boot4.AddDataCouchbaseReactiveStarterTest
 displayName: Add Data Couchbase Reactive Starter Test
+description: Add Data Couchbase Reactive Starter Test.
 preconditions:
   - org.openrewrite.java.dependencies.FindDependency:
       groupId: org.springframework.boot

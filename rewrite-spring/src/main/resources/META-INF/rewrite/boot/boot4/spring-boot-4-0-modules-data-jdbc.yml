@@ -26,6 +26,7 @@ recipeList:
 type: specs.openrewrite.org/v1beta/recipe
 name: io.arconia.rewrite.spring.boot4.AddDataJdbcStarterTest
 displayName: Add Data JDBC Starter Test
+description: Add Data JDBC Starter Test.
 preconditions:
   - org.openrewrite.java.dependencies.FindDependency:
       groupId: org.springframework.boot

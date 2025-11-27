@@ -13,6 +13,7 @@ recipeList:
 type: specs.openrewrite.org/v1beta/recipe
 name: io.arconia.rewrite.spring.boot4.AddWebSocketStarterTest
 displayName: Add WebSocket Starter Test
+description: Add WebSocket Starter Test.
 preconditions:
   - org.openrewrite.java.dependencies.FindDependency:
       groupId: org.springframework.boot

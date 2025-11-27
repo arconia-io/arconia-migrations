@@ -27,6 +27,7 @@ recipeList:
 type: specs.openrewrite.org/v1beta/recipe
 name: io.arconia.rewrite.spring.boot4.MigrateGraphQlTest
 displayName: Migrate GraphQL Test
+description: Migrate GraphQL Test.
 recipeList:
   - org.openrewrite.java.dependencies.ChangeDependency:
       oldGroupId: org.springframework.graphql
@@ -38,6 +39,7 @@ recipeList:
 type: specs.openrewrite.org/v1beta/recipe
 name: io.arconia.rewrite.spring.boot4.AddGraphQlStarterTest
 displayName: Add GraphQL Starter Test
+description: Add GraphQL Starter Test.
 preconditions:
   - org.openrewrite.java.dependencies.FindDependency:
       groupId: org.springframework.boot
