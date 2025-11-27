@@ -1,0 +1,23 @@
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.cloud2025.UpgradeSpringCloud_2025_0
+displayName: Migrate to Spring Cloud 2025.0
+description: Migrate a Spring Boot application to the latest Spring Cloud 2025.0.x release.
+tags:
+  - spring
+  - cloud
+recipeList:
+
+  # Dependency Versions
+  - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
+      groupId: org.springframework.cloud
+      artifactId: spring-cloud-dependencies
+      newVersion: 2025.0.x
+  - org.openrewrite.maven.UpgradeParentVersion:
+      groupId: org.springframework.cloud
+      artifactId: spring-cloud-starter-parent
+      newVersion: 2025.0.x
+  - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
+      groupId: org.springframework.cloud
+      artifactId: "*"
+      newVersion: 4.3.x

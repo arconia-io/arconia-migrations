@@ -82,6 +82,9 @@ recipeList:
       version: ^8.14
       addIfMissing: false
 
+  # Managed Dependencies
+  - io.arconia.rewrite.spring.cloud2025.UpgradeSpringCloud_2025_0
+
   # Type Changes
   - org.openrewrite.java.ChangeType:
       oldFullyQualifiedTypeName: org.springframework.boot.autoconfigure.security.servlet.RequestMatcherProvider
