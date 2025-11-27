@@ -66,7 +66,22 @@ recipeList:
       version: ^9.2
       addIfMissing: false
 
-  # Managed Dependencies
+  # Other Dependencies
+  - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
+      groupId: org.springdoc
+      artifactId: "*"
+      newVersion: 3.0.x
+  - org.openrewrite.gradle.ChangeDependency:
+      oldGroupId: org.jobrunr
+      oldArtifactId: jobrunr-spring-boot-3-starter
+      newGroupId: org.jobrunr
+      newArtifactId: jobrunr-spring-boot-4-starter
+  - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
+      groupId: org.jobrunr
+      artifactId: "*"
+      newVersion: 8.3.x
+
+  # Dedicated Dependencies
   - io.arconia.rewrite.test.testcontainers.UpgradeTestcontainers_2
 
   # Modules
