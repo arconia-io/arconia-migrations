@@ -20,7 +20,10 @@ recipeList:
   - io.arconia.rewrite.spring.ai.MigrateSpringAiBedrock_1_1
   - io.arconia.rewrite.spring.ai.MigrateSpringAiModel_1_1
   - io.arconia.rewrite.spring.ai.MigrateSpringAiMpc_1_1
+  - io.arconia.rewrite.spring.ai.UseAssistantMessageBuilder
+  - io.arconia.rewrite.spring.ai.UseEmbeddingOptionsBuilder
   - io.arconia.rewrite.spring.ai.UseQuestionAnswerAdvisorBuilder
+  - io.arconia.rewrite.spring.ai.UseToolResponseMessageBuilder
 
 ---
 type: specs.openrewrite.org/v1beta/recipe
