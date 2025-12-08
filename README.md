@@ -4,20 +4,19 @@
 [![Follow Arconia on Bluesky](https://img.shields.io/static/v1?label=Bluesky&message=Follow&logo=bluesky&logoColor=F5F5F5&color=1185FE&style=for-the-badge)](https://bsky.app/profile/arconia.io)
 [![Apache 2.0 License](https://img.shields.io/github/license/arconia-io/arconia-migrations?style=for-the-badge&logo=apache&color=brightgreen)](https://github.com/arconia-io/arconia-migrations/blob/main/LICENSE)
 
-Tools and OpenRewrite recipes to migrate Java projects using Arconia and Spring Boot.
+Tools and OpenRewrite recipes to automate refactoring, migrations, and upgrades for Java projects.
+
+The project includes the following modules:
+
+* `rewrite-arconia`: recipes for Arconia;
+* `rewrite-docling`: recipes for Docling Java;
+* `rewrite-spring`: recipes for Spring AI, Spring Boot, Spring Cloud, Spring Framework;
+* `rewrite-test`: recipes for JUnit and Testcontainers.
 
 <img src="arconia-logo.png" alt="The Arconia logo" height="250px" />
 
 > [!NOTE]
 > The Arconia Migrations project is currently in active development. We're working hard to improve it and appreciate your patience as we refine the tool. Feel free to try it out and share your feedback!
-
-## ⚙️&nbsp; Requirements
-
-* Java 21+
-
-## 📙&nbsp; Documentation
-
-Check the [Arconia Framework](https://arconia.io/docs/arconia/latest/index.html) documentation for more information on how the tools and recipes work for updating Arconia in your projects.
 
 ## 🛡️&nbsp; Security
 

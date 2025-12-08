@@ -6,5 +6,6 @@ rootProject.name = 'arconia-migrations'
 
 include 'rewrite-arconia'
 include 'rewrite-bom'
+include 'rewrite-docling'
 include 'rewrite-spring'
 include 'rewrite-test'
