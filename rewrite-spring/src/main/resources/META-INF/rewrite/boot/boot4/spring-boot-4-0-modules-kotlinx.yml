@@ -4,7 +4,33 @@ name: io.arconia.rewrite.spring.boot4.MigrateKotlinxModule
 displayName: Migrate Spring Boot Kotlinx module to Spring Boot 4.0
 description: Migrate Spring Boot Kotlinx module to Spring Boot 4.0.
 recipeList:
+  - io.arconia.rewrite.spring.boot4.MigrateKotlinxSerializationJsonStarter
+  - io.arconia.rewrite.spring.boot4.MigrateKotlinxSerializationJsonStarterTest
   - io.arconia.rewrite.spring.boot4.AddKotlinSerializationStarterTest
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.MigrateKotlinxSerializationJsonStarter
+displayName: Migrate Kotlinx Serialization Json Starter
+description: Migrate Kotlinx Serialization Json Starter.
+recipeList:
+  - org.openrewrite.java.dependencies.ChangeDependency:
+      oldGroupId: org.springframework.boot
+      oldArtifactId: spring-boot-starter-kotlin-serialization
+      newGroupId: org.springframework.boot
+      newArtifactId: spring-boot-starter-kotlinx-serialization-json
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.MigrateKotlinxSerializationJsonStarterTest
+displayName: Migrate Kotlinx Serialization Json Starter Test
+description: Migrate Kotlinx Serialization Json Starter Test.
+recipeList:
+  - org.openrewrite.java.dependencies.ChangeDependency:
+      oldGroupId: org.springframework.boot
+      oldArtifactId: spring-boot-starter-kotlin-serialization-test
+      newGroupId: org.springframework.boot
+      newArtifactId: spring-boot-starter-kotlinx-serialization-json-test
 
 ---
 type: specs.openrewrite.org/v1beta/recipe
@@ -14,11 +40,11 @@ description: Add Kotlin Serialization Starter Test.
 preconditions:
   - org.openrewrite.java.dependencies.FindDependency:
       groupId: org.springframework.boot
-      artifactId: spring-boot-starter-kotlin-serialization
+      artifactId: spring-boot-starter-kotlinx-serialization-json
 recipeList:
   - org.openrewrite.java.dependencies.AddDependency:
       groupId: org.springframework.boot
-      artifactId: spring-boot-starter-kotlin-serialization-test
+      artifactId: spring-boot-starter-kotlinx-serialization-json-test
       acceptTransitive: true
       configuration: testImplementation
       scope: test

@@ -7,3 +7,18 @@ recipeList:
   - org.openrewrite.java.ChangeType:
       oldFullyQualifiedTypeName: org.springframework.boot.test.web.client.TestRestTemplate
       newFullyQualifiedTypeName: org.springframework.boot.resttestclient.TestRestTemplate
+  - io.arconia.rewrite.spring.boot4.AddRestClientModule
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.AddRestClientModule
+displayName: Add RestClient Module
+description: Add RestClient Module.
+recipeList:
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-restclient
+      onlyIfUsing: org.springframework.boot.resttestclient.TestRestTemplate
+      acceptTransitive: true
+      configuration: testImplementation
+      scope: test
