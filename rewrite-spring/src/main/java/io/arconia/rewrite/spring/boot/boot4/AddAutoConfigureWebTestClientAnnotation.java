@@ -50,60 +50,55 @@ public class AddAutoConfigureWebTestClientAnnotation extends Recipe {
     public TreeVisitor<?, ExecutionContext> getVisitor() {
         return Preconditions.check(
                 new UsesType<>(FQN_WEB_TEST_CLIENT, false),
-                new SpringBootTestVisitor()
-        );
-    }
+                new JavaIsoVisitor<>() {
+                    @Override
+                    public J.ClassDeclaration visitClassDeclaration(J.ClassDeclaration classDecl, ExecutionContext ctx) {
+                        J.ClassDeclaration c = super.visitClassDeclaration(classDecl, ctx);
+                        if (isApplicableClass(c)) {
+                            c = addMissingAnnotation(c, ctx);
+                        }
+                        return c;
+                    }
 
-    private static class SpringBootTestVisitor extends JavaIsoVisitor<ExecutionContext> {
+                    private J.ClassDeclaration addMissingAnnotation(J.ClassDeclaration c, ExecutionContext ctx) {
+                        maybeAddImport(FQN_AUTO_CONFIGURE_WEB_TEST_CLIENT);
+                        return JavaTemplate.builder("@" + AUTO_CONFIGURE_WEB_TEST_CLIENT)
+                                .imports(FQN_AUTO_CONFIGURE_WEB_TEST_CLIENT)
+                                .javaParser(JavaParser.fromJavaVersion().classpathFromResources(ctx, "spring-boot-webtestclient-4.0"))
+                                .build()
+                                .apply(
+                                        getCursor(),
+                                        c.getCoordinates().addAnnotation(Comparator.comparing(J.Annotation::getSimpleName))
+                                );
+                    }
 
-        @Override
-        public J.ClassDeclaration visitClassDeclaration(J.ClassDeclaration classDecl, ExecutionContext ctx) {
-            J.ClassDeclaration c = super.visitClassDeclaration(classDecl, ctx);
-            if (isApplicableClass(c)) {
-                c = addMissingAnnotation(c, ctx);
-            }
-            return c;
-        }
+                    private boolean isApplicableClass(J.ClassDeclaration classDeclaration) {
+                        // Check if the class is already annotated with @AutoConfigureWebTestClient
+                        for (J.Annotation annotation : classDeclaration.getLeadingAnnotations()) {
+                            JavaType.FullyQualified annotationType = TypeUtils.asFullyQualified(annotation.getType());
+                            if (annotationType != null && AUTO_CONFIGURE_ANNOTATION_MATCHER.matchesAnnotationOrMetaAnnotation(annotationType)) {
+                                // Already annotated with @AutoConfigureWebTestClient. No changes are needed.
+                                return false;
+                            }
+                        }
 
-        private J.ClassDeclaration addMissingAnnotation(J.ClassDeclaration c, ExecutionContext ctx) {
-            maybeAddImport(FQN_AUTO_CONFIGURE_WEB_TEST_CLIENT);
-            return JavaTemplate.builder("@" + AUTO_CONFIGURE_WEB_TEST_CLIENT)
-                    .imports(FQN_AUTO_CONFIGURE_WEB_TEST_CLIENT)
-                    .javaParser(JavaParser.fromJavaVersion().classpathFromResources(ctx, "spring-boot-webtestclient-4.0.*"))
-                    .build()
-                    .apply(
-                            getCursor(),
-                            c.getCoordinates().addAnnotation(Comparator.comparing(J.Annotation::getSimpleName))
-                    );
-        }
+                        // Check if the class is annotated with @SpringBootTest
+                        for (J.Annotation annotation : classDeclaration.getLeadingAnnotations()) {
+                            JavaType.FullyQualified aType = TypeUtils.asFullyQualified(annotation.getType());
+                            if (aType != null) {
+                                if (SPRING_BOOT_TEST_ANNOTATION_MATCHER.matchesAnnotationOrMetaAnnotation(aType) ||
+                                        WEB_MVC_TEST_ANNOTATION_MATCHER.matchesAnnotationOrMetaAnnotation(aType)) {
+                                    // Annotated, so we need to add @AutoConfigureWebTestClient.
+                                    return true;
+                                }
+                            }
+                        }
 
-        private boolean isApplicableClass(J.ClassDeclaration classDeclaration) {
-            // Check if the class is already annotated with @AutoConfigureWebTestClient
-            for (J.Annotation annotation : classDeclaration.getLeadingAnnotations()) {
-                JavaType.FullyQualified annotationType = TypeUtils.asFullyQualified(annotation.getType());
-                if (annotationType != null && AUTO_CONFIGURE_ANNOTATION_MATCHER.matchesAnnotationOrMetaAnnotation(annotationType)) {
-                    // Already annotated with @AutoConfigureWebTestClient. No changes are needed.
-                    return false;
-                }
-            }
-
-            // Check if the class is annotated with @SpringBootTest
-            for (J.Annotation annotation : classDeclaration.getLeadingAnnotations()) {
-                JavaType.FullyQualified aType = TypeUtils.asFullyQualified(annotation.getType());
-                if (aType != null) {
-                    if (SPRING_BOOT_TEST_ANNOTATION_MATCHER.matchesAnnotationOrMetaAnnotation(aType)) {
-                        // Annotated with @SpringBootTest, so we need to add @AutoConfigureWebTestClient.
-                        return true;
-                    } else if (WEB_MVC_TEST_ANNOTATION_MATCHER.matchesAnnotationOrMetaAnnotation(aType)) {
-                        // Annotated with @WebMvcTest, so we need to add @AutoConfigureWebTestClient.
-                        return true;
+                        // Not annotated with @SpringBootTest or @WebMvcTest. No changes are needed.
+                        return false;
                     }
                 }
-            }
-
-            // Not annotated with @SpringBootTest or @WebMvcTest. No changes are needed.
-            return false;
-        }
+        );
     }
 
 }

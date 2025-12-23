@@ -57,9 +57,9 @@ public class FindSpringBootConfigFiles extends Recipe {
 
     @Override
     public TreeVisitor<?, ExecutionContext> getVisitor() {
-        String filePattern = pathExpressions != null && !pathExpressions.isEmpty()
-                ? String.join(";", pathExpressions)
-                : String.join(";", DEFAULT_PATH_EXPRESSIONS);
+        String filePattern = pathExpressions != null && !pathExpressions.isEmpty() ?
+                String.join(";", pathExpressions) :
+                String.join(";", DEFAULT_PATH_EXPRESSIONS);
         return new FindSourceFiles(filePattern).getVisitor();
     }
 

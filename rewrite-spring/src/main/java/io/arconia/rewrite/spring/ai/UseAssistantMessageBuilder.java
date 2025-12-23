@@ -48,52 +48,51 @@ public class UseAssistantMessageBuilder extends Recipe {
                         new UsesMethod<>(ASSISTANT_MESSAGE_CONSTRUCTOR_MATCHER_TWO_ARGS),
                         new UsesMethod<>(ASSISTANT_MESSAGE_CONSTRUCTOR_MATCHER_THREE_ARGS),
                         new UsesMethod<>(ASSISTANT_MESSAGE_CONSTRUCTOR_MATCHER_FOUR_ARGS)),
-                new AssistantMessageVisitor()
+                new JavaVisitor<>() {
+                    @Override
+                    public J visitNewClass(J.NewClass newClass, ExecutionContext ctx) {
+                        J.NewClass nc = (J.NewClass) super.visitNewClass(newClass, ctx);
+
+                        if (ASSISTANT_MESSAGE_CONSTRUCTOR_MATCHER_ONE_ARG.matches(nc)) {
+                            List<Expression> args = nc.getArguments();
+                            maybeAddImport(FQN_ASSISTANT_MESSAGE);
+                            return JavaTemplate.builder("AssistantMessage.builder().content(#{any(java.lang.String)}).build()")
+                                    .imports(FQN_ASSISTANT_MESSAGE)
+                                    .javaParser(JavaParser.fromJavaVersion().classpathFromResources(ctx, "spring-ai-model-1.0"))
+                                    .build()
+                                    .apply(getCursor(), nc.getCoordinates().replace(), args.get(0));
+                        }
+                        if (ASSISTANT_MESSAGE_CONSTRUCTOR_MATCHER_TWO_ARGS.matches(nc)) {
+                            List<Expression> args = nc.getArguments();
+                            maybeAddImport(FQN_ASSISTANT_MESSAGE);
+                            return JavaTemplate.builder("AssistantMessage.builder().content(#{any(java.lang.String)}).properties(#{any()}).build()")
+                                    .imports(FQN_ASSISTANT_MESSAGE)
+                                    .javaParser(JavaParser.fromJavaVersion().classpathFromResources(ctx, "spring-ai-model-1.0"))
+                                    .build()
+                                    .apply(getCursor(), nc.getCoordinates().replace(), args.get(0), args.get(1));
+                        }
+                        if (ASSISTANT_MESSAGE_CONSTRUCTOR_MATCHER_THREE_ARGS.matches(nc)) {
+                            List<Expression> args = nc.getArguments();
+                            maybeAddImport(FQN_ASSISTANT_MESSAGE);
+                            return JavaTemplate.builder("AssistantMessage.builder().content(#{any(java.lang.String)}).properties(#{any()}).toolCalls(#{any()}).build()")
+                                    .imports(FQN_ASSISTANT_MESSAGE)
+                                    .javaParser(JavaParser.fromJavaVersion().classpathFromResources(ctx, "spring-ai-model-1.0"))
+                                    .build()
+                                    .apply(getCursor(), nc.getCoordinates().replace(), args.get(0), args.get(1), args.get(2));
+                        }
+                        if (ASSISTANT_MESSAGE_CONSTRUCTOR_MATCHER_FOUR_ARGS.matches(nc)) {
+                            List<Expression> args = nc.getArguments();
+                            maybeAddImport(FQN_ASSISTANT_MESSAGE);
+                            return JavaTemplate.builder("AssistantMessage.builder().content(#{any(java.lang.String)}).properties(#{any()}).toolCalls(#{any()}).media(#{any()}).build()")
+                                    .imports(FQN_ASSISTANT_MESSAGE)
+                                    .javaParser(JavaParser.fromJavaVersion().classpathFromResources(ctx, "spring-ai-model-1.0"))
+                                    .build()
+                                    .apply(getCursor(), nc.getCoordinates().replace(), args.get(0), args.get(1), args.get(2), args.get(3));
+                        }
+                        return nc;
+                    }
+                }
         );
-    }
-
-    private static class AssistantMessageVisitor extends JavaVisitor<ExecutionContext> {
-
-        @Override
-        public J visitNewClass(J.NewClass newClass, ExecutionContext ctx) {
-            J.NewClass nc = (J.NewClass) super.visitNewClass(newClass, ctx);
-
-            if (ASSISTANT_MESSAGE_CONSTRUCTOR_MATCHER_ONE_ARG.matches(nc)) {
-                List<Expression> args = nc.getArguments();
-                maybeAddImport(FQN_ASSISTANT_MESSAGE);
-                return JavaTemplate.builder("AssistantMessage.builder().content(#{any(java.lang.String)}).build()")
-                        .imports(FQN_ASSISTANT_MESSAGE)
-                        .javaParser(JavaParser.fromJavaVersion().classpathFromResources(ctx, "spring-ai-model-1.0.*"))
-                        .build()
-                        .apply(getCursor(), nc.getCoordinates().replace(), args.get(0));
-            } else if (ASSISTANT_MESSAGE_CONSTRUCTOR_MATCHER_TWO_ARGS.matches(nc)) {
-                List<Expression> args = nc.getArguments();
-                maybeAddImport(FQN_ASSISTANT_MESSAGE);
-                return JavaTemplate.builder("AssistantMessage.builder().content(#{any(java.lang.String)}).properties(#{any()}).build()")
-                        .imports(FQN_ASSISTANT_MESSAGE)
-                        .javaParser(JavaParser.fromJavaVersion().classpathFromResources(ctx, "spring-ai-model-1.0.*"))
-                        .build()
-                        .apply(getCursor(), nc.getCoordinates().replace(), args.get(0), args.get(1));
-            } else if (ASSISTANT_MESSAGE_CONSTRUCTOR_MATCHER_THREE_ARGS.matches(nc)) {
-                List<Expression> args = nc.getArguments();
-                maybeAddImport(FQN_ASSISTANT_MESSAGE);
-                return JavaTemplate.builder("AssistantMessage.builder().content(#{any(java.lang.String)}).properties(#{any()}).toolCalls(#{any()}).build()")
-                        .imports(FQN_ASSISTANT_MESSAGE)
-                        .javaParser(JavaParser.fromJavaVersion().classpathFromResources(ctx, "spring-ai-model-1.0.*"))
-                        .build()
-                        .apply(getCursor(), nc.getCoordinates().replace(), args.get(0), args.get(1), args.get(2));
-            } else if (ASSISTANT_MESSAGE_CONSTRUCTOR_MATCHER_FOUR_ARGS.matches(nc)) {
-                List<Expression> args = nc.getArguments();
-                maybeAddImport(FQN_ASSISTANT_MESSAGE);
-                return JavaTemplate.builder("AssistantMessage.builder().content(#{any(java.lang.String)}).properties(#{any()}).toolCalls(#{any()}).media(#{any()}).build()")
-                        .imports(FQN_ASSISTANT_MESSAGE)
-                        .javaParser(JavaParser.fromJavaVersion().classpathFromResources(ctx, "spring-ai-model-1.0.*"))
-                        .build()
-                        .apply(getCursor(), nc.getCoordinates().replace(), args.get(0), args.get(1), args.get(2), args.get(3));
-            }
-            return nc;
-        }
-
     }
 
 }

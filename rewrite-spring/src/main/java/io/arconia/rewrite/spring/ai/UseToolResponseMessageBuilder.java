@@ -42,37 +42,34 @@ public class UseToolResponseMessageBuilder extends Recipe {
                 Preconditions.or(
                         new UsesMethod<>(TOOL_RESPONSE_MESSAGE_CONSTRUCTOR_MATCHER_ONE_ARG),
                         new UsesMethod<>(TOOL_RESPONSE_MESSAGE_CONSTRUCTOR_MATCHER_TWO_ARGS)),
-                new ToolResponseMessageVisitor()
+                new JavaVisitor<>() {
+                    @Override
+                    public J visitNewClass(J.NewClass newClass, ExecutionContext ctx) {
+                        J.NewClass nc = (J.NewClass) super.visitNewClass(newClass, ctx);
+
+                        if (TOOL_RESPONSE_MESSAGE_CONSTRUCTOR_MATCHER_ONE_ARG.matches(nc)) {
+                            List<Expression> args = nc.getArguments();
+                            maybeAddImport(FQN_TOOL_RESPONSE_MESSAGE);
+                            return JavaTemplate.builder("ToolResponseMessage.builder().responses(#{any()}).build()")
+                                    .imports(FQN_TOOL_RESPONSE_MESSAGE)
+                                    .javaParser(JavaParser.fromJavaVersion().classpathFromResources(ctx, "spring-ai-model-1.0"))
+                                    .build()
+                                    .apply(getCursor(), nc.getCoordinates().replace(), args.get(0));
+                        }
+                        if (TOOL_RESPONSE_MESSAGE_CONSTRUCTOR_MATCHER_TWO_ARGS.matches(nc)) {
+                            List<Expression> args = nc.getArguments();
+                            maybeAddImport(FQN_TOOL_RESPONSE_MESSAGE);
+                            return JavaTemplate.builder("ToolResponseMessage.builder().responses(#{any()}).metadata(#{any()}).build()")
+                                    .imports(FQN_TOOL_RESPONSE_MESSAGE)
+                                    .javaParser(JavaParser.fromJavaVersion().classpathFromResources(ctx, "spring-ai-model-1.0"))
+                                    .build()
+                                    .apply(getCursor(), nc.getCoordinates().replace(), args.get(0), args.get(1));
+                        }
+
+                        return nc;
+                    }
+                }
         );
-    }
-
-    private static class ToolResponseMessageVisitor extends JavaVisitor<ExecutionContext> {
-
-        @Override
-        public J visitNewClass(J.NewClass newClass, ExecutionContext ctx) {
-            J.NewClass nc = (J.NewClass) super.visitNewClass(newClass, ctx);
-
-            if (TOOL_RESPONSE_MESSAGE_CONSTRUCTOR_MATCHER_ONE_ARG.matches(nc)) {
-                List<Expression> args = nc.getArguments();
-                maybeAddImport(FQN_TOOL_RESPONSE_MESSAGE);
-                return JavaTemplate.builder("ToolResponseMessage.builder().responses(#{any()}).build()")
-                        .imports(FQN_TOOL_RESPONSE_MESSAGE)
-                        .javaParser(JavaParser.fromJavaVersion().classpathFromResources(ctx, "spring-ai-model-1.0.*"))
-                        .build()
-                        .apply(getCursor(), nc.getCoordinates().replace(), args.get(0));
-            } else if (TOOL_RESPONSE_MESSAGE_CONSTRUCTOR_MATCHER_TWO_ARGS.matches(nc)) {
-                List<Expression> args = nc.getArguments();
-                maybeAddImport(FQN_TOOL_RESPONSE_MESSAGE);
-                return JavaTemplate.builder("ToolResponseMessage.builder().responses(#{any()}).metadata(#{any()}).build()")
-                        .imports(FQN_TOOL_RESPONSE_MESSAGE)
-                        .javaParser(JavaParser.fromJavaVersion().classpathFromResources(ctx, "spring-ai-model-1.0.*"))
-                        .build()
-                        .apply(getCursor(), nc.getCoordinates().replace(), args.get(0), args.get(1));
-            }
-
-            return nc;
-        }
-
     }
 
 }
