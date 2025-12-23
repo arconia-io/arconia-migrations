@@ -20,8 +20,8 @@ recipeList:
   - org.openrewrite.java.dependencies.ChangeDependency:
       oldGroupId: io.zipkin.reporter2
       oldArtifactId: zipkin-reporter-brave
-      newArtifactId: org.springframework.boot
-      artifactId: spring-boot-starter-zipkin
+      newGroupId: org.springframework.boot
+      newArtifactId: spring-boot-starter-zipkin
 
 ---
 type: specs.openrewrite.org/v1beta/recipe

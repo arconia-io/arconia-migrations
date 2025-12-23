@@ -26,8 +26,8 @@ recipeList:
   - org.openrewrite.java.dependencies.ChangeDependency:
       oldGroupId: org.liquibase
       oldArtifactId: liquibase-core
-      newArtifactId: org.springframework.boot
-      artifactId: spring-boot-starter-liquibase
+      newGroupId: org.springframework.boot
+      newArtifactId: spring-boot-starter-liquibase
 
 ---
 type: specs.openrewrite.org/v1beta/recipe
