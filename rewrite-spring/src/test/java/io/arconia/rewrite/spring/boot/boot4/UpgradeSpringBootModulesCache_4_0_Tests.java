@@ -14,8 +14,8 @@ class UpgradeSpringBootModulesCache_4_0_Tests implements RewriteTest {
     public void defaults(RecipeSpec spec) {
         spec.recipeFromResources("io.arconia.rewrite.spring.boot4.MigrateCacheModule")
                 .parser(JavaParser.fromJavaVersion().classpathFromResources(new InMemoryExecutionContext(),
-                        "spring-boot-actuator-3.5.*", "spring-boot-autoconfigure-3.5.*",
-                        "spring-boot-actuator-autoconfigure-3.5.*", "spring-boot-test-autoconfigure-3.5.*"));
+                        "spring-boot-actuator-3.5", "spring-boot-autoconfigure-3.5",
+                        "spring-boot-actuator-autoconfigure-3.5", "spring-boot-test-autoconfigure-3.5"));
     }
 
     @Test

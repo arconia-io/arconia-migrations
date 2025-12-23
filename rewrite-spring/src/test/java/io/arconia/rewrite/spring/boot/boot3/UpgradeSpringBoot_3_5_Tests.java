@@ -16,7 +16,7 @@ class UpgradeSpringBoot_3_5_Tests implements RewriteTest {
     @Override
     public void defaults(RecipeSpec spec) {
         spec.recipeFromResources("io.arconia.rewrite.spring.boot3.UpgradeSpringBoot_3_5")
-                .parser(JavaParser.fromJavaVersion().classpathFromResources(new InMemoryExecutionContext(), "spring-boot-autoconfigure-3.4.*"));
+                .parser(JavaParser.fromJavaVersion().classpathFromResources(new InMemoryExecutionContext(), "spring-boot-autoconfigure-3.4"));
     }
 
     @Test
@@ -54,7 +54,7 @@ class UpgradeSpringBoot_3_5_Tests implements RewriteTest {
     void typeChangesMockito() {
         rewriteRun(
                 r -> r.parser(JavaParser.fromJavaVersion().classpathFromResources(new InMemoryExecutionContext(),
-                        "spring-boot-test-3.4.*")),
+                        "spring-boot-test-3.4")),
                 //language=java
                 java(
                         """

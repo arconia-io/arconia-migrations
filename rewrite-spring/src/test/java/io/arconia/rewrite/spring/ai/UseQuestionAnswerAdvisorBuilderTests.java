@@ -15,7 +15,7 @@ class UseQuestionAnswerAdvisorBuilderTests implements RewriteTest {
     public void defaults(RecipeSpec spec) {
         spec.recipe(new UseQuestionAnswerAdvisorBuilder())
             .parser(JavaParser.fromJavaVersion().classpathFromResources(new InMemoryExecutionContext(),
-                    "spring-ai-advisors-vector-store-1.0.*", "spring-ai-client-chat-1.0.*", "spring-ai-vector-store-1.0.*"));
+                    "spring-ai-advisors-vector-store-1.0", "spring-ai-client-chat-1.0", "spring-ai-vector-store-1.0"));
     }
 
     @Test

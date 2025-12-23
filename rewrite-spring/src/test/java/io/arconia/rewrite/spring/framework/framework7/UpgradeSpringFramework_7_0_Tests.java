@@ -17,8 +17,8 @@ class UpgradeSpringFramework_7_0_Tests implements RewriteTest {
     public void defaults(RecipeSpec spec) {
         spec.recipeFromResources("io.arconia.rewrite.spring.framework7.UpgradeSpringFramework_7_0")
                 .parser(JavaParser.fromJavaVersion().classpathFromResources(new InMemoryExecutionContext(),
-                        "spring-core-6.2.*", "spring-test-6.2.*", "spring-web-6.2.*", "spring-webflux-6.2.*",
-                        "spring-webmvc-6.2.*", "jakarta.servlet-api", "reactive-streams"));
+                        "spring-core-6.2", "spring-test-6.2", "spring-web-6.2", "spring-webflux-6.2",
+                        "spring-webmvc-6.2", "jakarta.servlet-api", "reactive-streams"));
     }
 
     @Test

@@ -20,7 +20,7 @@ class UpgradeSpringBoot_4_0_Tests implements RewriteTest {
     void typeChangesData() {
         rewriteRun(
                 r -> r.parser(JavaParser.fromJavaVersion().classpathFromResources(new InMemoryExecutionContext(),
-                        "spring-boot-autoconfigure-3.5.*")),
+                        "spring-boot-autoconfigure-3.5")),
                 //language=java
                 java(
                         """
@@ -49,7 +49,7 @@ class UpgradeSpringBoot_4_0_Tests implements RewriteTest {
     void typeChangesSecurity() {
         rewriteRun(
                 r -> r.parser(JavaParser.fromJavaVersion().classpathFromResources(new InMemoryExecutionContext(),
-                        "spring-boot-autoconfigure-3.5.*")),
+                        "spring-boot-autoconfigure-3.5")),
                 //language=java
                 java(
                         """
