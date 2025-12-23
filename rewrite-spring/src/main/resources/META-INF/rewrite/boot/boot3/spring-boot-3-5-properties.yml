@@ -73,7 +73,7 @@ recipeList:
       propertyKey: management.prometheus.metrics.export.pushgateway.address
       comment: "Ensure the value is in the form host:port."
       commentOutProperty: false
-  
+
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: management.prometheus.metrics.export.histogram-flavor
       comment: "Deprecated property removed in Spring Boot 3.5."

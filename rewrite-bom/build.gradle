@@ -29,7 +29,7 @@ publishing {
                 name = "Arconia Migrations BOM"
                 description = "Arconia Migrations Bill of Materials."
                 packaging = "pom"
-            } 
+            }
         }
     }
 }
