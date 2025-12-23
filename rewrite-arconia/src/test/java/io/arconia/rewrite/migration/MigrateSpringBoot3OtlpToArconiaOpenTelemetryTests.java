@@ -20,7 +20,7 @@ class MigrateSpringBoot3OtlpToArconiaOpenTelemetryTests implements RewriteTest {
     public void defaults(RecipeSpec spec) {
         spec.recipeFromResources("io.arconia.rewrite.MigrateSpringBoot3OtlpToArconiaOpenTelemetry")
             .parser(JavaParser.fromJavaVersion().classpathFromResources(new InMemoryExecutionContext(),
-                "spring-boot-actuator-autoconfigure-3.5.*",
+                "spring-boot-actuator-autoconfigure-3.5",
                 "arconia-opentelemetry-0.14.0"));
     }
 

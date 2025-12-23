@@ -21,8 +21,8 @@ public class UpgradeSpringAi_1_1_Tests implements RewriteTest {
     public void defaults(RecipeSpec spec) {
         spec.recipeFromResources("io.arconia.rewrite.spring.ai.UpgradeSpringAi_1_1")
             .parser(JavaParser.fromJavaVersion().classpathFromResources(new InMemoryExecutionContext(),
-                    "spring-ai-advisors-vector-store-1.0.*", "spring-ai-bedrock-1.0.*", "spring-ai-openai-1.0.*", "spring-ai-vector-store-1.0.*", "spring-ai-model-1.0.*", "spring-ai-client-chat-1.0.*",
-                    "spring-ai-autoconfigure-mcp-client-1.0.*", "spring-ai-autoconfigure-mcp-server-1.0.*"));
+                    "spring-ai-advisors-vector-store-1.0", "spring-ai-bedrock-1.0", "spring-ai-openai-1.0", "spring-ai-vector-store-1.0", "spring-ai-model-1.0", "spring-ai-client-chat-1.0",
+                    "spring-ai-autoconfigure-mcp-client-1.0", "spring-ai-autoconfigure-mcp-server-1.0"));
     }
 
     @Test

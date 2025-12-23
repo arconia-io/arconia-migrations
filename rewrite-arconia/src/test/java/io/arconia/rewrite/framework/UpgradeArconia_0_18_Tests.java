@@ -19,7 +19,7 @@ class UpgradeArconia_0_18_Tests implements RewriteTest {
     public void defaults(RecipeSpec spec) {
         spec.recipeFromResources("io.arconia.rewrite.UpgradeArconia_0_18")
                 .parser(JavaParser.fromJavaVersion().classpathFromResources(new InMemoryExecutionContext(),
-                        "arconia-dev-services-mongodb-atlas-0.17.*"));
+                        "arconia-dev-services-mongodb-atlas-0.17"));
     }
 
     @Test
