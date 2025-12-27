@@ -36,30 +36,26 @@ public class UseEmbeddingOptionsBuilder extends Recipe {
     public TreeVisitor<?, ExecutionContext> getVisitor() {
         return Preconditions.check(
                 new UsesMethod<>(EMBEDDING_OPTIONS_BUILDER_MATCHER),
-                new EmbeddingOptionsBuilderVisitor()
+                new JavaVisitor<>() {
+                    @Override
+                    public J visitMethodInvocation(J.MethodInvocation method, ExecutionContext ctx) {
+                        J.MethodInvocation mi = (J.MethodInvocation) super.visitMethodInvocation(method, ctx);
+
+                        if (!EMBEDDING_OPTIONS_BUILDER_MATCHER.matches(mi)) {
+                            return mi;
+                        }
+
+                        maybeRemoveImport(FQN_EMBEDDING_OPTIONS_BUILDER);
+                        maybeAddImport(FQN_EMBEDDING_OPTIONS);
+
+                        return JavaTemplate.builder("EmbeddingOptions.builder()")
+                                .imports(FQN_EMBEDDING_OPTIONS)
+                                .javaParser(JavaParser.fromJavaVersion().classpathFromResources(ctx, "spring-ai-model-1.0"))
+                                .build()
+                                .apply(getCursor(), mi.getCoordinates().replace());
+                    }
+                }
         );
-    }
-
-    private static class EmbeddingOptionsBuilderVisitor extends JavaVisitor<ExecutionContext> {
-
-        @Override
-        public J visitMethodInvocation(J.MethodInvocation method, ExecutionContext ctx) {
-            J.MethodInvocation mi = (J.MethodInvocation) super.visitMethodInvocation(method, ctx);
-
-            if (!EMBEDDING_OPTIONS_BUILDER_MATCHER.matches(mi)) {
-                return mi;
-            }
-
-            maybeRemoveImport(FQN_EMBEDDING_OPTIONS_BUILDER);
-            maybeAddImport(FQN_EMBEDDING_OPTIONS);
-
-            return JavaTemplate.builder("EmbeddingOptions.builder()")
-                    .imports(FQN_EMBEDDING_OPTIONS)
-                    .javaParser(JavaParser.fromJavaVersion().classpathFromResources(ctx, "spring-ai-model-1.0.*"))
-                    .build()
-                    .apply(getCursor(), mi.getCoordinates().replace());
-        }
-
     }
 
 }

@@ -16,7 +16,7 @@ class UpgradeTestcontainers_2_Tests implements RewriteTest {
     public void defaults(RecipeSpec spec) {
         spec.recipeFromResources("io.arconia.rewrite.test.testcontainers.UpgradeTestcontainers_2")
                 .parser(JavaParser.fromJavaVersion().classpathFromResources(new InMemoryExecutionContext(),
-                        "testcontainers-1.21.*", "postgresql-1.21.*"));
+                        "testcontainers-1.21", "postgresql-1.21"));
     }
 
     @Test

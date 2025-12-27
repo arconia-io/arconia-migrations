@@ -61,7 +61,7 @@ out/
 .vscode/
 
 ### OpenRewrite ###
-**/classpath.tsv.gz
+!**/classpath.tsv.gz
 
 ################################
 ############ MAC ###############

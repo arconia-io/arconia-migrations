@@ -77,7 +77,8 @@ public class UseConvertDocumentRequestSourcesMethod extends Recipe {
                         .javaParser(JavaParser.fromJavaVersion().classpathFromResources(ctx, "docling-serve-api"))
                         .build()
                         .apply(getCursor(), mi.getCoordinates().replaceMethod(), arg);
-            } else if (ADD_HTTP_SOURCES_URI_MATCHER.matches(mi)) {
+            }
+            if (ADD_HTTP_SOURCES_URI_MATCHER.matches(mi)) {
                 Expression arg = mi.getArguments().getFirst();
 
                 if (mi.getArguments().size() != 1) {
@@ -92,7 +93,8 @@ public class UseConvertDocumentRequestSourcesMethod extends Recipe {
                         .javaParser(JavaParser.fromJavaVersion().classpathFromResources(ctx, "docling-serve-api"))
                         .build()
                         .apply(getCursor(), mi.getCoordinates().replaceMethod(), arg);
-            } else if (ADD_FILE_SOURCES_MATCHER.matches(mi)) {
+            }
+            if (ADD_FILE_SOURCES_MATCHER.matches(mi)) {
                 Expression filename = mi.getArguments().get(0);
                 Expression base64String = mi.getArguments().get(1);
 

@@ -19,7 +19,7 @@ class UpgradeDocling_0_2_Tests implements RewriteTest {
     public void defaults(RecipeSpec spec) {
         spec.recipeFromResources("io.arconia.rewrite.docling.UpgradeDocling_0_2")
                 .parser(JavaParser.fromJavaVersion().classpathFromResources(new InMemoryExecutionContext(),
-                        "docling-serve-api-0.1.*", "docling-serve-client-0.1.*"));
+                        "docling-serve-api-0.1", "docling-serve-client-0.1"));
     }
 
     @Test

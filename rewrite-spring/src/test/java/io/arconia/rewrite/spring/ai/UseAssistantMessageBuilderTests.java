@@ -15,7 +15,7 @@ class UseAssistantMessageBuilderTests implements RewriteTest {
     public void defaults(RecipeSpec spec) {
         spec.recipe(new UseAssistantMessageBuilder())
                 .parser(JavaParser.fromJavaVersion().classpathFromResources(new InMemoryExecutionContext(),
-                        "spring-ai-commons-1.0.*", "spring-ai-model-1.0.*"));
+                        "spring-ai-commons-1.0", "spring-ai-model-1.0"));
     }
 
     @Test

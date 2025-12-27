@@ -19,8 +19,8 @@ class UpgradeSpringFramework_6_2_Tests implements RewriteTest {
     public void defaults(RecipeSpec spec) {
         spec.recipeFromResources("io.arconia.rewrite.spring.framework6.UpgradeSpringFramework_6_2")
                 .parser(JavaParser.fromJavaVersion().classpathFromResources(new InMemoryExecutionContext(),
-                        "spring-beans-6.1.*", "spring-core-6.1.*", "spring-context-6.1.*", "spring-messaging-6.1.*", "spring-test-6.1.*",
-                        "spring-web-6.1.*", "spring-webflux-6.1.*", "spring-webmvc-6.1.*", "spring-websocket-6.1.*", "jakarta.servlet-api"));
+                        "spring-beans-6.1", "spring-core-6.1", "spring-context-6.1", "spring-messaging-6.1", "spring-test-6.1",
+                        "spring-web-6.1", "spring-webflux-6.1", "spring-webmvc-6.1", "spring-websocket-6.1", "jakarta.servlet-api"));
     }
 
     @Test
