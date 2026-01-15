@@ -77,11 +77,6 @@ recipeList:
       artifactId: cyclonedx-gradle-plugin
       newVersion: 2.x
 
-  # Gradle Wrapper
-  - org.openrewrite.gradle.UpdateGradleWrapper:
-      version: ^8.14
-      addIfMissing: false
-
   # Managed Dependencies
   - io.arconia.rewrite.spring.cloud2025.UpgradeSpringCloud_2025_0
 

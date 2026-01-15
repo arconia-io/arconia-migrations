@@ -61,11 +61,6 @@ recipeList:
       artifactId: cyclonedx-gradle-plugin
       newVersion: 3.0.x
 
-  # Gradle Wrapper
-  - org.openrewrite.gradle.UpdateGradleWrapper:
-      version: ^9.2
-      addIfMissing: false
-
   # Other Dependencies
   - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
       groupId: org.springdoc
