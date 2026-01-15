@@ -14,7 +14,7 @@ class UpgradeSpringBootModulesCloudFoundry_4_0_Tests implements RewriteTest {
     public void defaults(RecipeSpec spec) {
         spec.recipeFromResources("io.arconia.rewrite.spring.boot4.MigrateCloudFoundryModule")
                 .parser(JavaParser.fromJavaVersion().classpathFromResources(new InMemoryExecutionContext(),
-                        "spring-boot-actuator-autoconfigure-3.5.*"));
+                        "spring-boot-actuator-autoconfigure-3.5"));
     }
 
     @Test

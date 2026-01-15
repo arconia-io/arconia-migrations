@@ -18,8 +18,8 @@ class AddAutoConfigureWebTestClientAnnotationTests implements RewriteTest {
     public void defaults(RecipeSpec spec) {
         spec.recipe(new AddAutoConfigureWebTestClientAnnotation())
                 .parser(JavaParser.fromJavaVersion().classpathFromResources(new InMemoryExecutionContext(),
-                        "spring-beans-7.0.*", "spring-boot-test-4.0.*", "spring-boot-webtestclient-4.0.*",
-                        "spring-boot-webmvc-test-4.0.*", "spring-context-7.0.*", "spring-test-7.0.*"));
+                        "spring-beans-7.0", "spring-boot-test-4.0", "spring-boot-webtestclient-4.0",
+                        "spring-boot-webmvc-test-4.0", "spring-context-7.0", "spring-test-7.0"));
     }
 
     @DocumentExample

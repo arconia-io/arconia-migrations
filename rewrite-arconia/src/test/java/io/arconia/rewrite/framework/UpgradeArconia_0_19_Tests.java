@@ -15,7 +15,7 @@ class UpgradeArconia_0_19_Tests implements RewriteTest {
     public void defaults(RecipeSpec spec) {
         spec.recipeFromResources("io.arconia.rewrite.UpgradeArconia_0_19")
                 .parser(JavaParser.fromJavaVersion().classpathFromResources(new InMemoryExecutionContext(),
-                        "arconia-docling-0.18.*"));
+                        "arconia-docling-0.18"));
     }
 
     @Test
