@@ -18,6 +18,9 @@ recipeList:
       oldFullyQualifiedTypeName: org.springframework.boot.actuate.autoconfigure.opentelemetry.OpenTelemetryProperties
       newFullyQualifiedTypeName: org.springframework.boot.opentelemetry.autoconfigure.OpenTelemetryProperties
   - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.actuate.autoconfigure.logging.ConditionalOnEnabledLoggingExport
+      newFullyQualifiedTypeName: org.springframework.boot.opentelemetry.autoconfigure.logging.ConditionalOnEnabledLoggingExport
+  - org.openrewrite.java.ChangeType:
       oldFullyQualifiedTypeName: org.springframework.boot.actuate.autoconfigure.logging.OpenTelemetryLoggingAutoConfiguration
       newFullyQualifiedTypeName: org.springframework.boot.opentelemetry.autoconfigure.logging.OpenTelemetryLoggingAutoConfiguration
   - org.openrewrite.java.ChangeType:
