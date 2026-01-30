@@ -51,6 +51,9 @@ recipeDependencies {
 
     parserClasspath "io.arconia:arconia-docling:0.18.2"
 
+    parserClasspath "io.arconia:arconia-dev-services-core:0.21.0"
+    parserClasspath "io.arconia:arconia-dev-services-otel-collector:0.21.0"
+
     parserClasspath "org.springframework.boot:spring-boot-actuator-autoconfigure:3.5.8"
 }
 

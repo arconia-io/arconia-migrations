@@ -1,0 +1,271 @@
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.UpgradeArconia_0_22
+displayName: Migrate to Arconia 0.22
+description: Migrate a Spring Boot application to the latest Arconia 0.22.x release.
+tags:
+  - arconia
+recipeList:
+  - io.arconia.rewrite.UpgradeArconia_0_21
+
+  # Dependency Versions
+  - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
+      groupId: io.arconia
+      artifactId: "*"
+      newVersion: 0.22.x
+
+  # Property Value Changes
+  - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
+      propertyKey: "arconia.dev.services.artemis.shared"
+      oldPropertyValue: "dev-mode"
+      newPropertyValue: "true"
+  - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
+      propertyKey: "arconia.dev.services.artemis.shared"
+      oldPropertyValue: "always"
+      newPropertyValue: "true"
+  - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
+      propertyKey: "arconia.dev.services.artemis.shared"
+      oldPropertyValue: "never"
+      newPropertyValue: "false"
+
+  - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
+      propertyKey: "arconia.dev.services.docling.shared"
+      oldPropertyValue: "dev-mode"
+      newPropertyValue: "true"
+  - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
+      propertyKey: "arconia.dev.services.docling.shared"
+      oldPropertyValue: "always"
+      newPropertyValue: "true"
+  - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
+      propertyKey: "arconia.dev.services.docling.shared"
+      oldPropertyValue: "never"
+      newPropertyValue: "false"
+
+  - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
+      propertyKey: "arconia.dev.services.kafka.shared"
+      oldPropertyValue: "dev-mode"
+      newPropertyValue: "true"
+  - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
+      propertyKey: "arconia.dev.services.kafka.shared"
+      oldPropertyValue: "always"
+      newPropertyValue: "true"
+  - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
+      propertyKey: "arconia.dev.services.kafka.shared"
+      oldPropertyValue: "never"
+      newPropertyValue: "false"
+
+  - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
+      propertyKey: "arconia.dev.services.ldap.shared"
+      oldPropertyValue: "dev-mode"
+      newPropertyValue: "true"
+  - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
+      propertyKey: "arconia.dev.services.ldap.shared"
+      oldPropertyValue: "always"
+      newPropertyValue: "true"
+  - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
+      propertyKey: "arconia.dev.services.ldap.shared"
+      oldPropertyValue: "never"
+      newPropertyValue: "false"
+
+  - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
+      propertyKey: "arconia.dev.services.lgtm.shared"
+      oldPropertyValue: "dev-mode"
+      newPropertyValue: "true"
+  - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
+      propertyKey: "arconia.dev.services.lgtm.shared"
+      oldPropertyValue: "always"
+      newPropertyValue: "true"
+  - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
+      propertyKey: "arconia.dev.services.lgtm.shared"
+      oldPropertyValue: "never"
+      newPropertyValue: "false"
+
+  - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
+      propertyKey: "arconia.dev.services.mariadb.shared"
+      oldPropertyValue: "dev-mode"
+      newPropertyValue: "true"
+  - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
+      propertyKey: "arconia.dev.services.mariadb.shared"
+      oldPropertyValue: "always"
+      newPropertyValue: "true"
+  - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
+      propertyKey: "arconia.dev.services.mariadb.shared"
+      oldPropertyValue: "never"
+      newPropertyValue: "false"
+
+  - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
+      propertyKey: "arconia.dev.services.mongodb.shared"
+      oldPropertyValue: "dev-mode"
+      newPropertyValue: "true"
+  - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
+      propertyKey: "arconia.dev.services.mongodb.shared"
+      oldPropertyValue: "always"
+      newPropertyValue: "true"
+  - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
+      propertyKey: "arconia.dev.services.mongodb.shared"
+      oldPropertyValue: "never"
+      newPropertyValue: "false"
+
+  - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
+      propertyKey: "arconia.dev.services.mongodb-atlas.shared"
+      oldPropertyValue: "dev-mode"
+      newPropertyValue: "true"
+  - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
+      propertyKey: "arconia.dev.services.mongodb-atlas.shared"
+      oldPropertyValue: "always"
+      newPropertyValue: "true"
+  - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
+      propertyKey: "arconia.dev.services.mongodb-atlas.shared"
+      oldPropertyValue: "never"
+      newPropertyValue: "false"
+
+  - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
+      propertyKey: "arconia.dev.services.mysql.shared"
+      oldPropertyValue: "dev-mode"
+      newPropertyValue: "true"
+  - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
+      propertyKey: "arconia.dev.services.mysql.shared"
+      oldPropertyValue: "always"
+      newPropertyValue: "true"
+  - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
+      propertyKey: "arconia.dev.services.mysql.shared"
+      oldPropertyValue: "never"
+      newPropertyValue: "false"
+
+  - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
+      propertyKey: "arconia.dev.services.ollama.shared"
+      oldPropertyValue: "dev-mode"
+      newPropertyValue: "true"
+  - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
+      propertyKey: "arconia.dev.services.ollama.shared"
+      oldPropertyValue: "always"
+      newPropertyValue: "true"
+  - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
+      propertyKey: "arconia.dev.services.ollama.shared"
+      oldPropertyValue: "never"
+      newPropertyValue: "false"
+
+  - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
+      propertyKey: "arconia.dev.services.oracle.shared"
+      oldPropertyValue: "dev-mode"
+      newPropertyValue: "true"
+  - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
+      propertyKey: "arconia.dev.services.oracle.shared"
+      oldPropertyValue: "always"
+      newPropertyValue: "true"
+  - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
+      propertyKey: "arconia.dev.services.oracle.shared"
+      oldPropertyValue: "never"
+      newPropertyValue: "false"
+
+  - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
+      propertyKey: "arconia.dev.services.oracle-xe.shared"
+      oldPropertyValue: "dev-mode"
+      newPropertyValue: "true"
+  - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
+      propertyKey: "arconia.dev.services.oracle-xe.shared"
+      oldPropertyValue: "always"
+      newPropertyValue: "true"
+  - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
+      propertyKey: "arconia.dev.services.oracle-xe.shared"
+      oldPropertyValue: "never"
+      newPropertyValue: "false"
+
+  - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
+      propertyKey: "arconia.dev.services.otel-collector.shared"
+      oldPropertyValue: "dev-mode"
+      newPropertyValue: "true"
+  - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
+      propertyKey: "arconia.dev.services.otel-collector.shared"
+      oldPropertyValue: "always"
+      newPropertyValue: "true"
+  - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
+      propertyKey: "arconia.dev.services.otel-collector.shared"
+      oldPropertyValue: "never"
+      newPropertyValue: "false"
+
+  - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
+      propertyKey: "arconia.dev.services.phoenix.shared"
+      oldPropertyValue: "dev-mode"
+      newPropertyValue: "true"
+  - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
+      propertyKey: "arconia.dev.services.phoenix.shared"
+      oldPropertyValue: "always"
+      newPropertyValue: "true"
+  - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
+      propertyKey: "arconia.dev.services.phoenix.shared"
+      oldPropertyValue: "never"
+      newPropertyValue: "false"
+
+  - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
+      propertyKey: "arconia.dev.services.postgresql.shared"
+      oldPropertyValue: "dev-mode"
+      newPropertyValue: "true"
+  - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
+      propertyKey: "arconia.dev.services.postgresql.shared"
+      oldPropertyValue: "always"
+      newPropertyValue: "true"
+  - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
+      propertyKey: "arconia.dev.services.postgresql.shared"
+      oldPropertyValue: "never"
+      newPropertyValue: "false"
+
+  - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
+      propertyKey: "arconia.dev.services.pulsar.shared"
+      oldPropertyValue: "dev-mode"
+      newPropertyValue: "true"
+  - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
+      propertyKey: "arconia.dev.services.pulsar.shared"
+      oldPropertyValue: "always"
+      newPropertyValue: "true"
+  - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
+      propertyKey: "arconia.dev.services.pulsar.shared"
+      oldPropertyValue: "never"
+      newPropertyValue: "false"
+
+  - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
+      propertyKey: "arconia.dev.services.rabbitmq.shared"
+      oldPropertyValue: "dev-mode"
+      newPropertyValue: "true"
+  - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
+      propertyKey: "arconia.dev.services.rabbitmq.shared"
+      oldPropertyValue: "always"
+      newPropertyValue: "true"
+  - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
+      propertyKey: "arconia.dev.services.rabbitmq.shared"
+      oldPropertyValue: "never"
+      newPropertyValue: "false"
+
+  - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
+      propertyKey: "arconia.dev.services.redis.shared"
+      oldPropertyValue: "dev-mode"
+      newPropertyValue: "true"
+  - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
+      propertyKey: "arconia.dev.services.redis.shared"
+      oldPropertyValue: "always"
+      newPropertyValue: "true"
+  - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
+      propertyKey: "arconia.dev.services.redis.shared"
+      oldPropertyValue: "never"
+      newPropertyValue: "false"
+
+  # Type Changes
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: io.arconia.dev.services.core.config.DevServicesProperties
+      newFullyQualifiedTypeName: io.arconia.dev.services.api.config.BaseDevServicesProperties
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: io.arconia.dev.services.core.config.JdbcDevServicesProperties
+      newFullyQualifiedTypeName: io.arconia.dev.services.api.config.JdbcDevServicesProperties
+
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: io.arconia.dev.services.opentelemetry.OpenTelemetryDevServicesAutoConfiguration
+      newFullyQualifiedTypeName: io.arconia.dev.services.opentelemetry.collector.OtelCollectorDevServicesAutoConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: io.arconia.dev.services.opentelemetry.OpenTelemetryDevServicesProperties
+      newFullyQualifiedTypeName: io.arconia.dev.services.opentelemetry.collector.OtelCollectorDevServicesProperties
+
+  # Method Changes
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: io.arconia.dev.services.api.config.BaseDevServicesProperties getShared()
+      newMethodName: isShared
+      matchOverrides: true
