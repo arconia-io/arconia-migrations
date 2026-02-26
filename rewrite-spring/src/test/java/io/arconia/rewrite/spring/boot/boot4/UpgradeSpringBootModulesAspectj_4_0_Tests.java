@@ -44,6 +44,7 @@ class UpgradeSpringBootModulesAspectj_4_0_Tests implements RewriteTest {
 
                           dependencies {
                               testImplementation "org.springframework.boot:spring-boot-starter-aspectj"
+                              testImplementation "org.springframework.boot:spring-boot-starter-aspectj-test"
                           }
                           """
                 )
