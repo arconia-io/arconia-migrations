@@ -70,6 +70,11 @@ recipeList:
       artifactId: spring-boot-starter-restclient
       onlyIfUsing: org.springframework.web.client.RestClient
       acceptTransitive: true
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-restclient
+      onlyIfUsing: org.springframework.boot.web.client.RestTemplateBuilder
+      acceptTransitive: true
 
 ---
 type: specs.openrewrite.org/v1beta/recipe
