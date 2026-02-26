@@ -18,6 +18,7 @@ dependencies {
     implementation "org.openrewrite.recipe:rewrite-java-dependencies"
 
     runtimeOnly "org.openrewrite:rewrite-java-21"
+    runtimeOnly "org.openrewrite:rewrite-java-25"
 
     testImplementation "org.openrewrite:rewrite-test"
     testImplementation "ch.qos.logback:logback-core:${logbackVersion}"

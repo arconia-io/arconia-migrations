@@ -16,6 +16,7 @@ dependencies {
     implementation "org.openrewrite.recipe:rewrite-java-dependencies"
 
     runtimeOnly "org.openrewrite:rewrite-java-21"
+    runtimeOnly "org.openrewrite:rewrite-java-25"
 
     testImplementation "org.openrewrite:rewrite-test"
     testImplementation "ch.qos.logback:logback-core:${logbackVersion}"
@@ -29,9 +30,9 @@ dependencies {
 }
 
 recipeDependencies {
-    parserClasspath "org.testcontainers:testcontainers:1.21.3"
+    parserClasspath "org.testcontainers:testcontainers:1.21.4"
 
-    parserClasspath "org.testcontainers:postgresql:1.21.3"
+    parserClasspath "org.testcontainers:postgresql:1.21.4"
 }
 
 publishing {
