@@ -55,7 +55,7 @@ recipeList:
   # CycloneDX
   - org.openrewrite.gradle.plugins.UpgradePluginVersion:
       pluginIdPattern: org.cyclonedx.bom
-      newVersion: 3.0.x
+      newVersion: 3.x
   - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
       groupId: org.cyclonedx
       artifactId: cyclonedx-gradle-plugin
