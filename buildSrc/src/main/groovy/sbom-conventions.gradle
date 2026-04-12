@@ -2,9 +2,8 @@ plugins {
     id 'org.cyclonedx.bom'
 }
 
-tasks.named('cyclonedxBom') {
+tasks.named("cyclonedxDirectBom") {
     includeConfigs = ["runtimeClasspath"]
-    outputFormat = "json"
     projectType = "library"
-    schemaVersion = "1.6"
 }
+
