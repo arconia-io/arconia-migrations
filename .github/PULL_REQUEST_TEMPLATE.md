@@ -1,0 +1,16 @@
+_Thank you for helping improve Arconia Migrations and take time to contribute this pull request!_
+
+_Please ensure the PR title follows [Conventional Commits](https://www.conventionalcommits.org/) format (e.g. `feat(spring): Add recipe for Spring Boot 4.1`)._
+
+## Description
+
+_Please include a summary of the change and which issue is fixed. If the issue doesn't exist, please create one._
+
+Fixes gh-XXXX
+
+## Checklist
+
+- [ ] I have reviewed and followed the [contributing guidelines](https://github.com/arconia-io/arconia-migrations/blob/main/CONTRIBUTING.md).
+- [ ] I have run a local build and made sure all tests pass (`./gradlew build`).
+- [ ] I have signed off the [Developer Certificate of Origin (DCO)](https://github.com/arconia-io/arconia-migrations/blob/main/dco.txt).
+- [ ] I assert that I have read the [Arconia Code of Conduct](https://github.com/arconia-io/arconia-migrations/blob/main/CODE_OF_CONDUCT.md) and agree to abide by it.

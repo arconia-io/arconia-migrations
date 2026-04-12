@@ -18,7 +18,7 @@ There are multiple options for applying such a recipe to your project. In any ca
 Using the [Arconia CLI](https://arconia.io/docs/arconia-cli/latest/index.html), you can easily apply the recipe to your project as follows:
 
 ```shell
-arconia update spring-ai
+arconia update spring-ai --to-version 1.1
 ```
 
 ### Using the OpenRewrite Maven Plugin
