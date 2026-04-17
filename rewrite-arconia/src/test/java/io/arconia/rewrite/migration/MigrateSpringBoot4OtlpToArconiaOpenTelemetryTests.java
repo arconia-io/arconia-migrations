@@ -12,16 +12,15 @@ import static org.openrewrite.java.Assertions.srcMainJava;
 import static org.openrewrite.properties.Assertions.properties;
 
 /**
- * Unit tests for "io.arconia.rewrite.MigrateSpringBoot3OtlpToArconiaOpenTelemetry".
+ * Unit tests for "io.arconia.rewrite.MigrateSpringBoot4_0_OtlpToArconiaOpenTelemetry".
  */
-class MigrateSpringBoot3OtlpToArconiaOpenTelemetryTests implements RewriteTest {
+class MigrateSpringBoot4OtlpToArconiaOpenTelemetryTests implements RewriteTest {
 
     @Override
     public void defaults(RecipeSpec spec) {
-        spec.recipeFromResources("io.arconia.rewrite.MigrateSpringBoot3OtlpToArconiaOpenTelemetry")
+        spec.recipeFromResources("io.arconia.rewrite.MigrateSpringBoot4_0_OtlpToArconiaOpenTelemetry")
             .parser(JavaParser.fromJavaVersion().classpathFromResources(new InMemoryExecutionContext(),
-                "spring-boot-actuator-autoconfigure-3.5",
-                "arconia-opentelemetry-0.25.0"));
+                "arconia-opentelemetry-0.25.0", "spring-boot-opentelemetry-4.0", "spring-boot-micrometer-tracing-opentelemetry-4.0"));
     }
 
     @Test
@@ -46,13 +45,13 @@ class MigrateSpringBoot3OtlpToArconiaOpenTelemetryTests implements RewriteTest {
                 //language=properties
                 properties(
                         """
-                        management.otlp.logging.export.enabled=true
-                        management.otlp.logging.transport=http
-                        management.otlp.logging.endpoint=http://localhost:4318/v1/logs
-                        management.otlp.logging.headers=Authorization=Bearer token123,Custom-Header=value
-                        management.otlp.logging.compression=gzip
-                        management.otlp.logging.timeout=30s
-                        management.otlp.logging.connect-timeout=10s
+                        management.logging.export.otlp.enabled=true
+                        management.opentelemetry.logging.export.otlp.transport=http
+                        management.opentelemetry.logging.export.otlp.endpoint=http://localhost:4318/v1/logs
+                        management.opentelemetry.logging.export.otlp.headers=Authorization=Bearer token123,Custom-Header=value
+                        management.opentelemetry.logging.export.otlp.compression=gzip
+                        management.opentelemetry.logging.export.otlp.timeout=30s
+                        management.opentelemetry.logging.export.otlp.connect-timeout=10s
                         """,
                         """
                         arconia.otel.logs.enabled=true
@@ -74,7 +73,7 @@ class MigrateSpringBoot3OtlpToArconiaOpenTelemetryTests implements RewriteTest {
                 //language=properties
                 properties(
                         """
-                        management.otlp.logging.transport=grpc
+                        management.opentelemetry.logging.export.otlp.transport=grpc
                         """,
                         """
                         arconia.otel.logs.exporter.otlp.protocol=grpc
@@ -122,13 +121,13 @@ class MigrateSpringBoot3OtlpToArconiaOpenTelemetryTests implements RewriteTest {
                 //language=properties
                 properties(
                         """
-                        management.otlp.tracing.export.enabled=true
-                        management.otlp.tracing.transport=http
-                        management.otlp.tracing.endpoint=http://localhost:4318/v1/traces
-                        management.otlp.tracing.headers=Authorization=Bearer token123,Custom-Header=value
-                        management.otlp.tracing.compression=gzip
-                        management.otlp.tracing.timeout=30s
-                        management.otlp.tracing.connect-timeout=10s
+                        management.tracing.export.otlp.enabled=true
+                        management.opentelemetry.tracing.export.otlp.transport=http
+                        management.opentelemetry.tracing.export.otlp.endpoint=http://localhost:4318/v1/traces
+                        management.opentelemetry.tracing.export.otlp.headers=Authorization=Bearer token123,Custom-Header=value
+                        management.opentelemetry.tracing.export.otlp.compression=gzip
+                        management.opentelemetry.tracing.export.otlp.timeout=30s
+                        management.opentelemetry.tracing.export.otlp.connect-timeout=10s
                         """,
                         """
                         arconia.otel.traces.enabled=true
@@ -150,10 +149,34 @@ class MigrateSpringBoot3OtlpToArconiaOpenTelemetryTests implements RewriteTest {
                 //language=properties
                 properties(
                         """
-                        management.otlp.tracing.transport=grpc
+                        management.opentelemetry.tracing.export.otlp.transport=grpc
                         """,
                         """
                         arconia.otel.traces.exporter.otlp.protocol=grpc
+                        """,
+                        s -> s.path("src/main/resources/application.properties")
+                )
+        );
+    }
+
+    @Test
+    void renameTracingProcessorProperties() {
+        rewriteRun(
+                //language=properties
+                properties(
+                        """
+                        management.opentelemetry.tracing.export.include-unsampled=true
+                        management.opentelemetry.tracing.export.max-batch-size=512
+                        management.opentelemetry.tracing.export.max-queue-size=2048
+                        management.opentelemetry.tracing.export.schedule-delay=5s
+                        management.opentelemetry.tracing.export.timeout=30s
+                        """,
+                        """
+                        arconia.otel.traces.processor.export-unsampled-spans=true
+                        arconia.otel.traces.processor.max-export-batch-size=512
+                        arconia.otel.traces.processor.max-queue-size=2048
+                        arconia.otel.traces.processor.schedule-delay=5s
+                        arconia.otel.traces.processor.export-timeout=30s
                         """,
                         s -> s.path("src/main/resources/application.properties")
                 )
@@ -191,8 +214,8 @@ class MigrateSpringBoot3OtlpToArconiaOpenTelemetryTests implements RewriteTest {
                                         """
                                         package com.yourorg;
 
-                                        import org.springframework.boot.actuate.autoconfigure.logging.SdkLoggerProviderBuilderCustomizer;
-                                        import org.springframework.boot.actuate.autoconfigure.tracing.SdkTracerProviderBuilderCustomizer;
+                                        import org.springframework.boot.opentelemetry.autoconfigure.logging.SdkLoggerProviderBuilderCustomizer;
+                                        import org.springframework.boot.micrometer.tracing.opentelemetry.autoconfigure.SdkTracerProviderBuilderCustomizer;
 
                                         class Demo {
                                             SdkLoggerProviderBuilderCustomizer customizer = null;

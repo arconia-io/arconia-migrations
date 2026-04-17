@@ -46,7 +46,7 @@ recipeDependencies {
     parserClasspath "io.arconia:arconia-opentelemetry-sdk-spring-boot-autoconfigure:0.13.0"
     parserClasspath "io.arconia:arconia-opentelemetry-instrumentation-spring-boot-autoconfigure:0.13.0"
 
-    parserClasspath "io.arconia:arconia-opentelemetry:0.14.0"
+    parserClasspath "io.arconia:arconia-opentelemetry:0.25.0"
 
     parserClasspath "io.arconia:arconia-dev-services-mongodb-atlas:0.17.1"
 
@@ -56,6 +56,8 @@ recipeDependencies {
     parserClasspath "io.arconia:arconia-dev-services-otel-collector:0.21.0"
 
     parserClasspath "org.springframework.boot:spring-boot-actuator-autoconfigure:3.5.11"
+    parserClasspath "org.springframework.boot:spring-boot-micrometer-tracing-opentelemetry:4.0.5"
+    parserClasspath "org.springframework.boot:spring-boot-opentelemetry:4.0.5"
 }
 
 publishing {
