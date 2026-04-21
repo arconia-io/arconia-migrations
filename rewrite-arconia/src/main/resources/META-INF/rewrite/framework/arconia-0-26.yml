@@ -1,0 +1,79 @@
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.UpgradeArconia_0_26
+displayName: Migrate to Arconia 0.26
+description: Migrate a Spring Boot application to the latest Arconia 0.26.x release.
+tags:
+  - arconia
+recipeList:
+  - io.arconia.rewrite.UpgradeArconia_0_25
+
+  # Dependency Versions
+  - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
+      groupId: io.arconia
+      artifactId: "*"
+      newVersion: 0.26.x
+
+  # Rename Types
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: io.arconia.multitenancy.core.exceptions.TenantResolutionException
+      newFullyQualifiedTypeName: io.arconia.multitenancy.core.exceptions.TenantVerificationException
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: io.arconia.multitenancy.core.context.events.MdcTenantContextEventListener
+      newFullyQualifiedTypeName: io.arconia.multitenancy.core.observability.MdcTenantEventListener
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: io.arconia.multitenancy.core.events.TenantEvent
+      newFullyQualifiedTypeName: io.arconia.multitenancy.core.context.events.TenantEvent
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: io.arconia.multitenancy.core.autoconfigure.tenantdetails.TenantDetailsConfiguration
+      newFullyQualifiedTypeName: io.arconia.multitenancy.core.autoconfigure.TenantDetailsConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: io.arconia.multitenancy.core.autoconfigure.tenantdetails.TenantDetailsProperties
+      newFullyQualifiedTypeName: io.arconia.multitenancy.core.autoconfigure.TenantDetailsProperties
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: io.arconia.multitenancy.core.autoconfigure.tenantdetails.PropertiesTenantDetailsService
+      newFullyQualifiedTypeName: io.arconia.multitenancy.core.autoconfigure.PropertiesTenantDetailsService
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: io.arconia.multitenancy.core.events.TenantEventPublisher
+      newFullyQualifiedTypeName: org.springframework.context.ApplicationEventPublisher
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: io.arconia.multitenancy.core.events.DefaultTenantEventPublisher
+      newFullyQualifiedTypeName: org.springframework.context.ApplicationEventPublisher
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: io.arconia.multitenancy.core.context.TenantContextHolder
+      newFullyQualifiedTypeName: io.arconia.multitenancy.core.context.TenantContext
+
+  # Rename Methods
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: org.springframework.context.ApplicationEventPublisher publishTenantEvent(..)
+      newMethodName: publishEvent
+      matchOverrides: true
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: io.arconia.multitenancy.core.tenantdetails.TenantDetails getIdentifier()
+      newMethodName: identifier
+      matchOverrides: true
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: io.arconia.multitenancy.core.tenantdetails.TenantDetails isEnabled()
+      newMethodName: enabled
+      matchOverrides: true
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: io.arconia.multitenancy.core.tenantdetails.TenantDetails getAttributes()
+      newMethodName: attributes
+      matchOverrides: true
+
+  # Rename Properties
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: arconia.multitenancy.management.mdc.enabled
+      newPropertyKey: arconia.multitenancy.logging.mdc.enabled
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: arconia.multitenancy.management.mdc.key
+      newPropertyKey: arconia.multitenancy.logging.mdc.key-name
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: arconia.multitenancy.management.observations.enabled
+      newPropertyKey: arconia.multitenancy.observations.enabled
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: arconia.multitenancy.management.observations.key
+      newPropertyKey: arconia.multitenancy.observations.key-name
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: arconia.multitenancy.management.observations.cardinality
+      newPropertyKey: arconia.multitenancy.observations.cardinality
