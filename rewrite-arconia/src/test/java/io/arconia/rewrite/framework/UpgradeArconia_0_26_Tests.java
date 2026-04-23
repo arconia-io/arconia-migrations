@@ -15,11 +15,12 @@ class UpgradeArconia_0_26_Tests implements RewriteTest {
     public void defaults(RecipeSpec spec) {
         spec.recipeFromResources("io.arconia.rewrite.UpgradeArconia_0_26")
             .parser(JavaParser.fromJavaVersion().classpathFromResources(new InMemoryExecutionContext(),
-                "arconia-multitenancy-core-0.25"));
+                "arconia-multitenancy-core-0.25",
+                "arconia-openinference-semantic-conventions-0.25"));
     }
 
     @Test
-    void typeChanges() {
+    void multitenancyTypeChanges() {
         rewriteRun(
                 //language=java
                 java(
@@ -73,7 +74,7 @@ class UpgradeArconia_0_26_Tests implements RewriteTest {
     }
 
     @Test
-    void methodChanges() {
+    void multitenancyMethodChanges() {
         rewriteRun(
                 //language=java
                 java(
@@ -116,7 +117,7 @@ class UpgradeArconia_0_26_Tests implements RewriteTest {
     }
 
     @Test
-    void propertyChanges() {
+    void multitenancyPropertyChanges() {
         rewriteRun(
                 //language=properties
                 properties(
@@ -135,6 +136,81 @@ class UpgradeArconia_0_26_Tests implements RewriteTest {
                         arconia.multitenancy.observations.cardinality=low
                         """,
                         s -> s.path("src/main/resources/application.properties"))
+        );
+    }
+
+    @Test
+    void observationTypeChanges() {
+        rewriteRun(
+                //language=java
+                java(
+                        """
+                        import io.arconia.openinference.observation.instrumentation.ai.OpenInferenceTracingOptions;
+                        import io.arconia.openinference.observation.instrumentation.ai.OpenInferenceGenerativeAiOnlyObservationPredicate;
+
+                        class Demo {
+                            OpenInferenceTracingOptions options;
+                            OpenInferenceGenerativeAiOnlyObservationPredicate predicate;
+                        }
+                        """,
+                        """
+                        import io.arconia.observation.openinference.instrumentation.OpenInferenceOnlyObservationPredicate;
+                        import io.arconia.observation.openinference.instrumentation.OpenInferenceOptions;
+
+                        class Demo {
+                            OpenInferenceOptions options;
+                            OpenInferenceOnlyObservationPredicate predicate;
+                        }
+                        """
+                )
+        );
+    }
+
+    @Test
+    void observationPropertyChanges() {
+        rewriteRun(
+                //language=properties
+                properties(
+                        """
+                        arconia.observations.generative-ai.openinference.enabled=true
+                        arconia.observations.generative-ai.openinference.exclusive=true
+                        arconia.observations.generative-ai.openinference.traces.base64-image-max-length=1000
+                        arconia.observations.generative-ai.openinference.traces.hide-embedding-vectors=true
+                        arconia.observations.generative-ai.openinference.traces.hide-llm-invocation-parameters=false
+                        arconia.observations.generative-ai.openinference.traces.hide-inputs=true
+                        arconia.observations.generative-ai.openinference.traces.hide-input-images=false
+                        arconia.observations.generative-ai.openinference.traces.hide-input-messages=true
+                        arconia.observations.generative-ai.openinference.traces.hide-input-text=false
+                        arconia.observations.generative-ai.openinference.traces.hide-outputs=true
+                        arconia.observations.generative-ai.openinference.traces.hide-output-text=false
+                        arconia.observations.generative-ai.openinference.traces.hide-output-messages=true
+                        arconia.observations.generative-ai.openinference.traces.hide-prompts=false
+                        """,
+                        """
+                        arconia.observations.conventions.type=openinference
+                        arconia.observations.conventions.openinference.exclusive=true
+                        arconia.observations.conventions.openinference.options.base64-image-max-length=1000
+                        arconia.observations.conventions.openinference.options.hide-embeddings-vectors=true
+                        arconia.observations.conventions.openinference.options.hide-llm-invocation-parameters=false
+                        arconia.observations.conventions.openinference.options.hide-inputs=true
+                        arconia.observations.conventions.openinference.options.hide-input-images=false
+                        arconia.observations.conventions.openinference.options.hide-input-messages=true
+                        arconia.observations.conventions.openinference.options.hide-input-text=false
+                        arconia.observations.conventions.openinference.options.hide-outputs=true
+                        arconia.observations.conventions.openinference.options.hide-output-text=false
+                        arconia.observations.conventions.openinference.options.hide-output-messages=true
+                        arconia.observations.conventions.openinference.options.hide-prompts=false
+                        """,
+                        s -> s.path("src/main/resources/application.properties")),
+                //language=properties
+                properties(
+                        """
+                        arconia.observations.generative-ai.openinference.enabled=false
+                        """,
+                        """
+                        arconia.observations.conventions.type=micrometer
+                        """,
+                        s -> s.path("src/main/resources/application-another.properties"))
         );
     }
 
