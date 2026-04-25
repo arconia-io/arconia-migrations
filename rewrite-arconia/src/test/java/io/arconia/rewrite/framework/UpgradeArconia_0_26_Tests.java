@@ -154,12 +154,12 @@ class UpgradeArconia_0_26_Tests implements RewriteTest {
                         }
                         """,
                         """
-                        import io.arconia.observation.openinference.instrumentation.OpenInferenceOnlyObservationPredicate;
+                        import io.arconia.observation.openinference.instrumentation.OpenInferenceGenerativeAiOnlyObservationPredicate;
                         import io.arconia.observation.openinference.instrumentation.OpenInferenceOptions;
 
                         class Demo {
                             OpenInferenceOptions options;
-                            OpenInferenceOnlyObservationPredicate predicate;
+                            OpenInferenceGenerativeAiOnlyObservationPredicate predicate;
                         }
                         """
                 )
@@ -188,18 +188,19 @@ class UpgradeArconia_0_26_Tests implements RewriteTest {
                         """,
                         """
                         arconia.observations.conventions.type=openinference
-                        arconia.observations.conventions.openinference.exclusive=true
-                        arconia.observations.conventions.openinference.options.base64-image-max-length=1000
-                        arconia.observations.conventions.openinference.options.hide-embeddings-vectors=true
-                        arconia.observations.conventions.openinference.options.hide-llm-invocation-parameters=false
-                        arconia.observations.conventions.openinference.options.hide-inputs=true
-                        arconia.observations.conventions.openinference.options.hide-input-images=false
-                        arconia.observations.conventions.openinference.options.hide-input-messages=true
-                        arconia.observations.conventions.openinference.options.hide-input-text=false
-                        arconia.observations.conventions.openinference.options.hide-outputs=true
-                        arconia.observations.conventions.openinference.options.hide-output-text=false
-                        arconia.observations.conventions.openinference.options.hide-output-messages=true
-                        arconia.observations.conventions.openinference.options.hide-prompts=false
+                        # Property removed in Arconia 0.26. The filtering of observations is now left to the telemetry collector.
+                        # arconia.observations.generative-ai.openinference.exclusive=true
+                        arconia.observations.conventions.openinference.base64-image-max-length=1000
+                        arconia.observations.conventions.openinference.hide-embeddings-vectors=true
+                        arconia.observations.conventions.openinference.hide-llm-invocation-parameters=false
+                        arconia.observations.conventions.openinference.hide-inputs=true
+                        arconia.observations.conventions.openinference.hide-input-images=false
+                        arconia.observations.conventions.openinference.hide-input-messages=true
+                        arconia.observations.conventions.openinference.hide-input-text=false
+                        arconia.observations.conventions.openinference.hide-outputs=true
+                        arconia.observations.conventions.openinference.hide-output-text=false
+                        arconia.observations.conventions.openinference.hide-output-messages=true
+                        arconia.observations.conventions.openinference.hide-prompts=false
                         """,
                         s -> s.path("src/main/resources/application.properties")),
                 //language=properties

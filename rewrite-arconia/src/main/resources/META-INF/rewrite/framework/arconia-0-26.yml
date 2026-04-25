@@ -94,9 +94,6 @@ recipeList:
   - org.openrewrite.java.ChangeType:
       oldFullyQualifiedTypeName: io.arconia.observation.openinference.instrumentation.OpenInferenceTracingOptions
       newFullyQualifiedTypeName: io.arconia.observation.openinference.instrumentation.OpenInferenceOptions
-  - org.openrewrite.java.ChangeType:
-      oldFullyQualifiedTypeName: io.arconia.observation.openinference.instrumentation.OpenInferenceGenerativeAiOnlyObservationPredicate
-      newFullyQualifiedTypeName: io.arconia.observation.openinference.instrumentation.OpenInferenceOnlyObservationPredicate
 
    # Observation - Rename Properties
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
@@ -110,42 +107,39 @@ recipeList:
       propertyKey: arconia.observations.conventions.type
       oldPropertyValue: "true"
       newPropertyValue: "openinference"
-  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
-      oldPropertyKey: arconia.observations.generative-ai.openinference.exclusive
-      newPropertyKey: arconia.observations.conventions.openinference.exclusive
+  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
+      propertyKey: arconia.observations.generative-ai.openinference.exclusive
+      comment: "Property removed in Arconia 0.26. The filtering of observations is now left to the telemetry collector."
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: arconia.observations.generative-ai.openinference.traces.base64-image-max-length
-      newPropertyKey: arconia.observations.conventions.openinference.options.base64-image-max-length
+      newPropertyKey: arconia.observations.conventions.openinference.base64-image-max-length
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: arconia.observations.generative-ai.openinference.traces.hide-embedding-vectors
-      newPropertyKey: arconia.observations.conventions.openinference.options.hide-embeddings-vectors
+      newPropertyKey: arconia.observations.conventions.openinference.hide-embeddings-vectors
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: arconia.observations.generative-ai.openinference.traces.hide-llm-invocation-parameters
-      newPropertyKey: arconia.observations.conventions.openinference.options.hide-llm-invocation-parameters
+      newPropertyKey: arconia.observations.conventions.openinference.hide-llm-invocation-parameters
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: arconia.observations.generative-ai.openinference.traces.hide-inputs
-      newPropertyKey: arconia.observations.conventions.openinference.options.hide-inputs
+      newPropertyKey: arconia.observations.conventions.openinference.hide-inputs
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: arconia.observations.generative-ai.openinference.traces.hide-input-images
-      newPropertyKey: arconia.observations.conventions.openinference.options.hide-input-images
+      newPropertyKey: arconia.observations.conventions.openinference.hide-input-images
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: arconia.observations.generative-ai.openinference.traces.hide-input-messages
-      newPropertyKey: arconia.observations.conventions.openinference.options.hide-input-messages
-  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
-      oldPropertyKey: arconia.observations.generative-ai.openinference.traces.hide-input-messages
-      newPropertyKey: arconia.observations.conventions.openinference.options.hide-input-messages
+      newPropertyKey: arconia.observations.conventions.openinference.hide-input-messages
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: arconia.observations.generative-ai.openinference.traces.hide-input-text
-      newPropertyKey: arconia.observations.conventions.openinference.options.hide-input-text
+      newPropertyKey: arconia.observations.conventions.openinference.hide-input-text
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: arconia.observations.generative-ai.openinference.traces.hide-outputs
-      newPropertyKey: arconia.observations.conventions.openinference.options.hide-outputs
+      newPropertyKey: arconia.observations.conventions.openinference.hide-outputs
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: arconia.observations.generative-ai.openinference.traces.hide-output-text
-      newPropertyKey: arconia.observations.conventions.openinference.options.hide-output-text
+      newPropertyKey: arconia.observations.conventions.openinference.hide-output-text
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: arconia.observations.generative-ai.openinference.traces.hide-output-messages
-      newPropertyKey: arconia.observations.conventions.openinference.options.hide-output-messages
+      newPropertyKey: arconia.observations.conventions.openinference.hide-output-messages
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: arconia.observations.generative-ai.openinference.traces.hide-prompts
-      newPropertyKey: arconia.observations.conventions.openinference.options.hide-prompts
+      newPropertyKey: arconia.observations.conventions.openinference.hide-prompts
