@@ -79,6 +79,7 @@ recipeList:
   # Managed Dependencies
   - io.arconia.rewrite.test.testcontainers.UpgradeTestcontainers_2
   - io.arconia.rewrite.spring.cloud2025.UpgradeSpringCloud_2025_1
+  - io.arconia.rewrite.spring.ai.UpgradeSpringAi_2_0
 
   # Modules
   - io.arconia.rewrite.spring.boot4.MigrateActiveMqModule
