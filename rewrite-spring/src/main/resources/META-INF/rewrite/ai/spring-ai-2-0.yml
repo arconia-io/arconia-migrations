@@ -16,3 +16,113 @@ recipeList:
       artifactId: "*"
       newVersion: 2.0.x
       overrideManagedVersion: false
+
+  ####### Common #######
+
+  - io.arconia.rewrite.spring.ai.UseChatOptionsBuilder
+
+  # Change Type
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.opensearch.testcontainers.OpensearchContainer
+      newFullyQualifiedTypeName: org.opensearch.testcontainers.OpenSearchContainer
+
+  ####### Anthropic #######
+
+  - io.arconia.rewrite.spring.ai.UseAnthropicChatModelBuilder
+
+  ## Type Changes
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.ai.anthropic.api.AnthropicCacheOptions
+      newFullyQualifiedTypeName: org.springframework.ai.anthropic.AnthropicCacheOptions
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.ai.anthropic.api.AnthropicCacheStrategy
+      newFullyQualifiedTypeName: org.springframework.ai.anthropic.AnthropicCacheStrategy
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.ai.anthropic.api.AnthropicCacheTtl
+      newFullyQualifiedTypeName: org.springframework.ai.anthropic.AnthropicCacheTtl
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.ai.anthropic.api.utils.CacheBreakpointTracker
+      newFullyQualifiedTypeName: org.springframework.ai.anthropic.CacheBreakpointTracker
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.ai.anthropic.api.utils.CacheEligibilityResolver
+      newFullyQualifiedTypeName: org.springframework.ai.anthropic.CacheEligibilityResolver
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.ai.anthropic.api.CitationDocument
+      newFullyQualifiedTypeName: org.springframework.ai.anthropic.AnthropicCitationDocument
+
+  ####### MCP #######
+
+  ## Dependency Changes
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: org.springframework.ai
+      artifactId: spring-ai-mcp-annotations
+      onlyIfUsing: org.springaicommunity.mcp.*
+      acceptTransitive: true
+      configuration: implementation
+      scope: compile
+  - org.openrewrite.java.dependencies.RemoveDependency:
+      groupId: org.springaicommunity
+      artifactId: mcp-annotations
+
+  - org.openrewrite.java.dependencies.ChangeDependency:
+      oldGroupId: io.modelcontextprotocol.sdk
+      oldArtifactId: mcp-spring-webflux
+      newGroupId: org.springframework.ai
+      newArtifactId: mcp-spring-webflux
+  - org.openrewrite.java.dependencies.ChangeDependency:
+      oldGroupId: io.modelcontextprotocol.sdk
+      oldArtifactId: mcp-spring-webmvc
+      newGroupId: org.springframework.ai
+      newArtifactId: mcp-spring-webmvc
+
+  ## Package Changes
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springaicommunity.mcp.annotation
+      newPackageName: org.springframework.ai.mcp.annotation
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springaicommunity.mcp.context
+      newPackageName: org.springframework.ai.mcp.annotation.context
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springaicommunity.mcp.method
+      newPackageName: org.springframework.ai.mcp.annotation.method
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springaicommunity.mcp.provider
+      newPackageName: org.springframework.ai.mcp.annotation.provider
+
+  # Change Type
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: io.modelcontextprotocol.client.transport.WebFluxSseClientTransport
+      newFullyQualifiedTypeName: org.springframework.ai.mcp.client.webflux.transport.WebFluxSseClientTransport
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: io.modelcontextprotocol.client.transport.WebClientStreamableHttpTransport
+      newFullyQualifiedTypeName: org.springframework.ai.mcp.client.webflux.transport.WebClientStreamableHttpTransport
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: io.modelcontextprotocol.server.transport.WebFluxSseServerTransportProvider
+      newFullyQualifiedTypeName: org.springframework.ai.mcp.server.webflux.transport.WebFluxSseServerTransportProvider
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: io.modelcontextprotocol.server.transport.WebFluxStreamableServerTransportProvider
+      newFullyQualifiedTypeName: org.springframework.ai.mcp.server.webflux.transport.WebFluxStreamableServerTransportProvider
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: io.modelcontextprotocol.server.transport.WebFluxStatelessServerTransport
+      newFullyQualifiedTypeName: org.springframework.ai.mcp.server.webflux.transport.WebFluxStatelessServerTransport
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: io.modelcontextprotocol.server.transport.WebMvcSseServerTransportProvider
+      newFullyQualifiedTypeName: org.springframework.ai.mcp.server.webmvc.transport.WebMvcSseServerTransportProvider
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: io.modelcontextprotocol.server.transport.WebMvcStreamableServerTransportProvider
+      newFullyQualifiedTypeName: org.springframework.ai.mcp.server.webmvc.transport.WebMvcStreamableServerTransportProvider
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: io.modelcontextprotocol.server.transport.WebMvcStatelessServerTransport
+      newFullyQualifiedTypeName: org.springframework.ai.mcp.server.webmvc.transport.WebMvcStatelessServerTransport
+
+  ####### OpenAI #######
+  - org.openrewrite.java.dependencies.ChangeDependency:
+      oldGroupId: org.springframework.ai
+      oldArtifactId: spring-ai-openai-sdk
+      newGroupId: org.springframework.ai
+      newArtifactId: spring-ai-openai
+  - org.openrewrite.java.dependencies.ChangeDependency:
+      oldGroupId: org.springframework.ai
+      oldArtifactId: spring-ai-starter-model-openai-sdk
+      newGroupId: org.springframework.ai
+      newArtifactId: spring-ai-starter-model-openai

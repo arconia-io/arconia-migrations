@@ -45,6 +45,8 @@ dependencies {
 recipeDependencies {
     parserClasspath "jakarta.servlet:jakarta.servlet-api:6.0.0"
 
+    parserClasspath "io.micrometer:micrometer-observation:1.16.1"
+
     parserClasspath "org.reactivestreams:reactive-streams:1.0.4"
 
     parserClasspath "org.springframework.ai:spring-ai-cassandra-store:1.0.0-M6"
@@ -68,6 +70,13 @@ recipeDependencies {
     parserClasspath "org.springframework.ai:spring-ai-advisors-vector-store:1.1.2"
     parserClasspath "org.springframework.ai:spring-ai-client-chat:1.1.2"
     parserClasspath "org.springframework.ai:spring-ai-vector-store:1.1.2"
+
+    parserClasspath "org.springframework.ai:spring-ai-client-chat:2.0.0-M4"
+    parserClasspath "org.springframework.ai:spring-ai-model:2.0.0-M4"
+
+    parserClasspath "org.springframework.ai:spring-ai-anthropic:2.0.0-M2"
+    parserClasspath "org.springframework.ai:spring-ai-model:2.0.0-M2"
+    parserClasspath "org.springframework.ai:spring-ai-anthropic:2.0.0-M4"
 
     parserClasspath "org.springframework.boot:spring-boot-autoconfigure:3.4.13"
     parserClasspath "org.springframework.boot:spring-boot-test:3.4.13"
@@ -104,6 +113,7 @@ recipeDependencies {
 
     parserClasspath "org.springframework:spring-beans:7.0.5"
     parserClasspath "org.springframework:spring-context:7.0.5"
+    parserClasspath "org.springframework:spring-core:7.0.5"
     parserClasspath "org.springframework:spring-test:7.0.5"
 }
 
