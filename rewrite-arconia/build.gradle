@@ -54,13 +54,29 @@ recipeDependencies {
     parserClasspath "io.arconia:arconia-docling:0.18.2"
 
     parserClasspath "io.arconia:arconia-multitenancy-core:0.25.0"
+    parserClasspath "io.arconia:arconia-multitenancy-core:0.26.0"
+    parserClasspath "io.arconia:arconia-multitenancy-web:0.26.0"
+    parserClasspath "io.arconia:arconia-multitenancy-web:0.27.0"
+
+    parserClasspath "io.arconia:arconia-observation:0.26.0"
+    parserClasspath "io.arconia:arconia-langsmith-semantic-conventions:0.26.0"
+    parserClasspath "io.arconia:arconia-openinference-semantic-conventions:0.26.0"
+    parserClasspath "io.arconia:arconia-opentelemetry-semantic-conventions:0.26.0"
+    parserClasspath "io.arconia:arconia-openinference-ai-semantic-conventions:0.27.0"
+    parserClasspath "io.arconia:arconia-opentelemetry-ai-semantic-conventions:0.27.0"
 
     parserClasspath "io.arconia:arconia-dev-services-core:0.21.0"
     parserClasspath "io.arconia:arconia-dev-services-otel-collector:0.21.0"
 
+    parserClasspath "org.springframework:spring-context:7.0.7"
+
     parserClasspath "org.springframework.boot:spring-boot-actuator-autoconfigure:3.5.11"
     parserClasspath "org.springframework.boot:spring-boot-micrometer-tracing-opentelemetry:4.0.5"
     parserClasspath "org.springframework.boot:spring-boot-opentelemetry:4.0.5"
+}
+
+repositories {
+    mavenLocal()
 }
 
 publishing {
