@@ -59,7 +59,7 @@ recipeList:
   - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
       groupId: org.cyclonedx
       artifactId: cyclonedx-gradle-plugin
-      newVersion: 3.0.x
+      newVersion: 3.x
 
   # Other Dependencies
   - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
@@ -74,7 +74,7 @@ recipeList:
   - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
       groupId: org.jobrunr
       artifactId: "*"
-      newVersion: 8.3.x
+      newVersion: 8.x
 
   # Managed Dependencies
   - io.arconia.rewrite.test.testcontainers.UpgradeTestcontainers_2
