@@ -70,6 +70,10 @@ rootProject {
             }
         }
     }
+
+    configurations.named("rewrite") {
+        canBeConsumed = false
+    }
 }
 ```
 
