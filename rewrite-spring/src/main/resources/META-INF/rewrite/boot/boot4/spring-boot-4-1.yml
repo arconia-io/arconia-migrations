@@ -1,0 +1,50 @@
+# Based on https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-4.0-Migration-Guide
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.UpgradeSpringBoot_4_1
+displayName: Migrate to Spring Boot 4.1
+description: Migrate a Spring Boot application to the latest Spring Boot 4.1.x release.
+tags:
+  - spring
+  - boot
+recipeList:
+  # Previous Version
+  - io.arconia.rewrite.spring.boot4.UpgradeSpringBoot_4_0
+
+  # Configuration Properties
+  - io.arconia.rewrite.spring.boot4.UpgradeSpringBootProperties_4_1
+
+  # Dependency Versions
+  - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
+      groupId: org.springframework.boot
+      artifactId: "*"
+      newVersion: 4.1.x
+  - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-dependencies
+      newVersion: 4.1.x
+      overrideManagedVersion: true
+  - org.openrewrite.gradle.plugins.UpgradePluginVersion:
+      pluginIdPattern: org.springframework.boot
+      newVersion: 4.1.x
+  - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-gradle-plugin
+      newVersion: 4.1.x
+  - org.openrewrite.maven.UpgradePluginVersion:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-maven-plugin
+      newVersion: 4.1.x
+  - org.openrewrite.maven.UpgradeParentVersion:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-parent
+      newVersion: 4.1.x
+
+  # GraalVM
+  - org.openrewrite.gradle.plugins.UpgradePluginVersion:
+      pluginIdPattern: org.graalvm.buildtools.native
+      newVersion: 1.1.x
+  - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
+      groupId: org.graalvm.buildtools
+      artifactId: native-gradle-plugin
+      newVersion: 1.1.x

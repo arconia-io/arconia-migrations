@@ -79,6 +79,7 @@ recipeList:
 
   # Managed Dependencies
   - io.arconia.rewrite.spring.cloud2025.UpgradeSpringCloud_2025_0
+  - io.arconia.rewrite.spring.ai.UpgradeSpringAi_1_1
 
   # Type Changes
   - org.openrewrite.java.ChangeType:

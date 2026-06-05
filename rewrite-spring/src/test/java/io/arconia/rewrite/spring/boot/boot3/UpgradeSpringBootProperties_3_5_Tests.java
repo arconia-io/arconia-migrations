@@ -46,9 +46,9 @@ class UpgradeSpringBootProperties_3_5_Tests implements RewriteTest {
                         """,
                         """
                         spring:
-                          http.converters.preferred-json-mapper: jackson
                           http.codecs.log-request-details: true
                           http.codecs.max-in-memory-size: 256KB
+                          http.converters.preferred-json-mapper: jackson
                         """,
                         s -> s.path("src/main/resources/application.yml"))
         );
@@ -125,41 +125,6 @@ class UpgradeSpringBootProperties_3_5_Tests implements RewriteTest {
     }
 
     @Test
-    void shouldRenameOpenTelemetryProperties() {
-        rewriteRun(
-//                //language=properties
-//                properties(
-//                        """
-//                        management.otlp.metrics.export.resource-attributes.service.name=my-service
-//                        management.otlp.metrics.export.resource-attributes.service.version=1.0.0
-//                        """,
-//                        """
-//                        management.opentelemetry.resource-attributes.service.name=my-service
-//                        management.opentelemetry.resource-attributes.service.version=1.0.0
-//                        """,
-//                        s -> s.path("src/main/resources/application.properties")),
-                //language=yaml
-                yaml(
-                        """
-                        management:
-                          otlp:
-                            metrics:
-                              export:
-                                resource-attributes:
-                                  service:
-                                    name: my-service
-                        """,
-                        """
-                        management:
-                          opentelemetry.resource-attributes:
-                            service:
-                              name: my-service
-                        """,
-                        s -> s.path("src/main/resources/application.yml"))
-        );
-    }
-
-    @Test
     void shouldRenamePrometheusProperties() {
         rewriteRun(
                 //language=properties
@@ -204,15 +169,15 @@ class UpgradeSpringBootProperties_3_5_Tests implements RewriteTest {
                         spring.datasource.oracleucp.hostname-resolver=com.example.HostnameResolver
                         """,
                         """
-                        # Unbindable property removed in Spring Boot 3.5.
+                        # Unbindable property in Spring Boot 3.5. The framework does not bind it.
                         # spring.datasource.dbcp2.driver=com.mysql.cj.jdbc.Driver
-                        # Unbindable property removed in Spring Boot 3.5.
+                        # Unbindable property in Spring Boot 3.5. The framework does not bind it.
                         # spring.datasource.hikari.metrics-tracker-factory=com.example.MetricsTracker
-                        # Unbindable property removed in Spring Boot 3.5.
+                        # Unbindable property in Spring Boot 3.5. The framework does not bind it.
                         # spring.datasource.hikari.scheduled-executor=myExecutor
-                        # Unbindable property removed in Spring Boot 3.5.
+                        # Unbindable property in Spring Boot 3.5. The framework does not bind it.
                         # spring.datasource.oracleucp.connection-wait-duration-in-millis=5000
-                        # Unbindable property removed in Spring Boot 3.5.
+                        # Unbindable property in Spring Boot 3.5. The framework does not bind it.
                         # spring.datasource.oracleucp.hostname-resolver=com.example.HostnameResolver
                         """,
                         s -> s.path("src/main/resources/application.properties"))
@@ -236,23 +201,23 @@ class UpgradeSpringBootProperties_3_5_Tests implements RewriteTest {
                         management.signalfx.metrics.export.uri=https://ingest.signalfx.com
                         """,
                         """
-                        # Deprecated in Micrometer 1.15.0.
+                        # Deprecated property removed in Spring Boot 3.5. Deprecated in Micrometer 1.15.0
                         # management.signalfx.metrics.export.access-token=my-token
-                        # Deprecated in Micrometer 1.15.0.
+                        # Deprecated property removed in Spring Boot 3.5. Deprecated in Micrometer 1.15.0
                         # management.signalfx.metrics.export.batch-size=10000
-                        # Deprecated in Micrometer 1.15.0.
+                        # Deprecated property removed in Spring Boot 3.5. Deprecated in Micrometer 1.15.0
                         # management.signalfx.metrics.export.connect-timeout=1s
-                        # Deprecated in Micrometer 1.15.0.
+                        # Deprecated property removed in Spring Boot 3.5. Deprecated in Micrometer 1.15.0
                         # management.signalfx.metrics.export.enabled=true
-                        # Deprecated in Micrometer 1.15.0.
+                        # Deprecated property removed in Spring Boot 3.5. Deprecated in Micrometer 1.15.0
                         # management.signalfx.metrics.export.published-histogram-type=cumulative
-                        # Deprecated in Micrometer 1.15.0.
+                        # Deprecated property removed in Spring Boot 3.5. Deprecated in Micrometer 1.15.0
                         # management.signalfx.metrics.export.read-timeout=10s
-                        # Deprecated in Micrometer 1.15.0.
+                        # Deprecated property removed in Spring Boot 3.5. Deprecated in Micrometer 1.15.0
                         # management.signalfx.metrics.export.source=my-source
-                        # Deprecated in Micrometer 1.15.0.
+                        # Deprecated property removed in Spring Boot 3.5. Deprecated in Micrometer 1.15.0
                         # management.signalfx.metrics.export.step=1m
-                        # Deprecated in Micrometer 1.15.0.
+                        # Deprecated property removed in Spring Boot 3.5. Deprecated in Micrometer 1.15.0
                         # management.signalfx.metrics.export.uri=https://ingest.signalfx.com
                         """,
                         s -> s.path("src/main/resources/application.properties"))

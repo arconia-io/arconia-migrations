@@ -7,8 +7,9 @@ tags:
   - spring
   - ai
 recipeList:
-  # Previous Versions
-  - io.arconia.rewrite.spring.ai.UpgradeSpringAi_1_1
+
+  # Configuration Properties
+  - io.arconia.rewrite.spring.ai.UpgradeSpringAiProperties_2_0
 
   # Dependency Versions
   - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
@@ -16,15 +17,36 @@ recipeList:
       artifactId: "*"
       newVersion: 2.0.x
       overrideManagedVersion: false
+      versionPattern: "-M\\d+"
 
   ####### Common #######
 
   - io.arconia.rewrite.spring.ai.UseChatOptionsBuilder
 
-  # Change Type
+  # Dependency Changes
+#  - org.openrewrite.java.dependencies.ChangeDependency:
+#      oldGroupId: org.springframework.ai
+#      oldArtifactId: spring-ai-advisors-vector-store
+#      newGroupId: org.springframework.ai
+#      newArtifactId: spring-ai-vector-store-advisor
+
+  # Type Changes
   - org.openrewrite.java.ChangeType:
       oldFullyQualifiedTypeName: org.opensearch.testcontainers.OpensearchContainer
       newFullyQualifiedTypeName: org.opensearch.testcontainers.OpenSearchContainer
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.ai.chat.client.advisor.PromptChatMemoryAdvisor
+      newFullyQualifiedTypeName: org.springframework.ai.chat.client.advisor.MessageChatMemoryAdvisor
+
+  # Method Changes
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: org.springframework.ai.chat.client.ChatClient.ChatClientRequestSpec toolCallbacks(org.springframework.ai.tool.ToolCallback...)
+      newMethodName: tools
+      matchOverrides: true
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: org.springframework.ai.chat.client.ChatClient.ChatClientRequestSpec toolCallbacks(org.springframework.ai.tool.ToolCallbackProvider...)
+      newMethodName: tools
+      matchOverrides: true
 
   ####### Anthropic #######
 
@@ -40,9 +62,6 @@ recipeList:
   - org.openrewrite.java.ChangeType:
       oldFullyQualifiedTypeName: org.springframework.ai.anthropic.api.AnthropicCacheTtl
       newFullyQualifiedTypeName: org.springframework.ai.anthropic.AnthropicCacheTtl
-  - org.openrewrite.java.ChangeType:
-      oldFullyQualifiedTypeName: org.springframework.ai.anthropic.api.utils.CacheBreakpointTracker
-      newFullyQualifiedTypeName: org.springframework.ai.anthropic.CacheBreakpointTracker
   - org.openrewrite.java.ChangeType:
       oldFullyQualifiedTypeName: org.springframework.ai.anthropic.api.utils.CacheEligibilityResolver
       newFullyQualifiedTypeName: org.springframework.ai.anthropic.CacheEligibilityResolver
@@ -89,7 +108,7 @@ recipeList:
       oldPackageName: org.springaicommunity.mcp.provider
       newPackageName: org.springframework.ai.mcp.annotation.provider
 
-  # Change Type
+  # Type Changes
   - org.openrewrite.java.ChangeType:
       oldFullyQualifiedTypeName: io.modelcontextprotocol.client.transport.WebFluxSseClientTransport
       newFullyQualifiedTypeName: org.springframework.ai.mcp.client.webflux.transport.WebFluxSseClientTransport
@@ -116,6 +135,8 @@ recipeList:
       newFullyQualifiedTypeName: org.springframework.ai.mcp.server.webmvc.transport.WebMvcStatelessServerTransport
 
   ####### OpenAI #######
+
+  # Dependency Changes
   - org.openrewrite.java.dependencies.ChangeDependency:
       oldGroupId: org.springframework.ai
       oldArtifactId: spring-ai-openai-sdk
@@ -126,3 +147,30 @@ recipeList:
       oldArtifactId: spring-ai-starter-model-openai-sdk
       newGroupId: org.springframework.ai
       newArtifactId: spring-ai-starter-model-openai
+  - org.openrewrite.java.dependencies.RemoveDependency:
+      groupId: org.springframework.ai
+      artifactId: spring-ai-starter-model-azure-openai
+  - org.openrewrite.java.dependencies.RemoveDependency:
+      groupId: org.springframework.ai
+      artifactId: spring-ai-autoconfigure-model-azure-openai
+  - org.openrewrite.java.dependencies.RemoveDependency:
+      groupId: org.springframework.ai
+      artifactId: spring-ai-azure-openai
+  - org.openrewrite.java.dependencies.RemoveDependency:
+      groupId: org.springframework.ai
+      artifactId: spring-ai-starter-model-openai-sdk
+  - org.openrewrite.java.dependencies.RemoveDependency:
+      groupId: org.springframework.ai
+      artifactId: spring-ai-autoconfigure-model-openai-sdk
+  - org.openrewrite.java.dependencies.RemoveDependency:
+      groupId: org.springframework.ai
+      artifactId: spring-ai-openai-sdk
+
+  ####### Other #######
+
+  - org.openrewrite.java.dependencies.RemoveDependency:
+      groupId: org.springframework.ai
+      artifactId: spring-ai-hanadb-store
+  - org.openrewrite.java.dependencies.RemoveDependency:
+      groupId: org.springframework.ai
+      artifactId: spring-ai-spring-cloud-bindings

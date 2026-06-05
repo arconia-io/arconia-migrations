@@ -1,0 +1,118 @@
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.cloud2025.UpgradeSpringCloudProperties_2025_0
+displayName: Migrate Spring Cloud properties to 2025.0
+description: Migrate Spring Cloud properties found in configuration data files (YAML and Properties).
+tags:
+  - spring
+  - cloud
+recipeList:
+  - io.arconia.rewrite.spring.cloud2025.UpgradeSpringCloudPropertiesGenerated_2025_0
+
+  # Actuator endpoint access-control value migrations.
+  # After the generated recipe renames `management.endpoint.*.enabled` to `*.access`,
+  # convert the boolean value to the new enum: true -> read_only, false -> none.
+  - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
+      propertyKey: management.endpoint.bindings.access
+      oldPropertyValue: "true"
+      newPropertyValue: "read_only"
+  - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
+      propertyKey: management.endpoint.bindings.access
+      oldPropertyValue: "false"
+      newPropertyValue: "none"
+  - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
+      propertyKey: management.endpoint.busenv.access
+      oldPropertyValue: "true"
+      newPropertyValue: "read_only"
+  - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
+      propertyKey: management.endpoint.busenv.access
+      oldPropertyValue: "false"
+      newPropertyValue: "none"
+  - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
+      propertyKey: management.endpoint.busrefresh.access
+      oldPropertyValue: "true"
+      newPropertyValue: "read_only"
+  - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
+      propertyKey: management.endpoint.busrefresh.access
+      oldPropertyValue: "false"
+      newPropertyValue: "none"
+  - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
+      propertyKey: management.endpoint.busshutdown.access
+      oldPropertyValue: "true"
+      newPropertyValue: "read_only"
+  - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
+      propertyKey: management.endpoint.busshutdown.access
+      oldPropertyValue: "false"
+      newPropertyValue: "none"
+  - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
+      propertyKey: management.endpoint.channels.access
+      oldPropertyValue: "true"
+      newPropertyValue: "read_only"
+  - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
+      propertyKey: management.endpoint.channels.access
+      oldPropertyValue: "false"
+      newPropertyValue: "none"
+  - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
+      propertyKey: management.endpoint.consul.access
+      oldPropertyValue: "true"
+      newPropertyValue: "read_only"
+  - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
+      propertyKey: management.endpoint.consul.access
+      oldPropertyValue: "false"
+      newPropertyValue: "none"
+  - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
+      propertyKey: management.endpoint.features.access
+      oldPropertyValue: "true"
+      newPropertyValue: "read_only"
+  - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
+      propertyKey: management.endpoint.features.access
+      oldPropertyValue: "false"
+      newPropertyValue: "none"
+  - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
+      propertyKey: management.endpoint.functions.access
+      oldPropertyValue: "true"
+      newPropertyValue: "read_only"
+  - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
+      propertyKey: management.endpoint.functions.access
+      oldPropertyValue: "false"
+      newPropertyValue: "none"
+  - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
+      propertyKey: management.endpoint.gateway.access
+      oldPropertyValue: "true"
+      newPropertyValue: "read_only"
+  - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
+      propertyKey: management.endpoint.gateway.access
+      oldPropertyValue: "false"
+      newPropertyValue: "none"
+  - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
+      propertyKey: management.endpoint.kafkastreamstopology.access
+      oldPropertyValue: "true"
+      newPropertyValue: "read_only"
+  - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
+      propertyKey: management.endpoint.kafkastreamstopology.access
+      oldPropertyValue: "false"
+      newPropertyValue: "none"
+  - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
+      propertyKey: management.endpoint.refresh.access
+      oldPropertyValue: "true"
+      newPropertyValue: "read_only"
+  - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
+      propertyKey: management.endpoint.refresh.access
+      oldPropertyValue: "false"
+      newPropertyValue: "none"
+  - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
+      propertyKey: management.endpoint.restart.access
+      oldPropertyValue: "true"
+      newPropertyValue: "read_only"
+  - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
+      propertyKey: management.endpoint.restart.access
+      oldPropertyValue: "false"
+      newPropertyValue: "none"
+  - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
+      propertyKey: management.endpoint.serviceregistry.access
+      oldPropertyValue: "true"
+      newPropertyValue: "read_only"
+  - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
+      propertyKey: management.endpoint.serviceregistry.access
+      oldPropertyValue: "false"
+      newPropertyValue: "none"

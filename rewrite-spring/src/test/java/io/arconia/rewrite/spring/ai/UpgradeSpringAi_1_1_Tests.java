@@ -12,9 +12,6 @@ import static org.openrewrite.java.Assertions.java;
 import static org.openrewrite.java.Assertions.mavenProject;
 import static org.openrewrite.java.Assertions.srcMainJava;
 
-/**
- * Tests for "io.arconia.rewrite.spring.ai.UpgradeSpringAi_1_1".
- */
 public class UpgradeSpringAi_1_1_Tests implements RewriteTest {
 
     @Override

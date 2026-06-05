@@ -8,63 +8,7 @@ tags:
   - spring
   - boot
 recipeList:
-  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
-      oldPropertyKey: spring.mvc.converters.preferred-json-mapper
-      newPropertyKey: spring.http.converters.preferred-json-mapper
-  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
-      oldPropertyKey: spring.codec.log-request-details
-      newPropertyKey: spring.http.codecs.log-request-details
-  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
-      oldPropertyKey: spring.codec.max-in-memory-size
-      newPropertyKey: spring.http.codecs.max-in-memory-size
-
-  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
-      oldPropertyKey: spring.graphql.path
-      newPropertyKey: spring.graphql.http.path
-  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
-      oldPropertyKey: spring.graphql.sse.timeout
-      newPropertyKey: spring.graphql.http.sse.timeout
-
-  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
-      oldPropertyKey: spring.groovy.template.configuration.auto-escape
-      newPropertyKey: spring.groovy.template.auto-escape
-  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
-      oldPropertyKey: spring.groovy.template.configuration.auto-indent
-      newPropertyKey: spring.groovy.template.auto-indent
-  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
-      oldPropertyKey: spring.groovy.template.configuration.auto-indent-string
-      newPropertyKey: spring.groovy.template.auto-indent-string
-  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
-      oldPropertyKey: spring.groovy.template.configuration.auto-new-line
-      newPropertyKey: spring.groovy.template.auto-new-line
-  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
-      oldPropertyKey: spring.groovy.template.configuration.base-template-class
-      newPropertyKey: spring.groovy.template.base-template-class
-  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
-      oldPropertyKey: spring.groovy.template.configuration.cache-templates
-      newPropertyKey: spring.groovy.template.cache
-  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
-      oldPropertyKey: spring.groovy.template.configuration.declaration-encoding
-      newPropertyKey: spring.groovy.template.declaration-encoding
-  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
-      oldPropertyKey: spring.groovy.template.configuration.expand-empty-elements
-      newPropertyKey: spring.groovy.template.expand-empty-elements
-  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
-      oldPropertyKey: spring.groovy.template.configuration.locale
-      newPropertyKey: spring.groovy.template.locale
-  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
-      oldPropertyKey: spring.groovy.template.configuration.new-line-string
-      newPropertyKey: spring.groovy.template.new-line-string
-  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
-      oldPropertyKey: spring.groovy.template.configuration.resource-loader-path
-      newPropertyKey: spring.groovy.template.resource-loader-path
-  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
-      oldPropertyKey: spring.groovy.template.configuration.use-double-quotes
-      newPropertyKey: spring.groovy.template.use-double-quotes
-
-  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
-      oldPropertyKey: management.otlp.metrics.export.resource-attributes
-      newPropertyKey: management.opentelemetry.resource-attributes
+  - io.arconia.rewrite.spring.boot3.UpgradeSpringBootPropertiesGenerated_3_5
 
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: management.prometheus.metrics.export.pushgateway.base-url
@@ -78,53 +22,6 @@ recipeList:
       propertyKey: management.prometheus.metrics.export.histogram-flavor
       comment: "Deprecated property removed in Spring Boot 3.5."
 
-  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
-      propertyKey: spring.datasource.dbcp2.driver
-      comment: "Unbindable property removed in Spring Boot 3.5."
-  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
-      propertyKey: spring.datasource.hikari.metrics-tracker-factory
-      comment: "Unbindable property removed in Spring Boot 3.5."
-  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
-      propertyKey: spring.datasource.hikari.scheduled-executor
-      comment: "Unbindable property removed in Spring Boot 3.5."
-  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
-      propertyKey: spring.datasource.oracleucp.connection-wait-duration-in-millis
-      comment: "Unbindable property removed in Spring Boot 3.5."
-  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
-      propertyKey: spring.datasource.oracleucp.hostname-resolver
-      comment: "Unbindable property removed in Spring Boot 3.5."
-
-  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
-      propertyKey: management.signalfx.metrics.export.access-token
-      comment: "Deprecated in Micrometer 1.15.0."
-  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
-      propertyKey: management.signalfx.metrics.export.batch-size
-      comment: "Deprecated in Micrometer 1.15.0."
-  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
-      propertyKey: management.signalfx.metrics.export.connect-timeout
-      comment: "Deprecated in Micrometer 1.15.0."
-  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
-      propertyKey: management.signalfx.metrics.export.enabled
-      comment: "Deprecated in Micrometer 1.15.0."
-  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
-      propertyKey: management.signalfx.metrics.export.published-histogram-type
-      comment: "Deprecated in Micrometer 1.15.0."
-  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
-      propertyKey: management.signalfx.metrics.export.read-timeout
-      comment: "Deprecated in Micrometer 1.15.0."
-  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
-      propertyKey: management.signalfx.metrics.export.source
-      comment: "Deprecated in Micrometer 1.15.0."
-  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
-      propertyKey: management.signalfx.metrics.export.step
-      comment: "Deprecated in Micrometer 1.15.0."
-  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
-      propertyKey: management.signalfx.metrics.export.uri
-      comment: "Deprecated in Micrometer 1.15.0."
-
-  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
-      oldPropertyKey: management.endpoint.auditevents.enabled
-      newPropertyKey: management.endpoint.auditevents.access
   - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
       propertyKey: management.endpoint.auditevents.access
       oldPropertyValue: "true"
@@ -133,9 +30,6 @@ recipeList:
       propertyKey: management.endpoint.auditevents.access
       oldPropertyValue: "false"
       newPropertyValue: "none"
-  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
-      oldPropertyKey: management.endpoint.beans.enabled
-      newPropertyKey: management.endpoint.beans.access
   - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
       propertyKey: management.endpoint.beans.access
       oldPropertyValue: "true"
@@ -144,9 +38,6 @@ recipeList:
       propertyKey: management.endpoint.beans.access
       oldPropertyValue: "false"
       newPropertyValue: "none"
-  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
-      oldPropertyKey: management.endpoint.caches.enabled
-      newPropertyKey: management.endpoint.caches.access
   - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
       propertyKey: management.endpoint.caches.access
       oldPropertyValue: "true"
@@ -155,9 +46,6 @@ recipeList:
       propertyKey: management.endpoint.caches.access
       oldPropertyValue: "false"
       newPropertyValue: "none"
-  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
-      oldPropertyKey: management.endpoint.conditions.enabled
-      newPropertyKey: management.endpoint.conditions.access
   - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
       propertyKey: management.endpoint.conditions.access
       oldPropertyValue: "true"
@@ -166,9 +54,6 @@ recipeList:
       propertyKey: management.endpoint.conditions.access
       oldPropertyValue: "false"
       newPropertyValue: "none"
-  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
-      oldPropertyKey: management.endpoint.configprops.enabled
-      newPropertyKey: management.endpoint.configprops.access
   - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
       propertyKey: management.endpoint.configprops.access
       oldPropertyValue: "true"
@@ -177,9 +62,6 @@ recipeList:
       propertyKey: management.endpoint.configprops.access
       oldPropertyValue: "false"
       newPropertyValue: "none"
-  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
-      oldPropertyKey: management.endpoint.env.enabled
-      newPropertyKey: management.endpoint.env.access
   - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
       propertyKey: management.endpoint.env.access
       oldPropertyValue: "true"
@@ -188,9 +70,6 @@ recipeList:
       propertyKey: management.endpoint.env.access
       oldPropertyValue: "false"
       newPropertyValue: "none"
-  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
-      oldPropertyKey: management.endpoint.flyway.enabled
-      newPropertyKey: management.endpoint.flyway.access
   - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
       propertyKey: management.endpoint.flyway.access
       oldPropertyValue: "true"
@@ -199,9 +78,6 @@ recipeList:
       propertyKey: management.endpoint.flyway.access
       oldPropertyValue: "false"
       newPropertyValue: "none"
-  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
-      oldPropertyKey: management.endpoint.health.enabled
-      newPropertyKey: management.endpoint.health.access
   - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
       propertyKey: management.endpoint.health.access
       oldPropertyValue: "true"
@@ -210,9 +86,6 @@ recipeList:
       propertyKey: management.endpoint.health.access
       oldPropertyValue: "false"
       newPropertyValue: "none"
-  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
-      oldPropertyKey: management.endpoint.heapdump.enabled
-      newPropertyKey: management.endpoint.heapdump.access
   - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
       propertyKey: management.endpoint.heapdump.access
       oldPropertyValue: "true"
@@ -221,9 +94,6 @@ recipeList:
       propertyKey: management.endpoint.heapdump.access
       oldPropertyValue: "false"
       newPropertyValue: "none"
-  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
-      oldPropertyKey: management.endpoint.httpexchanges.enabled
-      newPropertyKey: management.endpoint.httpexchanges.access
   - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
       propertyKey: management.endpoint.httpexchanges.access
       oldPropertyValue: "true"
@@ -232,9 +102,6 @@ recipeList:
       propertyKey: management.endpoint.httpexchanges.access
       oldPropertyValue: "false"
       newPropertyValue: "none"
-  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
-      oldPropertyKey: management.endpoint.info.enabled
-      newPropertyKey: management.endpoint.info.access
   - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
       propertyKey: management.endpoint.info.access
       oldPropertyValue: "true"
@@ -243,9 +110,6 @@ recipeList:
       propertyKey: management.endpoint.info.access
       oldPropertyValue: "false"
       newPropertyValue: "none"
-  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
-      oldPropertyKey: management.endpoint.integrationgraph.enabled
-      newPropertyKey: management.endpoint.integrationgraph.access
   - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
       propertyKey: management.endpoint.integrationgraph.access
       oldPropertyValue: "true"
@@ -254,9 +118,6 @@ recipeList:
       propertyKey: management.endpoint.integrationgraph.access
       oldPropertyValue: "false"
       newPropertyValue: "none"
-  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
-      oldPropertyKey: management.endpoint.liquibase.enabled
-      newPropertyKey: management.endpoint.liquibase.access
   - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
       propertyKey: management.endpoint.liquibase.access
       oldPropertyValue: "true"
@@ -265,9 +126,6 @@ recipeList:
       propertyKey: management.endpoint.liquibase.access
       oldPropertyValue: "false"
       newPropertyValue: "none"
-  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
-      oldPropertyKey: management.endpoint.logfile.enabled
-      newPropertyKey: management.endpoint.logfile.access
   - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
       propertyKey: management.endpoint.logfile.access
       oldPropertyValue: "true"
@@ -276,9 +134,6 @@ recipeList:
       propertyKey: management.endpoint.logfile.access
       oldPropertyValue: "false"
       newPropertyValue: "none"
-  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
-      oldPropertyKey: management.endpoint.loggers.enabled
-      newPropertyKey: management.endpoint.loggers.access
   - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
       propertyKey: management.endpoint.loggers.access
       oldPropertyValue: "true"
@@ -287,9 +142,6 @@ recipeList:
       propertyKey: management.endpoint.loggers.access
       oldPropertyValue: "false"
       newPropertyValue: "none"
-  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
-      oldPropertyKey: management.endpoint.mappings.enabled
-      newPropertyKey: management.endpoint.mappings.access
   - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
       propertyKey: management.endpoint.mappings.access
       oldPropertyValue: "true"
@@ -298,9 +150,6 @@ recipeList:
       propertyKey: management.endpoint.mappings.access
       oldPropertyValue: "false"
       newPropertyValue: "none"
-  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
-      oldPropertyKey: management.endpoint.metrics.enabled
-      newPropertyKey: management.endpoint.metrics.access
   - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
       propertyKey: management.endpoint.metrics.access
       oldPropertyValue: "true"
@@ -309,9 +158,6 @@ recipeList:
       propertyKey: management.endpoint.metrics.access
       oldPropertyValue: "false"
       newPropertyValue: "none"
-  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
-      oldPropertyKey: management.endpoint.prometheus.enabled
-      newPropertyKey: management.endpoint.prometheus.access
   - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
       propertyKey: management.endpoint.prometheus.access
       oldPropertyValue: "true"
@@ -320,9 +166,6 @@ recipeList:
       propertyKey: management.endpoint.prometheus.access
       oldPropertyValue: "false"
       newPropertyValue: "none"
-  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
-      oldPropertyKey: management.endpoint.quartz.enabled
-      newPropertyKey: management.endpoint.quartz.access
   - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
       propertyKey: management.endpoint.quartz.access
       oldPropertyValue: "true"
@@ -331,9 +174,6 @@ recipeList:
       propertyKey: management.endpoint.quartz.access
       oldPropertyValue: "false"
       newPropertyValue: "none"
-  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
-      oldPropertyKey: management.endpoint.sbom.enabled
-      newPropertyKey: management.endpoint.sbom.access
   - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
       propertyKey: management.endpoint.sbom.access
       oldPropertyValue: "true"
@@ -342,9 +182,6 @@ recipeList:
       propertyKey: management.endpoint.sbom.access
       oldPropertyValue: "false"
       newPropertyValue: "none"
-  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
-      oldPropertyKey: management.endpoint.scheduledtasks.enabled
-      newPropertyKey: management.endpoint.scheduledtasks.access
   - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
       propertyKey: management.endpoint.scheduledtasks.access
       oldPropertyValue: "true"
@@ -353,9 +190,6 @@ recipeList:
       propertyKey: management.endpoint.scheduledtasks.access
       oldPropertyValue: "false"
       newPropertyValue: "none"
-  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
-      oldPropertyKey: management.endpoint.sessions.enabled
-      newPropertyKey: management.endpoint.sessions.access
   - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
       propertyKey: management.endpoint.sessions.access
       oldPropertyValue: "true"
@@ -364,9 +198,6 @@ recipeList:
       propertyKey: management.endpoint.sessions.access
       oldPropertyValue: "false"
       newPropertyValue: "none"
-  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
-      oldPropertyKey: management.endpoint.shutdown.enabled
-      newPropertyKey: management.endpoint.shutdown.access
   - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
       propertyKey: management.endpoint.shutdown.access
       oldPropertyValue: "true"
@@ -375,9 +206,6 @@ recipeList:
       propertyKey: management.endpoint.shutdown.access
       oldPropertyValue: "false"
       newPropertyValue: "none"
-  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
-      oldPropertyKey: management.endpoint.startup.enabled
-      newPropertyKey: management.endpoint.startup.access
   - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
       propertyKey: management.endpoint.startup.access
       oldPropertyValue: "true"
@@ -386,9 +214,6 @@ recipeList:
       propertyKey: management.endpoint.startup.access
       oldPropertyValue: "false"
       newPropertyValue: "none"
-  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
-      oldPropertyKey: management.endpoint.threaddump.enabled
-      newPropertyKey: management.endpoint.threaddump.access
   - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
       propertyKey: management.endpoint.threaddump.access
       oldPropertyValue: "true"

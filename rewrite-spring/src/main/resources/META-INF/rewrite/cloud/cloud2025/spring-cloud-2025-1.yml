@@ -8,14 +8,13 @@ tags:
   - cloud
 recipeList:
 
+  # Configuration Properties
+  - io.arconia.rewrite.spring.cloud2025.UpgradeSpringCloudProperties_2025_1
+
   # Dependency Versions
   - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
       groupId: org.springframework.cloud
       artifactId: spring-cloud-dependencies
-      newVersion: 2025.1.x
-  - org.openrewrite.maven.UpgradeParentVersion:
-      groupId: org.springframework.cloud
-      artifactId: spring-cloud-starter-parent
       newVersion: 2025.1.x
   - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
       groupId: org.springframework.cloud

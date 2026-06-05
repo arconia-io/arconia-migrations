@@ -13,11 +13,8 @@ The recipe will:
 * Upgrade Jackson to 3.0 ([OpenRewrite Recipe](https://docs.openrewrite.org/recipes/java/jackson/upgradejackson_2_3))
 * Upgrade JUnit to 6.0 (Arconia Recipe)
 * Upgrade Testcontainers to 2.0 (Arconia Recipe)
-* Upgrade Spring Boot to 4.0 (Arconia Recipe).
-
-If your project uses Gradle, the recipe will also:
-
-* Upgrade Gradle to 9.x ([OpenRewrite Recipe](https://docs.openrewrite.org/recipes/gradle/updategradlewrapper))
+* Upgrade Spring Boot to 4.0 (Arconia Recipe)
+* Upgrade Spring AI to 2.0 (Arconia Recipe).
 
 The recipes use the foundational recipes from [OpenRewrite](https://docs.openrewrite.org), including recipes for working with Java, Gradle, and Maven.
 

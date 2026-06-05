@@ -47,6 +47,8 @@ recipeDependencies {
 
     parserClasspath "io.micrometer:micrometer-observation:1.16.1"
 
+    parserClasspath "org.opensearch:opensearch-testcontainers:2.1.3"
+
     parserClasspath "org.reactivestreams:reactive-streams:1.0.4"
 
     parserClasspath "org.springframework.ai:spring-ai-cassandra-store:1.0.0-M6"
@@ -57,26 +59,35 @@ recipeDependencies {
 
     parserClasspath "org.springframework.ai:spring-ai-mistral-ai:1.0.0-M7"
 
-    parserClasspath "org.springframework.ai:spring-ai-advisors-vector-store:1.0.3"
-    parserClasspath "org.springframework.ai:spring-ai-bedrock:1.0.3"
-    parserClasspath "org.springframework.ai:spring-ai-client-chat:1.0.3"
-    parserClasspath "org.springframework.ai:spring-ai-commons:1.0.3"
-    parserClasspath "org.springframework.ai:spring-ai-model:1.0.3"
-    parserClasspath "org.springframework.ai:spring-ai-openai:1.0.3"
-    parserClasspath "org.springframework.ai:spring-ai-vector-store:1.0.3"
-    parserClasspath "org.springframework.ai:spring-ai-autoconfigure-mcp-client:1.0.3"
-    parserClasspath "org.springframework.ai:spring-ai-autoconfigure-mcp-server:1.0.3"
+    parserClasspath "org.springframework.ai:spring-ai-advisors-vector-store:1.0.8"
+    parserClasspath "org.springframework.ai:spring-ai-bedrock:1.0.8"
+    parserClasspath "org.springframework.ai:spring-ai-client-chat:1.0.8"
+    parserClasspath "org.springframework.ai:spring-ai-commons:1.0.8"
+    parserClasspath "org.springframework.ai:spring-ai-model:1.0.8"
+    parserClasspath "org.springframework.ai:spring-ai-openai:1.0.8"
+    parserClasspath "org.springframework.ai:spring-ai-vector-store:1.0.8"
+    parserClasspath "org.springframework.ai:spring-ai-autoconfigure-mcp-client:1.0.8"
+    parserClasspath "org.springframework.ai:spring-ai-autoconfigure-mcp-server:1.0.8"
 
-    parserClasspath "org.springframework.ai:spring-ai-advisors-vector-store:1.1.2"
-    parserClasspath "org.springframework.ai:spring-ai-client-chat:1.1.2"
-    parserClasspath "org.springframework.ai:spring-ai-vector-store:1.1.2"
-
-    parserClasspath "org.springframework.ai:spring-ai-client-chat:2.0.0-M4"
-    parserClasspath "org.springframework.ai:spring-ai-model:2.0.0-M4"
+    parserClasspath "org.springframework.ai:spring-ai-advisors-vector-store:1.1.7"
+    parserClasspath "org.springframework.ai:spring-ai-client-chat:1.1.7"
+    parserClasspath "org.springframework.ai:spring-ai-model:1.1.7"
+    parserClasspath "org.springframework.ai:spring-ai-vector-store:1.1.7"
 
     parserClasspath "org.springframework.ai:spring-ai-anthropic:2.0.0-M2"
     parserClasspath "org.springframework.ai:spring-ai-model:2.0.0-M2"
+
+    parserClasspath "org.springframework.ai:spring-ai-client-chat:2.0.0-M4"
+    parserClasspath "org.springframework.ai:spring-ai-model:2.0.0-M4"
     parserClasspath "org.springframework.ai:spring-ai-anthropic:2.0.0-M4"
+    parserClasspath "org.springframework.ai:spring-ai-openai:2.0.0-M5"
+
+    parserClasspath "org.springframework.ai:spring-ai-client-chat:2.0.0-M8"
+    parserClasspath "org.springframework.ai:spring-ai-commons:2.0.0-M8"
+    parserClasspath "org.springframework.ai:spring-ai-model:2.0.0-M8"
+
+    parserClasspath "io.modelcontextprotocol.sdk:mcp-spring-webflux:0.18.2"
+    parserClasspath "io.modelcontextprotocol.sdk:mcp-spring-webmvc:0.18.2"
 
     parserClasspath "org.springframework.boot:spring-boot-autoconfigure:3.4.13"
     parserClasspath "org.springframework.boot:spring-boot-test:3.4.13"
@@ -121,6 +132,30 @@ recipeDependencies {
 //tasks.withType(JavaCompile).configureEach {
 //    options.compilerArgs.add("-Arewrite.generatedAnnotation=jakarta.annotation.Generated")
 //}
+
+tasks.register("generateSpringAiProperties", JavaExec) {
+    description = "Generate Spring AI properties migration recipes from a given spring-ai-bom version, e.g. --args='2.0.0'."
+    group = "build"
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = "io.arconia.rewrite.spring.ai.internal.SpringAiPropertiesMigrationGenerator"
+    workingDir = rootProject.projectDir
+}
+
+tasks.register("generateSpringBootProperties", JavaExec) {
+    description = "Generate Spring Boot properties migration recipes from a given spring-boot-dependencies version, e.g. --args='4.1.0'."
+    group = "build"
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = "io.arconia.rewrite.spring.boot.internal.SpringBootPropertiesMigrationGenerator"
+    workingDir = rootProject.projectDir
+}
+
+tasks.register("generateSpringCloudProperties", JavaExec) {
+    description = "Generate Spring Cloud properties migration recipes from a given spring-cloud-dependencies version, e.g. --args='2025.0.0'."
+    group = "build"
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = "io.arconia.rewrite.spring.cloud.internal.SpringCloudPropertiesMigrationGenerator"
+    workingDir = rootProject.projectDir
+}
 
 publishing {
     publications {
