@@ -32,6 +32,9 @@ name: io.arconia.rewrite.spring.framework7.MigrateSpringCore_7_0
 displayName: Migrate the Spring Core module to Spring Framework 7.0
 recipeList:
   - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.lang.NonNull
+      newFullyQualifiedTypeName: org.jspecify.annotations.NonNull
+  - org.openrewrite.java.ChangeType:
       oldFullyQualifiedTypeName: org.springframework.lang.Nullable
       newFullyQualifiedTypeName: org.jspecify.annotations.Nullable
   - org.openrewrite.java.ChangeMethodName:

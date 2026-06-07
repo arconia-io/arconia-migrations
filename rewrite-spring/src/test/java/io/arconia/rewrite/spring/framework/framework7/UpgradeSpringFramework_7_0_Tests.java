@@ -29,9 +29,12 @@ class UpgradeSpringFramework_7_0_Tests implements RewriteTest {
                 """
                 import org.springframework.aot.hint.support.FilePatternResourceHintsRegistrar;
                 import org.springframework.aot.hint.MemberCategory;
+                import org.springframework.lang.NonNull;
+                import org.springframework.lang.Nullable;
 
                 class Demo {
-                    void test(FilePatternResourceHintsRegistrar.Builder registrarBuilder) {
+                    @NonNull
+                    void test(@Nullable FilePatternResourceHintsRegistrar.Builder registrarBuilder) {
                         registrarBuilder.withClasspathLocations("location");
                         System.out.println(MemberCategory.DECLARED_FIELDS);
                         System.out.println(MemberCategory.PUBLIC_FIELDS);
@@ -40,10 +43,13 @@ class UpgradeSpringFramework_7_0_Tests implements RewriteTest {
                 """,
                 """
                 import org.springframework.aot.hint.support.FilePatternResourceHintsRegistrar;
+                import org.jspecify.annotations.NonNull;
+                import org.jspecify.annotations.Nullable;
                 import org.springframework.aot.hint.MemberCategory;
 
                 class Demo {
-                    void test(FilePatternResourceHintsRegistrar.Builder registrarBuilder) {
+                    @NonNull
+                    void test(@Nullable FilePatternResourceHintsRegistrar.Builder registrarBuilder) {
                         registrarBuilder.withClassPathLocations("location");
                         System.out.println(MemberCategory.INVOKE_DECLARED_FIELDS);
                         System.out.println(MemberCategory.INVOKE_PUBLIC_FIELDS);
