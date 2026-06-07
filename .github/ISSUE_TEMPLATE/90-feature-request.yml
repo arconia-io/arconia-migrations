@@ -23,13 +23,6 @@ body:
   validations:
     required: true
 - type: "textarea"
-  id: "alternatives"
-  attributes:
-    label: "Describe alternatives you've considered"
-    description: "Any alternative solutions or workarounds you've explored."
-  validations:
-    required: false
-- type: "textarea"
   id: "additional-context"
   attributes:
     label: "Anything else you would like to add"
@@ -43,7 +36,7 @@ body:
     options:
       - label: "I assert that this is a feature request and not a support request. If you need assistance, please use [GitHub Discussions](https://github.com/arconia-io/arconia-migrations/discussions)."
         required: true
-      - label: "I assert that this is not a [duplicate of an existing issue](https://github.com/arconia-io/arconia-migrations/issues). "
+      - label: "I assert that this is not a [duplicate of an existing issue](https://github.com/arconia-io/arconia-migrations/issues)."
         required: true
       - label: "I assert that I have read the [Arconia Code of Conduct](https://github.com/arconia-io/arconia-migrations/blob/main/CODE_OF_CONDUCT.md) and agree to abide by it."
         required: true
