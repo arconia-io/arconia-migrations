@@ -9,7 +9,8 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/arconia-io/arconia-migrations/actions/workflows/commit-stage.yml"><img src="https://github.com/arconia-io/arconia-migrations/actions/workflows/commit-stage.yml/badge.svg" alt="Build" /></a>
+  <a href="https://github.com/arconia-io/arconia-migrations/actions/workflows/commit-stage.yml?query=branch%3Amain"><img src="https://img.shields.io/github/actions/workflow/status/arconia-io/arconia-migrations/commit-stage.yml?branch=main&logo=GitHub&label=Build" alt="Build" /></a>
+  <a href="https://central.sonatype.com/namespace/io.arconia.migrations"><img src="https://img.shields.io/maven-central/v/io.arconia.migrations/rewrite-bom?logo=apache%20maven&label=Maven%20Central&color=blue" alt="Maven Central" /></a>
   <a href="https://opensource.org/licenses/Apache-2.0"><img src="https://img.shields.io/badge/License-Apache_2.0-blue.svg" alt="Apache 2.0 License" /></a>
   <a href="https://bsky.app/profile/arconia.io"><img src="https://img.shields.io/static/v1?label=Bluesky&message=Follow&color=1DA1F2" alt="Follow us on Bluesky" /></a>
 </p>
@@ -18,36 +19,20 @@
 
 ## ✨&nbsp; Features
 
-- **Spring Boot.** Recipes for upgrading Spring Boot 3.x and migrating to Spring Boot 4.x.
-- **Spring AI.** Recipes for upgrading Spring AI 1.x and migrating to Spring AI 2.x.
-- **Spring Framework & Cloud.** Recipes for Spring Framework 6.x/7.x and Spring Cloud 2025.x.
+- **Spring Boot.** Recipes for upgrading to Spring Boot 3.x and 4.x.
+- **Spring AI.** Recipes for upgrading to Spring AI 1.x and 2.x.
+- **Spring Framework.** Recipes for upgrading to Spring Framework 6.x and 7.x.
+- **Spring Cloud.** Recipes for upgrading to Spring Cloud 2025.x.
 - **Arconia.** Recipes for upgrading the Arconia Framework across versions.
 - **Docling.** Recipes for upgrading the Docling Java library.
 - **Testing.** Recipes for JUnit 6 and Testcontainers 2.
 
-## 📦&nbsp; Modules
-
-| Module | Description |
-|---|---|
-| `rewrite-arconia` | Recipes for [Arconia](https://docs.arconia.io) |
-| `rewrite-docling` | Recipes for [Docling Java](https://github.com/docling-project/docling-java) |
-| `rewrite-spring` | Recipes for [Spring AI](https://docs.spring.io/spring-ai/reference/), [Spring Boot](https://spring.io/projects/spring-boot), [Spring Cloud](https://spring.io/projects/spring-cloud), [Spring Framework](https://spring.io/projects/spring-framework) |
-| `rewrite-test` | Recipes for [JUnit](https://junit.org) and [Testcontainers](https://testcontainers.com) |
-
-## ⚡&nbsp; Quick Start
-
-You can run Arconia Migrations recipes using the [Arconia CLI](https://github.com/arconia-io/arconia-cli):
-
-```shell
-arconia rewrite run --recipe-name io.arconia.rewrite.spring.boot.UpgradeSpringBoot_4_0
-```
-
 > [!NOTE]
-> The Arconia Migrations project is currently in active development. We're working hard to improve it and appreciate your patience as we refine the tool. Feel free to try it out and share your feedback!
+> Arconia Migrations is currently under active development. We're working hard to improve it and appreciate your patience as we continue to refine the project. Feel free to try it out and share your feedback!
 
 ## 📙&nbsp; Documentation
 
-The [Arconia documentation](https://arconia.io) covers all available recipes and usage details.
+The [Arconia Migrations documentation](https://docs.arconia.io/arconia-migrations/latest/index.html) covers all available recipes, supported migrations, and usage details.
 
 ## 🤝&nbsp; Contributing
 
