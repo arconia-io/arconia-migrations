@@ -8,3 +8,28 @@ tags:
   - ai
 recipeList:
   - io.arconia.rewrite.spring.ai.UpgradeSpringAiPropertiesGenerated_2_0
+
+  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
+      propertyKey: "spring.ai.anthropic.chat.options.internal-tool-execution-enabled"
+      comment: "Deprecated property removed in Spring AI 2.0."
+  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
+      propertyKey: "spring.ai.bedrock.converse.chat.options.internal-tool-execution-enabled"
+      comment: "Deprecated property removed in Spring AI 2.0."
+  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
+      propertyKey: "spring.ai.deepseek.chat.options.internal-tool-execution-enabled"
+      comment: "Deprecated property removed in Spring AI 2.0."
+  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
+      propertyKey: "spring.ai.google.genai.chat.options.internal-tool-execution-enabled"
+      comment: "Deprecated property removed in Spring AI 2.0."
+  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
+      propertyKey: "spring.ai.google.genai.chat.options.tool-names"
+      comment: "Deprecated property removed in Spring AI 2.0."
+  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
+      propertyKey: "spring.ai.mistralai.chat.options.internal-tool-execution-enabled"
+      comment: "Deprecated property removed in Spring AI 2.0."
+  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
+      propertyKey: "spring.ai.ollama.chat.options.internal-tool-execution-enabled"
+      comment: "Deprecated property removed in Spring AI 2.0."
+  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
+      propertyKey: "spring.ai.openai.chat.options.internal-tool-execution-enabled"
+      comment: "Deprecated property removed in Spring AI 2.0."

@@ -40,9 +40,6 @@ recipeList:
       oldPropertyKey: "spring.ai.anthropic.chat.options.inference-geo"
       newPropertyKey: "spring.ai.anthropic.chat.inference-geo"
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
-      oldPropertyKey: "spring.ai.anthropic.chat.options.internal-tool-execution-enabled"
-      newPropertyKey: "spring.ai.anthropic.chat.internal-tool-execution-enabled"
-  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: "spring.ai.anthropic.chat.options.max-tokens"
       newPropertyKey: "spring.ai.anthropic.chat.max-tokens"
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
@@ -80,14 +77,17 @@ recipeList:
       newPropertyKey: "spring.ai.anthropic.chat.web-search-tool"
   # spring-ai-autoconfigure-model-bedrock-ai
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "spring.ai.bedrock.cohere.embedding.options.input-type"
+      newPropertyKey: "spring.ai.bedrock.cohere.embedding.input-type"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "spring.ai.bedrock.cohere.embedding.options.truncate"
+      newPropertyKey: "spring.ai.bedrock.cohere.embedding.truncate"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: "spring.ai.bedrock.converse.chat.options.cache-options"
       newPropertyKey: "spring.ai.bedrock.converse.chat.cache-options"
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: "spring.ai.bedrock.converse.chat.options.frequency-penalty"
       newPropertyKey: "spring.ai.bedrock.converse.chat.frequency-penalty"
-  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
-      oldPropertyKey: "spring.ai.bedrock.converse.chat.options.internal-tool-execution-enabled"
-      newPropertyKey: "spring.ai.bedrock.converse.chat.internal-tool-execution-enabled"
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: "spring.ai.bedrock.converse.chat.options.max-tokens"
       newPropertyKey: "spring.ai.bedrock.converse.chat.max-tokens"
@@ -116,9 +116,6 @@ recipeList:
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: "spring.ai.deepseek.chat.options.frequency-penalty"
       newPropertyKey: "spring.ai.deepseek.chat.frequency-penalty"
-  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
-      oldPropertyKey: "spring.ai.deepseek.chat.options.internal-tool-execution-enabled"
-      newPropertyKey: "spring.ai.deepseek.chat.internal-tool-execution-enabled"
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: "spring.ai.deepseek.chat.options.logprobs"
       newPropertyKey: "spring.ai.deepseek.chat.logprobs"
@@ -227,9 +224,6 @@ recipeList:
       oldPropertyKey: "spring.ai.google.genai.chat.options.include-thoughts"
       newPropertyKey: "spring.ai.google.genai.chat.include-thoughts"
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
-      oldPropertyKey: "spring.ai.google.genai.chat.options.internal-tool-execution-enabled"
-      newPropertyKey: "spring.ai.google.genai.chat.internal-tool-execution-enabled"
-  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: "spring.ai.google.genai.chat.options.labels"
       newPropertyKey: "spring.ai.google.genai.chat.labels"
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
@@ -263,9 +257,6 @@ recipeList:
       oldPropertyKey: "spring.ai.google.genai.chat.options.thinking-level"
       newPropertyKey: "spring.ai.google.genai.chat.thinking-level"
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
-      oldPropertyKey: "spring.ai.google.genai.chat.options.tool-names"
-      newPropertyKey: "spring.ai.google.genai.chat.tool-names"
-  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: "spring.ai.google.genai.chat.options.top-k"
       newPropertyKey: "spring.ai.google.genai.chat.top-k"
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
@@ -274,56 +265,22 @@ recipeList:
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: "spring.ai.google.genai.chat.options.use-cached-content"
       newPropertyKey: "spring.ai.google.genai.chat.use-cached-content"
-  # spring-ai-autoconfigure-model-minimax
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
-      oldPropertyKey: "spring.ai.minimax.chat.options.frequency-penalty"
-      newPropertyKey: "spring.ai.minimax.chat.frequency-penalty"
+      oldPropertyKey: "spring.ai.google.genai.embedding.text.options.dimensions"
+      newPropertyKey: "spring.ai.google.genai.embedding.text.dimensions"
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
-      oldPropertyKey: "spring.ai.minimax.chat.options.internal-tool-execution-enabled"
-      newPropertyKey: "spring.ai.minimax.chat.internal-tool-execution-enabled"
+      oldPropertyKey: "spring.ai.google.genai.embedding.text.options.model"
+      newPropertyKey: "spring.ai.google.genai.embedding.text.model"
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
-      oldPropertyKey: "spring.ai.minimax.chat.options.mask-sensitive-info"
-      newPropertyKey: "spring.ai.minimax.chat.mask-sensitive-info"
+      oldPropertyKey: "spring.ai.google.genai.embedding.text.options.task-type"
+      newPropertyKey: "spring.ai.google.genai.embedding.text.task-type"
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
-      oldPropertyKey: "spring.ai.minimax.chat.options.max-tokens"
-      newPropertyKey: "spring.ai.minimax.chat.max-tokens"
-  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
-      oldPropertyKey: "spring.ai.minimax.chat.options.model"
-      newPropertyKey: "spring.ai.minimax.chat.model"
-  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
-      oldPropertyKey: "spring.ai.minimax.chat.options.n"
-      newPropertyKey: "spring.ai.minimax.chat.n"
-  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
-      oldPropertyKey: "spring.ai.minimax.chat.options.presence-penalty"
-      newPropertyKey: "spring.ai.minimax.chat.presence-penalty"
-  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
-      oldPropertyKey: "spring.ai.minimax.chat.options.response-format"
-      newPropertyKey: "spring.ai.minimax.chat.response-format"
-  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
-      oldPropertyKey: "spring.ai.minimax.chat.options.seed"
-      newPropertyKey: "spring.ai.minimax.chat.seed"
-  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
-      oldPropertyKey: "spring.ai.minimax.chat.options.stop"
-      newPropertyKey: "spring.ai.minimax.chat.stop"
-  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
-      oldPropertyKey: "spring.ai.minimax.chat.options.temperature"
-      newPropertyKey: "spring.ai.minimax.chat.temperature"
-  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
-      oldPropertyKey: "spring.ai.minimax.chat.options.tool-choice"
-      newPropertyKey: "spring.ai.minimax.chat.tool-choice"
-  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
-      oldPropertyKey: "spring.ai.minimax.chat.options.tools"
-      newPropertyKey: "spring.ai.minimax.chat.tools"
-  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
-      oldPropertyKey: "spring.ai.minimax.chat.options.top-p"
-      newPropertyKey: "spring.ai.minimax.chat.top-p"
+      oldPropertyKey: "spring.ai.google.genai.embedding.text.options.title"
+      newPropertyKey: "spring.ai.google.genai.embedding.text.title"
   # spring-ai-autoconfigure-model-mistral-ai
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: "spring.ai.mistralai.chat.options.frequency-penalty"
       newPropertyKey: "spring.ai.mistralai.chat.frequency-penalty"
-  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
-      oldPropertyKey: "spring.ai.mistralai.chat.options.internal-tool-execution-enabled"
-      newPropertyKey: "spring.ai.mistralai.chat.internal-tool-execution-enabled"
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: "spring.ai.mistralai.chat.options.max-tokens"
       newPropertyKey: "spring.ai.mistralai.chat.max-tokens"
@@ -360,6 +317,33 @@ recipeList:
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: "spring.ai.mistralai.chat.options.top-p"
       newPropertyKey: "spring.ai.mistralai.chat.top-p"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "spring.ai.mistralai.embedding.options.encoding-format"
+      newPropertyKey: "spring.ai.mistralai.embedding.encoding-format"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "spring.ai.mistralai.embedding.options.model"
+      newPropertyKey: "spring.ai.mistralai.embedding.model"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "spring.ai.mistralai.moderation.options.model"
+      newPropertyKey: "spring.ai.mistralai.moderation.model"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "spring.ai.mistralai.ocr.options.id"
+      newPropertyKey: "spring.ai.mistralai.ocr.id"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "spring.ai.mistralai.ocr.options.image-limit"
+      newPropertyKey: "spring.ai.mistralai.ocr.image-limit"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "spring.ai.mistralai.ocr.options.image-min-size"
+      newPropertyKey: "spring.ai.mistralai.ocr.image-min-size"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "spring.ai.mistralai.ocr.options.include-image-base64"
+      newPropertyKey: "spring.ai.mistralai.ocr.include-image-base64"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "spring.ai.mistralai.ocr.options.model"
+      newPropertyKey: "spring.ai.mistralai.ocr.model"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "spring.ai.mistralai.ocr.options.pages"
+      newPropertyKey: "spring.ai.mistralai.ocr.pages"
   # spring-ai-autoconfigure-model-ollama
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: "spring.ai.ollama.chat.options.f16-k-v"
@@ -367,9 +351,6 @@ recipeList:
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: "spring.ai.ollama.chat.options.frequency-penalty"
       newPropertyKey: "spring.ai.ollama.chat.frequency-penalty"
-  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
-      oldPropertyKey: "spring.ai.ollama.chat.options.internal-tool-execution-enabled"
-      newPropertyKey: "spring.ai.ollama.chat.internal-tool-execution-enabled"
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: "spring.ai.ollama.chat.options.keep-alive"
       newPropertyKey: "spring.ai.ollama.chat.keep-alive"
@@ -466,6 +447,15 @@ recipeList:
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: "spring.ai.ollama.chat.options.vocab-only"
       newPropertyKey: "spring.ai.ollama.chat.vocab-only"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "spring.ai.ollama.embedding.options.keep-alive"
+      newPropertyKey: "spring.ai.ollama.embedding.keep-alive"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "spring.ai.ollama.embedding.options.model"
+      newPropertyKey: "spring.ai.ollama.embedding.model"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "spring.ai.ollama.embedding.options.truncate"
+      newPropertyKey: "spring.ai.ollama.embedding.truncate"
   # spring-ai-autoconfigure-model-openai
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: "spring.ai.openai.audio.speech.options.input"
@@ -524,9 +514,6 @@ recipeList:
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: "spring.ai.openai.chat.options.git-hub-models"
       newPropertyKey: "spring.ai.openai.git-hub-models"
-  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
-      oldPropertyKey: "spring.ai.openai.chat.options.internal-tool-execution-enabled"
-      newPropertyKey: "spring.ai.openai.chat.internal-tool-execution-enabled"
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: "spring.ai.openai.chat.options.logit-bias"
       newPropertyKey: "spring.ai.openai.chat.logit-bias"
@@ -706,3 +693,22 @@ recipeList:
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: "spring.ai.stabilityai.image.options.width"
       newPropertyKey: "spring.ai.stabilityai.image.width"
+  # spring-ai-autoconfigure-model-vertex-ai
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "spring.ai.vertex.ai.embedding.multimodal.options.model"
+      newPropertyKey: "spring.ai.vertex.ai.embedding.multimodal.model"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "spring.ai.vertex.ai.embedding.multimodal.options.output-dimensionality"
+      newPropertyKey: "spring.ai.vertex.ai.embedding.multimodal.output-dimensionality"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "spring.ai.vertex.ai.embedding.text.options.model"
+      newPropertyKey: "spring.ai.vertex.ai.embedding.text.model"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "spring.ai.vertex.ai.embedding.text.options.output-dimensionality"
+      newPropertyKey: "spring.ai.vertex.ai.embedding.text.output-dimensionality"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "spring.ai.vertex.ai.embedding.text.options.task-type"
+      newPropertyKey: "spring.ai.vertex.ai.embedding.text.task-type"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "spring.ai.vertex.ai.embedding.text.options.title"
+      newPropertyKey: "spring.ai.vertex.ai.embedding.text.title"

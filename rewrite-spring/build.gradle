@@ -84,6 +84,7 @@ recipeDependencies {
 
     parserClasspath "org.springframework.ai:spring-ai-client-chat:2.0.0-M8"
     parserClasspath "org.springframework.ai:spring-ai-commons:2.0.0-M8"
+    parserClasspath "org.springframework.ai:spring-ai-google-genai-embedding:2.0.0-M8"
     parserClasspath "org.springframework.ai:spring-ai-model:2.0.0-M8"
 
     parserClasspath "io.modelcontextprotocol.sdk:mcp-spring-webflux:0.18.2"

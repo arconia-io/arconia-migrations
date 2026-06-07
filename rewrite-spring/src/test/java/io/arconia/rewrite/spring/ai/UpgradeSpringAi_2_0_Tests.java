@@ -153,6 +153,42 @@ class UpgradeSpringAi_2_0_Tests implements RewriteTest {
     }
 
     @Test
+    void vectorStoreAdvisorDependencyChange() {
+        rewriteRun(
+                spec -> spec.beforeRecipe(withToolingApi()),
+                //language=groovy
+                buildGradle(
+                        """
+                        plugins {
+                            id "java-library"
+                        }
+
+                        repositories {
+                            mavenCentral()
+                        }
+
+                        dependencies {
+                            implementation "org.springframework.ai:spring-ai-advisors-vector-store"
+                        }
+                        """,
+                        """
+                        plugins {
+                            id "java-library"
+                        }
+
+                        repositories {
+                            mavenCentral()
+                        }
+
+                        dependencies {
+                            implementation "org.springframework.ai:spring-ai-vector-store-advisor"
+                        }
+                        """
+                )
+        );
+    }
+
+    @Test
     void useAnthropicChatModelBuilder() {
         rewriteRun(
                 spec -> spec.typeValidationOptions(TypeValidation.builder().methodInvocations(false).build())
@@ -513,6 +549,31 @@ class UpgradeSpringAi_2_0_Tests implements RewriteTest {
                         }
 
                         dependencies {
+                        }
+                        """
+                )
+        );
+    }
+
+    @Test
+    void googleGenAiEmbeddingConnectionDetailsTypeChange() {
+        rewriteRun(
+                spec -> spec.parser(JavaParser.fromJavaVersion().classpathFromResources(new InMemoryExecutionContext(),
+                        "spring-ai-google-genai-embedding-2.0.0-M8")),
+                //language=java
+                java(
+                        """
+                        import org.springframework.ai.google.genai.GoogleGenAiEmbeddingConnectionDetails;
+
+                        class Demo {
+                            GoogleGenAiEmbeddingConnectionDetails details = null;
+                        }
+                        """,
+                        """
+                        import org.springframework.ai.google.genai.embedding.GoogleGenAiEmbeddingConnectionDetails;
+
+                        class Demo {
+                            GoogleGenAiEmbeddingConnectionDetails details = null;
                         }
                         """
                 )

@@ -17,18 +17,17 @@ recipeList:
       artifactId: "*"
       newVersion: 2.0.x
       overrideManagedVersion: false
-      versionPattern: "-M\\d+"
 
   ####### Common #######
 
   - io.arconia.rewrite.spring.ai.UseChatOptionsBuilder
 
   # Dependency Changes
-#  - org.openrewrite.java.dependencies.ChangeDependency:
-#      oldGroupId: org.springframework.ai
-#      oldArtifactId: spring-ai-advisors-vector-store
-#      newGroupId: org.springframework.ai
-#      newArtifactId: spring-ai-vector-store-advisor
+  - org.openrewrite.java.dependencies.ChangeDependency:
+      oldGroupId: org.springframework.ai
+      oldArtifactId: spring-ai-advisors-vector-store
+      newGroupId: org.springframework.ai
+      newArtifactId: spring-ai-vector-store-advisor
 
   # Type Changes
   - org.openrewrite.java.ChangeType:
@@ -165,6 +164,13 @@ recipeList:
   - org.openrewrite.java.dependencies.RemoveDependency:
       groupId: org.springframework.ai
       artifactId: spring-ai-openai-sdk
+
+  ####### Google #######
+
+  # Dependency Changes
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.ai.google.genai.GoogleGenAiEmbeddingConnectionDetails
+      newFullyQualifiedTypeName: org.springframework.ai.google.genai.embedding.GoogleGenAiEmbeddingConnectionDetails
 
   ####### Other #######
 
