@@ -129,13 +129,13 @@ jobs:
             out/jreleaser/trace.log
             out/jreleaser/output.properties
 
-#      - name: Trigger documentation update
-#        env:
-#          GH_TOKEN: ${{ secrets.DISPATCH_TOKEN }}
-#        run: |
-#          set -euo pipefail
-#          gh api \
-#            --method POST \
-#            -H "Accept: application/vnd.github+json" \
-#            /repos/arconia-io/arconia-docs/dispatches \
-#            -f event_type='docs-update'
+      - name: Trigger documentation update
+        env:
+          GH_TOKEN: ${{ secrets.DISPATCH_TOKEN }}
+        run: |
+          set -euo pipefail
+          gh api \
+            --method POST \
+            -H "Accept: application/vnd.github+json" \
+            /repos/arconia-io/arconia-docs/dispatches \
+            -f event_type='docs-update'
