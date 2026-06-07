@@ -20,7 +20,37 @@ recipeList:
       groupId: org.springframework.cloud
       artifactId: spring-cloud-starter-parent
       newVersion: 2025.0.x
-  - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
-      groupId: org.springframework.cloud
-      artifactId: "*"
-      newVersion: 4.3.x
+
+  ####### Spring Cloud Gateway #######
+
+  # Dependency Changes
+  - org.openrewrite.java.dependencies.ChangeDependency:
+      oldGroupId: org.springframework.cloud
+      oldArtifactId: spring-cloud-gateway-server
+      newGroupId: org.springframework.cloud
+      newArtifactId: spring-cloud-gateway-server-webflux
+  - org.openrewrite.java.dependencies.ChangeDependency:
+      oldGroupId: org.springframework.cloud
+      oldArtifactId: spring-cloud-gateway-server-mvc
+      newGroupId: org.springframework.cloud
+      newArtifactId: spring-cloud-gateway-server-webmvc
+  - org.openrewrite.java.dependencies.ChangeDependency:
+      oldGroupId: org.springframework.cloud
+      oldArtifactId: spring-cloud-starter-gateway-server
+      newGroupId: org.springframework.cloud
+      newArtifactId: spring-cloud-starter-gateway-server-webflux
+  - org.openrewrite.java.dependencies.ChangeDependency:
+      oldGroupId: org.springframework.cloud
+      oldArtifactId: spring-cloud-starter-gateway-server-mvc
+      newGroupId: org.springframework.cloud
+      newArtifactId: spring-cloud-starter-gateway-server-webmvc
+  - org.openrewrite.java.dependencies.ChangeDependency:
+      oldGroupId: org.springframework.cloud
+      oldArtifactId: spring-cloud-gateway-mvc
+      newGroupId: org.springframework.cloud
+      newArtifactId: spring-cloud-gateway-proxyexchange-webmvc
+  - org.openrewrite.java.dependencies.ChangeDependency:
+      oldGroupId: org.springframework.cloud
+      oldArtifactId: spring-cloud-gateway-webflux
+      newGroupId: org.springframework.cloud
+      newArtifactId: spring-cloud-gateway-proxyexchange-webflux

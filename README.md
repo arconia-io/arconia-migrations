@@ -18,8 +18,8 @@
 
 ## ✨&nbsp; Features
 
-- **Spring Boot.** Recipes for upgrading Spring Boot 3.x and migrating to Spring Boot 4.0.
-- **Spring AI.** Recipes for upgrading Spring AI 1.x and migrating to Spring AI 2.0.
+- **Spring Boot.** Recipes for upgrading Spring Boot 3.x and migrating to Spring Boot 4.x.
+- **Spring AI.** Recipes for upgrading Spring AI 1.x and migrating to Spring AI 2.x.
 - **Spring Framework & Cloud.** Recipes for Spring Framework 6.x/7.x and Spring Cloud 2025.x.
 - **Arconia.** Recipes for upgrading the Arconia Framework across versions.
 - **Docling.** Recipes for upgrading the Docling Java library.
