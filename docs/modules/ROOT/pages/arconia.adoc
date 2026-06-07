@@ -1,0 +1,6 @@
+= Arconia
+:description: How to upgrade the Arconia Framework version of your Spring Boot application.
+
+Arconia Migrations publishes an OpenRewrite upgrade recipe for every Arconia Framework minor release, available in the `rewrite-arconia` module of this catalog.
+
+The Arconia Framework documentation hosts the upgrade guide for each release, with release notes covering breaking changes and the exact CLI, Gradle, and Maven commands to run. Pick the Arconia version you want to upgrade to in the version selector at the top of the link:https://docs.arconia.io/arconia/latest/upgrading-arconia/[Upgrading Arconia^] page, then follow the instructions on that page.

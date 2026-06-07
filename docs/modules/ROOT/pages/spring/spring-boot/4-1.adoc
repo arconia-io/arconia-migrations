@@ -1,0 +1,20 @@
+= Spring Boot 4.1
+:description: Migrate your Spring Boot application to the latest Spring Boot 4.1.x release.
+:cli-command: arconia update spring-boot --to-version=4.1
+:recipe-id: io.arconia.rewrite.spring.boot4.UpgradeSpringBoot_4_1
+:rewrite-module: rewrite-spring
+
+When upgrading to Spring Boot 4.1, refer to the https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-4.1-Release-Notes[Spring Boot 4.1 Release Notes] to find out about newly introduced APIs, deprecated APIs, and information about breaking changes.
+
+The `{recipe-id}` recipe automates most of the changes introduced in Spring Boot 4.1. It also chains the Spring Boot 4.0 upgrade recipe, so you can apply it to projects that are still on 3.x.
+
+The recipe will:
+
+* Apply the full xref:spring/spring-boot/4-0.adoc[Spring Boot 4.0] upgrade as a prerequisite (which itself chains Spring Boot 3.5).
+* Upgrade all `org.springframework.boot` dependencies, the `spring-boot-starter-parent` Maven parent, and the Spring Boot Gradle and Maven plugins to the 4.1.x release line.
+* Rename Spring Boot configuration properties to match the new property names.
+* Upgrade the GraalVM Native Build Tools plugin to 1.1.x.
+
+== Run the recipe
+
+include::partial$run-recipe.adoc[]

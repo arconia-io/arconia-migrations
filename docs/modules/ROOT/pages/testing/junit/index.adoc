@@ -1,0 +1,8 @@
+= JUnit
+:description: Upgrade recipes for JUnit 6.x.
+
+Arconia Migrations ships an upgrade recipe for each major release of JUnit that is supported by the catalog.
+
+== Upgrade Guides
+
+* *xref:testing/junit/6.adoc[JUnit 6].* Migrate to the latest JUnit 6.x release.

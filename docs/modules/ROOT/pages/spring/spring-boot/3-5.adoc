@@ -1,0 +1,23 @@
+= Spring Boot 3.5
+:description: Upgrade your Spring Boot application to the latest Spring Boot 3.5.x release.
+:cli-command: arconia update spring-boot --to-version=3.5
+:recipe-id: io.arconia.rewrite.spring.boot.UpgradeSpringBoot_3_5
+:rewrite-module: rewrite-spring
+
+When upgrading to Spring Boot 3.5, refer to the https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-3.5-Release-Notes[Spring Boot 3.5 Release Notes] to find out about newly introduced APIs, deprecated APIs, and information about breaking changes.
+
+The `{recipe-id}` recipe automates most of the changes introduced in Spring Boot 3.5. You can use it to update your project to the latest Spring Boot 3.5.x release.
+
+The recipe will:
+
+* Upgrade all `org.springframework.boot` dependencies, the `spring-boot-starter-parent` Maven parent, and the Spring Boot Gradle and Maven plugins to the 3.5.x release line.
+* Rename Spring Boot configuration properties to match the new property names.
+* Upgrade xref:spring/spring-framework/6-2.adoc[Spring Framework to 6.2].
+* Upgrade related build plugins: the `io.spring.dependency-management` Gradle plugin to 1.1.x, the GraalVM Native Build Tools plugin to 0.10.x, and the CycloneDX SBOM plugin to 2.x.
+* Chain the xref:spring/spring-cloud/2025-0.adoc[Spring Cloud 2025.0] and xref:spring/spring-ai/1-1.adoc[Spring AI 1.1] upgrade recipes, since their managed versions move with Spring Boot.
+* Migrate the Mockito test-support APIs from Spring Boot to Spring Framework: replace `@MockBean` with `@MockitoBean` and `@SpyBean` with `@MockitoSpyBean`, relocate the `MockReset` type to `org.springframework.test.context.bean.override.mockito`, remove the dropped `classes` (and `value` for `@SpyBean`) annotation attributes, and rename the `answer` attribute on `@MockBean` to `answers`.
+* Apply type relocations introduced in 3.5, including moving `RequestMatcherProvider` to the Actuator security package and dropping the `.servlet` segment from `OAuth2ClientAutoConfiguration`.
+
+== Run the recipe
+
+include::partial$run-recipe.adoc[]

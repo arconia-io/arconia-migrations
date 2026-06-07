@@ -1,0 +1,45 @@
+= Spring Framework 6.2
+:description: Migrate your Spring application to the latest Spring Framework 6.2.x release.
+:cli-command: arconia rewrite run --recipe-name io.arconia.rewrite.spring.framework6.UpgradeSpringFramework_6_2
+:recipe-id: io.arconia.rewrite.spring.framework6.UpgradeSpringFramework_6_2
+:rewrite-module: rewrite-spring
+
+When upgrading to Spring Framework 6.2, refer to the https://github.com/spring-projects/spring-framework/wiki/Spring-Framework-6.2-Release-Notes[Spring Framework 6.2 Release Notes] to find out about newly introduced APIs, deprecated APIs, and information about breaking changes.
+
+The `{recipe-id}` recipe automates most of the changes introduced in Spring Framework 6.2. You can use it to update your project to the latest Spring Framework 6.2.x release.
+
+The recipe will:
+
+* Upgrade all `org.springframework` dependencies to the 6.2.x release line.
+* Swap the deprecated `org.webjars:webjars-locator-core` artifact for `org.webjars:webjars-locator-lite`.
+* For *Spring Beans*: rename `BeanInstanceSupplier.withShortcuts(...)` to `withShortcut(...)`.
+* For *Spring Context*: rename `MethodValidationResult.getAllValidationResults()` to `getParameterValidationResults()`.
+* For *Spring Messaging*: rename the async APIs to their `*Async` / `CompletableFuture`-based forms, including `AsyncHandlerMethodReturnValueHandler.toListenableFuture(...)` -> `toCompletableFuture(...)`, `ConnectionHandlingStompSession.getSessionFuture()` -> `getSession()`, `ReactorNettyTcpStompClient.connect(...)` -> `connectAsync(...)`, and the `TcpConnection.send(...)`, `TcpOperations.connect(...)`, and `TcpOperations.shutdown()` renames to `sendAsync`, `connectAsync`, and `shutdownAsync`.
+* For *Spring Test*:
+** Rename `ExchangeResult.getRawStatusCode()` to `getStatus()`.
+** Rename `WebTestClient.Builder.exchangeStrategies(...)` to `codecs(...)` and `WebTestClient.RequestBodySpec.syncBody(...)` to `bodyValue(...)`.
+** Rename the `StatusResultMatchers` matchers: `isMovedTemporarily()` -> `isFound()`, `isRequestEntityTooLarge()` -> `isPayloadTooLarge()`, `isRequestUriTooLong()` -> `isUriTooLong()`, and `isCheckpoint()` -> `isEarlyHints()`.
+* For *Spring Web*:
+** Replace `getRawStatusCode()` with `getStatusCode()` on `ResponseEntity`, `ClientHttpResponse` (servlet and reactive), `ServerHttpResponse`, `RestClientResponseException`, and `UnknownContentTypeException`.
+** Rename `getResponseHeaders()` to `getHeaders()` on `MethodNotAllowedException`, `NotAcceptableStatusException`, `ResponseStatusException`, and `UnsupportedMediaTypeStatusException`; rename `ResponseStatusExceptionHandler.determineRawStatusCode(...)` to `determineStatus(...)`.
+** Rename `UriComponentsBuilder.fromHttpUrl(String)` and `fromOriginHeader(...)` to `fromUriString(...)`.
+** Replace deprecated `MediaType` constants: `APPLICATION_GRAPHQL` / `_VALUE` -> `APPLICATION_GRAPHQL_RESPONSE` / `_VALUE`, `APPLICATION_JSON_UTF8` / `_VALUE` -> `APPLICATION_JSON` / `_VALUE`, `APPLICATION_PROBLEM_JSON_UTF8` / `_VALUE` -> `APPLICATION_PROBLEM_JSON` / `_VALUE`, and `APPLICATION_STREAM_JSON` / `_VALUE` -> `APPLICATION_NDJSON` / `_VALUE`.
+** Replace deprecated `HttpStatus` constants: `MOVED_TEMPORARILY` -> `FOUND`, `REQUEST_ENTITY_TOO_LARGE` -> `PAYLOAD_TOO_LARGE`, and `REQUEST_URI_TOO_LONG` -> `URI_TOO_LONG`.
+* For *Spring WebFlux*:
+** Rename `BodyInserters.fromObject(...)` to `fromValue(...)` and `ClientRequest.method(...)` to `create(...)`.
+** Rename `rawStatusCode()` to `statusCode()` on `ClientResponse` and `ServerResponse`, and `WebClientResponseException.getRawStatusCode()` to `getStatusCode()`.
+** Rename `WebClient.Builder.exchangeStrategies(...)` to `codecs(...)`, `WebClient.RequestBodySpec.syncBody(...)` to `bodyValue(...)`, and `ServerResponse.BodyBuilder.syncBody(...)` to `bodyValue(...)`.
+** Rename `ServerRequest.methodName()` to `method()` and `ServerRequest.pathContainer()` to `requestPath()`.
+** Consolidate the `ReactorNettyWebSocketClient.getHandlePing()` / `getMaxFramePayloadLength()` getters into `getWebsocketClientSpec()` and the equivalent `ReactorNettyRequestUpgradeStrategy` getters into `getWebsocketServerSpec()`.
+* For *Spring WebMVC*:
+** Rename `ServerRequest.methodName()` to `method()`, `ServerRequest.pathContainer()` to `requestPath()`, and `ServerResponse.rawStatusCode()` to `statusCode()`.
+** Rename `AbstractHandlerMethodMapping.getMappingPathPatterns(...)` to `getDirectPaths(...)` and `MappedInterceptor.getPathPatterns()` to `getIncludePathPatterns()`.
+** Replace the `CookieLocaleResolver` / `SessionLocaleResolver` `determineDefaultLocale(...)` / `determineDefaultTimeZone(...)` methods with the new `setDefaultLocaleFunction(...)` / `setDefaultTimeZoneFunction(...)` setters.
+* For *Spring WebSocket*:
+** Rename `AbstractWebSocketClient.doHandshakeInternal(...)` to `executeInternal(...)` and `WebSocketClient.doHandshake(...)` to `execute(...)`.
+** Drop the `Info` suffix from `WebSocketMessageBrokerStats.getWebSocketSessionStatsInfo()`, `getStompSubProtocolStatsInfo()`, and `getStompBrokerRelayStatsInfo()`.
+** Rename `WebSocketStompClient.connect(...)` and `Transport.connect(...)` to `connectAsync(...)`.
+
+== Run the recipe
+
+include::partial$run-recipe.adoc[]

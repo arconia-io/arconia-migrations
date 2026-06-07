@@ -1,0 +1,10 @@
+= Spring Boot
+:description: Upgrade recipes for Spring Boot 3.x and Spring Boot 4.x.
+
+Arconia Migrations ships an upgrade recipe for each minor release of Spring Boot that is supported by the catalog. Each recipe chains all the previous version recipes, so applying the recipe for the latest release will also take care of any intermediate upgrades.
+
+== Upgrade Guides
+
+* *xref:spring/spring-boot/3-5.adoc[Spring Boot 3.5].* Migrate to the latest Spring Boot 3.5.x release.
+* *xref:spring/spring-boot/4-0.adoc[Spring Boot 4.0].* Migrate to the latest Spring Boot 4.0.x release.
+* *xref:spring/spring-boot/4-1.adoc[Spring Boot 4.1].* Migrate to the latest Spring Boot 4.1.x release.

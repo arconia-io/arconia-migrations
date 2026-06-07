@@ -1,0 +1,24 @@
+= Spring Boot 4.0
+:description: Migrate your Spring Boot application to the latest Spring Boot 4.0.x release.
+:cli-command: arconia update spring-boot --to-version=4.0
+:recipe-id: io.arconia.rewrite.spring.boot4.UpgradeSpringBoot_4_0
+:rewrite-module: rewrite-spring
+
+When upgrading to Spring Boot 4.0, refer to the https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-4.0-Release-Notes[Spring Boot 4.0 Release Notes] and https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-4.0-Migration-Guide[Spring Boot 4.0 Migration Guide] to find out about newly introduced APIs, deprecated APIs, and information about breaking changes.
+
+The `{recipe-id}` recipe automates most of the changes introduced in Spring Boot 4.0. It also chains the xref:spring/spring-boot/3-5.adoc[Spring Boot 3.5] upgrade recipe, so you can apply it to projects still on earlier 3.x lines.
+
+The recipe will:
+
+* Apply the full xref:spring/spring-boot/3-5.adoc[Spring Boot 3.5] upgrade as a prerequisite.
+* Upgrade all `org.springframework.boot` dependencies, the `spring-boot-starter-parent` Maven parent, and the Spring Boot Gradle and Maven plugins to the 4.0.x release line.
+* Rename Spring Boot configuration properties to match the new property names.
+* Apply the changes required by the Spring Boot 4.0 modularization effort across the Spring Boot codebase. Most of the code that used to live in a single auto-configuration module has been relocated into many focused modules and packages, with some types renamed in the process. The recipe takes care of the resulting dependency, package, and type updates so your project keeps compiling after the upgrade. See the https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-4.0-Migration-Guide[Spring Boot 4.0 Migration Guide] for the rationale and the full list of affected modules.
+* Upgrade xref:spring/spring-framework/7-0.adoc[Spring Framework to 7.0], which itself pulls in https://docs.openrewrite.org/recipes/java/jackson/upgradejackson_2_3[Jackson 3] and xref:testing/junit/6.adoc[JUnit 6].
+* Chain the xref:testing/testcontainers/2.adoc[Testcontainers 2], xref:spring/spring-cloud/2025-1.adoc[Spring Cloud 2025.1], and xref:spring/spring-ai/2-0.adoc[Spring AI 2.0] upgrade recipes, since their managed versions move with Spring Boot.
+* Upgrade related build plugins (GraalVM Native Build Tools to 0.11.x, CycloneDX SBOM to 3.x) and adjacent libraries (SpringDoc to 3.0.x, JobRunr to 8.x with the new `jobrunr-spring-boot-4-starter` artifact).
+* Apply breaking changes for the testing setup: add the `@AutoConfigureRestTestClient`, `@AutoConfigureTestRestTemplate`, and `@AutoConfigureWebTestClient` annotations where they're now required.
+
+== Run the recipe
+
+include::partial$run-recipe.adoc[]

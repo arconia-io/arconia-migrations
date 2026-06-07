@@ -1,0 +1,33 @@
+= Spring AI 1.0
+:description: Migrate your Spring Boot application to the latest Spring AI 1.0.x release.
+:cli-command: arconia update spring-ai --to-version=1.0
+:recipe-id: io.arconia.rewrite.spring.ai.UpgradeSpringAi_1_0
+:rewrite-module: rewrite-spring
+
+When upgrading to Spring AI 1.0, refer to the https://docs.spring.io/spring-ai/reference/1.0/upgrade-notes.html[Upgrade Notes] to find out about newly introduced APIs, deprecated APIs, and information about breaking changes.
+
+The `{recipe-id}` recipe automates most of the changes introduced in Spring AI 1.0. You can use it to update your project from the milestone releases to the latest Spring AI 1.0.x release.
+
+The recipe will:
+
+* Upgrade all `org.springframework.ai` dependencies to the 1.0.x release line.
+* Rename Spring AI configuration properties to match the new property names.
+* Rename the model provider starters to the new `spring-ai-starter-model-<provider>` scheme. This covers Anthropic, Azure OpenAI, Bedrock (and Bedrock Converse), Hugging Face, MiniMax, Mistral AI, OCI GenAI, Ollama, OpenAI, PostgresML, Stability AI, Transformers, Vertex AI (embedding and Gemini), Watsonx AI, and ZhipuAI.
+* Rename the vector store starters to the new `spring-ai-starter-vector-store-<store>` scheme. This covers Azure (and Azure Cosmos DB), MariaDB, Chroma, AWS OpenSearch, Neo4j, Milvus, Couchbase, Cassandra, Elasticsearch, pgvector, Typesense, Oracle, OpenSearch, SAP HANA, Pinecone, GemFire, Weaviate, MongoDB Atlas, Qdrant, and Redis.
+* Rename the JDBC, Cassandra, and Neo4j chat-memory artifacts (model, autoconfigure, starter) to insert a `repository` segment in their name (for example, `spring-ai-model-chat-memory-jdbc` -> `spring-ai-model-chat-memory-repository-jdbc`).
+* Rename the MCP starters (such as `spring-ai-mcp-client-spring-boot-starter` and `spring-ai-mcp-server-webflux-spring-boot-starter`) to the new `spring-ai-starter-mcp-{client,server}[-{webflux,webmvc}]` scheme.
+* Relocate types to their new packages, including:
+** `Content`, `Media`, and `MediaContent` from `org.springframework.ai.model` to `org.springframework.ai.content`.
+** `KeywordMetadataEnricher` and `SummaryMetadataEnricher` to `org.springframework.ai.model.transformer`.
+** `FactCheckingEvaluator` and `RelevancyEvaluator` to `org.springframework.ai.chat.evaluation`.
+** `QuestionAnswerAdvisor` and `VectorStoreChatMemoryAdvisor` to the `vectorstore` advisor sub-package.
+** `RetrievalAugmentationAdvisor` and `PromptAssert` to the new `org.springframework.ai.rag` packages.
+** Chat-memory repository types (`JdbcChatMemoryRepository` and the JDBC, Cassandra, Neo4j auto-configurations) to their new `repository` sub-packages (for example, `org.springframework.ai.chat.memory.jdbc` -> `org.springframework.ai.chat.memory.repository.jdbc`).
+* Rename `ChatClient.tools(String...)` to `toolNames(...)` and `tools(FunctionCallback/ToolCallback/ToolCallbackProvider/List...)` to `toolCallbacks(...)`, with the same renames applied to `ChatClient.Builder.defaultTools(...)`.
+* Replace the `CHAT_MEMORY_CONVERSATION_ID_KEY` and `CHAT_MEMORY_RETRIEVE_SIZE_KEY` constants with `ChatMemory.CONVERSATION_ID` and the advisor `TOP_K` constant.
+* Automatically add the `spring-ai-vector-store`, `spring-ai-rag`, and `spring-ai-advisors-vector-store` dependencies when the corresponding APIs are in use.
+* Add the missing `Map` argument to the `MistralAiApi.ChatCompletionRequest.ResponseFormat` constructor.
+
+== Run the recipe
+
+include::partial$run-recipe.adoc[]

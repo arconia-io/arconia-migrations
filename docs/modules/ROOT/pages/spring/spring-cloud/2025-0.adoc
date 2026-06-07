@@ -1,0 +1,22 @@
+= Spring Cloud 2025.0
+:description: Migrate your Spring Boot application to the latest Spring Cloud 2025.0.x release.
+:cli-command: arconia rewrite run --recipe-name io.arconia.rewrite.spring.cloud2025.UpgradeSpringCloud_2025_0
+:recipe-id: io.arconia.rewrite.spring.cloud2025.UpgradeSpringCloud_2025_0
+:rewrite-module: rewrite-spring
+
+When upgrading to Spring Cloud 2025.0, refer to the https://github.com/spring-cloud/spring-cloud-release/wiki/Spring-Cloud-2025.0-Release-Notes[Spring Cloud 2025.0 Release Notes] to find out about newly introduced APIs, deprecated APIs, and information about breaking changes.
+
+The `{recipe-id}` recipe automates most of the changes introduced in Spring Cloud 2025.0. You can use it to update your project to the latest Spring Cloud 2025.0.x release.
+
+The recipe will:
+
+* Upgrade `org.springframework.cloud:spring-cloud-dependencies` (and the `spring-cloud-starter-parent` Maven parent) to the 2025.0.x release line.
+* Rename Spring Cloud configuration properties to match the new property names.
+* Adopt the new module names for the *Spring Cloud Gateway* dependencies:
+** `spring-cloud-gateway-server` -> `spring-cloud-gateway-server-webflux` (and the matching `spring-cloud-starter-gateway-server` -> `spring-cloud-starter-gateway-server-webflux`).
+** `spring-cloud-gateway-server-mvc` -> `spring-cloud-gateway-server-webmvc` (and the matching starter).
+** The former `spring-cloud-gateway-mvc` and `spring-cloud-gateway-webflux` artifacts, which host the Proxy Exchange handlers, are renamed to `spring-cloud-gateway-proxyexchange-webmvc` and `spring-cloud-gateway-proxyexchange-webflux`.
+
+== Run the recipe
+
+include::partial$run-recipe.adoc[]

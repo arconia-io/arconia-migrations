@@ -1,0 +1,13 @@
+= Spring
+:description: Upgrade recipes for Spring Boot, Spring Framework, Spring Cloud, and Spring AI.
+
+Arconia Migrations provides OpenRewrite recipes for the Spring ecosystem. All recipes in this category are published in the `rewrite-spring` module.
+
+== Upgrade Guides
+
+* *xref:spring/spring-boot/index.adoc[Spring Boot].* Recipes for upgrading to Spring Boot 3.x and 4.x.
+* *xref:spring/spring-framework/index.adoc[Spring Framework].* Recipes for upgrading to Spring Framework 6.x and 7.x.
+* *xref:spring/spring-cloud/index.adoc[Spring Cloud].* Recipes for upgrading to Spring Cloud 2025.x.
+* *xref:spring/spring-ai/index.adoc[Spring AI].* Recipes for upgrading to Spring AI 1.x and Spring AI 2.x.
+
+Each upgrade page shows how to apply the recipe with the Arconia CLI, the OpenRewrite Gradle plugin, and the OpenRewrite Maven plugin.

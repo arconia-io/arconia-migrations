@@ -1,0 +1,36 @@
+= Spring Framework 7.0
+:description: Migrate your Spring application to the latest Spring Framework 7.0.x release.
+:cli-command: arconia rewrite run --recipe-name io.arconia.rewrite.spring.framework7.UpgradeSpringFramework_7_0
+:recipe-id: io.arconia.rewrite.spring.framework7.UpgradeSpringFramework_7_0
+:rewrite-module: rewrite-spring
+
+When upgrading to Spring Framework 7.0, refer to the https://github.com/spring-projects/spring-framework/wiki/Spring-Framework-7.0-Release-Notes[Spring Framework 7.0 Release Notes] to find out about newly introduced APIs, deprecated APIs, and information about breaking changes.
+
+The `{recipe-id}` recipe automates most of the changes introduced in Spring Framework 7.0. You can use it to update your project to the latest Spring Framework 7.0.x release.
+
+The recipe will:
+
+* Upgrade all `org.springframework` dependencies to the 7.0.x release line.
+* Apply the related upgrades to https://docs.openrewrite.org/recipes/java/jackson/upgradejackson_2_3[Jackson 3] and xref:testing/junit/6.adoc[JUnit 6], which are required for compatibility with Spring Framework 7.0.
+* For *Spring Core*:
+** Migrate nullness annotations from `org.springframework.lang.{NonNull,Nullable}` to the JSpecify package (`org.jspecify.annotations.{NonNull,Nullable}`).
+** Rename `FilePatternResourceHintsRegistrar.Builder.withClasspathLocations(...)` to `withClassPathLocations(...)`.
+** Replace the `MemberCategory.DECLARED_FIELDS` and `MemberCategory.PUBLIC_FIELDS` constants with `INVOKE_DECLARED_FIELDS` and `INVOKE_PUBLIC_FIELDS`.
+* For *Spring Test*: rename `StatusResultMatchers.isPayloadTooLarge()` to `isContentTooLarge()` and `isUnprocessableEntity()` to `isUnprocessableContent()`, aligning with the HTTP status name updates in RFC 9110.
+* For *Spring Web*:
+** Switch `Jackson2ObjectMapperBuilder` for the new Jackson 3 `tools.jackson.databind.json.JsonMapper.Builder`.
+** Rename `PayloadTooLargeException` to `ContentTooLargeException`.
+** Rename `ResponseEntity.unprocessableEntity()` to `unprocessableContent()`.
+** Replace the `HttpStatus.PAYLOAD_TOO_LARGE` and `HttpStatus.UNPROCESSABLE_ENTITY` constants with `CONTENT_TOO_LARGE` and `UNPROCESSABLE_CONTENT`.
+* For *Spring WebFlux*:
+** Rename `ServerResponse.unprocessableEntity()` to `unprocessableContent()`.
+** Rename the `WebClientResponseException.UnprocessableEntity` nested type to `UnprocessableContent`.
+** Rename the `FragmentsRendering` builder methods: `with(...)` -> `fragment(...)`, `withCollection(...)` -> `fragments(...)`, `withPublisher(...)` -> `fragmentsPublisher(...)`, and `withProducer(...)` -> `fragmentsProducer(...)`.
+* For *Spring WebMVC*:
+** Rename `ServerResponse.unprocessableEntity()` to `unprocessableContent()`.
+** Rename the `FragmentsRendering` builder methods: `with(String)` and `with(String, Map)` to `fragment(...)`, and `with(Collection)` to `fragments(...)`.
+** Rename the lowercase `RequestContext.jstlPresent` constant to the uppercase `JSTL_PRESENT`.
+
+== Run the recipe
+
+include::partial$run-recipe.adoc[]

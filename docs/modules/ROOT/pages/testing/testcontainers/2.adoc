@@ -1,0 +1,21 @@
+= Testcontainers 2
+:description: Migrate your project to the latest Testcontainers 2.x release.
+:cli-command: arconia rewrite run --recipe-name io.arconia.rewrite.test.testcontainers.UpgradeTestcontainers_2
+:recipe-id: io.arconia.rewrite.test.testcontainers.UpgradeTestcontainers_2
+:rewrite-module: rewrite-test
+
+When upgrading Testcontainers to a newer version, refer to the https://github.com/testcontainers/testcontainers-java/releases/tag/2.0.0[Testcontainers 2.0 Release Notes] to find out about newly introduced APIs, deprecated APIs, and information about breaking changes.
+
+The `{recipe-id}` recipe automates most of the changes introduced in Testcontainers 2.x. You can use it to update your project to the latest Testcontainers 2.x release.
+
+The recipe will:
+
+* Rename the Testcontainers module artifacts to the new `testcontainers-<module>` naming scheme (for example, `org.testcontainers:activemq` becomes `org.testcontainers:testcontainers-activemq`). This applies to all the supported modules, including ActiveMQ, Azure, Cassandra, ChromaDB, ClickHouse, CockroachDB, Consul, Couchbase, the JDBC drivers (Db2, MariaDB, MS SQL Server, MySQL, Oracle Free/XE, PostgreSQL, ...), the cloud SDKs (AWS LocalStack, Azure, Google Cloud), Elasticsearch, Kafka, MongoDB, Neo4j, RabbitMQ, Redpanda, Selenium, and many more.
+* Upgrade all `org.testcontainers` dependencies to the 2.x release line.
+* Relocate the container types from the catch-all `org.testcontainers.containers` package to their corresponding module package. For example, `org.testcontainers.containers.PostgreSQLContainer` -> `org.testcontainers.postgresql.PostgreSQLContainer`. The same move applies to the Cassandra, ClickHouse, CockroachDB, Db2, Kafka, MariaDB, MockServer, MongoDB, MSSQLServer, MySQL, Neo4j, Nginx, OrientDB, Pulsar, RabbitMQ, Solr, Toxiproxy, and Trino container types, the Selenium `BrowserWebDriverContainer`, the AWS `LocalStackContainer`, and the Google Cloud emulator containers (`BigQueryEmulatorContainer`, `BigtableEmulatorContainer`, `DatastoreEmulatorContainer`, `FirestoreEmulatorContainer`, `PubSubEmulatorContainer`, `SpannerEmulatorContainer`) moving to `org.testcontainers.gcloud`.
+* Drop the self-referential generic type parameter from the relocated container types so they can be used as raw types (for example, `CassandraContainer<?>` becomes `CassandraContainer`).
+* Rename `ContainerState.getContainerIpAddress()` to `getHost()`.
+
+== Run the recipe
+
+include::partial$run-recipe.adoc[]

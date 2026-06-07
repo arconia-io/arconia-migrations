@@ -1,0 +1,22 @@
+= Spring AI 1.1
+:description: Migrate your Spring Boot application to the latest Spring AI 1.1.x release.
+:cli-command: arconia update spring-ai --to-version=1.1
+:recipe-id: io.arconia.rewrite.spring.ai.UpgradeSpringAi_1_1
+:rewrite-module: rewrite-spring
+
+When upgrading to Spring AI 1.1, refer to the https://docs.spring.io/spring-ai/reference/1.1/upgrade-notes.html[Upgrade Notes] to find out about newly introduced APIs, deprecated APIs, and information about breaking changes.
+
+The `{recipe-id}` recipe automates many of the changes introduced in Spring AI 1.1.0. You can use it to update your project to the latest Spring AI 1.1.x release.
+
+The recipe will:
+
+* Upgrade all `org.springframework.ai` dependencies to the 1.1.x release line.
+* Rename Spring AI configuration properties to match the new property names.
+* Migrate to the new `AssistantMessage`, `EmbeddingOptions`, `QuestionAnswerAdvisor`, and `ToolResponseMessage` builders.
+* For *Bedrock*: rename `BedrockTitanEmbeddingOptions.Builder.withInputType(...)` to `inputType(...)`.
+* For *Text-to-Speech*: move the speech model types from `org.springframework.ai.openai.audio.speech` to the new vendor-agnostic `org.springframework.ai.audio.tts` package, renaming `SpeechMessage` -> `TextToSpeechMessage`, `SpeechModel` -> `TextToSpeechModel`, `SpeechPrompt` -> `TextToSpeechPrompt`, `SpeechResponse` -> `TextToSpeechResponse`, and `StreamingSpeechModel` -> `StreamingTextToSpeechModel`.
+* For *MCP* (Model Context Protocol): rename `spring-ai-autoconfigure-mcp-client` and `spring-ai-autoconfigure-mcp-server` to add the `-common` suffix; automatically add the transport-specific autoconfigure dependencies (`spring-ai-autoconfigure-mcp-{client-{httpclient,webflux},server-{webflux,webmvc}}`) when the corresponding autoconfiguration types are used; relocate the MCP client autoconfigure types from `org.springframework.ai.mcp.client.autoconfigure` to `org.springframework.ai.mcp.client.common.autoconfigure` (and the transport-specific types to their respective `httpclient` / `webflux` sub-packages); move server autoconfigure types under `org.springframework.ai.mcp.server.common.autoconfigure`; and rename `McpWebFluxServerAutoConfiguration` and `McpWebMvcServerAutoConfiguration` to `McpServerSseWebFluxAutoConfiguration` and `McpServerSseWebMvcAutoConfiguration`.
+
+== Run the recipe
+
+include::partial$run-recipe.adoc[]

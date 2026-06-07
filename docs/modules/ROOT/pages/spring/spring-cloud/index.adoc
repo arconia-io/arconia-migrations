@@ -1,0 +1,9 @@
+= Spring Cloud
+:description: Upgrade recipes for Spring Cloud 2025.x.
+
+Arconia Migrations ships an upgrade recipe for each minor release of Spring Cloud that is supported by the catalog.
+
+== Upgrade Guides
+
+* *xref:spring/spring-cloud/2025-0.adoc[Spring Cloud 2025.0].* Migrate to the latest Spring Cloud 2025.0.x release.
+* *xref:spring/spring-cloud/2025-1.adoc[Spring Cloud 2025.1].* Migrate to the latest Spring Cloud 2025.1.x release.

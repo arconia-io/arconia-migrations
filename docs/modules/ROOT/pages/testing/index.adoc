@@ -1,0 +1,11 @@
+= Testing
+:description: Upgrade recipes for JUnit and Testcontainers.
+
+Arconia Migrations provides OpenRewrite recipes for the common Java testing frameworks. All recipes in this category are published in the `rewrite-test` module.
+
+== Upgrade Guides
+
+* *xref:testing/junit/index.adoc[JUnit].* Recipes for upgrading to JUnit 6.x.
+* *xref:testing/testcontainers/index.adoc[Testcontainers].* Recipes for upgrading to Testcontainers 2.x.
+
+Each upgrade page shows how to apply the recipe with the Arconia CLI, the OpenRewrite Gradle plugin, and the OpenRewrite Maven plugin.

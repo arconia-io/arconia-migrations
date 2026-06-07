@@ -1,0 +1,19 @@
+= JUnit 6
+:description: Migrate your project to the latest JUnit 6.x release.
+:cli-command: arconia rewrite run --recipe-name io.arconia.rewrite.test.junit.UpgradeJUnit_6
+:recipe-id: io.arconia.rewrite.test.junit.UpgradeJUnit_6
+:rewrite-module: rewrite-test
+
+When upgrading to JUnit 6.x, refer to the https://docs.junit.org/6.0.0/release-notes/[JUnit 6.0 Release Notes] to find out about newly introduced APIs, deprecated APIs, and information about breaking changes.
+
+The `{recipe-id}` recipe automates most of the changes introduced in JUnit 6.x. You can use it to update your project to the latest JUnit 6.x release.
+
+The recipe will:
+
+* Upgrade all `org.junit.jupiter:junit-jupiter`, `junit-jupiter-api`, `junit-jupiter-engine`, and `junit-jupiter-params` dependencies to the 6.x release line.
+* Add the `org.junit.platform:junit-platform-launcher` dependency to Gradle's `testRuntimeOnly` configuration, which is required at runtime by the JUnit 6 platform.
+* Remove the JUnit Platform modules that have been retired in 6: `junit-platform-jfr`, `junit-platform-runner`, and `junit-platform-suite-common`.
+
+== Run the recipe
+
+include::partial$run-recipe.adoc[]

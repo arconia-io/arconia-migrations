@@ -1,0 +1,9 @@
+= Spring Framework
+:description: Upgrade recipes for the Spring Framework.
+
+Arconia Migrations ships an upgrade recipe for each minor release of Spring Framework that is supported by the catalog.
+
+== Upgrade Guides
+
+* *xref:spring/spring-framework/6-2.adoc[Spring Framework 6.2].* Migrate to the latest Spring Framework 6.2.x release.
+* *xref:spring/spring-framework/7-0.adoc[Spring Framework 7.0].* Migrate to the latest Spring Framework 7.0.x release.
