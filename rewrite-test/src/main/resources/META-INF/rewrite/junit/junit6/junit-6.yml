@@ -21,7 +21,7 @@ recipeList:
       artifactId: junit-platform-runner
   - org.openrewrite.java.dependencies.RemoveDependency:
       groupId: org.junit.platform
-      artifactId: junit-platform-suite-common
+      artifactId: junit-platform-suite-commons
 
   # Dependency Versions
   - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
