@@ -422,7 +422,7 @@ recipeList:
       newPropertyKey: "spring.ai.ollama.chat.tfs-z"
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: "spring.ai.ollama.chat.options.think-option"
-      newPropertyKey: "spring.ai.ollama.chat.think-option"
+      newPropertyKey: "spring.ai.ollama.chat.think"
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: "spring.ai.ollama.chat.options.top-k"
       newPropertyKey: "spring.ai.ollama.chat.top-k"

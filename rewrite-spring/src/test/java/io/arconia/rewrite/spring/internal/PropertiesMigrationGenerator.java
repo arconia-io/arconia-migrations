@@ -186,7 +186,9 @@ public final class PropertiesMigrationGenerator {
         Map<String, List<ModuleProperty>> propertiesByModule = new LinkedHashMap<>();
         int total = 0;
         for (Map.Entry<String, List<ModuleProperty>> entry : rawByModule.entrySet()) {
+            Set<String> redundantParents = findRedundantParentRenames(entry.getValue());
             List<ModuleProperty> unique = entry.getValue().stream()
+                    .filter(p -> !redundantParents.contains(dedupKey(p)))
                     .filter(p -> seenPropertyKeys.add(dedupKey(p)))
                     .sorted(Comparator.comparing(ModuleProperty::name))
                     .toList();
@@ -524,6 +526,35 @@ public final class PropertiesMigrationGenerator {
                           comment: "%s"
                     """.formatted(c.name(), yamlEscape(c.comment()));
         };
+    }
+
+    /**
+     * Identify renames whose old key is a strict prefix of another rename in the same module
+     * AND whose new key carries the same suffix shape. These parent renames are redundant —
+     * the leaf renames already cover every documented sub-key, and keeping the parent would
+     * sweep undocumented sub-keys that happen to share the namespace.
+     */
+    private static Set<String> findRedundantParentRenames(List<ModuleProperty> properties) {
+        List<ModuleProperty.Renamed> renames = properties.stream()
+                .filter(ModuleProperty.Renamed.class::isInstance)
+                .map(ModuleProperty.Renamed.class::cast)
+                .toList();
+        Set<String> redundant = new HashSet<>();
+        for (ModuleProperty.Renamed parent : renames) {
+            String oldPrefix = parent.name() + ".";
+            String newPrefix = parent.replacement() + ".";
+            for (ModuleProperty.Renamed child : renames) {
+                if (child == parent) continue;
+                if (child.name().startsWith(oldPrefix)
+                        && child.replacement().startsWith(newPrefix)
+                        && child.name().substring(oldPrefix.length())
+                            .equals(child.replacement().substring(newPrefix.length()))) {
+                    redundant.add(dedupKey(parent));
+                    break;
+                }
+            }
+        }
+        return redundant;
     }
 
     private static String dedupKey(ModuleProperty p) {
