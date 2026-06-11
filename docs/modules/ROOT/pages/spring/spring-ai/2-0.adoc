@@ -14,11 +14,13 @@ The recipe will:
 * Rename Spring AI configuration properties to match the new property names.
 * Migrate to the new `ChatOptionsBuilder` API.
 * Rename `ChatClient.ChatClientRequestSpec.toolCallbacks(...)` to `tools(...)` to align with the new tool-calling API.
+* Rename `JsonParser.getObjectMapper()` to `JsonParser.getJsonMapper()`.
 * Apply the dependency rename from `spring-ai-advisors-vector-store` to `spring-ai-vector-store-advisor`.
 * Update type references such as `PromptChatMemoryAdvisor` -> `MessageChatMemoryAdvisor` and `OpensearchContainer` -> `OpenSearchContainer`.
 * For *Anthropic*: migrate to the new `AnthropicChatModelBuilder`, and relocate Anthropic types (`AnthropicCacheOptions`, `AnthropicCacheStrategy`, `AnthropicCacheTtl`, `CacheEligibilityResolver`, `CitationDocument` -> `AnthropicCitationDocument`) from `org.springframework.ai.anthropic.api` to `org.springframework.ai.anthropic`.
 * For *MCP* (Model Context Protocol): adopt the new `spring-ai-mcp-annotations` artifact in place of `org.springaicommunity:mcp-annotations`; move the MCP Spring WebFlux and WebMvc artifacts from `io.modelcontextprotocol.sdk` to `org.springframework.ai`; relocate the community MCP packages under `org.springaicommunity.mcp` (annotation, context, method, provider) to the corresponding sub-packages of `org.springframework.ai.mcp.annotation`; and move MCP transport types from `io.modelcontextprotocol` to the corresponding `org.springframework.ai.mcp.{client,server}.{webflux,webmvc}.transport` packages.
-* For *OpenAI*: rename the `spring-ai-openai-sdk` and `spring-ai-starter-model-openai-sdk` artifacts to drop the `-sdk` suffix, and remove the Azure OpenAI artifacts (`spring-ai-azure-openai`, `spring-ai-starter-model-azure-openai`, `spring-ai-autoconfigure-model-azure-openai`), which have been discontinued in Spring AI 2.0.
+* For *Mistral AI*: rename `MistralAiEmbeddingOptions.Builder` methods `withModel(...)` and `withEncodingFormat(...)` to `model(...)` and `encodingFormat(...)`, and consolidate deprecated `MistralAiApi.ChatModel` aliases onto their canonical `MISTRAL_*`, `MINISTRAL_*`, and `DEVSTRAL` names.
+* For *OpenAI*: rename the `spring-ai-openai-sdk` and `spring-ai-starter-model-openai-sdk` artifacts to drop the `-sdk` suffix, and remove the Azure OpenAI artifacts (`spring-ai-azure-openai`, `spring-ai-starter-model-azure-openai`, `spring-ai-autoconfigure-model-azure-openai`), which have been discontinued in Spring AI 2.0. Migrate `OpenAiApi.ChatModel` constants to `com.openai.models.ChatModel` from the openai-java SDK (case-normalising names such as `GPT_4_O` -> `GPT_4O`), and rename `ChatModel.getValue()` calls to `asString()` to match the openai-java API.
 * For *Google*: relocate `GoogleGenAiEmbeddingConnectionDetails` to the `org.springframework.ai.google.genai.embedding` sub-package.
 * Remove the discontinued `spring-ai-hanadb-store` and `spring-ai-spring-cloud-bindings` artifacts.
 

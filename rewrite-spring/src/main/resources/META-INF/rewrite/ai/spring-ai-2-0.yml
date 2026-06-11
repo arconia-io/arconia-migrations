@@ -46,6 +46,10 @@ recipeList:
       methodPattern: org.springframework.ai.chat.client.ChatClient.ChatClientRequestSpec toolCallbacks(org.springframework.ai.tool.ToolCallbackProvider...)
       newMethodName: tools
       matchOverrides: true
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: org.springframework.ai.util.json.JsonParser getObjectMapper()
+      newMethodName: getJsonMapper
+      matchOverrides: true
 
   ####### Anthropic #######
 
@@ -133,6 +137,47 @@ recipeList:
       oldFullyQualifiedTypeName: io.modelcontextprotocol.server.transport.WebMvcStatelessServerTransport
       newFullyQualifiedTypeName: org.springframework.ai.mcp.server.webmvc.transport.WebMvcStatelessServerTransport
 
+  ####### Mistral AI #######
+
+  # Method Changes
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: org.springframework.ai.mistralai.MistralAiEmbeddingOptions.Builder withModel(java.lang.String)
+      newMethodName: model
+      matchOverrides: true
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: org.springframework.ai.mistralai.MistralAiEmbeddingOptions.Builder withEncodingFormat(java.lang.String)
+      newMethodName: encodingFormat
+      matchOverrides: true
+
+  # Enum Changes
+  - org.openrewrite.java.ReplaceConstantWithAnotherConstant:
+      existingFullyQualifiedConstantName: org.springframework.ai.mistralai.api.MistralAiApi.ChatModel.DEVSTRAL_SMALL
+      fullyQualifiedConstantName: org.springframework.ai.mistralai.api.MistralAiApi.ChatModel.DEVSTRAL
+  - org.openrewrite.java.ReplaceConstantWithAnotherConstant:
+      existingFullyQualifiedConstantName: org.springframework.ai.mistralai.api.MistralAiApi.ChatModel.DEVSTRAL_MEDIUM
+      fullyQualifiedConstantName: org.springframework.ai.mistralai.api.MistralAiApi.ChatModel.DEVSTRAL
+  - org.openrewrite.java.ReplaceConstantWithAnotherConstant:
+      existingFullyQualifiedConstantName: org.springframework.ai.mistralai.api.MistralAiApi.ChatModel.MAGISTRAL_SMALL
+      fullyQualifiedConstantName: org.springframework.ai.mistralai.api.MistralAiApi.ChatModel.MISTRAL_SMALL
+  - org.openrewrite.java.ReplaceConstantWithAnotherConstant:
+      existingFullyQualifiedConstantName: org.springframework.ai.mistralai.api.MistralAiApi.ChatModel.MINISTRAL_3B_LATEST
+      fullyQualifiedConstantName: org.springframework.ai.mistralai.api.MistralAiApi.ChatModel.MINISTRAL_3B
+  - org.openrewrite.java.ReplaceConstantWithAnotherConstant:
+      existingFullyQualifiedConstantName: org.springframework.ai.mistralai.api.MistralAiApi.ChatModel.MINISTRAL_8B_LATEST
+      fullyQualifiedConstantName: org.springframework.ai.mistralai.api.MistralAiApi.ChatModel.MINISTRAL_8B
+  - org.openrewrite.java.ReplaceConstantWithAnotherConstant:
+      existingFullyQualifiedConstantName: org.springframework.ai.mistralai.api.MistralAiApi.ChatModel.LARGE
+      fullyQualifiedConstantName: org.springframework.ai.mistralai.api.MistralAiApi.ChatModel.MISTRAL_LARGE
+  - org.openrewrite.java.ReplaceConstantWithAnotherConstant:
+      existingFullyQualifiedConstantName: org.springframework.ai.mistralai.api.MistralAiApi.ChatModel.SMALL
+      fullyQualifiedConstantName: org.springframework.ai.mistralai.api.MistralAiApi.ChatModel.MISTRAL_SMALL
+  - org.openrewrite.java.ReplaceConstantWithAnotherConstant:
+      existingFullyQualifiedConstantName: org.springframework.ai.mistralai.api.MistralAiApi.ChatModel.PIXTRAL
+      fullyQualifiedConstantName: org.springframework.ai.mistralai.api.MistralAiApi.ChatModel.MINISTRAL_14B
+  - org.openrewrite.java.ReplaceConstantWithAnotherConstant:
+      existingFullyQualifiedConstantName: org.springframework.ai.mistralai.api.MistralAiApi.ChatModel.PIXTRAL_LARGE
+      fullyQualifiedConstantName: org.springframework.ai.mistralai.api.MistralAiApi.ChatModel.MISTRAL_LARGE
+
   ####### OpenAI #######
 
   # Dependency Changes
@@ -164,6 +209,79 @@ recipeList:
   - org.openrewrite.java.dependencies.RemoveDependency:
       groupId: org.springframework.ai
       artifactId: spring-ai-openai-sdk
+
+  # Enum Changes
+  - org.openrewrite.java.ReplaceConstantWithAnotherConstant:
+      existingFullyQualifiedConstantName: org.springframework.ai.openai.api.OpenAiApi.ChatModel.O4_MINI
+      fullyQualifiedConstantName: com.openai.models.ChatModel.O4_MINI
+  - org.openrewrite.java.ReplaceConstantWithAnotherConstant:
+      existingFullyQualifiedConstantName: org.springframework.ai.openai.api.OpenAiApi.ChatModel.O3
+      fullyQualifiedConstantName: com.openai.models.ChatModel.O3
+  - org.openrewrite.java.ReplaceConstantWithAnotherConstant:
+      existingFullyQualifiedConstantName: org.springframework.ai.openai.api.OpenAiApi.ChatModel.O3_MINI
+      fullyQualifiedConstantName: com.openai.models.ChatModel.O3_MINI
+  - org.openrewrite.java.ReplaceConstantWithAnotherConstant:
+      existingFullyQualifiedConstantName: org.springframework.ai.openai.api.OpenAiApi.ChatModel.O1
+      fullyQualifiedConstantName: com.openai.models.ChatModel.O1
+  - org.openrewrite.java.ReplaceConstantWithAnotherConstant:
+      existingFullyQualifiedConstantName: org.springframework.ai.openai.api.OpenAiApi.ChatModel.O1_MINI
+      fullyQualifiedConstantName: com.openai.models.ChatModel.O1_MINI
+  - org.openrewrite.java.ReplaceConstantWithAnotherConstant:
+      existingFullyQualifiedConstantName: org.springframework.ai.openai.api.OpenAiApi.ChatModel.GPT_4_1
+      fullyQualifiedConstantName: com.openai.models.ChatModel.GPT_4_1
+  - org.openrewrite.java.ReplaceConstantWithAnotherConstant:
+      existingFullyQualifiedConstantName: org.springframework.ai.openai.api.OpenAiApi.ChatModel.GPT_5
+      fullyQualifiedConstantName: com.openai.models.ChatModel.GPT_5
+  - org.openrewrite.java.ReplaceConstantWithAnotherConstant:
+      existingFullyQualifiedConstantName: org.springframework.ai.openai.api.OpenAiApi.ChatModel.GPT_5_MINI
+      fullyQualifiedConstantName: com.openai.models.ChatModel.GPT_5_MINI
+  - org.openrewrite.java.ReplaceConstantWithAnotherConstant:
+      existingFullyQualifiedConstantName: org.springframework.ai.openai.api.OpenAiApi.ChatModel.GPT_5_NANO
+      fullyQualifiedConstantName: com.openai.models.ChatModel.GPT_5_NANO
+  - org.openrewrite.java.ReplaceConstantWithAnotherConstant:
+      existingFullyQualifiedConstantName: org.springframework.ai.openai.api.OpenAiApi.ChatModel.GPT_5_CHAT_LATEST
+      fullyQualifiedConstantName: com.openai.models.ChatModel.GPT_5_CHAT_LATEST
+  - org.openrewrite.java.ReplaceConstantWithAnotherConstant:
+      existingFullyQualifiedConstantName: org.springframework.ai.openai.api.OpenAiApi.ChatModel.GPT_4_O
+      fullyQualifiedConstantName: com.openai.models.ChatModel.GPT_4O
+  - org.openrewrite.java.ReplaceConstantWithAnotherConstant:
+      existingFullyQualifiedConstantName: org.springframework.ai.openai.api.OpenAiApi.ChatModel.CHATGPT_4_O_LATEST
+      fullyQualifiedConstantName: com.openai.models.ChatModel.CHATGPT_4O_LATEST
+  - org.openrewrite.java.ReplaceConstantWithAnotherConstant:
+      existingFullyQualifiedConstantName: org.springframework.ai.openai.api.OpenAiApi.ChatModel.GPT_4_O_AUDIO_PREVIEW
+      fullyQualifiedConstantName: com.openai.models.ChatModel.GPT_4O_AUDIO_PREVIEW
+  - org.openrewrite.java.ReplaceConstantWithAnotherConstant:
+      existingFullyQualifiedConstantName: org.springframework.ai.openai.api.OpenAiApi.ChatModel.GPT_4_1_MINI
+      fullyQualifiedConstantName: com.openai.models.ChatModel.GPT_4_1_MINI
+  - org.openrewrite.java.ReplaceConstantWithAnotherConstant:
+      existingFullyQualifiedConstantName: org.springframework.ai.openai.api.OpenAiApi.ChatModel.GPT_4_1_NANO
+      fullyQualifiedConstantName: com.openai.models.ChatModel.GPT_4_1_NANO
+  - org.openrewrite.java.ReplaceConstantWithAnotherConstant:
+      existingFullyQualifiedConstantName: org.springframework.ai.openai.api.OpenAiApi.ChatModel.GPT_4_O_MINI
+      fullyQualifiedConstantName: com.openai.models.ChatModel.GPT_4O_MINI
+  - org.openrewrite.java.ReplaceConstantWithAnotherConstant:
+      existingFullyQualifiedConstantName: org.springframework.ai.openai.api.OpenAiApi.ChatModel.GPT_4_O_MINI_AUDIO_PREVIEW
+      fullyQualifiedConstantName: com.openai.models.ChatModel.GPT_4O_MINI_AUDIO_PREVIEW
+  - org.openrewrite.java.ReplaceConstantWithAnotherConstant:
+      existingFullyQualifiedConstantName: org.springframework.ai.openai.api.OpenAiApi.ChatModel.GPT_4_TURBO
+      fullyQualifiedConstantName: com.openai.models.ChatModel.GPT_4_TURBO
+  - org.openrewrite.java.ReplaceConstantWithAnotherConstant:
+      existingFullyQualifiedConstantName: org.springframework.ai.openai.api.OpenAiApi.ChatModel.GPT_4
+      fullyQualifiedConstantName: com.openai.models.ChatModel.GPT_4
+  - org.openrewrite.java.ReplaceConstantWithAnotherConstant:
+      existingFullyQualifiedConstantName: org.springframework.ai.openai.api.OpenAiApi.ChatModel.GPT_3_5_TURBO
+      fullyQualifiedConstantName: com.openai.models.ChatModel.GPT_3_5_TURBO
+  - org.openrewrite.java.ReplaceConstantWithAnotherConstant:
+      existingFullyQualifiedConstantName: org.springframework.ai.openai.api.OpenAiApi.ChatModel.GPT_4_O_SEARCH_PREVIEW
+      fullyQualifiedConstantName: com.openai.models.ChatModel.GPT_4O_SEARCH_PREVIEW
+  - org.openrewrite.java.ReplaceConstantWithAnotherConstant:
+      existingFullyQualifiedConstantName: org.springframework.ai.openai.api.OpenAiApi.ChatModel.GPT_4_O_MINI_SEARCH_PREVIEW
+      fullyQualifiedConstantName: com.openai.models.ChatModel.GPT_4O_MINI_SEARCH_PREVIEW
+
+  # Method Changes
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: org.springframework.ai.openai.api.OpenAiApi.ChatModel getValue()
+      newMethodName: asString
 
   ####### Google #######
 

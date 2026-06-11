@@ -5,7 +5,6 @@ import org.openrewrite.InMemoryExecutionContext;
 import org.openrewrite.java.JavaParser;
 import org.openrewrite.test.RecipeSpec;
 import org.openrewrite.test.RewriteTest;
-import org.openrewrite.test.TypeValidation;
 
 import static org.openrewrite.java.Assertions.java;
 
@@ -21,7 +20,6 @@ class UseChatOptionsBuilderTests implements RewriteTest {
     @Test
     void removeBuildFromOptionsCall() {
         rewriteRun(
-                spec -> spec.typeValidationOptions(TypeValidation.builder().methodInvocations(false).build()),
                 //language=java
                 java(
                         """
@@ -60,7 +58,6 @@ class UseChatOptionsBuilderTests implements RewriteTest {
     @Test
     void removeBuildFromDefaultOptionsCall() {
         rewriteRun(
-                spec -> spec.typeValidationOptions(TypeValidation.builder().methodInvocations(false).build()),
                 //language=java
                 java(
                         """
@@ -97,7 +94,6 @@ class UseChatOptionsBuilderTests implements RewriteTest {
     @Test
     void removeBuildFromOptionsCallWithToolCallingChatOptions() {
         rewriteRun(
-                spec -> spec.typeValidationOptions(TypeValidation.builder().methodInvocations(false).build()),
                 //language=java
                 java(
                         """
@@ -136,7 +132,6 @@ class UseChatOptionsBuilderTests implements RewriteTest {
     @Test
     void removeBuildFromDefaultOptionsCallWithToolCallingChatOptions() {
         rewriteRun(
-                spec -> spec.typeValidationOptions(TypeValidation.builder().methodInvocations(false).build()),
                 //language=java
                 java(
                         """

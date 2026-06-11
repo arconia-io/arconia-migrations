@@ -71,7 +71,9 @@ recipeDependencies {
 
     parserClasspath "org.springframework.ai:spring-ai-advisors-vector-store:1.1.7"
     parserClasspath "org.springframework.ai:spring-ai-client-chat:1.1.7"
+    parserClasspath "org.springframework.ai:spring-ai-mistral-ai:1.1.7"
     parserClasspath "org.springframework.ai:spring-ai-model:1.1.7"
+    parserClasspath "org.springframework.ai:spring-ai-openai:1.1.7"
     parserClasspath "org.springframework.ai:spring-ai-vector-store:1.1.7"
 
     parserClasspath "org.springframework.ai:spring-ai-anthropic:2.0.0-M2"
@@ -127,6 +129,8 @@ recipeDependencies {
     parserClasspath "org.springframework:spring-context:7.0.5"
     parserClasspath "org.springframework:spring-core:7.0.5"
     parserClasspath "org.springframework:spring-test:7.0.5"
+
+    parserClasspath "com.openai:openai-java-core:4.38.0"
 }
 
 // Re-enable if and when starting using Refaster
