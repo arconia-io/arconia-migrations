@@ -49,14 +49,8 @@ recipeList:
       oldPropertyKey: "management.endpoint.gateway.enabled"
       newPropertyKey: "management.endpoint.gateway.access"
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
-      oldPropertyKey: "spring.cloud.gateway"
-      newPropertyKey: "spring.cloud.gateway.server.webflux"
-  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: "spring.cloud.gateway.default-filters"
       newPropertyKey: "spring.cloud.gateway.server.webflux.default-filters"
-  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
-      oldPropertyKey: "spring.cloud.gateway.discovery.locator"
-      newPropertyKey: "spring.cloud.gateway.server.webflux.discovery.locator"
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: "spring.cloud.gateway.discovery.locator.enabled"
       newPropertyKey: "spring.cloud.gateway.server.webflux.discovery.locator.enabled"
@@ -109,14 +103,8 @@ recipeList:
       oldPropertyKey: "spring.cloud.gateway.filter.json-to-grpc.enabled"
       newPropertyKey: "spring.cloud.gateway.server.webflux.filter.json-to-grpc.enabled"
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
-      oldPropertyKey: "spring.cloud.gateway.filter.local-response-cache"
-      newPropertyKey: "spring.cloud.gateway.server.webflux.filter.local-response-cache"
-  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: "spring.cloud.gateway.filter.local-response-cache.enabled"
       newPropertyKey: "spring.cloud.gateway.server.webflux.filter.local-response-cache.enabled"
-  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
-      oldPropertyKey: "spring.cloud.gateway.filter.local-response-cache.request"
-      newPropertyKey: "spring.cloud.gateway.server.webflux.filter.local-response-cache.request"
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: "spring.cloud.gateway.filter.local-response-cache.request.no-cache-strategy"
       newPropertyKey: "spring.cloud.gateway.server.webflux.filter.local-response-cache.request.no-cache-strategy"
@@ -145,9 +133,6 @@ recipeList:
       oldPropertyKey: "spring.cloud.gateway.filter.redirect-to.enabled"
       newPropertyKey: "spring.cloud.gateway.server.webflux.filter.redirect-to.enabled"
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
-      oldPropertyKey: "spring.cloud.gateway.filter.remove-hop-by-hop"
-      newPropertyKey: "spring.cloud.gateway.server.webflux.filter.remove-hop-by-hop"
-  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: "spring.cloud.gateway.filter.remove-hop-by-hop.headers"
       newPropertyKey: "spring.cloud.gateway.server.webflux.filter.remove-hop-by-hop.headers"
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
@@ -168,9 +153,6 @@ recipeList:
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: "spring.cloud.gateway.filter.request-header-to-request-uri.enabled"
       newPropertyKey: "spring.cloud.gateway.server.webflux.filter.request-header-to-request-uri.enabled"
-  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
-      oldPropertyKey: "spring.cloud.gateway.filter.request-rate-limiter"
-      newPropertyKey: "spring.cloud.gateway.server.webflux.filter.request-rate-limiter"
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: "spring.cloud.gateway.filter.request-rate-limiter.default-key-resolver"
       newPropertyKey: "spring.cloud.gateway.server.webflux.filter.request-rate-limiter.default-key-resolver"
@@ -204,9 +186,6 @@ recipeList:
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: "spring.cloud.gateway.filter.save-session.enabled"
       newPropertyKey: "spring.cloud.gateway.server.webflux.filter.save-session.enabled"
-  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
-      oldPropertyKey: "spring.cloud.gateway.filter.secure-headers"
-      newPropertyKey: "spring.cloud.gateway.server.webflux.filter.secure-headers"
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: "spring.cloud.gateway.filter.secure-headers.content-security-policy"
       newPropertyKey: "spring.cloud.gateway.server.webflux.filter.secure-headers.content-security-policy"
@@ -307,9 +286,6 @@ recipeList:
       oldPropertyKey: "spring.cloud.gateway.global-filter.websocket-routing.enabled"
       newPropertyKey: "spring.cloud.gateway.server.webflux.global-filter.websocket-routing.enabled"
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
-      oldPropertyKey: "spring.cloud.gateway.globalcors"
-      newPropertyKey: "spring.cloud.gateway.server.webflux.globalcors"
-  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: "spring.cloud.gateway.globalcors.add-to-simple-url-handler-mapping"
       newPropertyKey: "spring.cloud.gateway.server.webflux.globalcors.add-to-simple-url-handler-mapping"
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
@@ -318,9 +294,6 @@ recipeList:
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: "spring.cloud.gateway.handler-mapping.order"
       newPropertyKey: "spring.cloud.gateway.server.webflux.handler-mapping.order"
-  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
-      oldPropertyKey: "spring.cloud.gateway.httpclient"
-      newPropertyKey: "spring.cloud.gateway.server.webflux.httpclient"
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: "spring.cloud.gateway.httpclient.compression"
       newPropertyKey: "spring.cloud.gateway.server.webflux.httpclient.compression"
@@ -333,9 +306,6 @@ recipeList:
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: "spring.cloud.gateway.httpclient.max-initial-line-length"
       newPropertyKey: "spring.cloud.gateway.server.webflux.httpclient.max-initial-line-length"
-  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
-      oldPropertyKey: "spring.cloud.gateway.httpclient.pool"
-      newPropertyKey: "spring.cloud.gateway.server.webflux.httpclient.pool"
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: "spring.cloud.gateway.httpclient.pool.acquire-timeout"
       newPropertyKey: "spring.cloud.gateway.server.webflux.httpclient.pool.acquire-timeout"
@@ -364,9 +334,6 @@ recipeList:
       oldPropertyKey: "spring.cloud.gateway.httpclient.pool.type"
       newPropertyKey: "spring.cloud.gateway.server.webflux.httpclient.pool.type"
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
-      oldPropertyKey: "spring.cloud.gateway.httpclient.proxy"
-      newPropertyKey: "spring.cloud.gateway.server.webflux.httpclient.proxy"
-  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: "spring.cloud.gateway.httpclient.proxy.host"
       newPropertyKey: "spring.cloud.gateway.server.webflux.httpclient.proxy.host"
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
@@ -387,9 +354,6 @@ recipeList:
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: "spring.cloud.gateway.httpclient.response-timeout"
       newPropertyKey: "spring.cloud.gateway.server.webflux.httpclient.response-timeout"
-  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
-      oldPropertyKey: "spring.cloud.gateway.httpclient.ssl"
-      newPropertyKey: "spring.cloud.gateway.server.webflux.httpclient.ssl"
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: "spring.cloud.gateway.httpclient.ssl.close-notify-flush-timeout"
       newPropertyKey: "spring.cloud.gateway.server.webflux.httpclient.ssl.close-notify-flush-timeout"
@@ -424,9 +388,6 @@ recipeList:
       oldPropertyKey: "spring.cloud.gateway.httpclient.ssl.use-insecure-trust-manager"
       newPropertyKey: "spring.cloud.gateway.server.webflux.httpclient.ssl.use-insecure-trust-manager"
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
-      oldPropertyKey: "spring.cloud.gateway.httpclient.websocket"
-      newPropertyKey: "spring.cloud.gateway.server.webflux.httpclient.websocket"
-  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: "spring.cloud.gateway.httpclient.websocket.max-frame-payload-length"
       newPropertyKey: "spring.cloud.gateway.server.webflux.httpclient.websocket.max-frame-payload-length"
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
@@ -439,14 +400,8 @@ recipeList:
       oldPropertyKey: "spring.cloud.gateway.httpserver.wiretap"
       newPropertyKey: "spring.cloud.gateway.server.webflux.httpserver.wiretap"
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
-      oldPropertyKey: "spring.cloud.gateway.loadbalancer"
-      newPropertyKey: "spring.cloud.gateway.server.webflux.loadbalancer"
-  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: "spring.cloud.gateway.loadbalancer.use404"
       newPropertyKey: "spring.cloud.gateway.server.webflux.loadbalancer.use404"
-  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
-      oldPropertyKey: "spring.cloud.gateway.metrics"
-      newPropertyKey: "spring.cloud.gateway.server.webflux.metrics"
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: "spring.cloud.gateway.metrics.enabled"
       newPropertyKey: "spring.cloud.gateway.server.webflux.metrics.enabled"
@@ -505,9 +460,6 @@ recipeList:
       oldPropertyKey: "spring.cloud.gateway.predicate.xforwarded-remote-addr.enabled"
       newPropertyKey: "spring.cloud.gateway.server.webflux.predicate.xforwarded-remote-addr.enabled"
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
-      oldPropertyKey: "spring.cloud.gateway.redis-rate-limiter"
-      newPropertyKey: "spring.cloud.gateway.server.webflux.redis-rate-limiter"
-  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: "spring.cloud.gateway.redis-rate-limiter.burst-capacity-header"
       newPropertyKey: "spring.cloud.gateway.server.webflux.redis-rate-limiter.burst-capacity-header"
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
@@ -544,9 +496,6 @@ recipeList:
       oldPropertyKey: "spring.cloud.gateway.server.webflux.metrics.tags.path.enabled"
       newPropertyKey: "spring.cloud.gateway.server.webflux.metrics.path-tags.enabled"
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
-      oldPropertyKey: "spring.cloud.gateway.set-status"
-      newPropertyKey: "spring.cloud.gateway.server.webflux.set-status"
-  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: "spring.cloud.gateway.set-status.original-status-header-name"
       newPropertyKey: "spring.cloud.gateway.server.webflux.set-status.original-status-header-name"
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
@@ -555,9 +504,6 @@ recipeList:
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: "spring.cloud.gateway.trusted-proxies"
       newPropertyKey: "spring.cloud.gateway.server.webflux.trusted-proxies"
-  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
-      oldPropertyKey: "spring.cloud.gateway.x-forwarded"
-      newPropertyKey: "spring.cloud.gateway.server.webflux.x-forwarded"
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: "spring.cloud.gateway.x-forwarded.enabled"
       newPropertyKey: "spring.cloud.gateway.server.webflux.x-forwarded.enabled"
