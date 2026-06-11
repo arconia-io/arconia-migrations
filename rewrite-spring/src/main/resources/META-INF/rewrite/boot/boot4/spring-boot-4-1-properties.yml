@@ -24,3 +24,7 @@ recipeList:
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: logging.pattern.rolling-file-name
       newPropertyKey: logging.logback.rollingpolicy.file-name-pattern
+
+  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
+      propertyKey: spring.datasource.oracleucp.role-name
+      comment: Deprecated property removed in Spring Boot 4.1.
