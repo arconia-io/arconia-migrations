@@ -786,6 +786,10 @@ recipeList:
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: "management.endpoint.kafkastreamstopology.enabled"
       newPropertyKey: "management.endpoint.kafkastreamstopology.access"
+  # spring-cloud-task-batch
+  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
+      propertyKey: "spring.cloud.task.batch.command-line-runner-order"
+      comment: "Deprecated property removed in Spring Cloud 2025.0."
   # spring-cloud-vault-config
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.vault.config.order"
