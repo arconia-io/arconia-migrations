@@ -17,7 +17,7 @@ First, create an `init.gradle` file in your project root with the following cont
 ----
 initscript {
     repositories {
-        maven { url "https://plugins.gradle.org/m2" }
+        gradlePluginPortal()
     }
     dependencies {
         classpath("org.openrewrite:plugin:latest.release")
@@ -28,14 +28,6 @@ rootProject {
     plugins.apply(org.openrewrite.gradle.RewritePlugin)
     dependencies {
         rewrite("io.arconia.migrations:{rewrite-module}:latest.release")
-    }
-
-    afterEvaluate {
-        if (repositories.isEmpty()) {
-            repositories {
-                mavenCentral()
-            }
-        }
     }
 
     configurations.named("rewrite") {
