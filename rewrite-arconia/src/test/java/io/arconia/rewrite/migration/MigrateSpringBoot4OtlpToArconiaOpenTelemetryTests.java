@@ -1,6 +1,7 @@
 package io.arconia.rewrite.migration;
 
 import org.junit.jupiter.api.Test;
+import org.openrewrite.DocumentExample;
 import org.openrewrite.InMemoryExecutionContext;
 import org.openrewrite.java.JavaParser;
 import org.openrewrite.test.RecipeSpec;
@@ -11,9 +12,6 @@ import static org.openrewrite.java.Assertions.mavenProject;
 import static org.openrewrite.java.Assertions.srcMainJava;
 import static org.openrewrite.properties.Assertions.properties;
 
-/**
- * Unit tests for "io.arconia.rewrite.MigrateSpringBoot4_0_OtlpToArconiaOpenTelemetry".
- */
 class MigrateSpringBoot4OtlpToArconiaOpenTelemetryTests implements RewriteTest {
 
     @Override
@@ -116,6 +114,7 @@ class MigrateSpringBoot4OtlpToArconiaOpenTelemetryTests implements RewriteTest {
     }
 
     @Test
+    @DocumentExample
     void renameTracingProperties() {
         rewriteRun(
                 //language=properties

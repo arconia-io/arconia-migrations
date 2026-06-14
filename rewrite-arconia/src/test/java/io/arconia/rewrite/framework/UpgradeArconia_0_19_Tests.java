@@ -1,6 +1,7 @@
 package io.arconia.rewrite.framework;
 
 import org.junit.jupiter.api.Test;
+import org.openrewrite.DocumentExample;
 import org.openrewrite.InMemoryExecutionContext;
 import org.openrewrite.java.JavaParser;
 import org.openrewrite.test.RecipeSpec;
@@ -48,6 +49,7 @@ class UpgradeArconia_0_19_Tests implements RewriteTest {
     }
 
     @Test
+    @DocumentExample
     void convertDocumentRequestHttpChanges() {
         rewriteRun(
                 //language=java
@@ -115,6 +117,53 @@ class UpgradeArconia_0_19_Tests implements RewriteTest {
                                 ConvertDocumentRequest convertDocumentRequest = ConvertDocumentRequest.builder()
                                     .source(HttpSource.builder().url(URI.create("https://example.net")).build())
                                     .build();
+                            }
+                        }
+                        """
+                )
+        );
+    }
+
+    @Test
+    void leavesMultiArgAddHttpSourcesAlone() {
+        rewriteRun(
+                //language=java
+                java(
+                        """
+                        import io.arconia.docling.client.convert.request.ConvertDocumentRequest;
+
+                        import java.net.URI;
+
+                        class Demo {
+                            ConvertDocumentRequest fromStrings() {
+                                return ConvertDocumentRequest.builder()
+                                        .addHttpSources("https://a.example.net", "https://b.example.net")
+                                        .build();
+                            }
+
+                            ConvertDocumentRequest fromUris(URI first, URI second) {
+                                return ConvertDocumentRequest.builder()
+                                        .addHttpSources(first, second)
+                                        .build();
+                            }
+                        }
+                        """,
+                        """
+                        import ai.docling.api.serve.convert.request.ConvertDocumentRequest;
+
+                        import java.net.URI;
+
+                        class Demo {
+                            ConvertDocumentRequest fromStrings() {
+                                return ConvertDocumentRequest.builder()
+                                        .addHttpSources("https://a.example.net", "https://b.example.net")
+                                        .build();
+                            }
+
+                            ConvertDocumentRequest fromUris(URI first, URI second) {
+                                return ConvertDocumentRequest.builder()
+                                        .addHttpSources(first, second)
+                                        .build();
                             }
                         }
                         """

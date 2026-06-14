@@ -79,12 +79,12 @@ public class UseConvertDocumentRequestSourcesMethod extends Recipe {
                         .apply(getCursor(), mi.getCoordinates().replaceMethod(), arg);
             }
             if (ADD_HTTP_SOURCES_URI_MATCHER.matches(mi)) {
-                Expression arg = mi.getArguments().getFirst();
-
                 if (mi.getArguments().size() != 1) {
                     // Only support migrating single-argument `addHttpSources` calls
                     return mi;
                 }
+
+                Expression arg = mi.getArguments().getFirst();
 
                 maybeAddImport(FQN_HTTP_SOURCE);
 

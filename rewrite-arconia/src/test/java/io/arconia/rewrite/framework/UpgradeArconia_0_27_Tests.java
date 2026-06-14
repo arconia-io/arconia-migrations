@@ -1,11 +1,14 @@
 package io.arconia.rewrite.framework;
 
 import org.junit.jupiter.api.Test;
+import org.openrewrite.DocumentExample;
 import org.openrewrite.InMemoryExecutionContext;
 import org.openrewrite.java.JavaParser;
 import org.openrewrite.test.RecipeSpec;
 import org.openrewrite.test.RewriteTest;
 
+import static org.openrewrite.gradle.Assertions.buildGradle;
+import static org.openrewrite.gradle.toolingapi.Assertions.withToolingApi;
 import static org.openrewrite.java.Assertions.java;
 import static org.openrewrite.properties.Assertions.properties;
 import static org.openrewrite.yaml.Assertions.yaml;
@@ -25,6 +28,45 @@ class UpgradeArconia_0_27_Tests implements RewriteTest {
     }
 
     @Test
+    void observationSemanticConventionsDependencyChanges() {
+        rewriteRun(
+                spec -> spec.beforeRecipe(withToolingApi()),
+                //language=groovy
+                buildGradle(
+                        """
+                        plugins {
+                            id "java-library"
+                        }
+
+                        repositories {
+                            mavenCentral()
+                        }
+
+                        dependencies {
+                            implementation "io.arconia:arconia-langsmith-semantic-conventions"
+                            implementation "io.arconia:arconia-openinference-semantic-conventions"
+                        }
+                        """,
+                        """
+                        plugins {
+                            id "java-library"
+                        }
+
+                        repositories {
+                            mavenCentral()
+                        }
+
+                        dependencies {
+                            implementation "io.arconia:arconia-opentelemetry-ai-semantic-conventions"
+                            implementation "io.arconia:arconia-openinference-ai-semantic-conventions"
+                        }
+                        """
+                )
+        );
+    }
+
+    @Test
+    @DocumentExample
     void observationTypeChanges() {
         rewriteRun(
                 //language=java

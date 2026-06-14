@@ -1,6 +1,7 @@
 package io.arconia.rewrite.framework;
 
 import org.junit.jupiter.api.Test;
+import org.openrewrite.DocumentExample;
 import org.openrewrite.InMemoryExecutionContext;
 import org.openrewrite.java.JavaParser;
 import org.openrewrite.test.RecipeSpec;
@@ -20,6 +21,7 @@ class UpgradeArconia_0_26_Tests implements RewriteTest {
     }
 
     @Test
+    @DocumentExample
     void multitenancyTypeChanges() {
         rewriteRun(
                 //language=java
@@ -145,19 +147,23 @@ class UpgradeArconia_0_26_Tests implements RewriteTest {
                 //language=java
                 java(
                         """
+                        import io.arconia.openinference.observation.autoconfigure.ai.OpenInferenceAutoConfiguration;
                         import io.arconia.openinference.observation.instrumentation.ai.OpenInferenceTracingOptions;
                         import io.arconia.openinference.observation.instrumentation.ai.OpenInferenceGenerativeAiOnlyObservationPredicate;
 
                         class Demo {
+                            OpenInferenceAutoConfiguration config;
                             OpenInferenceTracingOptions options;
                             OpenInferenceGenerativeAiOnlyObservationPredicate predicate;
                         }
                         """,
                         """
+                        import io.arconia.observation.openinference.autoconfigure.OpenInferenceAutoConfiguration;
                         import io.arconia.observation.openinference.instrumentation.OpenInferenceGenerativeAiOnlyObservationPredicate;
                         import io.arconia.observation.openinference.instrumentation.OpenInferenceOptions;
 
                         class Demo {
+                            OpenInferenceAutoConfiguration config;
                             OpenInferenceOptions options;
                             OpenInferenceGenerativeAiOnlyObservationPredicate predicate;
                         }

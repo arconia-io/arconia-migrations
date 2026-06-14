@@ -20,7 +20,7 @@ public class UseHealthCheckResponseBuilder extends Recipe {
     private static final String FQN_HEALTH_CHECK_RESPONSE = "ai.docling.api.serve.health.HealthCheckResponse";
 
     private static final MethodMatcher HEALTH_CHECK_RESPONSE_CONSTRUCTOR_MATCHER
-            = new MethodMatcher("ai.docling.api.serve.health.HealthCheckResponse <constructor>(*)");
+            = new MethodMatcher("ai.docling.api.serve.health.HealthCheckResponse <constructor>(java.lang.String)");
 
     @Override
     public String getDisplayName() {

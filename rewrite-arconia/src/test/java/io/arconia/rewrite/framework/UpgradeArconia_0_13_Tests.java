@@ -1,6 +1,7 @@
 package io.arconia.rewrite.framework;
 
 import org.junit.jupiter.api.Test;
+import org.openrewrite.DocumentExample;
 import org.openrewrite.test.RecipeSpec;
 import org.openrewrite.test.RewriteTest;
 
@@ -14,6 +15,7 @@ class UpgradeArconia_0_13_Tests implements RewriteTest {
     }
 
     @Test
+    @DocumentExample
     void migrateProperties() {
         rewriteRun(
             //language=properties

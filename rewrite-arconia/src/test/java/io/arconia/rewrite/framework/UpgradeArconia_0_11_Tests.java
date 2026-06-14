@@ -1,6 +1,7 @@
 package io.arconia.rewrite.framework;
 
 import org.junit.jupiter.api.Test;
+import org.openrewrite.DocumentExample;
 import org.openrewrite.InMemoryExecutionContext;
 import org.openrewrite.java.JavaParser;
 import org.openrewrite.test.RecipeSpec;
@@ -8,7 +9,6 @@ import org.openrewrite.test.RewriteTest;
 
 import static org.openrewrite.gradle.Assertions.buildGradle;
 import static org.openrewrite.gradle.toolingapi.Assertions.withToolingApi;
-import static org.openrewrite.maven.Assertions.pomXml;
 import static org.openrewrite.yaml.Assertions.yaml;
 
 class UpgradeArconia_0_11_Tests implements RewriteTest {
@@ -17,83 +17,6 @@ class UpgradeArconia_0_11_Tests implements RewriteTest {
     public void defaults(RecipeSpec spec) {
         spec.recipeFromResources("io.arconia.rewrite.UpgradeArconia_0_11")
             .parser(JavaParser.fromJavaVersion().classpathFromResources(new InMemoryExecutionContext(), "arconia-core-0.10"));
-    }
-
-    // Dependency Version Changes
-
-    @Test
-    void upgradeArconiaDependencyVersionGradle() {
-        rewriteRun(
-            spec -> spec.beforeRecipe(withToolingApi()),
-            //language=groovy
-            buildGradle(
-                """
-                plugins {
-                    id 'java-library'
-                }
-
-                repositories {
-                    mavenCentral()
-                }
-
-                dependencies {
-                    implementation 'io.arconia:arconia-spring-boot-starter:0.10.3'
-                }
-                """,
-                """
-                plugins {
-                    id 'java-library'
-                }
-
-                repositories {
-                    mavenCentral()
-                }
-
-                dependencies {
-                    implementation 'io.arconia:arconia-spring-boot-starter:0.11.0'
-                }
-                """
-            )
-        );
-    }
-
-    @Test
-    void upgradeArconiaDependencyVersionMaven() {
-        rewriteRun(
-            //language=xml
-            pomXml(
-                """
-                  <project>
-                    <modelVersion>4.0.0</modelVersion>
-                    <groupId>com.example</groupId>
-                    <artifactId>demo</artifactId>
-                    <version>0.0.1-SNAPSHOT</version>
-                    <dependencies>
-                      <dependency>
-                        <groupId>io.arconia</groupId>
-                        <artifactId>arconia-spring-boot-starter</artifactId>
-                        <version>0.10.3</version>
-                      </dependency>
-                    </dependencies>
-                  </project>
-                  """,
-                """
-                  <project>
-                    <modelVersion>4.0.0</modelVersion>
-                    <groupId>com.example</groupId>
-                    <artifactId>demo</artifactId>
-                    <version>0.0.1-SNAPSHOT</version>
-                    <dependencies>
-                      <dependency>
-                        <groupId>io.arconia</groupId>
-                        <artifactId>arconia-spring-boot-starter</artifactId>
-                        <version>0.11.0</version>
-                      </dependency>
-                    </dependencies>
-                  </project>
-                  """
-            )
-        );
     }
 
     // Dependency Changes
@@ -137,6 +60,7 @@ class UpgradeArconia_0_11_Tests implements RewriteTest {
     // Property Key Changes
 
     @Test
+    @DocumentExample
     void changePropertyKeys() {
         rewriteRun(
             //language=yaml

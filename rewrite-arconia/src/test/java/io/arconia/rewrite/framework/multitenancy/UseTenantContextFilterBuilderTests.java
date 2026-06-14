@@ -1,6 +1,7 @@
 package io.arconia.rewrite.framework.multitenancy;
 
 import org.junit.jupiter.api.Test;
+import org.openrewrite.DocumentExample;
 import org.openrewrite.InMemoryExecutionContext;
 import org.openrewrite.java.JavaParser;
 import org.openrewrite.test.RecipeSpec;
@@ -9,6 +10,9 @@ import org.openrewrite.test.TypeValidation;
 
 import static org.openrewrite.java.Assertions.java;
 
+/**
+ * Unit tests for {@link UseTenantContextFilterBuilder}.
+ */
 class UseTenantContextFilterBuilderTests implements RewriteTest {
 
     @Override
@@ -20,6 +24,7 @@ class UseTenantContextFilterBuilderTests implements RewriteTest {
     }
 
     @Test
+    @DocumentExample
     void useBuilder() {
         rewriteRun(
                 spec -> spec.typeValidationOptions(TypeValidation.builder().methodInvocations(false).build()),

@@ -1,6 +1,7 @@
 package io.arconia.rewrite.framework;
 
 import org.junit.jupiter.api.Test;
+import org.openrewrite.DocumentExample;
 import org.openrewrite.InMemoryExecutionContext;
 import org.openrewrite.java.JavaParser;
 import org.openrewrite.test.RecipeSpec;
@@ -21,6 +22,7 @@ class UpgradeArconia_0_28_Tests implements RewriteTest {
     }
 
     @Test
+    @DocumentExample
     void dependencyChanges() {
         rewriteRun(
                 spec -> spec.beforeRecipe(withToolingApi()),
