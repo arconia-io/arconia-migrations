@@ -1,5 +1,7 @@
 package io.arconia.rewrite.test;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 
 import org.jspecify.annotations.Nullable;
@@ -8,21 +10,31 @@ import org.openrewrite.Option;
 import org.openrewrite.Preconditions;
 import org.openrewrite.Recipe;
 import org.openrewrite.TreeVisitor;
-import org.openrewrite.java.JavaIsoVisitor;
+import org.openrewrite.java.JavaVisitor;
 import org.openrewrite.java.search.UsesType;
+import org.openrewrite.java.tree.Expression;
 import org.openrewrite.java.tree.J;
 import org.openrewrite.java.tree.JavaType;
 import org.openrewrite.java.tree.TypeUtils;
 
 /**
- * Remove generic type arguments from a specified Java class, converting them to their raw types.
- * For example, {@code MyObject<?>} becomes {@code MyObject}.
+ * Converts parameterized types of a specified Java class to their raw type equivalents.
+ * <p>
+ * Removes generic type arguments from all usages of the specified class, converting
+ * {@code PostgreSQLContainer<?>}, {@code PostgreSQLContainer<String>}, etc. to {@code PostgreSQLContainer}.
+ * <p>
+ * Applied to all contexts: field declarations, method parameters and return types,
+ * local variables, type casts, new class instantiations, and qualified names.
+ * <p>
+ * Performs exact type matching based on the fully qualified name. Subclasses and
+ * implementations are not affected.
  */
 public class ConvertToRawType extends Recipe {
 
     @Option(displayName = "Fully qualified type name",
-            description = "The fully qualified name of the Java class to convert to its raw type.",
-            example = "org.testcontainers.containers.PostgreSQLContainer")
+            description = "The fully qualified name of the Java class whose parameterized types should be converted to raw types. " +
+                    "Only exact matches of this type will be converted; subclasses and implementations are not affected.",
+            example = "org.testcontainers.postgresql.PostgreSQLContainer")
     private final String fullyQualifiedTypeName;
 
     @JsonCreator
@@ -32,77 +44,68 @@ public class ConvertToRawType extends Recipe {
 
     @Override
     public String getDisplayName() {
-        return "Remove generic type arguments from a Java class";
+        return "Convert parameterized types to raw types";
     }
 
     @Override
     public String getDescription() {
-        return "Remove generic type arguments from a specified Java class. " +
-                "This replaces parameterized types with their raw types.";
+        return "Converts all parameterized usages of a specified Java class to their raw type. " +
+                "Only exact type matches are converted; subclasses and implementations are not affected.";
     }
 
     @Override
     public TreeVisitor<?, ExecutionContext> getVisitor() {
         return Preconditions.check(
                 new UsesType<>(fullyQualifiedTypeName, false),
-                new JavaIsoVisitor<>() {
+                new JavaVisitor<>() {
                     @Override
-                    public J.VariableDeclarations visitVariableDeclarations(J.VariableDeclarations multiVariable, ExecutionContext ctx) {
-                        J.VariableDeclarations v = super.visitVariableDeclarations(multiVariable, ctx);
+                    public J visitParameterizedType(J.ParameterizedType type, ExecutionContext ctx) {
+                        J.ParameterizedType pt = (J.ParameterizedType) super.visitParameterizedType(type, ctx);
 
-                        J.Identifier rawType = convertToRawTypeIfNeeded(v.getTypeExpression());
-                        if (rawType != null) {
-                            // Preserve prefix when replacing in type expressions (e.g., final modifier)
-                            v = v.withTypeExpression(rawType.withPrefix((v.getTypeExpression()).getPrefix()));
+                        JavaType.Parameterized paramType = TypeUtils.asParameterized(pt.getType());
+                        if (paramType == null || !TypeUtils.isOfClassType(paramType.getType(), fullyQualifiedTypeName)) {
+                            return pt;
                         }
 
-                        return v;
+                        J rawType;
+                        J clz = pt.getClazz();
+                        if (clz instanceof J.Identifier identifier) {
+                            rawType = identifier.withPrefix(pt.getPrefix()).withType(paramType.getType());
+                        } else if (clz instanceof J.FieldAccess fieldAccess) {
+                            rawType = fieldAccess.withPrefix(pt.getPrefix()).withType(paramType.getType());
+                        } else {
+                            // Rare NameTree shapes (e.g. an annotated qualified name like
+                            // `Outer.@Foo Inner<String>`) are left alone — we can't safely strip the
+                            // type parameters without disturbing the qualified-name + annotation structure.
+                            // Plain type-use and field-targeted annotations are handled fine because the
+                            // annotation lives on an enclosing J.AnnotatedType / J.VariableDeclarations,
+                            // not on pt.getClazz() itself.
+                            return pt;
+                        }
+
+                        removeUnusedTypeArgumentImports(pt.getTypeParameters());
+                        return rawType;
                     }
 
-                    @Override
-                    public J.MethodDeclaration visitMethodDeclaration(J.MethodDeclaration method, ExecutionContext ctx) {
-                        J.MethodDeclaration m = super.visitMethodDeclaration(method, ctx);
-
-                        J.Identifier rawType = convertToRawTypeIfNeeded(m.getReturnTypeExpression());
-                        if (rawType != null) {
-                            // Preserve prefix when replacing in method return expressions (e.g., static modifier)
-                            m = m.withReturnTypeExpression(rawType.withPrefix((m.getReturnTypeExpression()).getPrefix()));
+                    private void removeUnusedTypeArgumentImports(@Nullable List<Expression> typeArguments) {
+                        if (typeArguments == null) {
+                            return;
                         }
-
-                        return m;
+                        for (Expression typeArg : typeArguments) {
+                            removeImportsForType(typeArg.getType());
+                        }
                     }
 
-                    @Override
-                    public J.NewClass visitNewClass(J.NewClass newClass, ExecutionContext ctx) {
-                        J.NewClass n = super.visitNewClass(newClass, ctx);
-
-                        J.Identifier rawType = convertToRawTypeIfNeeded(n.getClazz());
-                        if (rawType != null) {
-                            // Preserve prefix when replacing in new class expressions
-                            n = n.withClazz(rawType.withPrefix((n.getClazz()).getPrefix()));
+                    private void removeImportsForType(@Nullable JavaType type) {
+                        JavaType.FullyQualified fq = TypeUtils.asFullyQualified(type);
+                        if (fq != null) {
+                            maybeRemoveImport(fq.getFullyQualifiedName());
                         }
-
-                        return n;
-                    }
-
-                    private J.@Nullable Identifier convertToRawTypeIfNeeded(@Nullable J typeExpression) {
-                        if (!(typeExpression instanceof J.ParameterizedType parameterizedType)) {
-                            return null;
+                        if (type instanceof JavaType.Parameterized parameterized) {
+                            for (JavaType arg : parameterized.getTypeParameters()) {
+                                removeImportsForType(arg);
+                            }
                         }
-
-                        JavaType.Parameterized type = TypeUtils.asParameterized(parameterizedType.getType());
-                        if (type == null || !isTargetClass(type)) {
-                            return null;
-                        }
-
-                        // Replace the parameterized type with just the class type (raw type)
-                        J.Identifier clazz = (J.Identifier) parameterizedType.getClazz();
-                        return clazz.withType(type.getType());
-                    }
-
-                    private boolean isTargetClass(JavaType.Parameterized type) {
-                        JavaType.FullyQualified fullyQualified = TypeUtils.asFullyQualified(type.getType());
-                        return fullyQualified != null && fullyQualifiedTypeName.equals(fullyQualified.getFullyQualifiedName());
                     }
                 }
         );

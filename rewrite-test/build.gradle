@@ -13,6 +13,7 @@ dependencies {
     implementation "org.openrewrite:rewrite-gradle"
     implementation "org.openrewrite:rewrite-java"
     implementation "org.openrewrite:rewrite-maven"
+    implementation "org.openrewrite:rewrite-properties"
     implementation "org.openrewrite.recipe:rewrite-java-dependencies"
 
     runtimeOnly "org.openrewrite:rewrite-java-21"
@@ -31,8 +32,18 @@ dependencies {
 
 recipeDependencies {
     parserClasspath "org.testcontainers:testcontainers:1.21.4"
-
     parserClasspath "org.testcontainers:postgresql:1.21.4"
+    parserClasspath "org.testcontainers:cassandra:1.21.4"
+    parserClasspath "org.testcontainers:kafka:1.21.4"
+    parserClasspath "org.testcontainers:localstack:1.21.4"
+    parserClasspath "junit:junit:4.13.2"
+
+    parserClasspath "org.junit.jupiter:junit-jupiter-api:5.13.4"
+    parserClasspath "org.junit.jupiter:junit-jupiter-engine:5.13.4"
+    parserClasspath "org.junit.jupiter:junit-jupiter-params:5.13.4"
+    parserClasspath "org.junit.platform:junit-platform-suite-api:1.13.4"
+    parserClasspath "org.junit.platform:junit-platform-testkit:1.13.4"
+    parserClasspath "org.junit.platform:junit-platform-engine:1.13.4"
 }
 
 publishing {

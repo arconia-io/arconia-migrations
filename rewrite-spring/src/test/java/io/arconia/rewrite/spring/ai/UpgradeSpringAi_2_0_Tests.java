@@ -490,8 +490,8 @@ class UpgradeSpringAi_2_0_Tests implements RewriteTest {
                         }
 
                         dependencies {
-                            implementation "io.modelcontextprotocol.sdk:mcp-spring-webflux:0.10.0"
-                            implementation "io.modelcontextprotocol.sdk:mcp-spring-webmvc:0.10.0"
+                            implementation "io.modelcontextprotocol.sdk:mcp-spring-webflux"
+                            implementation "io.modelcontextprotocol.sdk:mcp-spring-webmvc"
                         }
                         """,
                         """
@@ -504,8 +504,8 @@ class UpgradeSpringAi_2_0_Tests implements RewriteTest {
                         }
 
                         dependencies {
-                            implementation "org.springframework.ai:mcp-spring-webflux:0.10.0"
-                            implementation "org.springframework.ai:mcp-spring-webmvc:0.10.0"
+                            implementation "org.springframework.ai:mcp-spring-webflux"
+                            implementation "org.springframework.ai:mcp-spring-webmvc"
                         }
                         """
                 )

@@ -11,8 +11,17 @@ The `{recipe-id}` recipe automates most of the changes introduced in JUnit 6.x. 
 The recipe will:
 
 * Upgrade all `org.junit.jupiter:junit-jupiter`, `junit-jupiter-api`, `junit-jupiter-engine`, and `junit-jupiter-params` dependencies to the 6.x release line.
+* Upgrade the Maven Surefire and Failsafe plugins to 3.x, the minimum required for JUnit Platform compatibility.
 * Add the `org.junit.platform:junit-platform-launcher` dependency to Gradle's `testRuntimeOnly` configuration, which is required at runtime by the JUnit 6 platform.
 * Remove the JUnit Platform modules that have been retired in 6: `junit-platform-jfr`, `junit-platform-runner`, and `junit-platform-suite-common`.
+* Remove the retired `org.junit.jupiter:junit-jupiter-migrationsupport` module.
+* Rename `MethodOrderer.Alphanumeric` to `MethodOrderer.MethodName`.
+* Move JUnit Jupiter `Constants` from `org.junit.jupiter.engine` to `org.junit.jupiter.api`.
+* Remove the retired `@UseTechnicalNames` annotation from suite declarations.
+* Remove the retired `lineSeparator` attribute from `@CsvFileSource` annotations.
+* Delete the retired JUnit Platform configuration properties `junit.jupiter.tempdir.scope` and `junit.jupiter.params.arguments.conversion.locale.format`.
+* Rename `Executions.started()` to `Executions.finished()` in the JUnit Platform Test Kit (the only invariant the legacy method actually preserved).
+* Rename `getOrComputeIfAbsent` to `computeIfAbsent` on `ExtensionContext.Store` and `NamespacedHierarchicalStore`.
 
 == Run the recipe
 
