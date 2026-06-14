@@ -1,6 +1,7 @@
 package io.arconia.rewrite.docling;
 
 import org.junit.jupiter.api.Test;
+import org.openrewrite.DocumentExample;
 import org.openrewrite.InMemoryExecutionContext;
 import org.openrewrite.java.JavaParser;
 import org.openrewrite.test.RecipeSpec;
@@ -10,11 +11,6 @@ import static org.openrewrite.java.Assertions.java;
 
 class UpgradeDocling_0_2_Tests implements RewriteTest {
 
-    @Test
-    void recipeConfigured() {
-        assertRecipesConfigure("io.arconia.rewrite.docling.UpgradeDocling_0_2");
-    }
-
     @Override
     public void defaults(RecipeSpec spec) {
         spec.recipeFromResources("io.arconia.rewrite.docling.UpgradeDocling_0_2")
@@ -23,6 +19,7 @@ class UpgradeDocling_0_2_Tests implements RewriteTest {
     }
 
     @Test
+    @DocumentExample
     void packageChanges() {
         rewriteRun(
                 //language=java
