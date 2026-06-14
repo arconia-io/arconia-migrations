@@ -7,6 +7,7 @@ tags:
   - spring
   - ai
 recipeList:
+  - io.arconia.rewrite.spring.ai.UpgradeSpringAiPropertiesGenerated_1_0
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: "spring.ai.chat.memory.jdbc.initialize-schema"
       newPropertyKey: "spring.ai.chat.memory.repository.jdbc.initialize-schema"

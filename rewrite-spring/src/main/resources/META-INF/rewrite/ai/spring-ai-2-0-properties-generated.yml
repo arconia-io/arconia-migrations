@@ -563,6 +563,9 @@ recipeList:
       oldPropertyKey: "spring.ai.openai.chat.options.presence-penalty"
       newPropertyKey: "spring.ai.openai.chat.presence-penalty"
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "spring.ai.openai.chat.options.prompt-cache-key"
+      newPropertyKey: "spring.ai.openai.chat.prompt-cache-key"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: "spring.ai.openai.chat.options.proxy"
       newPropertyKey: "spring.ai.openai.proxy"
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:

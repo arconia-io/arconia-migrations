@@ -51,6 +51,8 @@ recipeDependencies {
 
     parserClasspath "org.reactivestreams:reactive-streams:1.0.4"
 
+    parserClasspath "io.projectreactor:reactor-core:3.7.19"
+
     parserClasspath "org.springframework.ai:spring-ai-cassandra-store:1.0.0-M6"
     parserClasspath "org.springframework.ai:spring-ai-core:1.0.0-M6"
 
@@ -71,6 +73,7 @@ recipeDependencies {
 
     parserClasspath "org.springframework.ai:spring-ai-advisors-vector-store:1.1.7"
     parserClasspath "org.springframework.ai:spring-ai-client-chat:1.1.7"
+    parserClasspath "org.springframework.ai:spring-ai-commons:1.1.7"
     parserClasspath "org.springframework.ai:spring-ai-mistral-ai:1.1.7"
     parserClasspath "org.springframework.ai:spring-ai-model:1.1.7"
     parserClasspath "org.springframework.ai:spring-ai-openai:1.1.7"
@@ -84,13 +87,20 @@ recipeDependencies {
     parserClasspath "org.springframework.ai:spring-ai-anthropic:2.0.0-M4"
     parserClasspath "org.springframework.ai:spring-ai-openai:2.0.0-M5"
 
+    parserClasspath "com.anthropic:anthropic-java-core:2.17.0"
+
     parserClasspath "org.springframework.ai:spring-ai-client-chat:2.0.0-M8"
     parserClasspath "org.springframework.ai:spring-ai-commons:2.0.0-M8"
     parserClasspath "org.springframework.ai:spring-ai-google-genai-embedding:2.0.0-M8"
     parserClasspath "org.springframework.ai:spring-ai-model:2.0.0-M8"
 
-    parserClasspath "io.modelcontextprotocol.sdk:mcp-spring-webflux:0.18.2"
-    parserClasspath "io.modelcontextprotocol.sdk:mcp-spring-webmvc:0.18.2"
+    parserClasspath "org.springframework.ai:spring-ai-openai:2.0.0"
+
+    parserClasspath "io.modelcontextprotocol.sdk:mcp-spring-webflux:0.18.3"
+    parserClasspath "io.modelcontextprotocol.sdk:mcp-spring-webmvc:0.18.3"
+    parserClasspath "org.springaicommunity:mcp-annotations:0.9.0"
+
+    parserClasspath "io.modelcontextprotocol.sdk:mcp-core:2.0.0"
 
     parserClasspath "org.springframework.boot:spring-boot-autoconfigure:3.4.13"
     parserClasspath "org.springframework.boot:spring-boot-test:3.4.13"
@@ -142,7 +152,7 @@ tasks.register("generateSpringAiProperties", JavaExec) {
     description = "Generate Spring AI properties migration recipes from a given spring-ai-bom version, e.g. --args='2.0.0'."
     group = "build"
     classpath = sourceSets.test.runtimeClasspath
-    mainClass = "io.arconia.rewrite.spring.ai.internal.SpringAiPropertiesMigrationGenerator"
+    mainClass = "io.arconia.rewrite.spring.util.SpringAiPropertiesMigrationGenerator"
     workingDir = rootProject.projectDir
 }
 
@@ -150,7 +160,7 @@ tasks.register("generateSpringBootProperties", JavaExec) {
     description = "Generate Spring Boot properties migration recipes from a given spring-boot-dependencies version, e.g. --args='4.1.0'."
     group = "build"
     classpath = sourceSets.test.runtimeClasspath
-    mainClass = "io.arconia.rewrite.spring.boot.internal.SpringBootPropertiesMigrationGenerator"
+    mainClass = "io.arconia.rewrite.spring.util.SpringBootPropertiesMigrationGenerator"
     workingDir = rootProject.projectDir
 }
 
@@ -158,7 +168,7 @@ tasks.register("generateSpringCloudProperties", JavaExec) {
     description = "Generate Spring Cloud properties migration recipes from a given spring-cloud-dependencies version, e.g. --args='2025.0.0'."
     group = "build"
     classpath = sourceSets.test.runtimeClasspath
-    mainClass = "io.arconia.rewrite.spring.cloud.internal.SpringCloudPropertiesMigrationGenerator"
+    mainClass = "io.arconia.rewrite.spring.util.SpringCloudPropertiesMigrationGenerator"
     workingDir = rootProject.projectDir
 }
 

@@ -3,11 +3,11 @@ package io.arconia.rewrite.spring.ai;
 import org.intellij.lang.annotations.Language;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
+import org.openrewrite.DocumentExample;
 import org.openrewrite.InMemoryExecutionContext;
 import org.openrewrite.java.JavaParser;
 import org.openrewrite.test.RecipeSpec;
 import org.openrewrite.test.RewriteTest;
-import org.openrewrite.test.TypeValidation;
 
 import static org.openrewrite.gradle.Assertions.buildGradle;
 import static org.openrewrite.gradle.toolingapi.Assertions.withToolingApi;
@@ -134,6 +134,51 @@ public class UpgradeSpringAi_1_0_Tests implements RewriteTest {
     }
 
     @Test
+    void renamesStarterDependencies() {
+        rewriteRun(
+                spec -> spec.beforeRecipe(withToolingApi()),
+                //language=groovy
+                buildGradle(
+                        """
+                        plugins {
+                            id "java-library"
+                        }
+
+                        repositories {
+                            mavenCentral()
+                        }
+
+                        dependencies {
+                            implementation "org.springframework.ai:spring-ai-anthropic-spring-boot-starter"
+                            implementation "org.springframework.ai:spring-ai-openai-spring-boot-starter"
+                            implementation "org.springframework.ai:spring-ai-redis-store-spring-boot-starter"
+                            implementation "org.springframework.ai:spring-ai-mcp-client-spring-boot-starter"
+                            implementation "org.springframework.ai:spring-ai-bedrock-converse-spring-boot-starter"
+                        }
+                        """,
+                        """
+                        plugins {
+                            id "java-library"
+                        }
+
+                        repositories {
+                            mavenCentral()
+                        }
+
+                        dependencies {
+                            implementation "org.springframework.ai:spring-ai-starter-model-anthropic"
+                            implementation "org.springframework.ai:spring-ai-starter-model-openai"
+                            implementation "org.springframework.ai:spring-ai-starter-vector-store-redis"
+                            implementation "org.springframework.ai:spring-ai-starter-mcp-client"
+                            implementation "org.springframework.ai:spring-ai-starter-model-bedrock-converse"
+                        }
+                        """
+                )
+        );
+    }
+
+    @Test
+    @DocumentExample
     void factCheckingEvaluator() {
         rewriteRun(
                 //language=java
@@ -643,8 +688,7 @@ public class UpgradeSpringAi_1_0_Tests implements RewriteTest {
     void chatClientToolNames() {
         rewriteRun(r -> r
                         .parser(JavaParser.fromJavaVersion().classpathFromResources(new InMemoryExecutionContext(),
-                                "spring-ai-model-1.0.0-M7", "spring-ai-client-chat-1.0.0-M7"))
-                        .typeValidationOptions(TypeValidation.builder().methodInvocations(false).build()),
+                                "spring-ai-model-1.0.0-M7", "spring-ai-client-chat-1.0.0-M7")),
                 //language=java
                 java(
                         """
@@ -695,8 +739,7 @@ public class UpgradeSpringAi_1_0_Tests implements RewriteTest {
     void chatClientToolCallbacks() {
         rewriteRun(r -> r
                         .parser(JavaParser.fromJavaVersion().classpathFromResources(new InMemoryExecutionContext(),
-                                "spring-ai-model-1.0.0-M7", "spring-ai-client-chat-1.0.0-M7"))
-                        .typeValidationOptions(TypeValidation.builder().methodInvocations(false).build()),
+                                "spring-ai-model-1.0.0-M7", "spring-ai-client-chat-1.0.0-M7")),
                 //language=java
                 java(
                         """
@@ -761,8 +804,7 @@ public class UpgradeSpringAi_1_0_Tests implements RewriteTest {
     void chatClientToolCallbackProviders() {
         rewriteRun(r -> r
                         .parser(JavaParser.fromJavaVersion().classpathFromResources(new InMemoryExecutionContext(),
-                                "spring-ai-model-1.0.0-M7", "spring-ai-client-chat-1.0.0-M7"))
-                        .typeValidationOptions(TypeValidation.builder().methodInvocations(false).build()),
+                                "spring-ai-model-1.0.0-M7", "spring-ai-client-chat-1.0.0-M7")),
                 //language=java
                 java(
                         """
@@ -805,8 +847,7 @@ public class UpgradeSpringAi_1_0_Tests implements RewriteTest {
     void chatClientDefaultToolNames() {
         rewriteRun(r -> r
                         .parser(JavaParser.fromJavaVersion().classpathFromResources(new InMemoryExecutionContext(),
-                                "spring-ai-model-1.0.0-M7", "spring-ai-client-chat-1.0.0-M7"))
-                        .typeValidationOptions(TypeValidation.builder().methodInvocations(false).build()),
+                                "spring-ai-model-1.0.0-M7", "spring-ai-client-chat-1.0.0-M7")),
                 //language=java
                 java(
                         """
@@ -857,8 +898,7 @@ public class UpgradeSpringAi_1_0_Tests implements RewriteTest {
     void chatClientDefaultToolCallbacks() {
         rewriteRun(r -> r
                         .parser(JavaParser.fromJavaVersion().classpathFromResources(new InMemoryExecutionContext(),
-                                "spring-ai-model-1.0.0-M7", "spring-ai-client-chat-1.0.0-M7"))
-                        .typeValidationOptions(TypeValidation.builder().methodInvocations(false).build()),
+                                "spring-ai-model-1.0.0-M7", "spring-ai-client-chat-1.0.0-M7")),
                 //language=java
                 java(
                         """
@@ -923,8 +963,7 @@ public class UpgradeSpringAi_1_0_Tests implements RewriteTest {
     void chatClientDefaultToolCallbackProviders() {
         rewriteRun(r -> r
                         .parser(JavaParser.fromJavaVersion().classpathFromResources(new InMemoryExecutionContext(),
-                                "spring-ai-model-1.0.0-M7", "spring-ai-client-chat-1.0.0-M7"))
-                        .typeValidationOptions(TypeValidation.builder().methodInvocations(false).build()),
+                                "spring-ai-model-1.0.0-M7", "spring-ai-client-chat-1.0.0-M7")),
                 //language=java
                 java(
                         """

@@ -50,7 +50,7 @@ public class UseEmbeddingOptionsBuilder extends Recipe {
 
                         return JavaTemplate.builder("EmbeddingOptions.builder()")
                                 .imports(FQN_EMBEDDING_OPTIONS)
-                                .javaParser(JavaParser.fromJavaVersion().classpathFromResources(ctx, "spring-ai-model-1.0"))
+                                .javaParser(JavaParser.fromJavaVersion().classpathFromResources(ctx, "spring-ai-model-1.1", "spring-core-7.0"))
                                 .build()
                                 .apply(getCursor(), mi.getCoordinates().replace());
                     }

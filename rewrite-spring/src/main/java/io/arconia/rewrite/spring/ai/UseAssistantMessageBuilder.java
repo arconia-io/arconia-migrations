@@ -58,7 +58,7 @@ public class UseAssistantMessageBuilder extends Recipe {
                             maybeAddImport(FQN_ASSISTANT_MESSAGE);
                             return JavaTemplate.builder("AssistantMessage.builder().content(#{any(java.lang.String)}).build()")
                                     .imports(FQN_ASSISTANT_MESSAGE)
-                                    .javaParser(JavaParser.fromJavaVersion().classpathFromResources(ctx, "spring-ai-model-1.0"))
+                                    .javaParser(JavaParser.fromJavaVersion().classpathFromResources(ctx, "spring-ai-commons-1.1", "spring-ai-model-1.1"))
                                     .build()
                                     .apply(getCursor(), nc.getCoordinates().replace(), args.get(0));
                         }
@@ -67,7 +67,7 @@ public class UseAssistantMessageBuilder extends Recipe {
                             maybeAddImport(FQN_ASSISTANT_MESSAGE);
                             return JavaTemplate.builder("AssistantMessage.builder().content(#{any(java.lang.String)}).properties(#{any()}).build()")
                                     .imports(FQN_ASSISTANT_MESSAGE)
-                                    .javaParser(JavaParser.fromJavaVersion().classpathFromResources(ctx, "spring-ai-model-1.0"))
+                                    .javaParser(JavaParser.fromJavaVersion().classpathFromResources(ctx, "spring-ai-commons-1.1", "spring-ai-model-1.1"))
                                     .build()
                                     .apply(getCursor(), nc.getCoordinates().replace(), args.get(0), args.get(1));
                         }
@@ -76,7 +76,7 @@ public class UseAssistantMessageBuilder extends Recipe {
                             maybeAddImport(FQN_ASSISTANT_MESSAGE);
                             return JavaTemplate.builder("AssistantMessage.builder().content(#{any(java.lang.String)}).properties(#{any()}).toolCalls(#{any()}).build()")
                                     .imports(FQN_ASSISTANT_MESSAGE)
-                                    .javaParser(JavaParser.fromJavaVersion().classpathFromResources(ctx, "spring-ai-model-1.0"))
+                                    .javaParser(JavaParser.fromJavaVersion().classpathFromResources(ctx, "spring-ai-commons-1.1", "spring-ai-model-1.1"))
                                     .build()
                                     .apply(getCursor(), nc.getCoordinates().replace(), args.get(0), args.get(1), args.get(2));
                         }
@@ -85,7 +85,7 @@ public class UseAssistantMessageBuilder extends Recipe {
                             maybeAddImport(FQN_ASSISTANT_MESSAGE);
                             return JavaTemplate.builder("AssistantMessage.builder().content(#{any(java.lang.String)}).properties(#{any()}).toolCalls(#{any()}).media(#{any()}).build()")
                                     .imports(FQN_ASSISTANT_MESSAGE)
-                                    .javaParser(JavaParser.fromJavaVersion().classpathFromResources(ctx, "spring-ai-model-1.0"))
+                                    .javaParser(JavaParser.fromJavaVersion().classpathFromResources(ctx, "spring-ai-commons-1.1", "spring-ai-model-1.1"))
                                     .build()
                                     .apply(getCursor(), nc.getCoordinates().replace(), args.get(0), args.get(1), args.get(2), args.get(3));
                         }

@@ -52,7 +52,7 @@ public class UseToolResponseMessageBuilder extends Recipe {
                             maybeAddImport(FQN_TOOL_RESPONSE_MESSAGE);
                             return JavaTemplate.builder("ToolResponseMessage.builder().responses(#{any()}).build()")
                                     .imports(FQN_TOOL_RESPONSE_MESSAGE)
-                                    .javaParser(JavaParser.fromJavaVersion().classpathFromResources(ctx, "spring-ai-model-1.0"))
+                                    .javaParser(JavaParser.fromJavaVersion().classpathFromResources(ctx, "spring-ai-commons-1.1", "spring-ai-model-1.1"))
                                     .build()
                                     .apply(getCursor(), nc.getCoordinates().replace(), args.get(0));
                         }
@@ -61,7 +61,7 @@ public class UseToolResponseMessageBuilder extends Recipe {
                             maybeAddImport(FQN_TOOL_RESPONSE_MESSAGE);
                             return JavaTemplate.builder("ToolResponseMessage.builder().responses(#{any()}).metadata(#{any()}).build()")
                                     .imports(FQN_TOOL_RESPONSE_MESSAGE)
-                                    .javaParser(JavaParser.fromJavaVersion().classpathFromResources(ctx, "spring-ai-model-1.0"))
+                                    .javaParser(JavaParser.fromJavaVersion().classpathFromResources(ctx, "spring-ai-commons-1.1", "spring-ai-model-1.1"))
                                     .build()
                                     .apply(getCursor(), nc.getCoordinates().replace(), args.get(0), args.get(1));
                         }

@@ -1,14 +1,17 @@
 package io.arconia.rewrite.spring.ai;
 
 import org.junit.jupiter.api.Test;
+import org.openrewrite.DocumentExample;
 import org.openrewrite.InMemoryExecutionContext;
 import org.openrewrite.java.JavaParser;
 import org.openrewrite.test.RecipeSpec;
 import org.openrewrite.test.RewriteTest;
-import org.openrewrite.test.TypeValidation;
 
 import static org.openrewrite.java.Assertions.java;
 
+/**
+ * Unit tests for {@link UseAssistantMessageBuilder}.
+ */
 class UseAssistantMessageBuilderTests implements RewriteTest {
 
     @Override
@@ -19,9 +22,9 @@ class UseAssistantMessageBuilderTests implements RewriteTest {
     }
 
     @Test
+    @DocumentExample
     void useBuilder() {
         rewriteRun(
-                spec -> spec.typeValidationOptions(TypeValidation.builder().methodInvocations(false).build()),
                 //language=java
                 java(
                         """
@@ -32,10 +35,10 @@ class UseAssistantMessageBuilderTests implements RewriteTest {
 
                         class Demo {
                             void test() {
-                                var message1 = new AssistantMessage("content");
-                                var message2 = new AssistantMessage("content", Map.of());
-                                var message3 = new AssistantMessage("content", Map.of(), List.of());
-                                var message4 = new AssistantMessage("content", Map.of(), List.of(), List.of());
+                                AssistantMessage message1 = new AssistantMessage("content");
+                                AssistantMessage message2 = new AssistantMessage("content", Map.of());
+                                AssistantMessage message3 = new AssistantMessage("content", Map.of(), List.of());
+                                AssistantMessage message4 = new AssistantMessage("content", Map.of(), List.of(), List.of());
                             }
                         }
                         """,
@@ -47,10 +50,10 @@ class UseAssistantMessageBuilderTests implements RewriteTest {
 
                         class Demo {
                             void test() {
-                                var message1 = AssistantMessage.builder().content("content").build();
-                                var message2 = AssistantMessage.builder().content("content").properties(Map.of()).build();
-                                var message3 = AssistantMessage.builder().content("content").properties(Map.of()).toolCalls(List.of()).build();
-                                var message4 = AssistantMessage.builder().content("content").properties(Map.of()).toolCalls(List.of()).media(List.of()).build();
+                                AssistantMessage message1 = AssistantMessage.builder().content("content").build();
+                                AssistantMessage message2 = AssistantMessage.builder().content("content").properties(Map.of()).build();
+                                AssistantMessage message3 = AssistantMessage.builder().content("content").properties(Map.of()).toolCalls(List.of()).build();
+                                AssistantMessage message4 = AssistantMessage.builder().content("content").properties(Map.of()).toolCalls(List.of()).media(List.of()).build();
                             }
                         }
                         """

@@ -1,11 +1,11 @@
 package io.arconia.rewrite.spring.ai;
 
 import org.junit.jupiter.api.Test;
+import org.openrewrite.DocumentExample;
 import org.openrewrite.InMemoryExecutionContext;
 import org.openrewrite.java.JavaParser;
 import org.openrewrite.test.RecipeSpec;
 import org.openrewrite.test.RewriteTest;
-import org.openrewrite.test.TypeValidation;
 
 import static org.openrewrite.gradle.Assertions.buildGradle;
 import static org.openrewrite.gradle.toolingapi.Assertions.withToolingApi;
@@ -22,9 +22,9 @@ class UpgradeSpringAi_2_0_Tests implements RewriteTest {
     }
 
     @Test
+    @DocumentExample
     void useChatOptionsBuilder() {
         rewriteRun(
-                spec -> spec.typeValidationOptions(TypeValidation.builder().methodInvocations(false).build()),
                 //language=java
                 java(
                         """
@@ -61,7 +61,7 @@ class UpgradeSpringAi_2_0_Tests implements RewriteTest {
     }
 
     @Test
-    void opensearchContainerTypeChange() {
+    void openSearchContainerTypeChange() {
         rewriteRun(
                 spec -> spec.parser(JavaParser.fromJavaVersion().classpathFromResources(new InMemoryExecutionContext(),
                         "opensearch-testcontainers-2.1")),
@@ -111,10 +111,87 @@ class UpgradeSpringAi_2_0_Tests implements RewriteTest {
     }
 
     @Test
+    void chatModelGetDefaultOptionsMethodRename() {
+        rewriteRun(
+                spec -> spec.parser(JavaParser.fromJavaVersion().classpathFromResources(new InMemoryExecutionContext(),
+                        "spring-ai-model-1.1")),
+                //language=java
+                java(
+                        """
+                        import org.springframework.ai.chat.model.ChatModel;
+                        import org.springframework.ai.chat.prompt.ChatOptions;
+
+                        class Demo {
+                            ChatOptions test(ChatModel chatModel) {
+                                return chatModel.getDefaultOptions();
+                            }
+                        }
+                        """,
+                        """
+                        import org.springframework.ai.chat.model.ChatModel;
+                        import org.springframework.ai.chat.prompt.ChatOptions;
+
+                        class Demo {
+                            ChatOptions test(ChatModel chatModel) {
+                                return chatModel.getOptions();
+                            }
+                        }
+                        """
+                )
+        );
+    }
+
+    @Test
+    void optionsNMethodRenames() {
+        rewriteRun(
+                spec -> spec.parser(JavaParser.fromJavaVersion().classpathFromResources(new InMemoryExecutionContext(),
+                        "spring-ai-openai-1.1", "spring-ai-model-1.1")),
+                //language=java
+                java(
+                        """
+                        import org.springframework.ai.image.ImageOptions;
+                        import org.springframework.ai.image.ImageOptionsBuilder;
+                        import org.springframework.ai.openai.OpenAiChatOptions;
+                        import org.springframework.ai.openai.OpenAiImageOptions;
+
+                        class Demo {
+                            OpenAiChatOptions chat() {
+                                return OpenAiChatOptions.builder().N(2).build();
+                            }
+                            OpenAiImageOptions image() {
+                                return OpenAiImageOptions.builder().N(3).build();
+                            }
+                            ImageOptions generic() {
+                                return ImageOptionsBuilder.builder().N(4).build();
+                            }
+                        }
+                        """,
+                        """
+                        import org.springframework.ai.image.ImageOptions;
+                        import org.springframework.ai.image.ImageOptionsBuilder;
+                        import org.springframework.ai.openai.OpenAiChatOptions;
+                        import org.springframework.ai.openai.OpenAiImageOptions;
+
+                        class Demo {
+                            OpenAiChatOptions chat() {
+                                return OpenAiChatOptions.builder().n(2).build();
+                            }
+                            OpenAiImageOptions image() {
+                                return OpenAiImageOptions.builder().n(3).build();
+                            }
+                            ImageOptions generic() {
+                                return ImageOptionsBuilder.builder().n(4).build();
+                            }
+                        }
+                        """
+                )
+        );
+    }
+
+    @Test
     void toolCallbacksMethodRename() {
         rewriteRun(
-                spec -> spec.typeValidationOptions(TypeValidation.builder().methodInvocations(false).build())
-                        .parser(JavaParser.fromJavaVersion().classpathFromResources(new InMemoryExecutionContext(),
+                spec -> spec.parser(JavaParser.fromJavaVersion().classpathFromResources(new InMemoryExecutionContext(),
                                 "spring-ai-client-chat-1.1", "spring-ai-model-1.1")),
                 //language=java
                 java(
@@ -218,57 +295,6 @@ class UpgradeSpringAi_2_0_Tests implements RewriteTest {
     }
 
     @Test
-    void useAnthropicChatModelBuilder() {
-        rewriteRun(
-                spec -> spec.typeValidationOptions(TypeValidation.builder().methodInvocations(false).build())
-                        .parser(JavaParser.fromJavaVersion().classpathFromResources(new InMemoryExecutionContext(),
-                                "spring-ai-anthropic-2.0.0-M2", "spring-ai-model-2.0.0-M2",
-                                "spring-core-7", "micrometer-observation-1.16")),
-                //language=java
-                java(
-                        """
-                        import io.micrometer.observation.ObservationRegistry;
-                        import org.springframework.ai.anthropic.AnthropicChatModel;
-                        import org.springframework.ai.anthropic.AnthropicChatOptions;
-                        import org.springframework.ai.anthropic.api.AnthropicApi;
-                        import org.springframework.ai.model.tool.ToolCallingManager;
-                        import org.springframework.core.retry.RetryTemplate;
-
-                        class Demo {
-                            AnthropicChatModel build(AnthropicApi anthropicApi, AnthropicChatOptions options,
-                                    ToolCallingManager toolCallingManager, RetryTemplate retryTemplate,
-                                    ObservationRegistry observationRegistry) {
-                                return new AnthropicChatModel(anthropicApi, options, toolCallingManager,
-                                        retryTemplate, observationRegistry);
-                            }
-                        }
-                        """,
-                        """
-                        import io.micrometer.observation.ObservationRegistry;
-                        import org.springframework.ai.anthropic.AnthropicChatModel;
-                        import org.springframework.ai.anthropic.AnthropicChatOptions;
-                        import org.springframework.ai.anthropic.api.AnthropicApi;
-                        import org.springframework.ai.model.tool.ToolCallingManager;
-                        import org.springframework.core.retry.RetryTemplate;
-
-                        class Demo {
-                            AnthropicChatModel build(AnthropicApi anthropicApi, AnthropicChatOptions options,
-                                    ToolCallingManager toolCallingManager, RetryTemplate retryTemplate,
-                                    ObservationRegistry observationRegistry) {
-                                return AnthropicChatModel.builder()
-                                        .anthropicClient(anthropicApi)
-                                        .options(options)
-                                        .toolCallingManager(toolCallingManager)
-                                        .observationRegistry(observationRegistry)
-                                        .build();
-                            }
-                        }
-                        """
-                )
-        );
-    }
-
-    @Test
     void anthropicTypeChanges() {
         rewriteRun(
                 spec -> spec.parser(JavaParser.fromJavaVersion().classpathFromResources(new InMemoryExecutionContext(),
@@ -308,33 +334,34 @@ class UpgradeSpringAi_2_0_Tests implements RewriteTest {
     @Test
     void mcpPackageChanges() {
         rewriteRun(
-                spec -> spec.typeValidationOptions(TypeValidation.none()),
+                spec -> spec.parser(JavaParser.fromJavaVersion().classpathFromResources(new InMemoryExecutionContext(),
+                        "mcp-annotations-0.9")),
                 //language=java
                 java(
                         """
                         import org.springaicommunity.mcp.annotation.McpTool;
-                        import org.springaicommunity.mcp.context.McpContext;
-                        import org.springaicommunity.mcp.method.McpMethod;
-                        import org.springaicommunity.mcp.provider.McpProvider;
+                        import org.springaicommunity.mcp.context.McpRequestContextTypes;
+                        import org.springaicommunity.mcp.method.tool.ReturnMode;
+                        import org.springaicommunity.mcp.provider.sampling.SyncMcpSamplingProvider;
 
                         class Demo {
                             McpTool tool = null;
-                            McpContext context = null;
-                            McpMethod method = null;
-                            McpProvider provider = null;
+                            McpRequestContextTypes contextTypes = null;
+                            ReturnMode returnMode = null;
+                            SyncMcpSamplingProvider provider = null;
                         }
                         """,
                         """
                         import org.springframework.ai.mcp.annotation.McpTool;
-                        import org.springframework.ai.mcp.annotation.context.McpContext;
-                        import org.springframework.ai.mcp.annotation.method.McpMethod;
-                        import org.springframework.ai.mcp.annotation.provider.McpProvider;
+                        import org.springframework.ai.mcp.annotation.context.McpRequestContextTypes;
+                        import org.springframework.ai.mcp.annotation.method.tool.ReturnMode;
+                        import org.springframework.ai.mcp.annotation.provider.sampling.SyncMcpSamplingProvider;
 
                         class Demo {
                             McpTool tool = null;
-                            McpContext context = null;
-                            McpMethod method = null;
-                            McpProvider provider = null;
+                            McpRequestContextTypes contextTypes = null;
+                            ReturnMode returnMode = null;
+                            SyncMcpSamplingProvider provider = null;
                         }
                         """
                 )
@@ -344,9 +371,8 @@ class UpgradeSpringAi_2_0_Tests implements RewriteTest {
     @Test
     void mcpClientTransportTypeChanges() {
         rewriteRun(
-                spec -> spec.typeValidationOptions(TypeValidation.builder().identifiers(false).build())
-                        .parser(JavaParser.fromJavaVersion().classpathFromResources(new InMemoryExecutionContext(),
-                                "mcp-spring-webflux-0.18.2")),
+                spec -> spec.parser(JavaParser.fromJavaVersion().classpathFromResources(new InMemoryExecutionContext(),
+                        "mcp-spring-webflux-0.18")),
                 //language=java
                 java(
                         """
@@ -374,9 +400,8 @@ class UpgradeSpringAi_2_0_Tests implements RewriteTest {
     @Test
     void mcpServerWebFluxTransportTypeChanges() {
         rewriteRun(
-                spec -> spec.typeValidationOptions(TypeValidation.builder().identifiers(false).build())
-                        .parser(JavaParser.fromJavaVersion().classpathFromResources(new InMemoryExecutionContext(),
-                                "mcp-spring-webflux-0.18.2")),
+                spec -> spec.parser(JavaParser.fromJavaVersion().classpathFromResources(new InMemoryExecutionContext(),
+                        "mcp-spring-webflux-0.18")),
                 //language=java
                 java(
                         """
@@ -408,9 +433,8 @@ class UpgradeSpringAi_2_0_Tests implements RewriteTest {
     @Test
     void mcpServerWebMvcTransportTypeChanges() {
         rewriteRun(
-                spec -> spec.typeValidationOptions(TypeValidation.builder().identifiers(false).build())
-                        .parser(JavaParser.fromJavaVersion().classpathFromResources(new InMemoryExecutionContext(),
-                                "mcp-spring-webmvc-0.18.2")),
+                spec -> spec.parser(JavaParser.fromJavaVersion().classpathFromResources(new InMemoryExecutionContext(),
+                        "mcp-spring-webmvc-0.18")),
                 //language=java
                 java(
                         """
@@ -455,7 +479,7 @@ class UpgradeSpringAi_2_0_Tests implements RewriteTest {
                         }
 
                         dependencies {
-                            implementation "org.springaicommunity:mcp-annotations:0.5.1"
+                            implementation "org.springaicommunity:mcp-annotations"
                         }
                         """,
                         """
@@ -652,6 +676,160 @@ class UpgradeSpringAi_2_0_Tests implements RewriteTest {
     }
 
     @Test
+    void openAiEmbeddingEnumChanges() {
+        rewriteRun(
+                spec -> spec.parser(JavaParser.fromJavaVersion().classpathFromResources(new InMemoryExecutionContext(),
+                        "spring-ai-model-1.1", "spring-ai-openai-1.1", "openai-java-core-4")),
+                //language=java
+                java(
+                        """
+                        import org.springframework.ai.openai.api.OpenAiApi;
+
+                        class Demo {
+                            String modelName1 = OpenAiApi.EmbeddingModel.TEXT_EMBEDDING_3_LARGE.getValue();
+                            String modelName2 = OpenAiApi.EmbeddingModel.TEXT_EMBEDDING_3_SMALL.getValue();
+                            String modelName3 = OpenAiApi.EmbeddingModel.TEXT_EMBEDDING_ADA_002.getValue();
+                        }
+                        """,
+                        """
+                        import com.openai.models.embeddings.EmbeddingModel;
+
+                        class Demo {
+                            String modelName1 = EmbeddingModel.TEXT_EMBEDDING_3_LARGE.asString();
+                            String modelName2 = EmbeddingModel.TEXT_EMBEDDING_3_SMALL.asString();
+                            String modelName3 = EmbeddingModel.TEXT_EMBEDDING_ADA_002.asString();
+                        }
+                        """
+                )
+        );
+    }
+
+    @Test
+    void openAiImageEnumChanges() {
+        rewriteRun(
+                spec -> spec.parser(JavaParser.fromJavaVersion().classpathFromResources(new InMemoryExecutionContext(),
+                        "spring-ai-model-1.1", "spring-ai-openai-1.1", "openai-java-core-4")),
+                //language=java
+                java(
+                        """
+                        import org.springframework.ai.openai.api.OpenAiImageApi;
+
+                        class Demo {
+                            String modelName1 = OpenAiImageApi.ImageModel.GTP_IMAGE_1_MINI.getValue();
+                        }
+                        """,
+                        """
+                        import com.openai.models.images.ImageModel;
+
+                        class Demo {
+                            String modelName1 = ImageModel.GPT_IMAGE_1_MINI.asString();
+                        }
+                        """
+                )
+        );
+    }
+
+    @Test
+    void openAiAudioTypeChanges() {
+        rewriteRun(
+                spec -> spec.parser(JavaParser.fromJavaVersion().classpathFromResources(new InMemoryExecutionContext(),
+                        "spring-ai-model-1.1", "spring-ai-openai-1.1")),
+                //language=java
+                java(
+                        """
+                        import org.springframework.ai.openai.api.OpenAiAudioApi;
+
+                        class Demo {
+                            OpenAiAudioApi.SpeechRequest.Voice voice;
+                            OpenAiAudioApi.SpeechRequest.AudioResponseFormat speechFormat;
+                            OpenAiAudioApi.TranscriptResponseFormat transcriptFormat;
+                        }
+                        """,
+                        """
+                        import org.springframework.ai.openai.OpenAiAudioSpeechOptions.AudioResponseFormat;
+                        import org.springframework.ai.openai.OpenAiAudioSpeechOptions.Voice;
+
+                        class Demo {
+                            Voice voice;
+                            AudioResponseFormat speechFormat;
+                            com.openai.models.audio.AudioResponseFormat transcriptFormat;
+                        }
+                        """
+                )
+        );
+    }
+
+    @Test
+    void openAiEmbeddingEncodingFormatEnum() {
+        rewriteRun(
+                spec -> spec.parser(JavaParser.fromJavaVersion().classpathFromResources(new InMemoryExecutionContext(),
+                        "spring-ai-commons-1.1", "spring-ai-model-1.1", "spring-ai-openai-1.1")),
+                //language=java
+                java(
+                        """
+                        import java.util.List;
+
+                        import org.springframework.ai.embedding.EmbeddingModel;
+                        import org.springframework.ai.embedding.EmbeddingRequest;
+                        import org.springframework.ai.openai.OpenAiEmbeddingOptions;
+
+                        class Demo {
+                            void test(EmbeddingModel embeddingModel, String query) {
+                                var embeddings = embeddingModel.call(new EmbeddingRequest(List.of(query), OpenAiEmbeddingOptions.builder()
+                                        .encodingFormat("float")
+                                        .build()));
+                            }
+                        }
+                        """,
+                        """
+                        import java.util.List;
+
+                        import org.springframework.ai.embedding.EmbeddingModel;
+                        import org.springframework.ai.embedding.EmbeddingRequest;
+                        import org.springframework.ai.openai.OpenAiEmbeddingOptions;
+
+                        class Demo {
+                            void test(EmbeddingModel embeddingModel, String query) {
+                                var embeddings = embeddingModel.call(new EmbeddingRequest(List.of(query), OpenAiEmbeddingOptions.builder()
+                                        .encodingFormat(OpenAiEmbeddingOptions.EncodingFormat.FLOAT)
+                                        .build()));
+                            }
+                        }
+                        """
+                )
+        );
+    }
+
+    @Test
+    void openAiResponseFormatBuilder() {
+        rewriteRun(
+                spec -> spec.parser(JavaParser.fromJavaVersion().classpathFromResources(new InMemoryExecutionContext(),
+                        "spring-ai-model-1.1", "spring-ai-openai-1.1")),
+                //language=java
+                java(
+                        """
+                        import org.springframework.ai.openai.api.ResponseFormat;
+
+                        class Demo {
+                            Object format() {
+                                return new ResponseFormat(ResponseFormat.Type.JSON_SCHEMA, "{}");
+                            }
+                        }
+                        """,
+                        """
+                        import org.springframework.ai.openai.OpenAiChatModel.ResponseFormat;
+
+                        class Demo {
+                            Object format() {
+                                return ResponseFormat.builder().type(ResponseFormat.Type.JSON_SCHEMA).jsonSchema("{}").build();
+                            }
+                        }
+                        """
+                )
+        );
+    }
+
+    @Test
     void azureOpenAiDependenciesRemoved() {
         rewriteRun(
                 spec -> spec.beforeRecipe(withToolingApi()),
@@ -832,6 +1010,22 @@ class UpgradeSpringAi_2_0_Tests implements RewriteTest {
                         """,
                         """
                         spring.ai.anthropic.chat.max-tokens=1000
+                        """,
+                        s -> s.path("src/main/resources/application.properties"))
+        );
+    }
+
+    @Test
+    void commentRemovedStreamToolCallResponsesProperty() {
+        rewriteRun(
+                //language=properties
+                properties(
+                        """
+                        spring.ai.chat.client.tool-calling.stream-tool-call-responses=true
+                        """,
+                        """
+                        # Deprecated property removed in Spring AI 2.0.
+                        # spring.ai.chat.client.tool-calling.stream-tool-call-responses=true
                         """,
                         s -> s.path("src/main/resources/application.properties"))
         );

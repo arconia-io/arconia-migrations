@@ -1,6 +1,7 @@
 package io.arconia.rewrite.spring.ai;
 
 import org.junit.jupiter.api.Test;
+import org.openrewrite.DocumentExample;
 import org.openrewrite.InMemoryExecutionContext;
 import org.openrewrite.java.JavaParser;
 import org.openrewrite.test.RecipeSpec;
@@ -56,6 +57,7 @@ public class UpgradeSpringAi_1_1_Tests implements RewriteTest {
     }
 
     @Test
+    @DocumentExample
     void mcpDependencies() {
         rewriteRun(
             spec -> spec.beforeRecipe(withToolingApi()),

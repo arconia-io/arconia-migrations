@@ -1,11 +1,11 @@
 package io.arconia.rewrite.spring.ai;
 
 import org.junit.jupiter.api.Test;
+import org.openrewrite.DocumentExample;
 import org.openrewrite.InMemoryExecutionContext;
 import org.openrewrite.java.JavaParser;
 import org.openrewrite.test.RecipeSpec;
 import org.openrewrite.test.RewriteTest;
-import org.openrewrite.test.TypeValidation;
 
 import static org.openrewrite.java.Assertions.java;
 
@@ -15,13 +15,13 @@ class UseQuestionAnswerAdvisorBuilderTests implements RewriteTest {
     public void defaults(RecipeSpec spec) {
         spec.recipe(new UseQuestionAnswerAdvisorBuilder())
             .parser(JavaParser.fromJavaVersion().classpathFromResources(new InMemoryExecutionContext(),
-                    "spring-ai-advisors-vector-store-1.0", "spring-ai-client-chat-1.0", "spring-ai-vector-store-1.0"));
+                    "spring-ai-advisors-vector-store-1.0", "spring-ai-vector-store-1.0"));
     }
 
     @Test
-    void vector() {
+    @DocumentExample
+    void useBuilderWithVectorStoreInterface() {
         rewriteRun(
-                spec -> spec.typeValidationOptions(TypeValidation.builder().methodInvocations(false).build()),
                 //language=java
                 java(
                         """
@@ -29,8 +29,8 @@ class UseQuestionAnswerAdvisorBuilderTests implements RewriteTest {
                         import org.springframework.ai.vectorstore.VectorStore;
 
                         class Demo {
-                            void test(VectorStore vectorStore) {
-                                var advisor = new QuestionAnswerAdvisor(vectorStore);
+                            QuestionAnswerAdvisor test(VectorStore vectorStore) {
+                                return new QuestionAnswerAdvisor(vectorStore);
                             }
                         }
                         """,
@@ -39,8 +39,41 @@ class UseQuestionAnswerAdvisorBuilderTests implements RewriteTest {
                         import org.springframework.ai.vectorstore.VectorStore;
 
                         class Demo {
-                            void test(VectorStore vectorStore) {
-                                var advisor = QuestionAnswerAdvisor.builder(vectorStore).build();
+                            QuestionAnswerAdvisor test(VectorStore vectorStore) {
+                                return QuestionAnswerAdvisor.builder(vectorStore).build();
+                            }
+                        }
+                        """
+                )
+        );
+    }
+
+    @Test
+    void useBuilderWithConcreteVectorStoreSubclass() {
+        rewriteRun(
+                //language=java
+                java(
+                        """
+                        import org.springframework.ai.chat.client.advisor.vectorstore.QuestionAnswerAdvisor;
+                        import org.springframework.ai.vectorstore.VectorStore;
+
+                        abstract class CustomVectorStore implements VectorStore {}
+
+                        class Demo {
+                            QuestionAnswerAdvisor test(CustomVectorStore vectorStore) {
+                                return new QuestionAnswerAdvisor(vectorStore);
+                            }
+                        }
+                        """,
+                        """
+                        import org.springframework.ai.chat.client.advisor.vectorstore.QuestionAnswerAdvisor;
+                        import org.springframework.ai.vectorstore.VectorStore;
+
+                        abstract class CustomVectorStore implements VectorStore {}
+
+                        class Demo {
+                            QuestionAnswerAdvisor test(CustomVectorStore vectorStore) {
+                                return QuestionAnswerAdvisor.builder(vectorStore).build();
                             }
                         }
                         """

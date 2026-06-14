@@ -33,3 +33,9 @@ recipeList:
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.ai.openai.chat.options.internal-tool-execution-enabled"
       comment: "Deprecated property removed in Spring AI 2.0."
+  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
+      propertyKey: "spring.ai.chat.client.tool-calling.stream-tool-call-responses"
+      comment: "Deprecated property removed in Spring AI 2.0."
+  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
+      propertyKey: "spring.ai.chat.client.tool-search-advisor.stream-tool-call-responses"
+      comment: "Deprecated property removed in Spring AI 2.0."

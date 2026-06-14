@@ -53,7 +53,7 @@ public class UseQuestionAnswerAdvisorBuilder extends Recipe {
 
                         Expression arg = nc.getArguments().getFirst();
 
-                        if (!TypeUtils.isOfClassType(arg.getType(), FQN_VECTOR_STORE)) {
+                        if (!TypeUtils.isAssignableTo(FQN_VECTOR_STORE, arg.getType())) {
                             return nc;
                         }
 
@@ -61,7 +61,9 @@ public class UseQuestionAnswerAdvisorBuilder extends Recipe {
 
                         return JavaTemplate.builder("QuestionAnswerAdvisor.builder(#{any(org.springframework.ai.vectorstore.VectorStore)}).build()")
                                 .imports(FQN_QUESTION_ANSWER_ADVISOR)
-                                .javaParser(JavaParser.fromJavaVersion().classpathFromResources(ctx, "spring-ai-advisors-vector-store-1.1.+"))
+                                .javaParser(JavaParser.fromJavaVersion().classpathFromResources(ctx,
+                                        "spring-ai-advisors-vector-store-1.1", "spring-ai-client-chat-1.1",
+                                        "spring-ai-vector-store-1.1", "spring-core-7.0"))
                                 .build()
                                 .apply(getCursor(), nc.getCoordinates().replace(), arg);
                     }

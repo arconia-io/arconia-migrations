@@ -1,14 +1,17 @@
 package io.arconia.rewrite.spring.ai;
 
 import org.junit.jupiter.api.Test;
+import org.openrewrite.DocumentExample;
 import org.openrewrite.InMemoryExecutionContext;
 import org.openrewrite.java.JavaParser;
 import org.openrewrite.test.RecipeSpec;
 import org.openrewrite.test.RewriteTest;
-import org.openrewrite.test.TypeValidation;
 
 import static org.openrewrite.java.Assertions.java;
 
+/**
+ * Unit tests for {@link UseEmbeddingOptionsBuilder}.
+ */
 class UseEmbeddingOptionsBuilderTests implements RewriteTest {
 
     @Override
@@ -19,17 +22,18 @@ class UseEmbeddingOptionsBuilderTests implements RewriteTest {
     }
 
     @Test
+    @DocumentExample
     void useBuilder() {
         rewriteRun(
-                spec -> spec.typeValidationOptions(TypeValidation.builder().methodInvocations(false).build()),
                 //language=java
                 java(
                         """
+                        import org.springframework.ai.embedding.EmbeddingOptions;
                         import org.springframework.ai.embedding.EmbeddingOptionsBuilder;
 
                         class Demo {
-                            void test() {
-                                var options = EmbeddingOptionsBuilder.builder().build();
+                            EmbeddingOptions test() {
+                                return EmbeddingOptionsBuilder.builder().build();
                             }
                         }
                         """,
@@ -37,8 +41,8 @@ class UseEmbeddingOptionsBuilderTests implements RewriteTest {
                         import org.springframework.ai.embedding.EmbeddingOptions;
 
                         class Demo {
-                            void test() {
-                                var options = EmbeddingOptions.builder().build();
+                            EmbeddingOptions test() {
+                                return EmbeddingOptions.builder().build();
                             }
                         }
                         """

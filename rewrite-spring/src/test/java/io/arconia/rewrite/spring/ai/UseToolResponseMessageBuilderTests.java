@@ -1,27 +1,30 @@
 package io.arconia.rewrite.spring.ai;
 
 import org.junit.jupiter.api.Test;
+import org.openrewrite.DocumentExample;
 import org.openrewrite.InMemoryExecutionContext;
 import org.openrewrite.java.JavaParser;
 import org.openrewrite.test.RecipeSpec;
 import org.openrewrite.test.RewriteTest;
-import org.openrewrite.test.TypeValidation;
 
 import static org.openrewrite.java.Assertions.java;
 
+/**
+ * Unit tests for {@link UseToolResponseMessageBuilder}.
+ */
 class UseToolResponseMessageBuilderTests implements RewriteTest {
 
     @Override
     public void defaults(RecipeSpec spec) {
         spec.recipe(new UseToolResponseMessageBuilder())
                 .parser(JavaParser.fromJavaVersion().classpathFromResources(new InMemoryExecutionContext(),
-                        "spring-ai-model-1.0"));
+                        "spring-ai-commons-1.0", "spring-ai-model-1.0"));
     }
 
     @Test
+    @DocumentExample
     void useBuilder() {
         rewriteRun(
-                spec -> spec.typeValidationOptions(TypeValidation.builder().methodInvocations(false).build()),
                 //language=java
                 java(
                         """
@@ -32,8 +35,8 @@ class UseToolResponseMessageBuilderTests implements RewriteTest {
 
                         class Demo {
                             void test() {
-                                var message1 = new ToolResponseMessage(List.of());
-                                var message2 = new ToolResponseMessage(List.of(), Map.of());
+                                ToolResponseMessage message1 = new ToolResponseMessage(List.of());
+                                ToolResponseMessage message2 = new ToolResponseMessage(List.of(), Map.of());
                             }
                         }
                         """,
@@ -45,8 +48,8 @@ class UseToolResponseMessageBuilderTests implements RewriteTest {
 
                         class Demo {
                             void test() {
-                                var message1 = ToolResponseMessage.builder().responses(List.of()).build();
-                                var message2 = ToolResponseMessage.builder().responses(List.of()).metadata(Map.of()).build();
+                                ToolResponseMessage message1 = ToolResponseMessage.builder().responses(List.of()).build();
+                                ToolResponseMessage message2 = ToolResponseMessage.builder().responses(List.of()).metadata(Map.of()).build();
                             }
                         }
                         """
