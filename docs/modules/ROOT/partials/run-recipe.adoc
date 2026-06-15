@@ -30,6 +30,15 @@ rootProject {
         rewrite("io.arconia.migrations:{rewrite-module}:latest.release")
     }
 
+    // Remove when project repositories are disabled
+    afterEvaluate {
+        if (repositories.isEmpty()) {
+            repositories {
+                mavenCentral()
+            }
+        }
+    }
+
     configurations.named("rewrite") {
         canBeConsumed = false
     }
@@ -42,6 +51,7 @@ Then, run the following command.
 ----
 ./gradlew rewriteRun \
     --init-script init.gradle \
+    --no-parallel \
     -DactiveRecipe={recipe-id}
 ----
 +
