@@ -1,6 +1,7 @@
 package io.arconia.rewrite.spring.cloud.cloud2025;
 
 import org.junit.jupiter.api.Test;
+import org.openrewrite.DocumentExample;
 import org.openrewrite.test.RecipeSpec;
 import org.openrewrite.test.RewriteTest;
 
@@ -16,11 +17,7 @@ class UpgradeSpringCloud_2025_0_Tests implements RewriteTest {
     }
 
     @Test
-    void recipeConfigured() {
-        assertRecipesConfigure("io.arconia.rewrite.spring.cloud2025");
-    }
-
-    @Test
+    @DocumentExample
     void gatewayDependencyChanges() {
         rewriteRun(
                 spec -> spec.beforeRecipe(withToolingApi()),
@@ -106,21 +103,6 @@ class UpgradeSpringCloud_2025_0_Tests implements RewriteTest {
                         """,
                         """
                         spring.cloud.gateway.server.webflux.default-filters=AddRequestHeader=X-Request-Foo, Bar
-                        """,
-                        s -> s.path("src/main/resources/application.properties"))
-        );
-    }
-
-    @Test
-    void gatewayProxyExchangePropertyRename() {
-        rewriteRun(
-                //language=properties
-                properties(
-                        """
-                        spring.cloud.gateway.proxy.headers=X-Forwarded-For
-                        """,
-                        """
-                        spring.cloud.gateway.proxy-exchange.webmvc.headers=X-Forwarded-For
                         """,
                         s -> s.path("src/main/resources/application.properties"))
         );

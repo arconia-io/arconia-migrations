@@ -358,6 +358,44 @@ class UpgradeArconia_0_27_Tests implements RewriteTest {
     }
 
     @Test
+    void observationOpenInferenceTypePropertyRename() {
+        rewriteRun(
+                //language=properties
+                properties(
+                        """
+                        arconia.observations.conventions.type=openinference
+                        """,
+                        """
+                        arconia.observations.conventions.openinference.ai.enabled=true
+                        """,
+                        s -> s.path("src/main/resources/application.properties"))
+        );
+    }
+
+    @Test
+    void observationOpenInferenceTypePropertyRenameInYaml() {
+        rewriteRun(
+                //language=yaml
+                yaml(
+                        """
+                        arconia:
+                          observations:
+                            conventions:
+                              type: openinference
+                        """,
+                        """
+                        arconia:
+                          observations:
+                            conventions:
+                              openinference:
+                                ai:
+                                  enabled: true
+                        """,
+                        s -> s.path("src/main/resources/application.yml"))
+        );
+    }
+
+    @Test
     void observationOpenInferencePropertyChanges() {
         rewriteRun(
                 //language=properties

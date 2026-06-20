@@ -31,19 +31,6 @@ recipeList:
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: "management.endpoint.functions.enabled"
       newPropertyKey: "management.endpoint.functions.access"
-  # spring-cloud-gateway-mvc
-  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
-      oldPropertyKey: "spring.cloud.gateway.proxy.auto-forward"
-      newPropertyKey: "spring.cloud.gateway.proxy-exchange.webmvc.auto-forward"
-  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
-      oldPropertyKey: "spring.cloud.gateway.proxy.headers"
-      newPropertyKey: "spring.cloud.gateway.proxy-exchange.webmvc.headers"
-  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
-      oldPropertyKey: "spring.cloud.gateway.proxy.sensitive"
-      newPropertyKey: "spring.cloud.gateway.proxy-exchange.webmvc.sensitive"
-  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
-      oldPropertyKey: "spring.cloud.gateway.proxy.skipped"
-      newPropertyKey: "spring.cloud.gateway.proxy-exchange.webmvc.skipped"
   # spring-cloud-gateway-server
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: "management.endpoint.gateway.enabled"
@@ -640,19 +627,6 @@ recipeList:
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.gateway.server.webmvc.http-client.type"
       comment: "Deprecated property removed in Spring Cloud 2025.0."
-  # spring-cloud-gateway-webflux
-  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
-      oldPropertyKey: "spring.cloud.gateway.proxy.auto-forward"
-      newPropertyKey: "spring.cloud.gateway.proxy-exchange.webflux.auto-forward"
-  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
-      oldPropertyKey: "spring.cloud.gateway.proxy.headers"
-      newPropertyKey: "spring.cloud.gateway.proxy-exchange.webflux.headers"
-  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
-      oldPropertyKey: "spring.cloud.gateway.proxy.sensitive"
-      newPropertyKey: "spring.cloud.gateway.proxy-exchange.webflux.sensitive"
-  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
-      oldPropertyKey: "spring.cloud.gateway.proxy.skipped"
-      newPropertyKey: "spring.cloud.gateway.proxy-exchange.webflux.skipped"
   # spring-cloud-kubernetes-commons
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.kubernetes.client.rolling-timeout"

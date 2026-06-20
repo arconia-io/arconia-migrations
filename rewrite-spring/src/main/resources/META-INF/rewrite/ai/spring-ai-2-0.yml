@@ -36,8 +36,19 @@ recipeList:
   - org.openrewrite.java.ChangeType:
       oldFullyQualifiedTypeName: org.springframework.ai.chat.client.advisor.PromptChatMemoryAdvisor
       newFullyQualifiedTypeName: org.springframework.ai.chat.client.advisor.MessageChatMemoryAdvisor
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.ai.chat.client.ChatClientCustomizer
+      newFullyQualifiedTypeName: org.springframework.ai.chat.client.ChatClientBuilderCustomizer
 
   # Method Changes
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: org.springframework.ai.chat.client.ChatClient.Builder defaultToolCallbacks(org.springframework.ai.tool.ToolCallback...)
+      newMethodName: defaultTools
+      matchOverrides: true
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: org.springframework.ai.chat.client.ChatClient.Builder defaultToolCallbacks(org.springframework.ai.tool.ToolCallbackProvider...)
+      newMethodName: defaultTools
+      matchOverrides: true
   - org.openrewrite.java.ChangeMethodName:
       methodPattern: org.springframework.ai.chat.client.ChatClient.ChatClientRequestSpec toolCallbacks(org.springframework.ai.tool.ToolCallback...)
       newMethodName: tools
@@ -326,6 +337,12 @@ recipeList:
       existingFullyQualifiedConstantName: org.springframework.ai.openai.api.OpenAiApi.EmbeddingModel.TEXT_EMBEDDING_ADA_002
       fullyQualifiedConstantName: com.openai.models.embeddings.EmbeddingModel.TEXT_EMBEDDING_ADA_002
 
+  - org.openrewrite.java.ReplaceConstantWithAnotherConstant:
+      existingFullyQualifiedConstantName: org.springframework.ai.openai.api.OpenAiImageApi.ImageModel.DALL_E_2
+      fullyQualifiedConstantName: com.openai.models.images.ImageModel.GPT_IMAGE_1_MINI
+  - org.openrewrite.java.ReplaceConstantWithAnotherConstant:
+      existingFullyQualifiedConstantName: org.springframework.ai.openai.api.OpenAiImageApi.ImageModel.DALL_E_3
+      fullyQualifiedConstantName: com.openai.models.images.ImageModel.GPT_IMAGE_1_MINI
   - org.openrewrite.java.ReplaceConstantWithAnotherConstant:
       existingFullyQualifiedConstantName: org.springframework.ai.openai.api.OpenAiImageApi.ImageModel.GTP_IMAGE_1_MINI
       fullyQualifiedConstantName: com.openai.models.images.ImageModel.GPT_IMAGE_1_MINI

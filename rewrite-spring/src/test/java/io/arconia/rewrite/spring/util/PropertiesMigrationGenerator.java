@@ -182,12 +182,19 @@ public final class PropertiesMigrationGenerator {
 
         Map<String, List<ModuleProperty>> rawByModule = scanModulesInParallel(spec, modules, cacheDir, productLabel);
 
+        Set<String> conflictingNames = findConflictingPropertyNames(rawByModule);
+        if (!conflictingNames.isEmpty()) {
+            System.out.println("Skipping " + conflictingNames.size() + " key(s) mapped to multiple targets across modules; handle these in the wrapper recipe:");
+            conflictingNames.stream().sorted().forEach(n -> System.out.println("  - " + n));
+        }
+
         Set<String> seenPropertyKeys = new HashSet<>();
         Map<String, List<ModuleProperty>> propertiesByModule = new LinkedHashMap<>();
         int total = 0;
         for (Map.Entry<String, List<ModuleProperty>> entry : rawByModule.entrySet()) {
             Set<String> redundantParents = findRedundantParentRenames(entry.getValue());
             List<ModuleProperty> unique = entry.getValue().stream()
+                    .filter(p -> !conflictingNames.contains(p.name()))
                     .filter(p -> !redundantParents.contains(dedupKey(p)))
                     .filter(p -> seenPropertyKeys.add(dedupKey(p)))
                     .sorted(Comparator.comparing(ModuleProperty::name))
@@ -525,6 +532,38 @@ public final class PropertiesMigrationGenerator {
                           propertyKey: "%s"
                           comment: "%s"
                     """.formatted(c.name(), yamlEscape(c.comment()));
+        };
+    }
+
+    /**
+     * Identify property names where the same old key is mapped to more than one distinct
+     * replacement across modules (or to a mix of rename and comment-out). The upstream
+     * configuration-metadata occasionally registers the same key against multiple modules
+     * with diverging targets, which would silently let the first match win at recipe time
+     * regardless of the user's actual runtime. These keys are dropped from the generated
+     * file and must be handled in the wrapper YAML (e.g., behind a `FindDependency`
+     * precondition that picks the right target).
+     */
+    private static Set<String> findConflictingPropertyNames(Map<String, List<ModuleProperty>> rawByModule) {
+        Map<String, Set<String>> targetsByName = new LinkedHashMap<>();
+        for (List<ModuleProperty> moduleProperties : rawByModule.values()) {
+            for (ModuleProperty p : moduleProperties) {
+                targetsByName.computeIfAbsent(p.name(), k -> new HashSet<>()).add(targetOf(p));
+            }
+        }
+        Set<String> conflicts = new HashSet<>();
+        for (Map.Entry<String, Set<String>> entry : targetsByName.entrySet()) {
+            if (entry.getValue().size() > 1) {
+                conflicts.add(entry.getKey());
+            }
+        }
+        return conflicts;
+    }
+
+    private static String targetOf(ModuleProperty p) {
+        return switch (p) {
+            case ModuleProperty.Renamed r -> "rename:" + r.replacement();
+            case ModuleProperty.Commented c -> "comment:" + c.comment();
         };
     }
 

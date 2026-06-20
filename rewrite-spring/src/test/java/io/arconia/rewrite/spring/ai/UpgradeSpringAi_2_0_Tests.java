@@ -111,6 +111,31 @@ class UpgradeSpringAi_2_0_Tests implements RewriteTest {
     }
 
     @Test
+    void chatClientCustomizerTypeChange() {
+        rewriteRun(
+                spec -> spec.parser(JavaParser.fromJavaVersion().classpathFromResources(new InMemoryExecutionContext(),
+                        "spring-ai-client-chat-1.1")),
+                //language=java
+                java(
+                        """
+                        import org.springframework.ai.chat.client.ChatClientCustomizer;
+
+                        class Demo {
+                            ChatClientCustomizer customizer = null;
+                        }
+                        """,
+                        """
+                        import org.springframework.ai.chat.client.ChatClientBuilderCustomizer;
+
+                        class Demo {
+                            ChatClientBuilderCustomizer customizer = null;
+                        }
+                        """
+                )
+        );
+    }
+
+    @Test
     void chatModelGetDefaultOptionsMethodRename() {
         rewriteRun(
                 spec -> spec.parser(JavaParser.fromJavaVersion().classpathFromResources(new InMemoryExecutionContext(),
@@ -222,6 +247,41 @@ class UpgradeSpringAi_2_0_Tests implements RewriteTest {
                                         .tools(provider)
                                         .call()
                                         .content();
+                            }
+                        }
+                        """
+                )
+        );
+    }
+
+    @Test
+    void defaultToolCallbacksMethodRename() {
+        rewriteRun(
+                spec -> spec.parser(JavaParser.fromJavaVersion().classpathFromResources(new InMemoryExecutionContext(),
+                                "spring-ai-client-chat-1.1", "spring-ai-model-1.1")),
+                //language=java
+                java(
+                        """
+                        import org.springframework.ai.chat.client.ChatClient;
+                        import org.springframework.ai.tool.ToolCallback;
+                        import org.springframework.ai.tool.ToolCallbackProvider;
+
+                        class Demo {
+                            void test(ChatClient.Builder builder, ToolCallback callback, ToolCallbackProvider provider) {
+                                builder.defaultToolCallbacks(callback)
+                                        .defaultToolCallbacks(provider);
+                            }
+                        }
+                        """,
+                        """
+                        import org.springframework.ai.chat.client.ChatClient;
+                        import org.springframework.ai.tool.ToolCallback;
+                        import org.springframework.ai.tool.ToolCallbackProvider;
+
+                        class Demo {
+                            void test(ChatClient.Builder builder, ToolCallback callback, ToolCallbackProvider provider) {
+                                builder.defaultTools(callback)
+                                        .defaultTools(provider);
                             }
                         }
                         """
@@ -679,7 +739,7 @@ class UpgradeSpringAi_2_0_Tests implements RewriteTest {
     void openAiEmbeddingEnumChanges() {
         rewriteRun(
                 spec -> spec.parser(JavaParser.fromJavaVersion().classpathFromResources(new InMemoryExecutionContext(),
-                        "spring-ai-model-1.1", "spring-ai-openai-1.1", "openai-java-core-4")),
+                        "spring-ai-model-1.1", "spring-ai-openai-1.0", "openai-java-core-4")),
                 //language=java
                 java(
                         """
@@ -705,7 +765,7 @@ class UpgradeSpringAi_2_0_Tests implements RewriteTest {
     }
 
     @Test
-    void openAiImageEnumChanges() {
+    void openAiImageEnumChangesA() {
         rewriteRun(
                 spec -> spec.parser(JavaParser.fromJavaVersion().classpathFromResources(new InMemoryExecutionContext(),
                         "spring-ai-model-1.1", "spring-ai-openai-1.1", "openai-java-core-4")),
@@ -723,6 +783,33 @@ class UpgradeSpringAi_2_0_Tests implements RewriteTest {
 
                         class Demo {
                             String modelName1 = ImageModel.GPT_IMAGE_1_MINI.asString();
+                        }
+                        """
+                )
+        );
+    }
+
+    @Test
+    void openAiImageEnumChangesB() {
+        rewriteRun(
+                spec -> spec.parser(JavaParser.fromJavaVersion().classpathFromResources(new InMemoryExecutionContext(),
+                        "spring-ai-model-1.1", "spring-ai-openai-1.0", "openai-java-core-4")),
+                //language=java
+                java(
+                        """
+                        import org.springframework.ai.openai.api.OpenAiImageApi;
+
+                        class Demo {
+                            String modelName1 = OpenAiImageApi.ImageModel.DALL_E_2.getValue();
+                            String modelName2 = OpenAiImageApi.ImageModel.DALL_E_3.getValue();
+                        }
+                        """,
+                        """
+                        import com.openai.models.images.ImageModel;
+
+                        class Demo {
+                            String modelName1 = ImageModel.GPT_IMAGE_1_MINI.asString();
+                            String modelName2 = ImageModel.GPT_IMAGE_1_MINI.asString();
                         }
                         """
                 )

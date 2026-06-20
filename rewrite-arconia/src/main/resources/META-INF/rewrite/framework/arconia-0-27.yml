@@ -123,6 +123,14 @@ recipeList:
       newPropertyKey: arconia.observations.conventions.opentelemetry.ai.include-tool-call-content
 
   # Rename Properties - OpenInference
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKeyIfValue:
+      oldPropertyKey: arconia.observations.conventions.type
+      propertyValue: "openinference"
+      newPropertyKey: arconia.observations.conventions.openinference.ai.enabled
+  - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
+      propertyKey: arconia.observations.conventions.openinference.ai.enabled
+      oldPropertyValue: "openinference"
+      newPropertyValue: "true"
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: arconia.observations.conventions.openinference.base64-image-max-length
       newPropertyKey: arconia.observations.conventions.openinference.ai.base64-image-max-length
