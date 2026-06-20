@@ -43,104 +43,95 @@ dependencies {
 }
 
 recipeDependencies {
-    parserClasspath "jakarta.servlet:jakarta.servlet-api:6.0.0"
+    parserClasspath "org.springframework.ai:spring-ai-advisors-vector-store:1.1.+"
+    parserClasspath "org.springframework.ai:spring-ai-client-chat:1.1.+"
+    parserClasspath "org.springframework.ai:spring-ai-commons:1.1.+"
 
-    parserClasspath "io.micrometer:micrometer-observation:1.16.1"
+    parserClasspath "org.springframework.ai:spring-ai-model:1.1.+"
+    parserClasspath "org.springframework.ai:spring-ai-vector-store:1.1.+"
 
-    parserClasspath "org.opensearch:opensearch-testcontainers:2.1.3"
-
-    parserClasspath "org.reactivestreams:reactive-streams:1.0.4"
-
-    parserClasspath "io.projectreactor:reactor-core:3.7.19"
-
-    parserClasspath "org.springframework.ai:spring-ai-cassandra-store:1.0.0-M6"
-    parserClasspath "org.springframework.ai:spring-ai-core:1.0.0-M6"
-
-    parserClasspath "org.springframework.ai:spring-ai-model:1.0.0-M7"
-    parserClasspath "org.springframework.ai:spring-ai-client-chat:1.0.0-M7"
-
-    parserClasspath "org.springframework.ai:spring-ai-mistral-ai:1.0.0-M7"
-
-    parserClasspath "org.springframework.ai:spring-ai-advisors-vector-store:1.0.8"
-    parserClasspath "org.springframework.ai:spring-ai-bedrock:1.0.8"
-    parserClasspath "org.springframework.ai:spring-ai-client-chat:1.0.8"
-    parserClasspath "org.springframework.ai:spring-ai-commons:1.0.8"
-    parserClasspath "org.springframework.ai:spring-ai-model:1.0.8"
-    parserClasspath "org.springframework.ai:spring-ai-openai:1.0.8"
-    parserClasspath "org.springframework.ai:spring-ai-vector-store:1.0.8"
-    parserClasspath "org.springframework.ai:spring-ai-autoconfigure-mcp-client:1.0.8"
-    parserClasspath "org.springframework.ai:spring-ai-autoconfigure-mcp-server:1.0.8"
-
-    parserClasspath "org.springframework.ai:spring-ai-advisors-vector-store:1.1.7"
-    parserClasspath "org.springframework.ai:spring-ai-client-chat:1.1.7"
-    parserClasspath "org.springframework.ai:spring-ai-commons:1.1.7"
-    parserClasspath "org.springframework.ai:spring-ai-mistral-ai:1.1.7"
-    parserClasspath "org.springframework.ai:spring-ai-model:1.1.7"
-    parserClasspath "org.springframework.ai:spring-ai-openai:1.1.7"
-    parserClasspath "org.springframework.ai:spring-ai-vector-store:1.1.7"
-
-    parserClasspath "org.springframework.ai:spring-ai-anthropic:2.0.0-M2"
-    parserClasspath "org.springframework.ai:spring-ai-model:2.0.0-M2"
-
-    parserClasspath "org.springframework.ai:spring-ai-client-chat:2.0.0-M4"
-    parserClasspath "org.springframework.ai:spring-ai-model:2.0.0-M4"
-    parserClasspath "org.springframework.ai:spring-ai-anthropic:2.0.0-M4"
     parserClasspath "org.springframework.ai:spring-ai-openai:2.0.0-M5"
+    parserClasspath "org.springframework.ai:spring-ai-openai:2.0.+"
 
-    parserClasspath "com.anthropic:anthropic-java-core:2.17.0"
+    parserClasspath "io.modelcontextprotocol.sdk:mcp-core:2.0.+"
 
-    parserClasspath "org.springframework.ai:spring-ai-client-chat:2.0.0-M8"
-    parserClasspath "org.springframework.ai:spring-ai-commons:2.0.0-M8"
-    parserClasspath "org.springframework.ai:spring-ai-google-genai-embedding:2.0.0-M8"
-    parserClasspath "org.springframework.ai:spring-ai-model:2.0.0-M8"
+    parserClasspath "org.springframework.boot:spring-boot-resttestclient:4.0.+"
+    parserClasspath "org.springframework.boot:spring-boot-webtestclient:4.0.+"
 
-    parserClasspath "org.springframework.ai:spring-ai-openai:2.0.0"
+    parserClasspath "org.springframework:spring-core:7.0.+"
 
-    parserClasspath "io.modelcontextprotocol.sdk:mcp-spring-webflux:0.18.3"
-    parserClasspath "io.modelcontextprotocol.sdk:mcp-spring-webmvc:0.18.3"
-    parserClasspath "org.springaicommunity:mcp-annotations:0.9.0"
+    testParserClasspath "jakarta.servlet:jakarta.servlet-api:6.0.+"
 
-    parserClasspath "io.modelcontextprotocol.sdk:mcp-core:2.0.0"
+    testParserClasspath "org.opensearch:opensearch-testcontainers:2.1.+"
 
-    parserClasspath "org.springframework.boot:spring-boot-autoconfigure:3.4.13"
-    parserClasspath "org.springframework.boot:spring-boot-test:3.4.13"
+    testParserClasspath "org.reactivestreams:reactive-streams:1.0.+"
 
-    parserClasspath "org.springframework.boot:spring-boot:3.5.11"
-    parserClasspath "org.springframework.boot:spring-boot-actuator:3.5.11"
-    parserClasspath "org.springframework.boot:spring-boot-actuator-autoconfigure:3.5.11"
-    parserClasspath "org.springframework.boot:spring-boot-autoconfigure:3.5.11"
-    parserClasspath "org.springframework.boot:spring-boot-test-autoconfigure:3.5.11"
-    parserClasspath "org.springframework.boot:spring-boot-test:3.5.11"
+    testParserClasspath "org.springframework.ai:spring-ai-core:1.0.0-M6"
 
-    parserClasspath "org.springframework.boot:spring-boot-resttestclient:4.0.3"
-    parserClasspath "org.springframework.boot:spring-boot-test:4.0.3"
-    parserClasspath "org.springframework.boot:spring-boot-webmvc-test:4.0.3"
-    parserClasspath "org.springframework.boot:spring-boot-webtestclient:4.0.3"
+    testParserClasspath "org.springframework.ai:spring-ai-model:1.0.0-M7"
+    testParserClasspath "org.springframework.ai:spring-ai-client-chat:1.0.0-M7"
 
-    parserClasspath "org.springframework:spring-beans:6.1.21"
-    parserClasspath "org.springframework:spring-context:6.1.21"
-    parserClasspath "org.springframework:spring-core:6.1.21"
-    parserClasspath "org.springframework:spring-messaging:6.1.21"
-    parserClasspath "org.springframework:spring-test:6.1.21"
-    parserClasspath "org.springframework:spring-web:6.1.21"
-    parserClasspath "org.springframework:spring-webflux:6.1.21"
-    parserClasspath "org.springframework:spring-webmvc:6.1.21"
-    parserClasspath "org.springframework:spring-websocket:6.1.21"
+    testParserClasspath "org.springframework.ai:spring-ai-mistral-ai:1.0.0-M7"
 
-    parserClasspath "org.springframework:spring-beans:6.2.16"
-    parserClasspath "org.springframework:spring-context:6.2.16"
-    parserClasspath "org.springframework:spring-core:6.2.16"
-    parserClasspath "org.springframework:spring-test:6.2.16"
-    parserClasspath "org.springframework:spring-web:6.2.16"
-    parserClasspath "org.springframework:spring-webflux:6.2.16"
-    parserClasspath "org.springframework:spring-webmvc:6.2.16"
+    testParserClasspath "org.springframework.ai:spring-ai-advisors-vector-store:1.0.+"
+    testParserClasspath "org.springframework.ai:spring-ai-bedrock:1.0.+"
+    testParserClasspath "org.springframework.ai:spring-ai-client-chat:1.0.+"
+    testParserClasspath "org.springframework.ai:spring-ai-commons:1.0.+"
+    testParserClasspath "org.springframework.ai:spring-ai-model:1.0.+"
+    testParserClasspath "org.springframework.ai:spring-ai-openai:1.0.+"
+    testParserClasspath "org.springframework.ai:spring-ai-vector-store:1.0.+"
+    testParserClasspath "org.springframework.ai:spring-ai-autoconfigure-mcp-client:1.0.+"
+    testParserClasspath "org.springframework.ai:spring-ai-autoconfigure-mcp-server:1.0.+"
 
-    parserClasspath "org.springframework:spring-beans:7.0.5"
-    parserClasspath "org.springframework:spring-context:7.0.5"
-    parserClasspath "org.springframework:spring-core:7.0.5"
-    parserClasspath "org.springframework:spring-test:7.0.5"
+    testParserClasspath "org.springframework.ai:spring-ai-mistral-ai:1.1.+"
+    testParserClasspath "org.springframework.ai:spring-ai-openai:1.1.+"
 
-    parserClasspath "com.openai:openai-java-core:4.38.0"
+    testParserClasspath "org.springframework.ai:spring-ai-anthropic:2.0.0-M2"
+
+    testParserClasspath "org.springframework.ai:spring-ai-client-chat:2.0.0-M4"
+    testParserClasspath "org.springframework.ai:spring-ai-model:2.0.0-M4"
+
+    testParserClasspath "org.springframework.ai:spring-ai-commons:2.0.0-M8"
+    testParserClasspath "org.springframework.ai:spring-ai-google-genai-embedding:2.0.0-M8"
+
+    testParserClasspath "io.modelcontextprotocol.sdk:mcp-spring-webflux:0.18.+"
+    testParserClasspath "io.modelcontextprotocol.sdk:mcp-spring-webmvc:0.18.+"
+    testParserClasspath "org.springaicommunity:mcp-annotations:0.9.+"
+
+    testParserClasspath "org.springframework.boot:spring-boot-autoconfigure:3.4.+"
+    testParserClasspath "org.springframework.boot:spring-boot-test:3.4.+"
+
+    testParserClasspath "org.springframework.boot:spring-boot:3.5.+"
+    testParserClasspath "org.springframework.boot:spring-boot-actuator:3.5.+"
+    testParserClasspath "org.springframework.boot:spring-boot-actuator-autoconfigure:3.5.+"
+    testParserClasspath "org.springframework.boot:spring-boot-autoconfigure:3.5.+"
+    testParserClasspath "org.springframework.boot:spring-boot-test-autoconfigure:3.5.+"
+    testParserClasspath "org.springframework.boot:spring-boot-test:3.5.+"
+
+    testParserClasspath "org.springframework.boot:spring-boot-test:4.0.+"
+    testParserClasspath "org.springframework.boot:spring-boot-webmvc-test:4.0.+"
+
+    testParserClasspath "org.springframework:spring-beans:6.1.+"
+    testParserClasspath "org.springframework:spring-context:6.1.+"
+    testParserClasspath "org.springframework:spring-core:6.1.+"
+    testParserClasspath "org.springframework:spring-messaging:6.1.+"
+    testParserClasspath "org.springframework:spring-test:6.1.+"
+    testParserClasspath "org.springframework:spring-web:6.1.+"
+    testParserClasspath "org.springframework:spring-webflux:6.1.+"
+    testParserClasspath "org.springframework:spring-webmvc:6.1.+"
+    testParserClasspath "org.springframework:spring-websocket:6.1.+"
+
+    testParserClasspath "org.springframework:spring-core:6.2.+"
+    testParserClasspath "org.springframework:spring-test:6.2.+"
+    testParserClasspath "org.springframework:spring-web:6.2.+"
+    testParserClasspath "org.springframework:spring-webflux:6.2.+"
+    testParserClasspath "org.springframework:spring-webmvc:6.2.+"
+
+    testParserClasspath "org.springframework:spring-beans:7.0.+"
+    testParserClasspath "org.springframework:spring-context:7.0.+"
+    testParserClasspath "org.springframework:spring-test:7.0.+"
+
+    testParserClasspath "com.openai:openai-java-core:4.38.+"
 }
 
 // Re-enable if and when starting using Refaster

@@ -56,7 +56,7 @@ public class UseHealthCheckResponseBuilder extends Recipe {
 
             return JavaTemplate.builder("HealthCheckResponse.builder().status(#{any(String)}).build()")
                     .imports(FQN_HEALTH_CHECK_RESPONSE)
-                    .javaParser(JavaParser.fromJavaVersion().classpathFromResources(ctx,"docling-serve-api"))
+                    .javaParser(JavaParser.fromJavaVersion().classpathFromResources(ctx,"docling-serve-api-0.1"))
                     .build()
                     .apply(getCursor(), nc.getCoordinates().replace(), arg);
         }

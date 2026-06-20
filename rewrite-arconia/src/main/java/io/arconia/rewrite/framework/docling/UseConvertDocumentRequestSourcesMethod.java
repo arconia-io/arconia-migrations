@@ -74,7 +74,7 @@ public class UseConvertDocumentRequestSourcesMethod extends Recipe {
 
                 return JavaTemplate.builder("source(HttpSource.builder().url(URI.create(#{any(String)})).build())")
                         .imports(FQN_HTTP_SOURCE, FQN_URI)
-                        .javaParser(JavaParser.fromJavaVersion().classpathFromResources(ctx, "docling-serve-api"))
+                        .javaParser(JavaParser.fromJavaVersion().classpathFromResources(ctx, "docling-serve-api-0.1"))
                         .build()
                         .apply(getCursor(), mi.getCoordinates().replaceMethod(), arg);
             }
@@ -90,7 +90,7 @@ public class UseConvertDocumentRequestSourcesMethod extends Recipe {
 
                 return JavaTemplate.builder("source(HttpSource.builder().url(#{any(java.net.URI)}).build())")
                         .imports(FQN_HTTP_SOURCE)
-                        .javaParser(JavaParser.fromJavaVersion().classpathFromResources(ctx, "docling-serve-api"))
+                        .javaParser(JavaParser.fromJavaVersion().classpathFromResources(ctx, "docling-serve-api-0.1"))
                         .build()
                         .apply(getCursor(), mi.getCoordinates().replaceMethod(), arg);
             }
@@ -102,7 +102,7 @@ public class UseConvertDocumentRequestSourcesMethod extends Recipe {
 
                 return JavaTemplate.builder("source(FileSource.builder().filename(#{any(String)}).base64String(#{any(String)}).build())")
                         .imports(FQN_FILE_SOURCE)
-                        .javaParser(JavaParser.fromJavaVersion().classpathFromResources(ctx, "docling-serve-api"))
+                        .javaParser(JavaParser.fromJavaVersion().classpathFromResources(ctx, "docling-serve-api-0.1"))
                         .build()
                         .apply(getCursor(), mi.getCoordinates().replaceMethod(), filename, base64String);
             }
