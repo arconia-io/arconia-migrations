@@ -1,7 +1,6 @@
 package io.arconia.rewrite.spring.ai1;
 
 import org.intellij.lang.annotations.Language;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.openrewrite.DocumentExample;
 import org.openrewrite.InMemoryExecutionContext;
@@ -1003,11 +1002,10 @@ public class UpgradeSpringAi_1_0_Tests implements RewriteTest {
     }
 
     @Test
-    @Disabled("the recipe works, but the test doesn't...")
     void mistralAiResponseFormat() {
         rewriteRun(r -> r
                         .parser(JavaParser.fromJavaVersion().classpathFromResources(new InMemoryExecutionContext(),
-                                "spring-ai-mistral-ai-1.0.0-M7")),
+                                "spring-ai-mistral-ai-1.0.0-M6")),
                 //language=java
                 java(
                         """
