@@ -12,7 +12,7 @@ Thank you for your interest in contributing! Whether it's reporting bugs, sugges
 
 ## Prerequisites
 
-* Java 25+.
+* Java 21+.
 * A container runtime compatible with Testcontainers (e.g., [Podman Desktop](https://podman-desktop.io), [Docker Desktop](https://www.docker.com/products/docker-desktop/)).
 
 ## Contribution Workflow
