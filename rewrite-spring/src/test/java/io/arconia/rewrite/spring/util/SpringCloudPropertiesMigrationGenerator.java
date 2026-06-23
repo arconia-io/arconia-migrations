@@ -23,7 +23,7 @@ public class SpringCloudPropertiesMigrationGenerator {
                 .description("Migrate Spring Cloud properties found in configuration data files (YAML and Properties).")
                 .productName("Spring Cloud")
                 .tags("spring", "cloud")
-                .defaultRecipePath(v -> Path.of("rewrite-spring/src/main/resources/META-INF/rewrite/cloud/cloud%s/spring-cloud-%s-%s-properties-generated.yml"
+                .defaultRecipePath(v -> Path.of("rewrite-spring/src/main/resources/META-INF/rewrite/spring/cloud%s/spring-cloud-%s-%s-properties-generated.yml"
                         .formatted(v.major(), v.major(), v.minor())))
                 .recipeName(v -> "io.arconia.rewrite.spring.cloud%s.UpgradeSpringCloudPropertiesGenerated_%s".formatted(v.major(), v.slug()))
                 .displayName(v -> "Migrate Spring Cloud properties to %s (generated)".formatted(v.display()))

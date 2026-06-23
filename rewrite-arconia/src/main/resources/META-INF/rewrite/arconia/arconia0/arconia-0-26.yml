@@ -1,0 +1,145 @@
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.framework.UpgradeArconia_0_26
+displayName: Migrate to Arconia 0.26
+description: Migrate a Spring Boot application to the latest Arconia 0.26.x release.
+tags:
+  - arconia
+recipeList:
+  - io.arconia.rewrite.framework.UpgradeArconia_0_25
+
+  # Dependency Versions
+  - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
+      groupId: io.arconia
+      artifactId: "*"
+      newVersion: 0.26.x
+
+  # MULTITENANCY
+
+  # Rename Types
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: io.arconia.multitenancy.core.exceptions.TenantResolutionException
+      newFullyQualifiedTypeName: io.arconia.multitenancy.core.exceptions.TenantVerificationException
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: io.arconia.multitenancy.core.context.events.MdcTenantContextEventListener
+      newFullyQualifiedTypeName: io.arconia.multitenancy.core.observability.MdcTenantEventListener
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: io.arconia.multitenancy.core.events.TenantEvent
+      newFullyQualifiedTypeName: io.arconia.multitenancy.core.context.events.TenantEvent
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: io.arconia.multitenancy.core.autoconfigure.tenantdetails.TenantDetailsConfiguration
+      newFullyQualifiedTypeName: io.arconia.multitenancy.core.autoconfigure.TenantDetailsConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: io.arconia.multitenancy.core.autoconfigure.tenantdetails.TenantDetailsProperties
+      newFullyQualifiedTypeName: io.arconia.multitenancy.core.autoconfigure.TenantDetailsProperties
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: io.arconia.multitenancy.core.autoconfigure.tenantdetails.PropertiesTenantDetailsService
+      newFullyQualifiedTypeName: io.arconia.multitenancy.core.autoconfigure.PropertiesTenantDetailsService
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: io.arconia.multitenancy.core.events.TenantEventPublisher
+      newFullyQualifiedTypeName: org.springframework.context.ApplicationEventPublisher
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: io.arconia.multitenancy.core.events.DefaultTenantEventPublisher
+      newFullyQualifiedTypeName: org.springframework.context.ApplicationEventPublisher
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: io.arconia.multitenancy.core.context.TenantContextHolder
+      newFullyQualifiedTypeName: io.arconia.multitenancy.core.context.TenantContext
+
+  # Rename Methods
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: org.springframework.context.ApplicationEventPublisher publishTenantEvent(..)
+      newMethodName: publishEvent
+      matchOverrides: true
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: io.arconia.multitenancy.core.tenantdetails.TenantDetails getIdentifier()
+      newMethodName: identifier
+      matchOverrides: true
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: io.arconia.multitenancy.core.tenantdetails.TenantDetails isEnabled()
+      newMethodName: enabled
+      matchOverrides: true
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: io.arconia.multitenancy.core.tenantdetails.TenantDetails getAttributes()
+      newMethodName: attributes
+      matchOverrides: true
+
+  # Rename Properties
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: arconia.multitenancy.management.mdc.enabled
+      newPropertyKey: arconia.multitenancy.logging.mdc.enabled
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: arconia.multitenancy.management.mdc.key
+      newPropertyKey: arconia.multitenancy.logging.mdc.key-name
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: arconia.multitenancy.management.observations.enabled
+      newPropertyKey: arconia.multitenancy.observations.enabled
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: arconia.multitenancy.management.observations.key
+      newPropertyKey: arconia.multitenancy.observations.key-name
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: arconia.multitenancy.management.observations.cardinality
+      newPropertyKey: arconia.multitenancy.observations.cardinality
+
+  # OBSERVATION
+
+  # Rename Packages
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: io.arconia.openinference.observation.autoconfigure.ai
+      newPackageName: io.arconia.observation.openinference.autoconfigure
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: io.arconia.openinference.observation.instrumentation.ai
+      newPackageName: io.arconia.observation.openinference.instrumentation
+
+  # Rename Types
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: io.arconia.observation.openinference.instrumentation.OpenInferenceTracingOptions
+      newFullyQualifiedTypeName: io.arconia.observation.openinference.instrumentation.OpenInferenceOptions
+
+   # Observation - Rename Properties
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: arconia.observations.generative-ai.openinference.enabled
+      newPropertyKey: arconia.observations.conventions.type
+  - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
+      propertyKey: arconia.observations.conventions.type
+      oldPropertyValue: "false"
+      newPropertyValue: "micrometer"
+  - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
+      propertyKey: arconia.observations.conventions.type
+      oldPropertyValue: "true"
+      newPropertyValue: "openinference"
+  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
+      propertyKey: arconia.observations.generative-ai.openinference.exclusive
+      comment: "Property removed in Arconia 0.26. The filtering of observations is now left to the telemetry collector."
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: arconia.observations.generative-ai.openinference.traces.base64-image-max-length
+      newPropertyKey: arconia.observations.conventions.openinference.base64-image-max-length
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: arconia.observations.generative-ai.openinference.traces.hide-embedding-vectors
+      newPropertyKey: arconia.observations.conventions.openinference.hide-embeddings-vectors
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: arconia.observations.generative-ai.openinference.traces.hide-llm-invocation-parameters
+      newPropertyKey: arconia.observations.conventions.openinference.hide-llm-invocation-parameters
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: arconia.observations.generative-ai.openinference.traces.hide-inputs
+      newPropertyKey: arconia.observations.conventions.openinference.hide-inputs
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: arconia.observations.generative-ai.openinference.traces.hide-input-images
+      newPropertyKey: arconia.observations.conventions.openinference.hide-input-images
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: arconia.observations.generative-ai.openinference.traces.hide-input-messages
+      newPropertyKey: arconia.observations.conventions.openinference.hide-input-messages
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: arconia.observations.generative-ai.openinference.traces.hide-input-text
+      newPropertyKey: arconia.observations.conventions.openinference.hide-input-text
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: arconia.observations.generative-ai.openinference.traces.hide-outputs
+      newPropertyKey: arconia.observations.conventions.openinference.hide-outputs
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: arconia.observations.generative-ai.openinference.traces.hide-output-text
+      newPropertyKey: arconia.observations.conventions.openinference.hide-output-text
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: arconia.observations.generative-ai.openinference.traces.hide-output-messages
+      newPropertyKey: arconia.observations.conventions.openinference.hide-output-messages
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: arconia.observations.generative-ai.openinference.traces.hide-prompts
+      newPropertyKey: arconia.observations.conventions.openinference.hide-prompts

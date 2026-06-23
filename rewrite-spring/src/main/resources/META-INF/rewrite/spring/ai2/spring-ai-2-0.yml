@@ -1,0 +1,381 @@
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.ai2.UpgradeSpringAi_2_0
+displayName: Migrate to Spring AI 2.0
+description: Migrate a Spring Boot application to the latest Spring AI 2.0.x release.
+tags:
+  - spring
+  - ai
+recipeList:
+
+  # Configuration Properties
+  - io.arconia.rewrite.spring.ai2.UpgradeSpringAiProperties_2_0
+
+  # Dependency Versions
+  - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
+      groupId: org.springframework.ai
+      artifactId: "*"
+      newVersion: 2.0.x
+      overrideManagedVersion: false
+
+  ####### Common #######
+
+  - io.arconia.rewrite.spring.ai2.UseChatOptionsBuilder
+
+  # Dependency Changes
+  - org.openrewrite.java.dependencies.ChangeDependency:
+      oldGroupId: org.springframework.ai
+      oldArtifactId: spring-ai-advisors-vector-store
+      newGroupId: org.springframework.ai
+      newArtifactId: spring-ai-vector-store-advisor
+
+  # Type Changes
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.opensearch.testcontainers.OpensearchContainer
+      newFullyQualifiedTypeName: org.opensearch.testcontainers.OpenSearchContainer
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.ai.chat.client.advisor.PromptChatMemoryAdvisor
+      newFullyQualifiedTypeName: org.springframework.ai.chat.client.advisor.MessageChatMemoryAdvisor
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.ai.chat.client.ChatClientCustomizer
+      newFullyQualifiedTypeName: org.springframework.ai.chat.client.ChatClientBuilderCustomizer
+
+  # Method Changes
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: org.springframework.ai.chat.client.ChatClient.Builder defaultToolCallbacks(org.springframework.ai.tool.ToolCallback...)
+      newMethodName: defaultTools
+      matchOverrides: true
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: org.springframework.ai.chat.client.ChatClient.Builder defaultToolCallbacks(org.springframework.ai.tool.ToolCallbackProvider...)
+      newMethodName: defaultTools
+      matchOverrides: true
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: org.springframework.ai.chat.client.ChatClient.ChatClientRequestSpec toolCallbacks(org.springframework.ai.tool.ToolCallback...)
+      newMethodName: tools
+      matchOverrides: true
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: org.springframework.ai.chat.client.ChatClient.ChatClientRequestSpec toolCallbacks(org.springframework.ai.tool.ToolCallbackProvider...)
+      newMethodName: tools
+      matchOverrides: true
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: org.springframework.ai.util.json.JsonParser getObjectMapper()
+      newMethodName: getJsonMapper
+      matchOverrides: true
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: org.springframework.ai.chat.model.ChatModel getDefaultOptions()
+      newMethodName: getOptions
+      matchOverrides: true
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: org.springframework.ai.image.ImageOptionsBuilder N(java.lang.Integer)
+      newMethodName: n
+
+  ####### Anthropic #######
+
+  ## Type Changes
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.ai.anthropic.api.AnthropicCacheOptions
+      newFullyQualifiedTypeName: org.springframework.ai.anthropic.AnthropicCacheOptions
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.ai.anthropic.api.AnthropicCacheStrategy
+      newFullyQualifiedTypeName: org.springframework.ai.anthropic.AnthropicCacheStrategy
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.ai.anthropic.api.AnthropicCacheTtl
+      newFullyQualifiedTypeName: org.springframework.ai.anthropic.AnthropicCacheTtl
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.ai.anthropic.api.utils.CacheEligibilityResolver
+      newFullyQualifiedTypeName: org.springframework.ai.anthropic.CacheEligibilityResolver
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.ai.anthropic.api.CitationDocument
+      newFullyQualifiedTypeName: org.springframework.ai.anthropic.AnthropicCitationDocument
+
+  ####### MCP #######
+
+  ## Dependency Changes
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: org.springframework.ai
+      artifactId: spring-ai-mcp-annotations
+      onlyIfUsing: org.springaicommunity.mcp.*
+      acceptTransitive: true
+      configuration: implementation
+      scope: compile
+  - org.openrewrite.java.dependencies.RemoveDependency:
+      groupId: org.springaicommunity
+      artifactId: mcp-annotations
+
+  - org.openrewrite.java.dependencies.ChangeDependency:
+      oldGroupId: io.modelcontextprotocol.sdk
+      oldArtifactId: mcp-spring-webflux
+      newGroupId: org.springframework.ai
+      newArtifactId: mcp-spring-webflux
+  - org.openrewrite.java.dependencies.ChangeDependency:
+      oldGroupId: io.modelcontextprotocol.sdk
+      oldArtifactId: mcp-spring-webmvc
+      newGroupId: org.springframework.ai
+      newArtifactId: mcp-spring-webmvc
+
+  ## Package Changes
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springaicommunity.mcp.annotation
+      newPackageName: org.springframework.ai.mcp.annotation
+      recursive: true
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springaicommunity.mcp.context
+      newPackageName: org.springframework.ai.mcp.annotation.context
+      recursive: true
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springaicommunity.mcp.method
+      newPackageName: org.springframework.ai.mcp.annotation.method
+      recursive: true
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springaicommunity.mcp.provider
+      newPackageName: org.springframework.ai.mcp.annotation.provider
+      recursive: true
+
+  # Type Changes
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: io.modelcontextprotocol.client.transport.WebFluxSseClientTransport
+      newFullyQualifiedTypeName: org.springframework.ai.mcp.client.webflux.transport.WebFluxSseClientTransport
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: io.modelcontextprotocol.client.transport.WebClientStreamableHttpTransport
+      newFullyQualifiedTypeName: org.springframework.ai.mcp.client.webflux.transport.WebClientStreamableHttpTransport
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: io.modelcontextprotocol.server.transport.WebFluxSseServerTransportProvider
+      newFullyQualifiedTypeName: org.springframework.ai.mcp.server.webflux.transport.WebFluxSseServerTransportProvider
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: io.modelcontextprotocol.server.transport.WebFluxStreamableServerTransportProvider
+      newFullyQualifiedTypeName: org.springframework.ai.mcp.server.webflux.transport.WebFluxStreamableServerTransportProvider
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: io.modelcontextprotocol.server.transport.WebFluxStatelessServerTransport
+      newFullyQualifiedTypeName: org.springframework.ai.mcp.server.webflux.transport.WebFluxStatelessServerTransport
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: io.modelcontextprotocol.server.transport.WebMvcSseServerTransportProvider
+      newFullyQualifiedTypeName: org.springframework.ai.mcp.server.webmvc.transport.WebMvcSseServerTransportProvider
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: io.modelcontextprotocol.server.transport.WebMvcStreamableServerTransportProvider
+      newFullyQualifiedTypeName: org.springframework.ai.mcp.server.webmvc.transport.WebMvcStreamableServerTransportProvider
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: io.modelcontextprotocol.server.transport.WebMvcStatelessServerTransport
+      newFullyQualifiedTypeName: org.springframework.ai.mcp.server.webmvc.transport.WebMvcStatelessServerTransport
+
+  ## Constructor Changes
+  - io.arconia.rewrite.spring.ai2.mcp.UseTextContentBuilder
+  - io.arconia.rewrite.spring.ai2.mcp.UseReadResourceResultBuilder
+  - io.arconia.rewrite.spring.ai2.mcp.UseGetPromptResultBuilder
+  - io.arconia.rewrite.spring.ai2.mcp.UseProgressNotificationBuilder
+
+  ####### Mistral AI #######
+
+  # Method Changes
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: org.springframework.ai.mistralai.MistralAiEmbeddingOptions.Builder withModel(java.lang.String)
+      newMethodName: model
+      matchOverrides: true
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: org.springframework.ai.mistralai.MistralAiEmbeddingOptions.Builder withEncodingFormat(java.lang.String)
+      newMethodName: encodingFormat
+      matchOverrides: true
+
+  # Enum Changes
+  - org.openrewrite.java.ReplaceConstantWithAnotherConstant:
+      existingFullyQualifiedConstantName: org.springframework.ai.mistralai.api.MistralAiApi.ChatModel.DEVSTRAL_SMALL
+      fullyQualifiedConstantName: org.springframework.ai.mistralai.api.MistralAiApi.ChatModel.DEVSTRAL
+  - org.openrewrite.java.ReplaceConstantWithAnotherConstant:
+      existingFullyQualifiedConstantName: org.springframework.ai.mistralai.api.MistralAiApi.ChatModel.DEVSTRAL_MEDIUM
+      fullyQualifiedConstantName: org.springframework.ai.mistralai.api.MistralAiApi.ChatModel.DEVSTRAL
+  - org.openrewrite.java.ReplaceConstantWithAnotherConstant:
+      existingFullyQualifiedConstantName: org.springframework.ai.mistralai.api.MistralAiApi.ChatModel.MAGISTRAL_SMALL
+      fullyQualifiedConstantName: org.springframework.ai.mistralai.api.MistralAiApi.ChatModel.MISTRAL_SMALL
+  - org.openrewrite.java.ReplaceConstantWithAnotherConstant:
+      existingFullyQualifiedConstantName: org.springframework.ai.mistralai.api.MistralAiApi.ChatModel.MINISTRAL_3B_LATEST
+      fullyQualifiedConstantName: org.springframework.ai.mistralai.api.MistralAiApi.ChatModel.MINISTRAL_3B
+  - org.openrewrite.java.ReplaceConstantWithAnotherConstant:
+      existingFullyQualifiedConstantName: org.springframework.ai.mistralai.api.MistralAiApi.ChatModel.MINISTRAL_8B_LATEST
+      fullyQualifiedConstantName: org.springframework.ai.mistralai.api.MistralAiApi.ChatModel.MINISTRAL_8B
+  - org.openrewrite.java.ReplaceConstantWithAnotherConstant:
+      existingFullyQualifiedConstantName: org.springframework.ai.mistralai.api.MistralAiApi.ChatModel.LARGE
+      fullyQualifiedConstantName: org.springframework.ai.mistralai.api.MistralAiApi.ChatModel.MISTRAL_LARGE
+  - org.openrewrite.java.ReplaceConstantWithAnotherConstant:
+      existingFullyQualifiedConstantName: org.springframework.ai.mistralai.api.MistralAiApi.ChatModel.SMALL
+      fullyQualifiedConstantName: org.springframework.ai.mistralai.api.MistralAiApi.ChatModel.MISTRAL_SMALL
+  - org.openrewrite.java.ReplaceConstantWithAnotherConstant:
+      existingFullyQualifiedConstantName: org.springframework.ai.mistralai.api.MistralAiApi.ChatModel.PIXTRAL
+      fullyQualifiedConstantName: org.springframework.ai.mistralai.api.MistralAiApi.ChatModel.MINISTRAL_14B
+  - org.openrewrite.java.ReplaceConstantWithAnotherConstant:
+      existingFullyQualifiedConstantName: org.springframework.ai.mistralai.api.MistralAiApi.ChatModel.PIXTRAL_LARGE
+      fullyQualifiedConstantName: org.springframework.ai.mistralai.api.MistralAiApi.ChatModel.MISTRAL_LARGE
+
+  ####### OpenAI #######
+
+  # Dependency Changes
+  - org.openrewrite.java.dependencies.ChangeDependency:
+      oldGroupId: org.springframework.ai
+      oldArtifactId: spring-ai-openai-sdk
+      newGroupId: org.springframework.ai
+      newArtifactId: spring-ai-openai
+  - org.openrewrite.java.dependencies.ChangeDependency:
+      oldGroupId: org.springframework.ai
+      oldArtifactId: spring-ai-starter-model-openai-sdk
+      newGroupId: org.springframework.ai
+      newArtifactId: spring-ai-starter-model-openai
+  - org.openrewrite.java.dependencies.RemoveDependency:
+      groupId: org.springframework.ai
+      artifactId: spring-ai-starter-model-azure-openai
+  - org.openrewrite.java.dependencies.RemoveDependency:
+      groupId: org.springframework.ai
+      artifactId: spring-ai-autoconfigure-model-azure-openai
+  - org.openrewrite.java.dependencies.RemoveDependency:
+      groupId: org.springframework.ai
+      artifactId: spring-ai-azure-openai
+  - org.openrewrite.java.dependencies.RemoveDependency:
+      groupId: org.springframework.ai
+      artifactId: spring-ai-starter-model-openai-sdk
+  - org.openrewrite.java.dependencies.RemoveDependency:
+      groupId: org.springframework.ai
+      artifactId: spring-ai-autoconfigure-model-openai-sdk
+  - org.openrewrite.java.dependencies.RemoveDependency:
+      groupId: org.springframework.ai
+      artifactId: spring-ai-openai-sdk
+
+  # Type Changes
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.ai.openai.api.OpenAiAudioApi.SpeechRequest.Voice
+      newFullyQualifiedTypeName: org.springframework.ai.openai.OpenAiAudioSpeechOptions.Voice
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.ai.openai.api.OpenAiAudioApi.SpeechRequest.AudioResponseFormat
+      newFullyQualifiedTypeName: org.springframework.ai.openai.OpenAiAudioSpeechOptions.AudioResponseFormat
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.ai.openai.api.OpenAiAudioApi.TranscriptResponseFormat
+      newFullyQualifiedTypeName: com.openai.models.audio.AudioResponseFormat
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.ai.openai.api.ResponseFormat
+      newFullyQualifiedTypeName: org.springframework.ai.openai.OpenAiChatModel.ResponseFormat
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.ai.openai.api.ResponseFormat.Type
+      newFullyQualifiedTypeName: org.springframework.ai.openai.OpenAiChatModel.ResponseFormat.Type
+
+  # Constructor Changes
+  - io.arconia.rewrite.spring.ai2.UseOpenAiResponseFormatBuilder
+
+  # Method Argument Changes
+  - io.arconia.rewrite.spring.ai2.UseOpenAiEmbeddingEncodingFormatEnum
+
+  # Enum Changes
+  - org.openrewrite.java.ReplaceConstantWithAnotherConstant:
+      existingFullyQualifiedConstantName: org.springframework.ai.openai.api.OpenAiApi.ChatModel.O4_MINI
+      fullyQualifiedConstantName: com.openai.models.ChatModel.O4_MINI
+  - org.openrewrite.java.ReplaceConstantWithAnotherConstant:
+      existingFullyQualifiedConstantName: org.springframework.ai.openai.api.OpenAiApi.ChatModel.O3
+      fullyQualifiedConstantName: com.openai.models.ChatModel.O3
+  - org.openrewrite.java.ReplaceConstantWithAnotherConstant:
+      existingFullyQualifiedConstantName: org.springframework.ai.openai.api.OpenAiApi.ChatModel.O3_MINI
+      fullyQualifiedConstantName: com.openai.models.ChatModel.O3_MINI
+  - org.openrewrite.java.ReplaceConstantWithAnotherConstant:
+      existingFullyQualifiedConstantName: org.springframework.ai.openai.api.OpenAiApi.ChatModel.O1
+      fullyQualifiedConstantName: com.openai.models.ChatModel.O1
+  - org.openrewrite.java.ReplaceConstantWithAnotherConstant:
+      existingFullyQualifiedConstantName: org.springframework.ai.openai.api.OpenAiApi.ChatModel.O1_MINI
+      fullyQualifiedConstantName: com.openai.models.ChatModel.O1_MINI
+  - org.openrewrite.java.ReplaceConstantWithAnotherConstant:
+      existingFullyQualifiedConstantName: org.springframework.ai.openai.api.OpenAiApi.ChatModel.GPT_4_1
+      fullyQualifiedConstantName: com.openai.models.ChatModel.GPT_4_1
+  - org.openrewrite.java.ReplaceConstantWithAnotherConstant:
+      existingFullyQualifiedConstantName: org.springframework.ai.openai.api.OpenAiApi.ChatModel.GPT_5
+      fullyQualifiedConstantName: com.openai.models.ChatModel.GPT_5
+  - org.openrewrite.java.ReplaceConstantWithAnotherConstant:
+      existingFullyQualifiedConstantName: org.springframework.ai.openai.api.OpenAiApi.ChatModel.GPT_5_MINI
+      fullyQualifiedConstantName: com.openai.models.ChatModel.GPT_5_MINI
+  - org.openrewrite.java.ReplaceConstantWithAnotherConstant:
+      existingFullyQualifiedConstantName: org.springframework.ai.openai.api.OpenAiApi.ChatModel.GPT_5_NANO
+      fullyQualifiedConstantName: com.openai.models.ChatModel.GPT_5_NANO
+  - org.openrewrite.java.ReplaceConstantWithAnotherConstant:
+      existingFullyQualifiedConstantName: org.springframework.ai.openai.api.OpenAiApi.ChatModel.GPT_5_CHAT_LATEST
+      fullyQualifiedConstantName: com.openai.models.ChatModel.GPT_5_CHAT_LATEST
+  - org.openrewrite.java.ReplaceConstantWithAnotherConstant:
+      existingFullyQualifiedConstantName: org.springframework.ai.openai.api.OpenAiApi.ChatModel.GPT_4_O
+      fullyQualifiedConstantName: com.openai.models.ChatModel.GPT_4O
+  - org.openrewrite.java.ReplaceConstantWithAnotherConstant:
+      existingFullyQualifiedConstantName: org.springframework.ai.openai.api.OpenAiApi.ChatModel.CHATGPT_4_O_LATEST
+      fullyQualifiedConstantName: com.openai.models.ChatModel.CHATGPT_4O_LATEST
+  - org.openrewrite.java.ReplaceConstantWithAnotherConstant:
+      existingFullyQualifiedConstantName: org.springframework.ai.openai.api.OpenAiApi.ChatModel.GPT_4_O_AUDIO_PREVIEW
+      fullyQualifiedConstantName: com.openai.models.ChatModel.GPT_4O_AUDIO_PREVIEW
+  - org.openrewrite.java.ReplaceConstantWithAnotherConstant:
+      existingFullyQualifiedConstantName: org.springframework.ai.openai.api.OpenAiApi.ChatModel.GPT_4_1_MINI
+      fullyQualifiedConstantName: com.openai.models.ChatModel.GPT_4_1_MINI
+  - org.openrewrite.java.ReplaceConstantWithAnotherConstant:
+      existingFullyQualifiedConstantName: org.springframework.ai.openai.api.OpenAiApi.ChatModel.GPT_4_1_NANO
+      fullyQualifiedConstantName: com.openai.models.ChatModel.GPT_4_1_NANO
+  - org.openrewrite.java.ReplaceConstantWithAnotherConstant:
+      existingFullyQualifiedConstantName: org.springframework.ai.openai.api.OpenAiApi.ChatModel.GPT_4_O_MINI
+      fullyQualifiedConstantName: com.openai.models.ChatModel.GPT_4O_MINI
+  - org.openrewrite.java.ReplaceConstantWithAnotherConstant:
+      existingFullyQualifiedConstantName: org.springframework.ai.openai.api.OpenAiApi.ChatModel.GPT_4_O_MINI_AUDIO_PREVIEW
+      fullyQualifiedConstantName: com.openai.models.ChatModel.GPT_4O_MINI_AUDIO_PREVIEW
+  - org.openrewrite.java.ReplaceConstantWithAnotherConstant:
+      existingFullyQualifiedConstantName: org.springframework.ai.openai.api.OpenAiApi.ChatModel.GPT_4_TURBO
+      fullyQualifiedConstantName: com.openai.models.ChatModel.GPT_4_TURBO
+  - org.openrewrite.java.ReplaceConstantWithAnotherConstant:
+      existingFullyQualifiedConstantName: org.springframework.ai.openai.api.OpenAiApi.ChatModel.GPT_4
+      fullyQualifiedConstantName: com.openai.models.ChatModel.GPT_4
+  - org.openrewrite.java.ReplaceConstantWithAnotherConstant:
+      existingFullyQualifiedConstantName: org.springframework.ai.openai.api.OpenAiApi.ChatModel.GPT_3_5_TURBO
+      fullyQualifiedConstantName: com.openai.models.ChatModel.GPT_3_5_TURBO
+  - org.openrewrite.java.ReplaceConstantWithAnotherConstant:
+      existingFullyQualifiedConstantName: org.springframework.ai.openai.api.OpenAiApi.ChatModel.GPT_4_O_SEARCH_PREVIEW
+      fullyQualifiedConstantName: com.openai.models.ChatModel.GPT_4O_SEARCH_PREVIEW
+  - org.openrewrite.java.ReplaceConstantWithAnotherConstant:
+      existingFullyQualifiedConstantName: org.springframework.ai.openai.api.OpenAiApi.ChatModel.GPT_4_O_MINI_SEARCH_PREVIEW
+      fullyQualifiedConstantName: com.openai.models.ChatModel.GPT_4O_MINI_SEARCH_PREVIEW
+
+  - org.openrewrite.java.ReplaceConstantWithAnotherConstant:
+      existingFullyQualifiedConstantName: org.springframework.ai.openai.api.OpenAiApi.EmbeddingModel.TEXT_EMBEDDING_3_LARGE
+      fullyQualifiedConstantName: com.openai.models.embeddings.EmbeddingModel.TEXT_EMBEDDING_3_LARGE
+  - org.openrewrite.java.ReplaceConstantWithAnotherConstant:
+      existingFullyQualifiedConstantName: org.springframework.ai.openai.api.OpenAiApi.EmbeddingModel.TEXT_EMBEDDING_3_SMALL
+      fullyQualifiedConstantName: com.openai.models.embeddings.EmbeddingModel.TEXT_EMBEDDING_3_SMALL
+  - org.openrewrite.java.ReplaceConstantWithAnotherConstant:
+      existingFullyQualifiedConstantName: org.springframework.ai.openai.api.OpenAiApi.EmbeddingModel.TEXT_EMBEDDING_ADA_002
+      fullyQualifiedConstantName: com.openai.models.embeddings.EmbeddingModel.TEXT_EMBEDDING_ADA_002
+
+  - org.openrewrite.java.ReplaceConstantWithAnotherConstant:
+      existingFullyQualifiedConstantName: org.springframework.ai.openai.api.OpenAiImageApi.ImageModel.DALL_E_2
+      fullyQualifiedConstantName: com.openai.models.images.ImageModel.GPT_IMAGE_1_MINI
+  - org.openrewrite.java.ReplaceConstantWithAnotherConstant:
+      existingFullyQualifiedConstantName: org.springframework.ai.openai.api.OpenAiImageApi.ImageModel.DALL_E_3
+      fullyQualifiedConstantName: com.openai.models.images.ImageModel.GPT_IMAGE_1_MINI
+  - org.openrewrite.java.ReplaceConstantWithAnotherConstant:
+      existingFullyQualifiedConstantName: org.springframework.ai.openai.api.OpenAiImageApi.ImageModel.GTP_IMAGE_1_MINI
+      fullyQualifiedConstantName: com.openai.models.images.ImageModel.GPT_IMAGE_1_MINI
+
+  # Method Changes
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: org.springframework.ai.openai.api.OpenAiApi.ChatModel getValue()
+      newMethodName: asString
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: org.springframework.ai.openai.api.OpenAiApi.EmbeddingModel getValue()
+      newMethodName: asString
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: org.springframework.ai.openai.api.OpenAiImageApi.ImageModel getValue()
+      newMethodName: asString
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: org.springframework.ai.openai.OpenAiChatOptions.Builder N(java.lang.Integer)
+      newMethodName: n
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: org.springframework.ai.openai.OpenAiImageOptions.Builder N(java.lang.Integer)
+      newMethodName: n
+
+  ####### Google #######
+
+  # Dependency Changes
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.ai.google.genai.GoogleGenAiEmbeddingConnectionDetails
+      newFullyQualifiedTypeName: org.springframework.ai.google.genai.embedding.GoogleGenAiEmbeddingConnectionDetails
+
+  ####### Other #######
+
+  - org.openrewrite.java.dependencies.RemoveDependency:
+      groupId: org.springframework.ai
+      artifactId: spring-ai-hanadb-store
+  - org.openrewrite.java.dependencies.RemoveDependency:
+      groupId: org.springframework.ai
+      artifactId: spring-ai-spring-cloud-bindings

@@ -1,7 +1,7 @@
 = Spring Boot 3.5
 :description: Upgrade your Spring Boot application to the latest Spring Boot 3.5.x release.
 :cli-command: arconia update spring-boot --to-version=3.5
-:recipe-id: io.arconia.rewrite.spring.boot.UpgradeSpringBoot_3_5
+:recipe-id: io.arconia.rewrite.spring.boot3.UpgradeSpringBoot_3_5
 :rewrite-module: rewrite-spring
 
 When upgrading to Spring Boot 3.5, refer to the https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-3.5-Release-Notes[Spring Boot 3.5 Release Notes] to find out about newly introduced APIs, deprecated APIs, and information about breaking changes.

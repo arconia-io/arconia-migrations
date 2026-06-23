@@ -22,9 +22,9 @@ public class SpringAiPropertiesMigrationGenerator {
                 .description("Migrate Spring AI properties found in configuration data files (YAML and Properties).")
                 .productName("Spring AI")
                 .tags("spring", "ai")
-                .defaultRecipePath(v -> Path.of("rewrite-spring/src/main/resources/META-INF/rewrite/ai/spring-ai-%s-%s-properties-generated.yml"
-                        .formatted(v.major(), v.minor())))
-                .recipeName(v -> "io.arconia.rewrite.spring.ai.UpgradeSpringAiPropertiesGenerated_%s".formatted(v.slug()))
+                .defaultRecipePath(v -> Path.of("rewrite-spring/src/main/resources/META-INF/rewrite/spring/ai%s/spring-ai-%s-%s-properties-generated.yml"
+                        .formatted(v.major(), v.major(), v.minor())))
+                .recipeName(v -> "io.arconia.rewrite.spring.ai%s.UpgradeSpringAiPropertiesGenerated_%s".formatted(v.major(), v.slug()))
                 .displayName(v -> "Migrate Spring AI properties to %s (generated)".formatted(v.display()))
                 .build());
     }

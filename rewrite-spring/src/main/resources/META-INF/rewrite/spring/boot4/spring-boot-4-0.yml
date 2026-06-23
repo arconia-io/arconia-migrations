@@ -1,0 +1,184 @@
+# Based on https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-4.0-Migration-Guide
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.UpgradeSpringBoot_4_0
+displayName: Migrate to Spring Boot 4.0
+description: Migrate a Spring Boot application to the latest Spring Boot 4.0.x release.
+tags:
+  - spring
+  - boot
+recipeList:
+  # Previous Version
+  - io.arconia.rewrite.spring.boot3.UpgradeSpringBoot_3_5
+
+  # Spring Framework
+  - io.arconia.rewrite.spring.framework7.UpgradeSpringFramework_7_0
+
+  # Configuration Properties
+  - io.arconia.rewrite.spring.boot4.UpgradeSpringBootProperties_4_0
+
+  # Dependency Versions
+  - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
+      groupId: org.springframework.boot
+      artifactId: "*"
+      newVersion: 4.0.x
+  - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-dependencies
+      newVersion: 4.0.x
+      overrideManagedVersion: true
+  - org.openrewrite.gradle.plugins.UpgradePluginVersion:
+      pluginIdPattern: org.springframework.boot
+      newVersion: 4.0.x
+  - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-gradle-plugin
+      newVersion: 4.0.x
+  - org.openrewrite.maven.UpgradePluginVersion:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-maven-plugin
+      newVersion: 4.0.x
+  - org.openrewrite.maven.UpgradeParentVersion:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-parent
+      newVersion: 4.0.x
+
+  # GraalVM
+  - org.openrewrite.gradle.plugins.UpgradePluginVersion:
+      pluginIdPattern: org.graalvm.buildtools.native
+      newVersion: 0.11.x
+  - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
+      groupId: org.graalvm.buildtools
+      artifactId: native-gradle-plugin
+      newVersion: 0.11.x
+
+  # CycloneDX
+  - org.openrewrite.gradle.plugins.UpgradePluginVersion:
+      pluginIdPattern: org.cyclonedx.bom
+      newVersion: 3.x
+  - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
+      groupId: org.cyclonedx
+      artifactId: cyclonedx-gradle-plugin
+      newVersion: 3.x
+
+  # Other Dependencies
+  - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
+      groupId: org.springdoc
+      artifactId: "*"
+      newVersion: 3.0.x
+  - org.openrewrite.gradle.ChangeDependency:
+      oldGroupId: org.jobrunr
+      oldArtifactId: jobrunr-spring-boot-3-starter
+      newGroupId: org.jobrunr
+      newArtifactId: jobrunr-spring-boot-4-starter
+  - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
+      groupId: org.jobrunr
+      artifactId: "*"
+      newVersion: 8.x
+
+  # Managed Dependencies
+  - io.arconia.rewrite.test.testcontainers.UpgradeTestcontainers_2
+  - io.arconia.rewrite.spring.cloud2025.UpgradeSpringCloud_2025_1
+  - io.arconia.rewrite.spring.ai2.UpgradeSpringAi_2_0
+
+  # Modules
+  - io.arconia.rewrite.spring.boot4.MigrateActiveMqModule
+  - io.arconia.rewrite.spring.boot4.MigrateActuatorModule
+  - io.arconia.rewrite.spring.boot4.MigrateAmqpModule
+  - io.arconia.rewrite.spring.boot4.MigrateArtemisModule
+  - io.arconia.rewrite.spring.boot4.MigrateAspectjModule
+  - io.arconia.rewrite.spring.boot4.MigrateBatchModule
+  - io.arconia.rewrite.spring.boot4.MigrateBatchJdbcModule
+  - io.arconia.rewrite.spring.boot4.MigrateCacheModule
+  - io.arconia.rewrite.spring.boot4.MigrateCassandraModule
+  - io.arconia.rewrite.spring.boot4.MigrateCloudFoundryModule
+  - io.arconia.rewrite.spring.boot4.MigrateCoreModule
+  - io.arconia.rewrite.spring.boot4.MigrateCouchbaseModule
+  - io.arconia.rewrite.spring.boot4.MigrateDataCassandraModule
+  - io.arconia.rewrite.spring.boot4.MigrateDataCommonsModule
+  - io.arconia.rewrite.spring.boot4.MigrateDataCouchbaseModule
+  - io.arconia.rewrite.spring.boot4.MigrateDataElasticsearchModule
+  - io.arconia.rewrite.spring.boot4.MigrateDataJdbcModule
+  - io.arconia.rewrite.spring.boot4.MigrateDataJpaModule
+  - io.arconia.rewrite.spring.boot4.MigrateDataLdapModule
+  - io.arconia.rewrite.spring.boot4.MigrateDataMongoDbModule
+  - io.arconia.rewrite.spring.boot4.MigrateDataNeo4jModule
+  - io.arconia.rewrite.spring.boot4.MigrateDataR2dbcModule
+  - io.arconia.rewrite.spring.boot4.MigrateDataRedisModule
+  - io.arconia.rewrite.spring.boot4.MigrateDataRestModule
+  - io.arconia.rewrite.spring.boot4.MigrateElasticsearchModule
+  - io.arconia.rewrite.spring.boot4.MigrateFlywayModule
+  - io.arconia.rewrite.spring.boot4.MigrateFreemarkerModule
+  - io.arconia.rewrite.spring.boot4.MigrateGraphQlModule
+  - io.arconia.rewrite.spring.boot4.MigrateGroovyTemplatesModule
+  - io.arconia.rewrite.spring.boot4.MigrateGsonModule
+  - io.arconia.rewrite.spring.boot4.MigrateH2ConsoleModule
+  - io.arconia.rewrite.spring.boot4.MigrateHateoasModule
+  - io.arconia.rewrite.spring.boot4.MigrateHazelcastModule
+  - io.arconia.rewrite.spring.boot4.MigrateHealthModule
+  - io.arconia.rewrite.spring.boot4.MigrateHibernateModule
+  - io.arconia.rewrite.spring.boot4.MigrateHttpClientModule
+  - io.arconia.rewrite.spring.boot4.MigrateHttpCodecModule
+  - io.arconia.rewrite.spring.boot4.MigrateHttpConverterModule
+  - io.arconia.rewrite.spring.boot4.MigrateIntegrationModule
+  - io.arconia.rewrite.spring.boot4.MigrateJacksonModule
+  - io.arconia.rewrite.spring.boot4.MigrateJdbcModule
+  - io.arconia.rewrite.spring.boot4.MigrateJerseyModule
+  - io.arconia.rewrite.spring.boot4.MigrateJettyModule
+  - io.arconia.rewrite.spring.boot4.MigrateJmsModule
+  - io.arconia.rewrite.spring.boot4.MigrateJooqModule
+  - io.arconia.rewrite.spring.boot4.MigrateJpaModule
+  - io.arconia.rewrite.spring.boot4.MigrateJsonbModule
+  - io.arconia.rewrite.spring.boot4.MigrateKafkaModule
+  - io.arconia.rewrite.spring.boot4.MigrateKotlinxModule
+  - io.arconia.rewrite.spring.boot4.MigrateLdapModule
+  - io.arconia.rewrite.spring.boot4.MigrateLiquibaseModule
+  - io.arconia.rewrite.spring.boot4.MigrateMailModule
+  - io.arconia.rewrite.spring.boot4.MigrateMicrometerMetricsModule
+  - io.arconia.rewrite.spring.boot4.MigrateMicrometerObservationModule
+  - io.arconia.rewrite.spring.boot4.MigrateMicrometerTracingModule
+  - io.arconia.rewrite.spring.boot4.MigrateMicrometerTracingBraveModule
+  - io.arconia.rewrite.spring.boot4.MigrateMicrometerTracingOpenTelemetryModule
+  - io.arconia.rewrite.spring.boot4.MigrateMongoDbModule
+  - io.arconia.rewrite.spring.boot4.MigrateMustacheModule
+  - io.arconia.rewrite.spring.boot4.MigrateNeo4jModule
+  - io.arconia.rewrite.spring.boot4.MigrateNettyModule
+  - io.arconia.rewrite.spring.boot4.MigrateOpenTelemetryModule
+  - io.arconia.rewrite.spring.boot4.MigratePersistenceModule
+  - io.arconia.rewrite.spring.boot4.MigratePulsarModule
+  - io.arconia.rewrite.spring.boot4.MigrateQuartzModule
+  - io.arconia.rewrite.spring.boot4.MigrateR2dbcModule
+  - io.arconia.rewrite.spring.boot4.MigrateReactorModule
+  - io.arconia.rewrite.spring.boot4.MigrateReactorNettyModule
+  - io.arconia.rewrite.spring.boot4.MigrateRestClientModule
+  - io.arconia.rewrite.spring.boot4.MigrateRestDocsModule
+  - io.arconia.rewrite.spring.boot4.MigrateRestTestClientModule
+  - io.arconia.rewrite.spring.boot4.MigrateRsocketModule
+  - io.arconia.rewrite.spring.boot4.MigrateSecurityModule
+  - io.arconia.rewrite.spring.boot4.MigrateSecurityOAuth2AuthorizationServerModule
+  - io.arconia.rewrite.spring.boot4.MigrateSecurityOAuth2ClientModule
+  - io.arconia.rewrite.spring.boot4.MigrateSecurityOAuth2ResourceServerModule
+  - io.arconia.rewrite.spring.boot4.MigrateSecuritySaml2Module
+  - io.arconia.rewrite.spring.boot4.MigrateSendGridModule
+  - io.arconia.rewrite.spring.boot4.MigrateServletModule
+  - io.arconia.rewrite.spring.boot4.MigrateSessionModule
+  - io.arconia.rewrite.spring.boot4.MigrateSessionDataRedisModule
+  - io.arconia.rewrite.spring.boot4.MigrateSessionJdbcModule
+  - io.arconia.rewrite.spring.boot4.MigrateSqlModule
+  - io.arconia.rewrite.spring.boot4.MigrateThymeleafModule
+  - io.arconia.rewrite.spring.boot4.MigrateTomcatModule
+  - io.arconia.rewrite.spring.boot4.MigrateTransactionModule
+  - io.arconia.rewrite.spring.boot4.MigrateValidationModule
+  - io.arconia.rewrite.spring.boot4.MigrateWebClientModule
+  - io.arconia.rewrite.spring.boot4.MigrateWebFluxModule
+  - io.arconia.rewrite.spring.boot4.MigrateWebMvcModule
+  - io.arconia.rewrite.spring.boot4.MigrateWebServerModule
+  - io.arconia.rewrite.spring.boot4.MigrateWebServicesModule
+  - io.arconia.rewrite.spring.boot4.MigrateWebSocketModule
+  - io.arconia.rewrite.spring.boot4.MigrateWebTestClientModule
+  - io.arconia.rewrite.spring.boot4.MigrateZipkinModule
+
+  # Breaking Changes for Testing Setup
+  - io.arconia.rewrite.spring.boot4.AddAutoConfigureRestTestClientAnnotation
+  - io.arconia.rewrite.spring.boot4.AddAutoConfigureTestRestTemplateAnnotation
+  - io.arconia.rewrite.spring.boot4.AddAutoConfigureWebTestClientAnnotation

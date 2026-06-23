@@ -36,13 +36,23 @@ Thank you for your interest in contributing! Whether it's reporting bugs, sugges
     ```shell
     git commit -s -m "feat(spring): Add recipe for Spring Boot 4.1"
     ```
-7. **Keep your branch updated** via rebase (never merge):
+7. **Keep your branch updated** via rebase (never merge). Your branch must be up to date with `main` before it can be merged:
     ```shell
     git fetch upstream
     git rebase upstream/main
     ```
 8. **Push and open a PR** targeting `main`. Ensure the PR title follows [Conventional Commits](#commit-messages) format and fill out the PR template.
-9. **Address review feedback.** Maintainers will review your PR. Push additional signed-off commits as needed.
+9. **Address review feedback.** Maintainers will review your PR. Push additional signed-off commits as needed, and resolve all review conversations before merge.
+
+### How Pull Requests Are Merged
+
+`main` is a protected branch with a linear history; direct pushes and force-pushes are not allowed. Maintainers merge an approved PR using rebase and merge, which preserves your commits (and their DCO sign-offs) on top of `main`. PRs made up of many small commits may be squashed into one at the maintainer's discretion.
+
+Before a PR can merge, it must:
+
+* Pass all required checks: build and tests, CodeQL analysis, and a [Conventional Commits](#commit-messages)-compliant PR title and commit messages.
+* Be up to date with `main` (rebase if it has fallen behind).
+* Have an approving review and all conversations resolved.
 
 ## Reporting Bugs and Suggesting Features
 
@@ -69,6 +79,14 @@ We follow [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)
 * **Breaking changes:** Append `!` after the type/scope (e.g., `feat(spring)!:`) or add `BREAKING CHANGE:` in the footer.
 
 Example: `feat(spring): Add recipe for Spring AI 2.0 upgrade`
+
+### Naming a Recipe
+
+Recipe identifiers follow the conventions in [ADR 1: Recipe naming](adr/0001-recipe-naming.md): package namespace, the `Upgrade`/`Migrate` patterns, version encoding, acronym capitalization, and the required `displayName` and `description`. Read it before adding a recipe.
+
+### Deprecating a Recipe
+
+Recipe identifiers are part of the project's public API, so they cannot be renamed or removed without notice. [ADR 2: Deprecating and removing recipes](adr/0002-deprecating-and-removing-recipes.md) and the [Versioning and Support](https://docs.arconia.io/arconia-migrations/latest/versioning.html) policy define the deprecation cycle: keeping the old identifier as an alias in one minor release, removing it in the next, and routing upstream OpenRewrite renames or removals through the same process. Read them before renaming or removing a recipe.
 
 ### DCO Sign-off
 

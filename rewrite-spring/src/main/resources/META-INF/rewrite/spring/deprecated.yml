@@ -1,0 +1,24 @@
+# Deprecated recipe aliases.
+# These identifiers were renamed into the io.arconia.rewrite.spring.ai1 and io.arconia.rewrite.spring.ai2 namespaces.
+# Each alias delegates to its replacement and will be removed in the next minor release.
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.ai.UpgradeSpringAi_1_0
+displayName: Migrate to Spring AI 1.0
+description: Deprecated. Use `io.arconia.rewrite.spring.ai1.UpgradeSpringAi_1_0` instead.
+recipeList:
+  - io.arconia.rewrite.spring.ai1.UpgradeSpringAi_1_0
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.ai.UpgradeSpringAi_1_1
+displayName: Migrate to Spring AI 1.1
+description: Deprecated. Use `io.arconia.rewrite.spring.ai1.UpgradeSpringAi_1_1` instead.
+recipeList:
+  - io.arconia.rewrite.spring.ai1.UpgradeSpringAi_1_1
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.ai.UpgradeSpringAi_2_0
+displayName: Migrate to Spring AI 2.0
+description: Deprecated. Use `io.arconia.rewrite.spring.ai2.UpgradeSpringAi_2_0` instead.
+recipeList:
+  - io.arconia.rewrite.spring.ai2.UpgradeSpringAi_2_0

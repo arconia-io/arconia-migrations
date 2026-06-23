@@ -1,7 +1,7 @@
 = Spring AI 1.0
 :description: Migrate your Spring Boot application to the latest Spring AI 1.0.x release.
 :cli-command: arconia update spring-ai --to-version=1.0
-:recipe-id: io.arconia.rewrite.spring.ai.UpgradeSpringAi_1_0
+:recipe-id: io.arconia.rewrite.spring.ai1.UpgradeSpringAi_1_0
 :rewrite-module: rewrite-spring
 
 When upgrading to Spring AI 1.0, refer to the https://docs.spring.io/spring-ai/reference/1.0/upgrade-notes.html[Upgrade Notes] to find out about newly introduced APIs, deprecated APIs, and information about breaking changes.

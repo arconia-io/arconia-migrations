@@ -29,6 +29,20 @@ publishing {
                         fromResolutionResult()
                     }
                 }
+
+                if (project.tasks.named('cyclonedxDirectBom')) {
+                    def cyclonedxTask = tasks.named('cyclonedxDirectBom')
+                    artifact(project.layout.buildDirectory.file('reports/cyclonedx-direct/bom.json')) {
+                        classifier = 'cyclonedx'
+                        extension = 'json'
+                        builtBy cyclonedxTask
+                    }
+                    artifact(project.layout.buildDirectory.file('reports/cyclonedx-direct/bom.xml')) {
+                        classifier = 'cyclonedx'
+                        extension = 'xml'
+                        builtBy cyclonedxTask
+                    }
+                }
             }
 
             pom {

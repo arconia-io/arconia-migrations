@@ -26,7 +26,7 @@ public class SpringBootPropertiesMigrationGenerator {
                 .description("Migrate Spring Boot properties found in configuration data files (YAML and Properties).")
                 .productName("Spring Boot")
                 .tags("spring", "boot")
-                .defaultRecipePath(v -> Path.of("rewrite-spring/src/main/resources/META-INF/rewrite/boot/boot%s/spring-boot-%s-%s-properties-generated.yml"
+                .defaultRecipePath(v -> Path.of("rewrite-spring/src/main/resources/META-INF/rewrite/spring/boot%s/spring-boot-%s-%s-properties-generated.yml"
                         .formatted(v.major(), v.major(), v.minor())))
                 .recipeName(v -> "io.arconia.rewrite.spring.boot%s.UpgradeSpringBootPropertiesGenerated_%s".formatted(v.major(), v.slug()))
                 .displayName(v -> "Migrate Spring Boot properties to %s (generated)".formatted(v.display()))

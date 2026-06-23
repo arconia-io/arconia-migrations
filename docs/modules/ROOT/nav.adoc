@@ -1,4 +1,5 @@
 * xref:index.adoc[Introduction]
+* xref:versioning.adoc[Versioning and Support]
 * xref:arconia.adoc[Arconia]
 * xref:spring/index.adoc[Spring]
 ** xref:spring/spring-boot/index.adoc[Spring Boot]
