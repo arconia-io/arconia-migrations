@@ -80,6 +80,10 @@ We follow [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)
 
 Example: `feat(spring): Add recipe for Spring AI 2.0 upgrade`
 
+### Authoring a Recipe
+
+The [Recipe Authoring Guide](RECIPE_AUTHORING.md) walks through the module and resource layout, generating Spring property-migration recipes and wrapping them, the parser classpath and TypeTable setup, and writing `RewriteTest` tests. Start there when adding or updating a recipe.
+
 ### Naming a Recipe
 
 Recipe identifiers follow the conventions in [ADR 1: Recipe naming](adr/0001-recipe-naming.md): package namespace, the `Upgrade`/`Migrate` patterns, version encoding, acronym capitalization, and the required `displayName` and `description`. Read it before adding a recipe.
