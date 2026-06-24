@@ -8,7 +8,7 @@ image::arconia-logo.png[Arconia, width=500]
 
 == What is Arconia Migrations?
 
-Arconia Migrations is a curated catalog of https://docs.openrewrite.org[OpenRewrite] recipes that automate version upgrades and refactoring across the Spring ecosystem, the Arconia framework, common Java testing frameworks, and more. Each recipe handles the mechanical work of moving between versions: dependency bumps, deprecated API replacements, configuration property renames, and package relocations.
+Arconia Migrations is a curated catalog of https://docs.openrewrite.org[OpenRewrite] recipes that automate version upgrades and refactoring across the Spring ecosystem, the Arconia Framework, common Java testing frameworks, and more. Each recipe handles the mechanical work of moving between versions: dependency bumps, deprecated API replacements, configuration property renames, and package relocations.
 
 The recipes are designed to be composable. Higher-level upgrade recipes (such as `UpgradeSpringBoot_4_0`) chain together smaller, focused recipes (such as `UpgradeSpringFramework_7_0` and `UpgradeJUnit_6`) so that a single command can take a project across multiple major versions at once.
 
@@ -16,7 +16,7 @@ NOTE: The Arconia Migrations project is currently in active development and not 
 
 == OpenRewrite
 
-Arconia Migrations relies on https://docs.openrewrite.org[OpenRewrite], an open-source automated refactoring framework, and builds on top of the open-source recipes from the OpenRewrite catalog, released under the Apache 2.0 license.
+Arconia Migrations relies on https://docs.openrewrite.org[OpenRewrite], an open-source automated refactoring framework, and builds on top of the open-source recipes from the OpenRewrite catalog, released under the Apache 2.0 license. See the xref:vision.adoc[Vision] for what Arconia Migrations focuses on and how it fits into the wider OpenRewrite ecosystem.
 
 == Features
 
@@ -45,6 +45,12 @@ The recipes are published in four Maven artifacts under the `io.arconia.migratio
 | https://junit.org[JUnit], https://testcontainers.com[Testcontainers]
 |===
 
+== Prerequisites
+
+Arconia Migrations recipes run on JDK 21 or later. The project you're migrating can target any Java version supported by the OpenRewrite tooling you use to run them.
+
+The https://docs.arconia.io/arconia-cli/latest/[Arconia CLI] is the simplest option: it bundles a compatible set of Arconia Migrations and OpenRewrite libraries, so you don't need to match versions yourself. If you use the https://docs.openrewrite.org/reference/gradle-plugin-configuration[OpenRewrite Gradle plugin] or https://docs.openrewrite.org/reference/rewrite-maven-plugin[Maven plugin] directly, see their documentation for the tooling's own requirements.
+
 == Quick Start
 
 You can run any Arconia Migrations recipe with the https://docs.arconia.io/arconia-cli/latest/[Arconia CLI]:
@@ -62,7 +68,7 @@ TIP: To see all recipes available in your project, run https://docs.arconia.io/a
 
 Every recipe in this project is a standard OpenRewrite recipe. That means you can run it with any OpenRewrite-compatible tool. The guides in this documentation show three of them — the https://docs.arconia.io/arconia-cli/latest/[Arconia CLI], the https://docs.openrewrite.org/reference/gradle-plugin-configuration[OpenRewrite Gradle plugin], and the https://docs.openrewrite.org/reference/rewrite-maven-plugin[OpenRewrite Maven plugin] — but they're not the only options.
 
-The Arconia CLI is the recommended way to apply these recipes. It bundles all Arconia Migrations libraries out of the box, exposes convenience subcommands (for example, `arconia update spring-boot --to-version=4.0`), and gives the smoothest developer experience. For most upgrades, the CLI is enough.
+The Arconia CLI is the recommended way to apply these recipes. It bundles all Arconia Migrations libraries out of the box, exposes convenience subcommands (for example, `arconia update spring-boot --to-version 4.0`), and gives the smoothest developer experience. For most upgrades, the CLI is enough.
 
 The OpenRewrite Gradle and Maven plugins are the right choice when you need more control: customizing recipe options, integrating the migration into an existing build pipeline, or using an on-prem Maven repository instead of Maven Central. They take more configuration than the CLI, but they expose the full surface of the underlying OpenRewrite plugin.
 

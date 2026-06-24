@@ -5,7 +5,7 @@
 <h1 align="center">Arconia Migrations</h1>
 
 <p align="center">
-  <a href="https://docs.openrewrite.org">OpenRewrite</a> recipes to automate refactoring, migrations, and upgrades for <a href="https://dev.java">Java</a>, <a href="https://spring.io/projects/spring-boot">Spring Boot</a>, and <a href="https://docs.arconia.io/arconia/latest/index.html">Arconia</a> projects.
+  100% open-source (Apache 2.0) <a href="https://docs.openrewrite.org">OpenRewrite</a> recipes to automate refactoring, migrations, and upgrades for <a href="https://dev.java">Java</a>, <a href="https://spring.io/projects/spring-boot">Spring Boot</a>, and <a href="https://docs.arconia.io/arconia/latest/index.html">Arconia</a> projects.
 </p>
 
 <p align="center">
@@ -16,6 +16,12 @@
 </p>
 
 ---
+
+## 🌱&nbsp; Why Arconia Migrations?
+
+Arconia Migrations provides **Apache 2.0 licensed** [OpenRewrite](https://docs.openrewrite.org) recipes for Java, Spring Boot, and Arconia upgrades. It builds on the Apache 2.0 recipes in the OpenRewrite catalog and contributes back to them where it can, as with `rewrite-jackson`. To cover Spring and testing upgrades for which no Apache 2.0 module was available, it introduces its own `rewrite-spring` and `rewrite-test` modules — independent of the similarly-named upstream modules distributed under the Moderne Source License.
+
+Read more in the [Vision](https://docs.arconia.io/arconia-migrations/latest/vision.html).
 
 ## ✨&nbsp; Features
 
