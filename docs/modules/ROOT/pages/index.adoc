@@ -72,6 +72,8 @@ The Arconia CLI is the recommended way to apply these recipes. It bundles all Ar
 
 The OpenRewrite Gradle and Maven plugins are the right choice when you need more control: customizing recipe options, integrating the migration into an existing build pipeline, or using an on-prem Maven repository instead of Maven Central. They take more configuration than the CLI, but they expose the full surface of the underlying OpenRewrite plugin.
 
+These recipes automate the mechanical, repetitive parts of an upgrade, but they are best-effort: some changes still need manual follow-up, and a recipe leaves a property or API alone when it can't safely rewrite it. Always review the result before committing, and preview it first with `--dry-run`. After running an upgrade, build and test your project to confirm the migration is complete.
+
 == Community
 
 The Arconia Migrations project was created by https://thomasvitale.com[Thomas Vitale]. Contributions, feedback, and bug reports are welcome on https://github.com/arconia-io/arconia-migrations[GitHub].

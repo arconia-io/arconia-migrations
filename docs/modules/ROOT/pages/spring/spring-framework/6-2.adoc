@@ -14,7 +14,7 @@ The recipe will:
 * Swap the deprecated `org.webjars:webjars-locator-core` artifact for `org.webjars:webjars-locator-lite`.
 * For *Spring Beans*: rename `BeanInstanceSupplier.withShortcuts(...)` to `withShortcut(...)`.
 * For *Spring Context*: rename `MethodValidationResult.getAllValidationResults()` to `getParameterValidationResults()`.
-* For *Spring Messaging*: rename the async APIs to their `*Async` / `CompletableFuture`-based forms, including `AsyncHandlerMethodReturnValueHandler.toListenableFuture(...)` -> `toCompletableFuture(...)`, `ConnectionHandlingStompSession.getSessionFuture()` -> `getSession()`, `ReactorNettyTcpStompClient.connect(...)` -> `connectAsync(...)`, and the `TcpConnection.send(...)`, `TcpOperations.connect(...)`, and `TcpOperations.shutdown()` renames to `sendAsync`, `connectAsync`, and `shutdownAsync`.
+* For *Spring Messaging*: rename the async APIs to their `+*Async+` / `CompletableFuture`-based forms, including `AsyncHandlerMethodReturnValueHandler.toListenableFuture(...)` -> `toCompletableFuture(...)`, `ConnectionHandlingStompSession.getSessionFuture()` -> `getSession()`, `ReactorNettyTcpStompClient.connect(...)` -> `connectAsync(...)`, and the `TcpConnection.send(...)`, `TcpOperations.connect(...)`, and `TcpOperations.shutdown()` renames to `sendAsync`, `connectAsync`, and `shutdownAsync`.
 * For *Spring Test*:
 ** Rename `ExchangeResult.getRawStatusCode()` to `getStatus()`.
 ** Rename `WebTestClient.Builder.exchangeStrategies(...)` to `codecs(...)` and `WebTestClient.RequestBodySpec.syncBody(...)` to `bodyValue(...)`.
