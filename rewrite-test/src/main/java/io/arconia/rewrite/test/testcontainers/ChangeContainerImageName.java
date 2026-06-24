@@ -102,7 +102,7 @@ public class ChangeContainerImageName extends Recipe {
                         }
                         List<Expression> args = nc.getArguments();
                         List<Expression> rewritten = ListUtils.mapFirst(args, this::rewriteImageArg);
-                        if (rewritten == args) {
+                        if (rewritten == null || rewritten == args) {
                             return nc;
                         }
                         nc = nc.withArguments(rewritten);
@@ -116,7 +116,8 @@ public class ChangeContainerImageName extends Recipe {
                             }
                             case J.MethodInvocation mi -> {
                                 if (DOCKER_IMAGE_PARSE.matches(mi)) {
-                                    return mi.withArguments(ListUtils.mapFirst(mi.getArguments(), this::rewriteImageArg));
+                                    List<Expression> mapped = ListUtils.mapFirst(mi.getArguments(), this::rewriteImageArg);
+                                    return mapped == null ? mi : mi.withArguments(mapped);
                                 }
                                 if (mi.getSelect() != null && isOnDockerImageName(mi)) {
                                     return mi.withSelect(rewriteImageArg(mi.getSelect()));

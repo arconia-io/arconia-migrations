@@ -1,2 +1,31 @@
 plugins {
+    id 'net.ltgt.errorprone'
+    id 'net.ltgt.nullaway'
+}
+
+ext {
+    set("errorProneVersion", '2.50.0')
+    set("nullAwayVersion", '0.13.7')
+}
+
+dependencies {
+    errorprone "com.google.errorprone:error_prone_core:${errorProneVersion}"
+    errorprone "com.uber.nullaway:nullaway:${nullAwayVersion}"
+}
+
+nullaway {
+    onlyNullMarked = true
+    jspecifyMode = true
+}
+
+tasks.withType(JavaCompile).configureEach { task ->
+    task.options.errorprone {
+        disableAllChecks = true // Other error prone checks are disabled
+        error('RequireExplicitNullMarking') // Require @NullMarked or @NullUnmarked on everything
+        nullaway {
+            error()
+        }
+        // Null-safety enforcement applies to production code only, not tests.
+        enabled = task.name == 'compileJava'
+    }
 }

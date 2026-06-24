@@ -127,9 +127,9 @@ public class RenameSpringBootPropertyKeyIfValue extends Recipe {
             // the old one, so we delete the old key and merge in the fully-expanded nested structure.
             Tree afterDelete = new org.openrewrite.yaml.DeleteProperty(
                     oldPropertyKey, false, relaxed, null).getVisitor().visit(documents, ctx);
-            return (Yaml.Documents) new org.openrewrite.yaml.MergeYaml(
+            return (Yaml.Documents) Objects.requireNonNull(new org.openrewrite.yaml.MergeYaml(
                     "$", toNestedYaml(newPropertyKey, propertyValue), false, null, null, null, null, true)
-                    .getVisitor().visit(afterDelete, ctx);
+                    .getVisitor().visit(afterDelete, ctx));
         }
 
         private static String toNestedYaml(String dotSeparatedKey, String value) {
@@ -149,8 +149,8 @@ public class RenameSpringBootPropertyKeyIfValue extends Recipe {
             if (probed == file) {
                 return file;
             }
-            return (Properties.File) new org.openrewrite.properties.ChangePropertyKey(
-                    oldPropertyKey, newPropertyKey, relaxed, false).getVisitor().visit(file, ctx);
+            return (Properties.File) Objects.requireNonNull(new org.openrewrite.properties.ChangePropertyKey(
+                    oldPropertyKey, newPropertyKey, relaxed, false).getVisitor().visit(file, ctx));
         }
 
         private static ExecutionContext probeContext(ExecutionContext ctx) {

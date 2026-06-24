@@ -9,10 +9,14 @@ repositories {
 
 ext {
     set("cycloneDxVersion", '3.2.2')
+    set("errorPronePluginVersion", '5.1.0')
+    set("nullAwayPluginVersion", '3.1.0')
     set("openRewriteBuildVersion", '2.19.2')
 }
 
 dependencies {
+    implementation "net.ltgt.errorprone:net.ltgt.errorprone.gradle.plugin:${errorPronePluginVersion}"
+    implementation "net.ltgt.nullaway:net.ltgt.nullaway.gradle.plugin:${nullAwayPluginVersion}"
     implementation "org.cyclonedx:cyclonedx-gradle-plugin:${cycloneDxVersion}"
     implementation "org.openrewrite.build.recipe-library-base:org.openrewrite.build.recipe-library-base.gradle.plugin:${openRewriteBuildVersion}"
     constraints {
