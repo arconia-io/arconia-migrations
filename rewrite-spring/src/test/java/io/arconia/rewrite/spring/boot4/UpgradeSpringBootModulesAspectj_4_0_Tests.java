@@ -1,6 +1,7 @@
 package io.arconia.rewrite.spring.boot4;
 
 import org.junit.jupiter.api.Test;
+import org.openrewrite.DocumentExample;
 import org.openrewrite.test.RecipeSpec;
 import org.openrewrite.test.RewriteTest;
 
@@ -14,6 +15,7 @@ class UpgradeSpringBootModulesAspectj_4_0_Tests implements RewriteTest {
         spec.recipeFromResources("io.arconia.rewrite.spring.boot4.MigrateAspectjModule");
     }
 
+    @DocumentExample
     @Test
     void dependencies() {
         rewriteRun(

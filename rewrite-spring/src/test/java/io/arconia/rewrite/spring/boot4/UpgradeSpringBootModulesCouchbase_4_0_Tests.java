@@ -1,6 +1,7 @@
 package io.arconia.rewrite.spring.boot4;
 
 import org.junit.jupiter.api.Test;
+import org.openrewrite.DocumentExample;
 import org.openrewrite.InMemoryExecutionContext;
 import org.openrewrite.java.JavaParser;
 import org.openrewrite.test.RecipeSpec;
@@ -18,6 +19,7 @@ class UpgradeSpringBootModulesCouchbase_4_0_Tests implements RewriteTest {
                         "spring-boot-actuator-autoconfigure-3.5"));
     }
 
+    @DocumentExample
     @Test
     void typeChanges() {
         rewriteRun(

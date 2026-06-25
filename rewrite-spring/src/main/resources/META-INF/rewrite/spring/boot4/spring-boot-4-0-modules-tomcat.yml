@@ -5,29 +5,17 @@ displayName: Migrate Spring Boot Tomcat module to Spring Boot 4.0
 description: Migrate Spring Boot Tomcat module to Spring Boot 4.0.
 recipeList:
   - org.openrewrite.java.ChangeType:
-      oldFullyQualifiedTypeName: org.springframework.boot.web.embedded.tomcat.CompressionConnectorCustomizer
-      newFullyQualifiedTypeName: org.springframework.boot.tomcat.CompressionConnectorCustomizer
-  - org.openrewrite.java.ChangeType:
       oldFullyQualifiedTypeName: org.springframework.boot.web.embedded.tomcat.ConfigurableTomcatWebServerFactory
       newFullyQualifiedTypeName: org.springframework.boot.tomcat.ConfigurableTomcatWebServerFactory
   - org.openrewrite.java.ChangeType:
       oldFullyQualifiedTypeName: org.springframework.boot.web.embedded.tomcat.ConnectorStartFailedException
       newFullyQualifiedTypeName: org.springframework.boot.tomcat.ConnectorStartFailedException
   - org.openrewrite.java.ChangeType:
-      oldFullyQualifiedTypeName: org.springframework.boot.web.embedded.tomcat.DisableReferenceClearingContextCustomizer
-      newFullyQualifiedTypeName: org.springframework.boot.tomcat.DisableReferenceClearingContextCustomizer
-  - org.openrewrite.java.ChangeType:
-      oldFullyQualifiedTypeName: org.springframework.boot.web.embedded.tomcat.SslConnectorCustomizer
-      newFullyQualifiedTypeName: org.springframework.boot.tomcat.SslConnectorCustomizer
-  - org.openrewrite.java.ChangeType:
       oldFullyQualifiedTypeName: org.springframework.boot.web.embedded.tomcat.TomcatConnectorCustomizer
       newFullyQualifiedTypeName: org.springframework.boot.tomcat.TomcatConnectorCustomizer
   - org.openrewrite.java.ChangeType:
       oldFullyQualifiedTypeName: org.springframework.boot.web.embedded.tomcat.TomcatContextCustomizer
       newFullyQualifiedTypeName: org.springframework.boot.tomcat.TomcatContextCustomizer
-  - org.openrewrite.java.ChangeType:
-      oldFullyQualifiedTypeName: org.springframework.boot.web.embedded.tomcat.TomcatEmbeddedContext
-      newFullyQualifiedTypeName: org.springframework.boot.tomcat.TomcatEmbeddedContext
   - org.openrewrite.java.ChangeType:
       oldFullyQualifiedTypeName: org.springframework.boot.web.embedded.tomcat.TomcatEmbeddedWebappClassLoader
       newFullyQualifiedTypeName: org.springframework.boot.tomcat.TomcatEmbeddedWebappClassLoader

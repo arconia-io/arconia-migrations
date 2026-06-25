@@ -1,0 +1,49 @@
+package io.arconia.rewrite.spring.boot4;
+
+import org.junit.jupiter.api.Test;
+import org.openrewrite.DocumentExample;
+import org.openrewrite.InMemoryExecutionContext;
+import org.openrewrite.java.JavaParser;
+import org.openrewrite.test.RecipeSpec;
+import org.openrewrite.test.RewriteTest;
+
+import static org.openrewrite.java.Assertions.java;
+
+class UpgradeSpringBootModulesSendGrid_4_0_Tests implements RewriteTest {
+
+    @Override
+    public void defaults(RecipeSpec spec) {
+        spec.recipeFromResources("io.arconia.rewrite.spring.boot4.MigrateSendGridModule")
+                .parser(JavaParser.fromJavaVersion().classpathFromResources(new InMemoryExecutionContext(),
+                        "spring-boot-autoconfigure-3.5"));
+    }
+
+    @Test
+    @DocumentExample
+    void typeChanges() {
+        rewriteRun(
+                //language=java
+                java(
+                        """
+                        import org.springframework.boot.autoconfigure.sendgrid.SendGridAutoConfiguration;
+                        import org.springframework.boot.autoconfigure.sendgrid.SendGridProperties;
+
+                        class Demo {
+                            SendGridAutoConfiguration autoConfiguration = null;
+                            SendGridProperties properties = null;
+                        }
+                        """,
+                        """
+                        import org.springframework.boot.sendgrid.autoconfigure.SendGridAutoConfiguration;
+                        import org.springframework.boot.sendgrid.autoconfigure.SendGridProperties;
+
+                        class Demo {
+                            SendGridAutoConfiguration autoConfiguration = null;
+                            SendGridProperties properties = null;
+                        }
+                        """
+                )
+        );
+    }
+
+}
