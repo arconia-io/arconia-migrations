@@ -49,8 +49,6 @@ release:
     releaseName: '{{tagName}}'
     overwrite: false
     sign: true
-    prerelease:
-      pattern: '.*-(M|RC)\d+'
     issues:
       enabled: true
     changelog:
