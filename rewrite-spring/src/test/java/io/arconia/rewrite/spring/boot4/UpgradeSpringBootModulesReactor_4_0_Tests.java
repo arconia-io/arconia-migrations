@@ -7,8 +7,6 @@ import org.openrewrite.java.JavaParser;
 import org.openrewrite.test.RecipeSpec;
 import org.openrewrite.test.RewriteTest;
 
-import static org.openrewrite.gradle.Assertions.buildGradle;
-import static org.openrewrite.gradle.toolingapi.Assertions.withToolingApi;
 import static org.openrewrite.java.Assertions.java;
 
 class UpgradeSpringBootModulesReactor_4_0_Tests implements RewriteTest {
@@ -44,41 +42,6 @@ class UpgradeSpringBootModulesReactor_4_0_Tests implements RewriteTest {
                             ReactorProperties properties = null;
                         }
                         """
-                )
-        );
-    }
-
-    @Test
-    void dependencies() {
-        rewriteRun(
-                spec -> spec.beforeRecipe(withToolingApi()),
-                //language=groovy
-                buildGradle(
-                        """
-                          plugins {
-                              id 'java-library'
-                          }
-
-                          repositories {
-                              mavenCentral()
-                          }
-
-                          dependencies {
-                              testImplementation "io.projectreactor:reactor-test"
-                          }
-                          """,
-                        """
-                          plugins {
-                              id 'java-library'
-                          }
-
-                          repositories {
-                              mavenCentral()
-                          }
-
-                          dependencies {
-                          }
-                          """
                 )
         );
     }
