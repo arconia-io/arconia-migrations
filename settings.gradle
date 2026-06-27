@@ -4,6 +4,7 @@ plugins {
 
 rootProject.name = 'arconia-migrations'
 
+include 'docs-generator'
 include 'rewrite-arconia'
 include 'rewrite-bom'
 include 'rewrite-docling'

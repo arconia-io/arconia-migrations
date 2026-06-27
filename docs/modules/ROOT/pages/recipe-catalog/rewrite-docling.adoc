@@ -1,0 +1,93 @@
+= rewrite-docling
+:description: OpenRewrite recipes published in the rewrite-docling module.
+
+// AUTO-GENERATED from the OpenRewrite recipe model. Do not edit by hand.
+
+The `rewrite-docling` module publishes 2 recipes across 1 categories.
+
+[#family-docling]
+== docling
+
+*Composite recipes*
+
+[#io_arconia_rewrite_docling_UpgradeDocling_0_2]
+=== Migrate to Docling 0.2
+`io.arconia.rewrite.docling.UpgradeDocling_0_2`
+
+Migrate a Java application to the latest Docling 0.2.x release.
+
+_Tags: docling_
+
+.Recipes applied (3)
+[%collapsible]
+====
+* Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+* Rename package name (`org.openrewrite.java.ChangePackage` ×2)
+====
+
+*Example*
+
+.Before
+[source,java]
+----
+import ai.docling.api.serve.DoclingServeApi;
+import ai.docling.client.serve.DoclingServeClient;
+
+class Demo {
+    DoclingServeApi doclingServeApi = null;
+    DoclingServeClient doclingServeClient = null;
+}
+----
+
+.After
+[source,java]
+----
+import ai.docling.serve.api.DoclingServeApi;
+import ai.docling.serve.client.DoclingServeClient;
+
+class Demo {
+    DoclingServeApi doclingServeApi = null;
+    DoclingServeClient doclingServeClient = null;
+}
+----
+
+[#io_arconia_rewrite_docling_UpgradeDocling_0_3]
+=== Migrate to Docling 0.3
+`io.arconia.rewrite.docling.UpgradeDocling_0_3`
+
+Migrate a Java application to the latest Docling 0.3.x release.
+
+_Tags: docling_
+
+.Recipes applied (6)
+[%collapsible]
+====
+* xref:recipe-catalog/rewrite-docling.adoc#io_arconia_rewrite_docling_UpgradeDocling_0_2[Migrate to Docling 0.2] (`io.arconia.rewrite.docling.UpgradeDocling_0_2`)
+** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+** Rename package name (`org.openrewrite.java.ChangePackage` ×2)
+* Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+* Rename package name (`org.openrewrite.java.ChangePackage`)
+====
+
+*Example*
+
+.Before
+[source,java]
+----
+import ai.docling.api.core.DoclingDocument;
+
+class Demo {
+    DoclingDocument document = null;
+}
+----
+
+.After
+[source,java]
+----
+import ai.docling.core.DoclingDocument;
+
+class Demo {
+    DoclingDocument document = null;
+}
+----
+

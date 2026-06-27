@@ -28,6 +28,8 @@ The recipe will:
 * Automatically add the `spring-ai-vector-store`, `spring-ai-rag`, and `spring-ai-advisors-vector-store` dependencies when the corresponding APIs are in use.
 * Add the missing `Map` argument to the `MistralAiApi.ChatCompletionRequest.ResponseFormat` constructor.
 
+See its xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_ai1_UpgradeSpringAi_1_0[entry in the Recipe Catalog] for the full list of recipes this upgrade applies, each with its options and a before/after example.
+
 == Run the recipe
 
 include::partial$run-recipe.adoc[]

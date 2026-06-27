@@ -1,7 +1,7 @@
 = Spring Framework
 :description: Upgrade recipes for the Spring Framework.
 
-Arconia Migrations ships an upgrade recipe for each minor release of Spring Framework that is supported by the catalog.
+Arconia Migrations ships an upgrade recipe for each minor release of Spring Framework that it supports.
 
 == Upgrade Guides
 

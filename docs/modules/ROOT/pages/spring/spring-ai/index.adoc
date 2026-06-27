@@ -1,7 +1,7 @@
 = Spring AI
 :description: Upgrade recipes for Spring AI 1.x and Spring AI 2.x.
 
-Arconia Migrations ships an upgrade recipe for each minor release of Spring AI that is supported by the catalog.
+Arconia Migrations ships an upgrade recipe for each minor release of Spring AI that it supports.
 
 == Upgrade Guides
 

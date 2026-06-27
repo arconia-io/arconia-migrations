@@ -1,7 +1,7 @@
 = Spring
 :description: Upgrade recipes for Spring Boot, Spring Framework, Spring Cloud, and Spring AI.
 
-Arconia Migrations provides OpenRewrite recipes for the Spring ecosystem. All recipes in this category are published in the `rewrite-spring` module.
+Arconia Migrations provides OpenRewrite recipes for the Spring ecosystem. All recipes in this category are published in the `rewrite-spring` module. Browse them all in the xref:recipe-catalog/rewrite-spring.adoc[Recipe Catalog].
 
 == Upgrade Guides
 

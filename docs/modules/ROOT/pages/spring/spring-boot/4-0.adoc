@@ -19,6 +19,8 @@ The recipe will:
 * Upgrade related build plugins (GraalVM Native Build Tools to 0.11.x, CycloneDX SBOM to 3.x) and adjacent libraries (SpringDoc to 3.0.x, JobRunr to 8.x with the new `jobrunr-spring-boot-4-starter` artifact).
 * Apply breaking changes for the testing setup: add the `@AutoConfigureRestTestClient`, `@AutoConfigureTestRestTemplate`, and `@AutoConfigureWebTestClient` annotations where they're now required.
 
+See its xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_UpgradeSpringBoot_4_0[entry in the Recipe Catalog] for the full list of recipes this upgrade applies, each with its options and a before/after example.
+
 == Run the recipe
 
 include::partial$run-recipe.adoc[]

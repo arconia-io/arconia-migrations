@@ -1,5 +1,5 @@
 = Spring Cloud 2025.0
-:description: Migrate your Spring Boot application to the latest Spring Cloud 2025.0.x release.
+:description: Migrate your Spring application to the latest Spring Cloud 2025.0.x release.
 :cli-command: arconia rewrite run --recipe-name io.arconia.rewrite.spring.cloud2025.UpgradeSpringCloud_2025_0
 :recipe-id: io.arconia.rewrite.spring.cloud2025.UpgradeSpringCloud_2025_0
 :rewrite-module: rewrite-spring
@@ -16,6 +16,8 @@ The recipe will:
 ** `spring-cloud-gateway-server` -> `spring-cloud-gateway-server-webflux` (and the matching `spring-cloud-starter-gateway-server` -> `spring-cloud-starter-gateway-server-webflux`).
 ** `spring-cloud-gateway-server-mvc` -> `spring-cloud-gateway-server-webmvc` (and the matching starter).
 ** The former `spring-cloud-gateway-mvc` and `spring-cloud-gateway-webflux` artifacts, which host the Proxy Exchange handlers, are renamed to `spring-cloud-gateway-proxyexchange-webmvc` and `spring-cloud-gateway-proxyexchange-webflux`.
+
+See its xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_cloud2025_UpgradeSpringCloud_2025_0[entry in the Recipe Catalog] for the full list of recipes this upgrade applies, each with its options and a before/after example.
 
 == Run the recipe
 

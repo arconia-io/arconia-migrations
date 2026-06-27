@@ -15,6 +15,8 @@ The recipe will:
 * Rename Spring Boot configuration properties to match the new property names.
 * Upgrade the GraalVM Native Build Tools plugin to 1.1.x.
 
+See its xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_UpgradeSpringBoot_4_1[entry in the Recipe Catalog] for the full list of recipes this upgrade applies, each with its options and a before/after example.
+
 == Run the recipe
 
 include::partial$run-recipe.adoc[]

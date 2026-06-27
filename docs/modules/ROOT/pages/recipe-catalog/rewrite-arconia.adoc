@@ -1,0 +1,1256 @@
+= rewrite-arconia
+:description: OpenRewrite recipes published in the rewrite-arconia module.
+
+// AUTO-GENERATED from the OpenRewrite recipe model. Do not edit by hand.
+
+The `rewrite-arconia` module publishes 45 recipes across 4 categories.
+
+[#family-framework]
+== framework
+
+*Composite recipes*
+
+[#io_arconia_rewrite_framework_UpgradeArconia_0_10]
+=== Migrate to Arconia 0.10
+`io.arconia.rewrite.framework.UpgradeArconia_0_10`
+
+Migrate a Spring Boot application to the latest Arconia 0.10.x release.
+
+_Tags: arconia_
+
+.Recipes applied (4)
+[%collapsible]
+====
+* Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+* Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency`)
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×2)
+====
+
+*Example*
+
+.Before
+[source,groovy]
+----
+plugins {
+    id 'java-library'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'io.arconia:arconia-dev-tools'
+}
+----
+
+.After
+[source,groovy]
+----
+plugins {
+    id 'java-library'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-devtools'
+}
+----
+
+[#io_arconia_rewrite_framework_UpgradeArconia_0_11]
+=== Migrate to Arconia 0.11
+`io.arconia.rewrite.framework.UpgradeArconia_0_11`
+
+Migrate a Spring Boot application to the latest Arconia 0.11.x release.
+
+_Tags: arconia_
+
+.Recipes applied (24)
+[%collapsible]
+====
+* xref:recipe-catalog/rewrite-arconia.adoc#io_arconia_rewrite_framework_UpgradeArconia_0_10[Migrate to Arconia 0.10] (`io.arconia.rewrite.framework.UpgradeArconia_0_10`)
+** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+** Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency`)
+** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×2)
+* Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+* Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency`)
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×6)
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_ChangeSpringBootPropertyValue[Change the value of a Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue` ×8)
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_DeleteSpringBootProperty[Delete a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.DeleteSpringBootProperty` ×3)
+====
+
+*Example*
+
+.Before
+[source,yaml]
+----
+arconia:
+  dev:
+    services:
+      lgtm:
+        reusable: true
+      ollama:
+        reusable: false
+      postgresql:
+        reusable: true
+      redis:
+        community:
+          environment:
+            MY_VAR: value
+          image-name: custom-redis:latest
+          reusable: true
+----
+
+.After
+[source,yaml]
+----
+arconia:
+  dev:
+    services:
+      lgtm:
+        shared: dev-mode
+      ollama:
+        shared: never
+      postgresql:
+        shared: dev-mode
+      redis:
+          environment:
+            MY_VAR: value
+          image-name: custom-redis:latest
+          shared: dev-mode
+----
+
+[#io_arconia_rewrite_framework_UpgradeArconia_0_12]
+=== Migrate to Arconia 0.12
+`io.arconia.rewrite.framework.UpgradeArconia_0_12`
+
+Migrate a Spring Boot application to the latest Arconia 0.12.x release.
+
+_Tags: arconia_
+
+.Recipes applied (28)
+[%collapsible]
+====
+* xref:recipe-catalog/rewrite-arconia.adoc#io_arconia_rewrite_framework_UpgradeArconia_0_11[Migrate to Arconia 0.11] (`io.arconia.rewrite.framework.UpgradeArconia_0_11`)
+** xref:recipe-catalog/rewrite-arconia.adoc#io_arconia_rewrite_framework_UpgradeArconia_0_10[Migrate to Arconia 0.10] (`io.arconia.rewrite.framework.UpgradeArconia_0_10`)
+*** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+*** Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency`)
+*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×2)
+** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+** Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency`)
+** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×6)
+** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_ChangeSpringBootPropertyValue[Change the value of a Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue` ×8)
+** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_DeleteSpringBootProperty[Delete a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.DeleteSpringBootProperty` ×3)
+* Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+* Change type (`org.openrewrite.java.ChangeType` ×2)
+====
+
+*Example*
+
+.Before
+[source,java]
+----
+package com.yourorg;
+
+import io.arconia.opentelemetry.autoconfigure.sdk.metrics.SdkMeterProviderBuilderCustomizer;
+import io.arconia.opentelemetry.autoconfigure.sdk.resource.SdkResourceBuilderCustomizer;
+
+class Demo {
+    SdkMeterProviderBuilderCustomizer meterCustomizer = null;
+    SdkResourceBuilderCustomizer resourceCustomizer = null;
+}
+----
+
+.After
+[source,java]
+----
+package com.yourorg;
+
+import io.arconia.opentelemetry.autoconfigure.sdk.metrics.OpenTelemetryMeterProviderBuilderCustomizer;
+import io.arconia.opentelemetry.autoconfigure.sdk.resource.OpenTelemetryResourceBuilderCustomizer;
+
+class Demo {
+    OpenTelemetryMeterProviderBuilderCustomizer meterCustomizer = null;
+    OpenTelemetryResourceBuilderCustomizer resourceCustomizer = null;
+}
+----
+
+[#io_arconia_rewrite_framework_UpgradeArconia_0_13]
+=== Migrate to Arconia 0.13
+`io.arconia.rewrite.framework.UpgradeArconia_0_13`
+
+Migrate a Spring Boot application to the latest Arconia 0.13.x release.
+
+_Tags: arconia_
+
+.Recipes applied (34)
+[%collapsible]
+====
+* xref:recipe-catalog/rewrite-arconia.adoc#io_arconia_rewrite_framework_UpgradeArconia_0_12[Migrate to Arconia 0.12] (`io.arconia.rewrite.framework.UpgradeArconia_0_12`)
+** xref:recipe-catalog/rewrite-arconia.adoc#io_arconia_rewrite_framework_UpgradeArconia_0_11[Migrate to Arconia 0.11] (`io.arconia.rewrite.framework.UpgradeArconia_0_11`)
+*** xref:recipe-catalog/rewrite-arconia.adoc#io_arconia_rewrite_framework_UpgradeArconia_0_10[Migrate to Arconia 0.10] (`io.arconia.rewrite.framework.UpgradeArconia_0_10`)
+*** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+*** Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency`)
+*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×6)
+*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_ChangeSpringBootPropertyValue[Change the value of a Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue` ×8)
+*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_DeleteSpringBootProperty[Delete a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.DeleteSpringBootProperty` ×3)
+** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+** Change type (`org.openrewrite.java.ChangeType` ×2)
+* Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×3)
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
+====
+
+*Example*
+
+.Before
+[source,properties]
+----
+arconia.config.profiles.enabled=true
+arconia.config.profiles.development=dev1, dev2, dev3
+arconia.config.profiles.test=test1, test2
+arconia.config.profiles.prod=prod1
+----
+
+.After
+[source,properties]
+----
+arconia.bootstrap.profiles.enabled=true
+arconia.dev.profiles=dev1, dev2, dev3
+arconia.test.profiles=test1, test2
+# Removed. Use 'spring.profiles.active' to specify the profiles to activate in production mode.
+# arconia.config.profiles.prod=prod1
+----
+
+[#io_arconia_rewrite_framework_UpgradeArconia_0_14]
+=== Migrate to Arconia 0.14
+`io.arconia.rewrite.framework.UpgradeArconia_0_14`
+
+Migrate a Spring Boot application to the latest Arconia 0.14.x release.
+
+_Tags: arconia_
+
+.Recipes applied (77)
+[%collapsible]
+====
+* xref:recipe-catalog/rewrite-arconia.adoc#io_arconia_rewrite_framework_UpgradeArconia_0_13[Migrate to Arconia 0.13] (`io.arconia.rewrite.framework.UpgradeArconia_0_13`)
+** xref:recipe-catalog/rewrite-arconia.adoc#io_arconia_rewrite_framework_UpgradeArconia_0_12[Migrate to Arconia 0.12] (`io.arconia.rewrite.framework.UpgradeArconia_0_12`)
+*** xref:recipe-catalog/rewrite-arconia.adoc#io_arconia_rewrite_framework_UpgradeArconia_0_11[Migrate to Arconia 0.11] (`io.arconia.rewrite.framework.UpgradeArconia_0_11`)
+*** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+*** Change type (`org.openrewrite.java.ChangeType` ×2)
+** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×3)
+** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
+* Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+* Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency`)
+* Change type (`org.openrewrite.java.ChangeType` ×2)
+* Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency`)
+* Rename package name (`org.openrewrite.java.ChangePackage` ×2)
+* Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency`)
+* Rename package name (`org.openrewrite.java.ChangePackage`)
+* Change type (`org.openrewrite.java.ChangeType` ×4)
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×24)
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×4)
+* Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency`)
+====
+
+*Example*
+
+.Before
+[source,java]
+----
+package com.yourorg;
+
+import io.arconia.multitenancy.autoconfigure.core.MultitenancyCoreAutoConfiguration;
+
+class Demo {
+    MultitenancyCoreAutoConfiguration config = null;
+}
+----
+
+.After
+[source,java]
+----
+package com.yourorg;
+
+import io.arconia.multitenancy.core.autoconfigure.MultitenancyCoreAutoConfiguration;
+
+class Demo {
+    MultitenancyCoreAutoConfiguration config = null;
+}
+----
+
+[#io_arconia_rewrite_framework_UpgradeArconia_0_15]
+=== Migrate to Arconia 0.15
+`io.arconia.rewrite.framework.UpgradeArconia_0_15`
+
+Migrate a Spring Boot application to the latest Arconia 0.15.x release.
+
+_Tags: arconia_
+
+.Recipes applied (79)
+[%collapsible]
+====
+* xref:recipe-catalog/rewrite-arconia.adoc#io_arconia_rewrite_framework_UpgradeArconia_0_14[Migrate to Arconia 0.14] (`io.arconia.rewrite.framework.UpgradeArconia_0_14`)
+** xref:recipe-catalog/rewrite-arconia.adoc#io_arconia_rewrite_framework_UpgradeArconia_0_13[Migrate to Arconia 0.13] (`io.arconia.rewrite.framework.UpgradeArconia_0_13`)
+*** xref:recipe-catalog/rewrite-arconia.adoc#io_arconia_rewrite_framework_UpgradeArconia_0_12[Migrate to Arconia 0.12] (`io.arconia.rewrite.framework.UpgradeArconia_0_12`)
+*** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×3)
+*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
+** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+** Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency`)
+** Change type (`org.openrewrite.java.ChangeType` ×2)
+** Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency`)
+** Rename package name (`org.openrewrite.java.ChangePackage` ×2)
+** Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency`)
+** Rename package name (`org.openrewrite.java.ChangePackage`)
+** Change type (`org.openrewrite.java.ChangeType` ×4)
+** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×24)
+** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×4)
+** Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency`)
+* Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+====
+
+[#io_arconia_rewrite_framework_UpgradeArconia_0_16]
+=== Migrate to Arconia 0.16
+`io.arconia.rewrite.framework.UpgradeArconia_0_16`
+
+Migrate a Spring Boot application to the latest Arconia 0.16.x release.
+
+_Tags: arconia_
+
+.Recipes applied (81)
+[%collapsible]
+====
+* xref:recipe-catalog/rewrite-arconia.adoc#io_arconia_rewrite_framework_UpgradeArconia_0_15[Migrate to Arconia 0.15] (`io.arconia.rewrite.framework.UpgradeArconia_0_15`)
+** xref:recipe-catalog/rewrite-arconia.adoc#io_arconia_rewrite_framework_UpgradeArconia_0_14[Migrate to Arconia 0.14] (`io.arconia.rewrite.framework.UpgradeArconia_0_14`)
+*** xref:recipe-catalog/rewrite-arconia.adoc#io_arconia_rewrite_framework_UpgradeArconia_0_13[Migrate to Arconia 0.13] (`io.arconia.rewrite.framework.UpgradeArconia_0_13`)
+*** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+*** Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency`)
+*** Change type (`org.openrewrite.java.ChangeType` ×2)
+*** Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency`)
+*** Rename package name (`org.openrewrite.java.ChangePackage` ×2)
+*** Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency`)
+*** Rename package name (`org.openrewrite.java.ChangePackage`)
+*** Change type (`org.openrewrite.java.ChangeType` ×4)
+*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×24)
+*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×4)
+*** Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency`)
+** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+* Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+====
+
+[#io_arconia_rewrite_framework_UpgradeArconia_0_17]
+=== Migrate to Arconia 0.17
+`io.arconia.rewrite.framework.UpgradeArconia_0_17`
+
+Migrate a Spring Boot application to the latest Arconia 0.17.x release.
+
+_Tags: arconia_
+
+.Recipes applied (1154)
+[%collapsible]
+====
+* xref:recipe-catalog/rewrite-arconia.adoc#io_arconia_rewrite_framework_UpgradeArconia_0_16[Migrate to Arconia 0.16] (`io.arconia.rewrite.framework.UpgradeArconia_0_16`)
+** xref:recipe-catalog/rewrite-arconia.adoc#io_arconia_rewrite_framework_UpgradeArconia_0_15[Migrate to Arconia 0.15] (`io.arconia.rewrite.framework.UpgradeArconia_0_15`)
+*** xref:recipe-catalog/rewrite-arconia.adoc#io_arconia_rewrite_framework_UpgradeArconia_0_14[Migrate to Arconia 0.14] (`io.arconia.rewrite.framework.UpgradeArconia_0_14`)
+*** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot3_UpgradeSpringBoot_3_5[Migrate to Spring Boot 3.5] (`io.arconia.rewrite.spring.boot3.UpgradeSpringBoot_3_5`)
+** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot3_UpgradeSpringBootProperties_3_5[Migrate Spring Boot properties to 3.5] (`io.arconia.rewrite.spring.boot3.UpgradeSpringBootProperties_3_5`)
+*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot3_UpgradeSpringBootPropertiesGenerated_3_5[Migrate Spring Boot properties to 3.5 (generated)] (`io.arconia.rewrite.spring.boot3.UpgradeSpringBootPropertiesGenerated_3_5`)
+*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey`)
+*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×2)
+*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_ChangeSpringBootPropertyValue[Change the value of a Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue` ×50)
+** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_framework6_UpgradeSpringFramework_6_2[Migrate to Spring Framework 6.2] (`io.arconia.rewrite.spring.framework6.UpgradeSpringFramework_6_2`)
+*** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+*** Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency`)
+*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_framework6_MigrateSpringBeans_6_2[Migrate the Spring Beans module to Spring Framework 6.2] (`io.arconia.rewrite.spring.framework6.MigrateSpringBeans_6_2`)
+*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_framework6_MigrateSpringContext_6_2[Migrate the Spring Context module to Spring Framework 6.2] (`io.arconia.rewrite.spring.framework6.MigrateSpringContext_6_2`)
+*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_framework6_MigrateSpringMessaging_6_2[Migrate the Spring Messaging module to Spring Framework 6.2] (`io.arconia.rewrite.spring.framework6.MigrateSpringMessaging_6_2`)
+*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_framework6_MigrateSpringTest_6_2[Migrate the Spring Test module to Spring Framework 6.2] (`io.arconia.rewrite.spring.framework6.MigrateSpringTest_6_2`)
+*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_framework6_MigrateSpringWeb_6_2[Migrate the Spring Web module to Spring Framework 6.2] (`io.arconia.rewrite.spring.framework6.MigrateSpringWeb_6_2`)
+*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_framework6_MigrateSpringWebFlux_6_2[Migrate the Spring WebFlux module to Spring Framework 6.2] (`io.arconia.rewrite.spring.framework6.MigrateSpringWebFlux_6_2`)
+*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_framework6_MigrateSpringWebMvc_6_2[Migrate the Spring WebMVC module to Spring Framework 6.2] (`io.arconia.rewrite.spring.framework6.MigrateSpringWebMvc_6_2`)
+*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_framework6_MigrateSpringWebSocket_6_2[Migrate the Spring WebSocket module to Spring Framework 6.2] (`io.arconia.rewrite.spring.framework6.MigrateSpringWebSocket_6_2`)
+** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion` ×2)
+** Update a Gradle plugin by id (`org.openrewrite.gradle.plugins.UpgradePluginVersion`)
+** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+** Upgrade Maven plugin version (`org.openrewrite.maven.UpgradePluginVersion`)
+** Upgrade Maven parent project version (`org.openrewrite.maven.UpgradeParentVersion`)
+** Update a Gradle plugin by id (`org.openrewrite.gradle.plugins.UpgradePluginVersion`)
+** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+** Update a Gradle plugin by id (`org.openrewrite.gradle.plugins.UpgradePluginVersion`)
+** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+** Update a Gradle plugin by id (`org.openrewrite.gradle.plugins.UpgradePluginVersion`)
+** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_cloud2025_UpgradeSpringCloud_2025_0[Migrate to Spring Cloud 2025.0] (`io.arconia.rewrite.spring.cloud2025.UpgradeSpringCloud_2025_0`)
+*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_cloud2025_UpgradeSpringCloudProperties_2025_0[Migrate Spring Cloud properties to 2025.0] (`io.arconia.rewrite.spring.cloud2025.UpgradeSpringCloudProperties_2025_0`)
+*** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+*** Upgrade Maven parent project version (`org.openrewrite.maven.UpgradeParentVersion`)
+*** Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency` ×6)
+** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_ai1_UpgradeSpringAi_1_1[Migrate to Spring AI 1.1] (`io.arconia.rewrite.spring.ai1.UpgradeSpringAi_1_1`)
+*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_ai1_UpgradeSpringAiProperties_1_1[Migrate Spring AI properties to 1.1] (`io.arconia.rewrite.spring.ai1.UpgradeSpringAiProperties_1_1`)
+*** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_ai1_MigrateSpringAiBedrock_1_1[Migrate the Spring AI Bedrock module to Spring AI 1.1] (`io.arconia.rewrite.spring.ai1.MigrateSpringAiBedrock_1_1`)
+*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_ai1_MigrateSpringAiModel_1_1[Migrate the Spring AI Model module to Spring AI 1.1] (`io.arconia.rewrite.spring.ai1.MigrateSpringAiModel_1_1`)
+*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_ai1_MigrateSpringAiMcp_1_1[Migrate the Spring AI MCP module to Spring AI 1.1] (`io.arconia.rewrite.spring.ai1.MigrateSpringAiMcp_1_1`)
+*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_ai1_UseAssistantMessageBuilder[Use `AssistantMessage.Builder` instead of constructor] (`io.arconia.rewrite.spring.ai1.UseAssistantMessageBuilder`)
+*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_ai1_UseEmbeddingOptionsBuilder[Use `EmbeddingOptions.builder()` instead of `EmbeddingOptionsBuilder.builder()`] (`io.arconia.rewrite.spring.ai1.UseEmbeddingOptionsBuilder`)
+*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_ai1_UseQuestionAnswerAdvisorBuilder[Use `QuestionAnswerAdvisor.Builder` instead of constructor] (`io.arconia.rewrite.spring.ai1.UseQuestionAnswerAdvisorBuilder`)
+*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_ai1_UseToolResponseMessageBuilder[Use `ToolResponseMessage.Builder` instead of constructor] (`io.arconia.rewrite.spring.ai1.UseToolResponseMessageBuilder`)
+** Change type (`org.openrewrite.java.ChangeType` ×2)
+** Remove annotation attribute (`org.openrewrite.java.RemoveAnnotationAttribute`)
+** Change annotation attribute name (`org.openrewrite.java.ChangeAnnotationAttributeName`)
+** Change type (`org.openrewrite.java.ChangeType` ×2)
+** Remove annotation attribute (`org.openrewrite.java.RemoveAnnotationAttribute` ×2)
+** … and 1 more
+* Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+====
+
+[#io_arconia_rewrite_framework_UpgradeArconia_0_18]
+=== Migrate to Arconia 0.18
+`io.arconia.rewrite.framework.UpgradeArconia_0_18`
+
+Migrate a Spring Boot application to the latest Arconia 0.18.x release.
+
+_Tags: arconia_
+
+.Recipes applied (1172)
+[%collapsible]
+====
+* xref:recipe-catalog/rewrite-arconia.adoc#io_arconia_rewrite_framework_UpgradeArconia_0_17[Migrate to Arconia 0.17] (`io.arconia.rewrite.framework.UpgradeArconia_0_17`)
+** xref:recipe-catalog/rewrite-arconia.adoc#io_arconia_rewrite_framework_UpgradeArconia_0_16[Migrate to Arconia 0.16] (`io.arconia.rewrite.framework.UpgradeArconia_0_16`)
+*** xref:recipe-catalog/rewrite-arconia.adoc#io_arconia_rewrite_framework_UpgradeArconia_0_15[Migrate to Arconia 0.15] (`io.arconia.rewrite.framework.UpgradeArconia_0_15`)
+*** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot3_UpgradeSpringBoot_3_5[Migrate to Spring Boot 3.5] (`io.arconia.rewrite.spring.boot3.UpgradeSpringBoot_3_5`)
+*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot3_UpgradeSpringBootProperties_3_5[Migrate Spring Boot properties to 3.5] (`io.arconia.rewrite.spring.boot3.UpgradeSpringBootProperties_3_5`)
+*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_framework6_UpgradeSpringFramework_6_2[Migrate to Spring Framework 6.2] (`io.arconia.rewrite.spring.framework6.UpgradeSpringFramework_6_2`)
+*** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion` ×2)
+*** Update a Gradle plugin by id (`org.openrewrite.gradle.plugins.UpgradePluginVersion`)
+*** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+*** Upgrade Maven plugin version (`org.openrewrite.maven.UpgradePluginVersion`)
+*** Upgrade Maven parent project version (`org.openrewrite.maven.UpgradeParentVersion`)
+*** Update a Gradle plugin by id (`org.openrewrite.gradle.plugins.UpgradePluginVersion`)
+*** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+*** Update a Gradle plugin by id (`org.openrewrite.gradle.plugins.UpgradePluginVersion`)
+*** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+*** Update a Gradle plugin by id (`org.openrewrite.gradle.plugins.UpgradePluginVersion`)
+*** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_cloud2025_UpgradeSpringCloud_2025_0[Migrate to Spring Cloud 2025.0] (`io.arconia.rewrite.spring.cloud2025.UpgradeSpringCloud_2025_0`)
+*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_ai1_UpgradeSpringAi_1_1[Migrate to Spring AI 1.1] (`io.arconia.rewrite.spring.ai1.UpgradeSpringAi_1_1`)
+*** Change type (`org.openrewrite.java.ChangeType` ×2)
+*** Remove annotation attribute (`org.openrewrite.java.RemoveAnnotationAttribute`)
+*** Change annotation attribute name (`org.openrewrite.java.ChangeAnnotationAttributeName`)
+*** Change type (`org.openrewrite.java.ChangeType` ×2)
+*** Remove annotation attribute (`org.openrewrite.java.RemoveAnnotationAttribute` ×2)
+*** … and 1 more
+** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+* Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×14)
+* Change type (`org.openrewrite.java.ChangeType` ×2)
+====
+
+*Example*
+
+.Before
+[source,java]
+----
+package com.yourorg;
+
+import io.arconia.dev.services.mongodb.MongoDbAtlasDevServicesAutoConfiguration;
+import io.arconia.dev.services.mongodb.MongoDbAtlasDevServicesProperties;
+
+class Demo {
+    MongoDbAtlasDevServicesAutoConfiguration config = null;
+    MongoDbAtlasDevServicesProperties properties = null;
+}
+----
+
+.After
+[source,java]
+----
+package com.yourorg;
+
+import io.arconia.dev.services.mongodb.atlas.MongoDbAtlasDevServicesAutoConfiguration;
+import io.arconia.dev.services.mongodb.atlas.MongoDbAtlasDevServicesProperties;
+
+class Demo {
+    MongoDbAtlasDevServicesAutoConfiguration config = null;
+    MongoDbAtlasDevServicesProperties properties = null;
+}
+----
+
+[#io_arconia_rewrite_framework_UpgradeArconia_0_19]
+=== Migrate to Arconia 0.19
+`io.arconia.rewrite.framework.UpgradeArconia_0_19`
+
+Migrate a Spring Boot application to the latest Arconia 0.19.x release.
+
+_Tags: arconia_
+
+.Recipes applied (1260)
+[%collapsible]
+====
+* xref:recipe-catalog/rewrite-arconia.adoc#io_arconia_rewrite_framework_UpgradeArconia_0_18[Migrate to Arconia 0.18] (`io.arconia.rewrite.framework.UpgradeArconia_0_18`)
+** xref:recipe-catalog/rewrite-arconia.adoc#io_arconia_rewrite_framework_UpgradeArconia_0_17[Migrate to Arconia 0.17] (`io.arconia.rewrite.framework.UpgradeArconia_0_17`)
+*** xref:recipe-catalog/rewrite-arconia.adoc#io_arconia_rewrite_framework_UpgradeArconia_0_16[Migrate to Arconia 0.16] (`io.arconia.rewrite.framework.UpgradeArconia_0_16`)
+*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot3_UpgradeSpringBoot_3_5[Migrate to Spring Boot 3.5] (`io.arconia.rewrite.spring.boot3.UpgradeSpringBoot_3_5`)
+*** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×14)
+** Change type (`org.openrewrite.java.ChangeType` ×2)
+* Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+* Change type (`org.openrewrite.java.ChangeType`)
+* Rename package name (`org.openrewrite.java.ChangePackage`)
+* Change method name (`org.openrewrite.java.ChangeMethodName` ×5)
+* xref:recipe-catalog/rewrite-arconia.adoc#io_arconia_rewrite_framework_docling_UseConvertDocumentRequestSourcesMethod[Use `source()` methods instead of `addHttpSources()` or `addFileSources()`] (`io.arconia.rewrite.framework.docling.UseConvertDocumentRequestSourcesMethod`)
+* Rename package name (`org.openrewrite.java.ChangePackage`)
+* Change method name (`org.openrewrite.java.ChangeMethodName` ×52)
+* Rename package name (`org.openrewrite.java.ChangePackage`)
+* Change method name (`org.openrewrite.java.ChangeMethodName` ×4)
+* Rename package name (`org.openrewrite.java.ChangePackage`)
+* Change method name (`org.openrewrite.java.ChangeMethodName`)
+* Rename package name (`org.openrewrite.java.ChangePackage`)
+* Change method name (`org.openrewrite.java.ChangeMethodName` ×14)
+* Change type (`org.openrewrite.java.ChangeType`)
+* Change method name (`org.openrewrite.java.ChangeMethodName`)
+* xref:recipe-catalog/rewrite-arconia.adoc#io_arconia_rewrite_framework_docling_UseHealthCheckResponseBuilder[Use `HealthCheckResponse.Builder` instead of constructor] (`io.arconia.rewrite.framework.docling.UseHealthCheckResponseBuilder`)
+====
+
+*Example*
+
+.Before
+[source,java]
+----
+import io.arconia.docling.client.convert.request.ConvertDocumentRequest;
+import io.arconia.docling.client.convert.request.source.HttpSource;
+
+import java.net.URI;
+import java.util.List;
+
+class Demo {
+    void call() {
+        ConvertDocumentRequest convertDocumentRequest = ConvertDocumentRequest.builder()
+            .httpSources(List.of(HttpSource.builder().url(URI.create("https://example.net")).build()))
+            .options(null)
+            .target(null)
+            .build();
+
+        convertDocumentRequest.options();
+        convertDocumentRequest.sources();
+        convertDocumentRequest.target();
+    }
+
+    void call2() {
+        ConvertDocumentRequest convertDocumentRequest = ConvertDocumentRequest.builder()
+            .addHttpSources("https://example.net")
+            .build();
+    }
+
+    void call3() {
+        ConvertDocumentRequest convertDocumentRequest = ConvertDocumentRequest.builder()
+            .addHttpSources(URI.create("https://example.net"))
+            .build();
+    }
+}
+----
+
+.After
+[source,java]
+----
+import ai.docling.api.serve.convert.request.ConvertDocumentRequest;
+import ai.docling.api.serve.convert.request.source.HttpSource;
+
+import java.net.URI;
+import java.util.List;
+
+class Demo {
+    void call() {
+        ConvertDocumentRequest convertDocumentRequest = ConvertDocumentRequest.builder()
+            .sources(List.of(HttpSource.builder().url(URI.create("https://example.net")).build()))
+            .options(null)
+            .target(null)
+            .build();
+
+        convertDocumentRequest.getOptions();
+        convertDocumentRequest.getSources();
+        convertDocumentRequest.getTarget();
+    }
+
+    void call2() {
+        ConvertDocumentRequest convertDocumentRequest = ConvertDocumentRequest.builder()
+            .source(HttpSource.builder().url(URI.create("https://example.net")).build())
+            .build();
+    }
+
+    void call3() {
+        ConvertDocumentRequest convertDocumentRequest = ConvertDocumentRequest.builder()
+            .source(HttpSource.builder().url(URI.create("https://example.net")).build())
+            .build();
+    }
+}
+----
+
+[#io_arconia_rewrite_framework_UpgradeArconia_0_20]
+=== Migrate to Arconia 0.20
+`io.arconia.rewrite.framework.UpgradeArconia_0_20`
+
+Migrate a Spring Boot application to the latest Arconia 0.20.x release.
+
+_Tags: arconia_
+
+.Recipes applied (1270)
+[%collapsible]
+====
+* xref:recipe-catalog/rewrite-arconia.adoc#io_arconia_rewrite_framework_UpgradeArconia_0_19[Migrate to Arconia 0.19] (`io.arconia.rewrite.framework.UpgradeArconia_0_19`)
+** xref:recipe-catalog/rewrite-arconia.adoc#io_arconia_rewrite_framework_UpgradeArconia_0_18[Migrate to Arconia 0.18] (`io.arconia.rewrite.framework.UpgradeArconia_0_18`)
+*** xref:recipe-catalog/rewrite-arconia.adoc#io_arconia_rewrite_framework_UpgradeArconia_0_17[Migrate to Arconia 0.17] (`io.arconia.rewrite.framework.UpgradeArconia_0_17`)
+*** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×14)
+*** Change type (`org.openrewrite.java.ChangeType` ×2)
+** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+** Change type (`org.openrewrite.java.ChangeType`)
+** Rename package name (`org.openrewrite.java.ChangePackage`)
+** Change method name (`org.openrewrite.java.ChangeMethodName` ×5)
+** xref:recipe-catalog/rewrite-arconia.adoc#io_arconia_rewrite_framework_docling_UseConvertDocumentRequestSourcesMethod[Use `source()` methods instead of `addHttpSources()` or `addFileSources()`] (`io.arconia.rewrite.framework.docling.UseConvertDocumentRequestSourcesMethod`)
+** Rename package name (`org.openrewrite.java.ChangePackage`)
+** Change method name (`org.openrewrite.java.ChangeMethodName` ×52)
+** Rename package name (`org.openrewrite.java.ChangePackage`)
+** Change method name (`org.openrewrite.java.ChangeMethodName` ×4)
+** Rename package name (`org.openrewrite.java.ChangePackage`)
+** Change method name (`org.openrewrite.java.ChangeMethodName`)
+** Rename package name (`org.openrewrite.java.ChangePackage`)
+** Change method name (`org.openrewrite.java.ChangeMethodName` ×14)
+** Change type (`org.openrewrite.java.ChangeType`)
+** Change method name (`org.openrewrite.java.ChangeMethodName`)
+** xref:recipe-catalog/rewrite-arconia.adoc#io_arconia_rewrite_framework_docling_UseHealthCheckResponseBuilder[Use `HealthCheckResponse.Builder` instead of constructor] (`io.arconia.rewrite.framework.docling.UseHealthCheckResponseBuilder`)
+* xref:recipe-catalog/rewrite-docling.adoc#io_arconia_rewrite_docling_UpgradeDocling_0_3[Migrate to Docling 0.3] (`io.arconia.rewrite.docling.UpgradeDocling_0_3`)
+** xref:recipe-catalog/rewrite-docling.adoc#io_arconia_rewrite_docling_UpgradeDocling_0_2[Migrate to Docling 0.2] (`io.arconia.rewrite.docling.UpgradeDocling_0_2`)
+*** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+*** Rename package name (`org.openrewrite.java.ChangePackage` ×2)
+** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+** Rename package name (`org.openrewrite.java.ChangePackage`)
+* Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey`)
+====
+
+*Example*
+
+.Before
+[source,properties]
+----
+arconia.docling.url=http://localhost:8080
+----
+
+.After
+[source,properties]
+----
+arconia.docling.base-url=http://localhost:8080
+----
+
+[#io_arconia_rewrite_framework_UpgradeArconia_0_21]
+=== Migrate to Arconia 0.21
+`io.arconia.rewrite.framework.UpgradeArconia_0_21`
+
+Migrate a Spring Boot application to the latest Arconia 0.21.x release.
+
+_Tags: arconia_
+
+.Recipes applied (1272)
+[%collapsible]
+====
+* xref:recipe-catalog/rewrite-arconia.adoc#io_arconia_rewrite_framework_UpgradeArconia_0_20[Migrate to Arconia 0.20] (`io.arconia.rewrite.framework.UpgradeArconia_0_20`)
+** xref:recipe-catalog/rewrite-arconia.adoc#io_arconia_rewrite_framework_UpgradeArconia_0_19[Migrate to Arconia 0.19] (`io.arconia.rewrite.framework.UpgradeArconia_0_19`)
+*** xref:recipe-catalog/rewrite-arconia.adoc#io_arconia_rewrite_framework_UpgradeArconia_0_18[Migrate to Arconia 0.18] (`io.arconia.rewrite.framework.UpgradeArconia_0_18`)
+*** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+*** Change type (`org.openrewrite.java.ChangeType`)
+*** Rename package name (`org.openrewrite.java.ChangePackage`)
+*** Change method name (`org.openrewrite.java.ChangeMethodName` ×5)
+*** xref:recipe-catalog/rewrite-arconia.adoc#io_arconia_rewrite_framework_docling_UseConvertDocumentRequestSourcesMethod[Use `source()` methods instead of `addHttpSources()` or `addFileSources()`] (`io.arconia.rewrite.framework.docling.UseConvertDocumentRequestSourcesMethod`)
+*** Rename package name (`org.openrewrite.java.ChangePackage`)
+*** Change method name (`org.openrewrite.java.ChangeMethodName` ×52)
+*** Rename package name (`org.openrewrite.java.ChangePackage`)
+*** Change method name (`org.openrewrite.java.ChangeMethodName` ×4)
+*** Rename package name (`org.openrewrite.java.ChangePackage`)
+*** Change method name (`org.openrewrite.java.ChangeMethodName`)
+*** Rename package name (`org.openrewrite.java.ChangePackage`)
+*** Change method name (`org.openrewrite.java.ChangeMethodName` ×14)
+*** Change type (`org.openrewrite.java.ChangeType`)
+*** Change method name (`org.openrewrite.java.ChangeMethodName`)
+*** xref:recipe-catalog/rewrite-arconia.adoc#io_arconia_rewrite_framework_docling_UseHealthCheckResponseBuilder[Use `HealthCheckResponse.Builder` instead of constructor] (`io.arconia.rewrite.framework.docling.UseHealthCheckResponseBuilder`)
+** xref:recipe-catalog/rewrite-docling.adoc#io_arconia_rewrite_docling_UpgradeDocling_0_3[Migrate to Docling 0.3] (`io.arconia.rewrite.docling.UpgradeDocling_0_3`)
+*** xref:recipe-catalog/rewrite-docling.adoc#io_arconia_rewrite_docling_UpgradeDocling_0_2[Migrate to Docling 0.2] (`io.arconia.rewrite.docling.UpgradeDocling_0_2`)
+*** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+*** Rename package name (`org.openrewrite.java.ChangePackage`)
+** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey`)
+* Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+====
+
+[#io_arconia_rewrite_framework_UpgradeArconia_0_22]
+=== Migrate to Arconia 0.22
+`io.arconia.rewrite.framework.UpgradeArconia_0_22`
+
+Migrate a Spring Boot application to the latest Arconia 0.22.x release.
+
+_Tags: arconia_
+
+.Recipes applied (1333)
+[%collapsible]
+====
+* xref:recipe-catalog/rewrite-arconia.adoc#io_arconia_rewrite_framework_UpgradeArconia_0_21[Migrate to Arconia 0.21] (`io.arconia.rewrite.framework.UpgradeArconia_0_21`)
+** xref:recipe-catalog/rewrite-arconia.adoc#io_arconia_rewrite_framework_UpgradeArconia_0_20[Migrate to Arconia 0.20] (`io.arconia.rewrite.framework.UpgradeArconia_0_20`)
+*** xref:recipe-catalog/rewrite-arconia.adoc#io_arconia_rewrite_framework_UpgradeArconia_0_19[Migrate to Arconia 0.19] (`io.arconia.rewrite.framework.UpgradeArconia_0_19`)
+*** xref:recipe-catalog/rewrite-docling.adoc#io_arconia_rewrite_docling_UpgradeDocling_0_3[Migrate to Docling 0.3] (`io.arconia.rewrite.docling.UpgradeDocling_0_3`)
+*** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey`)
+** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+* Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_ChangeSpringBootPropertyValue[Change the value of a Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue` ×54)
+* Change type (`org.openrewrite.java.ChangeType` ×4)
+* Change method name (`org.openrewrite.java.ChangeMethodName`)
+====
+
+*Example*
+
+.Before
+[source,java]
+----
+import io.arconia.dev.services.core.config.DevServicesProperties;
+import io.arconia.dev.services.core.config.JdbcDevServicesProperties;
+import io.arconia.dev.services.opentelemetry.OpenTelemetryDevServicesAutoConfiguration;
+import io.arconia.dev.services.opentelemetry.OpenTelemetryDevServicesProperties;
+
+class Demo {
+    DevServicesProperties properties;
+    JdbcDevServicesProperties jdbcProperties;
+    OpenTelemetryDevServicesProperties otelProperties;
+    OpenTelemetryDevServicesAutoConfiguration config;
+}
+----
+
+.After
+[source,java]
+----
+import io.arconia.dev.services.api.config.BaseDevServicesProperties;
+import io.arconia.dev.services.api.config.JdbcDevServicesProperties;
+import io.arconia.dev.services.opentelemetry.collector.OtelCollectorDevServicesAutoConfiguration;
+import io.arconia.dev.services.opentelemetry.collector.OtelCollectorDevServicesProperties;
+
+class Demo {
+    BaseDevServicesProperties properties;
+    JdbcDevServicesProperties jdbcProperties;
+    OtelCollectorDevServicesProperties otelProperties;
+    OtelCollectorDevServicesAutoConfiguration config;
+}
+----
+
+[#io_arconia_rewrite_framework_UpgradeArconia_0_23]
+=== Migrate to Arconia 0.23
+`io.arconia.rewrite.framework.UpgradeArconia_0_23`
+
+Migrate a Spring Boot application to the latest Arconia 0.23.x release.
+
+_Tags: arconia_
+
+.Recipes applied (1335)
+[%collapsible]
+====
+* xref:recipe-catalog/rewrite-arconia.adoc#io_arconia_rewrite_framework_UpgradeArconia_0_22[Migrate to Arconia 0.22] (`io.arconia.rewrite.framework.UpgradeArconia_0_22`)
+** xref:recipe-catalog/rewrite-arconia.adoc#io_arconia_rewrite_framework_UpgradeArconia_0_21[Migrate to Arconia 0.21] (`io.arconia.rewrite.framework.UpgradeArconia_0_21`)
+*** xref:recipe-catalog/rewrite-arconia.adoc#io_arconia_rewrite_framework_UpgradeArconia_0_20[Migrate to Arconia 0.20] (`io.arconia.rewrite.framework.UpgradeArconia_0_20`)
+*** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_ChangeSpringBootPropertyValue[Change the value of a Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue` ×54)
+** Change type (`org.openrewrite.java.ChangeType` ×4)
+** Change method name (`org.openrewrite.java.ChangeMethodName`)
+* Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+====
+
+[#io_arconia_rewrite_framework_UpgradeArconia_0_24]
+=== Migrate to Arconia 0.24
+`io.arconia.rewrite.framework.UpgradeArconia_0_24`
+
+Migrate a Spring Boot application to the latest Arconia 0.24.x release.
+
+_Tags: arconia_
+
+.Recipes applied (1337)
+[%collapsible]
+====
+* xref:recipe-catalog/rewrite-arconia.adoc#io_arconia_rewrite_framework_UpgradeArconia_0_23[Migrate to Arconia 0.23] (`io.arconia.rewrite.framework.UpgradeArconia_0_23`)
+** xref:recipe-catalog/rewrite-arconia.adoc#io_arconia_rewrite_framework_UpgradeArconia_0_22[Migrate to Arconia 0.22] (`io.arconia.rewrite.framework.UpgradeArconia_0_22`)
+*** xref:recipe-catalog/rewrite-arconia.adoc#io_arconia_rewrite_framework_UpgradeArconia_0_21[Migrate to Arconia 0.21] (`io.arconia.rewrite.framework.UpgradeArconia_0_21`)
+*** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_ChangeSpringBootPropertyValue[Change the value of a Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue` ×54)
+*** Change type (`org.openrewrite.java.ChangeType` ×4)
+*** Change method name (`org.openrewrite.java.ChangeMethodName`)
+** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+* Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+====
+
+[#io_arconia_rewrite_framework_UpgradeArconia_0_25]
+=== Migrate to Arconia 0.25
+`io.arconia.rewrite.framework.UpgradeArconia_0_25`
+
+Migrate a Spring Boot application to the latest Arconia 0.25.x release.
+
+_Tags: arconia_
+
+.Recipes applied (1339)
+[%collapsible]
+====
+* xref:recipe-catalog/rewrite-arconia.adoc#io_arconia_rewrite_framework_UpgradeArconia_0_24[Migrate to Arconia 0.24] (`io.arconia.rewrite.framework.UpgradeArconia_0_24`)
+** xref:recipe-catalog/rewrite-arconia.adoc#io_arconia_rewrite_framework_UpgradeArconia_0_23[Migrate to Arconia 0.23] (`io.arconia.rewrite.framework.UpgradeArconia_0_23`)
+*** xref:recipe-catalog/rewrite-arconia.adoc#io_arconia_rewrite_framework_UpgradeArconia_0_22[Migrate to Arconia 0.22] (`io.arconia.rewrite.framework.UpgradeArconia_0_22`)
+*** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+* Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+====
+
+[#io_arconia_rewrite_framework_UpgradeArconia_0_26]
+=== Migrate to Arconia 0.26
+`io.arconia.rewrite.framework.UpgradeArconia_0_26`
+
+Migrate a Spring Boot application to the latest Arconia 0.26.x release.
+
+_Tags: arconia_
+
+.Recipes applied (1377)
+[%collapsible]
+====
+* xref:recipe-catalog/rewrite-arconia.adoc#io_arconia_rewrite_framework_UpgradeArconia_0_25[Migrate to Arconia 0.25] (`io.arconia.rewrite.framework.UpgradeArconia_0_25`)
+** xref:recipe-catalog/rewrite-arconia.adoc#io_arconia_rewrite_framework_UpgradeArconia_0_24[Migrate to Arconia 0.24] (`io.arconia.rewrite.framework.UpgradeArconia_0_24`)
+*** xref:recipe-catalog/rewrite-arconia.adoc#io_arconia_rewrite_framework_UpgradeArconia_0_23[Migrate to Arconia 0.23] (`io.arconia.rewrite.framework.UpgradeArconia_0_23`)
+*** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+* Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+* Change type (`org.openrewrite.java.ChangeType` ×9)
+* Change method name (`org.openrewrite.java.ChangeMethodName` ×4)
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×5)
+* Rename package name (`org.openrewrite.java.ChangePackage` ×2)
+* Change type (`org.openrewrite.java.ChangeType`)
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey`)
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_ChangeSpringBootPropertyValue[Change the value of a Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue` ×2)
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×11)
+====
+
+*Example*
+
+.Before
+[source,java]
+----
+import io.arconia.multitenancy.core.exceptions.TenantResolutionException;
+import io.arconia.multitenancy.core.context.events.MdcTenantContextEventListener;
+import io.arconia.multitenancy.core.events.TenantEvent;
+import io.arconia.multitenancy.core.autoconfigure.tenantdetails.TenantDetailsConfiguration;
+import io.arconia.multitenancy.core.autoconfigure.tenantdetails.TenantDetailsProperties;
+import io.arconia.multitenancy.core.autoconfigure.tenantdetails.PropertiesTenantDetailsService;
+import io.arconia.multitenancy.core.events.TenantEventPublisher;
+import io.arconia.multitenancy.core.events.DefaultTenantEventPublisher;
+import io.arconia.multitenancy.core.context.TenantContextHolder;
+
+class Demo {
+    TenantResolutionException ex;
+    MdcTenantContextEventListener listener;
+    TenantEvent event;
+    TenantDetailsConfiguration config;
+    TenantDetailsProperties props;
+    PropertiesTenantDetailsService service;
+    TenantEventPublisher publisher;
+    DefaultTenantEventPublisher defaultPublisher;
+    TenantContextHolder holder;
+}
+----
+
+.After
+[source,java]
+----
+import io.arconia.multitenancy.core.autoconfigure.PropertiesTenantDetailsService;
+import io.arconia.multitenancy.core.autoconfigure.TenantDetailsConfiguration;
+import io.arconia.multitenancy.core.autoconfigure.TenantDetailsProperties;
+import io.arconia.multitenancy.core.context.TenantContext;
+import io.arconia.multitenancy.core.exceptions.TenantVerificationException;
+import io.arconia.multitenancy.core.observability.MdcTenantEventListener;
+import org.springframework.context.ApplicationEventPublisher;
+import io.arconia.multitenancy.core.context.events.TenantEvent;
+
+class Demo {
+    TenantVerificationException ex;
+    MdcTenantEventListener listener;
+    TenantEvent event;
+    TenantDetailsConfiguration config;
+    TenantDetailsProperties props;
+    PropertiesTenantDetailsService service;
+    ApplicationEventPublisher publisher;
+    ApplicationEventPublisher defaultPublisher;
+    TenantContext holder;
+}
+----
+
+[#io_arconia_rewrite_framework_UpgradeArconia_0_27]
+=== Migrate to Arconia 0.27
+`io.arconia.rewrite.framework.UpgradeArconia_0_27`
+
+Migrate a Spring Boot application to the latest Arconia 0.27.x release.
+
+_Tags: arconia_
+
+.Recipes applied (1423)
+[%collapsible]
+====
+* xref:recipe-catalog/rewrite-arconia.adoc#io_arconia_rewrite_framework_UpgradeArconia_0_26[Migrate to Arconia 0.26] (`io.arconia.rewrite.framework.UpgradeArconia_0_26`)
+** xref:recipe-catalog/rewrite-arconia.adoc#io_arconia_rewrite_framework_UpgradeArconia_0_25[Migrate to Arconia 0.25] (`io.arconia.rewrite.framework.UpgradeArconia_0_25`)
+*** xref:recipe-catalog/rewrite-arconia.adoc#io_arconia_rewrite_framework_UpgradeArconia_0_24[Migrate to Arconia 0.24] (`io.arconia.rewrite.framework.UpgradeArconia_0_24`)
+*** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+** Change type (`org.openrewrite.java.ChangeType` ×9)
+** Change method name (`org.openrewrite.java.ChangeMethodName` ×4)
+** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×5)
+** Rename package name (`org.openrewrite.java.ChangePackage` ×2)
+** Change type (`org.openrewrite.java.ChangeType`)
+** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey`)
+** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_ChangeSpringBootPropertyValue[Change the value of a Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue` ×2)
+** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
+** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×11)
+* Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+* xref:recipe-catalog/rewrite-arconia.adoc#io_arconia_rewrite_framework_multitenancy_UseTenantContextFilterBuilder[Use `TenantContextFilter.Builder` instead of constructor] (`io.arconia.rewrite.framework.multitenancy.UseTenantContextFilterBuilder`)
+* Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency` ×2)
+* Change type (`org.openrewrite.java.ChangeType` ×11)
+* Rename package name (`org.openrewrite.java.ChangePackage` ×4)
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×4)
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKeyIfValue[Rename a Spring Boot configuration property key if its value matches] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKeyIfValue`)
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_ChangeSpringBootPropertyValue[Change the value of a Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue` ×2)
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×3)
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKeyIfValue[Rename a Spring Boot configuration property key if its value matches] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKeyIfValue`)
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_ChangeSpringBootPropertyValue[Change the value of a Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue`)
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×14)
+====
+
+*Example*
+
+.Before
+[source,java]
+----
+import io.arconia.observation.conventions.ObservationConventionsProvider;
+import io.arconia.observation.autoconfigure.MultipleObservationConventionsException;
+
+class Demo {
+    ObservationConventionsProvider provider;
+    MultipleObservationConventionsException ex;
+}
+----
+
+.After
+[source,java]
+----
+import io.arconia.observation.autoconfigure.MultipleAiObservationConventionsException;
+import io.arconia.observation.conventions.AiObservationConventionsProvider;
+
+class Demo {
+    AiObservationConventionsProvider provider;
+    MultipleAiObservationConventionsException ex;
+}
+----
+
+[#io_arconia_rewrite_framework_UpgradeArconia_0_28]
+=== Migrate to Arconia 0.28
+`io.arconia.rewrite.framework.UpgradeArconia_0_28`
+
+Migrate a Spring Boot application to the latest Arconia 0.28.x release.
+
+_Tags: arconia_
+
+.Recipes applied (1426)
+[%collapsible]
+====
+* xref:recipe-catalog/rewrite-arconia.adoc#io_arconia_rewrite_framework_UpgradeArconia_0_27[Migrate to Arconia 0.27] (`io.arconia.rewrite.framework.UpgradeArconia_0_27`)
+** xref:recipe-catalog/rewrite-arconia.adoc#io_arconia_rewrite_framework_UpgradeArconia_0_26[Migrate to Arconia 0.26] (`io.arconia.rewrite.framework.UpgradeArconia_0_26`)
+*** xref:recipe-catalog/rewrite-arconia.adoc#io_arconia_rewrite_framework_UpgradeArconia_0_25[Migrate to Arconia 0.25] (`io.arconia.rewrite.framework.UpgradeArconia_0_25`)
+*** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+*** Change type (`org.openrewrite.java.ChangeType` ×9)
+*** Change method name (`org.openrewrite.java.ChangeMethodName` ×4)
+*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×5)
+*** Rename package name (`org.openrewrite.java.ChangePackage` ×2)
+*** Change type (`org.openrewrite.java.ChangeType`)
+*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey`)
+*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_ChangeSpringBootPropertyValue[Change the value of a Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue` ×2)
+*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
+*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×11)
+** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+** xref:recipe-catalog/rewrite-arconia.adoc#io_arconia_rewrite_framework_multitenancy_UseTenantContextFilterBuilder[Use `TenantContextFilter.Builder` instead of constructor] (`io.arconia.rewrite.framework.multitenancy.UseTenantContextFilterBuilder`)
+** Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency` ×2)
+** Change type (`org.openrewrite.java.ChangeType` ×11)
+** Rename package name (`org.openrewrite.java.ChangePackage` ×4)
+** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×4)
+** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKeyIfValue[Rename a Spring Boot configuration property key if its value matches] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKeyIfValue`)
+** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_ChangeSpringBootPropertyValue[Change the value of a Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue` ×2)
+** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×3)
+** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKeyIfValue[Rename a Spring Boot configuration property key if its value matches] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKeyIfValue`)
+** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_ChangeSpringBootPropertyValue[Change the value of a Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue`)
+** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×14)
+* Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+* Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency`)
+====
+
+*Example*
+
+.Before
+[source,groovy]
+----
+plugins {
+    id "java-library"
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation "io.arconia:arconia-kubernetes-service-binding"
+}
+----
+
+.After
+[source,groovy]
+----
+plugins {
+    id "java-library"
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation "org.springframework.cloud:spring-cloud-bindings:2.0.4"
+}
+----
+
+[#family-framework-docling]
+== framework › docling
+
+*Recipes*
+
+[#io_arconia_rewrite_framework_docling_UseHealthCheckResponseBuilder]
+=== Use `HealthCheckResponse.Builder` instead of constructor
+`io.arconia.rewrite.framework.docling.UseHealthCheckResponseBuilder`
+
+Replace `new HealthCheckResponse(STATUS)` with `HealthCheckResponse.builder().status(status).build()`.
+
+*Example*
+
+.Before
+[source,java]
+----
+import ai.docling.api.serve.health.HealthCheckResponse;
+
+class Demo {
+    HealthCheckResponse response() {
+        return new HealthCheckResponse("ok");
+    }
+}
+----
+
+.After
+[source,java]
+----
+import ai.docling.api.serve.health.HealthCheckResponse;
+
+class Demo {
+    HealthCheckResponse response() {
+        return HealthCheckResponse.builder().status("ok").build();
+    }
+}
+----
+
+[#io_arconia_rewrite_framework_docling_UseConvertDocumentRequestSourcesMethod]
+=== Use `source()` methods instead of `addHttpSources()` or `addFileSources()`
+`io.arconia.rewrite.framework.docling.UseConvertDocumentRequestSourcesMethod`
+
+Replace `.addHttpSources()` or `addFileSources()` with `.source()`, wrapping arguments appropriately with `HttpSource.builder()` or `FileSource.builder()`.
+
+[#family-framework-multitenancy]
+== framework › multitenancy
+
+*Recipes*
+
+[#io_arconia_rewrite_framework_multitenancy_UseTenantContextFilterBuilder]
+=== Use `TenantContextFilter.Builder` instead of constructor
+`io.arconia.rewrite.framework.multitenancy.UseTenantContextFilterBuilder`
+
+Replace `new TenantContextFilter(...)` with `TenantContextFilter.builder()....build()`.
+
+*Example*
+
+.Before
+[source,java]
+----
+import io.arconia.multitenancy.core.tenantdetails.TenantVerifier;
+import io.arconia.multitenancy.web.context.filters.TenantContextFilter;
+import io.arconia.multitenancy.web.context.filters.TenantContextIgnorePathMatcher;
+import io.arconia.multitenancy.web.context.resolvers.HttpRequestTenantResolver;
+import org.springframework.context.ApplicationEventPublisher;
+
+class Demo {
+    TenantContextFilter create(HttpRequestTenantResolver resolver,
+            TenantContextIgnorePathMatcher matcher,
+            ApplicationEventPublisher publisher,
+            TenantVerifier verifier) {
+        return new TenantContextFilter(resolver, matcher, publisher, verifier);
+    }
+}
+----
+
+.After
+[source,java]
+----
+import io.arconia.multitenancy.core.tenantdetails.TenantVerifier;
+import io.arconia.multitenancy.web.context.filters.TenantContextFilter;
+import io.arconia.multitenancy.web.context.filters.TenantContextIgnorePathMatcher;
+import io.arconia.multitenancy.web.context.resolvers.HttpRequestTenantResolver;
+import org.springframework.context.ApplicationEventPublisher;
+
+class Demo {
+    TenantContextFilter create(HttpRequestTenantResolver resolver,
+            TenantContextIgnorePathMatcher matcher,
+            ApplicationEventPublisher publisher,
+            TenantVerifier verifier) {
+        return TenantContextFilter.builder().httpRequestTenantResolver(resolver).tenantContextIgnorePathMatcher(matcher).eventPublisher(publisher).tenantVerifier(verifier).build();
+    }
+}
+----
+
+[#family-framework-opentelemetry]
+== framework › opentelemetry
+
+*Composite recipes*
+
+[#io_arconia_rewrite_framework_opentelemetry_MigrateSpringBoot3OtlpToArconiaOpenTelemetry]
+=== Migrate from Spring Boot 3 OTLP to Arconia OpenTelemetry
+`io.arconia.rewrite.framework.opentelemetry.MigrateSpringBoot3OtlpToArconiaOpenTelemetry`
+
+Migrate a Spring Boot 3 application from the Spring Boot OTLP partial support to Arconia OpenTelemetry.
+
+_Tags: arconia, opentelemetry_
+
+.Recipes applied (40)
+[%collapsible]
+====
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×8)
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_ChangeSpringBootPropertyValue[Change the value of a Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue`)
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×2)
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×16)
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_ChangeSpringBootPropertyValue[Change the value of a Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue`)
+* Change type (`org.openrewrite.java.ChangeType` ×2)
+* Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
+* Remove a Gradle or Maven dependency (`org.openrewrite.java.dependencies.RemoveDependency` ×8)
+====
+
+*Example*
+
+.Before
+[source,properties]
+----
+management.otlp.tracing.export.enabled=true
+management.otlp.tracing.transport=http
+management.otlp.tracing.endpoint=http://localhost:4318/v1/traces
+management.otlp.tracing.headers=Authorization=Bearer token123,Custom-Header=value
+management.otlp.tracing.compression=gzip
+management.otlp.tracing.timeout=30s
+management.otlp.tracing.connect-timeout=10s
+----
+
+.After
+[source,properties]
+----
+arconia.otel.traces.enabled=true
+arconia.otel.traces.exporter.otlp.protocol=http_protobuf
+arconia.otel.traces.exporter.otlp.endpoint=http://localhost:4318/v1/traces
+arconia.otel.traces.exporter.otlp.headers=Authorization=Bearer token123,Custom-Header=value
+arconia.otel.traces.exporter.otlp.compression=gzip
+arconia.otel.traces.exporter.otlp.timeout=30s
+arconia.otel.traces.exporter.otlp.connect-timeout=10s
+----
+
+[#io_arconia_rewrite_framework_opentelemetry_MigrateSpringBoot4_0_OtlpToArconiaOpenTelemetry]
+=== Migrate from Spring Boot 4 OTLP to Arconia OpenTelemetry
+`io.arconia.rewrite.framework.opentelemetry.MigrateSpringBoot4_0_OtlpToArconiaOpenTelemetry`
+
+Migrate a Spring Boot 4 application from the Spring Boot OTLP partial support to Arconia OpenTelemetry.
+
+_Tags: arconia, opentelemetry_
+
+.Recipes applied (47)
+[%collapsible]
+====
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×8)
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_ChangeSpringBootPropertyValue[Change the value of a Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue`)
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×2)
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×19)
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_ChangeSpringBootPropertyValue[Change the value of a Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue`)
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×2)
+* Change type (`org.openrewrite.java.ChangeType` ×2)
+* Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
+* Remove a Gradle or Maven dependency (`org.openrewrite.java.dependencies.RemoveDependency` ×10)
+====
+
+*Example*
+
+.Before
+[source,properties]
+----
+management.tracing.export.otlp.enabled=true
+management.opentelemetry.tracing.export.otlp.transport=http
+management.opentelemetry.tracing.export.otlp.endpoint=http://localhost:4318/v1/traces
+management.opentelemetry.tracing.export.otlp.headers=Authorization=Bearer token123,Custom-Header=value
+management.opentelemetry.tracing.export.otlp.compression=gzip
+management.opentelemetry.tracing.export.otlp.timeout=30s
+management.opentelemetry.tracing.export.otlp.connect-timeout=10s
+----
+
+.After
+[source,properties]
+----
+arconia.otel.traces.enabled=true
+arconia.otel.traces.exporter.otlp.protocol=http_protobuf
+arconia.otel.traces.exporter.otlp.endpoint=http://localhost:4318/v1/traces
+arconia.otel.traces.exporter.otlp.headers=Authorization=Bearer token123,Custom-Header=value
+arconia.otel.traces.exporter.otlp.compression=gzip
+arconia.otel.traces.exporter.otlp.timeout=30s
+arconia.otel.traces.exporter.otlp.connect-timeout=10s
+----
+
+== Deprecated recipes
+
+These identifiers remain as aliases that delegate to their replacement and will be removed in a future release.
+
+* `io.arconia.rewrite.MigrateSpringBoot3OtlpToArconiaOpenTelemetry` — Deprecated. Use `io.arconia.rewrite.framework.opentelemetry.MigrateSpringBoot3OtlpToArconiaOpenTelemetry` instead.
+* `io.arconia.rewrite.MigrateSpringBoot4_0_OtlpToArconiaOpenTelemetry` — Deprecated. Use `io.arconia.rewrite.framework.opentelemetry.MigrateSpringBoot4_0_OtlpToArconiaOpenTelemetry` instead.
+* `io.arconia.rewrite.UpgradeArconia_0_10` — Deprecated. Use `io.arconia.rewrite.framework.UpgradeArconia_0_10` instead.
+* `io.arconia.rewrite.UpgradeArconia_0_11` — Deprecated. Use `io.arconia.rewrite.framework.UpgradeArconia_0_11` instead.
+* `io.arconia.rewrite.UpgradeArconia_0_12` — Deprecated. Use `io.arconia.rewrite.framework.UpgradeArconia_0_12` instead.
+* `io.arconia.rewrite.UpgradeArconia_0_13` — Deprecated. Use `io.arconia.rewrite.framework.UpgradeArconia_0_13` instead.
+* `io.arconia.rewrite.UpgradeArconia_0_14` — Deprecated. Use `io.arconia.rewrite.framework.UpgradeArconia_0_14` instead.
+* `io.arconia.rewrite.UpgradeArconia_0_15` — Deprecated. Use `io.arconia.rewrite.framework.UpgradeArconia_0_15` instead.
+* `io.arconia.rewrite.UpgradeArconia_0_16` — Deprecated. Use `io.arconia.rewrite.framework.UpgradeArconia_0_16` instead.
+* `io.arconia.rewrite.UpgradeArconia_0_17` — Deprecated. Use `io.arconia.rewrite.framework.UpgradeArconia_0_17` instead.
+* `io.arconia.rewrite.UpgradeArconia_0_18` — Deprecated. Use `io.arconia.rewrite.framework.UpgradeArconia_0_18` instead.
+* `io.arconia.rewrite.UpgradeArconia_0_19` — Deprecated. Use `io.arconia.rewrite.framework.UpgradeArconia_0_19` instead.
+* `io.arconia.rewrite.UpgradeArconia_0_20` — Deprecated. Use `io.arconia.rewrite.framework.UpgradeArconia_0_20` instead.
+* `io.arconia.rewrite.UpgradeArconia_0_21` — Deprecated. Use `io.arconia.rewrite.framework.UpgradeArconia_0_21` instead.
+* `io.arconia.rewrite.UpgradeArconia_0_22` — Deprecated. Use `io.arconia.rewrite.framework.UpgradeArconia_0_22` instead.
+* `io.arconia.rewrite.UpgradeArconia_0_23` — Deprecated. Use `io.arconia.rewrite.framework.UpgradeArconia_0_23` instead.
+* `io.arconia.rewrite.UpgradeArconia_0_24` — Deprecated. Use `io.arconia.rewrite.framework.UpgradeArconia_0_24` instead.
+* `io.arconia.rewrite.UpgradeArconia_0_25` — Deprecated. Use `io.arconia.rewrite.framework.UpgradeArconia_0_25` instead.
+* `io.arconia.rewrite.UpgradeArconia_0_26` — Deprecated. Use `io.arconia.rewrite.framework.UpgradeArconia_0_26` instead.
+* `io.arconia.rewrite.UpgradeArconia_0_27` — Deprecated. Use `io.arconia.rewrite.framework.UpgradeArconia_0_27` instead.
+* `io.arconia.rewrite.UpgradeArconia_0_28` — Deprecated. Use `io.arconia.rewrite.framework.UpgradeArconia_0_28` instead.
+

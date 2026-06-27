@@ -1,0 +1,11 @@
+= Recipe Catalog
+:description: Every Arconia Migrations recipe, grouped by module.
+
+This catalog lists every OpenRewrite recipe published by Arconia Migrations, grouped by the module that ships it and, within each module, by category. Composite recipes are listed before the leaf recipes they compose.
+
+For curated, step-by-step upgrade guides, see the topic sections in the navigation.
+
+* xref:recipe-catalog/rewrite-arconia.adoc[rewrite-arconia] — 45 recipes
+* xref:recipe-catalog/rewrite-docling.adoc[rewrite-docling] — 2 recipes
+* xref:recipe-catalog/rewrite-spring.adoc[rewrite-spring] — 264 recipes
+* xref:recipe-catalog/rewrite-test.adoc[rewrite-test] — 9 recipes

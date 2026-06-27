@@ -40,6 +40,8 @@ The recipe will:
 ** Drop the `Info` suffix from `WebSocketMessageBrokerStats.getWebSocketSessionStatsInfo()`, `getStompSubProtocolStatsInfo()`, and `getStompBrokerRelayStatsInfo()`.
 ** Rename `WebSocketStompClient.connect(...)` and `Transport.connect(...)` to `connectAsync(...)`.
 
+See its xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_framework6_UpgradeSpringFramework_6_2[entry in the Recipe Catalog] for the full list of recipes this upgrade applies, each with its options and a before/after example.
+
 == Run the recipe
 
 include::partial$run-recipe.adoc[]

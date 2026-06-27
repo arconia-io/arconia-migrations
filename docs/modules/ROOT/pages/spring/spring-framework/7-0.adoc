@@ -31,6 +31,8 @@ The recipe will:
 ** Rename the `FragmentsRendering` builder methods: `with(String)` and `with(String, Map)` to `fragment(...)`, and `with(Collection)` to `fragments(...)`.
 ** Rename the lowercase `RequestContext.jstlPresent` constant to the uppercase `JSTL_PRESENT`.
 
+See its xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_framework7_UpgradeSpringFramework_7_0[entry in the Recipe Catalog] for the full list of recipes this upgrade applies, each with its options and a before/after example.
+
 == Run the recipe
 
 include::partial$run-recipe.adoc[]

@@ -23,6 +23,8 @@ The recipe will:
 * Rename `Executions.started()` to `Executions.finished()` in the JUnit Platform Test Kit (the only invariant the legacy method actually preserved).
 * Rename `getOrComputeIfAbsent` to `computeIfAbsent` on `ExtensionContext.Store` and `NamespacedHierarchicalStore`.
 
+See its xref:recipe-catalog/rewrite-test.adoc#io_arconia_rewrite_test_junit_UpgradeJUnit_6[entry in the Recipe Catalog] for the full list of recipes this upgrade applies, each with its options and a before/after example.
+
 == Run the recipe
 
 include::partial$run-recipe.adoc[]

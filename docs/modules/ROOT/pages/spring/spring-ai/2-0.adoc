@@ -27,6 +27,8 @@ The recipe will:
 * For *Google*: relocate `GoogleGenAiEmbeddingConnectionDetails` to the `org.springframework.ai.google.genai.embedding` sub-package.
 * Remove the discontinued `spring-ai-hanadb-store` and `spring-ai-spring-cloud-bindings` artifacts.
 
+See its xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_ai2_UpgradeSpringAi_2_0[entry in the Recipe Catalog] for the full list of recipes this upgrade applies, each with its options and a before/after example.
+
 == Run the recipe
 
 include::partial$run-recipe.adoc[]

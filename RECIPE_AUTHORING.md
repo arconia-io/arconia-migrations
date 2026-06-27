@@ -157,6 +157,19 @@ Guidelines:
 
 Run a module's tests with `./gradlew :rewrite-spring:test`, or the whole build with `./gradlew build`.
 
+## Recipe catalog documentation
+
+`docs/modules/ROOT/pages/recipe-catalog/` holds an auto-generated catalog of every published recipe, grouped by module and category, with composite recipes listed before the leaf recipes they compose. It is built from the OpenRewrite recipe model (display names, descriptions, options, composition tree) plus the before/after example from each recipe's `@DocumentExample` test, rather than hand-written, and the build-only `docs-generator` module owns it.
+
+After you add, rename, remove, or change the metadata of a recipe, regenerate and commit the pages:
+
+```shell
+# Rewrites docs/.../recipe-catalog/ and the nav.adoc recipe-catalog block
+./gradlew :docs-generator:generateRecipeCatalogReference
+```
+
+**Never hand-edit the catalog pages** or the `// tag::recipe-catalog[]` region of `docs/modules/ROOT/nav.adoc`; both are overwritten on regeneration. `./gradlew build` runs `:docs-generator:validateRecipeCatalogReference`, which fails if the committed pages drift from the recipes, so CI catches a forgotten regeneration.
+
 ## Further reading
 
 * [OpenRewrite: Authoring Recipes](https://docs.openrewrite.org/authoring-recipes): upstream fundamentals (recipe types, `JavaTemplate`, preconditions, testing) this guide builds on.

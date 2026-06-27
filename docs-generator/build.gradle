@@ -1,0 +1,60 @@
+plugins {
+    id "java"
+    id "code-quality-conventions"
+}
+
+repositories {
+    mavenCentral()
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+dependencies {
+    implementation platform("org.openrewrite.recipe:rewrite-recipe-bom:${openRewriteVersion}")
+    implementation "org.openrewrite:rewrite-core"
+    implementation "org.openrewrite:rewrite-java"
+    
+    runtimeOnly "org.openrewrite:rewrite-java-21"
+    runtimeOnly "org.openrewrite:rewrite-java-25"
+
+    // At runtime the Environment scan must see every Arconia recipe, so aggregate the
+    // runtime classpath of all recipe modules. Derived from the recipe subprojects, so
+    // new recipe modules are picked up automatically.
+    rootProject.subprojects
+            .findAll { it.name.startsWith("rewrite-") && it.name != "rewrite-bom" }
+            .each { runtimeOnly project(it.path) }
+
+    testImplementation platform("org.junit:junit-bom:${jUnitVersion}")
+    testImplementation "org.assertj:assertj-core:${assertjVersion}"
+    testImplementation "org.junit.jupiter:junit-jupiter"
+    testRuntimeOnly "org.junit.platform:junit-platform-launcher"
+}
+
+tasks.named("test") {
+    useJUnitPlatform()
+}
+
+tasks.register("generateRecipeCatalogReference", JavaExec) {
+    description = "Generate the Antora recipe catalog pages for all Arconia recipes from the OpenRewrite recipe model."
+    group = "documentation"
+    classpath = sourceSets.main.runtimeClasspath
+    mainClass = "io.arconia.rewrite.docs.reference.RecipeCatalogReferenceGenerator"
+    workingDir = rootProject.projectDir
+}
+
+tasks.register("validateRecipeCatalogReference", JavaExec) {
+    description = "Fail if the committed recipe catalog pages are out of date with the recipes."
+    group = "verification"
+    classpath = sourceSets.main.runtimeClasspath
+    mainClass = "io.arconia.rewrite.docs.reference.RecipeCatalogReferenceGenerator"
+    workingDir = rootProject.projectDir
+    systemProperty "reference.check", "true"
+}
+
+tasks.named("check") {
+    dependsOn("validateRecipeCatalogReference")
+}

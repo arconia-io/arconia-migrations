@@ -1,7 +1,7 @@
 = JUnit
 :description: Upgrade recipes for JUnit 6.x.
 
-Arconia Migrations ships an upgrade recipe for each major release of JUnit that is supported by the catalog.
+Arconia Migrations ships an upgrade recipe for each major release of JUnit that it supports.
 
 == Upgrade Guides
 

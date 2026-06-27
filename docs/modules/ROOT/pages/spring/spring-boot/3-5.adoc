@@ -18,6 +18,8 @@ The recipe will:
 * Migrate the Mockito test-support APIs from Spring Boot to Spring Framework: replace `@MockBean` with `@MockitoBean` and `@SpyBean` with `@MockitoSpyBean`, relocate the `MockReset` type to `org.springframework.test.context.bean.override.mockito`, remove the dropped `classes` (and `value` for `@SpyBean`) annotation attributes, and rename the `answer` attribute on `@MockBean` to `answers`.
 * Apply type relocations introduced in 3.5, including moving `RequestMatcherProvider` to the Actuator security package and dropping the `.servlet` segment from `OAuth2ClientAutoConfiguration`.
 
+See its xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot3_UpgradeSpringBoot_3_5[entry in the Recipe Catalog] for the full list of recipes this upgrade applies, each with its options and a before/after example.
+
 == Run the recipe
 
 include::partial$run-recipe.adoc[]

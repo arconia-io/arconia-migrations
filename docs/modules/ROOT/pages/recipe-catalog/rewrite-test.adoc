@@ -1,0 +1,343 @@
+= rewrite-test
+:description: OpenRewrite recipes published in the rewrite-test module.
+
+// AUTO-GENERATED from the OpenRewrite recipe model. Do not edit by hand.
+
+The `rewrite-test` module publishes 9 recipes across 3 categories.
+
+[#family-test]
+== test
+
+*Recipes*
+
+[#io_arconia_rewrite_test_ConvertToRawType]
+=== Convert parameterized types to raw types
+`io.arconia.rewrite.test.ConvertToRawType`
+
+Converts all parameterized usages of a specified Java class to their raw type. Only exact type matches are converted; subclasses and implementations are not affected.
+
+.Options
+[cols="2,1,1,4",options="header"]
+|===
+| Name | Type | Required | Description
+
+| `fullyQualifiedTypeName`
+| String
+| yes
+| The fully qualified name of the Java class whose parameterized types should be converted to raw types. Only exact matches of this type will be converted; subclasses and implementations are not affected. +
+_Example:_ `org.testcontainers.postgresql.PostgreSQLContainer`
+|===
+
+*Example*
+
+.Before
+[source,java]
+----
+import java.util.ArrayList;
+
+class Demo {
+    ArrayList<String> items;
+}
+----
+
+.After
+[source,java]
+----
+import java.util.ArrayList;
+
+class Demo {
+    ArrayList items;
+}
+----
+
+[#family-test-junit]
+== test › junit
+
+*Composite recipes*
+
+[#io_arconia_rewrite_test_junit_UpgradeJUnit_6]
+=== Migrate to JUnit 6.x
+`io.arconia.rewrite.test.junit.UpgradeJUnit_6`
+
+Migrate a Java application to the latest JUnit 6.x release.
+
+_Tags: junit_
+
+.Recipes applied (18)
+[%collapsible]
+====
+* Add Gradle dependency (`org.openrewrite.gradle.AddDependency`)
+* Remove a Gradle or Maven dependency (`org.openrewrite.java.dependencies.RemoveDependency` ×4)
+* Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion` ×2)
+* Upgrade Maven plugin version (`org.openrewrite.maven.UpgradePluginVersion` ×2)
+* Change type (`org.openrewrite.java.ChangeType` ×2)
+* Remove annotation (`org.openrewrite.java.RemoveAnnotation`)
+* Remove annotation attribute (`org.openrewrite.java.RemoveAnnotationAttribute`)
+* Delete property by key (`org.openrewrite.properties.DeleteProperty` ×2)
+* Change method name (`org.openrewrite.java.ChangeMethodName` ×3)
+====
+
+*Example*
+
+.Before
+[source,groovy]
+----
+plugins {
+    id "java-library"
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation "org.junit.jupiter:junit-jupiter"
+}
+----
+
+.After
+[source,groovy]
+----
+plugins {
+    id "java-library"
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation "org.junit.jupiter:junit-jupiter"
+
+    testRuntimeOnly "org.junit.platform:junit-platform-launcher"
+}
+----
+
+[#family-test-testcontainers]
+== test › testcontainers
+
+*Composite recipes*
+
+[#io_arconia_rewrite_test_testcontainers_MigrateCassandraContainer_2]
+=== Migrate Testcontainers `CassandraContainer` to the 2.x package
+`io.arconia.rewrite.test.testcontainers.MigrateCassandraContainer_2`
+
+Moves `org.testcontainers.containers.CassandraContainer` to `org.testcontainers.cassandra.CassandraContainer` along with its supporting types (`CassandraDatabaseDelegate`, `CassandraQueryWaitStrategy`), and converts parameterised usages of the container to raw types.
+
+_Tags: testcontainers_
+
+.Recipes applied (4)
+[%collapsible]
+====
+* Change type (`org.openrewrite.java.ChangeType`)
+* xref:recipe-catalog/rewrite-test.adoc#io_arconia_rewrite_test_ConvertToRawType[Convert parameterized types to raw types] (`io.arconia.rewrite.test.ConvertToRawType`)
+* Change type (`org.openrewrite.java.ChangeType` ×2)
+====
+
+[#io_arconia_rewrite_test_testcontainers_MigrateKafkaContainer_2]
+=== Migrate Testcontainers `KafkaContainer` to the Apache replacement
+`io.arconia.rewrite.test.testcontainers.MigrateKafkaContainer_2`
+
+Migrates `org.testcontainers.containers.KafkaContainer` to `org.testcontainers.kafka.KafkaContainer`, rewriting any `confluentinc/cp-kafka` image into `apache/kafka-native:latest` and inserting an inline note pointing teams that want to stay on Confluent to `ConfluentKafkaContainer`.
+
+_Tags: testcontainers_
+
+.Recipes applied (4)
+[%collapsible]
+====
+* xref:recipe-catalog/rewrite-test.adoc#io_arconia_rewrite_test_testcontainers_ChangeContainerImageName[Change the image name passed to a Testcontainers container] (`io.arconia.rewrite.test.testcontainers.ChangeContainerImageName`)
+* Change type (`org.openrewrite.java.ChangeType`)
+* xref:recipe-catalog/rewrite-test.adoc#io_arconia_rewrite_test_ConvertToRawType[Convert parameterized types to raw types] (`io.arconia.rewrite.test.ConvertToRawType` ×2)
+====
+
+[#io_arconia_rewrite_test_testcontainers_MigrateLocalStackContainer_2]
+=== Migrate Testcontainers `LocalStackContainer` to the 2.x package and API
+`io.arconia.rewrite.test.testcontainers.MigrateLocalStackContainer_2`
+
+Migrates the legacy `org.testcontainers.containers.localstack.LocalStackContainer` to `org.testcontainers.localstack.LocalStackContainer`. Rewrites `Service` enum constants into the plain string names expected by `withServices(String...)`, collapses `getEndpointOverride(...)` into the unified no-arg `getEndpoint()`, and expands bare-tag constructor arguments into full image names so the 2.x constructor pulls the right image.
+
+_Tags: testcontainers_
+
+.Recipes applied (28)
+[%collapsible]
+====
+* xref:recipe-catalog/rewrite-test.adoc#io_arconia_rewrite_test_testcontainers_MigrateLocalStackServiceEnum_2[Replace `LocalStackContainer.Service` enum constants with string literals] (`io.arconia.rewrite.test.testcontainers.MigrateLocalStackServiceEnum_2`)
+** Replace constant with literal value (`org.openrewrite.java.ReplaceConstant` ×22)
+* Change method name (`org.openrewrite.java.ChangeMethodName`)
+* Delete method argument (`org.openrewrite.java.DeleteMethodArgument`)
+* xref:recipe-catalog/rewrite-test.adoc#io_arconia_rewrite_test_testcontainers_MigrateLocalStackImageArg[Migrate LocalStackContainer bare-version constructor argument] (`io.arconia.rewrite.test.testcontainers.MigrateLocalStackImageArg`)
+* Change type (`org.openrewrite.java.ChangeType`)
+* xref:recipe-catalog/rewrite-test.adoc#io_arconia_rewrite_test_ConvertToRawType[Convert parameterized types to raw types] (`io.arconia.rewrite.test.ConvertToRawType`)
+====
+
+[#io_arconia_rewrite_test_testcontainers_UpgradeTestcontainers_2]
+=== Migrate to Testcontainers 2.x
+`io.arconia.rewrite.test.testcontainers.UpgradeTestcontainers_2`
+
+Migrate a Java application to the latest Testcontainers 2.x release.
+
+_Tags: testcontainers_
+
+.Recipes applied (151)
+[%collapsible]
+====
+* Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency` ×12)
+* Remove a Gradle or Maven dependency (`org.openrewrite.java.dependencies.RemoveDependency`)
+* Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency` ×49)
+* Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+* xref:recipe-catalog/rewrite-test.adoc#io_arconia_rewrite_test_testcontainers_MigrateCassandraContainer_2[Migrate Testcontainers `CassandraContainer` to the 2.x package] (`io.arconia.rewrite.test.testcontainers.MigrateCassandraContainer_2`)
+** Change type (`org.openrewrite.java.ChangeType`)
+** xref:recipe-catalog/rewrite-test.adoc#io_arconia_rewrite_test_ConvertToRawType[Convert parameterized types to raw types] (`io.arconia.rewrite.test.ConvertToRawType`)
+** Change type (`org.openrewrite.java.ChangeType` ×2)
+* Change type (`org.openrewrite.java.ChangeType`)
+* xref:recipe-catalog/rewrite-test.adoc#io_arconia_rewrite_test_ConvertToRawType[Convert parameterized types to raw types] (`io.arconia.rewrite.test.ConvertToRawType`)
+* Change type (`org.openrewrite.java.ChangeType`)
+* xref:recipe-catalog/rewrite-test.adoc#io_arconia_rewrite_test_ConvertToRawType[Convert parameterized types to raw types] (`io.arconia.rewrite.test.ConvertToRawType`)
+* Change type (`org.openrewrite.java.ChangeType`)
+* xref:recipe-catalog/rewrite-test.adoc#io_arconia_rewrite_test_ConvertToRawType[Convert parameterized types to raw types] (`io.arconia.rewrite.test.ConvertToRawType`)
+* Change type (`org.openrewrite.java.ChangeType`)
+* xref:recipe-catalog/rewrite-test.adoc#io_arconia_rewrite_test_ConvertToRawType[Convert parameterized types to raw types] (`io.arconia.rewrite.test.ConvertToRawType`)
+* Change type (`org.openrewrite.java.ChangeType`)
+* xref:recipe-catalog/rewrite-test.adoc#io_arconia_rewrite_test_ConvertToRawType[Convert parameterized types to raw types] (`io.arconia.rewrite.test.ConvertToRawType`)
+* Change type (`org.openrewrite.java.ChangeType`)
+* xref:recipe-catalog/rewrite-test.adoc#io_arconia_rewrite_test_ConvertToRawType[Convert parameterized types to raw types] (`io.arconia.rewrite.test.ConvertToRawType`)
+* Change type (`org.openrewrite.java.ChangeType`)
+* xref:recipe-catalog/rewrite-test.adoc#io_arconia_rewrite_test_ConvertToRawType[Convert parameterized types to raw types] (`io.arconia.rewrite.test.ConvertToRawType`)
+* Change type (`org.openrewrite.java.ChangeType`)
+* … and 36 more
+====
+
+*Example*
+
+.Before
+[source,java]
+----
+import org.testcontainers.containers.PostgreSQLContainer;
+
+class Demo {
+    PostgreSQLContainer<?> postgresContainer = new PostgreSQLContainer<>("postgres:latest");
+
+    PostgreSQLContainer<?> container() {
+        return postgresContainer;
+    }
+}
+----
+
+.After
+[source,java]
+----
+import org.testcontainers.postgresql.PostgreSQLContainer;
+
+class Demo {
+    PostgreSQLContainer postgresContainer = new PostgreSQLContainer("postgres:latest");
+
+    PostgreSQLContainer container() {
+        return postgresContainer;
+    }
+}
+----
+
+[#io_arconia_rewrite_test_testcontainers_MigrateLocalStackServiceEnum_2]
+=== Replace `LocalStackContainer.Service` enum constants with string literals
+`io.arconia.rewrite.test.testcontainers.MigrateLocalStackServiceEnum_2`
+
+Rewrites references to the legacy `org.testcontainers.containers.localstack.LocalStackContainer.Service` enum constants into the plain string names expected by the Testcontainers 2.x `withServices(String...)` API.
+
+_Tags: testcontainers_
+
+.Recipes applied (22)
+[%collapsible]
+====
+* Replace constant with literal value (`org.openrewrite.java.ReplaceConstant` ×22)
+====
+
+*Recipes*
+
+[#io_arconia_rewrite_test_testcontainers_ChangeContainerImageName]
+=== Change the image name passed to a Testcontainers container
+`io.arconia.rewrite.test.testcontainers.ChangeContainerImageName`
+
+Rewrites the image argument of a Testcontainers container constructor when the original image starts with `oldImagePrefix`. Supports a string literal, `DockerImageName.parse(...)` (including chained calls on the parsed instance), and the deprecated `new DockerImageName(...)` (one- and two-arg) forms. Non-literal image arguments (e.g. references to constants) are left untouched. When `comment` is set, a block comment with that text is inserted inline before each rewritten constructor call.
+
+.Options
+[cols="2,1,1,4",options="header"]
+|===
+| Name | Type | Required | Description
+
+| `containerType`
+| String
+| yes
+| Fully qualified name of the container class whose constructor's image argument should be rewritten. +
+_Example:_ `org.testcontainers.containers.KafkaContainer`
+| `oldImagePrefix`
+| String
+| yes
+| Literal prefix matched via `String.startsWith` against the image string passed to the container constructor. +
+_Example:_ `confluentinc/cp-kafka`
+| `newImageName`
+| String
+| yes
+| Image name (without tag) used to replace the matched image name. +
+_Example:_ `apache/kafka-native`
+| `newImageTag`
+| String
+| no
+| Image tag used to replace the matched image's tag. When omitted, the original tag is preserved (and the result has no tag if the original had none). +
+_Example:_ `latest`
+| `comment`
+| String
+| no
+| Optional block comment inserted inline before each rewritten constructor call. Useful for surfacing a migration note (e.g. suggesting an alternative API). Must not contain `*/`. +
+_Example:_ `To keep using Confluent, switch to ConfluentKafkaContainer.`
+|===
+
+*Example*
+
+.Before
+[source,java]
+----
+import org.testcontainers.containers.KafkaContainer;
+
+class Demo {
+    KafkaContainer kafka = new KafkaContainer("confluentinc/cp-kafka:7.0");
+}
+----
+
+.After
+[source,java]
+----
+import org.testcontainers.containers.KafkaContainer;
+
+class Demo {
+    KafkaContainer kafka = new KafkaContainer("apache/kafka-native:latest");
+}
+----
+
+[#io_arconia_rewrite_test_testcontainers_MigrateLocalStackImageArg]
+=== Migrate LocalStackContainer bare-version constructor argument
+`io.arconia.rewrite.test.testcontainers.MigrateLocalStackImageArg`
+
+Rewrites `new LocalStackContainer("<tag>")` calls — where the string is a bare tag (no `/`) — into `new LocalStackContainer("localstack/localstack:<tag>")`. The 1.x constructor treated a single string as a tag; the 2.x constructor expects a full image name.
+
+*Example*
+
+.Before
+[source,java]
+----
+import org.testcontainers.containers.localstack.LocalStackContainer;
+
+class Demo {
+    LocalStackContainer localstack = new LocalStackContainer("0.11.2");
+}
+----
+
+.After
+[source,java]
+----
+import org.testcontainers.containers.localstack.LocalStackContainer;
+
+class Demo {
+    LocalStackContainer localstack = new LocalStackContainer("localstack/localstack:0.11.2");
+}
+----
+

@@ -1,7 +1,7 @@
 = Testcontainers
 :description: Upgrade recipes for Testcontainers 2.x.
 
-Arconia Migrations ships an upgrade recipe for each major release of Testcontainers that is supported by the catalog.
+Arconia Migrations ships an upgrade recipe for each major release of Testcontainers that it supports.
 
 == Upgrade Guides
 
