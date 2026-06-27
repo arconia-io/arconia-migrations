@@ -8,7 +8,7 @@ plugins {
 dependencies {
     implementation project(":rewrite-docling")
     implementation project(":rewrite-spring")
-    implementation project(":rewrite-test")
+    implementation project(":rewrite-testing")
 
     implementation "org.jspecify:jspecify:${jSpecifyVersion}"
     implementation "org.slf4j:slf4j-api:${slf4jVersion}"

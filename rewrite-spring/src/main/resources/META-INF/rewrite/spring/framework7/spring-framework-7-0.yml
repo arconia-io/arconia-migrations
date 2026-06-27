@@ -17,7 +17,7 @@ recipeList:
 
   # Managed Dependencies
   - org.openrewrite.java.jackson.UpgradeJackson_2_3
-  - io.arconia.rewrite.test.junit.UpgradeJUnit_6
+  - io.arconia.rewrite.testing.junit.UpgradeJUnit_6
 
   # Spring Framework Modules
   - io.arconia.rewrite.spring.framework7.MigrateSpringCore_7_0

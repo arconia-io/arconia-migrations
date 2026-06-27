@@ -1,8 +1,8 @@
 = Testcontainers 2
 :description: Migrate your project to the latest Testcontainers 2.x release.
-:cli-command: arconia rewrite run --recipe-name io.arconia.rewrite.test.testcontainers.UpgradeTestcontainers_2
-:recipe-id: io.arconia.rewrite.test.testcontainers.UpgradeTestcontainers_2
-:rewrite-module: rewrite-test
+:cli-command: arconia rewrite run --recipe-name io.arconia.rewrite.testing.testcontainers.UpgradeTestcontainers_2
+:recipe-id: io.arconia.rewrite.testing.testcontainers.UpgradeTestcontainers_2
+:rewrite-module: rewrite-testing
 
 When upgrading Testcontainers to a newer version, refer to the https://github.com/testcontainers/testcontainers-java/releases/tag/2.0.0[Testcontainers 2.0 Release Notes] to find out about newly introduced APIs, deprecated APIs, and information about breaking changes.
 
@@ -19,7 +19,7 @@ The recipe will:
 * Drop the self-referential generic type parameter from the relocated container types so they can be used as raw types (for example, `CassandraContainer<?>` becomes `CassandraContainer`).
 * Rename `ContainerState.getContainerIpAddress()` to `getHost()`.
 
-See its xref:recipe-catalog/rewrite-test.adoc#io_arconia_rewrite_test_testcontainers_UpgradeTestcontainers_2[entry in the Recipe Catalog] for the full list of recipes this upgrade applies, each with its options and a before/after example.
+See its xref:recipe-catalog/rewrite-testing.adoc#io_arconia_rewrite_testing_testcontainers_UpgradeTestcontainers_2[entry in the Recipe Catalog] for the full list of recipes this upgrade applies, each with its options and a before/after example.
 
 == Run the recipe
 

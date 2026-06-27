@@ -16,7 +16,7 @@ dependencies {
         api project(":rewrite-arconia")
         api project(":rewrite-docling")
         api project(":rewrite-spring")
-        api project(":rewrite-test")
+        api project(":rewrite-testing")
     }
 
     api platform("org.openrewrite.recipe:rewrite-recipe-bom:${openRewriteVersion}")

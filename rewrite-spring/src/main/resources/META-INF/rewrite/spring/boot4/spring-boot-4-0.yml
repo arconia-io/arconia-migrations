@@ -77,7 +77,7 @@ recipeList:
       newVersion: 8.x
 
   # Managed Dependencies
-  - io.arconia.rewrite.test.testcontainers.UpgradeTestcontainers_2
+  - io.arconia.rewrite.testing.testcontainers.UpgradeTestcontainers_2
   - io.arconia.rewrite.spring.cloud2025.UpgradeSpringCloud_2025_1
   - io.arconia.rewrite.spring.ai2.UpgradeSpringAi_2_0
 

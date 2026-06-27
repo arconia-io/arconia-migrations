@@ -9,7 +9,7 @@ Read both before adding or changing a recipe. The [Versioning and Support](https
 
 ## Module and resource layout
 
-Recipes are organized into modules by area (for example `rewrite-spring` and `rewrite-test`). Within each module:
+Recipes are organized into modules by area (for example `rewrite-spring` and `rewrite-testing`). Within each module:
 
 * **Declarative recipes** are YAML under `src/main/resources/META-INF/rewrite/<area>/...`. Prefer these: most migrations are a composition of existing building blocks.
 * **Imperative recipes** are Java under `src/main/java/io/arconia/rewrite/<area>/...`, used when a transformation needs logic that declarative YAML can't express. Every package is `@NullMarked` (null-safety is enforced on `src/main`; see the `code-quality-conventions` build plugin).

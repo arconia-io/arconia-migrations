@@ -1,7 +1,7 @@
-= Testing
+= Testing Frameworks
 :description: Upgrade recipes for JUnit and Testcontainers.
 
-Arconia Migrations provides OpenRewrite recipes for the common Java testing frameworks. All recipes in this category are published in the `rewrite-test` module. Browse them all in the xref:recipe-catalog/rewrite-test.adoc[Recipe Catalog].
+Arconia Migrations provides OpenRewrite recipes for the common Java testing frameworks. All recipes in this category are published in the `rewrite-testing` module. Browse them all in the xref:recipe-catalog/rewrite-testing.adoc[Recipe Catalog].
 
 == Upgrade Guides
 
