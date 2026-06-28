@@ -18,7 +18,7 @@ Migrate a Java application to the latest Docling 0.2.x release.
 
 _Tags: docling_
 
-.Recipes applied (3)
+.Recipes applied
 [%collapsible]
 ====
 * Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
@@ -59,7 +59,7 @@ Migrate a Java application to the latest Docling 0.3.x release.
 
 _Tags: docling_
 
-.Recipes applied (6)
+.Recipes applied
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-docling.adoc#io_arconia_rewrite_docling_UpgradeDocling_0_2[Migrate to Docling 0.2] (`io.arconia.rewrite.docling.UpgradeDocling_0_2`)

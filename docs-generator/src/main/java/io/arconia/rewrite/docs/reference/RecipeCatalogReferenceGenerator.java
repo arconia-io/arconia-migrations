@@ -290,7 +290,7 @@ public final class RecipeCatalogReferenceGenerator {
         }
 
         if (isComposite(r)) {
-            sb.append(".Recipes applied (").append(countTree(r.getRecipeList())).append(")\n");
+            sb.append(".Recipes applied\n");
             sb.append("[%collapsible]\n====\n");
             renderTree(sb, r.getRecipeList(), 1);
             sb.append("====\n\n");
@@ -352,14 +352,6 @@ public final class RecipeCatalogReferenceGenerator {
 
     private static boolean sameName(RecipeDescriptor a, RecipeDescriptor b) {
         return a.getName().equals(b.getName());
-    }
-
-    private static int countTree(List<RecipeDescriptor> children) {
-        int total = 0;
-        for (RecipeDescriptor c : children) {
-            total += 1 + countTree(c.getRecipeList());
-        }
-        return total;
     }
 
     private static String renderIndex(Map<String, List<RecipeDescriptor>> byModule) {

@@ -18,7 +18,7 @@ Migrate a Spring Boot application to the latest Arconia 0.10.x release.
 
 _Tags: arconia_
 
-.Recipes applied (4)
+.Recipes applied
 [%collapsible]
 ====
 * Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
@@ -68,7 +68,7 @@ Migrate a Spring Boot application to the latest Arconia 0.11.x release.
 
 _Tags: arconia_
 
-.Recipes applied (24)
+.Recipes applied
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-arconia.adoc#io_arconia_rewrite_framework_UpgradeArconia_0_10[Migrate to Arconia 0.10] (`io.arconia.rewrite.framework.UpgradeArconia_0_10`)
@@ -131,7 +131,7 @@ Migrate a Spring Boot application to the latest Arconia 0.12.x release.
 
 _Tags: arconia_
 
-.Recipes applied (28)
+.Recipes applied
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-arconia.adoc#io_arconia_rewrite_framework_UpgradeArconia_0_11[Migrate to Arconia 0.11] (`io.arconia.rewrite.framework.UpgradeArconia_0_11`)
@@ -186,7 +186,7 @@ Migrate a Spring Boot application to the latest Arconia 0.13.x release.
 
 _Tags: arconia_
 
-.Recipes applied (34)
+.Recipes applied
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-arconia.adoc#io_arconia_rewrite_framework_UpgradeArconia_0_12[Migrate to Arconia 0.12] (`io.arconia.rewrite.framework.UpgradeArconia_0_12`)
@@ -233,7 +233,7 @@ Migrate a Spring Boot application to the latest Arconia 0.14.x release.
 
 _Tags: arconia_
 
-.Recipes applied (77)
+.Recipes applied
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-arconia.adoc#io_arconia_rewrite_framework_UpgradeArconia_0_13[Migrate to Arconia 0.13] (`io.arconia.rewrite.framework.UpgradeArconia_0_13`)
@@ -291,7 +291,7 @@ Migrate a Spring Boot application to the latest Arconia 0.15.x release.
 
 _Tags: arconia_
 
-.Recipes applied (79)
+.Recipes applied
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-arconia.adoc#io_arconia_rewrite_framework_UpgradeArconia_0_14[Migrate to Arconia 0.14] (`io.arconia.rewrite.framework.UpgradeArconia_0_14`)
@@ -322,7 +322,7 @@ Migrate a Spring Boot application to the latest Arconia 0.16.x release.
 
 _Tags: arconia_
 
-.Recipes applied (81)
+.Recipes applied
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-arconia.adoc#io_arconia_rewrite_framework_UpgradeArconia_0_15[Migrate to Arconia 0.15] (`io.arconia.rewrite.framework.UpgradeArconia_0_15`)
@@ -351,7 +351,7 @@ Migrate a Spring Boot application to the latest Arconia 0.17.x release.
 
 _Tags: arconia_
 
-.Recipes applied (1153)
+.Recipes applied
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-arconia.adoc#io_arconia_rewrite_framework_UpgradeArconia_0_16[Migrate to Arconia 0.16] (`io.arconia.rewrite.framework.UpgradeArconia_0_16`)
@@ -419,7 +419,7 @@ Migrate a Spring Boot application to the latest Arconia 0.18.x release.
 
 _Tags: arconia_
 
-.Recipes applied (1171)
+.Recipes applied
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-arconia.adoc#io_arconia_rewrite_framework_UpgradeArconia_0_17[Migrate to Arconia 0.17] (`io.arconia.rewrite.framework.UpgradeArconia_0_17`)
@@ -492,7 +492,7 @@ Migrate a Spring Boot application to the latest Arconia 0.19.x release.
 
 _Tags: arconia_
 
-.Recipes applied (1259)
+.Recipes applied
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-arconia.adoc#io_arconia_rewrite_framework_UpgradeArconia_0_18[Migrate to Arconia 0.18] (`io.arconia.rewrite.framework.UpgradeArconia_0_18`)
@@ -603,7 +603,7 @@ Migrate a Spring Boot application to the latest Arconia 0.20.x release.
 
 _Tags: arconia_
 
-.Recipes applied (1269)
+.Recipes applied
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-arconia.adoc#io_arconia_rewrite_framework_UpgradeArconia_0_19[Migrate to Arconia 0.19] (`io.arconia.rewrite.framework.UpgradeArconia_0_19`)
@@ -660,7 +660,7 @@ Migrate a Spring Boot application to the latest Arconia 0.21.x release.
 
 _Tags: arconia_
 
-.Recipes applied (1271)
+.Recipes applied
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-arconia.adoc#io_arconia_rewrite_framework_UpgradeArconia_0_20[Migrate to Arconia 0.20] (`io.arconia.rewrite.framework.UpgradeArconia_0_20`)
@@ -699,7 +699,7 @@ Migrate a Spring Boot application to the latest Arconia 0.22.x release.
 
 _Tags: arconia_
 
-.Recipes applied (1332)
+.Recipes applied
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-arconia.adoc#io_arconia_rewrite_framework_UpgradeArconia_0_21[Migrate to Arconia 0.21] (`io.arconia.rewrite.framework.UpgradeArconia_0_21`)
@@ -757,7 +757,7 @@ Migrate a Spring Boot application to the latest Arconia 0.23.x release.
 
 _Tags: arconia_
 
-.Recipes applied (1334)
+.Recipes applied
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-arconia.adoc#io_arconia_rewrite_framework_UpgradeArconia_0_22[Migrate to Arconia 0.22] (`io.arconia.rewrite.framework.UpgradeArconia_0_22`)
@@ -779,7 +779,7 @@ Migrate a Spring Boot application to the latest Arconia 0.24.x release.
 
 _Tags: arconia_
 
-.Recipes applied (1336)
+.Recipes applied
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-arconia.adoc#io_arconia_rewrite_framework_UpgradeArconia_0_23[Migrate to Arconia 0.23] (`io.arconia.rewrite.framework.UpgradeArconia_0_23`)
@@ -801,7 +801,7 @@ Migrate a Spring Boot application to the latest Arconia 0.25.x release.
 
 _Tags: arconia_
 
-.Recipes applied (1338)
+.Recipes applied
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-arconia.adoc#io_arconia_rewrite_framework_UpgradeArconia_0_24[Migrate to Arconia 0.24] (`io.arconia.rewrite.framework.UpgradeArconia_0_24`)
@@ -820,7 +820,7 @@ Migrate a Spring Boot application to the latest Arconia 0.26.x release.
 
 _Tags: arconia_
 
-.Recipes applied (1376)
+.Recipes applied
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-arconia.adoc#io_arconia_rewrite_framework_UpgradeArconia_0_25[Migrate to Arconia 0.25] (`io.arconia.rewrite.framework.UpgradeArconia_0_25`)
@@ -901,7 +901,7 @@ Migrate a Spring Boot application to the latest Arconia 0.27.x release.
 
 _Tags: arconia_
 
-.Recipes applied (1422)
+.Recipes applied
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-arconia.adoc#io_arconia_rewrite_framework_UpgradeArconia_0_26[Migrate to Arconia 0.26] (`io.arconia.rewrite.framework.UpgradeArconia_0_26`)
@@ -966,7 +966,7 @@ Migrate a Spring Boot application to the latest Arconia 0.28.x release.
 
 _Tags: arconia_
 
-.Recipes applied (1425)
+.Recipes applied
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-arconia.adoc#io_arconia_rewrite_framework_UpgradeArconia_0_27[Migrate to Arconia 0.27] (`io.arconia.rewrite.framework.UpgradeArconia_0_27`)
@@ -1139,7 +1139,7 @@ Migrate a Spring Boot 3 application from the Spring Boot OTLP partial support to
 
 _Tags: arconia, opentelemetry_
 
-.Recipes applied (40)
+.Recipes applied
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×8)
@@ -1187,7 +1187,7 @@ Migrate a Spring Boot 4 application from the Spring Boot OTLP partial support to
 
 _Tags: arconia, opentelemetry_
 
-.Recipes applied (47)
+.Recipes applied
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×8)

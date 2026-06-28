@@ -63,7 +63,7 @@ Migrate a Java application to the latest JUnit 6.x release.
 
 _Tags: junit_
 
-.Recipes applied (18)
+.Recipes applied
 [%collapsible]
 ====
 * Add Gradle dependency (`org.openrewrite.gradle.AddDependency`)
@@ -126,7 +126,7 @@ Moves `org.testcontainers.containers.CassandraContainer` to `org.testcontainers.
 
 _Tags: testcontainers_
 
-.Recipes applied (4)
+.Recipes applied
 [%collapsible]
 ====
 * Change type (`org.openrewrite.java.ChangeType`)
@@ -142,7 +142,7 @@ Migrates `org.testcontainers.containers.KafkaContainer` to `org.testcontainers.k
 
 _Tags: testcontainers_
 
-.Recipes applied (4)
+.Recipes applied
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-testing.adoc#io_arconia_rewrite_testing_testcontainers_ChangeContainerImageName[Change the image name passed to a Testcontainers container] (`io.arconia.rewrite.testing.testcontainers.ChangeContainerImageName`)
@@ -158,7 +158,7 @@ Migrates the legacy `org.testcontainers.containers.localstack.LocalStackContaine
 
 _Tags: testcontainers_
 
-.Recipes applied (28)
+.Recipes applied
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-testing.adoc#io_arconia_rewrite_testing_testcontainers_MigrateLocalStackServiceEnum_2[Replace `LocalStackContainer.Service` enum constants with string literals] (`io.arconia.rewrite.testing.testcontainers.MigrateLocalStackServiceEnum_2`)
@@ -178,7 +178,7 @@ Migrate a Java application to the latest Testcontainers 2.x release.
 
 _Tags: testcontainers_
 
-.Recipes applied (151)
+.Recipes applied
 [%collapsible]
 ====
 * Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency` ×12)
@@ -245,7 +245,7 @@ Rewrites references to the legacy `org.testcontainers.containers.localstack.Loca
 
 _Tags: testcontainers_
 
-.Recipes applied (22)
+.Recipes applied
 [%collapsible]
 ====
 * Replace constant with literal value (`org.openrewrite.java.ReplaceConstant` ×22)

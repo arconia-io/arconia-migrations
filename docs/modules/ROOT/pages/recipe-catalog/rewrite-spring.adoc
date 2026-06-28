@@ -18,7 +18,7 @@ Migrate Spring AI properties found in configuration data files (YAML and Propert
 
 _Tags: spring, ai_
 
-.Recipes applied (73)
+.Recipes applied
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_ai1_UpgradeSpringAiPropertiesGenerated_1_0[Migrate Spring AI properties to 1.0 (generated)] (`io.arconia.rewrite.spring.ai1.UpgradeSpringAiPropertiesGenerated_1_0`)
@@ -54,7 +54,7 @@ Migrate Spring AI properties found in configuration data files (YAML and Propert
 
 _Tags: spring, ai_
 
-.Recipes applied (22)
+.Recipes applied
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×22)
@@ -68,7 +68,7 @@ Migrate Spring AI properties found in configuration data files (YAML and Propert
 
 _Tags: spring, ai_
 
-.Recipes applied (11)
+.Recipes applied
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×11)
@@ -125,7 +125,7 @@ spring.ai.ollama.chat.options.penalize-newline=true
 
 Update usages of Spring AI Bedrock APIs that were renamed in Spring AI 1.1.
 
-.Recipes applied (1)
+.Recipes applied
 [%collapsible]
 ====
 * Change method name (`org.openrewrite.java.ChangeMethodName`)
@@ -137,7 +137,7 @@ Update usages of Spring AI Bedrock APIs that were renamed in Spring AI 1.1.
 
 Update Spring AI MCP client and server dependencies and relocated auto-configuration types for Spring AI 1.1.
 
-.Recipes applied (22)
+.Recipes applied
 [%collapsible]
 ====
 * Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency` ×2)
@@ -151,7 +151,7 @@ Update Spring AI MCP client and server dependencies and relocated auto-configura
 
 Update usages of Spring AI Model APIs that were relocated or renamed in Spring AI 1.1.
 
-.Recipes applied (6)
+.Recipes applied
 [%collapsible]
 ====
 * Change type (`org.openrewrite.java.ChangeType` ×6)
@@ -165,7 +165,7 @@ Migrate a Spring Boot application to the latest Spring AI 1.0.x release.
 
 _Tags: spring, ai_
 
-.Recipes applied (162)
+.Recipes applied
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_ai1_UpgradeSpringAiProperties_1_0[Migrate Spring AI properties to 1.0] (`io.arconia.rewrite.spring.ai1.UpgradeSpringAiProperties_1_0`)
@@ -218,7 +218,7 @@ Migrate a Spring Boot application to the latest Spring AI 1.1.x release.
 
 _Tags: spring, ai_
 
-.Recipes applied (49)
+.Recipes applied
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_ai1_UpgradeSpringAiProperties_1_1[Migrate Spring AI properties to 1.1] (`io.arconia.rewrite.spring.ai1.UpgradeSpringAiProperties_1_1`)
@@ -440,7 +440,7 @@ Migrate Spring AI properties found in configuration data files (YAML and Propert
 
 _Tags: spring, ai_
 
-.Recipes applied (242)
+.Recipes applied
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_ai2_UpgradeSpringAiPropertiesGenerated_2_0[Migrate Spring AI properties to 2.0 (generated)] (`io.arconia.rewrite.spring.ai2.UpgradeSpringAiPropertiesGenerated_2_0`)
@@ -457,7 +457,7 @@ Migrate Spring AI properties found in configuration data files (YAML and Propert
 
 _Tags: spring, ai_
 
-.Recipes applied (231)
+.Recipes applied
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×5)
@@ -472,7 +472,7 @@ Migrate a Spring Boot application to the latest Spring AI 2.0.x release.
 
 _Tags: spring, ai_
 
-.Recipes applied (343)
+.Recipes applied
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_ai2_UpgradeSpringAiProperties_2_0[Migrate Spring AI properties to 2.0] (`io.arconia.rewrite.spring.ai2.UpgradeSpringAiProperties_2_0`)
@@ -981,7 +981,7 @@ Migrate Spring Boot properties found in configuration data files (YAML and Prope
 
 _Tags: spring, boot_
 
-.Recipes applied (611)
+.Recipes applied
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot3_UpgradeSpringBootPropertiesGenerated_3_5[Migrate Spring Boot properties to 3.5 (generated)] (`io.arconia.rewrite.spring.boot3.UpgradeSpringBootPropertiesGenerated_3_5`)
@@ -1019,7 +1019,7 @@ Migrate Spring Boot properties found in configuration data files (YAML and Prope
 
 _Tags: spring, boot_
 
-.Recipes applied (557)
+.Recipes applied
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×27)
@@ -1053,7 +1053,7 @@ Migrate a Spring Boot application to the latest Spring Boot 3.5.x release.
 
 _Tags: spring, boot_
 
-.Recipes applied (1069)
+.Recipes applied
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot3_UpgradeSpringBootProperties_3_5[Migrate Spring Boot properties to 3.5] (`io.arconia.rewrite.spring.boot3.UpgradeSpringBootProperties_3_5`)
@@ -1157,7 +1157,7 @@ _Tags: spring, boot_
 
 Add AMQP Starter Test.
 
-.Recipes applied (1)
+.Recipes applied
 [%collapsible]
 ====
 * Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
@@ -1169,7 +1169,7 @@ Add AMQP Starter Test.
 
 Add ActiveMQ Starter Test.
 
-.Recipes applied (1)
+.Recipes applied
 [%collapsible]
 ====
 * Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
@@ -1181,7 +1181,7 @@ Add ActiveMQ Starter Test.
 
 Add Actuator Test.
 
-.Recipes applied (1)
+.Recipes applied
 [%collapsible]
 ====
 * Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
@@ -1193,7 +1193,7 @@ Add Actuator Test.
 
 Add Artemis Starter Test.
 
-.Recipes applied (1)
+.Recipes applied
 [%collapsible]
 ====
 * Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
@@ -1205,7 +1205,7 @@ Add Artemis Starter Test.
 
 Add Aspectj Starter Test.
 
-.Recipes applied (1)
+.Recipes applied
 [%collapsible]
 ====
 * Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
@@ -1217,7 +1217,7 @@ Add Aspectj Starter Test.
 
 Add Batch Jdbc Starter Test.
 
-.Recipes applied (1)
+.Recipes applied
 [%collapsible]
 ====
 * Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
@@ -1229,7 +1229,7 @@ Add Batch Jdbc Starter Test.
 
 Add Batch Starter Test.
 
-.Recipes applied (1)
+.Recipes applied
 [%collapsible]
 ====
 * Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
@@ -1241,7 +1241,7 @@ Add Batch Starter Test.
 
 Add Cache Starter Test.
 
-.Recipes applied (1)
+.Recipes applied
 [%collapsible]
 ====
 * Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
@@ -1253,7 +1253,7 @@ Add Cache Starter Test.
 
 Add Cassandra Starter Test.
 
-.Recipes applied (1)
+.Recipes applied
 [%collapsible]
 ====
 * Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
@@ -1265,7 +1265,7 @@ Add Cassandra Starter Test.
 
 Add CloudFoundry Starter Test.
 
-.Recipes applied (1)
+.Recipes applied
 [%collapsible]
 ====
 * Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
@@ -1277,7 +1277,7 @@ Add CloudFoundry Starter Test.
 
 Add Couchbase Starter Test.
 
-.Recipes applied (1)
+.Recipes applied
 [%collapsible]
 ====
 * Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
@@ -1289,7 +1289,7 @@ Add Couchbase Starter Test.
 
 Add Data Cassandra Reactive Starter Test.
 
-.Recipes applied (1)
+.Recipes applied
 [%collapsible]
 ====
 * Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
@@ -1301,7 +1301,7 @@ Add Data Cassandra Reactive Starter Test.
 
 Add Data Cassandra Starter Test.
 
-.Recipes applied (1)
+.Recipes applied
 [%collapsible]
 ====
 * Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
@@ -1313,7 +1313,7 @@ Add Data Cassandra Starter Test.
 
 Add Data Couchbase Reactive Starter Test.
 
-.Recipes applied (1)
+.Recipes applied
 [%collapsible]
 ====
 * Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
@@ -1325,7 +1325,7 @@ Add Data Couchbase Reactive Starter Test.
 
 Add Data Couchbase Starter Test.
 
-.Recipes applied (1)
+.Recipes applied
 [%collapsible]
 ====
 * Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
@@ -1337,7 +1337,7 @@ Add Data Couchbase Starter Test.
 
 Add Data Elasticsearch Starter Test.
 
-.Recipes applied (1)
+.Recipes applied
 [%collapsible]
 ====
 * Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
@@ -1349,7 +1349,7 @@ Add Data Elasticsearch Starter Test.
 
 Add Data JDBC Starter Test.
 
-.Recipes applied (1)
+.Recipes applied
 [%collapsible]
 ====
 * Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
@@ -1361,7 +1361,7 @@ Add Data JDBC Starter Test.
 
 Add Data JPA Starter Test.
 
-.Recipes applied (1)
+.Recipes applied
 [%collapsible]
 ====
 * Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
@@ -1373,7 +1373,7 @@ Add Data JPA Starter Test.
 
 Add Data LDAP Starter Test.
 
-.Recipes applied (1)
+.Recipes applied
 [%collapsible]
 ====
 * Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
@@ -1385,7 +1385,7 @@ Add Data LDAP Starter Test.
 
 Add Data MongoDB Reactive Starter Test.
 
-.Recipes applied (1)
+.Recipes applied
 [%collapsible]
 ====
 * Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
@@ -1397,7 +1397,7 @@ Add Data MongoDB Reactive Starter Test.
 
 Add Data MongoDB Starter Test.
 
-.Recipes applied (1)
+.Recipes applied
 [%collapsible]
 ====
 * Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
@@ -1409,7 +1409,7 @@ Add Data MongoDB Starter Test.
 
 Add Data Neo4J Starter Test.
 
-.Recipes applied (1)
+.Recipes applied
 [%collapsible]
 ====
 * Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
@@ -1421,7 +1421,7 @@ Add Data Neo4J Starter Test.
 
 Add Data R2DBC Starter Test.
 
-.Recipes applied (1)
+.Recipes applied
 [%collapsible]
 ====
 * Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
@@ -1433,7 +1433,7 @@ Add Data R2DBC Starter Test.
 
 Add Data REST Starter Test.
 
-.Recipes applied (1)
+.Recipes applied
 [%collapsible]
 ====
 * Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
@@ -1445,7 +1445,7 @@ Add Data REST Starter Test.
 
 Add Data Redis Reactive Starter Test.
 
-.Recipes applied (1)
+.Recipes applied
 [%collapsible]
 ====
 * Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
@@ -1457,7 +1457,7 @@ Add Data Redis Reactive Starter Test.
 
 Add Data Redis Starter Test.
 
-.Recipes applied (1)
+.Recipes applied
 [%collapsible]
 ====
 * Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
@@ -1469,7 +1469,7 @@ Add Data Redis Starter Test.
 
 Add Elasticsearch Starter Test.
 
-.Recipes applied (1)
+.Recipes applied
 [%collapsible]
 ====
 * Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
@@ -1481,7 +1481,7 @@ Add Elasticsearch Starter Test.
 
 Add Flyway Starter.
 
-.Recipes applied (1)
+.Recipes applied
 [%collapsible]
 ====
 * Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency`)
@@ -1493,7 +1493,7 @@ Add Flyway Starter.
 
 Add Flyway Starter Test.
 
-.Recipes applied (1)
+.Recipes applied
 [%collapsible]
 ====
 * Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
@@ -1505,7 +1505,7 @@ Add Flyway Starter Test.
 
 Add Freemarker Test.
 
-.Recipes applied (1)
+.Recipes applied
 [%collapsible]
 ====
 * Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
@@ -1517,7 +1517,7 @@ Add Freemarker Test.
 
 Add GSON Starter.
 
-.Recipes applied (2)
+.Recipes applied
 [%collapsible]
 ====
 * Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency`)
@@ -1530,7 +1530,7 @@ Add GSON Starter.
 
 Add GSON Starter Test.
 
-.Recipes applied (1)
+.Recipes applied
 [%collapsible]
 ====
 * Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
@@ -1542,7 +1542,7 @@ Add GSON Starter Test.
 
 Add GraphQL Starter Test.
 
-.Recipes applied (1)
+.Recipes applied
 [%collapsible]
 ====
 * Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
@@ -1554,7 +1554,7 @@ Add GraphQL Starter Test.
 
 Add Groovy Templates Test.
 
-.Recipes applied (1)
+.Recipes applied
 [%collapsible]
 ====
 * Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
@@ -1566,7 +1566,7 @@ Add Groovy Templates Test.
 
 Add HATEOAS Starter Test.
 
-.Recipes applied (1)
+.Recipes applied
 [%collapsible]
 ====
 * Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
@@ -1578,7 +1578,7 @@ Add HATEOAS Starter Test.
 
 Add Hazelcast Starter.
 
-.Recipes applied (1)
+.Recipes applied
 [%collapsible]
 ====
 * Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency`)
@@ -1590,7 +1590,7 @@ Add Hazelcast Starter.
 
 Add Hazelcast Starter Test.
 
-.Recipes applied (1)
+.Recipes applied
 [%collapsible]
 ====
 * Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
@@ -1602,7 +1602,7 @@ Add Hazelcast Starter Test.
 
 Add Integration Starter Test.
 
-.Recipes applied (1)
+.Recipes applied
 [%collapsible]
 ====
 * Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
@@ -1614,7 +1614,7 @@ Add Integration Starter Test.
 
 Add JMS Starter.
 
-.Recipes applied (1)
+.Recipes applied
 [%collapsible]
 ====
 * Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency`)
@@ -1626,7 +1626,7 @@ Add JMS Starter.
 
 Add JMS Starter Test.
 
-.Recipes applied (1)
+.Recipes applied
 [%collapsible]
 ====
 * Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
@@ -1638,7 +1638,7 @@ Add JMS Starter Test.
 
 Add JSONB Starter Test.
 
-.Recipes applied (1)
+.Recipes applied
 [%collapsible]
 ====
 * Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
@@ -1650,7 +1650,7 @@ Add JSONB Starter Test.
 
 Add Jackson Starter.
 
-.Recipes applied (2)
+.Recipes applied
 [%collapsible]
 ====
 * Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency`)
@@ -1663,7 +1663,7 @@ Add Jackson Starter.
 
 Add Jackson Starter Test.
 
-.Recipes applied (1)
+.Recipes applied
 [%collapsible]
 ====
 * Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
@@ -1675,7 +1675,7 @@ Add Jackson Starter Test.
 
 Add Jakarta Validation Starter Test.
 
-.Recipes applied (1)
+.Recipes applied
 [%collapsible]
 ====
 * Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
@@ -1687,7 +1687,7 @@ Add Jakarta Validation Starter Test.
 
 Add Jdbc Starter Test.
 
-.Recipes applied (1)
+.Recipes applied
 [%collapsible]
 ====
 * Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
@@ -1699,7 +1699,7 @@ Add Jdbc Starter Test.
 
 Add Jersey Starter Test.
 
-.Recipes applied (1)
+.Recipes applied
 [%collapsible]
 ====
 * Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
@@ -1711,7 +1711,7 @@ Add Jersey Starter Test.
 
 Add Kafka Starter.
 
-.Recipes applied (1)
+.Recipes applied
 [%collapsible]
 ====
 * Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency`)
@@ -1723,7 +1723,7 @@ Add Kafka Starter.
 
 Add Kafka Starter Test.
 
-.Recipes applied (1)
+.Recipes applied
 [%collapsible]
 ====
 * Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
@@ -1735,7 +1735,7 @@ Add Kafka Starter Test.
 
 Add Kotlin Serialization Starter Test.
 
-.Recipes applied (1)
+.Recipes applied
 [%collapsible]
 ====
 * Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
@@ -1747,7 +1747,7 @@ Add Kotlin Serialization Starter Test.
 
 Add LDAP Starter Test.
 
-.Recipes applied (1)
+.Recipes applied
 [%collapsible]
 ====
 * Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
@@ -1759,7 +1759,7 @@ Add LDAP Starter Test.
 
 Add Liquibase Starter.
 
-.Recipes applied (1)
+.Recipes applied
 [%collapsible]
 ====
 * Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency`)
@@ -1771,7 +1771,7 @@ Add Liquibase Starter.
 
 Add Liquibase Starter Test.
 
-.Recipes applied (1)
+.Recipes applied
 [%collapsible]
 ====
 * Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
@@ -1783,7 +1783,7 @@ Add Liquibase Starter Test.
 
 Add Mail Starter Test.
 
-.Recipes applied (1)
+.Recipes applied
 [%collapsible]
 ====
 * Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
@@ -1795,7 +1795,7 @@ Add Mail Starter Test.
 
 Add Micrometer Metrics Starter Test.
 
-.Recipes applied (1)
+.Recipes applied
 [%collapsible]
 ====
 * Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
@@ -1807,7 +1807,7 @@ Add Micrometer Metrics Starter Test.
 
 Add Micrometer Tracing Starter Test.
 
-.Recipes applied (1)
+.Recipes applied
 [%collapsible]
 ====
 * Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
@@ -1819,7 +1819,7 @@ Add Micrometer Tracing Starter Test.
 
 Add MongoDB Starter Test.
 
-.Recipes applied (1)
+.Recipes applied
 [%collapsible]
 ====
 * Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
@@ -1831,7 +1831,7 @@ Add MongoDB Starter Test.
 
 Add Mustache Test.
 
-.Recipes applied (1)
+.Recipes applied
 [%collapsible]
 ====
 * Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
@@ -1843,7 +1843,7 @@ Add Mustache Test.
 
 Add Neo4J Starter Test.
 
-.Recipes applied (1)
+.Recipes applied
 [%collapsible]
 ====
 * Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
@@ -1855,7 +1855,7 @@ Add Neo4J Starter Test.
 
 Add OpenTelemetry Starter for Metrics.
 
-.Recipes applied (1)
+.Recipes applied
 [%collapsible]
 ====
 * Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
@@ -1867,7 +1867,7 @@ Add OpenTelemetry Starter for Metrics.
 
 Add OpenTelemetry Starter for Tracing.
 
-.Recipes applied (1)
+.Recipes applied
 [%collapsible]
 ====
 * Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
@@ -1879,7 +1879,7 @@ Add OpenTelemetry Starter for Tracing.
 
 Add OpenTelemetry Test.
 
-.Recipes applied (6)
+.Recipes applied
 [%collapsible]
 ====
 * Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
@@ -1892,7 +1892,7 @@ Add OpenTelemetry Test.
 
 Add Pulsar Starter Test.
 
-.Recipes applied (1)
+.Recipes applied
 [%collapsible]
 ====
 * Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
@@ -1904,7 +1904,7 @@ Add Pulsar Starter Test.
 
 Add Quartz Starter Test.
 
-.Recipes applied (1)
+.Recipes applied
 [%collapsible]
 ====
 * Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
@@ -1916,7 +1916,7 @@ Add Quartz Starter Test.
 
 Add R2DBC Starter Test.
 
-.Recipes applied (1)
+.Recipes applied
 [%collapsible]
 ====
 * Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
@@ -1928,7 +1928,7 @@ Add R2DBC Starter Test.
 
 Add RSocket Starter Test.
 
-.Recipes applied (1)
+.Recipes applied
 [%collapsible]
 ====
 * Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
@@ -1940,7 +1940,7 @@ Add RSocket Starter Test.
 
 Add Rest Client Starter.
 
-.Recipes applied (2)
+.Recipes applied
 [%collapsible]
 ====
 * Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency` ×2)
@@ -1952,7 +1952,7 @@ Add Rest Client Starter.
 
 Add Rest Client Starter Test.
 
-.Recipes applied (1)
+.Recipes applied
 [%collapsible]
 ====
 * Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
@@ -1964,7 +1964,7 @@ Add Rest Client Starter Test.
 
 Add RestTestClient Module.
 
-.Recipes applied (2)
+.Recipes applied
 [%collapsible]
 ====
 * Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency` ×2)
@@ -1976,7 +1976,7 @@ Add RestTestClient Module.
 
 Add Security OAuth2 Authorization Server Starter Test.
 
-.Recipes applied (1)
+.Recipes applied
 [%collapsible]
 ====
 * Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
@@ -1988,7 +1988,7 @@ Add Security OAuth2 Authorization Server Starter Test.
 
 Add Security OAuth2 Client Starter Test.
 
-.Recipes applied (1)
+.Recipes applied
 [%collapsible]
 ====
 * Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
@@ -2000,7 +2000,7 @@ Add Security OAuth2 Client Starter Test.
 
 Add Security OAuth2 Resource Server Starter Test.
 
-.Recipes applied (1)
+.Recipes applied
 [%collapsible]
 ====
 * Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
@@ -2012,7 +2012,7 @@ Add Security OAuth2 Resource Server Starter Test.
 
 Add Security SAML Starter.
 
-.Recipes applied (1)
+.Recipes applied
 [%collapsible]
 ====
 * Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency`)
@@ -2024,7 +2024,7 @@ Add Security SAML Starter.
 
 Add Security SAML Starter Test.
 
-.Recipes applied (1)
+.Recipes applied
 [%collapsible]
 ====
 * Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
@@ -2036,7 +2036,7 @@ Add Security SAML Starter Test.
 
 Add Security Starter Test.
 
-.Recipes applied (1)
+.Recipes applied
 [%collapsible]
 ====
 * Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
@@ -2048,7 +2048,7 @@ Add Security Starter Test.
 
 Add SendGrid Starter Test.
 
-.Recipes applied (1)
+.Recipes applied
 [%collapsible]
 ====
 * Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
@@ -2060,7 +2060,7 @@ Add SendGrid Starter Test.
 
 Add Session Data Redis Starter.
 
-.Recipes applied (1)
+.Recipes applied
 [%collapsible]
 ====
 * Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency`)
@@ -2072,7 +2072,7 @@ Add Session Data Redis Starter.
 
 Add Session Data Redis Starter Test.
 
-.Recipes applied (1)
+.Recipes applied
 [%collapsible]
 ====
 * Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
@@ -2084,7 +2084,7 @@ Add Session Data Redis Starter Test.
 
 Add Session JDBC Starter.
 
-.Recipes applied (1)
+.Recipes applied
 [%collapsible]
 ====
 * Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency`)
@@ -2096,7 +2096,7 @@ Add Session JDBC Starter.
 
 Add Session JDBC Starter Test.
 
-.Recipes applied (1)
+.Recipes applied
 [%collapsible]
 ====
 * Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
@@ -2108,7 +2108,7 @@ Add Session JDBC Starter Test.
 
 Add Thymeleaf Test.
 
-.Recipes applied (1)
+.Recipes applied
 [%collapsible]
 ====
 * Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
@@ -2120,7 +2120,7 @@ Add Thymeleaf Test.
 
 Add Web Client Starter.
 
-.Recipes applied (1)
+.Recipes applied
 [%collapsible]
 ====
 * Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
@@ -2132,7 +2132,7 @@ Add Web Client Starter.
 
 Add Web Flux Starter Test.
 
-.Recipes applied (1)
+.Recipes applied
 [%collapsible]
 ====
 * Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
@@ -2144,7 +2144,7 @@ Add Web Flux Starter Test.
 
 Add Web MVC Starter Test.
 
-.Recipes applied (1)
+.Recipes applied
 [%collapsible]
 ====
 * Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
@@ -2156,7 +2156,7 @@ Add Web MVC Starter Test.
 
 Add Web Services Starter Test.
 
-.Recipes applied (1)
+.Recipes applied
 [%collapsible]
 ====
 * Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
@@ -2168,7 +2168,7 @@ Add Web Services Starter Test.
 
 Add WebClient Starter Test.
 
-.Recipes applied (1)
+.Recipes applied
 [%collapsible]
 ====
 * Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
@@ -2180,7 +2180,7 @@ Add WebClient Starter Test.
 
 Add WebSocket Starter Test.
 
-.Recipes applied (1)
+.Recipes applied
 [%collapsible]
 ====
 * Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
@@ -2192,7 +2192,7 @@ Add WebSocket Starter Test.
 
 Add WebTestClient Module.
 
-.Recipes applied (1)
+.Recipes applied
 [%collapsible]
 ====
 * Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
@@ -2204,7 +2204,7 @@ Add WebTestClient Module.
 
 Add Zipkin Starter.
 
-.Recipes applied (1)
+.Recipes applied
 [%collapsible]
 ====
 * Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency`)
@@ -2216,7 +2216,7 @@ Add Zipkin Starter.
 
 Add Zipkin Test.
 
-.Recipes applied (2)
+.Recipes applied
 [%collapsible]
 ====
 * Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
@@ -2229,7 +2229,7 @@ Add Zipkin Test.
 
 Add jOOQ Starter Test.
 
-.Recipes applied (1)
+.Recipes applied
 [%collapsible]
 ====
 * Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
@@ -2241,7 +2241,7 @@ Add jOOQ Starter Test.
 
 Migrate AMQP Test.
 
-.Recipes applied (1)
+.Recipes applied
 [%collapsible]
 ====
 * Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency`)
@@ -2253,7 +2253,7 @@ Migrate AMQP Test.
 
 Migrate Aspectj Starter.
 
-.Recipes applied (1)
+.Recipes applied
 [%collapsible]
 ====
 * Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency`)
@@ -2265,7 +2265,7 @@ Migrate Aspectj Starter.
 
 Migrate Batch Test.
 
-.Recipes applied (1)
+.Recipes applied
 [%collapsible]
 ====
 * Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency`)
@@ -2277,7 +2277,7 @@ Migrate Batch Test.
 
 Migrate GraphQL Test.
 
-.Recipes applied (1)
+.Recipes applied
 [%collapsible]
 ====
 * Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency`)
@@ -2289,7 +2289,7 @@ Migrate GraphQL Test.
 
 Migrate Kafka Test.
 
-.Recipes applied (1)
+.Recipes applied
 [%collapsible]
 ====
 * Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency`)
@@ -2301,7 +2301,7 @@ Migrate Kafka Test.
 
 Migrate Kotlinx Serialization Json Starter.
 
-.Recipes applied (1)
+.Recipes applied
 [%collapsible]
 ====
 * Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency`)
@@ -2313,7 +2313,7 @@ Migrate Kotlinx Serialization Json Starter.
 
 Migrate Kotlinx Serialization Json Starter Test.
 
-.Recipes applied (1)
+.Recipes applied
 [%collapsible]
 ====
 * Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency`)
@@ -2325,7 +2325,7 @@ Migrate Kotlinx Serialization Json Starter Test.
 
 Migrate Security OAuth2 Authorization Server Starter.
 
-.Recipes applied (1)
+.Recipes applied
 [%collapsible]
 ====
 * Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency`)
@@ -2337,7 +2337,7 @@ Migrate Security OAuth2 Authorization Server Starter.
 
 Migrate Security OAuth2 Client Starter.
 
-.Recipes applied (1)
+.Recipes applied
 [%collapsible]
 ====
 * Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency`)
@@ -2349,7 +2349,7 @@ Migrate Security OAuth2 Client Starter.
 
 Migrate Security OAuth2 Resource Server Starter.
 
-.Recipes applied (1)
+.Recipes applied
 [%collapsible]
 ====
 * Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency`)
@@ -2361,7 +2361,7 @@ Migrate Security OAuth2 Resource Server Starter.
 
 Migrate Security Test.
 
-.Recipes applied (1)
+.Recipes applied
 [%collapsible]
 ====
 * Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency`)
@@ -2373,7 +2373,7 @@ Migrate Security Test.
 
 Migrate Spring Boot AMQP module to Spring Boot 4.0.
 
-.Recipes applied (9)
+.Recipes applied
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_MigrateAmqpTest[Migrate AMQP Test] (`io.arconia.rewrite.spring.boot4.MigrateAmqpTest`)
@@ -2428,7 +2428,7 @@ class Demo {
 
 Migrate Spring Boot ActiveMQ module to Spring Boot 4.0.
 
-.Recipes applied (6)
+.Recipes applied
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddActiveMqStarterTest[Add ActiveMQ Starter Test] (`io.arconia.rewrite.spring.boot4.AddActiveMqStarterTest`)
@@ -2476,7 +2476,7 @@ class Demo {
 
 Migrate Spring Boot Actuator module to Spring Boot 4.0.
 
-.Recipes applied (2)
+.Recipes applied
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddActuatorStarterTest[Add Actuator Test] (`io.arconia.rewrite.spring.boot4.AddActuatorStarterTest`)
@@ -2489,7 +2489,7 @@ Migrate Spring Boot Actuator module to Spring Boot 4.0.
 
 Migrate Spring Boot Artemis module to Spring Boot 4.0.
 
-.Recipes applied (8)
+.Recipes applied
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddArtemisStarterTest[Add Artemis Starter Test] (`io.arconia.rewrite.spring.boot4.AddArtemisStarterTest`)
@@ -2540,7 +2540,7 @@ class Demo {
 
 Migrate Spring Boot AspectJ module to Spring Boot 4.0.
 
-.Recipes applied (4)
+.Recipes applied
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_MigrateAspectjStarter[Migrate Aspectj Starter] (`io.arconia.rewrite.spring.boot4.MigrateAspectjStarter`)
@@ -2590,7 +2590,7 @@ dependencies {
 
 Migrate Spring Boot Batch JDBC module to Spring Boot 4.0.
 
-.Recipes applied (4)
+.Recipes applied
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddBatchJdbcStarterTest[Add Batch Jdbc Starter Test] (`io.arconia.rewrite.spring.boot4.AddBatchJdbcStarterTest`)
@@ -2630,7 +2630,7 @@ class Demo {
 
 Migrate Spring Boot Batch module to Spring Boot 4.0.
 
-.Recipes applied (13)
+.Recipes applied
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_MigrateBatchTest[Migrate Batch Test] (`io.arconia.rewrite.spring.boot4.MigrateBatchTest`)
@@ -2693,7 +2693,7 @@ class Demo {
 
 Migrate Spring Boot Cache module to Spring Boot 4.0.
 
-.Recipes applied (8)
+.Recipes applied
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddCacheStarterTest[Add Cache Starter Test] (`io.arconia.rewrite.spring.boot4.AddCacheStarterTest`)
@@ -2752,7 +2752,7 @@ class Demo {
 
 Migrate Spring Boot Cassandra module to Spring Boot 4.0.
 
-.Recipes applied (5)
+.Recipes applied
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddCassandraStarterTest[Add Cassandra Starter Test] (`io.arconia.rewrite.spring.boot4.AddCassandraStarterTest`)
@@ -2796,7 +2796,7 @@ class Demo {
 
 Migrate Spring Boot Cloud Foundry module to Spring Boot 4.0.
 
-.Recipes applied (3)
+.Recipes applied
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddCloudFoundryStarterTest[Add CloudFoundry Starter Test] (`io.arconia.rewrite.spring.boot4.AddCloudFoundryStarterTest`)
@@ -2836,7 +2836,7 @@ class Demo {
 
 Migrate Spring Boot Core module to Spring Boot 4.0.
 
-.Recipes applied (6)
+.Recipes applied
 [%collapsible]
 ====
 * Change type (`org.openrewrite.java.ChangeType` ×2)
@@ -2892,7 +2892,7 @@ org.springframework.boot.EnvironmentPostProcessor=io.arconia.openinference.obser
 
 Migrate Spring Boot Couchbase module to Spring Boot 4.0.
 
-.Recipes applied (5)
+.Recipes applied
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddCouchbaseStarterTest[Add Couchbase Starter Test] (`io.arconia.rewrite.spring.boot4.AddCouchbaseStarterTest`)
@@ -2936,7 +2936,7 @@ class Demo {
 
 Migrate Spring Boot Data Cassandra module to Spring Boot 4.0.
 
-.Recipes applied (10)
+.Recipes applied
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddDataCassandraStarterTest[Add Data Cassandra Starter Test] (`io.arconia.rewrite.spring.boot4.AddDataCassandraStarterTest`)
@@ -2994,7 +2994,7 @@ class Demo {
 
 Migrate Spring Boot Data Commons module to Spring Boot 4.0.
 
-.Recipes applied (9)
+.Recipes applied
 [%collapsible]
 ====
 * Change type (`org.openrewrite.java.ChangeType` ×9)
@@ -3056,7 +3056,7 @@ class Demo {
 
 Migrate Spring Boot Data Couchbase module to Spring Boot 4.0.
 
-.Recipes applied (11)
+.Recipes applied
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddDataCouchbaseStarterTest[Add Data Couchbase Starter Test] (`io.arconia.rewrite.spring.boot4.AddDataCouchbaseStarterTest`)
@@ -3114,7 +3114,7 @@ class Demo {
 
 Migrate Spring Boot Data Elasticsearch module to Spring Boot 4.0.
 
-.Recipes applied (9)
+.Recipes applied
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddDataElasticsearchStarterTest[Add Data Elasticsearch Starter Test] (`io.arconia.rewrite.spring.boot4.AddDataElasticsearchStarterTest`)
@@ -3174,7 +3174,7 @@ class Demo {
 
 Migrate Spring Boot Data JDBC module to Spring Boot 4.0.
 
-.Recipes applied (7)
+.Recipes applied
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddDataJdbcStarterTest[Add Data JDBC Starter Test] (`io.arconia.rewrite.spring.boot4.AddDataJdbcStarterTest`)
@@ -3214,7 +3214,7 @@ class Demo {
 
 Migrate Spring Boot Data JPA module to Spring Boot 4.0.
 
-.Recipes applied (5)
+.Recipes applied
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddDataJpaStarterTest[Add Data JPA Starter Test] (`io.arconia.rewrite.spring.boot4.AddDataJpaStarterTest`)
@@ -3258,7 +3258,7 @@ class Demo {
 
 Migrate Spring Boot Data LDAP module to Spring Boot 4.0.
 
-.Recipes applied (5)
+.Recipes applied
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddDataLdapStarterTest[Add Data LDAP Starter Test] (`io.arconia.rewrite.spring.boot4.AddDataLdapStarterTest`)
@@ -3302,7 +3302,7 @@ class Demo {
 
 Migrate Spring Boot Data MongoDB module to Spring Boot 4.0.
 
-.Recipes applied (10)
+.Recipes applied
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddDataMongoDbStarterTest[Add Data MongoDB Starter Test] (`io.arconia.rewrite.spring.boot4.AddDataMongoDbStarterTest`)
@@ -3360,7 +3360,7 @@ class Demo {
 
 Migrate Spring Boot Data Neo4J module to Spring Boot 4.0.
 
-.Recipes applied (9)
+.Recipes applied
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddDataNeo4jStarterTest[Add Data Neo4J Starter Test] (`io.arconia.rewrite.spring.boot4.AddDataNeo4jStarterTest`)
@@ -3416,7 +3416,7 @@ class Demo {
 
 Migrate Spring Boot Data R2DBC module to Spring Boot 4.0.
 
-.Recipes applied (6)
+.Recipes applied
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddDataR2dbcStarterTest[Add Data R2DBC Starter Test] (`io.arconia.rewrite.spring.boot4.AddDataR2dbcStarterTest`)
@@ -3460,7 +3460,7 @@ class Demo {
 
 Migrate Spring Boot Data REST module to Spring Boot 4.0.
 
-.Recipes applied (4)
+.Recipes applied
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddDataRestStarterTest[Add Data REST Starter Test] (`io.arconia.rewrite.spring.boot4.AddDataRestStarterTest`)
@@ -3500,7 +3500,7 @@ class Demo {
 
 Migrate Spring Boot Data Redis module to Spring Boot 4.0.
 
-.Recipes applied (22)
+.Recipes applied
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddDataRedisStarterTest[Add Data Redis Starter Test] (`io.arconia.rewrite.spring.boot4.AddDataRedisStarterTest`)
@@ -3582,7 +3582,7 @@ class Demo {
 
 Migrate Spring Boot Elasticsearch module to Spring Boot 4.0.
 
-.Recipes applied (9)
+.Recipes applied
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddElasticsearchStarterTest[Add Elasticsearch Starter Test] (`io.arconia.rewrite.spring.boot4.AddElasticsearchStarterTest`)
@@ -3638,7 +3638,7 @@ class Demo {
 
 Migrate Spring Boot Flyway module to Spring Boot 4.0.
 
-.Recipes applied (7)
+.Recipes applied
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddFlywayStarter[Add Flyway Starter] (`io.arconia.rewrite.spring.boot4.AddFlywayStarter`)
@@ -3685,7 +3685,7 @@ class Demo {
 
 Migrate Spring Boot Freemarker module to Spring Boot 4.0.
 
-.Recipes applied (3)
+.Recipes applied
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddFreemarkerStarterTest[Add Freemarker Test] (`io.arconia.rewrite.spring.boot4.AddFreemarkerStarterTest`)
@@ -3721,7 +3721,7 @@ class Demo {
 
 Migrate Spring Boot GSON module to Spring Boot 4.0.
 
-.Recipes applied (6)
+.Recipes applied
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddGsonStarter[Add GSON Starter] (`io.arconia.rewrite.spring.boot4.AddGsonStarter`)
@@ -3760,7 +3760,7 @@ class Demo {
 
 Migrate Spring Boot GraphQL module to Spring Boot 4.0.
 
-.Recipes applied (9)
+.Recipes applied
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_MigrateGraphQlTest[Migrate GraphQL Test] (`io.arconia.rewrite.spring.boot4.MigrateGraphQlTest`)
@@ -3816,7 +3816,7 @@ class Demo {
 
 Migrate Spring Boot Groovy Templates module to Spring Boot 4.0.
 
-.Recipes applied (3)
+.Recipes applied
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddGroovyTemplatesStarterTest[Add Groovy Templates Test] (`io.arconia.rewrite.spring.boot4.AddGroovyTemplatesStarterTest`)
@@ -3852,7 +3852,7 @@ class Demo {
 
 Migrate Spring Boot H2 Console module to Spring Boot 4.0.
 
-.Recipes applied (1)
+.Recipes applied
 [%collapsible]
 ====
 * Rename package name (`org.openrewrite.java.ChangePackage`)
@@ -3886,7 +3886,7 @@ class Demo {
 
 Migrate Spring Boot HATEOAS module to Spring Boot 4.0.
 
-.Recipes applied (3)
+.Recipes applied
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddHateoasStarterTest[Add HATEOAS Starter Test] (`io.arconia.rewrite.spring.boot4.AddHateoasStarterTest`)
@@ -3922,7 +3922,7 @@ class Demo {
 
 Migrate Spring Boot HTTP Client module to Spring Boot 4.0.
 
-.Recipes applied (6)
+.Recipes applied
 [%collapsible]
 ====
 * Change type (`org.openrewrite.java.ChangeType` ×6)
@@ -3972,7 +3972,7 @@ class Demo {
 
 Migrate Spring Boot HTTP Coded module to Spring Boot 4.0.
 
-.Recipes applied (2)
+.Recipes applied
 [%collapsible]
 ====
 * Change type (`org.openrewrite.java.ChangeType`)
@@ -4011,7 +4011,7 @@ class Demo {
 
 Migrate Spring Boot HTTP Converter module to Spring Boot 4.0.
 
-.Recipes applied (2)
+.Recipes applied
 [%collapsible]
 ====
 * Change type (`org.openrewrite.java.ChangeType` ×2)
@@ -4049,7 +4049,7 @@ class Demo {
 
 Migrate Spring Boot Hazelcast module to Spring Boot 4.0.
 
-.Recipes applied (7)
+.Recipes applied
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddHazelcastStarter[Add Hazelcast Starter] (`io.arconia.rewrite.spring.boot4.AddHazelcastStarter`)
@@ -4096,7 +4096,7 @@ class Demo {
 
 Migrate Spring Boot Health module to Spring Boot 4.0.
 
-.Recipes applied (42)
+.Recipes applied
 [%collapsible]
 ====
 * Change type (`org.openrewrite.java.ChangeType` ×11)
@@ -4272,7 +4272,7 @@ class Demo {
 
 Migrate Spring Boot Hibernate module to Spring Boot 4.0.
 
-.Recipes applied (6)
+.Recipes applied
 [%collapsible]
 ====
 * Rename package name (`org.openrewrite.java.ChangePackage`)
@@ -4327,7 +4327,7 @@ class Demo {
 
 Migrate Spring Boot Integration module to Spring Boot 4.0.
 
-.Recipes applied (5)
+.Recipes applied
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddIntegrationStarterTest[Add Integration Starter Test] (`io.arconia.rewrite.spring.boot4.AddIntegrationStarterTest`)
@@ -4369,7 +4369,7 @@ class Demo {
 
 Migrate Spring Boot JDBC module to Spring Boot 4.0.
 
-.Recipes applied (19)
+.Recipes applied
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddJdbcStarterTest[Add Jdbc Starter Test] (`io.arconia.rewrite.spring.boot4.AddJdbcStarterTest`)
@@ -4460,7 +4460,7 @@ class Demo {
 
 Migrate Spring Boot JMS module to Spring Boot 4.0.
 
-.Recipes applied (7)
+.Recipes applied
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddJmsStarter[Add JMS Starter] (`io.arconia.rewrite.spring.boot4.AddJmsStarter`)
@@ -4508,7 +4508,7 @@ class Demo {
 
 Migrate Spring Boot JOOQ module to Spring Boot 4.0.
 
-.Recipes applied (5)
+.Recipes applied
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddJooqStarterTest[Add jOOQ Starter Test] (`io.arconia.rewrite.spring.boot4.AddJooqStarterTest`)
@@ -4553,7 +4553,7 @@ class Demo {
 
 Migrate Spring Boot JPA module to Spring Boot 4.0.
 
-.Recipes applied (8)
+.Recipes applied
 [%collapsible]
 ====
 * Rename package name (`org.openrewrite.java.ChangePackage`)
@@ -4616,7 +4616,7 @@ class Demo {
 
 Migrate Spring Boot JSONB module to Spring Boot 4.0.
 
-.Recipes applied (3)
+.Recipes applied
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddJsonbStarterTest[Add JSONB Starter Test] (`io.arconia.rewrite.spring.boot4.AddJsonbStarterTest`)
@@ -4652,7 +4652,7 @@ class Demo {
 
 Migrate Spring Boot Jackson module to Spring Boot 4.0.
 
-.Recipes applied (15)
+.Recipes applied
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddJacksonStarter[Add Jackson Starter] (`io.arconia.rewrite.spring.boot4.AddJacksonStarter`)
@@ -4721,7 +4721,7 @@ class Demo {
 
 Migrate Spring Boot Jersey module to Spring Boot 4.0.
 
-.Recipes applied (13)
+.Recipes applied
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddJerseyStarterTest[Add Jersey Starter Test] (`io.arconia.rewrite.spring.boot4.AddJerseyStarterTest`)
@@ -4794,7 +4794,7 @@ class Demo {
 
 Migrate Spring Boot Jetty module to Spring Boot 4.0.
 
-.Recipes applied (11)
+.Recipes applied
 [%collapsible]
 ====
 * Change type (`org.openrewrite.java.ChangeType` ×8)
@@ -4862,7 +4862,7 @@ class Demo {
 
 Migrate Spring Boot Kafka module to Spring Boot 4.0.
 
-.Recipes applied (8)
+.Recipes applied
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddKafkaStarter[Add Kafka Starter] (`io.arconia.rewrite.spring.boot4.AddKafkaStarter`)
@@ -4907,7 +4907,7 @@ class Demo {
 
 Migrate Spring Boot Kotlinx module to Spring Boot 4.0.
 
-.Recipes applied (6)
+.Recipes applied
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_MigrateKotlinxSerializationJsonStarter[Migrate Kotlinx Serialization Json Starter] (`io.arconia.rewrite.spring.boot4.MigrateKotlinxSerializationJsonStarter`)
@@ -4960,7 +4960,7 @@ dependencies {
 
 Migrate Spring Boot LDAP module to Spring Boot 4.0.
 
-.Recipes applied (6)
+.Recipes applied
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddLdapStarterTest[Add LDAP Starter Test] (`io.arconia.rewrite.spring.boot4.AddLdapStarterTest`)
@@ -5009,7 +5009,7 @@ class Demo {
 
 Migrate Spring Boot Liquibase module to Spring Boot 4.0.
 
-.Recipes applied (7)
+.Recipes applied
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddLiquibaseStarter[Add Liquibase Starter] (`io.arconia.rewrite.spring.boot4.AddLiquibaseStarter`)
@@ -5056,7 +5056,7 @@ class Demo {
 
 Migrate Spring Boot Mail module to Spring Boot 4.0.
 
-.Recipes applied (5)
+.Recipes applied
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddMailStarterTest[Add Mail Starter Test] (`io.arconia.rewrite.spring.boot4.AddMailStarterTest`)
@@ -5102,7 +5102,7 @@ class Demo {
 
 Migrate Spring Boot Micrometer Metrics module to Spring Boot 4.0.
 
-.Recipes applied (40)
+.Recipes applied
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddMicrometerMetricsStarterTest[Add Micrometer Metrics Starter Test] (`io.arconia.rewrite.spring.boot4.AddMicrometerMetricsStarterTest`)
@@ -5280,7 +5280,7 @@ class Demo {
 
 Migrate Spring Boot Micrometer Observation module to Spring Boot 4.0.
 
-.Recipes applied (3)
+.Recipes applied
 [%collapsible]
 ====
 * Change type (`org.openrewrite.java.ChangeType` ×3)
@@ -5322,7 +5322,7 @@ class Demo {
 
 Migrate Spring Boot Micrometer Tracing Brave module to Spring Boot 4.0.
 
-.Recipes applied (1)
+.Recipes applied
 [%collapsible]
 ====
 * Change type (`org.openrewrite.java.ChangeType`)
@@ -5356,7 +5356,7 @@ class Demo {
 
 Migrate Spring Boot Micrometer Tracing OpenTelemetry module to Spring Boot 4.0.
 
-.Recipes applied (12)
+.Recipes applied
 [%collapsible]
 ====
 * Change type (`org.openrewrite.java.ChangeType` ×12)
@@ -5424,7 +5424,7 @@ class Demo {
 
 Migrate Spring Boot Micrometer Tracing module to Spring Boot 4.0.
 
-.Recipes applied (12)
+.Recipes applied
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddMicrometerTracingStarterTest[Add Micrometer Tracing Starter Test] (`io.arconia.rewrite.spring.boot4.AddMicrometerTracingStarterTest`)
@@ -5486,7 +5486,7 @@ class Demo {
 
 Migrate Spring Boot MongoDB module to Spring Boot 4.0.
 
-.Recipes applied (6)
+.Recipes applied
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddMongoDbStarterTest[Add MongoDB Starter Test] (`io.arconia.rewrite.spring.boot4.AddMongoDbStarterTest`)
@@ -5536,7 +5536,7 @@ class Demo {
 
 Migrate Spring Boot Mustache module to Spring Boot 4.0.
 
-.Recipes applied (7)
+.Recipes applied
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddMustacheStarterTest[Add Mustache Test] (`io.arconia.rewrite.spring.boot4.AddMustacheStarterTest`)
@@ -5583,7 +5583,7 @@ class Demo {
 
 Migrate Spring Boot Neo4J module to Spring Boot 4.0.
 
-.Recipes applied (5)
+.Recipes applied
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddNeo4jStarterTest[Add Neo4J Starter Test] (`io.arconia.rewrite.spring.boot4.AddNeo4jStarterTest`)
@@ -5629,7 +5629,7 @@ class Demo {
 
 Migrate Spring Boot Netty module to Spring Boot 4.0.
 
-.Recipes applied (1)
+.Recipes applied
 [%collapsible]
 ====
 * Rename package name (`org.openrewrite.java.ChangePackage`)
@@ -5663,7 +5663,7 @@ class Demo {
 
 Migrate Spring Boot OpenTelemetry module to Spring Boot 4.0.
 
-.Recipes applied (18)
+.Recipes applied
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddOpenTelemetryStarterForMetrics[Add OpenTelemetry Starter for Metrics] (`io.arconia.rewrite.spring.boot4.AddOpenTelemetryStarterForMetrics`)
@@ -5729,7 +5729,7 @@ class Demo {
 
 Migrate Spring Boot Persistence module to Spring Boot 4.0.
 
-.Recipes applied (4)
+.Recipes applied
 [%collapsible]
 ====
 * Change type (`org.openrewrite.java.ChangeType` ×4)
@@ -5775,7 +5775,7 @@ class Demo {
 
 Migrate Spring Boot Pulsar module to Spring Boot 4.0.
 
-.Recipes applied (6)
+.Recipes applied
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddPulsarStarterTest[Add Pulsar Starter Test] (`io.arconia.rewrite.spring.boot4.AddPulsarStarterTest`)
@@ -5823,7 +5823,7 @@ class Demo {
 
 Migrate Spring Boot Quartz module to Spring Boot 4.0.
 
-.Recipes applied (7)
+.Recipes applied
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddQuartzStarterTest[Add Quartz Starter Test] (`io.arconia.rewrite.spring.boot4.AddQuartzStarterTest`)
@@ -5876,7 +5876,7 @@ class Demo {
 
 Migrate Spring Boot R2DBC module to Spring Boot 4.0.
 
-.Recipes applied (9)
+.Recipes applied
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddR2dbcStarterTest[Add R2DBC Starter Test] (`io.arconia.rewrite.spring.boot4.AddR2dbcStarterTest`)
@@ -5937,7 +5937,7 @@ class Demo {
 
 Migrate Spring Boot REST Docs module to Spring Boot 4.0.
 
-.Recipes applied (7)
+.Recipes applied
 [%collapsible]
 ====
 * Change type (`org.openrewrite.java.ChangeType` ×7)
@@ -5989,7 +5989,7 @@ class Demo {
 
 Migrate Spring Boot RSocket module to Spring Boot 4.0.
 
-.Recipes applied (3)
+.Recipes applied
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddRsocketStarterTest[Add RSocket Starter Test] (`io.arconia.rewrite.spring.boot4.AddRsocketStarterTest`)
@@ -6025,7 +6025,7 @@ class Demo {
 
 Migrate Spring Boot Reactor Netty module to Spring Boot 4.0.
 
-.Recipes applied (4)
+.Recipes applied
 [%collapsible]
 ====
 * Rename package name (`org.openrewrite.java.ChangePackage`)
@@ -6072,7 +6072,7 @@ class Demo {
 
 Migrate Spring Boot Reactor module to Spring Boot 4.0.
 
-.Recipes applied (2)
+.Recipes applied
 [%collapsible]
 ====
 * Change type (`org.openrewrite.java.ChangeType` ×2)
@@ -6110,7 +6110,7 @@ class Demo {
 
 Migrate Spring Boot RestClient module to Spring Boot 4.0.
 
-.Recipes applied (21)
+.Recipes applied
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddRestClientStarter[Add Rest Client Starter] (`io.arconia.rewrite.spring.boot4.AddRestClientStarter`)
@@ -6184,7 +6184,7 @@ dependencies {
 
 Migrate Spring Boot RestTestClient module to Spring Boot 4.0.
 
-.Recipes applied (4)
+.Recipes applied
 [%collapsible]
 ====
 * Change type (`org.openrewrite.java.ChangeType`)
@@ -6220,7 +6220,7 @@ class Demo {
 
 Migrate Spring Boot SQL module to Spring Boot 4.0.
 
-.Recipes applied (4)
+.Recipes applied
 [%collapsible]
 ====
 * Rename package name (`org.openrewrite.java.ChangePackage`)
@@ -6263,7 +6263,7 @@ class Demo {
 
 Migrate Spring Boot Security OAuth2 Authorization Server module to Spring Boot 4.0.
 
-.Recipes applied (5)
+.Recipes applied
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_MigrateSecurityOAuth2AuthorizationServerStarter[Migrate Security OAuth2 Authorization Server Starter] (`io.arconia.rewrite.spring.boot4.MigrateSecurityOAuth2AuthorizationServerStarter`)
@@ -6301,7 +6301,7 @@ class Demo {
 
 Migrate Spring Boot Security OAuth2 Client module to Spring Boot 4.0.
 
-.Recipes applied (8)
+.Recipes applied
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_MigrateSecurityOAuth2ClientStarter[Migrate Security OAuth2 Client Starter] (`io.arconia.rewrite.spring.boot4.MigrateSecurityOAuth2ClientStarter`)
@@ -6348,7 +6348,7 @@ class Demo {
 
 Migrate Spring Boot Security OAuth2 Resource Server module to Spring Boot 4.0.
 
-.Recipes applied (10)
+.Recipes applied
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_MigrateSecurityOAuth2ResourceServerStarter[Migrate Security OAuth2 Resource Server Starter] (`io.arconia.rewrite.spring.boot4.MigrateSecurityOAuth2ResourceServerStarter`)
@@ -6403,7 +6403,7 @@ class Demo {
 
 Migrate Spring Boot Security SAML2 module to Spring Boot 4.0.
 
-.Recipes applied (5)
+.Recipes applied
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddSecuritySamlStarter[Add Security SAML Starter] (`io.arconia.rewrite.spring.boot4.AddSecuritySamlStarter`)
@@ -6441,7 +6441,7 @@ class Demo {
 
 Migrate Spring Boot Security module to Spring Boot 4.0.
 
-.Recipes applied (25)
+.Recipes applied
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_MigrateSecurityTest[Migrate Security Test] (`io.arconia.rewrite.spring.boot4.MigrateSecurityTest`)
@@ -6545,7 +6545,7 @@ class Demo {
 
 Migrate Spring Boot SendGrid module to Spring Boot 4.0.
 
-.Recipes applied (4)
+.Recipes applied
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddSendGridStarterTest[Add SendGrid Starter Test] (`io.arconia.rewrite.spring.boot4.AddSendGridStarterTest`)
@@ -6585,7 +6585,7 @@ class Demo {
 
 Migrate Spring Boot Servlet module to Spring Boot 4.0.
 
-.Recipes applied (14)
+.Recipes applied
 [%collapsible]
 ====
 * Change type (`org.openrewrite.java.ChangeType` ×13)
@@ -6640,7 +6640,7 @@ class Demo {
 
 Migrate Spring Boot Session Data Redis module to Spring Boot 4.0.
 
-.Recipes applied (5)
+.Recipes applied
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddSessionDataRedisStarter[Add Session Data Redis Starter] (`io.arconia.rewrite.spring.boot4.AddSessionDataRedisStarter`)
@@ -6678,7 +6678,7 @@ class Demo {
 
 Migrate Spring Boot Session JDBC module to Spring Boot 4.0.
 
-.Recipes applied (6)
+.Recipes applied
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddSessionJdbcStarter[Add Session JDBC Starter] (`io.arconia.rewrite.spring.boot4.AddSessionJdbcStarter`)
@@ -6716,7 +6716,7 @@ class Demo {
 
 Migrate Spring Boot Session module to Spring Boot 4.0.
 
-.Recipes applied (5)
+.Recipes applied
 [%collapsible]
 ====
 * Rename package name (`org.openrewrite.java.ChangePackage`)
@@ -6767,7 +6767,7 @@ class Demo {
 
 Migrate Spring Boot Thymeleaf module to Spring Boot 4.0.
 
-.Recipes applied (3)
+.Recipes applied
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddThymeleafStarterTest[Add Thymeleaf Test] (`io.arconia.rewrite.spring.boot4.AddThymeleafStarterTest`)
@@ -6803,7 +6803,7 @@ class Demo {
 
 Migrate Spring Boot Tomcat module to Spring Boot 4.0.
 
-.Recipes applied (13)
+.Recipes applied
 [%collapsible]
 ====
 * Change type (`org.openrewrite.java.ChangeType` ×13)
@@ -6879,7 +6879,7 @@ class Demo {
 
 Migrate Spring Boot Transaction module to Spring Boot 4.0.
 
-.Recipes applied (2)
+.Recipes applied
 [%collapsible]
 ====
 * Change type (`org.openrewrite.java.ChangeType`)
@@ -6918,7 +6918,7 @@ class Demo {
 
 Migrate Spring Boot Validation module to Spring Boot 4.0.
 
-.Recipes applied (3)
+.Recipes applied
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddValidationStarterTest[Add Jakarta Validation Starter Test] (`io.arconia.rewrite.spring.boot4.AddValidationStarterTest`)
@@ -6954,7 +6954,7 @@ class Demo {
 
 Migrate Spring Boot Web MVC module to Spring Boot 4.0.
 
-.Recipes applied (33)
+.Recipes applied
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_MigrateWebMvcStarter[Migrate Web MVC Starter] (`io.arconia.rewrite.spring.boot4.MigrateWebMvcStarter`)
@@ -7086,7 +7086,7 @@ class Demo {
 
 Migrate Spring Boot Web Server module to Spring Boot 4.0.
 
-.Recipes applied (24)
+.Recipes applied
 [%collapsible]
 ====
 * Change type (`org.openrewrite.java.ChangeType` ×24)
@@ -7193,7 +7193,7 @@ class Demo {
 
 Migrate Spring Boot Web Services module to Spring Boot 4.0.
 
-.Recipes applied (7)
+.Recipes applied
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_MigrateWebServicesStarter[Migrate Web Services Starter] (`io.arconia.rewrite.spring.boot4.MigrateWebServicesStarter`)
@@ -7239,7 +7239,7 @@ class Demo {
 
 Migrate Spring Boot WebClient module to Spring Boot 4.0.
 
-.Recipes applied (10)
+.Recipes applied
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddWebClientStarter[Add Web Client Starter] (`io.arconia.rewrite.spring.boot4.AddWebClientStarter`)
@@ -7297,7 +7297,7 @@ class Demo {
 
 Migrate Spring Boot WebFlux module to Spring Boot 4.0.
 
-.Recipes applied (21)
+.Recipes applied
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddWebFluxStarterTest[Add Web Flux Starter Test] (`io.arconia.rewrite.spring.boot4.AddWebFluxStarterTest`)
@@ -7399,7 +7399,7 @@ class Demo {
 
 Migrate Spring Boot WebSocket module to Spring Boot 4.0.
 
-.Recipes applied (3)
+.Recipes applied
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddWebSocketStarterTest[Add WebSocket Starter Test] (`io.arconia.rewrite.spring.boot4.AddWebSocketStarterTest`)
@@ -7435,7 +7435,7 @@ class Demo {
 
 Migrate Spring Boot WebTestClient module to Spring Boot 4.0.
 
-.Recipes applied (6)
+.Recipes applied
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddWebTestClientModule[Add WebTestClient Module] (`io.arconia.rewrite.spring.boot4.AddWebTestClientModule`)
@@ -7483,7 +7483,7 @@ class Demo {
 
 Migrate Spring Boot Zipkin module to Spring Boot 4.0.
 
-.Recipes applied (6)
+.Recipes applied
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddZipkinStarter[Add Zipkin Starter] (`io.arconia.rewrite.spring.boot4.AddZipkinStarter`)
@@ -7524,7 +7524,7 @@ Migrate Spring Boot properties found in configuration data files (YAML and Prope
 
 _Tags: spring, boot_
 
-.Recipes applied (635)
+.Recipes applied
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_UpgradeSpringBootPropertiesGenerated_4_0[Migrate Spring Boot properties to 4.0 (generated)] (`io.arconia.rewrite.spring.boot4.UpgradeSpringBootPropertiesGenerated_4_0`)
@@ -7581,7 +7581,7 @@ Migrate Spring Boot properties found in configuration data files (YAML and Prope
 
 _Tags: spring, boot_
 
-.Recipes applied (596)
+.Recipes applied
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×2)
@@ -7615,7 +7615,7 @@ Migrate Spring Boot properties found in configuration data files (YAML and Prope
 
 _Tags: spring, boot_
 
-.Recipes applied (607)
+.Recipes applied
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_UpgradeSpringBootPropertiesGenerated_4_1[Migrate Spring Boot properties to 4.1 (generated)] (`io.arconia.rewrite.spring.boot4.UpgradeSpringBootPropertiesGenerated_4_1`)
@@ -7668,7 +7668,7 @@ Migrate Spring Boot properties found in configuration data files (YAML and Prope
 
 _Tags: spring, boot_
 
-.Recipes applied (600)
+.Recipes applied
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×2)
@@ -7700,7 +7700,7 @@ _Tags: spring, boot_
 
 Migrate Web MVC Starter.
 
-.Recipes applied (1)
+.Recipes applied
 [%collapsible]
 ====
 * Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency`)
@@ -7712,7 +7712,7 @@ Migrate Web MVC Starter.
 
 Migrate Web Services Starter.
 
-.Recipes applied (1)
+.Recipes applied
 [%collapsible]
 ====
 * Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency`)
@@ -7726,7 +7726,7 @@ Migrate a Spring Boot application to the latest Spring Boot 4.0.x release.
 
 _Tags: spring, boot_
 
-.Recipes applied (3432)
+.Recipes applied
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot3_UpgradeSpringBoot_3_5[Migrate to Spring Boot 3.5] (`io.arconia.rewrite.spring.boot3.UpgradeSpringBoot_3_5`)
@@ -7946,7 +7946,7 @@ Migrate a Spring Boot application to the latest Spring Boot 4.1.x release.
 
 _Tags: spring, boot_
 
-.Recipes applied (4049)
+.Recipes applied
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_UpgradeSpringBoot_4_0[Migrate to Spring Boot 4.0] (`io.arconia.rewrite.spring.boot4.UpgradeSpringBoot_4_0`)
@@ -8221,7 +8221,7 @@ Rename `spring.cloud.gateway.proxy.*` keys to `spring.cloud.gateway.proxy-exchan
 
 _Tags: spring, cloud_
 
-.Recipes applied (4)
+.Recipes applied
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×4)
@@ -8235,7 +8235,7 @@ Rename `spring.cloud.gateway.proxy.*` keys to `spring.cloud.gateway.proxy-exchan
 
 _Tags: spring, cloud_
 
-.Recipes applied (4)
+.Recipes applied
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×4)
@@ -8249,7 +8249,7 @@ Migrate Spring Cloud properties found in configuration data files (YAML and Prop
 
 _Tags: spring, cloud_
 
-.Recipes applied (297)
+.Recipes applied
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_cloud2025_UpgradeSpringCloudPropertiesGenerated_2025_0[Migrate Spring Cloud properties to 2025.0 (generated)] (`io.arconia.rewrite.spring.cloud2025.UpgradeSpringCloudPropertiesGenerated_2025_0`)
@@ -8276,7 +8276,7 @@ Migrate Spring Cloud properties found in configuration data files (YAML and Prop
 
 _Tags: spring, cloud_
 
-.Recipes applied (260)
+.Recipes applied
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×176)
@@ -8297,7 +8297,7 @@ Migrate Spring Cloud properties found in configuration data files (YAML and Prop
 
 _Tags: spring, cloud_
 
-.Recipes applied (16)
+.Recipes applied
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_cloud2025_UpgradeSpringCloudPropertiesGenerated_2025_1[Migrate Spring Cloud properties to 2025.1 (generated)] (`io.arconia.rewrite.spring.cloud2025.UpgradeSpringCloudPropertiesGenerated_2025_1`)
@@ -8313,7 +8313,7 @@ Migrate Spring Cloud properties found in configuration data files (YAML and Prop
 
 _Tags: spring, cloud_
 
-.Recipes applied (15)
+.Recipes applied
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×2)
@@ -8328,7 +8328,7 @@ Migrate a Spring Boot application to the latest Spring Cloud 2025.0.x release.
 
 _Tags: spring, cloud_
 
-.Recipes applied (306)
+.Recipes applied
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_cloud2025_UpgradeSpringCloudProperties_2025_0[Migrate Spring Cloud properties to 2025.0] (`io.arconia.rewrite.spring.cloud2025.UpgradeSpringCloudProperties_2025_0`)
@@ -8403,7 +8403,7 @@ Migrate a Spring Boot application to the latest Spring Cloud 2025.1.x release.
 
 _Tags: spring, cloud_
 
-.Recipes applied (19)
+.Recipes applied
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_cloud2025_UpgradeSpringCloudProperties_2025_1[Migrate Spring Cloud properties to 2025.1] (`io.arconia.rewrite.spring.cloud2025.UpgradeSpringCloudProperties_2025_1`)
@@ -8438,7 +8438,7 @@ spring.cloud.gateway.server.webflux.metrics.path-tags.enabled=true
 
 Update usages of Spring Beans APIs that were renamed or replaced in Spring Framework 6.2.
 
-.Recipes applied (1)
+.Recipes applied
 [%collapsible]
 ====
 * Change method name (`org.openrewrite.java.ChangeMethodName`)
@@ -8450,7 +8450,7 @@ Update usages of Spring Beans APIs that were renamed or replaced in Spring Frame
 
 Update usages of Spring Context APIs that were renamed or replaced in Spring Framework 6.2.
 
-.Recipes applied (1)
+.Recipes applied
 [%collapsible]
 ====
 * Change method name (`org.openrewrite.java.ChangeMethodName`)
@@ -8462,7 +8462,7 @@ Update usages of Spring Context APIs that were renamed or replaced in Spring Fra
 
 Update usages of Spring Messaging APIs that were renamed or replaced in Spring Framework 6.2.
 
-.Recipes applied (6)
+.Recipes applied
 [%collapsible]
 ====
 * Change method name (`org.openrewrite.java.ChangeMethodName` ×6)
@@ -8474,7 +8474,7 @@ Update usages of Spring Messaging APIs that were renamed or replaced in Spring F
 
 Update usages of Spring Test APIs that were renamed or replaced in Spring Framework 6.2.
 
-.Recipes applied (6)
+.Recipes applied
 [%collapsible]
 ====
 * Change method name (`org.openrewrite.java.ChangeMethodName` ×6)
@@ -8486,7 +8486,7 @@ Update usages of Spring Test APIs that were renamed or replaced in Spring Framew
 
 Update usages of Spring Web APIs that were renamed or replaced in Spring Framework 6.2.
 
-.Recipes applied (24)
+.Recipes applied
 [%collapsible]
 ====
 * Change method name (`org.openrewrite.java.ChangeMethodName` ×13)
@@ -8499,7 +8499,7 @@ Update usages of Spring Web APIs that were renamed or replaced in Spring Framewo
 
 Update usages of Spring WebFlux APIs that were renamed or replaced in Spring Framework 6.2.
 
-.Recipes applied (14)
+.Recipes applied
 [%collapsible]
 ====
 * Change method name (`org.openrewrite.java.ChangeMethodName` ×14)
@@ -8511,7 +8511,7 @@ Update usages of Spring WebFlux APIs that were renamed or replaced in Spring Fra
 
 Update usages of Spring WebMVC APIs that were renamed or replaced in Spring Framework 6.2.
 
-.Recipes applied (9)
+.Recipes applied
 [%collapsible]
 ====
 * Change method name (`org.openrewrite.java.ChangeMethodName` ×9)
@@ -8523,7 +8523,7 @@ Update usages of Spring WebMVC APIs that were renamed or replaced in Spring Fram
 
 Update usages of Spring WebSocket APIs that were renamed or replaced in Spring Framework 6.2.
 
-.Recipes applied (7)
+.Recipes applied
 [%collapsible]
 ====
 * Change method name (`org.openrewrite.java.ChangeMethodName` ×7)
@@ -8537,7 +8537,7 @@ Migrate a Spring application to the latest Spring Framework 6.2.x release.
 
 _Tags: spring, framework_
 
-.Recipes applied (78)
+.Recipes applied
 [%collapsible]
 ====
 * Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
@@ -8572,7 +8572,7 @@ _Tags: spring, framework_
 
 Update usages of Spring Core APIs that were renamed or replaced in Spring Framework 7.0.
 
-.Recipes applied (5)
+.Recipes applied
 [%collapsible]
 ====
 * Change type (`org.openrewrite.java.ChangeType` ×2)
@@ -8586,7 +8586,7 @@ Update usages of Spring Core APIs that were renamed or replaced in Spring Framew
 
 Update usages of Spring Test APIs that were renamed or replaced in Spring Framework 7.0.
 
-.Recipes applied (2)
+.Recipes applied
 [%collapsible]
 ====
 * Change method name (`org.openrewrite.java.ChangeMethodName` ×2)
@@ -8598,7 +8598,7 @@ Update usages of Spring Test APIs that were renamed or replaced in Spring Framew
 
 Update usages of Spring Web APIs that were renamed or replaced in Spring Framework 7.0.
 
-.Recipes applied (5)
+.Recipes applied
 [%collapsible]
 ====
 * Change type (`org.openrewrite.java.ChangeType` ×2)
@@ -8612,7 +8612,7 @@ Update usages of Spring Web APIs that were renamed or replaced in Spring Framewo
 
 Update usages of Spring WebFlux APIs that were renamed or replaced in Spring Framework 7.0.
 
-.Recipes applied (6)
+.Recipes applied
 [%collapsible]
 ====
 * Change method name (`org.openrewrite.java.ChangeMethodName` ×5)
@@ -8625,7 +8625,7 @@ Update usages of Spring WebFlux APIs that were renamed or replaced in Spring Fra
 
 Update usages of Spring WebMVC APIs that were renamed or replaced in Spring Framework 7.0.
 
-.Recipes applied (5)
+.Recipes applied
 [%collapsible]
 ====
 * Change method name (`org.openrewrite.java.ChangeMethodName` ×4)
@@ -8640,7 +8640,7 @@ Migrate a Spring application to the latest Spring Framework 7.0.x release.
 
 _Tags: spring, framework_
 
-.Recipes applied (299)
+.Recipes applied
 [%collapsible]
 ====
 * Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
