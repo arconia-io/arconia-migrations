@@ -182,15 +182,12 @@ class UpgradeSpringFramework_6_2_Tests implements RewriteTest {
                 import org.springframework.test.web.reactive.server.ExchangeResult;
                 import org.springframework.test.web.reactive.server.WebTestClient;
                 import org.springframework.test.web.servlet.result.StatusResultMatchers;
-                import org.springframework.web.reactive.function.client.ExchangeStrategies;
 
                 class Demo {
                     void exchange(ExchangeResult result) {
                         result.getRawStatusCode();
                     }
                     void client(WebTestClient client) {
-                        client.mutate().exchangeStrategies(ExchangeStrategies.builder().build());
-                        client.mutate().exchangeStrategies(s -> {});
                         client.post().syncBody(null);
                     }
                     void matchers(StatusResultMatchers matchers) {
@@ -205,15 +202,12 @@ class UpgradeSpringFramework_6_2_Tests implements RewriteTest {
                 import org.springframework.test.web.reactive.server.ExchangeResult;
                 import org.springframework.test.web.reactive.server.WebTestClient;
                 import org.springframework.test.web.servlet.result.StatusResultMatchers;
-                import org.springframework.web.reactive.function.client.ExchangeStrategies;
 
                 class Demo {
                     void exchange(ExchangeResult result) {
                         result.getStatus();
                     }
                     void client(WebTestClient client) {
-                        client.mutate().codecs(ExchangeStrategies.builder().build());
-                        client.mutate().codecs(s -> {});
                         client.post().bodyValue(null);
                     }
                     void matchers(StatusResultMatchers matchers) {
@@ -402,6 +396,7 @@ class UpgradeSpringFramework_6_2_Tests implements RewriteTest {
                         BodyInserters.fromObject("test");
                     }
                     void clientRequest(ClientRequest request) {
+                        request.method();
                         request.method(HttpMethod.GET, URI.create("https://arconia.io"));
                     }
                     void response(ClientResponse clientResponse, ServerResponse serverResponse) {
@@ -453,6 +448,7 @@ class UpgradeSpringFramework_6_2_Tests implements RewriteTest {
                         BodyInserters.fromValue("test");
                     }
                     void clientRequest(ClientRequest request) {
+                        request.method();
                         request.create(HttpMethod.GET, URI.create("https://arconia.io"));
                     }
                     void response(ClientResponse clientResponse, ServerResponse serverResponse) {

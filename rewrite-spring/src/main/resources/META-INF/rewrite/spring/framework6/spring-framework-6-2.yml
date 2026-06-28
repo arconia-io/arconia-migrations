@@ -92,10 +92,6 @@ recipeList:
       methodPattern: org.springframework.test.web.reactive.server.ExchangeResult getRawStatusCode()
       newMethodName: getStatus
   - org.openrewrite.java.ChangeMethodName:
-      methodPattern: org.springframework.test.web.reactive.server.WebTestClient$Builder exchangeStrategies(..)
-      newMethodName: codecs
-      matchOverrides: true
-  - org.openrewrite.java.ChangeMethodName:
       methodPattern: org.springframework.test.web.reactive.server.WebTestClient$RequestBodySpec syncBody(..)
       newMethodName: bodyValue
       matchOverrides: true
@@ -214,7 +210,7 @@ recipeList:
       newMethodName: fromValue
       matchOverrides: true
   - org.openrewrite.java.ChangeMethodName:
-      methodPattern: org.springframework.web.reactive.function.client.ClientRequest method(..)
+      methodPattern: org.springframework.web.reactive.function.client.ClientRequest method(org.springframework.http.HttpMethod, java.net.URI)
       newMethodName: create
       matchOverrides: true
   - org.openrewrite.java.ChangeMethodName:

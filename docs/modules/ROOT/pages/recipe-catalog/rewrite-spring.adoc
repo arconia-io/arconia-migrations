@@ -1053,7 +1053,7 @@ Migrate a Spring Boot application to the latest Spring Boot 3.5.x release.
 
 _Tags: spring, boot_
 
-.Recipes applied (1070)
+.Recipes applied (1069)
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot3_UpgradeSpringBootProperties_3_5[Migrate Spring Boot properties to 3.5] (`io.arconia.rewrite.spring.boot3.UpgradeSpringBootProperties_3_5`)
@@ -1092,7 +1092,7 @@ _Tags: spring, boot_
 ** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_framework6_MigrateSpringMessaging_6_2[Migrate the Spring Messaging module to Spring Framework 6.2] (`io.arconia.rewrite.spring.framework6.MigrateSpringMessaging_6_2`)
 *** Change method name (`org.openrewrite.java.ChangeMethodName` ×6)
 ** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_framework6_MigrateSpringTest_6_2[Migrate the Spring Test module to Spring Framework 6.2] (`io.arconia.rewrite.spring.framework6.MigrateSpringTest_6_2`)
-*** Change method name (`org.openrewrite.java.ChangeMethodName` ×7)
+*** Change method name (`org.openrewrite.java.ChangeMethodName` ×6)
 ** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_framework6_MigrateSpringWeb_6_2[Migrate the Spring Web module to Spring Framework 6.2] (`io.arconia.rewrite.spring.framework6.MigrateSpringWeb_6_2`)
 *** Change method name (`org.openrewrite.java.ChangeMethodName` ×13)
 *** Replace constant with another constant (`org.openrewrite.java.ReplaceConstantWithAnotherConstant` ×11)
@@ -7726,7 +7726,7 @@ Migrate a Spring Boot application to the latest Spring Boot 4.0.x release.
 
 _Tags: spring, boot_
 
-.Recipes applied (3433)
+.Recipes applied (3432)
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot3_UpgradeSpringBoot_3_5[Migrate to Spring Boot 3.5] (`io.arconia.rewrite.spring.boot3.UpgradeSpringBoot_3_5`)
@@ -7946,7 +7946,7 @@ Migrate a Spring Boot application to the latest Spring Boot 4.1.x release.
 
 _Tags: spring, boot_
 
-.Recipes applied (4050)
+.Recipes applied (4049)
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_UpgradeSpringBoot_4_0[Migrate to Spring Boot 4.0] (`io.arconia.rewrite.spring.boot4.UpgradeSpringBoot_4_0`)
@@ -8474,10 +8474,10 @@ Update usages of Spring Messaging APIs that were renamed or replaced in Spring F
 
 Update usages of Spring Test APIs that were renamed or replaced in Spring Framework 6.2.
 
-.Recipes applied (7)
+.Recipes applied (6)
 [%collapsible]
 ====
-* Change method name (`org.openrewrite.java.ChangeMethodName` ×7)
+* Change method name (`org.openrewrite.java.ChangeMethodName` ×6)
 ====
 
 [#io_arconia_rewrite_spring_framework6_MigrateSpringWeb_6_2]
@@ -8537,7 +8537,7 @@ Migrate a Spring application to the latest Spring Framework 6.2.x release.
 
 _Tags: spring, framework_
 
-.Recipes applied (79)
+.Recipes applied (78)
 [%collapsible]
 ====
 * Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
@@ -8549,7 +8549,7 @@ _Tags: spring, framework_
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_framework6_MigrateSpringMessaging_6_2[Migrate the Spring Messaging module to Spring Framework 6.2] (`io.arconia.rewrite.spring.framework6.MigrateSpringMessaging_6_2`)
 ** Change method name (`org.openrewrite.java.ChangeMethodName` ×6)
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_framework6_MigrateSpringTest_6_2[Migrate the Spring Test module to Spring Framework 6.2] (`io.arconia.rewrite.spring.framework6.MigrateSpringTest_6_2`)
-** Change method name (`org.openrewrite.java.ChangeMethodName` ×7)
+** Change method name (`org.openrewrite.java.ChangeMethodName` ×6)
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_framework6_MigrateSpringWeb_6_2[Migrate the Spring Web module to Spring Framework 6.2] (`io.arconia.rewrite.spring.framework6.MigrateSpringWeb_6_2`)
 ** Change method name (`org.openrewrite.java.ChangeMethodName` ×13)
 ** Replace constant with another constant (`org.openrewrite.java.ReplaceConstantWithAnotherConstant` ×11)
