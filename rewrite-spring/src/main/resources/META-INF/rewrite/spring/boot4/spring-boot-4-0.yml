@@ -66,15 +66,23 @@ recipeList:
       groupId: org.springdoc
       artifactId: "*"
       newVersion: 3.0.x
+      overrideManagedVersion: true
   - org.openrewrite.gradle.ChangeDependency:
       oldGroupId: org.jobrunr
       oldArtifactId: jobrunr-spring-boot-3-starter
       newGroupId: org.jobrunr
       newArtifactId: jobrunr-spring-boot-4-starter
+      newVersion: 8.x
   - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
       groupId: org.jobrunr
       artifactId: "*"
       newVersion: 8.x
+      overrideManagedVersion: true
+  - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
+      groupId: org.zalando
+      artifactId: "logbook-*"
+      newVersion: 4.x
+      overrideManagedVersion: true
 
   # Managed Dependencies
   - io.arconia.rewrite.testing.testcontainers.UpgradeTestcontainers_2

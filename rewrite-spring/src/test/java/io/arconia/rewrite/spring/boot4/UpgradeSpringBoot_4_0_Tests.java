@@ -50,6 +50,105 @@ class UpgradeSpringBoot_4_0_Tests implements RewriteTest {
     }
 
     @Test
+    void logbook() {
+        rewriteRun(
+                spec -> spec.beforeRecipe(withToolingApi()),
+                //language=groovy
+                buildGradle(
+                        """
+                        plugins {
+                            id 'java-library'
+                        }
+
+                        repositories {
+                            mavenCentral()
+                        }
+
+                        dependencies {
+                            implementation platform("org.zalando:logbook-bom:3.12.3")
+                            implementation "org.zalando:logbook-core:3.12.3"
+                        }
+                        """,
+                        spec -> spec.after(actual -> {
+                            assertThat(actual)
+                                    .as("logbook-bom dependency upgraded to 4.x")
+                                    .containsPattern("org\\.zalando:logbook-bom:4\\.\\d+\\.\\d+");
+                            assertThat(actual)
+                                    .as("logbook-core dependency upgraded to 4.x")
+                                    .containsPattern("org\\.zalando:logbook-core:4\\.\\d+\\.\\d+");
+                            return actual;
+                        })
+                )
+        );
+    }
+
+    @Test
+    void jobrunr() {
+        rewriteRun(
+                spec -> spec.beforeRecipe(withToolingApi()),
+                //language=groovy
+                buildGradle(
+                        """
+                        plugins {
+                            id 'java-library'
+                        }
+
+                        repositories {
+                            mavenCentral()
+                        }
+
+                        dependencies {
+                            implementation "org.jobrunr:jobrunr:7.5.3"
+                            implementation "org.jobrunr:jobrunr-spring-boot-3-starter:7.5.3"
+                        }
+                        """,
+                        spec -> spec.after(actual -> {
+                            assertThat(actual)
+                                    .as("jobrunr dependency upgraded to 8.x")
+                                    .containsPattern("org\\.jobrunr:jobrunr:8\\.\\d+\\.\\d+");
+                            assertThat(actual)
+                                    .as("jobrunr starter migrated to Spring Boot 4 and upgraded to 8.x")
+                                    .containsPattern("org\\.jobrunr:jobrunr-spring-boot-4-starter:8\\.\\d+\\.\\d+");
+                            return actual;
+                        })
+                )
+        );
+    }
+
+    @Test
+    void springdoc() {
+        rewriteRun(
+                spec -> spec.beforeRecipe(withToolingApi()),
+                //language=groovy
+                buildGradle(
+                        """
+                        plugins {
+                            id 'java-library'
+                        }
+
+                        repositories {
+                            mavenCentral()
+                        }
+
+                        dependencies {
+                            implementation platform("org.springdoc:springdoc-openapi-bom:2.8.17")
+                            implementation "org.springdoc:springdoc-openapi-starter-webmvc-api:2.8.17"
+                        }
+                        """,
+                        spec -> spec.after(actual -> {
+                            assertThat(actual)
+                                    .as("springdoc-openapi-bom dependency upgraded to 3.0.x")
+                                    .containsPattern("org\\.springdoc:springdoc-openapi-bom:3\\.0\\.\\d+");
+                            assertThat(actual)
+                                    .as("springdoc-openapi-starter-webmvc-api dependency upgraded to 3.0.x")
+                                    .containsPattern("org\\.springdoc:springdoc-openapi-starter-webmvc-api:3\\.0\\.\\d+");
+                            return actual;
+                        })
+                )
+        );
+    }
+
+    @Test
     void typeChangesData() {
         rewriteRun(
                 r -> r.parser(JavaParser.fromJavaVersion().classpathFromResources(new InMemoryExecutionContext(),
