@@ -1958,16 +1958,16 @@ Add Rest Client Starter Test.
 * Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
 ====
 
-[#io_arconia_rewrite_spring_boot4_AddRestClientModule]
-=== Add RestClient Module
-`io.arconia.rewrite.spring.boot4.AddRestClientModule`
+[#io_arconia_rewrite_spring_boot4_AddRestTestClientModule]
+=== Add RestTestClient Module
+`io.arconia.rewrite.spring.boot4.AddRestTestClientModule`
 
-Add RestClient Module.
+Add RestTestClient Module.
 
-.Recipes applied (1)
+.Recipes applied (2)
 [%collapsible]
 ====
-* Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
+* Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency` ×2)
 ====
 
 [#io_arconia_rewrite_spring_boot4_AddSecurityOAuth2AuthorizationServerStarterTest]
@@ -6184,12 +6184,12 @@ dependencies {
 
 Migrate Spring Boot RestTestClient module to Spring Boot 4.0.
 
-.Recipes applied (3)
+.Recipes applied (4)
 [%collapsible]
 ====
 * Change type (`org.openrewrite.java.ChangeType`)
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddRestClientModule[Add RestClient Module] (`io.arconia.rewrite.spring.boot4.AddRestClientModule`)
-** Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddRestTestClientModule[Add RestTestClient Module] (`io.arconia.rewrite.spring.boot4.AddRestTestClientModule`)
+** Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency` ×2)
 ====
 
 *Example*
@@ -7726,7 +7726,7 @@ Migrate a Spring Boot application to the latest Spring Boot 4.0.x release.
 
 _Tags: spring, boot_
 
-.Recipes applied (3431)
+.Recipes applied (3433)
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot3_UpgradeSpringBoot_3_5[Migrate to Spring Boot 3.5] (`io.arconia.rewrite.spring.boot3.UpgradeSpringBoot_3_5`)
@@ -7867,7 +7867,7 @@ _Tags: spring, boot_
 * Update a Gradle plugin by id (`org.openrewrite.gradle.plugins.UpgradePluginVersion`)
 * Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion` ×2)
 * Change Gradle dependency (`org.openrewrite.gradle.ChangeDependency`)
-* Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+* Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion` ×2)
 * xref:recipe-catalog/rewrite-testing.adoc#io_arconia_rewrite_testing_testcontainers_UpgradeTestcontainers_2[Migrate to Testcontainers 2.x] (`io.arconia.rewrite.testing.testcontainers.UpgradeTestcontainers_2`)
 ** Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency` ×12)
 ** Remove a Gradle or Maven dependency (`org.openrewrite.java.dependencies.RemoveDependency`)
@@ -7946,7 +7946,7 @@ Migrate a Spring Boot application to the latest Spring Boot 4.1.x release.
 
 _Tags: spring, boot_
 
-.Recipes applied (4048)
+.Recipes applied (4050)
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_UpgradeSpringBoot_4_0[Migrate to Spring Boot 4.0] (`io.arconia.rewrite.spring.boot4.UpgradeSpringBoot_4_0`)
@@ -7999,7 +7999,7 @@ _Tags: spring, boot_
 ** Update a Gradle plugin by id (`org.openrewrite.gradle.plugins.UpgradePluginVersion`)
 ** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion` ×2)
 ** Change Gradle dependency (`org.openrewrite.gradle.ChangeDependency`)
-** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion` ×2)
 ** xref:recipe-catalog/rewrite-testing.adoc#io_arconia_rewrite_testing_testcontainers_UpgradeTestcontainers_2[Migrate to Testcontainers 2.x] (`io.arconia.rewrite.testing.testcontainers.UpgradeTestcontainers_2`)
 *** Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency` ×12)
 *** Remove a Gradle or Maven dependency (`org.openrewrite.java.dependencies.RemoveDependency`)
