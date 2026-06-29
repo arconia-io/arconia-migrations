@@ -8,3 +8,123 @@ tags:
   - cloud
 recipeList:
   - io.arconia.rewrite.spring.cloud2025.UpgradeSpringCloudPropertiesGenerated_2025_1
+
+  # Spring Cloud Contract
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "stubrunner.amqp.enabled"
+      newPropertyKey: "spring.cloud.contract.stubrunner.amqp.enabled"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "stubrunner.amqp.mock-connection"
+      newPropertyKey: "spring.cloud.contract.stubrunner.amqp.mock-connection"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "stubrunner.classifier"
+      newPropertyKey: "spring.cloud.contract.stubrunner.classifier"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "stubrunner.cloud.consul.enabled"
+      newPropertyKey: "spring.cloud.contract.stubrunner.cloud.consul.enabled"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "stubrunner.cloud.delegate.enabled"
+      newPropertyKey: "spring.cloud.contract.stubrunner.cloud.delegate.enabled"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "stubrunner.cloud.enabled"
+      newPropertyKey: "spring.cloud.contract.stubrunner.cloud.enabled"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "stubrunner.cloud.eureka.enabled"
+      newPropertyKey: "spring.cloud.contract.stubrunner.cloud.eureka.enabled"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "stubrunner.cloud.loadbalancer.enabled"
+      newPropertyKey: "spring.cloud.contract.stubrunner.cloud.loadbalancer.enabled"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "stubrunner.cloud.stubbed.discovery.enabled"
+      newPropertyKey: "spring.cloud.contract.stubrunner.cloud.stubbed.discovery.enabled"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "stubrunner.cloud.zookeeper.enabled"
+      newPropertyKey: "spring.cloud.contract.stubrunner.cloud.zookeeper.enabled"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "stubrunner.consumer-name"
+      newPropertyKey: "spring.cloud.contract.stubrunner.consumer-name"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "stubrunner.delete-stubs-after-test"
+      newPropertyKey: "spring.cloud.contract.stubrunner.delete-stubs-after-test"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "stubrunner.fail-on-no-stubs"
+      newPropertyKey: "spring.cloud.contract.stubrunner.fail-on-no-stubs"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "stubrunner.generate-stubs"
+      newPropertyKey: "spring.cloud.contract.stubrunner.generate-stubs"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "stubrunner.http-server-stub-configurer"
+      newPropertyKey: "spring.cloud.contract.stubrunner.http-server-stub-configurer"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "stubrunner.ids"
+      newPropertyKey: "spring.cloud.contract.stubrunner.ids"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "stubrunner.ids-to-service-ids"
+      newPropertyKey: "spring.cloud.contract.stubrunner.ids-to-service-ids"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "stubrunner.integration.enabled"
+      newPropertyKey: "spring.cloud.contract.stubrunner.integration.enabled"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "stubrunner.jms.enabled"
+      newPropertyKey: "spring.cloud.contract.stubrunner.jms.enabled"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "stubrunner.kafka.enabled"
+      newPropertyKey: "spring.cloud.contract.stubrunner.kafka.enabled"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "stubrunner.kafka.initializer.enabled"
+      newPropertyKey: "spring.cloud.contract.stubrunner.kafka.initializer.enabled"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "stubrunner.mappings-output-folder"
+      newPropertyKey: "spring.cloud.contract.stubrunner.mappings-output-folder"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "stubrunner.max-port"
+      newPropertyKey: "spring.cloud.contract.stubrunner.max-port"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "stubrunner.min-port"
+      newPropertyKey: "spring.cloud.contract.stubrunner.min-port"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "stubrunner.password"
+      newPropertyKey: "spring.cloud.contract.stubrunner.password"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "stubrunner.properties"
+      newPropertyKey: "spring.cloud.contract.stubrunner.properties"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "stubrunner.proxy-host"
+      newPropertyKey: "spring.cloud.contract.stubrunner.proxy-host"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "stubrunner.proxy-port"
+      newPropertyKey: "spring.cloud.contract.stubrunner.proxy-port"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "stubrunner.server-id"
+      newPropertyKey: "spring.cloud.contract.stubrunner.server-id"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "stubrunner.stream.enabled"
+      newPropertyKey: "spring.cloud.contract.stubrunner.stream.enabled"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "stubrunner.stubs-mode"
+      newPropertyKey: "spring.cloud.contract.stubrunner.stubs-mode"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "stubrunner.stubs-per-consumer"
+      newPropertyKey: "spring.cloud.contract.stubrunner.stubs-per-consumer"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "stubrunner.username"
+      newPropertyKey: "spring.cloud.contract.stubrunner.username"
+
+  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
+      propertyKey: "wiremock.server.https-port"
+      comment: "Removed in Spring Cloud Contract 5.0. Set the HTTPS port via @ConfigureWireMock(httpsPort = ...)."
+  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
+      propertyKey: "wiremock.server.https-port-dynamic"
+      comment: "Removed in Spring Cloud Contract 5.0. A dynamic HTTPS port is the default with @EnableWireMock; remove this property."
+  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
+      propertyKey: "wiremock.server.port-dynamic"
+      comment: "Removed in Spring Cloud Contract 5.0. A dynamic port is the default with @EnableWireMock; remove this property."
+  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
+      propertyKey: "wiremock.server.files"
+      comment: "Removed in Spring Cloud Contract 5.0. Configure file roots via @ConfigureWireMock(filesUnderClasspath = ... or filesUnderDirectory = ...)."
+  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
+      propertyKey: "wiremock.server.stubs"
+      comment: "Removed in Spring Cloud Contract 5.0. Stub mappings now load from the @ConfigureWireMock files root (filesUnderClasspath/filesUnderDirectory)."
+  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
+      propertyKey: "wiremock.reset-mappings-after-each-test"
+      comment: "Removed in Spring Cloud Contract 5.0. Controlled by @ConfigureWireMock(resetWireMockServer = ...), which defaults to true."

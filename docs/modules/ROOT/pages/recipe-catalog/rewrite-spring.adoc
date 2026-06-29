@@ -3,7 +3,7 @@
 
 // AUTO-GENERATED from the OpenRewrite recipe model. Do not edit by hand.
 
-The `rewrite-spring` module publishes 264 recipes across 9 categories.
+The `rewrite-spring` module publishes 265 recipes across 9 categories.
 
 [#family-spring-ai1]
 == spring › ai1
@@ -7896,7 +7896,14 @@ _Tags: spring, boot_
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_cloud2025_UpgradeSpringCloud_2025_1[Migrate to Spring Cloud 2025.1] (`io.arconia.rewrite.spring.cloud2025.UpgradeSpringCloud_2025_1`)
 ** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_cloud2025_UpgradeSpringCloudProperties_2025_1[Migrate Spring Cloud properties to 2025.1] (`io.arconia.rewrite.spring.cloud2025.UpgradeSpringCloudProperties_2025_1`)
 *** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_cloud2025_UpgradeSpringCloudPropertiesGenerated_2025_1[Migrate Spring Cloud properties to 2025.1 (generated)] (`io.arconia.rewrite.spring.cloud2025.UpgradeSpringCloudPropertiesGenerated_2025_1`)
+*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×33)
+*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×6)
 ** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion` ×2)
+** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_cloud2025_MigrateSpringCloudContract_5_0[Migrate Spring Cloud Contract to 5.0] (`io.arconia.rewrite.spring.cloud2025.MigrateSpringCloudContract_5_0`)
+*** Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency`)
+*** Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
+*** Remove annotation attribute (`org.openrewrite.java.RemoveAnnotationAttribute`)
+*** Change type (`org.openrewrite.java.ChangeType`)
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_ai2_UpgradeSpringAi_2_0[Migrate to Spring AI 2.0] (`io.arconia.rewrite.spring.ai2.UpgradeSpringAi_2_0`)
 ** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_ai2_UpgradeSpringAiProperties_2_0[Migrate Spring AI properties to 2.0] (`io.arconia.rewrite.spring.ai2.UpgradeSpringAiProperties_2_0`)
 *** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_ai2_UpgradeSpringAiPropertiesGenerated_2_0[Migrate Spring AI properties to 2.0 (generated)] (`io.arconia.rewrite.spring.ai2.UpgradeSpringAiPropertiesGenerated_2_0`)
@@ -8025,6 +8032,7 @@ _Tags: spring, boot_
 ** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_cloud2025_UpgradeSpringCloud_2025_1[Migrate to Spring Cloud 2025.1] (`io.arconia.rewrite.spring.cloud2025.UpgradeSpringCloud_2025_1`)
 *** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_cloud2025_UpgradeSpringCloudProperties_2025_1[Migrate Spring Cloud properties to 2025.1] (`io.arconia.rewrite.spring.cloud2025.UpgradeSpringCloudProperties_2025_1`)
 *** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion` ×2)
+*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_cloud2025_MigrateSpringCloudContract_5_0[Migrate Spring Cloud Contract to 5.0] (`io.arconia.rewrite.spring.cloud2025.MigrateSpringCloudContract_5_0`)
 ** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_ai2_UpgradeSpringAi_2_0[Migrate to Spring AI 2.0] (`io.arconia.rewrite.spring.ai2.UpgradeSpringAi_2_0`)
 *** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_ai2_UpgradeSpringAiProperties_2_0[Migrate Spring AI properties to 2.0] (`io.arconia.rewrite.spring.ai2.UpgradeSpringAiProperties_2_0`)
 *** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
@@ -8213,6 +8221,47 @@ class MyControllerTest {
 
 *Composite recipes*
 
+[#io_arconia_rewrite_spring_cloud2025_MigrateSpringCloudContract_5_0]
+=== Migrate Spring Cloud Contract to 5.0
+`io.arconia.rewrite.spring.cloud2025.MigrateSpringCloudContract_5_0`
+
+Migrate Spring Cloud Contract usages that changed in the 5.0 release shipped with Spring Cloud 2025.1.
+
+.Recipes applied
+[%collapsible]
+====
+* Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency`)
+* Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
+* Remove annotation attribute (`org.openrewrite.java.RemoveAnnotationAttribute`)
+* Change type (`org.openrewrite.java.ChangeType`)
+====
+
+*Example*
+
+.Before
+[source,java]
+----
+package com.example;
+
+import org.springframework.cloud.contract.wiremock.AutoConfigureWireMock;
+
+@AutoConfigureWireMock(port = 0)
+class DemoTests {
+}
+----
+
+.After
+[source,java]
+----
+package com.example;
+
+import org.wiremock.spring.EnableWireMock;
+
+@EnableWireMock
+class DemoTests {
+}
+----
+
 [#io_arconia_rewrite_spring_cloud2025_MigrateGatewayProxyExchangeWebFluxProperties]
 === Migrate Spring Cloud Gateway proxy properties to proxy-exchange.webflux
 `io.arconia.rewrite.spring.cloud2025.MigrateGatewayProxyExchangeWebFluxProperties`
@@ -8303,6 +8352,8 @@ _Tags: spring, cloud_
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_cloud2025_UpgradeSpringCloudPropertiesGenerated_2025_1[Migrate Spring Cloud properties to 2025.1 (generated)] (`io.arconia.rewrite.spring.cloud2025.UpgradeSpringCloudPropertiesGenerated_2025_1`)
 ** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×2)
 ** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×13)
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×33)
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×6)
 ====
 
 [#io_arconia_rewrite_spring_cloud2025_UpgradeSpringCloudPropertiesGenerated_2025_1]
@@ -8410,7 +8461,14 @@ _Tags: spring, cloud_
 ** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_cloud2025_UpgradeSpringCloudPropertiesGenerated_2025_1[Migrate Spring Cloud properties to 2025.1 (generated)] (`io.arconia.rewrite.spring.cloud2025.UpgradeSpringCloudPropertiesGenerated_2025_1`)
 *** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×2)
 *** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×13)
+** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×33)
+** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×6)
 * Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion` ×2)
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_cloud2025_MigrateSpringCloudContract_5_0[Migrate Spring Cloud Contract to 5.0] (`io.arconia.rewrite.spring.cloud2025.MigrateSpringCloudContract_5_0`)
+** Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency`)
+** Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
+** Remove annotation attribute (`org.openrewrite.java.RemoveAnnotationAttribute`)
+** Change type (`org.openrewrite.java.ChangeType`)
 ====
 
 *Example*

@@ -20,3 +20,33 @@ recipeList:
       groupId: org.springframework.cloud
       artifactId: "*"
       newVersion: 5.0.x
+
+  # Modules
+  - io.arconia.rewrite.spring.cloud2025.MigrateSpringCloudContract_5_0
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.cloud2025.MigrateSpringCloudContract_5_0
+displayName: Migrate Spring Cloud Contract to 5.0
+description: Migrate Spring Cloud Contract usages that changed in the 5.0 release shipped with Spring Cloud 2025.1.
+recipeList:
+  - org.openrewrite.java.dependencies.ChangeDependency:
+      oldGroupId: com.github.tomakehurst
+      oldArtifactId: wiremock-jre8-standalone
+      newGroupId: org.wiremock
+      newArtifactId: wiremock-standalone
+      newVersion: 3.x
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: org.wiremock.integrations
+      artifactId: wiremock-spring-boot
+      version: 3.10.x
+      onlyIfUsing: org.springframework.cloud.contract.wiremock.AutoConfigureWireMock
+      acceptTransitive: true
+      configuration: testImplementation
+      scope: test
+  - org.openrewrite.java.RemoveAnnotationAttribute:
+      annotationType: org.springframework.cloud.contract.wiremock.AutoConfigureWireMock
+      attributeName: port
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.cloud.contract.wiremock.AutoConfigureWireMock
+      newFullyQualifiedTypeName: org.wiremock.spring.EnableWireMock

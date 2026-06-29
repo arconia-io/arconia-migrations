@@ -7,5 +7,5 @@ For curated, step-by-step upgrade guides, see the topic sections in the navigati
 
 * xref:recipe-catalog/rewrite-arconia.adoc[rewrite-arconia] — 45 recipes
 * xref:recipe-catalog/rewrite-docling.adoc[rewrite-docling] — 2 recipes
-* xref:recipe-catalog/rewrite-spring.adoc[rewrite-spring] — 264 recipes
+* xref:recipe-catalog/rewrite-spring.adoc[rewrite-spring] — 265 recipes
 * xref:recipe-catalog/rewrite-testing.adoc[rewrite-testing] — 9 recipes
