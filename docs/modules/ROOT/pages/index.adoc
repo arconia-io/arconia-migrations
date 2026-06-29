@@ -41,7 +41,7 @@ The recipes are published in four Maven artifacts under the `io.arconia.migratio
 | `rewrite-spring`
 | https://spring.io/projects/spring-ai[Spring AI], https://spring.io/projects/spring-boot[Spring Boot], https://spring.io/projects/spring-cloud[Spring Cloud], https://spring.io/projects/spring-framework[Spring Framework]
 
-| `rewrite-test`
+| `rewrite-testing`
 | https://junit.org[JUnit], https://testcontainers.com[Testcontainers]
 |===
 

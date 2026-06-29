@@ -18,6 +18,6 @@ Arconia Migrations builds on the Apache 2.0 recipes in the OpenRewrite catalog a
 To cover the Spring and testing upgrades that Arconia projects rely on, we needed recipes for which no Apache 2.0 module was available in the upstream catalog, so we built our own:
 
 * `rewrite-spring` provides Spring upgrade recipes. It is an independent module and shares no code with the OpenRewrite module of the same name, which is distributed under the https://docs.moderne.io/licensing/moderne-source-available-license/[Moderne Source License].
-* `rewrite-test` provides testing recipes for JUnit and Testcontainers, an area served upstream by `rewrite-testing-frameworks`, which is distributed under the Moderne Source License.
+* `rewrite-testing` provides testing recipes for JUnit and Testcontainers, an area served upstream by `rewrite-testing-frameworks`, which is distributed under the Moderne Source License.
 
 If an Apache 2.0 module covering these areas becomes available upstream, we are happy to contribute to it instead.
