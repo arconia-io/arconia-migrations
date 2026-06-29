@@ -1,0 +1,208 @@
+= rewrite-spring-core
+:description: OpenRewrite recipes published in the rewrite-spring-core module.
+
+// AUTO-GENERATED from the OpenRewrite recipe model. Do not edit by hand.
+
+The `rewrite-spring-core` module publishes 6 recipes across 1 categories.
+
+[#family-spring-boot-properties]
+== spring › boot › properties
+
+*Recipes*
+
+[#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty]
+=== Add a comment to a Spring Boot configuration property
+`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`
+
+Add a comment to a property in Spring Boot configuration files. Optionally, comment out the property itself.
+
+.Options
+[cols="2,1,1,4",options="header"]
+|===
+| Name | Type | Required | Description
+
+| `propertyKey`
+| String
+| yes
+| The key for the property to comment. +
+_Example:_ `spring.ai.ollama.chat.enabled`
+| `comment`
+| String
+| yes
+| The comment to add before the property key. +
+_Example:_ `This property is deprecated and will be removed in future versions.`
+| `commentOutProperty`
+| Boolean
+| no
+| Whether to comment out the property. Defaults to `true`.
+|===
+
+[#io_arconia_rewrite_spring_boot_properties_ChangeSpringBootPropertyValue]
+=== Change the value of a Spring Boot configuration property key
+`io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue`
+
+Change the value of a property in Spring Boot configuration files.
+
+.Options
+[cols="2,1,1,4",options="header"]
+|===
+| Name | Type | Required | Description
+
+| `propertyKey`
+| String
+| yes
+| The property key whose value must change. +
+_Example:_ `arconia.dev.services.*.reusable`
+| `oldPropertyValue`
+| String
+| no
+| The property value to change. +
+_Example:_ `true`
+| `newPropertyValue`
+| String
+| yes
+| The new value for the property key. +
+_Example:_ `always`
+| `useRegex`
+| Boolean
+| no
+| Treats the old property value as a regular expression for matching.
+When enabled, only matching portions are replaced, and capture groups
+can be referenced in the new value. Defaults to `false`.
+
+| `relaxedBinding`
+| Boolean
+| no
+| Whether to match the property key using Spring Boot relaxed binding rules. Defaults to `true`.
+| `pathExpressions`
+| List
+| no
+| Glob expressions to match Spring Boot configuration files to modify.
+Defaults to standard `application.yml`, `application.yaml`, and `application.properties` files (including profile-specific variants).
+Multiple patterns are OR-ed together.
+
+|===
+
+[#io_arconia_rewrite_spring_boot_properties_DeleteSpringBootProperty]
+=== Delete a Spring Boot configuration property
+`io.arconia.rewrite.spring.boot.properties.DeleteSpringBootProperty`
+
+Delete a property in Spring Boot configuration files.
+
+.Options
+[cols="2,1,1,4",options="header"]
+|===
+| Name | Type | Required | Description
+
+| `propertyKey`
+| String
+| yes
+| The key of the property to delete. +
+_Example:_ `arconia.modes.name`
+| `relaxedBinding`
+| Boolean
+| no
+| Whether to match the property key using Spring Boot relaxed binding rules. Defaults to `true`.
+| `pathExpressions`
+| List
+| no
+| Glob expressions to match Spring Boot configuration files to modify.
+Defaults to standard `application.yml`, `application.yaml`, and `application.properties` files (including profile-specific variants).
+Multiple patterns are OR-ed together.
+
+|===
+
+[#io_arconia_rewrite_spring_boot_properties_FindSpringBootConfigFiles]
+=== Find Spring Boot configuration files
+`io.arconia.rewrite.spring.boot.properties.FindSpringBootConfigFiles`
+
+Finds Spring Boot configuration files based on the provided path matchers.
+
+.Options
+[cols="2,1,1,4",options="header"]
+|===
+| Name | Type | Required | Description
+
+| `pathExpressions`
+| List
+| no
+| A list of glob expressions used to match which files contain Spring Boot configuration properties
+and therefore will be modified. If no value is provided, default expressions will be used to match
+the main YAML and Properties files supported by Spring Boot for configuration.
+If multiple patterns are supplied, any of the patterns matching will be interpreted as a match.
+
+|===
+
+[#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey]
+=== Rename Spring Boot configuration property key
+`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey`
+
+Rename the key of a property in Spring Boot configuration files.
+
+.Options
+[cols="2,1,1,4",options="header"]
+|===
+| Name | Type | Required | Description
+
+| `oldPropertyKey`
+| String
+| yes
+| The property key to rename. +
+_Example:_ `arconia.config.profiles.test`
+| `newPropertyKey`
+| String
+| yes
+| The new name for the property key. +
+_Example:_ `arconia.test.profiles`
+| `relaxedBinding`
+| Boolean
+| no
+| Whether to match the old property key using Spring Boot relaxed binding rules. Defaults to `true`.
+| `pathExpressions`
+| List
+| no
+| Glob expressions to match Spring Boot configuration files to modify.
+Defaults to standard `application.yml`, `application.yaml`, and `application.properties` files (including profile-specific variants).
+Multiple patterns are OR-ed together.
+
+|===
+
+[#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKeyIfValue]
+=== Rename a Spring Boot configuration property key if its value matches
+`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKeyIfValue`
+
+Rename the key of a property in Spring Boot configuration files when its current value matches the given value.
+
+.Options
+[cols="2,1,1,4",options="header"]
+|===
+| Name | Type | Required | Description
+
+| `oldPropertyKey`
+| String
+| yes
+| The property key to rename. +
+_Example:_ `arconia.observations.conventions.type`
+| `propertyValue`
+| String
+| yes
+| The property value that must be present for the key to be renamed. +
+_Example:_ `langsmith`
+| `newPropertyKey`
+| String
+| yes
+| The new name for the property key. +
+_Example:_ `arconia.observations.conventions.opentelemetry.ai.flavor`
+| `relaxedBinding`
+| Boolean
+| no
+| Whether to match the old property key using Spring Boot relaxed binding rules. Defaults to `true`.
+| `pathExpressions`
+| List
+| no
+| Glob expressions to match Spring Boot configuration files to modify.
+Defaults to standard `application.yml`, `application.yaml`, and `application.properties` files (including profile-specific variants).
+Multiple patterns are OR-ed together.
+
+|===
+

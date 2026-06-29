@@ -3,7 +3,7 @@
 
 // AUTO-GENERATED from the OpenRewrite recipe model. Do not edit by hand.
 
-The `rewrite-spring` module publishes 265 recipes across 9 categories.
+The `rewrite-spring` module publishes 259 recipes across 8 categories.
 
 [#family-spring-ai1]
 == spring › ai1
@@ -22,11 +22,11 @@ _Tags: spring, ai_
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_ai1_UpgradeSpringAiPropertiesGenerated_1_0[Migrate Spring AI properties to 1.0 (generated)] (`io.arconia.rewrite.spring.ai1.UpgradeSpringAiPropertiesGenerated_1_0`)
-** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×22)
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey`)
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_ChangeSpringBootPropertyValue[Change the value of a Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue` ×2)
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×16)
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_DeleteSpringBootProperty[Delete a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.DeleteSpringBootProperty` ×31)
+** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×22)
+* xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey`)
+* xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_ChangeSpringBootPropertyValue[Change the value of a Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue` ×2)
+* xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×16)
+* xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_DeleteSpringBootProperty[Delete a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.DeleteSpringBootProperty` ×31)
 ====
 
 *Example*
@@ -57,7 +57,7 @@ _Tags: spring, ai_
 .Recipes applied
 [%collapsible]
 ====
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×22)
+* xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×22)
 ====
 
 [#io_arconia_rewrite_spring_ai1_UpgradeSpringAiProperties_1_1]
@@ -71,7 +71,7 @@ _Tags: spring, ai_
 .Recipes applied
 [%collapsible]
 ====
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×11)
+* xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×11)
 ====
 
 *Example*
@@ -170,11 +170,11 @@ _Tags: spring, ai_
 ====
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_ai1_UpgradeSpringAiProperties_1_0[Migrate Spring AI properties to 1.0] (`io.arconia.rewrite.spring.ai1.UpgradeSpringAiProperties_1_0`)
 ** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_ai1_UpgradeSpringAiPropertiesGenerated_1_0[Migrate Spring AI properties to 1.0 (generated)] (`io.arconia.rewrite.spring.ai1.UpgradeSpringAiPropertiesGenerated_1_0`)
-*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×22)
-** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey`)
-** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_ChangeSpringBootPropertyValue[Change the value of a Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue` ×2)
-** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×16)
-** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_DeleteSpringBootProperty[Delete a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.DeleteSpringBootProperty` ×31)
+*** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×22)
+** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey`)
+** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_ChangeSpringBootPropertyValue[Change the value of a Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue` ×2)
+** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×16)
+** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_DeleteSpringBootProperty[Delete a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.DeleteSpringBootProperty` ×31)
 * Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
 * Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency` ×52)
 * Change type (`org.openrewrite.java.ChangeType` ×17)
@@ -222,7 +222,7 @@ _Tags: spring, ai_
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_ai1_UpgradeSpringAiProperties_1_1[Migrate Spring AI properties to 1.1] (`io.arconia.rewrite.spring.ai1.UpgradeSpringAiProperties_1_1`)
-** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×11)
+** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×11)
 * Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_ai1_MigrateSpringAiBedrock_1_1[Migrate the Spring AI Bedrock module to Spring AI 1.1] (`io.arconia.rewrite.spring.ai1.MigrateSpringAiBedrock_1_1`)
 ** Change method name (`org.openrewrite.java.ChangeMethodName`)
@@ -444,9 +444,9 @@ _Tags: spring, ai_
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_ai2_UpgradeSpringAiPropertiesGenerated_2_0[Migrate Spring AI properties to 2.0 (generated)] (`io.arconia.rewrite.spring.ai2.UpgradeSpringAiPropertiesGenerated_2_0`)
-** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×5)
-** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×226)
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×10)
+** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×5)
+** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×226)
+* xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×10)
 ====
 
 [#io_arconia_rewrite_spring_ai2_UpgradeSpringAiPropertiesGenerated_2_0]
@@ -460,8 +460,8 @@ _Tags: spring, ai_
 .Recipes applied
 [%collapsible]
 ====
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×5)
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×226)
+* xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×5)
+* xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×226)
 ====
 
 [#io_arconia_rewrite_spring_ai2_UpgradeSpringAi_2_0]
@@ -477,9 +477,9 @@ _Tags: spring, ai_
 ====
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_ai2_UpgradeSpringAiProperties_2_0[Migrate Spring AI properties to 2.0] (`io.arconia.rewrite.spring.ai2.UpgradeSpringAiProperties_2_0`)
 ** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_ai2_UpgradeSpringAiPropertiesGenerated_2_0[Migrate Spring AI properties to 2.0 (generated)] (`io.arconia.rewrite.spring.ai2.UpgradeSpringAiPropertiesGenerated_2_0`)
-*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×5)
-*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×226)
-** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×10)
+*** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×5)
+*** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×226)
+** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×10)
 * Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_ai2_UseChatOptionsBuilder[Pass `ChatOptions.Builder` to `ChatClient` options methods] (`io.arconia.rewrite.spring.ai2.UseChatOptionsBuilder`)
 * Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency`)
@@ -767,207 +767,6 @@ class Demo {
 }
 ----
 
-[#family-spring-boot-properties]
-== spring › boot › properties
-
-*Recipes*
-
-[#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty]
-=== Add a comment to a Spring Boot configuration property
-`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`
-
-Add a comment to a property in Spring Boot configuration files. Optionally, comment out the property itself.
-
-.Options
-[cols="2,1,1,4",options="header"]
-|===
-| Name | Type | Required | Description
-
-| `propertyKey`
-| String
-| yes
-| The key for the property to comment. +
-_Example:_ `spring.ai.ollama.chat.enabled`
-| `comment`
-| String
-| yes
-| The comment to add before the property key. +
-_Example:_ `This property is deprecated and will be removed in future versions.`
-| `commentOutProperty`
-| Boolean
-| no
-| Whether to comment out the property. Defaults to `true`.
-|===
-
-[#io_arconia_rewrite_spring_boot_properties_ChangeSpringBootPropertyValue]
-=== Change the value of a Spring Boot configuration property key
-`io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue`
-
-Change the value of a property in Spring Boot configuration files.
-
-.Options
-[cols="2,1,1,4",options="header"]
-|===
-| Name | Type | Required | Description
-
-| `propertyKey`
-| String
-| yes
-| The property key whose value must change. +
-_Example:_ `arconia.dev.services.*.reusable`
-| `oldPropertyValue`
-| String
-| no
-| The property value to change. +
-_Example:_ `true`
-| `newPropertyValue`
-| String
-| yes
-| The new value for the property key. +
-_Example:_ `always`
-| `useRegex`
-| Boolean
-| no
-| Treats the old property value as a regular expression for matching.
-When enabled, only matching portions are replaced, and capture groups
-can be referenced in the new value. Defaults to `false`.
-
-| `relaxedBinding`
-| Boolean
-| no
-| Whether to match the property key using Spring Boot relaxed binding rules. Defaults to `true`.
-| `pathExpressions`
-| List
-| no
-| Glob expressions to match Spring Boot configuration files to modify.
-Defaults to standard `application.yml`, `application.yaml`, and `application.properties` files (including profile-specific variants).
-Multiple patterns are OR-ed together.
-
-|===
-
-[#io_arconia_rewrite_spring_boot_properties_DeleteSpringBootProperty]
-=== Delete a Spring Boot configuration property
-`io.arconia.rewrite.spring.boot.properties.DeleteSpringBootProperty`
-
-Delete a property in Spring Boot configuration files.
-
-.Options
-[cols="2,1,1,4",options="header"]
-|===
-| Name | Type | Required | Description
-
-| `propertyKey`
-| String
-| yes
-| The key of the property to delete. +
-_Example:_ `arconia.modes.name`
-| `relaxedBinding`
-| Boolean
-| no
-| Whether to match the property key using Spring Boot relaxed binding rules. Defaults to `true`.
-| `pathExpressions`
-| List
-| no
-| Glob expressions to match Spring Boot configuration files to modify.
-Defaults to standard `application.yml`, `application.yaml`, and `application.properties` files (including profile-specific variants).
-Multiple patterns are OR-ed together.
-
-|===
-
-[#io_arconia_rewrite_spring_boot_properties_FindSpringBootConfigFiles]
-=== Find Spring Boot configuration files
-`io.arconia.rewrite.spring.boot.properties.FindSpringBootConfigFiles`
-
-Finds Spring Boot configuration files based on the provided path matchers.
-
-.Options
-[cols="2,1,1,4",options="header"]
-|===
-| Name | Type | Required | Description
-
-| `pathExpressions`
-| List
-| no
-| A list of glob expressions used to match which files contain Spring Boot configuration properties
-and therefore will be modified. If no value is provided, default expressions will be used to match
-the main YAML and Properties files supported by Spring Boot for configuration.
-If multiple patterns are supplied, any of the patterns matching will be interpreted as a match.
-
-|===
-
-[#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey]
-=== Rename Spring Boot configuration property key
-`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey`
-
-Rename the key of a property in Spring Boot configuration files.
-
-.Options
-[cols="2,1,1,4",options="header"]
-|===
-| Name | Type | Required | Description
-
-| `oldPropertyKey`
-| String
-| yes
-| The property key to rename. +
-_Example:_ `arconia.config.profiles.test`
-| `newPropertyKey`
-| String
-| yes
-| The new name for the property key. +
-_Example:_ `arconia.test.profiles`
-| `relaxedBinding`
-| Boolean
-| no
-| Whether to match the old property key using Spring Boot relaxed binding rules. Defaults to `true`.
-| `pathExpressions`
-| List
-| no
-| Glob expressions to match Spring Boot configuration files to modify.
-Defaults to standard `application.yml`, `application.yaml`, and `application.properties` files (including profile-specific variants).
-Multiple patterns are OR-ed together.
-
-|===
-
-[#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKeyIfValue]
-=== Rename a Spring Boot configuration property key if its value matches
-`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKeyIfValue`
-
-Rename the key of a property in Spring Boot configuration files when its current value matches the given value.
-
-.Options
-[cols="2,1,1,4",options="header"]
-|===
-| Name | Type | Required | Description
-
-| `oldPropertyKey`
-| String
-| yes
-| The property key to rename. +
-_Example:_ `arconia.observations.conventions.type`
-| `propertyValue`
-| String
-| yes
-| The property value that must be present for the key to be renamed. +
-_Example:_ `langsmith`
-| `newPropertyKey`
-| String
-| yes
-| The new name for the property key. +
-_Example:_ `arconia.observations.conventions.opentelemetry.ai.flavor`
-| `relaxedBinding`
-| Boolean
-| no
-| Whether to match the old property key using Spring Boot relaxed binding rules. Defaults to `true`.
-| `pathExpressions`
-| List
-| no
-| Glob expressions to match Spring Boot configuration files to modify.
-Defaults to standard `application.yml`, `application.yaml`, and `application.properties` files (including profile-specific variants).
-Multiple patterns are OR-ed together.
-
-|===
-
 [#family-spring-boot3]
 == spring › boot3
 
@@ -985,30 +784,30 @@ _Tags: spring, boot_
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot3_UpgradeSpringBootPropertiesGenerated_3_5[Migrate Spring Boot properties to 3.5 (generated)] (`io.arconia.rewrite.spring.boot3.UpgradeSpringBootPropertiesGenerated_3_5`)
-** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×27)
-** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×4)
-** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey`)
-** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×5)
-** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×6)
-** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
-** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×12)
-** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
-** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×10)
-** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
-** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×10)
-** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
-** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×19)
-** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
-** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×11)
-** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
-** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×15)
-** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
-** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey`)
-** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
+** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×27)
+** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×4)
+** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey`)
+** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×5)
+** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×6)
+** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
+** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×12)
+** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
+** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×10)
+** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
+** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×10)
+** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
+** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×19)
+** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
+** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×11)
+** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
+** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×15)
+** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
+** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey`)
+** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
 ** … and 428 more
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey`)
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×2)
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_ChangeSpringBootPropertyValue[Change the value of a Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue` ×50)
+* xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey`)
+* xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×2)
+* xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_ChangeSpringBootPropertyValue[Change the value of a Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue` ×50)
 ====
 
 [#io_arconia_rewrite_spring_boot3_UpgradeSpringBootPropertiesGenerated_3_5]
@@ -1022,26 +821,26 @@ _Tags: spring, boot_
 .Recipes applied
 [%collapsible]
 ====
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×27)
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×4)
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey`)
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×5)
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×6)
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×12)
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×10)
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×10)
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×19)
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×11)
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×15)
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey`)
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
+* xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×27)
+* xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×4)
+* xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey`)
+* xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×5)
+* xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×6)
+* xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
+* xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×12)
+* xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
+* xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×10)
+* xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
+* xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×10)
+* xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
+* xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×19)
+* xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
+* xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×11)
+* xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
+* xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×15)
+* xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
+* xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey`)
+* xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
 * … and 428 more
 ====
 
@@ -1058,30 +857,30 @@ _Tags: spring, boot_
 ====
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot3_UpgradeSpringBootProperties_3_5[Migrate Spring Boot properties to 3.5] (`io.arconia.rewrite.spring.boot3.UpgradeSpringBootProperties_3_5`)
 ** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot3_UpgradeSpringBootPropertiesGenerated_3_5[Migrate Spring Boot properties to 3.5 (generated)] (`io.arconia.rewrite.spring.boot3.UpgradeSpringBootPropertiesGenerated_3_5`)
-*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×27)
-*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×4)
-*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey`)
-*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×5)
-*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×6)
-*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
-*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×12)
-*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
-*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×10)
-*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
-*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×10)
-*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
-*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×19)
-*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
-*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×11)
-*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
-*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×15)
-*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
-*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey`)
-*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
+*** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×27)
+*** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×4)
+*** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey`)
+*** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×5)
+*** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×6)
+*** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
+*** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×12)
+*** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
+*** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×10)
+*** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
+*** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×10)
+*** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
+*** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×19)
+*** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
+*** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×11)
+*** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
+*** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×15)
+*** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
+*** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey`)
+*** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
 *** … and 428 more
-** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey`)
-** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×2)
-** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_ChangeSpringBootPropertyValue[Change the value of a Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue` ×50)
+** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey`)
+** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×2)
+** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_ChangeSpringBootPropertyValue[Change the value of a Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue` ×50)
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_framework6_UpgradeSpringFramework_6_2[Migrate to Spring Framework 6.2] (`io.arconia.rewrite.spring.framework6.UpgradeSpringFramework_6_2`)
 ** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
 ** Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency`)
@@ -1116,7 +915,7 @@ _Tags: spring, boot_
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_cloud2025_UpgradeSpringCloud_2025_0[Migrate to Spring Cloud 2025.0] (`io.arconia.rewrite.spring.cloud2025.UpgradeSpringCloud_2025_0`)
 ** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_cloud2025_UpgradeSpringCloudProperties_2025_0[Migrate Spring Cloud properties to 2025.0] (`io.arconia.rewrite.spring.cloud2025.UpgradeSpringCloudProperties_2025_0`)
 *** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_cloud2025_UpgradeSpringCloudPropertiesGenerated_2025_0[Migrate Spring Cloud properties to 2025.0 (generated)] (`io.arconia.rewrite.spring.cloud2025.UpgradeSpringCloudPropertiesGenerated_2025_0`)
-*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_ChangeSpringBootPropertyValue[Change the value of a Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue` ×26)
+*** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_ChangeSpringBootPropertyValue[Change the value of a Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue` ×26)
 *** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_cloud2025_MigrateGatewayProxyExchangeWebMvcProperties[Migrate Spring Cloud Gateway proxy properties to proxy-exchange.webmvc] (`io.arconia.rewrite.spring.cloud2025.MigrateGatewayProxyExchangeWebMvcProperties`)
 *** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_cloud2025_MigrateGatewayProxyExchangeWebFluxProperties[Migrate Spring Cloud Gateway proxy properties to proxy-exchange.webflux] (`io.arconia.rewrite.spring.cloud2025.MigrateGatewayProxyExchangeWebFluxProperties`)
 ** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
@@ -1124,7 +923,7 @@ _Tags: spring, boot_
 ** Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency` ×6)
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_ai1_UpgradeSpringAi_1_1[Migrate to Spring AI 1.1] (`io.arconia.rewrite.spring.ai1.UpgradeSpringAi_1_1`)
 ** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_ai1_UpgradeSpringAiProperties_1_1[Migrate Spring AI properties to 1.1] (`io.arconia.rewrite.spring.ai1.UpgradeSpringAiProperties_1_1`)
-*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×11)
+*** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×11)
 ** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
 ** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_ai1_MigrateSpringAiBedrock_1_1[Migrate the Spring AI Bedrock module to Spring AI 1.1] (`io.arconia.rewrite.spring.ai1.MigrateSpringAiBedrock_1_1`)
 *** Change method name (`org.openrewrite.java.ChangeMethodName`)
@@ -7528,33 +7327,33 @@ _Tags: spring, boot_
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_UpgradeSpringBootPropertiesGenerated_4_0[Migrate Spring Boot properties to 4.0 (generated)] (`io.arconia.rewrite.spring.boot4.UpgradeSpringBootPropertiesGenerated_4_0`)
-** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×2)
-** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey`)
-** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
-** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey`)
-** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
-** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×5)
-** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×24)
-** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×2)
-** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×2)
-** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×24)
-** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
-** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×11)
-** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
-** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey`)
-** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×6)
-** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×2)
-** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
-** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×4)
-** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
-** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×6)
+** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×2)
+** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey`)
+** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
+** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey`)
+** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
+** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×5)
+** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×24)
+** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×2)
+** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×2)
+** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×24)
+** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
+** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×11)
+** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
+** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey`)
+** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×6)
+** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×2)
+** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
+** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×4)
+** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
+** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×6)
 ** … and 499 more
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×2)
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×7)
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey`)
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×18)
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×5)
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×5)
+* xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×2)
+* xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×7)
+* xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey`)
+* xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×18)
+* xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×5)
+* xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×5)
 ====
 
 *Example*
@@ -7584,26 +7383,26 @@ _Tags: spring, boot_
 .Recipes applied
 [%collapsible]
 ====
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×2)
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey`)
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey`)
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×5)
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×24)
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×2)
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×2)
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×24)
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×11)
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey`)
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×6)
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×2)
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×4)
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×6)
+* xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×2)
+* xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey`)
+* xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
+* xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey`)
+* xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
+* xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×5)
+* xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×24)
+* xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×2)
+* xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×2)
+* xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×24)
+* xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
+* xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×11)
+* xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
+* xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey`)
+* xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×6)
+* xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×2)
+* xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
+* xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×4)
+* xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
+* xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×6)
 * … and 499 more
 ====
 
@@ -7619,29 +7418,29 @@ _Tags: spring, boot_
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_UpgradeSpringBootPropertiesGenerated_4_1[Migrate Spring Boot properties to 4.1 (generated)] (`io.arconia.rewrite.spring.boot4.UpgradeSpringBootPropertiesGenerated_4_1`)
-** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×2)
-** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey`)
-** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
-** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey`)
-** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
-** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×5)
-** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×24)
-** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×2)
-** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×2)
-** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×24)
-** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
-** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×11)
-** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
-** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey`)
-** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×6)
-** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×2)
-** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
-** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×4)
-** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
-** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×6)
+** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×2)
+** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey`)
+** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
+** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey`)
+** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
+** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×5)
+** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×24)
+** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×2)
+** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×2)
+** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×24)
+** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
+** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×11)
+** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
+** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey`)
+** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×6)
+** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×2)
+** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
+** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×4)
+** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
+** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×6)
 ** … and 503 more
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×5)
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
+* xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×5)
+* xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
 ====
 
 *Example*
@@ -7671,26 +7470,26 @@ _Tags: spring, boot_
 .Recipes applied
 [%collapsible]
 ====
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×2)
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey`)
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey`)
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×5)
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×24)
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×2)
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×2)
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×24)
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×11)
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey`)
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×6)
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×2)
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×4)
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×6)
+* xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×2)
+* xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey`)
+* xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
+* xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey`)
+* xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
+* xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×5)
+* xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×24)
+* xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×2)
+* xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×2)
+* xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×24)
+* xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
+* xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×11)
+* xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
+* xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey`)
+* xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×6)
+* xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×2)
+* xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
+* xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×4)
+* xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
+* xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×6)
 * … and 503 more
 ====
 
@@ -7732,9 +7531,9 @@ _Tags: spring, boot_
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot3_UpgradeSpringBoot_3_5[Migrate to Spring Boot 3.5] (`io.arconia.rewrite.spring.boot3.UpgradeSpringBoot_3_5`)
 ** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot3_UpgradeSpringBootProperties_3_5[Migrate Spring Boot properties to 3.5] (`io.arconia.rewrite.spring.boot3.UpgradeSpringBootProperties_3_5`)
 *** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot3_UpgradeSpringBootPropertiesGenerated_3_5[Migrate Spring Boot properties to 3.5 (generated)] (`io.arconia.rewrite.spring.boot3.UpgradeSpringBootPropertiesGenerated_3_5`)
-*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey`)
-*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×2)
-*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_ChangeSpringBootPropertyValue[Change the value of a Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue` ×50)
+*** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey`)
+*** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×2)
+*** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_ChangeSpringBootPropertyValue[Change the value of a Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue` ×50)
 ** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_framework6_UpgradeSpringFramework_6_2[Migrate to Spring Framework 6.2] (`io.arconia.rewrite.spring.framework6.UpgradeSpringFramework_6_2`)
 *** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
 *** Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency`)
@@ -7830,33 +7629,33 @@ _Tags: spring, boot_
 *** Replace constant with another constant (`org.openrewrite.java.ReplaceConstantWithAnotherConstant`)
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_UpgradeSpringBootProperties_4_0[Migrate Spring Boot properties to 4.0] (`io.arconia.rewrite.spring.boot4.UpgradeSpringBootProperties_4_0`)
 ** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_UpgradeSpringBootPropertiesGenerated_4_0[Migrate Spring Boot properties to 4.0 (generated)] (`io.arconia.rewrite.spring.boot4.UpgradeSpringBootPropertiesGenerated_4_0`)
-*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×2)
-*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey`)
-*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
-*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey`)
-*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
-*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×5)
-*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×24)
-*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×2)
-*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×2)
-*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×24)
-*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
-*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×11)
-*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
-*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey`)
-*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×6)
-*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×2)
-*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
-*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×4)
-*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
-*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×6)
+*** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×2)
+*** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey`)
+*** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
+*** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey`)
+*** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
+*** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×5)
+*** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×24)
+*** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×2)
+*** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×2)
+*** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×24)
+*** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
+*** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×11)
+*** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
+*** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey`)
+*** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×6)
+*** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×2)
+*** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
+*** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×4)
+*** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
+*** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×6)
 *** … and 499 more
-** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×2)
-** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×7)
-** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey`)
-** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×18)
-** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×5)
-** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×5)
+** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×2)
+** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×7)
+** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey`)
+** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×18)
+** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×5)
+** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×5)
 * Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion` ×2)
 * Update a Gradle plugin by id (`org.openrewrite.gradle.plugins.UpgradePluginVersion`)
 * Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
@@ -7896,8 +7695,8 @@ _Tags: spring, boot_
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_cloud2025_UpgradeSpringCloud_2025_1[Migrate to Spring Cloud 2025.1] (`io.arconia.rewrite.spring.cloud2025.UpgradeSpringCloud_2025_1`)
 ** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_cloud2025_UpgradeSpringCloudProperties_2025_1[Migrate Spring Cloud properties to 2025.1] (`io.arconia.rewrite.spring.cloud2025.UpgradeSpringCloudProperties_2025_1`)
 *** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_cloud2025_UpgradeSpringCloudPropertiesGenerated_2025_1[Migrate Spring Cloud properties to 2025.1 (generated)] (`io.arconia.rewrite.spring.cloud2025.UpgradeSpringCloudPropertiesGenerated_2025_1`)
-*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×33)
-*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×6)
+*** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×33)
+*** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×6)
 ** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion` ×2)
 ** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_cloud2025_MigrateSpringCloudContract_5_0[Migrate Spring Cloud Contract to 5.0] (`io.arconia.rewrite.spring.cloud2025.MigrateSpringCloudContract_5_0`)
 *** Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency`)
@@ -7907,7 +7706,7 @@ _Tags: spring, boot_
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_ai2_UpgradeSpringAi_2_0[Migrate to Spring AI 2.0] (`io.arconia.rewrite.spring.ai2.UpgradeSpringAi_2_0`)
 ** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_ai2_UpgradeSpringAiProperties_2_0[Migrate Spring AI properties to 2.0] (`io.arconia.rewrite.spring.ai2.UpgradeSpringAiProperties_2_0`)
 *** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_ai2_UpgradeSpringAiPropertiesGenerated_2_0[Migrate Spring AI properties to 2.0 (generated)] (`io.arconia.rewrite.spring.ai2.UpgradeSpringAiPropertiesGenerated_2_0`)
-*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×10)
+*** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×10)
 ** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
 ** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_ai2_UseChatOptionsBuilder[Pass `ChatOptions.Builder` to `ChatClient` options methods] (`io.arconia.rewrite.spring.ai2.UseChatOptionsBuilder`)
 ** Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency`)
@@ -7990,12 +7789,12 @@ _Tags: spring, boot_
 *** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_framework7_MigrateSpringWebMvc_7_0[Migrate the Spring WebMVC module to Spring Framework 7.0] (`io.arconia.rewrite.spring.framework7.MigrateSpringWebMvc_7_0`)
 ** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_UpgradeSpringBootProperties_4_0[Migrate Spring Boot properties to 4.0] (`io.arconia.rewrite.spring.boot4.UpgradeSpringBootProperties_4_0`)
 *** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_UpgradeSpringBootPropertiesGenerated_4_0[Migrate Spring Boot properties to 4.0 (generated)] (`io.arconia.rewrite.spring.boot4.UpgradeSpringBootPropertiesGenerated_4_0`)
-*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×2)
-*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×7)
-*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey`)
-*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×18)
-*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×5)
-*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×5)
+*** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×2)
+*** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×7)
+*** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey`)
+*** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×18)
+*** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×5)
+*** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×5)
 ** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion` ×2)
 ** Update a Gradle plugin by id (`org.openrewrite.gradle.plugins.UpgradePluginVersion`)
 ** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
@@ -8068,29 +7867,29 @@ _Tags: spring, boot_
 ** … and 95 more
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_UpgradeSpringBootProperties_4_1[Migrate Spring Boot properties to 4.1] (`io.arconia.rewrite.spring.boot4.UpgradeSpringBootProperties_4_1`)
 ** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_UpgradeSpringBootPropertiesGenerated_4_1[Migrate Spring Boot properties to 4.1 (generated)] (`io.arconia.rewrite.spring.boot4.UpgradeSpringBootPropertiesGenerated_4_1`)
-*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×2)
-*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey`)
-*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
-*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey`)
-*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
-*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×5)
-*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×24)
-*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×2)
-*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×2)
-*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×24)
-*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
-*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×11)
-*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
-*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey`)
-*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×6)
-*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×2)
-*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
-*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×4)
-*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
-*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×6)
+*** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×2)
+*** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey`)
+*** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
+*** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey`)
+*** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
+*** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×5)
+*** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×24)
+*** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×2)
+*** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×2)
+*** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×24)
+*** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
+*** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×11)
+*** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
+*** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey`)
+*** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×6)
+*** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×2)
+*** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
+*** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×4)
+*** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
+*** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×6)
 *** … and 503 more
-** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×5)
-** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
+** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×5)
+** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
 * Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion` ×2)
 * Update a Gradle plugin by id (`org.openrewrite.gradle.plugins.UpgradePluginVersion`)
 * Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
@@ -8273,7 +8072,7 @@ _Tags: spring, cloud_
 .Recipes applied
 [%collapsible]
 ====
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×4)
+* xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×4)
 ====
 
 [#io_arconia_rewrite_spring_cloud2025_MigrateGatewayProxyExchangeWebMvcProperties]
@@ -8287,7 +8086,7 @@ _Tags: spring, cloud_
 .Recipes applied
 [%collapsible]
 ====
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×4)
+* xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×4)
 ====
 
 [#io_arconia_rewrite_spring_cloud2025_UpgradeSpringCloudProperties_2025_0]
@@ -8302,19 +8101,19 @@ _Tags: spring, cloud_
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_cloud2025_UpgradeSpringCloudPropertiesGenerated_2025_0[Migrate Spring Cloud properties to 2025.0 (generated)] (`io.arconia.rewrite.spring.cloud2025.UpgradeSpringCloudPropertiesGenerated_2025_0`)
-** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×176)
-** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
-** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×26)
-** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×2)
-** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×2)
-** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×39)
-** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey`)
-** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×13)
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_ChangeSpringBootPropertyValue[Change the value of a Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue` ×26)
+** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×176)
+** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
+** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×26)
+** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×2)
+** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×2)
+** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×39)
+** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey`)
+** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×13)
+* xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_ChangeSpringBootPropertyValue[Change the value of a Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue` ×26)
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_cloud2025_MigrateGatewayProxyExchangeWebMvcProperties[Migrate Spring Cloud Gateway proxy properties to proxy-exchange.webmvc] (`io.arconia.rewrite.spring.cloud2025.MigrateGatewayProxyExchangeWebMvcProperties`)
-** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×4)
+** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×4)
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_cloud2025_MigrateGatewayProxyExchangeWebFluxProperties[Migrate Spring Cloud Gateway proxy properties to proxy-exchange.webflux] (`io.arconia.rewrite.spring.cloud2025.MigrateGatewayProxyExchangeWebFluxProperties`)
-** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×4)
+** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×4)
 ====
 
 [#io_arconia_rewrite_spring_cloud2025_UpgradeSpringCloudPropertiesGenerated_2025_0]
@@ -8328,14 +8127,14 @@ _Tags: spring, cloud_
 .Recipes applied
 [%collapsible]
 ====
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×176)
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×26)
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×2)
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×2)
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×39)
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey`)
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×13)
+* xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×176)
+* xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
+* xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×26)
+* xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×2)
+* xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×2)
+* xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×39)
+* xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey`)
+* xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×13)
 ====
 
 [#io_arconia_rewrite_spring_cloud2025_UpgradeSpringCloudProperties_2025_1]
@@ -8350,10 +8149,10 @@ _Tags: spring, cloud_
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_cloud2025_UpgradeSpringCloudPropertiesGenerated_2025_1[Migrate Spring Cloud properties to 2025.1 (generated)] (`io.arconia.rewrite.spring.cloud2025.UpgradeSpringCloudPropertiesGenerated_2025_1`)
-** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×2)
-** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×13)
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×33)
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×6)
+** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×2)
+** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×13)
+* xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×33)
+* xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×6)
 ====
 
 [#io_arconia_rewrite_spring_cloud2025_UpgradeSpringCloudPropertiesGenerated_2025_1]
@@ -8367,8 +8166,8 @@ _Tags: spring, cloud_
 .Recipes applied
 [%collapsible]
 ====
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×2)
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×13)
+* xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×2)
+* xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×13)
 ====
 
 [#io_arconia_rewrite_spring_cloud2025_UpgradeSpringCloud_2025_0]
@@ -8384,19 +8183,19 @@ _Tags: spring, cloud_
 ====
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_cloud2025_UpgradeSpringCloudProperties_2025_0[Migrate Spring Cloud properties to 2025.0] (`io.arconia.rewrite.spring.cloud2025.UpgradeSpringCloudProperties_2025_0`)
 ** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_cloud2025_UpgradeSpringCloudPropertiesGenerated_2025_0[Migrate Spring Cloud properties to 2025.0 (generated)] (`io.arconia.rewrite.spring.cloud2025.UpgradeSpringCloudPropertiesGenerated_2025_0`)
-*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×176)
-*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
-*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×26)
-*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×2)
-*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×2)
-*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×39)
-*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey`)
-*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×13)
-** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_ChangeSpringBootPropertyValue[Change the value of a Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue` ×26)
+*** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×176)
+*** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
+*** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×26)
+*** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×2)
+*** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×2)
+*** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×39)
+*** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey`)
+*** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×13)
+** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_ChangeSpringBootPropertyValue[Change the value of a Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue` ×26)
 ** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_cloud2025_MigrateGatewayProxyExchangeWebMvcProperties[Migrate Spring Cloud Gateway proxy properties to proxy-exchange.webmvc] (`io.arconia.rewrite.spring.cloud2025.MigrateGatewayProxyExchangeWebMvcProperties`)
-*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×4)
+*** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×4)
 ** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_cloud2025_MigrateGatewayProxyExchangeWebFluxProperties[Migrate Spring Cloud Gateway proxy properties to proxy-exchange.webflux] (`io.arconia.rewrite.spring.cloud2025.MigrateGatewayProxyExchangeWebFluxProperties`)
-*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×4)
+*** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×4)
 * Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
 * Upgrade Maven parent project version (`org.openrewrite.maven.UpgradeParentVersion`)
 * Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency` ×6)
@@ -8459,10 +8258,10 @@ _Tags: spring, cloud_
 ====
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_cloud2025_UpgradeSpringCloudProperties_2025_1[Migrate Spring Cloud properties to 2025.1] (`io.arconia.rewrite.spring.cloud2025.UpgradeSpringCloudProperties_2025_1`)
 ** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_cloud2025_UpgradeSpringCloudPropertiesGenerated_2025_1[Migrate Spring Cloud properties to 2025.1 (generated)] (`io.arconia.rewrite.spring.cloud2025.UpgradeSpringCloudPropertiesGenerated_2025_1`)
-*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×2)
-*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×13)
-** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×33)
-** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×6)
+*** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×2)
+*** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×13)
+** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×33)
+** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×6)
 * Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion` ×2)
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_cloud2025_MigrateSpringCloudContract_5_0[Migrate Spring Cloud Contract to 5.0] (`io.arconia.rewrite.spring.cloud2025.MigrateSpringCloudContract_5_0`)
 ** Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency`)

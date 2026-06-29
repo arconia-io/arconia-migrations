@@ -26,7 +26,7 @@ Arconia Migrations relies on https://docs.openrewrite.org[OpenRewrite], an open-
 
 == Modules
 
-The recipes are published in four Maven artifacts under the `io.arconia.migrations` group.
+The recipes are published as Maven artifacts under the `io.arconia.migrations` group.
 
 [cols="1,3", options="header"]
 |===
@@ -40,6 +40,9 @@ The recipes are published in four Maven artifacts under the `io.arconia.migratio
 
 | `rewrite-spring`
 | https://spring.io/projects/spring-ai[Spring AI], https://spring.io/projects/spring-boot[Spring Boot], https://spring.io/projects/spring-cloud[Spring Cloud], https://spring.io/projects/spring-framework[Spring Framework]
+
+| `rewrite-spring-core`
+| Foundational Spring recipes, such as configuration property migrations, reused by `rewrite-spring` and `rewrite-arconia`
 
 | `rewrite-testing`
 | https://junit.org[JUnit], https://testcontainers.com[Testcontainers]

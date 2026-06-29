@@ -15,6 +15,7 @@ dependencies {
     constraints {
         api project(":rewrite-arconia")
         api project(":rewrite-docling")
+        api project(":rewrite-spring-core")
         api project(":rewrite-spring")
         api project(":rewrite-testing")
     }

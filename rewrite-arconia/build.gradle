@@ -7,7 +7,7 @@ plugins {
 
 dependencies {
     implementation project(":rewrite-docling")
-    implementation project(":rewrite-spring")
+    implementation project(":rewrite-spring-core")
     implementation project(":rewrite-testing")
 
     implementation "org.jspecify:jspecify:${jSpecifyVersion}"

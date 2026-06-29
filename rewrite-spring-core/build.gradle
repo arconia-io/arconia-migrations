@@ -1,0 +1,39 @@
+plugins {
+    id "code-quality-conventions"
+    id "java-conventions"
+    id "sbom-conventions"
+    id "release-conventions"
+}
+
+dependencies {
+    implementation "org.jspecify:jspecify:${jSpecifyVersion}"
+    implementation "org.slf4j:slf4j-api:${slf4jVersion}"
+
+    // OpenRewrite Core
+    implementation "org.openrewrite:rewrite-properties"
+    implementation "org.openrewrite:rewrite-yaml"
+
+    runtimeOnly "org.openrewrite:rewrite-java-21"
+    runtimeOnly "org.openrewrite:rewrite-java-25"
+
+    testImplementation "org.openrewrite:rewrite-test"
+    testImplementation "ch.qos.logback:logback-core:${logbackVersion}"
+    testImplementation "org.assertj:assertj-core:${assertjVersion}"
+    testImplementation "org.junit.jupiter:junit-jupiter:${jUnitVersion}"
+    testImplementation "org.mockito:mockito-junit-jupiter:${mockitoVersion}"
+    testImplementation "org.mockito:mockito-core:${mockitoVersion}"
+    testImplementation "org.openrewrite.gradle.tooling:model"
+
+    testRuntimeOnly gradleApi()
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            pom {
+                name = "Arconia OpenRewrite Foundational Recipes for Spring"
+                description = "Arconia OpenRewrite Foundational Recipes for Spring."
+            }
+        }
+    }
+}
