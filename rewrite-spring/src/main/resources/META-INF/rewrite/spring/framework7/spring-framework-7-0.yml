@@ -128,8 +128,8 @@ recipeList:
 ---
 type: specs.openrewrite.org/v1beta/recipe
 name: io.arconia.rewrite.spring.framework7.MigrateSpringWebMvc_7_0
-displayName: Migrate the Spring WebMVC module to Spring Framework 7.0
-description: Update usages of Spring WebMVC APIs that were renamed or replaced in Spring Framework 7.0.
+displayName: Migrate the Spring Web MVC module to Spring Framework 7.0
+description: Update usages of Spring Web MVC APIs that were renamed or replaced in Spring Framework 7.0.
 preconditions:
   - org.openrewrite.Singleton
 recipeList:

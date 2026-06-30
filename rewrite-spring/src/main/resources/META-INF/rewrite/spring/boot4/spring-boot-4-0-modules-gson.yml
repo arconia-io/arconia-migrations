@@ -1,8 +1,8 @@
 ---
 type: specs.openrewrite.org/v1beta/recipe
 name: io.arconia.rewrite.spring.boot4.MigrateGsonModule
-displayName: Migrate Spring Boot GSON module to Spring Boot 4.0
-description: Migrate Spring Boot GSON module to Spring Boot 4.0.
+displayName: Migrate Spring Boot Gson module to Spring Boot 4.0
+description: Migrate Spring Boot Gson module to Spring Boot 4.0.
 preconditions:
   - org.openrewrite.Singleton
 recipeList:
@@ -16,8 +16,8 @@ recipeList:
 ---
 type: specs.openrewrite.org/v1beta/recipe
 name: io.arconia.rewrite.spring.boot4.AddGsonStarter
-displayName: Add GSON Starter
-description: Add GSON Starter.
+displayName: Add Gson Starter
+description: Add Gson Starter.
 preconditions:
   - org.openrewrite.Singleton
 recipeList:
@@ -35,8 +35,8 @@ recipeList:
 ---
 type: specs.openrewrite.org/v1beta/recipe
 name: io.arconia.rewrite.spring.boot4.AddGsonStarterTest
-displayName: Add GSON Starter Test
-description: Add GSON Starter Test.
+displayName: Add Gson Starter Test
+description: Add Gson Starter Test.
 preconditions:
   - org.openrewrite.java.dependencies.FindDependency:
       groupId: org.springframework.boot

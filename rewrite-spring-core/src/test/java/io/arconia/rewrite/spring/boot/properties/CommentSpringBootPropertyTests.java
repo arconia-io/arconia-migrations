@@ -1,6 +1,8 @@
 package io.arconia.rewrite.spring.boot.properties;
 
 import org.junit.jupiter.api.Test;
+import org.openrewrite.DocumentExample;
+import org.openrewrite.test.RecipeSpec;
 import org.openrewrite.test.RewriteTest;
 
 import static org.openrewrite.properties.Assertions.properties;
@@ -11,12 +13,18 @@ import static org.openrewrite.yaml.Assertions.yaml;
  */
 class CommentSpringBootPropertyTests implements RewriteTest {
 
+    @Override
+    public void defaults(RecipeSpec spec) {
+        spec.recipe(new CommentSpringBootProperty(
+                "arconia.feature.toggle",
+                "This property has been removed from this version",
+                true));
+    }
+
     @Test
+    @DocumentExample
     void yamlCommentedOutWithComment() {
-        rewriteRun(r -> r.recipe(new CommentSpringBootProperty(
-                        "arconia.feature.toggle",
-                        "This property has been removed from this version",
-                        true)),
+        rewriteRun(
                 //language=yaml
                 yaml(
                         """
@@ -38,7 +46,8 @@ class CommentSpringBootPropertyTests implements RewriteTest {
 
     @Test
     void yamlWithComment() {
-        rewriteRun(r -> r.recipe(new CommentSpringBootProperty(
+        rewriteRun(
+                spec -> spec.recipe(new CommentSpringBootProperty(
                         "arconia.feature.toggle",
                         "This property has been removed from this version",
                         false)),
@@ -61,26 +70,24 @@ class CommentSpringBootPropertyTests implements RewriteTest {
 
     @Test
     void propertyCommentedOutWithComment() {
-        rewriteRun(r -> r.recipe(new CommentSpringBootProperty(
-                        "arconia.feature.toggle",
-                        "This property has been removed from this version",
-                        true)),
+        rewriteRun(
                 //language=properties
                 properties(
-                       """
-                       arconia.feature.toggle=true
-                       """,
-                       """
-                       # This property has been removed from this version
-                       # arconia.feature.toggle=true
-                       """,
-                       s -> s.path("src/main/resources/application.properties"))
+                        """
+                        arconia.feature.toggle=true
+                        """,
+                        """
+                        # This property has been removed from this version
+                        # arconia.feature.toggle=true
+                        """,
+                        s -> s.path("src/main/resources/application.properties"))
         );
     }
 
     @Test
     void propertyWithComment() {
-        rewriteRun(r -> r.recipe(new CommentSpringBootProperty(
+        rewriteRun(
+                spec -> spec.recipe(new CommentSpringBootProperty(
                         "arconia.feature.toggle",
                         "This property has been removed from this version",
                         false)),
@@ -99,7 +106,8 @@ class CommentSpringBootPropertyTests implements RewriteTest {
 
     @Test
     void propertyWithCommentIsIdempotent() {
-        rewriteRun(r -> r.recipe(new CommentSpringBootProperty(
+        rewriteRun(
+                spec -> spec.recipe(new CommentSpringBootProperty(
                         "arconia.feature.toggle",
                         "This property has been removed from this version",
                         false)),

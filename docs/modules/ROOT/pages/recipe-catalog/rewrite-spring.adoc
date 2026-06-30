@@ -897,7 +897,7 @@ _Tags: spring, boot_
 *** Replace constant with another constant (`org.openrewrite.java.ReplaceConstantWithAnotherConstant` ×11)
 ** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_framework6_MigrateSpringWebFlux_6_2[Migrate the Spring WebFlux module to Spring Framework 6.2] (`io.arconia.rewrite.spring.framework6.MigrateSpringWebFlux_6_2`)
 *** Change method name (`org.openrewrite.java.ChangeMethodName` ×14)
-** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_framework6_MigrateSpringWebMvc_6_2[Migrate the Spring WebMVC module to Spring Framework 6.2] (`io.arconia.rewrite.spring.framework6.MigrateSpringWebMvc_6_2`)
+** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_framework6_MigrateSpringWebMvc_6_2[Migrate the Spring Web MVC module to Spring Framework 6.2] (`io.arconia.rewrite.spring.framework6.MigrateSpringWebMvc_6_2`)
 *** Change method name (`org.openrewrite.java.ChangeMethodName` ×9)
 ** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_framework6_MigrateSpringWebSocket_6_2[Migrate the Spring WebSocket module to Spring Framework 6.2] (`io.arconia.rewrite.spring.framework6.MigrateSpringWebSocket_6_2`)
 *** Change method name (`org.openrewrite.java.ChangeMethodName` ×7)
@@ -999,10 +999,10 @@ Add Artemis Starter Test.
 ====
 
 [#io_arconia_rewrite_spring_boot4_AddAspectjStarterTest]
-=== Add Aspectj Starter Test
+=== Add AspectJ Starter Test
 `io.arconia.rewrite.spring.boot4.AddAspectjStarterTest`
 
-Add Aspectj Starter Test.
+Add AspectJ Starter Test.
 
 .Recipes applied
 [%collapsible]
@@ -1011,10 +1011,10 @@ Add Aspectj Starter Test.
 ====
 
 [#io_arconia_rewrite_spring_boot4_AddBatchJdbcStarterTest]
-=== Add Batch Jdbc Starter Test
+=== Add Batch JDBC Starter Test
 `io.arconia.rewrite.spring.boot4.AddBatchJdbcStarterTest`
 
-Add Batch Jdbc Starter Test.
+Add Batch JDBC Starter Test.
 
 .Recipes applied
 [%collapsible]
@@ -1203,10 +1203,10 @@ Add Data MongoDB Starter Test.
 ====
 
 [#io_arconia_rewrite_spring_boot4_AddDataNeo4jStarterTest]
-=== Add Data Neo4J Starter Test
+=== Add Data Neo4j Starter Test
 `io.arconia.rewrite.spring.boot4.AddDataNeo4jStarterTest`
 
-Add Data Neo4J Starter Test.
+Add Data Neo4j Starter Test.
 
 .Recipes applied
 [%collapsible]
@@ -1310,31 +1310,6 @@ Add Freemarker Test.
 * Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
 ====
 
-[#io_arconia_rewrite_spring_boot4_AddGsonStarter]
-=== Add GSON Starter
-`io.arconia.rewrite.spring.boot4.AddGsonStarter`
-
-Add GSON Starter.
-
-.Recipes applied
-[%collapsible]
-====
-* Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency`)
-* Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
-====
-
-[#io_arconia_rewrite_spring_boot4_AddGsonStarterTest]
-=== Add GSON Starter Test
-`io.arconia.rewrite.spring.boot4.AddGsonStarterTest`
-
-Add GSON Starter Test.
-
-.Recipes applied
-[%collapsible]
-====
-* Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
-====
-
 [#io_arconia_rewrite_spring_boot4_AddGraphQlStarterTest]
 === Add GraphQL Starter Test
 `io.arconia.rewrite.spring.boot4.AddGraphQlStarterTest`
@@ -1352,6 +1327,31 @@ Add GraphQL Starter Test.
 `io.arconia.rewrite.spring.boot4.AddGroovyTemplatesStarterTest`
 
 Add Groovy Templates Test.
+
+.Recipes applied
+[%collapsible]
+====
+* Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
+====
+
+[#io_arconia_rewrite_spring_boot4_AddGsonStarter]
+=== Add Gson Starter
+`io.arconia.rewrite.spring.boot4.AddGsonStarter`
+
+Add Gson Starter.
+
+.Recipes applied
+[%collapsible]
+====
+* Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency`)
+* Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
+====
+
+[#io_arconia_rewrite_spring_boot4_AddGsonStarterTest]
+=== Add Gson Starter Test
+`io.arconia.rewrite.spring.boot4.AddGsonStarterTest`
+
+Add Gson Starter Test.
 
 .Recipes applied
 [%collapsible]
@@ -1400,6 +1400,18 @@ Add Hazelcast Starter Test.
 `io.arconia.rewrite.spring.boot4.AddIntegrationStarterTest`
 
 Add Integration Starter Test.
+
+.Recipes applied
+[%collapsible]
+====
+* Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
+====
+
+[#io_arconia_rewrite_spring_boot4_AddJdbcStarterTest]
+=== Add JDBC Starter Test
+`io.arconia.rewrite.spring.boot4.AddJdbcStarterTest`
+
+Add JDBC Starter Test.
 
 .Recipes applied
 [%collapsible]
@@ -1473,18 +1485,6 @@ Add Jackson Starter Test.
 `io.arconia.rewrite.spring.boot4.AddValidationStarterTest`
 
 Add Jakarta Validation Starter Test.
-
-.Recipes applied
-[%collapsible]
-====
-* Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
-====
-
-[#io_arconia_rewrite_spring_boot4_AddJdbcStarterTest]
-=== Add Jdbc Starter Test
-`io.arconia.rewrite.spring.boot4.AddJdbcStarterTest`
-
-Add Jdbc Starter Test.
 
 .Recipes applied
 [%collapsible]
@@ -1637,10 +1637,10 @@ Add Mustache Test.
 ====
 
 [#io_arconia_rewrite_spring_boot4_AddNeo4jStarterTest]
-=== Add Neo4J Starter Test
+=== Add Neo4j Starter Test
 `io.arconia.rewrite.spring.boot4.AddNeo4jStarterTest`
 
-Add Neo4J Starter Test.
+Add Neo4j Starter Test.
 
 .Recipes applied
 [%collapsible]
@@ -2047,10 +2047,10 @@ Migrate AMQP Test.
 ====
 
 [#io_arconia_rewrite_spring_boot4_MigrateAspectjStarter]
-=== Migrate Aspectj Starter
+=== Migrate AspectJ Starter
 `io.arconia.rewrite.spring.boot4.MigrateAspectjStarter`
 
-Migrate Aspectj Starter.
+Migrate AspectJ Starter.
 
 .Recipes applied
 [%collapsible]
@@ -2095,10 +2095,10 @@ Migrate Kafka Test.
 ====
 
 [#io_arconia_rewrite_spring_boot4_MigrateKotlinxSerializationJsonStarter]
-=== Migrate Kotlinx Serialization Json Starter
+=== Migrate Kotlinx Serialization JSON Starter
 `io.arconia.rewrite.spring.boot4.MigrateKotlinxSerializationJsonStarter`
 
-Migrate Kotlinx Serialization Json Starter.
+Migrate Kotlinx Serialization JSON Starter.
 
 .Recipes applied
 [%collapsible]
@@ -2107,10 +2107,10 @@ Migrate Kotlinx Serialization Json Starter.
 ====
 
 [#io_arconia_rewrite_spring_boot4_MigrateKotlinxSerializationJsonStarterTest]
-=== Migrate Kotlinx Serialization Json Starter Test
+=== Migrate Kotlinx Serialization JSON Starter Test
 `io.arconia.rewrite.spring.boot4.MigrateKotlinxSerializationJsonStarterTest`
 
-Migrate Kotlinx Serialization Json Starter Test.
+Migrate Kotlinx Serialization JSON Starter Test.
 
 .Recipes applied
 [%collapsible]
@@ -2342,9 +2342,9 @@ Migrate Spring Boot AspectJ module to Spring Boot 4.0.
 .Recipes applied
 [%collapsible]
 ====
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_MigrateAspectjStarter[Migrate Aspectj Starter] (`io.arconia.rewrite.spring.boot4.MigrateAspectjStarter`)
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_MigrateAspectjStarter[Migrate AspectJ Starter] (`io.arconia.rewrite.spring.boot4.MigrateAspectjStarter`)
 ** Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency`)
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddAspectjStarterTest[Add Aspectj Starter Test] (`io.arconia.rewrite.spring.boot4.AddAspectjStarterTest`)
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddAspectjStarterTest[Add AspectJ Starter Test] (`io.arconia.rewrite.spring.boot4.AddAspectjStarterTest`)
 ** Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
 ====
 
@@ -2392,7 +2392,7 @@ Migrate Spring Boot Batch JDBC module to Spring Boot 4.0.
 .Recipes applied
 [%collapsible]
 ====
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddBatchJdbcStarterTest[Add Batch Jdbc Starter Test] (`io.arconia.rewrite.spring.boot4.AddBatchJdbcStarterTest`)
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddBatchJdbcStarterTest[Add Batch JDBC Starter Test] (`io.arconia.rewrite.spring.boot4.AddBatchJdbcStarterTest`)
 ** Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
 * Change type (`org.openrewrite.java.ChangeType` ×2)
 ====
@@ -3154,15 +3154,15 @@ class Demo {
 ----
 
 [#io_arconia_rewrite_spring_boot4_MigrateDataNeo4jModule]
-=== Migrate Spring Boot Data Neo4J module to Spring Boot 4.0
+=== Migrate Spring Boot Data Neo4j module to Spring Boot 4.0
 `io.arconia.rewrite.spring.boot4.MigrateDataNeo4jModule`
 
-Migrate Spring Boot Data Neo4J module to Spring Boot 4.0.
+Migrate Spring Boot Data Neo4j module to Spring Boot 4.0.
 
 .Recipes applied
 [%collapsible]
 ====
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddDataNeo4jStarterTest[Add Data Neo4J Starter Test] (`io.arconia.rewrite.spring.boot4.AddDataNeo4jStarterTest`)
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddDataNeo4jStarterTest[Add Data Neo4j Starter Test] (`io.arconia.rewrite.spring.boot4.AddDataNeo4jStarterTest`)
 ** Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
 * Change type (`org.openrewrite.java.ChangeType` ×7)
 ====
@@ -3514,45 +3514,6 @@ class Demo {
 }
 ----
 
-[#io_arconia_rewrite_spring_boot4_MigrateGsonModule]
-=== Migrate Spring Boot GSON module to Spring Boot 4.0
-`io.arconia.rewrite.spring.boot4.MigrateGsonModule`
-
-Migrate Spring Boot GSON module to Spring Boot 4.0.
-
-.Recipes applied
-[%collapsible]
-====
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddGsonStarter[Add GSON Starter] (`io.arconia.rewrite.spring.boot4.AddGsonStarter`)
-** Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency`)
-** Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddGsonStarterTest[Add GSON Starter Test] (`io.arconia.rewrite.spring.boot4.AddGsonStarterTest`)
-** Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
-* Rename package name (`org.openrewrite.java.ChangePackage`)
-====
-
-*Example*
-
-.Before
-[source,java]
-----
-import org.springframework.boot.autoconfigure.gson.GsonAutoConfiguration;
-
-class Demo {
-    GsonAutoConfiguration autoConfiguration = null;
-}
-----
-
-.After
-[source,java]
-----
-import org.springframework.boot.gson.autoconfigure.GsonAutoConfiguration;
-
-class Demo {
-    GsonAutoConfiguration autoConfiguration = null;
-}
-----
-
 [#io_arconia_rewrite_spring_boot4_MigrateGraphQlModule]
 === Migrate Spring Boot GraphQL module to Spring Boot 4.0
 `io.arconia.rewrite.spring.boot4.MigrateGraphQlModule`
@@ -3642,6 +3603,45 @@ import org.springframework.boot.groovy.template.autoconfigure.GroovyTemplateAuto
 
 class Demo {
     GroovyTemplateAutoConfiguration autoConfiguration = null;
+}
+----
+
+[#io_arconia_rewrite_spring_boot4_MigrateGsonModule]
+=== Migrate Spring Boot Gson module to Spring Boot 4.0
+`io.arconia.rewrite.spring.boot4.MigrateGsonModule`
+
+Migrate Spring Boot Gson module to Spring Boot 4.0.
+
+.Recipes applied
+[%collapsible]
+====
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddGsonStarter[Add Gson Starter] (`io.arconia.rewrite.spring.boot4.AddGsonStarter`)
+** Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency`)
+** Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddGsonStarterTest[Add Gson Starter Test] (`io.arconia.rewrite.spring.boot4.AddGsonStarterTest`)
+** Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
+* Rename package name (`org.openrewrite.java.ChangePackage`)
+====
+
+*Example*
+
+.Before
+[source,java]
+----
+import org.springframework.boot.autoconfigure.gson.GsonAutoConfiguration;
+
+class Demo {
+    GsonAutoConfiguration autoConfiguration = null;
+}
+----
+
+.After
+[source,java]
+----
+import org.springframework.boot.gson.autoconfigure.GsonAutoConfiguration;
+
+class Demo {
+    GsonAutoConfiguration autoConfiguration = null;
 }
 ----
 
@@ -3766,10 +3766,10 @@ class Demo {
 ----
 
 [#io_arconia_rewrite_spring_boot4_MigrateHttpCodecModule]
-=== Migrate Spring Boot HTTP Coded module to Spring Boot 4.0
+=== Migrate Spring Boot HTTP Codec module to Spring Boot 4.0
 `io.arconia.rewrite.spring.boot4.MigrateHttpCodecModule`
 
-Migrate Spring Boot HTTP Coded module to Spring Boot 4.0.
+Migrate Spring Boot HTTP Codec module to Spring Boot 4.0.
 
 .Recipes applied
 [%collapsible]
@@ -4171,7 +4171,7 @@ Migrate Spring Boot JDBC module to Spring Boot 4.0.
 .Recipes applied
 [%collapsible]
 ====
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddJdbcStarterTest[Add Jdbc Starter Test] (`io.arconia.rewrite.spring.boot4.AddJdbcStarterTest`)
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddJdbcStarterTest[Add JDBC Starter Test] (`io.arconia.rewrite.spring.boot4.AddJdbcStarterTest`)
 ** Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
 * Change type (`org.openrewrite.java.ChangeType` ×16)
 * Rename package name (`org.openrewrite.java.ChangePackage`)
@@ -4298,51 +4298,6 @@ class Demo {
     JmsHealthContributorAutoConfiguration healthContributorAutoConfiguration = null;
     JmsHealthIndicator healthIndicator = null;
     JmsAutoConfiguration jmsAutoConfiguration = null;
-}
-----
-
-[#io_arconia_rewrite_spring_boot4_MigrateJooqModule]
-=== Migrate Spring Boot JOOQ module to Spring Boot 4.0
-`io.arconia.rewrite.spring.boot4.MigrateJooqModule`
-
-Migrate Spring Boot JOOQ module to Spring Boot 4.0.
-
-.Recipes applied
-[%collapsible]
-====
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddJooqStarterTest[Add jOOQ Starter Test] (`io.arconia.rewrite.spring.boot4.AddJooqStarterTest`)
-** Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
-* Rename package name (`org.openrewrite.java.ChangePackage`)
-* Change type (`org.openrewrite.java.ChangeType` ×2)
-====
-
-*Example*
-
-.Before
-[source,java]
-----
-import org.springframework.boot.autoconfigure.jooq.JooqProperties;
-import org.springframework.boot.test.autoconfigure.jooq.AutoConfigureJooq;
-import org.springframework.boot.test.autoconfigure.jooq.JooqTest;
-
-class Demo {
-    JooqProperties jooqProperties = null;
-    AutoConfigureJooq autoConfigureJooq = null;
-    JooqTest jooqTest = null;
-}
-----
-
-.After
-[source,java]
-----
-import org.springframework.boot.jooq.autoconfigure.JooqProperties;
-import org.springframework.boot.jooq.test.autoconfigure.AutoConfigureJooq;
-import org.springframework.boot.jooq.test.autoconfigure.JooqTest;
-
-class Demo {
-    JooqProperties jooqProperties = null;
-    AutoConfigureJooq autoConfigureJooq = null;
-    JooqTest jooqTest = null;
 }
 ----
 
@@ -4709,9 +4664,9 @@ Migrate Spring Boot Kotlinx module to Spring Boot 4.0.
 .Recipes applied
 [%collapsible]
 ====
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_MigrateKotlinxSerializationJsonStarter[Migrate Kotlinx Serialization Json Starter] (`io.arconia.rewrite.spring.boot4.MigrateKotlinxSerializationJsonStarter`)
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_MigrateKotlinxSerializationJsonStarter[Migrate Kotlinx Serialization JSON Starter] (`io.arconia.rewrite.spring.boot4.MigrateKotlinxSerializationJsonStarter`)
 ** Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency`)
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_MigrateKotlinxSerializationJsonStarterTest[Migrate Kotlinx Serialization Json Starter Test] (`io.arconia.rewrite.spring.boot4.MigrateKotlinxSerializationJsonStarterTest`)
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_MigrateKotlinxSerializationJsonStarterTest[Migrate Kotlinx Serialization JSON Starter Test] (`io.arconia.rewrite.spring.boot4.MigrateKotlinxSerializationJsonStarterTest`)
 ** Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency`)
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddKotlinSerializationStarterTest[Add Kotlin Serialization Starter Test] (`io.arconia.rewrite.spring.boot4.AddKotlinSerializationStarterTest`)
 ** Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
@@ -5377,15 +5332,15 @@ class Demo {
 ----
 
 [#io_arconia_rewrite_spring_boot4_MigrateNeo4jModule]
-=== Migrate Spring Boot Neo4J module to Spring Boot 4.0
+=== Migrate Spring Boot Neo4j module to Spring Boot 4.0
 `io.arconia.rewrite.spring.boot4.MigrateNeo4jModule`
 
-Migrate Spring Boot Neo4J module to Spring Boot 4.0.
+Migrate Spring Boot Neo4j module to Spring Boot 4.0.
 
 .Recipes applied
 [%collapsible]
 ====
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddNeo4jStarterTest[Add Neo4J Starter Test] (`io.arconia.rewrite.spring.boot4.AddNeo4jStarterTest`)
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddNeo4jStarterTest[Add Neo4j Starter Test] (`io.arconia.rewrite.spring.boot4.AddNeo4jStarterTest`)
 ** Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
 * Rename package name (`org.openrewrite.java.ChangePackage`)
 * Change type (`org.openrewrite.java.ChangeType`)
@@ -7315,6 +7270,51 @@ class Demo {
 }
 ----
 
+[#io_arconia_rewrite_spring_boot4_MigrateJooqModule]
+=== Migrate Spring Boot jOOQ module to Spring Boot 4.0
+`io.arconia.rewrite.spring.boot4.MigrateJooqModule`
+
+Migrate Spring Boot jOOQ module to Spring Boot 4.0.
+
+.Recipes applied
+[%collapsible]
+====
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddJooqStarterTest[Add jOOQ Starter Test] (`io.arconia.rewrite.spring.boot4.AddJooqStarterTest`)
+** Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
+* Rename package name (`org.openrewrite.java.ChangePackage`)
+* Change type (`org.openrewrite.java.ChangeType` ×2)
+====
+
+*Example*
+
+.Before
+[source,java]
+----
+import org.springframework.boot.autoconfigure.jooq.JooqProperties;
+import org.springframework.boot.test.autoconfigure.jooq.AutoConfigureJooq;
+import org.springframework.boot.test.autoconfigure.jooq.JooqTest;
+
+class Demo {
+    JooqProperties jooqProperties = null;
+    AutoConfigureJooq autoConfigureJooq = null;
+    JooqTest jooqTest = null;
+}
+----
+
+.After
+[source,java]
+----
+import org.springframework.boot.jooq.autoconfigure.JooqProperties;
+import org.springframework.boot.jooq.test.autoconfigure.AutoConfigureJooq;
+import org.springframework.boot.jooq.test.autoconfigure.JooqTest;
+
+class Demo {
+    JooqProperties jooqProperties = null;
+    AutoConfigureJooq autoConfigureJooq = null;
+    JooqTest jooqTest = null;
+}
+----
+
 [#io_arconia_rewrite_spring_boot4_UpgradeSpringBootProperties_4_0]
 === Migrate Spring Boot properties to 4.0
 `io.arconia.rewrite.spring.boot4.UpgradeSpringBootProperties_4_0`
@@ -7543,7 +7543,7 @@ _Tags: spring, boot_
 *** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_framework6_MigrateSpringTest_6_2[Migrate the Spring Test module to Spring Framework 6.2] (`io.arconia.rewrite.spring.framework6.MigrateSpringTest_6_2`)
 *** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_framework6_MigrateSpringWeb_6_2[Migrate the Spring Web module to Spring Framework 6.2] (`io.arconia.rewrite.spring.framework6.MigrateSpringWeb_6_2`)
 *** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_framework6_MigrateSpringWebFlux_6_2[Migrate the Spring WebFlux module to Spring Framework 6.2] (`io.arconia.rewrite.spring.framework6.MigrateSpringWebFlux_6_2`)
-*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_framework6_MigrateSpringWebMvc_6_2[Migrate the Spring WebMVC module to Spring Framework 6.2] (`io.arconia.rewrite.spring.framework6.MigrateSpringWebMvc_6_2`)
+*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_framework6_MigrateSpringWebMvc_6_2[Migrate the Spring Web MVC module to Spring Framework 6.2] (`io.arconia.rewrite.spring.framework6.MigrateSpringWebMvc_6_2`)
 *** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_framework6_MigrateSpringWebSocket_6_2[Migrate the Spring WebSocket module to Spring Framework 6.2] (`io.arconia.rewrite.spring.framework6.MigrateSpringWebSocket_6_2`)
 ** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion` ×2)
 ** Update a Gradle plugin by id (`org.openrewrite.gradle.plugins.UpgradePluginVersion`)
@@ -7624,7 +7624,7 @@ _Tags: spring, boot_
 ** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_framework7_MigrateSpringWebFlux_7_0[Migrate the Spring WebFlux module to Spring Framework 7.0] (`io.arconia.rewrite.spring.framework7.MigrateSpringWebFlux_7_0`)
 *** Change method name (`org.openrewrite.java.ChangeMethodName` ×5)
 *** Change type (`org.openrewrite.java.ChangeType`)
-** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_framework7_MigrateSpringWebMvc_7_0[Migrate the Spring WebMVC module to Spring Framework 7.0] (`io.arconia.rewrite.spring.framework7.MigrateSpringWebMvc_7_0`)
+** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_framework7_MigrateSpringWebMvc_7_0[Migrate the Spring Web MVC module to Spring Framework 7.0] (`io.arconia.rewrite.spring.framework7.MigrateSpringWebMvc_7_0`)
 *** Change method name (`org.openrewrite.java.ChangeMethodName` ×4)
 *** Replace constant with another constant (`org.openrewrite.java.ReplaceConstantWithAnotherConstant`)
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_UpgradeSpringBootProperties_4_0[Migrate Spring Boot properties to 4.0] (`io.arconia.rewrite.spring.boot4.UpgradeSpringBootProperties_4_0`)
@@ -7786,7 +7786,7 @@ _Tags: spring, boot_
 *** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_framework7_MigrateSpringTest_7_0[Migrate the Spring Test module to Spring Framework 7.0] (`io.arconia.rewrite.spring.framework7.MigrateSpringTest_7_0`)
 *** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_framework7_MigrateSpringWeb_7_0[Migrate the Spring Web module to Spring Framework 7.0] (`io.arconia.rewrite.spring.framework7.MigrateSpringWeb_7_0`)
 *** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_framework7_MigrateSpringWebFlux_7_0[Migrate the Spring WebFlux module to Spring Framework 7.0] (`io.arconia.rewrite.spring.framework7.MigrateSpringWebFlux_7_0`)
-*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_framework7_MigrateSpringWebMvc_7_0[Migrate the Spring WebMVC module to Spring Framework 7.0] (`io.arconia.rewrite.spring.framework7.MigrateSpringWebMvc_7_0`)
+*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_framework7_MigrateSpringWebMvc_7_0[Migrate the Spring Web MVC module to Spring Framework 7.0] (`io.arconia.rewrite.spring.framework7.MigrateSpringWebMvc_7_0`)
 ** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_UpgradeSpringBootProperties_4_0[Migrate Spring Boot properties to 4.0] (`io.arconia.rewrite.spring.boot4.UpgradeSpringBootProperties_4_0`)
 *** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_UpgradeSpringBootPropertiesGenerated_4_0[Migrate Spring Boot properties to 4.0 (generated)] (`io.arconia.rewrite.spring.boot4.UpgradeSpringBootPropertiesGenerated_4_0`)
 *** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×2)
@@ -8337,6 +8337,18 @@ Update usages of Spring Test APIs that were renamed or replaced in Spring Framew
 * Change method name (`org.openrewrite.java.ChangeMethodName` ×6)
 ====
 
+[#io_arconia_rewrite_spring_framework6_MigrateSpringWebMvc_6_2]
+=== Migrate the Spring Web MVC module to Spring Framework 6.2
+`io.arconia.rewrite.spring.framework6.MigrateSpringWebMvc_6_2`
+
+Update usages of Spring Web MVC APIs that were renamed or replaced in Spring Framework 6.2.
+
+.Recipes applied
+[%collapsible]
+====
+* Change method name (`org.openrewrite.java.ChangeMethodName` ×9)
+====
+
 [#io_arconia_rewrite_spring_framework6_MigrateSpringWeb_6_2]
 === Migrate the Spring Web module to Spring Framework 6.2
 `io.arconia.rewrite.spring.framework6.MigrateSpringWeb_6_2`
@@ -8360,18 +8372,6 @@ Update usages of Spring WebFlux APIs that were renamed or replaced in Spring Fra
 [%collapsible]
 ====
 * Change method name (`org.openrewrite.java.ChangeMethodName` ×14)
-====
-
-[#io_arconia_rewrite_spring_framework6_MigrateSpringWebMvc_6_2]
-=== Migrate the Spring WebMVC module to Spring Framework 6.2
-`io.arconia.rewrite.spring.framework6.MigrateSpringWebMvc_6_2`
-
-Update usages of Spring WebMVC APIs that were renamed or replaced in Spring Framework 6.2.
-
-.Recipes applied
-[%collapsible]
-====
-* Change method name (`org.openrewrite.java.ChangeMethodName` ×9)
 ====
 
 [#io_arconia_rewrite_spring_framework6_MigrateSpringWebSocket_6_2]
@@ -8412,7 +8412,7 @@ _Tags: spring, framework_
 ** Replace constant with another constant (`org.openrewrite.java.ReplaceConstantWithAnotherConstant` ×11)
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_framework6_MigrateSpringWebFlux_6_2[Migrate the Spring WebFlux module to Spring Framework 6.2] (`io.arconia.rewrite.spring.framework6.MigrateSpringWebFlux_6_2`)
 ** Change method name (`org.openrewrite.java.ChangeMethodName` ×14)
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_framework6_MigrateSpringWebMvc_6_2[Migrate the Spring WebMVC module to Spring Framework 6.2] (`io.arconia.rewrite.spring.framework6.MigrateSpringWebMvc_6_2`)
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_framework6_MigrateSpringWebMvc_6_2[Migrate the Spring Web MVC module to Spring Framework 6.2] (`io.arconia.rewrite.spring.framework6.MigrateSpringWebMvc_6_2`)
 ** Change method name (`org.openrewrite.java.ChangeMethodName` ×9)
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_framework6_MigrateSpringWebSocket_6_2[Migrate the Spring WebSocket module to Spring Framework 6.2] (`io.arconia.rewrite.spring.framework6.MigrateSpringWebSocket_6_2`)
 ** Change method name (`org.openrewrite.java.ChangeMethodName` ×7)
@@ -8449,6 +8449,19 @@ Update usages of Spring Test APIs that were renamed or replaced in Spring Framew
 * Change method name (`org.openrewrite.java.ChangeMethodName` ×2)
 ====
 
+[#io_arconia_rewrite_spring_framework7_MigrateSpringWebMvc_7_0]
+=== Migrate the Spring Web MVC module to Spring Framework 7.0
+`io.arconia.rewrite.spring.framework7.MigrateSpringWebMvc_7_0`
+
+Update usages of Spring Web MVC APIs that were renamed or replaced in Spring Framework 7.0.
+
+.Recipes applied
+[%collapsible]
+====
+* Change method name (`org.openrewrite.java.ChangeMethodName` ×4)
+* Replace constant with another constant (`org.openrewrite.java.ReplaceConstantWithAnotherConstant`)
+====
+
 [#io_arconia_rewrite_spring_framework7_MigrateSpringWeb_7_0]
 === Migrate the Spring Web module to Spring Framework 7.0
 `io.arconia.rewrite.spring.framework7.MigrateSpringWeb_7_0`
@@ -8474,19 +8487,6 @@ Update usages of Spring WebFlux APIs that were renamed or replaced in Spring Fra
 ====
 * Change method name (`org.openrewrite.java.ChangeMethodName` ×5)
 * Change type (`org.openrewrite.java.ChangeType`)
-====
-
-[#io_arconia_rewrite_spring_framework7_MigrateSpringWebMvc_7_0]
-=== Migrate the Spring WebMVC module to Spring Framework 7.0
-`io.arconia.rewrite.spring.framework7.MigrateSpringWebMvc_7_0`
-
-Update usages of Spring WebMVC APIs that were renamed or replaced in Spring Framework 7.0.
-
-.Recipes applied
-[%collapsible]
-====
-* Change method name (`org.openrewrite.java.ChangeMethodName` ×4)
-* Replace constant with another constant (`org.openrewrite.java.ReplaceConstantWithAnotherConstant`)
 ====
 
 [#io_arconia_rewrite_spring_framework7_UpgradeSpringFramework_7_0]
@@ -8557,7 +8557,7 @@ _Tags: spring, framework_
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_framework7_MigrateSpringWebFlux_7_0[Migrate the Spring WebFlux module to Spring Framework 7.0] (`io.arconia.rewrite.spring.framework7.MigrateSpringWebFlux_7_0`)
 ** Change method name (`org.openrewrite.java.ChangeMethodName` ×5)
 ** Change type (`org.openrewrite.java.ChangeType`)
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_framework7_MigrateSpringWebMvc_7_0[Migrate the Spring WebMVC module to Spring Framework 7.0] (`io.arconia.rewrite.spring.framework7.MigrateSpringWebMvc_7_0`)
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_framework7_MigrateSpringWebMvc_7_0[Migrate the Spring Web MVC module to Spring Framework 7.0] (`io.arconia.rewrite.spring.framework7.MigrateSpringWebMvc_7_0`)
 ** Change method name (`org.openrewrite.java.ChangeMethodName` ×4)
 ** Replace constant with another constant (`org.openrewrite.java.ReplaceConstantWithAnotherConstant`)
 ====

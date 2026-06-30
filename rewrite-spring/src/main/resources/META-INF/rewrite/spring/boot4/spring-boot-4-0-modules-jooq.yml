@@ -1,8 +1,8 @@
 ---
 type: specs.openrewrite.org/v1beta/recipe
 name: io.arconia.rewrite.spring.boot4.MigrateJooqModule
-displayName: Migrate Spring Boot JOOQ module to Spring Boot 4.0
-description: Migrate Spring Boot JOOQ module to Spring Boot 4.0.
+displayName: Migrate Spring Boot jOOQ module to Spring Boot 4.0
+description: Migrate Spring Boot jOOQ module to Spring Boot 4.0.
 preconditions:
   - org.openrewrite.Singleton
 recipeList:

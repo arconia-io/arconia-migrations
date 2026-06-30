@@ -37,6 +37,27 @@ _Example:_ `This property is deprecated and will be removed in future versions.`
 | Whether to comment out the property. Defaults to `true`.
 |===
 
+*Example*
+
+.Before
+[source,yaml]
+----
+arconia:
+  feature:
+    toggle: true
+    tier: platinum
+----
+
+.After
+[source,yaml]
+----
+arconia:
+  feature:
+    # This property has been removed from this version
+    # toggle: true
+    tier: platinum
+----
+
 [#io_arconia_rewrite_spring_boot_properties_ChangeSpringBootPropertyValue]
 === Change the value of a Spring Boot configuration property key
 `io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue`
@@ -83,6 +104,24 @@ Multiple patterns are OR-ed together.
 
 |===
 
+*Example*
+
+.Before
+[source,yaml]
+----
+arconia:
+  feature:
+    toggle: true
+----
+
+.After
+[source,yaml]
+----
+arconia:
+  feature:
+    toggle: enabled
+----
+
 [#io_arconia_rewrite_spring_boot_properties_DeleteSpringBootProperty]
 === Delete a Spring Boot configuration property
 `io.arconia.rewrite.spring.boot.properties.DeleteSpringBootProperty`
@@ -112,6 +151,22 @@ Multiple patterns are OR-ed together.
 
 |===
 
+*Example*
+
+.Before
+[source,yaml]
+----
+arconia:
+  modes:
+    name: fantasy
+----
+
+.After
+[source,yaml]
+----
+
+----
+
 [#io_arconia_rewrite_spring_boot_properties_FindSpringBootConfigFiles]
 === Find Spring Boot configuration files
 `io.arconia.rewrite.spring.boot.properties.FindSpringBootConfigFiles`
@@ -132,6 +187,20 @@ the main YAML and Properties files supported by Spring Boot for configuration.
 If multiple patterns are supplied, any of the patterns matching will be interpreted as a match.
 
 |===
+
+*Example*
+
+.Before
+[source,properties]
+----
+spring.application.name=myapp
+----
+
+.After
+[source,properties]
+----
+~~>spring.application.name=myapp
+----
 
 [#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey]
 === Rename Spring Boot configuration property key
@@ -166,6 +235,24 @@ Defaults to standard `application.yml`, `application.yaml`, and `application.pro
 Multiple patterns are OR-ed together.
 
 |===
+
+*Example*
+
+.Before
+[source,yaml]
+----
+arconia:
+  dev:
+    profiles:
+      test: local
+----
+
+.After
+[source,yaml]
+----
+arconia:
+  config.profiles.test: local
+----
 
 [#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKeyIfValue]
 === Rename a Spring Boot configuration property key if its value matches
@@ -205,4 +292,22 @@ Defaults to standard `application.yml`, `application.yaml`, and `application.pro
 Multiple patterns are OR-ed together.
 
 |===
+
+*Example*
+
+.Before
+[source,yaml]
+----
+arconia:
+  feature:
+    mode: advanced
+----
+
+.After
+[source,yaml]
+----
+arconia:
+  feature:
+    advanced-mode: advanced
+----
 

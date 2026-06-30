@@ -13,8 +13,8 @@ recipeList:
 ---
 type: specs.openrewrite.org/v1beta/recipe
 name: io.arconia.rewrite.spring.boot4.MigrateKotlinxSerializationJsonStarter
-displayName: Migrate Kotlinx Serialization Json Starter
-description: Migrate Kotlinx Serialization Json Starter.
+displayName: Migrate Kotlinx Serialization JSON Starter
+description: Migrate Kotlinx Serialization JSON Starter.
 preconditions:
   - org.openrewrite.Singleton
 recipeList:
@@ -27,8 +27,8 @@ recipeList:
 ---
 type: specs.openrewrite.org/v1beta/recipe
 name: io.arconia.rewrite.spring.boot4.MigrateKotlinxSerializationJsonStarterTest
-displayName: Migrate Kotlinx Serialization Json Starter Test
-description: Migrate Kotlinx Serialization Json Starter Test.
+displayName: Migrate Kotlinx Serialization JSON Starter Test
+description: Migrate Kotlinx Serialization JSON Starter Test.
 preconditions:
   - org.openrewrite.Singleton
 recipeList:

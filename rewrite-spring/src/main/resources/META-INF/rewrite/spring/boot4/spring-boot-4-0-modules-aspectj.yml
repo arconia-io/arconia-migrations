@@ -12,8 +12,8 @@ recipeList:
 ---
 type: specs.openrewrite.org/v1beta/recipe
 name: io.arconia.rewrite.spring.boot4.MigrateAspectjStarter
-displayName: Migrate Aspectj Starter
-description: Migrate Aspectj Starter.
+displayName: Migrate AspectJ Starter
+description: Migrate AspectJ Starter.
 preconditions:
   - org.openrewrite.Singleton
 recipeList:
@@ -26,8 +26,8 @@ recipeList:
 ---
 type: specs.openrewrite.org/v1beta/recipe
 name: io.arconia.rewrite.spring.boot4.AddAspectjStarterTest
-displayName: Add Aspectj Starter Test
-description: Add Aspectj Starter Test.
+displayName: Add AspectJ Starter Test
+description: Add AspectJ Starter Test.
 preconditions:
   - org.openrewrite.java.dependencies.FindDependency:
       groupId: org.springframework.boot

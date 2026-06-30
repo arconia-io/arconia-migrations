@@ -1,8 +1,8 @@
 ---
 type: specs.openrewrite.org/v1beta/recipe
 name: io.arconia.rewrite.spring.boot4.MigrateDataNeo4jModule
-displayName: Migrate Spring Boot Data Neo4J module to Spring Boot 4.0
-description: Migrate Spring Boot Data Neo4J module to Spring Boot 4.0.
+displayName: Migrate Spring Boot Data Neo4j module to Spring Boot 4.0
+description: Migrate Spring Boot Data Neo4j module to Spring Boot 4.0.
 preconditions:
   - org.openrewrite.Singleton
 recipeList:
@@ -33,8 +33,8 @@ recipeList:
 ---
 type: specs.openrewrite.org/v1beta/recipe
 name: io.arconia.rewrite.spring.boot4.AddDataNeo4jStarterTest
-displayName: Add Data Neo4J Starter Test
-description: Add Data Neo4J Starter Test.
+displayName: Add Data Neo4j Starter Test
+description: Add Data Neo4j Starter Test.
 preconditions:
   - org.openrewrite.java.dependencies.FindDependency:
       groupId: org.springframework.boot

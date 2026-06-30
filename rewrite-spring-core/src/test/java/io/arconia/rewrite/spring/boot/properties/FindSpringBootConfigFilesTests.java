@@ -3,6 +3,7 @@ package io.arconia.rewrite.spring.boot.properties;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
+import org.openrewrite.DocumentExample;
 import org.openrewrite.test.RecipeSpec;
 import org.openrewrite.test.RewriteTest;
 
@@ -68,6 +69,7 @@ class FindSpringBootConfigFilesTests implements RewriteTest {
     }
 
     @Test
+    @DocumentExample
     void findApplicationProperties() {
         rewriteRun(
                 //language=properties
