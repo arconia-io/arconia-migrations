@@ -33,10 +33,10 @@ name: io.arconia.rewrite.spring.boot4.AddSecurityOAuth2AuthorizationServerStarte
 displayName: Add Security OAuth2 Authorization Server Starter Test
 description: Add Security OAuth2 Authorization Server Starter Test.
 preconditions:
-  - org.openrewrite.Singleton
   - org.openrewrite.java.dependencies.FindDependency:
       groupId: org.springframework.boot
       artifactId: spring-boot-starter-security-oauth2-authorization-server
+  - org.openrewrite.Singleton
 recipeList:
   - org.openrewrite.java.dependencies.AddDependency:
       groupId: org.springframework.boot

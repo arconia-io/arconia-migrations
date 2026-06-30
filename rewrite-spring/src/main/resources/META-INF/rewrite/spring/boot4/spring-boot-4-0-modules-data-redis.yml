@@ -70,10 +70,10 @@ name: io.arconia.rewrite.spring.boot4.AddDataRedisStarterTest
 displayName: Add Data Redis Starter Test
 description: Add Data Redis Starter Test.
 preconditions:
-  - org.openrewrite.Singleton
   - org.openrewrite.java.dependencies.FindDependency:
       groupId: org.springframework.boot
       artifactId: spring-boot-starter-data-redis
+  - org.openrewrite.Singleton
 recipeList:
   - org.openrewrite.java.dependencies.AddDependency:
       groupId: org.springframework.boot
@@ -88,10 +88,10 @@ name: io.arconia.rewrite.spring.boot4.AddDataRedisReactiveStarterTest
 displayName: Add Data Redis Reactive Starter Test
 description: Add Data Redis Reactive Starter Test.
 preconditions:
-  - org.openrewrite.Singleton
   - org.openrewrite.java.dependencies.FindDependency:
       groupId: org.springframework.boot
       artifactId: spring-boot-starter-data-redis-reactive
+  - org.openrewrite.Singleton
 recipeList:
   - org.openrewrite.java.dependencies.AddDependency:
       groupId: org.springframework.boot

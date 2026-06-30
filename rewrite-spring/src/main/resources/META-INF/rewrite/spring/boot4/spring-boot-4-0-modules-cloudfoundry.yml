@@ -19,10 +19,10 @@ name: io.arconia.rewrite.spring.boot4.AddCloudFoundryStarterTest
 displayName: Add CloudFoundry Starter Test
 description: Add CloudFoundry Starter Test.
 preconditions:
-  - org.openrewrite.Singleton
   - org.openrewrite.java.dependencies.FindDependency:
       groupId: org.springframework.boot
       artifactId: spring-boot-starter-cloudfoundry
+  - org.openrewrite.Singleton
 recipeList:
   - org.openrewrite.java.dependencies.AddDependency:
       groupId: org.springframework.boot

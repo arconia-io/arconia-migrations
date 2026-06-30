@@ -38,10 +38,10 @@ name: io.arconia.rewrite.spring.boot4.AddOpenTelemetryStarterForMetrics
 displayName: Add OpenTelemetry Starter for Metrics
 description: Add OpenTelemetry Starter for Metrics.
 preconditions:
-  - org.openrewrite.Singleton
   - org.openrewrite.java.dependencies.FindDependency:
       groupId: io.micrometer
       artifactId: micrometer-registry-otlp
+  - org.openrewrite.Singleton
 recipeList:
   - org.openrewrite.java.dependencies.AddDependency:
       groupId: org.springframework.boot
@@ -56,10 +56,10 @@ name: io.arconia.rewrite.spring.boot4.AddOpenTelemetryStarterForTracing
 displayName: Add OpenTelemetry Starter for Tracing
 description: Add OpenTelemetry Starter for Tracing.
 preconditions:
-  - org.openrewrite.Singleton
   - org.openrewrite.java.dependencies.FindDependency:
       groupId: io.micrometer
       artifactId: micrometer-tracing-bridge-otel
+  - org.openrewrite.Singleton
 recipeList:
   - org.openrewrite.java.dependencies.AddDependency:
       groupId: org.springframework.boot
@@ -74,10 +74,10 @@ name: io.arconia.rewrite.spring.boot4.AddOpenTelemetryStarterTest
 displayName: Add OpenTelemetry Test
 description: Add OpenTelemetry Test.
 preconditions:
-  - org.openrewrite.Singleton
   - org.openrewrite.java.dependencies.FindDependency:
       groupId: org.springframework.boot
       artifactId: spring-boot-starter-opentelemetry
+  - org.openrewrite.Singleton
 recipeList:
   - org.openrewrite.java.dependencies.AddDependency:
       groupId: org.springframework.boot

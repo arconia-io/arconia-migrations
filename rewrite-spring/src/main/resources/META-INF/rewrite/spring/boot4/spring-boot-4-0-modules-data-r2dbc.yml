@@ -27,10 +27,10 @@ name: io.arconia.rewrite.spring.boot4.AddDataR2dbcStarterTest
 displayName: Add Data R2DBC Starter Test
 description: Add Data R2DBC Starter Test.
 preconditions:
-  - org.openrewrite.Singleton
   - org.openrewrite.java.dependencies.FindDependency:
       groupId: org.springframework.boot
       artifactId: spring-boot-starter-data-r2dbc
+  - org.openrewrite.Singleton
 recipeList:
   - org.openrewrite.java.dependencies.AddDependency:
       groupId: org.springframework.boot

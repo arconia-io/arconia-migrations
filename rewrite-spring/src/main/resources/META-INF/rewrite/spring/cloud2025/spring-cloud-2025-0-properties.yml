@@ -135,10 +135,10 @@ tags:
   - spring
   - cloud
 preconditions:
-  - org.openrewrite.Singleton
   - org.openrewrite.maven.search.FindDependency:
       groupId: org.springframework.cloud
       artifactId: spring-cloud-gateway-mvc
+  - org.openrewrite.Singleton
 recipeList:
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: "spring.cloud.gateway.proxy.auto-forward"
@@ -162,10 +162,10 @@ tags:
   - spring
   - cloud
 preconditions:
-  - org.openrewrite.Singleton
   - org.openrewrite.java.dependencies.FindDependency:
       groupId: org.springframework.cloud
       artifactId: spring-cloud-gateway-webflux
+  - org.openrewrite.Singleton
 recipeList:
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: "spring.cloud.gateway.proxy.auto-forward"

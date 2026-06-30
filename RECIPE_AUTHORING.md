@@ -106,7 +106,7 @@ Conventions:
 
 * The generator emits the block automatically; never hand-add it to a `…-generated.yml` file.
 * For hand-written wrappers and version aggregates, add it yourself, immediately before `recipeList:`.
-* When a recipe already has a precondition (for example a `FindDependency` gate), add `org.openrewrite.Singleton` as the first entry of the existing list.
+* When a recipe already has a gate precondition, add `org.openrewrite.Singleton` as the last entry of the existing list.
 
 ## Parser classpath and TypeTables
 

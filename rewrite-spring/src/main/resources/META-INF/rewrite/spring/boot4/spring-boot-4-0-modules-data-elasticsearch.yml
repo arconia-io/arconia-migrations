@@ -36,10 +36,10 @@ name: io.arconia.rewrite.spring.boot4.AddDataElasticsearchStarterTest
 displayName: Add Data Elasticsearch Starter Test
 description: Add Data Elasticsearch Starter Test.
 preconditions:
-  - org.openrewrite.Singleton
   - org.openrewrite.java.dependencies.FindDependency:
       groupId: org.springframework.boot
       artifactId: spring-boot-starter-data-elasticsearch
+  - org.openrewrite.Singleton
 recipeList:
   - org.openrewrite.java.dependencies.AddDependency:
       groupId: org.springframework.boot
