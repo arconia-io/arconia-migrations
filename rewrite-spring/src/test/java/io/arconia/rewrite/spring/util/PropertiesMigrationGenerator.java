@@ -500,6 +500,8 @@ public final class PropertiesMigrationGenerator {
                 description: %s
                 tags:
                 %s
+                preconditions:
+                  - org.openrewrite.Singleton
                 recipeList:
                 """.formatted(
                 entryPoint.getSimpleName(),

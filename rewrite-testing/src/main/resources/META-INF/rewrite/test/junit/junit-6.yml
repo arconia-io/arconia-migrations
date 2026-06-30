@@ -6,6 +6,8 @@ displayName: Migrate to JUnit 6.x
 description: Migrate a Java application to the latest JUnit 6.x release.
 tags:
   - junit
+preconditions:
+  - org.openrewrite.Singleton
 recipeList:
 
   # Dependency Changes

@@ -6,6 +6,8 @@ description: Migrate a Spring Boot application to the latest Spring AI 1.1.x rel
 tags:
   - spring
   - ai
+preconditions:
+  - org.openrewrite.Singleton
 recipeList:
   # Configuration Properties
   - io.arconia.rewrite.spring.ai1.UpgradeSpringAiProperties_1_1
@@ -30,6 +32,8 @@ type: specs.openrewrite.org/v1beta/recipe
 name: io.arconia.rewrite.spring.ai1.MigrateSpringAiBedrock_1_1
 displayName: Migrate the Spring AI Bedrock module to Spring AI 1.1
 description: Update usages of Spring AI Bedrock APIs that were renamed in Spring AI 1.1.
+preconditions:
+  - org.openrewrite.Singleton
 recipeList:
   - org.openrewrite.java.ChangeMethodName:
       methodPattern: org.springframework.ai.bedrock.titan.BedrockTitanEmbeddingOptions$Builder withInputType(..)
@@ -40,6 +44,8 @@ type: specs.openrewrite.org/v1beta/recipe
 name: io.arconia.rewrite.spring.ai1.MigrateSpringAiMcp_1_1
 displayName: Migrate the Spring AI MCP module to Spring AI 1.1
 description: Update Spring AI MCP client and server dependencies and relocated auto-configuration types for Spring AI 1.1.
+preconditions:
+  - org.openrewrite.Singleton
 recipeList:
   - org.openrewrite.java.dependencies.ChangeDependency:
       oldGroupId: org.springframework.ai
@@ -132,6 +138,8 @@ type: specs.openrewrite.org/v1beta/recipe
 name: io.arconia.rewrite.spring.ai1.MigrateSpringAiModel_1_1
 displayName: Migrate the Spring AI Model module to Spring AI 1.1
 description: Update usages of Spring AI Model APIs that were relocated or renamed in Spring AI 1.1.
+preconditions:
+  - org.openrewrite.Singleton
 recipeList:
   - org.openrewrite.java.ChangeType:
       oldFullyQualifiedTypeName: org.springframework.ai.openai.audio.speech.Speech

@@ -7,6 +7,8 @@ description: Migrate a Spring Boot application to the latest Spring Boot 4.1.x r
 tags:
   - spring
   - boot
+preconditions:
+  - org.openrewrite.Singleton
 recipeList:
   # Previous Version
   - io.arconia.rewrite.spring.boot4.UpgradeSpringBoot_4_0

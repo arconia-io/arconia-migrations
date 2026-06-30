@@ -5,6 +5,8 @@ displayName: Migrate to Docling 0.3
 description: Migrate a Java application to the latest Docling 0.3.x release.
 tags:
   - docling
+preconditions:
+  - org.openrewrite.Singleton
 recipeList:
   - io.arconia.rewrite.docling.UpgradeDocling_0_2
 

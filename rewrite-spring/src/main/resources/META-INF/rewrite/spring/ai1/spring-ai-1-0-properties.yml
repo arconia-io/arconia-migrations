@@ -6,6 +6,8 @@ description: Migrate Spring AI properties found in configuration data files (YAM
 tags:
   - spring
   - ai
+preconditions:
+  - org.openrewrite.Singleton
 recipeList:
   - io.arconia.rewrite.spring.ai1.UpgradeSpringAiPropertiesGenerated_1_0
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:

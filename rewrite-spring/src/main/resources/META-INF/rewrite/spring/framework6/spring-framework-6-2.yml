@@ -7,6 +7,8 @@ description: Migrate a Spring application to the latest Spring Framework 6.2.x r
 tags:
   - spring
   - framework
+preconditions:
+  - org.openrewrite.Singleton
 recipeList:
 
   # Dependency Versions
@@ -36,6 +38,8 @@ type: specs.openrewrite.org/v1beta/recipe
 name: io.arconia.rewrite.spring.framework6.MigrateSpringBeans_6_2
 displayName: Migrate the Spring Beans module to Spring Framework 6.2
 description: Update usages of Spring Beans APIs that were renamed or replaced in Spring Framework 6.2.
+preconditions:
+  - org.openrewrite.Singleton
 recipeList:
   - org.openrewrite.java.ChangeMethodName:
       methodPattern: org.springframework.beans.factory.aot.BeanInstanceSupplier withShortcuts(..)
@@ -46,6 +50,8 @@ type: specs.openrewrite.org/v1beta/recipe
 name: io.arconia.rewrite.spring.framework6.MigrateSpringContext_6_2
 displayName: Migrate the Spring Context module to Spring Framework 6.2
 description: Update usages of Spring Context APIs that were renamed or replaced in Spring Framework 6.2.
+preconditions:
+  - org.openrewrite.Singleton
 recipeList:
   - org.openrewrite.java.ChangeMethodName:
       methodPattern: org.springframework.validation.method.MethodValidationResult getAllValidationResults()
@@ -57,6 +63,8 @@ type: specs.openrewrite.org/v1beta/recipe
 name: io.arconia.rewrite.spring.framework6.MigrateSpringMessaging_6_2
 displayName: Migrate the Spring Messaging module to Spring Framework 6.2
 description: Update usages of Spring Messaging APIs that were renamed or replaced in Spring Framework 6.2.
+preconditions:
+  - org.openrewrite.Singleton
 recipeList:
   - org.openrewrite.java.ChangeMethodName:
       methodPattern: org.springframework.messaging.handler.invocation.AsyncHandlerMethodReturnValueHandler toListenableFuture(..)
@@ -87,6 +95,8 @@ type: specs.openrewrite.org/v1beta/recipe
 name: io.arconia.rewrite.spring.framework6.MigrateSpringTest_6_2
 displayName: Migrate the Spring Test module to Spring Framework 6.2
 description: Update usages of Spring Test APIs that were renamed or replaced in Spring Framework 6.2.
+preconditions:
+  - org.openrewrite.Singleton
 recipeList:
   - org.openrewrite.java.ChangeMethodName:
       methodPattern: org.springframework.test.web.reactive.server.ExchangeResult getRawStatusCode()
@@ -117,6 +127,8 @@ type: specs.openrewrite.org/v1beta/recipe
 name: io.arconia.rewrite.spring.framework6.MigrateSpringWeb_6_2
 displayName: Migrate the Spring Web module to Spring Framework 6.2
 description: Update usages of Spring Web APIs that were renamed or replaced in Spring Framework 6.2.
+preconditions:
+  - org.openrewrite.Singleton
 recipeList:
   - org.openrewrite.java.ChangeMethodName:
       methodPattern: org.springframework.http.ResponseEntity getStatusCodeValue()
@@ -204,6 +216,8 @@ type: specs.openrewrite.org/v1beta/recipe
 name: io.arconia.rewrite.spring.framework6.MigrateSpringWebFlux_6_2
 displayName: Migrate the Spring WebFlux module to Spring Framework 6.2
 description: Update usages of Spring WebFlux APIs that were renamed or replaced in Spring Framework 6.2.
+preconditions:
+  - org.openrewrite.Singleton
 recipeList:
   - org.openrewrite.java.ChangeMethodName:
       methodPattern: org.springframework.web.reactive.function.BodyInserters fromObject(..)
@@ -262,6 +276,8 @@ type: specs.openrewrite.org/v1beta/recipe
 name: io.arconia.rewrite.spring.framework6.MigrateSpringWebMvc_6_2
 displayName: Migrate the Spring WebMVC module to Spring Framework 6.2
 description: Update usages of Spring WebMVC APIs that were renamed or replaced in Spring Framework 6.2.
+preconditions:
+  - org.openrewrite.Singleton
 recipeList:
   - org.openrewrite.java.ChangeMethodName:
       methodPattern: org.springframework.web.servlet.function.ServerRequest methodName()
@@ -304,6 +320,8 @@ type: specs.openrewrite.org/v1beta/recipe
 name: io.arconia.rewrite.spring.framework6.MigrateSpringWebSocket_6_2
 displayName: Migrate the Spring WebSocket module to Spring Framework 6.2
 description: Update usages of Spring WebSocket APIs that were renamed or replaced in Spring Framework 6.2.
+preconditions:
+  - org.openrewrite.Singleton
 recipeList:
   - org.openrewrite.java.ChangeMethodName:
       methodPattern: org.springframework.web.socket.client.AbstractWebSocketClient doHandshakeInternal(..)

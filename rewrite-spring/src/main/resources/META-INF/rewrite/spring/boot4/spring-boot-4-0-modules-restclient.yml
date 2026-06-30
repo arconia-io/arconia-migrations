@@ -3,6 +3,8 @@ type: specs.openrewrite.org/v1beta/recipe
 name: io.arconia.rewrite.spring.boot4.MigrateRestClientModule
 displayName: Migrate Spring Boot RestClient module to Spring Boot 4.0
 description: Migrate Spring Boot RestClient module to Spring Boot 4.0.
+preconditions:
+  - org.openrewrite.Singleton
 recipeList:
   - io.arconia.rewrite.spring.boot4.AddRestClientStarter
   - io.arconia.rewrite.spring.boot4.AddRestClientStarterTest
@@ -64,6 +66,8 @@ type: specs.openrewrite.org/v1beta/recipe
 name: io.arconia.rewrite.spring.boot4.AddRestClientStarter
 displayName: Add Rest Client Starter
 description: Add Rest Client Starter.
+preconditions:
+  - org.openrewrite.Singleton
 recipeList:
   - org.openrewrite.java.dependencies.AddDependency:
       groupId: org.springframework.boot
@@ -82,6 +86,7 @@ name: io.arconia.rewrite.spring.boot4.AddRestClientStarterTest
 displayName: Add Rest Client Starter Test
 description: Add Rest Client Starter Test.
 preconditions:
+  - org.openrewrite.Singleton
   - org.openrewrite.java.dependencies.FindDependency:
       groupId: org.springframework.boot
       artifactId: spring-boot-starter-restclient

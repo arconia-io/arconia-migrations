@@ -8,6 +8,8 @@ description: Migrate Spring Cloud properties found in configuration data files (
 tags:
   - spring
   - cloud
+preconditions:
+  - org.openrewrite.Singleton
 recipeList:
   # spring-cloud-bus
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:

@@ -3,6 +3,8 @@ type: specs.openrewrite.org/v1beta/recipe
 name: io.arconia.rewrite.spring.boot4.MigrateHazelcastModule
 displayName: Migrate Spring Boot Hazelcast module to Spring Boot 4.0
 description: Migrate Spring Boot Hazelcast module to Spring Boot 4.0.
+preconditions:
+  - org.openrewrite.Singleton
 recipeList:
   - io.arconia.rewrite.spring.boot4.AddHazelcastStarter
   - io.arconia.rewrite.spring.boot4.AddHazelcastStarterTest
@@ -22,6 +24,8 @@ type: specs.openrewrite.org/v1beta/recipe
 name: io.arconia.rewrite.spring.boot4.AddHazelcastStarter
 displayName: Add Hazelcast Starter
 description: Add Hazelcast Starter.
+preconditions:
+  - org.openrewrite.Singleton
 recipeList:
   - org.openrewrite.java.dependencies.ChangeDependency:
       oldGroupId: com.hazelcast
@@ -35,6 +39,7 @@ name: io.arconia.rewrite.spring.boot4.AddHazelcastStarterTest
 displayName: Add Hazelcast Starter Test
 description: Add Hazelcast Starter Test.
 preconditions:
+  - org.openrewrite.Singleton
   - org.openrewrite.java.dependencies.FindDependency:
       groupId: org.springframework.boot
       artifactId: spring-boot-starter-hazelcast

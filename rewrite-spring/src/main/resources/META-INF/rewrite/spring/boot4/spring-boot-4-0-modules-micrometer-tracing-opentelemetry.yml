@@ -3,6 +3,8 @@ type: specs.openrewrite.org/v1beta/recipe
 name: io.arconia.rewrite.spring.boot4.MigrateMicrometerTracingOpenTelemetryModule
 displayName: Migrate Spring Boot Micrometer Tracing OpenTelemetry module to Spring Boot 4.0
 description: Migrate Spring Boot Micrometer Tracing OpenTelemetry module to Spring Boot 4.0.
+preconditions:
+  - org.openrewrite.Singleton
 recipeList:
   - org.openrewrite.java.ChangeType:
       oldFullyQualifiedTypeName: org.springframework.boot.actuate.autoconfigure.tracing.OpenTelemetryEventPublisherBeansApplicationListener

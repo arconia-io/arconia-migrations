@@ -6,6 +6,8 @@ description: Migrate Spring AI properties found in configuration data files (YAM
 tags:
   - spring
   - ai
+preconditions:
+  - org.openrewrite.Singleton
 recipeList:
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.ai.ollama.chat.options.use-n-u-m-a"

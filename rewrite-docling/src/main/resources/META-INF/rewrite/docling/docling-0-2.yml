@@ -5,6 +5,8 @@ displayName: Migrate to Docling 0.2
 description: Migrate a Java application to the latest Docling 0.2.x release.
 tags:
   - docling
+preconditions:
+  - org.openrewrite.Singleton
 recipeList:
   - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
       groupId: ai.docling

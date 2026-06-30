@@ -8,6 +8,8 @@ description: Migrate Spring Boot properties found in configuration data files (Y
 tags:
   - spring
   - boot
+preconditions:
+  - org.openrewrite.Singleton
 recipeList:
   # spring-boot-actuator
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:

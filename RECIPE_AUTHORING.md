@@ -89,6 +89,25 @@ Put these in the wrapper:
 
 The wrapper is then composed into the version aggregate recipe (for example `UpgradeSpringAi_1_0`). Because bespoke logic lives only in the wrapper, regenerating the generated file is always safe.
 
+## The `Singleton` precondition
+
+Every composite recipe (generated file, wrapper, and version aggregate) declares the `org.openrewrite.Singleton` precondition:
+
+```yaml
+preconditions:
+  - org.openrewrite.Singleton
+recipeList:
+  - ...
+```
+
+`org.openrewrite.Singleton` (from `rewrite-core`, so no extra dependency) lets only the first equivalent instance of a recipe make changes when the same recipe is reached more than once in a single run. Our aggregates form diamonds (`UpgradeSpringBoot_4_0` pulls in `UpgradeSpringBoot_3_5`, and the version chains for AI, Cloud, and Framework converge) so the same sub-recipe might be scheduled by multiple paths. Singleton collapses those to one pass. The leaf recipes are already idempotent, so this is a performance and consistency guard.
+
+Conventions:
+
+* The generator emits the block automatically; never hand-add it to a `…-generated.yml` file.
+* For hand-written wrappers and version aggregates, add it yourself, immediately before `recipeList:`.
+* When a recipe already has a precondition (for example a `FindDependency` gate), add `org.openrewrite.Singleton` as the first entry of the existing list.
+
 ## Parser classpath and TypeTables
 
 Recipes and tests that rely on type attribution (Java recipes using `JavaTemplate`, `UsesType`, or

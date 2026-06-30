@@ -7,6 +7,8 @@ description: Migrate a Spring Boot application to the latest Spring Boot 3.5.x r
 tags:
   - spring
   - boot
+preconditions:
+  - org.openrewrite.Singleton
 recipeList:
   # Configuration Properties
   - io.arconia.rewrite.spring.boot3.UpgradeSpringBootProperties_3_5

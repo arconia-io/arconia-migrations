@@ -7,6 +7,8 @@ description: Migrate Spring Boot properties found in configuration data files (Y
 tags:
   - spring
   - boot
+preconditions:
+  - org.openrewrite.Singleton
 recipeList:
   - io.arconia.rewrite.spring.boot4.UpgradeSpringBootPropertiesGenerated_4_0
 

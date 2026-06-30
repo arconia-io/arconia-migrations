@@ -6,6 +6,8 @@ description: Migrate a Spring Boot application to the latest Spring AI 2.0.x rel
 tags:
   - spring
   - ai
+preconditions:
+  - org.openrewrite.Singleton
 recipeList:
 
   # Configuration Properties

@@ -6,6 +6,8 @@ description: Migrate Spring Cloud properties found in configuration data files (
 tags:
   - spring
   - cloud
+preconditions:
+  - org.openrewrite.Singleton
 recipeList:
   - io.arconia.rewrite.spring.cloud2025.UpgradeSpringCloudPropertiesGenerated_2025_1
 

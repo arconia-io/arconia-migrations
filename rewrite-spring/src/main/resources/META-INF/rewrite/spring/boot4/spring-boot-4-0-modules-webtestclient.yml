@@ -3,6 +3,8 @@ type: specs.openrewrite.org/v1beta/recipe
 name: io.arconia.rewrite.spring.boot4.MigrateWebTestClientModule
 displayName: Migrate Spring Boot WebTestClient module to Spring Boot 4.0
 description: Migrate Spring Boot WebTestClient module to Spring Boot 4.0.
+preconditions:
+  - org.openrewrite.Singleton
 recipeList:
   - io.arconia.rewrite.spring.boot4.AddWebTestClientModule
   - org.openrewrite.java.ChangeType:
@@ -23,6 +25,8 @@ type: specs.openrewrite.org/v1beta/recipe
 name: io.arconia.rewrite.spring.boot4.AddWebTestClientModule
 displayName: Add WebTestClient Module
 description: Add WebTestClient Module.
+preconditions:
+  - org.openrewrite.Singleton
 recipeList:
   - org.openrewrite.java.dependencies.AddDependency:
       groupId: org.springframework.boot

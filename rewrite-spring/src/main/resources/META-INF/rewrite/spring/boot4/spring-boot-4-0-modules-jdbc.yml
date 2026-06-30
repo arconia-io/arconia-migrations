@@ -3,6 +3,8 @@ type: specs.openrewrite.org/v1beta/recipe
 name: io.arconia.rewrite.spring.boot4.MigrateJdbcModule
 displayName: Migrate Spring Boot JDBC module to Spring Boot 4.0
 description: Migrate Spring Boot JDBC module to Spring Boot 4.0.
+preconditions:
+  - org.openrewrite.Singleton
 recipeList:
   - io.arconia.rewrite.spring.boot4.AddJdbcStarterTest
 
@@ -66,6 +68,7 @@ name: io.arconia.rewrite.spring.boot4.AddJdbcStarterTest
 displayName: Add Jdbc Starter Test
 description: Add Jdbc Starter Test.
 preconditions:
+  - org.openrewrite.Singleton
   - org.openrewrite.java.dependencies.FindDependency:
       groupId: org.springframework.boot
       artifactId: spring-boot-starter-jdbc

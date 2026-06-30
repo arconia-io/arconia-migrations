@@ -6,6 +6,8 @@ description: Migrate Spring Cloud properties found in configuration data files (
 tags:
   - spring
   - cloud
+preconditions:
+  - org.openrewrite.Singleton
 recipeList:
   - io.arconia.rewrite.spring.cloud2025.UpgradeSpringCloudPropertiesGenerated_2025_0
 
@@ -133,6 +135,7 @@ tags:
   - spring
   - cloud
 preconditions:
+  - org.openrewrite.Singleton
   - org.openrewrite.maven.search.FindDependency:
       groupId: org.springframework.cloud
       artifactId: spring-cloud-gateway-mvc
@@ -159,6 +162,7 @@ tags:
   - spring
   - cloud
 preconditions:
+  - org.openrewrite.Singleton
   - org.openrewrite.java.dependencies.FindDependency:
       groupId: org.springframework.cloud
       artifactId: spring-cloud-gateway-webflux

@@ -6,6 +6,8 @@ description: Migrate a Spring Boot application to the latest Spring Cloud 2025.1
 tags:
   - spring
   - cloud
+preconditions:
+  - org.openrewrite.Singleton
 recipeList:
 
   # Configuration Properties
@@ -29,6 +31,8 @@ type: specs.openrewrite.org/v1beta/recipe
 name: io.arconia.rewrite.spring.cloud2025.MigrateSpringCloudContract_5_0
 displayName: Migrate Spring Cloud Contract to 5.0
 description: Migrate Spring Cloud Contract usages that changed in the 5.0 release shipped with Spring Cloud 2025.1.
+preconditions:
+  - org.openrewrite.Singleton
 recipeList:
   - org.openrewrite.java.dependencies.ChangeDependency:
       oldGroupId: com.github.tomakehurst

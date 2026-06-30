@@ -3,6 +3,8 @@ type: specs.openrewrite.org/v1beta/recipe
 name: io.arconia.rewrite.spring.boot4.MigrateRestTestClientModule
 displayName: Migrate Spring Boot RestTestClient module to Spring Boot 4.0
 description: Migrate Spring Boot RestTestClient module to Spring Boot 4.0.
+preconditions:
+  - org.openrewrite.Singleton
 recipeList:
   - org.openrewrite.java.ChangeType:
       oldFullyQualifiedTypeName: org.springframework.boot.test.web.client.TestRestTemplate
@@ -14,6 +16,8 @@ type: specs.openrewrite.org/v1beta/recipe
 name: io.arconia.rewrite.spring.boot4.AddRestTestClientModule
 displayName: Add RestTestClient Module
 description: Add RestTestClient Module.
+preconditions:
+  - org.openrewrite.Singleton
 recipeList:
   - org.openrewrite.java.dependencies.AddDependency:
       groupId: org.springframework.boot

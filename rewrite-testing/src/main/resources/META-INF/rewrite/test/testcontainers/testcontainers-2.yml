@@ -6,6 +6,8 @@ displayName: Migrate to Testcontainers 2.x
 description: Migrate a Java application to the latest Testcontainers 2.x release.
 tags:
   - testcontainers
+preconditions:
+  - org.openrewrite.Singleton
 recipeList:
 
   # Dependency Changes
@@ -404,6 +406,8 @@ description: >-
   parameterised usages of the container to raw types.
 tags:
   - testcontainers
+preconditions:
+  - org.openrewrite.Singleton
 recipeList:
   - org.openrewrite.java.ChangeType:
       oldFullyQualifiedTypeName: org.testcontainers.containers.CassandraContainer
@@ -427,6 +431,8 @@ description: >-
   note pointing teams that want to stay on Confluent to `ConfluentKafkaContainer`.
 tags:
   - testcontainers
+preconditions:
+  - org.openrewrite.Singleton
 recipeList:
   - io.arconia.rewrite.testing.testcontainers.ChangeContainerImageName:
       containerType: org.testcontainers.containers.KafkaContainer
@@ -454,6 +460,8 @@ description: >-
   the 2.x constructor pulls the right image.
 tags:
   - testcontainers
+preconditions:
+  - org.openrewrite.Singleton
 recipeList:
   - io.arconia.rewrite.testing.testcontainers.MigrateLocalStackServiceEnum_2
   - org.openrewrite.java.ChangeMethodName:
@@ -478,6 +486,8 @@ description: >-
   enum constants into the plain string names expected by the Testcontainers 2.x `withServices(String...)` API.
 tags:
   - testcontainers
+preconditions:
+  - org.openrewrite.Singleton
 recipeList:
   - org.openrewrite.java.ReplaceConstant:
       owningType: org.testcontainers.containers.localstack.LocalStackContainer.Service

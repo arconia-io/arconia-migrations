@@ -6,6 +6,8 @@ description: Migrate a Spring Boot application to the latest Spring Cloud 2025.0
 tags:
   - spring
   - cloud
+preconditions:
+  - org.openrewrite.Singleton
 recipeList:
 
   # Configuration Properties

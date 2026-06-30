@@ -5,6 +5,8 @@ displayName: Migrate to Arconia 0.14
 description: Migrate a Spring Boot application to the latest Arconia 0.14.x release.
 tags:
   - arconia
+preconditions:
+  - org.openrewrite.Singleton
 recipeList:
   - io.arconia.rewrite.framework.UpgradeArconia_0_13
 

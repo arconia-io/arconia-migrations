@@ -3,6 +3,8 @@ type: specs.openrewrite.org/v1beta/recipe
 name: io.arconia.rewrite.spring.boot4.MigrateWebMvcModule
 displayName: Migrate Spring Boot Web MVC module to Spring Boot 4.0
 description: Migrate Spring Boot Web MVC module to Spring Boot 4.0.
+preconditions:
+  - org.openrewrite.Singleton
 recipeList:
   - io.arconia.rewrite.spring.boot4.MigrateWebMvcStarter
   - io.arconia.rewrite.spring.boot4.AddWebMvcStarterTest
@@ -105,6 +107,8 @@ type: specs.openrewrite.org/v1beta/recipe
 name: io.arconia.rewrite.spring.boot4.MigrateWebMvcStarter
 displayName: Migrate Web MVC Starter
 description: Migrate Web MVC Starter.
+preconditions:
+  - org.openrewrite.Singleton
 recipeList:
   - org.openrewrite.java.dependencies.ChangeDependency:
       oldGroupId: org.springframework.boot
@@ -118,6 +122,7 @@ name: io.arconia.rewrite.spring.boot4.AddWebMvcStarterTest
 displayName: Add Web MVC Starter Test
 description: Add Web MVC Starter Test.
 preconditions:
+  - org.openrewrite.Singleton
   - org.openrewrite.java.dependencies.FindDependency:
       groupId: org.springframework.boot
       artifactId: spring-boot-starter-webmvc

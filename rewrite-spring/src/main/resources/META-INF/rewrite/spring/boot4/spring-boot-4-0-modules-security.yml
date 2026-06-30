@@ -3,6 +3,8 @@ type: specs.openrewrite.org/v1beta/recipe
 name: io.arconia.rewrite.spring.boot4.MigrateSecurityModule
 displayName: Migrate Spring Boot Security module to Spring Boot 4.0
 description: Migrate Spring Boot Security module to Spring Boot 4.0.
+preconditions:
+  - org.openrewrite.Singleton
 recipeList:
   - io.arconia.rewrite.spring.boot4.MigrateSecurityTest
   - io.arconia.rewrite.spring.boot4.AddSecurityStarterTest
@@ -83,6 +85,8 @@ type: specs.openrewrite.org/v1beta/recipe
 name: io.arconia.rewrite.spring.boot4.MigrateSecurityTest
 displayName: Migrate Security Test
 description: Migrate Security Test.
+preconditions:
+  - org.openrewrite.Singleton
 recipeList:
   - org.openrewrite.java.dependencies.ChangeDependency:
       oldGroupId: org.springframework.security
@@ -96,6 +100,7 @@ name: io.arconia.rewrite.spring.boot4.AddSecurityStarterTest
 displayName: Add Security Starter Test
 description: Add Security Starter Test.
 preconditions:
+  - org.openrewrite.Singleton
   - org.openrewrite.java.dependencies.FindDependency:
       groupId: org.springframework.boot
       artifactId: spring-boot-starter-security

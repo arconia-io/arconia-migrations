@@ -97,4 +97,20 @@ class CommentSpringBootPropertyTests implements RewriteTest {
         );
     }
 
+    @Test
+    void propertyWithCommentIsIdempotent() {
+        rewriteRun(r -> r.recipe(new CommentSpringBootProperty(
+                        "arconia.feature.toggle",
+                        "This property has been removed from this version",
+                        false)),
+                //language=properties
+                properties(
+                        """
+                        # This property has been removed from this version
+                        arconia.feature.toggle=true
+                        """,
+                        s -> s.path("src/main/resources/application-custom.properties"))
+        );
+    }
+
 }

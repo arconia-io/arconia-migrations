@@ -3,6 +3,8 @@ type: specs.openrewrite.org/v1beta/recipe
 name: io.arconia.rewrite.spring.boot4.MigrateSecurityOAuth2ResourceServerModule
 displayName: Migrate Spring Boot Security OAuth2 Resource Server module to Spring Boot 4.0
 description: Migrate Spring Boot Security OAuth2 Resource Server module to Spring Boot 4.0.
+preconditions:
+  - org.openrewrite.Singleton
 recipeList:
   - io.arconia.rewrite.spring.boot4.MigrateSecurityOAuth2ResourceServerStarter
   - io.arconia.rewrite.spring.boot4.AddSecurityOAuth2ResourceServerStarterTest
@@ -32,6 +34,8 @@ type: specs.openrewrite.org/v1beta/recipe
 name: io.arconia.rewrite.spring.boot4.MigrateSecurityOAuth2ResourceServerStarter
 displayName: Migrate Security OAuth2 Resource Server Starter
 description: Migrate Security OAuth2 Resource Server Starter.
+preconditions:
+  - org.openrewrite.Singleton
 recipeList:
   - org.openrewrite.java.dependencies.ChangeDependency:
       oldGroupId: org.springframework.boot
@@ -45,6 +49,7 @@ name: io.arconia.rewrite.spring.boot4.AddSecurityOAuth2ResourceServerStarterTest
 displayName: Add Security OAuth2 Resource Server Starter Test
 description: Add Security OAuth2 Resource Server Starter Test.
 preconditions:
+  - org.openrewrite.Singleton
   - org.openrewrite.java.dependencies.FindDependency:
       groupId: org.springframework.boot
       artifactId: spring-boot-starter-security-oauth2-resource-server

@@ -6,6 +6,8 @@ description: Migrate a Spring Boot 3 application from the Spring Boot OTLP parti
 tags:
   - arconia
   - opentelemetry
+preconditions:
+  - org.openrewrite.Singleton
 recipeList:
 
   # Rename Properties
