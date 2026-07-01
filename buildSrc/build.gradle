@@ -11,7 +11,7 @@ ext {
     set("cycloneDxVersion", '3.2.2')
     set("errorPronePluginVersion", '5.1.0')
     set("nullAwayPluginVersion", '3.1.0')
-    set("openRewriteBuildVersion", '2.19.4')
+    set("openRewriteBuildVersion", '2.19.5')
 }
 
 dependencies {
