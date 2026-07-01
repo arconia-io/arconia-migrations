@@ -7580,11 +7580,11 @@ _Tags: spring, boot_
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_framework7_UpgradeSpringFramework_7_0[Migrate to Spring Framework 7.0] (`io.arconia.rewrite.spring.framework7.UpgradeSpringFramework_7_0`)
 ** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
 ** Migrates from Jackson 2.x to Jackson 3.x (`org.openrewrite.java.jackson.UpgradeJackson_2_3`)
+*** Migrate from Jackson Codehaus (legacy) to Jackson FasterXML (`org.openrewrite.java.jackson.CodehausToFasterXML`)
 *** Replace `IOException` with `JacksonException` in catch clauses (`org.openrewrite.java.jackson.IOExceptionToJacksonException`)
 *** Remove elements from a method declaration `throws` clause (`org.openrewrite.java.RemoveMethodThrows` ×2)
 *** Replace `null` type in `StdDeserializer` constructor with actual type (`org.openrewrite.java.jackson.StdDeserializerNullConstructor`)
 *** Update `lombok.config` for Jackson 3 compatibility (`org.openrewrite.java.jackson.LombokJacksonizedConfig`)
-*** Update configuration of serialization inclusion in `ObjectMapper` for Jackson 3 (`org.openrewrite.java.jackson.UpdateSerializationInclusionConfiguration`)
 *** Use format alignment `ObjectMappers` (`org.openrewrite.java.jackson.UseFormatAlignedObjectMappers`)
 *** Modernize legacy `jackson-core` feature constants (`org.openrewrite.java.jackson.UpgradeJackson_2_3_ModernizeJacksonCoreFeatures`)
 *** Remove redundant Jackson 3 feature flag configurations (`org.openrewrite.java.jackson.UpgradeJackson_2_3_RemoveRedundantFeatureFlags`)
@@ -7600,7 +7600,7 @@ _Tags: spring, boot_
 *** Migrate relocated feature constants to DateTimeFeature and EnumFeature (`org.openrewrite.java.jackson.UpgradeJackson_2_3_RelocatedFeatureConstants`)
 *** Replace constant with another constant (`org.openrewrite.java.ReplaceConstantWithAnotherConstant`)
 *** Replace `ObjectMapper.copy()` with `rebuild().build()` (`org.openrewrite.java.jackson.ReplaceObjectMapperCopy`)
-*** … and 13 more
+*** … and 15 more
 ** xref:recipe-catalog/rewrite-testing.adoc#io_arconia_rewrite_testing_junit_UpgradeJUnit_6[Migrate to JUnit 6.x] (`io.arconia.rewrite.testing.junit.UpgradeJUnit_6`)
 *** Add Gradle dependency (`org.openrewrite.gradle.AddDependency`)
 *** Remove a Gradle or Maven dependency (`org.openrewrite.java.dependencies.RemoveDependency` ×4)
@@ -8502,11 +8502,14 @@ _Tags: spring, framework_
 ====
 * Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
 * Migrates from Jackson 2.x to Jackson 3.x (`org.openrewrite.java.jackson.UpgradeJackson_2_3`)
+** Migrate from Jackson Codehaus (legacy) to Jackson FasterXML (`org.openrewrite.java.jackson.CodehausToFasterXML`)
+*** Transfer @JsonSerialize arguments from Codehaus to FasterXML (`org.openrewrite.java.jackson.codehaus.TransferJsonSerializeArgumentsFromCodehausToFasterXML`)
+*** Migrate classes from Jackson Codehaus (legacy) to Jackson FasterXML (`org.openrewrite.java.jackson.CodehausClassesToFasterXML`)
+*** Migrate dependencies from Jackson Codehaus (legacy) to FasterXML (`org.openrewrite.java.jackson.codehaus.CodehausDependencyToFasterXML`)
 ** Replace `IOException` with `JacksonException` in catch clauses (`org.openrewrite.java.jackson.IOExceptionToJacksonException`)
 ** Remove elements from a method declaration `throws` clause (`org.openrewrite.java.RemoveMethodThrows` ×2)
 ** Replace `null` type in `StdDeserializer` constructor with actual type (`org.openrewrite.java.jackson.StdDeserializerNullConstructor`)
 ** Update `lombok.config` for Jackson 3 compatibility (`org.openrewrite.java.jackson.LombokJacksonizedConfig`)
-** Update configuration of serialization inclusion in `ObjectMapper` for Jackson 3 (`org.openrewrite.java.jackson.UpdateSerializationInclusionConfiguration`)
 ** Use format alignment `ObjectMappers` (`org.openrewrite.java.jackson.UseFormatAlignedObjectMappers`)
 ** Modernize legacy `jackson-core` feature constants (`org.openrewrite.java.jackson.UpgradeJackson_2_3_ModernizeJacksonCoreFeatures`)
 *** Replace constant with another constant (`org.openrewrite.java.ReplaceConstantWithAnotherConstant` ×34)
@@ -8533,7 +8536,7 @@ _Tags: spring, framework_
 *** Replace constant with another constant (`org.openrewrite.java.ReplaceConstantWithAnotherConstant` ×21)
 ** Replace constant with another constant (`org.openrewrite.java.ReplaceConstantWithAnotherConstant`)
 ** Replace `ObjectMapper.copy()` with `rebuild().build()` (`org.openrewrite.java.jackson.ReplaceObjectMapperCopy`)
-** … and 13 more
+** … and 15 more
 * xref:recipe-catalog/rewrite-testing.adoc#io_arconia_rewrite_testing_junit_UpgradeJUnit_6[Migrate to JUnit 6.x] (`io.arconia.rewrite.testing.junit.UpgradeJUnit_6`)
 ** Add Gradle dependency (`org.openrewrite.gradle.AddDependency`)
 ** Remove a Gradle or Maven dependency (`org.openrewrite.java.dependencies.RemoveDependency` ×4)
