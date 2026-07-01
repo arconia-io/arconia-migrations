@@ -71,8 +71,8 @@ recipeList:
 ---
 type: specs.openrewrite.org/v1beta/recipe
 name: io.arconia.rewrite.spring.boot4.AddOpenTelemetryStarterTest
-displayName: Add OpenTelemetry Test
-description: Add OpenTelemetry Test.
+displayName: Add OpenTelemetry Starter Test
+description: Add OpenTelemetry Starter Test.
 preconditions:
   - org.openrewrite.java.dependencies.FindDependency:
       groupId: org.springframework.boot

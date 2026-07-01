@@ -19,7 +19,7 @@ public class SpringAiPropertiesMigrationGenerator {
                 .bomArtifact("spring-ai-bom")
                 .modulePrefix("spring-ai-autoconfigure-")
                 .cacheDirName(".generated/spring-ai-releases")
-                .description("Migrate Spring AI properties found in configuration data files (YAML and Properties).")
+                .description(v -> "Migrate Spring AI configuration properties that were renamed or deprecated in the %s release, across YAML and Properties configuration files.".formatted(v.display()))
                 .productName("Spring AI")
                 .tags("spring", "ai")
                 .defaultRecipePath(v -> Path.of("rewrite-spring/src/main/resources/META-INF/rewrite/spring/ai%s/spring-ai-%s-%s-properties-generated.yml"

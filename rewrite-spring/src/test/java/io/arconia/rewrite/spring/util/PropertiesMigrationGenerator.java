@@ -87,7 +87,7 @@ public final class PropertiesMigrationGenerator {
             String bomArtifact,
             String modulePrefix,
             String cacheDirName,
-            String description,
+            Function<Version, String> description,
             String productName,
             List<String> tags,
             Function<Version, Path> defaultRecipePath,
@@ -104,7 +104,7 @@ public final class PropertiesMigrationGenerator {
             private String bomArtifact;
             private String modulePrefix;
             private String cacheDirName;
-            private String description;
+            private Function<Version, String> description;
             private String productName;
             private List<String> tags = List.of();
             private Function<Version, Path> defaultRecipePath;
@@ -116,7 +116,7 @@ public final class PropertiesMigrationGenerator {
             public Builder bomArtifact(String bomArtifact) { this.bomArtifact = bomArtifact; return this; }
             public Builder modulePrefix(String modulePrefix) { this.modulePrefix = modulePrefix; return this; }
             public Builder cacheDirName(String cacheDirName) { this.cacheDirName = cacheDirName; return this; }
-            public Builder description(String description) { this.description = description; return this; }
+            public Builder description(Function<Version, String> description) { this.description = description; return this; }
             public Builder productName(String productName) { this.productName = productName; return this; }
             public Builder tags(String... tags) { this.tags = List.of(tags); return this; }
             public Builder defaultRecipePath(Function<Version, Path> defaultRecipePath) { this.defaultRecipePath = defaultRecipePath; return this; }
@@ -507,7 +507,7 @@ public final class PropertiesMigrationGenerator {
                 entryPoint.getSimpleName(),
                 spec.recipeName().apply(version),
                 spec.displayName().apply(version),
-                spec.description(),
+                spec.description().apply(version),
                 tagsBlock));
 
         propertiesByModule.forEach((moduleName, properties) -> {

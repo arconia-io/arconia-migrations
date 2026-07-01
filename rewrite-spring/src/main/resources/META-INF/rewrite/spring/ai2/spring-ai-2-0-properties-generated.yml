@@ -4,7 +4,7 @@
 type: specs.openrewrite.org/v1beta/recipe
 name: io.arconia.rewrite.spring.ai2.UpgradeSpringAiPropertiesGenerated_2_0
 displayName: Migrate Spring AI properties to 2.0 (generated)
-description: Migrate Spring AI properties found in configuration data files (YAML and Properties).
+description: Migrate Spring AI configuration properties that were renamed or deprecated in the 2.0 release, across YAML and Properties configuration files.
 tags:
   - spring
   - ai

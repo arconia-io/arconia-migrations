@@ -15,8 +15,8 @@ recipeList:
 ---
 type: specs.openrewrite.org/v1beta/recipe
 name: io.arconia.rewrite.spring.boot4.AddThymeleafStarterTest
-displayName: Add Thymeleaf Test
-description: Add Thymeleaf Test.
+displayName: Add Thymeleaf Starter Test
+description: Add Thymeleaf Starter Test.
 preconditions:
   - org.openrewrite.java.dependencies.FindDependency:
       groupId: org.springframework.boot

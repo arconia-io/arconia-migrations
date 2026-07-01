@@ -4,7 +4,7 @@
 type: specs.openrewrite.org/v1beta/recipe
 name: io.arconia.rewrite.spring.cloud2025.UpgradeSpringCloudPropertiesGenerated_2025_1
 displayName: Migrate Spring Cloud properties to 2025.1 (generated)
-description: Migrate Spring Cloud properties found in configuration data files (YAML and Properties).
+description: Migrate Spring Cloud configuration properties that were renamed or deprecated in the 2025.1 release, across YAML and Properties configuration files.
 tags:
   - spring
   - cloud

@@ -15,8 +15,8 @@ recipeList:
 ---
 type: specs.openrewrite.org/v1beta/recipe
 name: io.arconia.rewrite.spring.boot4.AddValidationStarterTest
-displayName: Add Jakarta Validation Starter Test
-description: Add Jakarta Validation Starter Test.
+displayName: Add Validation Starter Test
+description: Add Validation Starter Test.
 preconditions:
   - org.openrewrite.java.dependencies.FindDependency:
       groupId: org.springframework.boot

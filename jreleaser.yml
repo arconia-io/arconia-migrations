@@ -1,6 +1,6 @@
 project:
   name: arconia-migrations
-  description: Tools and OpenRewrite recipes to migrate Arconia projects. 
+  description: Tools and OpenRewrite recipes to automate refactoring, migrations, and upgrades for Java projects.
   links:
     homepage: https://{{repoHost}}/{{repoOwner}}/{{repoName}}
     faq: https://{{repoHost}}/{{repoOwner}}/{{repoName}}/discussions

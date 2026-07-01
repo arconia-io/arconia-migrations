@@ -23,7 +23,7 @@ public class SpringBootPropertiesMigrationGenerator {
                 .bomArtifact("spring-boot-dependencies")
                 .modulePrefix("spring-boot-")
                 .cacheDirName(".generated/spring-boot-releases")
-                .description("Migrate Spring Boot properties found in configuration data files (YAML and Properties).")
+                .description(v -> "Migrate Spring Boot configuration properties that were renamed or deprecated in the %s release, across YAML and Properties configuration files.".formatted(v.display()))
                 .productName("Spring Boot")
                 .tags("spring", "boot")
                 .defaultRecipePath(v -> Path.of("rewrite-spring/src/main/resources/META-INF/rewrite/spring/boot%s/spring-boot-%s-%s-properties-generated.yml"

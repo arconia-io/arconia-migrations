@@ -64,8 +64,8 @@ recipeList:
 ---
 type: specs.openrewrite.org/v1beta/recipe
 name: io.arconia.rewrite.spring.boot4.AddRestClientStarter
-displayName: Add Rest Client Starter
-description: Add Rest Client Starter.
+displayName: Add RestClient Starter
+description: Add RestClient Starter.
 preconditions:
   - org.openrewrite.Singleton
 recipeList:
@@ -83,8 +83,8 @@ recipeList:
 ---
 type: specs.openrewrite.org/v1beta/recipe
 name: io.arconia.rewrite.spring.boot4.AddRestClientStarterTest
-displayName: Add Rest Client Starter Test
-description: Add Rest Client Starter Test.
+displayName: Add RestClient Starter Test
+description: Add RestClient Starter Test.
 preconditions:
   - org.openrewrite.java.dependencies.FindDependency:
       groupId: org.springframework.boot

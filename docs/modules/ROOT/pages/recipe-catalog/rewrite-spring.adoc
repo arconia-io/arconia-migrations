@@ -14,7 +14,7 @@ The `rewrite-spring` module publishes 259 recipes across 8 categories.
 === Migrate Spring AI properties to 1.0
 `io.arconia.rewrite.spring.ai1.UpgradeSpringAiProperties_1_0`
 
-Migrate Spring AI properties found in configuration data files (YAML and Properties).
+Migrate Spring AI configuration properties that were renamed or deprecated in the 1.0 release, across YAML and Properties configuration files.
 
 _Tags: spring, ai_
 
@@ -50,7 +50,7 @@ spring.ai.chat.client.observations.log-prompt=true
 === Migrate Spring AI properties to 1.0 (generated)
 `io.arconia.rewrite.spring.ai1.UpgradeSpringAiPropertiesGenerated_1_0`
 
-Migrate Spring AI properties found in configuration data files (YAML and Properties).
+Migrate Spring AI configuration properties that were renamed or deprecated in the 1.0 release, across YAML and Properties configuration files.
 
 _Tags: spring, ai_
 
@@ -64,7 +64,7 @@ _Tags: spring, ai_
 === Migrate Spring AI properties to 1.1
 `io.arconia.rewrite.spring.ai1.UpgradeSpringAiProperties_1_1`
 
-Migrate Spring AI properties found in configuration data files (YAML and Properties).
+Migrate Spring AI configuration properties that were renamed or deprecated in the 1.1 release, across YAML and Properties configuration files.
 
 _Tags: spring, ai_
 
@@ -436,7 +436,7 @@ class Demo {
 === Migrate Spring AI properties to 2.0
 `io.arconia.rewrite.spring.ai2.UpgradeSpringAiProperties_2_0`
 
-Migrate Spring AI properties found in configuration data files (YAML and Properties).
+Migrate Spring AI configuration properties that were renamed or deprecated in the 2.0 release, across YAML and Properties configuration files.
 
 _Tags: spring, ai_
 
@@ -453,7 +453,7 @@ _Tags: spring, ai_
 === Migrate Spring AI properties to 2.0 (generated)
 `io.arconia.rewrite.spring.ai2.UpgradeSpringAiPropertiesGenerated_2_0`
 
-Migrate Spring AI properties found in configuration data files (YAML and Properties).
+Migrate Spring AI configuration properties that were renamed or deprecated in the 2.0 release, across YAML and Properties configuration files.
 
 _Tags: spring, ai_
 
@@ -776,7 +776,7 @@ class Demo {
 === Migrate Spring Boot properties to 3.5
 `io.arconia.rewrite.spring.boot3.UpgradeSpringBootProperties_3_5`
 
-Migrate Spring Boot properties found in configuration data files (YAML and Properties).
+Migrate Spring Boot configuration properties that were renamed or deprecated in the 3.5 release, across YAML and Properties configuration files.
 
 _Tags: spring, boot_
 
@@ -814,7 +814,7 @@ _Tags: spring, boot_
 === Migrate Spring Boot properties to 3.5 (generated)
 `io.arconia.rewrite.spring.boot3.UpgradeSpringBootPropertiesGenerated_3_5`
 
-Migrate Spring Boot properties found in configuration data files (YAML and Properties).
+Migrate Spring Boot configuration properties that were renamed or deprecated in the 3.5 release, across YAML and Properties configuration files.
 
 _Tags: spring, boot_
 
@@ -975,10 +975,10 @@ Add ActiveMQ Starter Test.
 ====
 
 [#io_arconia_rewrite_spring_boot4_AddActuatorStarterTest]
-=== Add Actuator Test
+=== Add Actuator Starter Test
 `io.arconia.rewrite.spring.boot4.AddActuatorStarterTest`
 
-Add Actuator Test.
+Add Actuator Starter Test.
 
 .Recipes applied
 [%collapsible]
@@ -1059,10 +1059,10 @@ Add Cassandra Starter Test.
 ====
 
 [#io_arconia_rewrite_spring_boot4_AddCloudFoundryStarterTest]
-=== Add CloudFoundry Starter Test
+=== Add Cloud Foundry Starter Test
 `io.arconia.rewrite.spring.boot4.AddCloudFoundryStarterTest`
 
-Add CloudFoundry Starter Test.
+Add Cloud Foundry Starter Test.
 
 .Recipes applied
 [%collapsible]
@@ -1299,10 +1299,10 @@ Add Flyway Starter Test.
 ====
 
 [#io_arconia_rewrite_spring_boot4_AddFreemarkerStarterTest]
-=== Add Freemarker Test
+=== Add Freemarker Starter Test
 `io.arconia.rewrite.spring.boot4.AddFreemarkerStarterTest`
 
-Add Freemarker Test.
+Add Freemarker Starter Test.
 
 .Recipes applied
 [%collapsible]
@@ -1323,10 +1323,10 @@ Add GraphQL Starter Test.
 ====
 
 [#io_arconia_rewrite_spring_boot4_AddGroovyTemplatesStarterTest]
-=== Add Groovy Templates Test
+=== Add Groovy Templates Starter Test
 `io.arconia.rewrite.spring.boot4.AddGroovyTemplatesStarterTest`
 
-Add Groovy Templates Test.
+Add Groovy Templates Starter Test.
 
 .Recipes applied
 [%collapsible]
@@ -1480,18 +1480,6 @@ Add Jackson Starter Test.
 * Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
 ====
 
-[#io_arconia_rewrite_spring_boot4_AddValidationStarterTest]
-=== Add Jakarta Validation Starter Test
-`io.arconia.rewrite.spring.boot4.AddValidationStarterTest`
-
-Add Jakarta Validation Starter Test.
-
-.Recipes applied
-[%collapsible]
-====
-* Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
-====
-
 [#io_arconia_rewrite_spring_boot4_AddJerseyStarterTest]
 === Add Jersey Starter Test
 `io.arconia.rewrite.spring.boot4.AddJerseyStarterTest`
@@ -1625,10 +1613,10 @@ Add MongoDB Starter Test.
 ====
 
 [#io_arconia_rewrite_spring_boot4_AddMustacheStarterTest]
-=== Add Mustache Test
+=== Add Mustache Starter Test
 `io.arconia.rewrite.spring.boot4.AddMustacheStarterTest`
 
-Add Mustache Test.
+Add Mustache Starter Test.
 
 .Recipes applied
 [%collapsible]
@@ -1646,6 +1634,19 @@ Add Neo4j Starter Test.
 [%collapsible]
 ====
 * Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
+====
+
+[#io_arconia_rewrite_spring_boot4_AddOpenTelemetryStarterTest]
+=== Add OpenTelemetry Starter Test
+`io.arconia.rewrite.spring.boot4.AddOpenTelemetryStarterTest`
+
+Add OpenTelemetry Starter Test.
+
+.Recipes applied
+[%collapsible]
+====
+* Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
+* Remove a Gradle or Maven dependency (`org.openrewrite.java.dependencies.RemoveDependency` ×5)
 ====
 
 [#io_arconia_rewrite_spring_boot4_AddOpenTelemetryStarterForMetrics]
@@ -1670,19 +1671,6 @@ Add OpenTelemetry Starter for Tracing.
 [%collapsible]
 ====
 * Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
-====
-
-[#io_arconia_rewrite_spring_boot4_AddOpenTelemetryStarterTest]
-=== Add OpenTelemetry Test
-`io.arconia.rewrite.spring.boot4.AddOpenTelemetryStarterTest`
-
-Add OpenTelemetry Test.
-
-.Recipes applied
-[%collapsible]
-====
-* Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
-* Remove a Gradle or Maven dependency (`org.openrewrite.java.dependencies.RemoveDependency` ×5)
 ====
 
 [#io_arconia_rewrite_spring_boot4_AddPulsarStarterTest]
@@ -1734,10 +1722,10 @@ Add RSocket Starter Test.
 ====
 
 [#io_arconia_rewrite_spring_boot4_AddRestClientStarter]
-=== Add Rest Client Starter
+=== Add RestClient Starter
 `io.arconia.rewrite.spring.boot4.AddRestClientStarter`
 
-Add Rest Client Starter.
+Add RestClient Starter.
 
 .Recipes applied
 [%collapsible]
@@ -1746,10 +1734,10 @@ Add Rest Client Starter.
 ====
 
 [#io_arconia_rewrite_spring_boot4_AddRestClientStarterTest]
-=== Add Rest Client Starter Test
+=== Add RestClient Starter Test
 `io.arconia.rewrite.spring.boot4.AddRestClientStarterTest`
 
-Add Rest Client Starter Test.
+Add RestClient Starter Test.
 
 .Recipes applied
 [%collapsible]
@@ -1902,10 +1890,10 @@ Add Session JDBC Starter Test.
 ====
 
 [#io_arconia_rewrite_spring_boot4_AddThymeleafStarterTest]
-=== Add Thymeleaf Test
+=== Add Thymeleaf Starter Test
 `io.arconia.rewrite.spring.boot4.AddThymeleafStarterTest`
 
-Add Thymeleaf Test.
+Add Thymeleaf Starter Test.
 
 .Recipes applied
 [%collapsible]
@@ -1913,23 +1901,11 @@ Add Thymeleaf Test.
 * Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
 ====
 
-[#io_arconia_rewrite_spring_boot4_AddWebClientStarter]
-=== Add Web Client Starter
-`io.arconia.rewrite.spring.boot4.AddWebClientStarter`
+[#io_arconia_rewrite_spring_boot4_AddValidationStarterTest]
+=== Add Validation Starter Test
+`io.arconia.rewrite.spring.boot4.AddValidationStarterTest`
 
-Add Web Client Starter.
-
-.Recipes applied
-[%collapsible]
-====
-* Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
-====
-
-[#io_arconia_rewrite_spring_boot4_AddWebFluxStarterTest]
-=== Add Web Flux Starter Test
-`io.arconia.rewrite.spring.boot4.AddWebFluxStarterTest`
-
-Add Web Flux Starter Test.
+Add Validation Starter Test.
 
 .Recipes applied
 [%collapsible]
@@ -1961,11 +1937,35 @@ Add Web Services Starter Test.
 * Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
 ====
 
+[#io_arconia_rewrite_spring_boot4_AddWebClientStarter]
+=== Add WebClient Starter
+`io.arconia.rewrite.spring.boot4.AddWebClientStarter`
+
+Add WebClient Starter.
+
+.Recipes applied
+[%collapsible]
+====
+* Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
+====
+
 [#io_arconia_rewrite_spring_boot4_AddWebClientStarterTest]
 === Add WebClient Starter Test
 `io.arconia.rewrite.spring.boot4.AddWebClientStarterTest`
 
 Add WebClient Starter Test.
+
+.Recipes applied
+[%collapsible]
+====
+* Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
+====
+
+[#io_arconia_rewrite_spring_boot4_AddWebFluxStarterTest]
+=== Add WebFlux Starter Test
+`io.arconia.rewrite.spring.boot4.AddWebFluxStarterTest`
+
+Add WebFlux Starter Test.
 
 .Recipes applied
 [%collapsible]
@@ -2010,10 +2010,10 @@ Add Zipkin Starter.
 ====
 
 [#io_arconia_rewrite_spring_boot4_AddZipkinStarterTest]
-=== Add Zipkin Test
+=== Add Zipkin Starter Test
 `io.arconia.rewrite.spring.boot4.AddZipkinStarterTest`
 
-Add Zipkin Test.
+Add Zipkin Starter Test.
 
 .Recipes applied
 [%collapsible]
@@ -2278,7 +2278,7 @@ Migrate Spring Boot Actuator module to Spring Boot 4.0.
 .Recipes applied
 [%collapsible]
 ====
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddActuatorStarterTest[Add Actuator Test] (`io.arconia.rewrite.spring.boot4.AddActuatorStarterTest`)
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddActuatorStarterTest[Add Actuator Starter Test] (`io.arconia.rewrite.spring.boot4.AddActuatorStarterTest`)
 ** Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
 ====
 
@@ -2598,7 +2598,7 @@ Migrate Spring Boot Cloud Foundry module to Spring Boot 4.0.
 .Recipes applied
 [%collapsible]
 ====
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddCloudFoundryStarterTest[Add CloudFoundry Starter Test] (`io.arconia.rewrite.spring.boot4.AddCloudFoundryStarterTest`)
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddCloudFoundryStarterTest[Add Cloud Foundry Starter Test] (`io.arconia.rewrite.spring.boot4.AddCloudFoundryStarterTest`)
 ** Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
 * Rename package name (`org.openrewrite.java.ChangePackage`)
 ====
@@ -3487,7 +3487,7 @@ Migrate Spring Boot Freemarker module to Spring Boot 4.0.
 .Recipes applied
 [%collapsible]
 ====
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddFreemarkerStarterTest[Add Freemarker Test] (`io.arconia.rewrite.spring.boot4.AddFreemarkerStarterTest`)
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddFreemarkerStarterTest[Add Freemarker Starter Test] (`io.arconia.rewrite.spring.boot4.AddFreemarkerStarterTest`)
 ** Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
 * Rename package name (`org.openrewrite.java.ChangePackage`)
 ====
@@ -3579,7 +3579,7 @@ Migrate Spring Boot Groovy Templates module to Spring Boot 4.0.
 .Recipes applied
 [%collapsible]
 ====
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddGroovyTemplatesStarterTest[Add Groovy Templates Test] (`io.arconia.rewrite.spring.boot4.AddGroovyTemplatesStarterTest`)
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddGroovyTemplatesStarterTest[Add Groovy Templates Starter Test] (`io.arconia.rewrite.spring.boot4.AddGroovyTemplatesStarterTest`)
 ** Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
 * Rename package name (`org.openrewrite.java.ChangePackage`)
 ====
@@ -5293,7 +5293,7 @@ Migrate Spring Boot Mustache module to Spring Boot 4.0.
 .Recipes applied
 [%collapsible]
 ====
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddMustacheStarterTest[Add Mustache Test] (`io.arconia.rewrite.spring.boot4.AddMustacheStarterTest`)
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddMustacheStarterTest[Add Mustache Starter Test] (`io.arconia.rewrite.spring.boot4.AddMustacheStarterTest`)
 ** Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
 * Rename package name (`org.openrewrite.java.ChangePackage`)
 * Change type (`org.openrewrite.java.ChangeType` ×4)
@@ -5424,7 +5424,7 @@ Migrate Spring Boot OpenTelemetry module to Spring Boot 4.0.
 ** Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddOpenTelemetryStarterForTracing[Add OpenTelemetry Starter for Tracing] (`io.arconia.rewrite.spring.boot4.AddOpenTelemetryStarterForTracing`)
 ** Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddOpenTelemetryStarterTest[Add OpenTelemetry Test] (`io.arconia.rewrite.spring.boot4.AddOpenTelemetryStarterTest`)
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddOpenTelemetryStarterTest[Add OpenTelemetry Starter Test] (`io.arconia.rewrite.spring.boot4.AddOpenTelemetryStarterTest`)
 ** Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
 ** Remove a Gradle or Maven dependency (`org.openrewrite.java.dependencies.RemoveDependency` ×5)
 * Change type (`org.openrewrite.java.ChangeType` ×6)
@@ -5867,9 +5867,9 @@ Migrate Spring Boot RestClient module to Spring Boot 4.0.
 .Recipes applied
 [%collapsible]
 ====
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddRestClientStarter[Add Rest Client Starter] (`io.arconia.rewrite.spring.boot4.AddRestClientStarter`)
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddRestClientStarter[Add RestClient Starter] (`io.arconia.rewrite.spring.boot4.AddRestClientStarter`)
 ** Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency` ×2)
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddRestClientStarterTest[Add Rest Client Starter Test] (`io.arconia.rewrite.spring.boot4.AddRestClientStarterTest`)
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddRestClientStarterTest[Add RestClient Starter Test] (`io.arconia.rewrite.spring.boot4.AddRestClientStarterTest`)
 ** Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
 * Change type (`org.openrewrite.java.ChangeType` ×6)
 * Rename package name (`org.openrewrite.java.ChangePackage`)
@@ -6524,7 +6524,7 @@ Migrate Spring Boot Thymeleaf module to Spring Boot 4.0.
 .Recipes applied
 [%collapsible]
 ====
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddThymeleafStarterTest[Add Thymeleaf Test] (`io.arconia.rewrite.spring.boot4.AddThymeleafStarterTest`)
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddThymeleafStarterTest[Add Thymeleaf Starter Test] (`io.arconia.rewrite.spring.boot4.AddThymeleafStarterTest`)
 ** Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
 * Rename package name (`org.openrewrite.java.ChangePackage`)
 ====
@@ -6675,7 +6675,7 @@ Migrate Spring Boot Validation module to Spring Boot 4.0.
 .Recipes applied
 [%collapsible]
 ====
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddValidationStarterTest[Add Jakarta Validation Starter Test] (`io.arconia.rewrite.spring.boot4.AddValidationStarterTest`)
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddValidationStarterTest[Add Validation Starter Test] (`io.arconia.rewrite.spring.boot4.AddValidationStarterTest`)
 ** Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
 * Rename package name (`org.openrewrite.java.ChangePackage`)
 ====
@@ -6996,7 +6996,7 @@ Migrate Spring Boot WebClient module to Spring Boot 4.0.
 .Recipes applied
 [%collapsible]
 ====
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddWebClientStarter[Add Web Client Starter] (`io.arconia.rewrite.spring.boot4.AddWebClientStarter`)
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddWebClientStarter[Add WebClient Starter] (`io.arconia.rewrite.spring.boot4.AddWebClientStarter`)
 ** Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddWebClientStarterTest[Add WebClient Starter Test] (`io.arconia.rewrite.spring.boot4.AddWebClientStarterTest`)
 ** Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
@@ -7054,7 +7054,7 @@ Migrate Spring Boot WebFlux module to Spring Boot 4.0.
 .Recipes applied
 [%collapsible]
 ====
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddWebFluxStarterTest[Add Web Flux Starter Test] (`io.arconia.rewrite.spring.boot4.AddWebFluxStarterTest`)
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddWebFluxStarterTest[Add WebFlux Starter Test] (`io.arconia.rewrite.spring.boot4.AddWebFluxStarterTest`)
 ** Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
 * Rename package name (`org.openrewrite.java.ChangePackage` ×3)
 * Change type (`org.openrewrite.java.ChangeType` ×11)
@@ -7242,7 +7242,7 @@ Migrate Spring Boot Zipkin module to Spring Boot 4.0.
 ====
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddZipkinStarter[Add Zipkin Starter] (`io.arconia.rewrite.spring.boot4.AddZipkinStarter`)
 ** Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency`)
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddZipkinStarterTest[Add Zipkin Test] (`io.arconia.rewrite.spring.boot4.AddZipkinStarterTest`)
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddZipkinStarterTest[Add Zipkin Starter Test] (`io.arconia.rewrite.spring.boot4.AddZipkinStarterTest`)
 ** Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
 ** Remove a Gradle or Maven dependency (`org.openrewrite.java.dependencies.RemoveDependency`)
 * Rename package name (`org.openrewrite.java.ChangePackage`)
@@ -7319,7 +7319,7 @@ class Demo {
 === Migrate Spring Boot properties to 4.0
 `io.arconia.rewrite.spring.boot4.UpgradeSpringBootProperties_4_0`
 
-Migrate Spring Boot properties found in configuration data files (YAML and Properties).
+Migrate Spring Boot configuration properties that were renamed or deprecated in the 4.0 release, across YAML and Properties configuration files.
 
 _Tags: spring, boot_
 
@@ -7376,7 +7376,7 @@ spring.flyway.oracle.sqlplus=true
 === Migrate Spring Boot properties to 4.0 (generated)
 `io.arconia.rewrite.spring.boot4.UpgradeSpringBootPropertiesGenerated_4_0`
 
-Migrate Spring Boot properties found in configuration data files (YAML and Properties).
+Migrate Spring Boot configuration properties that were renamed or deprecated in the 4.0 release, across YAML and Properties configuration files.
 
 _Tags: spring, boot_
 
@@ -7410,7 +7410,7 @@ _Tags: spring, boot_
 === Migrate Spring Boot properties to 4.1
 `io.arconia.rewrite.spring.boot4.UpgradeSpringBootProperties_4_1`
 
-Migrate Spring Boot properties found in configuration data files (YAML and Properties).
+Migrate Spring Boot configuration properties that were renamed or deprecated in the 4.1 release, across YAML and Properties configuration files.
 
 _Tags: spring, boot_
 
@@ -7463,7 +7463,7 @@ logging.logback.rollingpolicy.max-history=10
 === Migrate Spring Boot properties to 4.1 (generated)
 `io.arconia.rewrite.spring.boot4.UpgradeSpringBootPropertiesGenerated_4_1`
 
-Migrate Spring Boot properties found in configuration data files (YAML and Properties).
+Migrate Spring Boot configuration properties that were renamed or deprecated in the 4.1 release, across YAML and Properties configuration files.
 
 _Tags: spring, boot_
 
@@ -7732,7 +7732,7 @@ _Tags: spring, boot_
 *** Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
 ** Change type (`org.openrewrite.java.ChangeType` ×4)
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_MigrateActuatorModule[Migrate Spring Boot Actuator module to Spring Boot 4.0] (`io.arconia.rewrite.spring.boot4.MigrateActuatorModule`)
-** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddActuatorStarterTest[Add Actuator Test] (`io.arconia.rewrite.spring.boot4.AddActuatorStarterTest`)
+** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddActuatorStarterTest[Add Actuator Starter Test] (`io.arconia.rewrite.spring.boot4.AddActuatorStarterTest`)
 *** Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_MigrateAmqpModule[Migrate Spring Boot AMQP module to Spring Boot 4.0] (`io.arconia.rewrite.spring.boot4.MigrateAmqpModule`)
 ** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_MigrateAmqpTest[Migrate AMQP Test] (`io.arconia.rewrite.spring.boot4.MigrateAmqpTest`)
@@ -7858,7 +7858,7 @@ _Tags: spring, boot_
 *** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddActiveMqStarterTest[Add ActiveMQ Starter Test] (`io.arconia.rewrite.spring.boot4.AddActiveMqStarterTest`)
 *** Change type (`org.openrewrite.java.ChangeType` ×4)
 ** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_MigrateActuatorModule[Migrate Spring Boot Actuator module to Spring Boot 4.0] (`io.arconia.rewrite.spring.boot4.MigrateActuatorModule`)
-*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddActuatorStarterTest[Add Actuator Test] (`io.arconia.rewrite.spring.boot4.AddActuatorStarterTest`)
+*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddActuatorStarterTest[Add Actuator Starter Test] (`io.arconia.rewrite.spring.boot4.AddActuatorStarterTest`)
 ** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_MigrateAmqpModule[Migrate Spring Boot AMQP module to Spring Boot 4.0] (`io.arconia.rewrite.spring.boot4.MigrateAmqpModule`)
 *** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_MigrateAmqpTest[Migrate AMQP Test] (`io.arconia.rewrite.spring.boot4.MigrateAmqpTest`)
 *** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddAmqpStarterTest[Add AMQP Starter Test] (`io.arconia.rewrite.spring.boot4.AddAmqpStarterTest`)
@@ -8093,7 +8093,7 @@ _Tags: spring, cloud_
 === Migrate Spring Cloud properties to 2025.0
 `io.arconia.rewrite.spring.cloud2025.UpgradeSpringCloudProperties_2025_0`
 
-Migrate Spring Cloud properties found in configuration data files (YAML and Properties).
+Migrate Spring Cloud configuration properties that were renamed or deprecated in the 2025.0 release, across YAML and Properties configuration files.
 
 _Tags: spring, cloud_
 
@@ -8120,7 +8120,7 @@ _Tags: spring, cloud_
 === Migrate Spring Cloud properties to 2025.0 (generated)
 `io.arconia.rewrite.spring.cloud2025.UpgradeSpringCloudPropertiesGenerated_2025_0`
 
-Migrate Spring Cloud properties found in configuration data files (YAML and Properties).
+Migrate Spring Cloud configuration properties that were renamed or deprecated in the 2025.0 release, across YAML and Properties configuration files.
 
 _Tags: spring, cloud_
 
@@ -8141,7 +8141,7 @@ _Tags: spring, cloud_
 === Migrate Spring Cloud properties to 2025.1
 `io.arconia.rewrite.spring.cloud2025.UpgradeSpringCloudProperties_2025_1`
 
-Migrate Spring Cloud properties found in configuration data files (YAML and Properties).
+Migrate Spring Cloud configuration properties that were renamed or deprecated in the 2025.1 release, across YAML and Properties configuration files.
 
 _Tags: spring, cloud_
 
@@ -8159,7 +8159,7 @@ _Tags: spring, cloud_
 === Migrate Spring Cloud properties to 2025.1 (generated)
 `io.arconia.rewrite.spring.cloud2025.UpgradeSpringCloudPropertiesGenerated_2025_1`
 
-Migrate Spring Cloud properties found in configuration data files (YAML and Properties).
+Migrate Spring Cloud configuration properties that were renamed or deprecated in the 2025.1 release, across YAML and Properties configuration files.
 
 _Tags: spring, cloud_
 

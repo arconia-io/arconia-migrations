@@ -20,7 +20,7 @@ public class SpringCloudPropertiesMigrationGenerator {
                 .bomArtifact("spring-cloud-dependencies")
                 .modulePrefix("spring-cloud-")
                 .cacheDirName(".generated/spring-cloud-releases")
-                .description("Migrate Spring Cloud properties found in configuration data files (YAML and Properties).")
+                .description(v -> "Migrate Spring Cloud configuration properties that were renamed or deprecated in the %s release, across YAML and Properties configuration files.".formatted(v.display()))
                 .productName("Spring Cloud")
                 .tags("spring", "cloud")
                 .defaultRecipePath(v -> Path.of("rewrite-spring/src/main/resources/META-INF/rewrite/spring/cloud%s/spring-cloud-%s-%s-properties-generated.yml"

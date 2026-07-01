@@ -34,8 +34,8 @@ recipeList:
 ---
 type: specs.openrewrite.org/v1beta/recipe
 name: io.arconia.rewrite.spring.boot4.AddWebClientStarter
-displayName: Add Web Client Starter
-description: Add Web Client Starter.
+displayName: Add WebClient Starter
+description: Add WebClient Starter.
 preconditions:
   - org.openrewrite.Singleton
 recipeList:
