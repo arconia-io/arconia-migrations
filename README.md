@@ -20,15 +20,15 @@
 ## ✨&nbsp; Features
 
 - **Spring Boot.** Recipes for upgrading to Spring Boot 3.x and 4.x.
-- **Spring AI.** Recipes for upgrading to Spring AI 1.x and 2.x.
 - **Spring Framework.** Recipes for upgrading to Spring Framework 6.x and 7.x.
 - **Spring Cloud.** Recipes for upgrading to Spring Cloud 2025.x.
+- **Spring AI.** Recipes for upgrading to Spring AI 1.x and 2.x.
 - **Arconia.** Recipes for upgrading the Arconia Framework across versions.
 - **Docling.** Recipes for upgrading the Docling Java library.
 - **Testing.** Recipes for JUnit 6 and Testcontainers 2.
 
 > [!NOTE]
-> Arconia Migrations is currently under active development. We're working hard to improve it and appreciate your patience as we continue to refine the project. Feel free to try it out and share your feedback!
+> Arconia Migrations is under active development and has not yet reached a GA (1.0.0) release. Recipe identifiers, options, and behavior may change between releases. Try it out and [share your feedback](https://github.com/arconia-io/arconia-migrations/discussions).
 
 ## 📙&nbsp; Documentation
 

@@ -18,10 +18,11 @@ Thank you for your interest in contributing! Whether it's reporting bugs, sugges
 ## Contribution Workflow
 
 1. **Find or create an issue.** Ensure a [GitHub Issue](https://github.com/arconia-io/arconia-migrations/issues) exists for the change you want to make.
-2. **Fork and clone** the repository:
+2. **Fork and clone** the repository, then add the upstream remote:
     ```shell
     git clone https://github.com/<your-username>/arconia-migrations.git
     cd arconia-migrations
+    git remote add upstream https://github.com/arconia-io/arconia-migrations.git
     ```
 3. **Create a branch** off `main`:
     ```shell

@@ -1,17 +1,17 @@
 = Spring AI 1.1
 :description: Migrate your Spring Boot application to the latest Spring AI 1.1.x release.
-:cli-command: arconia update spring-ai --to-version=1.1
+:cli-command: arconia update spring-ai --to-version 1.1
 :recipe-id: io.arconia.rewrite.spring.ai1.UpgradeSpringAi_1_1
 :rewrite-module: rewrite-spring
 
-When upgrading to Spring AI 1.1, refer to the https://docs.spring.io/spring-ai/reference/1.1/upgrade-notes.html[Upgrade Notes] to find out about newly introduced APIs, deprecated APIs, and information about breaking changes.
+When upgrading to Spring AI 1.1, refer to the https://docs.spring.io/spring-ai/reference/1.1/upgrade-notes.html[Upgrade Notes] for newly introduced APIs, deprecated APIs, and breaking changes.
 
-The `{recipe-id}` recipe automates many of the changes introduced in Spring AI 1.1.0. You can use it to update your project to the latest Spring AI 1.1.x release.
+The `{recipe-id}` recipe automates most of the changes introduced in Spring AI 1.1. You can use it to update your project to the latest Spring AI 1.1.x release.
 
 The recipe will:
 
 * Upgrade all `org.springframework.ai` dependencies to the 1.1.x release line.
-* Rename Spring AI configuration properties to match the new property names.
+* For *Ollama*: flag the deprecated `spring.ai.ollama.chat.options` properties (`use-n-u-m-a`, `low-v-r-a-m`, `f16-k-v`, `logits-all`, `vocab-only`, `use-m-lock`, `tfs-z`, `mirostat`, `mirostat-tau`, `mirostat-eta`, `penalize-newline`) with a comment noting they are no longer supported by the Ollama Server.
 * Migrate to the new `AssistantMessage`, `EmbeddingOptions`, `QuestionAnswerAdvisor`, and `ToolResponseMessage` builders.
 * For *Bedrock*: rename `BedrockTitanEmbeddingOptions.Builder.withInputType(...)` to `inputType(...)`.
 * For *Text-to-Speech*: move the speech model types from `org.springframework.ai.openai.audio.speech` to the new vendor-agnostic `org.springframework.ai.audio.tts` package, renaming `SpeechMessage` -> `TextToSpeechMessage`, `SpeechModel` -> `TextToSpeechModel`, `SpeechPrompt` -> `TextToSpeechPrompt`, `SpeechResponse` -> `TextToSpeechResponse`, and `StreamingSpeechModel` -> `StreamingTextToSpeechModel`.
@@ -19,6 +19,6 @@ The recipe will:
 
 See its xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_ai1_UpgradeSpringAi_1_1[entry in the Recipe Catalog] for the full list of recipes this upgrade applies, each with its options and a before/after example.
 
-== Run the recipe
+== Run the Recipe
 
 include::partial$run-recipe.adoc[]

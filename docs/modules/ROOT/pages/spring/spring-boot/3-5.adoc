@@ -1,17 +1,18 @@
 = Spring Boot 3.5
-:description: Upgrade your Spring Boot application to the latest Spring Boot 3.5.x release.
-:cli-command: arconia update spring-boot --to-version=3.5
+:description: Migrate your Spring Boot application to the latest Spring Boot 3.5.x release.
+:cli-command: arconia update spring-boot --to-version 3.5
 :recipe-id: io.arconia.rewrite.spring.boot3.UpgradeSpringBoot_3_5
 :rewrite-module: rewrite-spring
 
-When upgrading to Spring Boot 3.5, refer to the https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-3.5-Release-Notes[Spring Boot 3.5 Release Notes] to find out about newly introduced APIs, deprecated APIs, and information about breaking changes.
+When upgrading to Spring Boot 3.5, refer to the https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-3.5-Release-Notes[Spring Boot 3.5 Release Notes] for newly introduced APIs, deprecated APIs, and breaking changes.
 
 The `{recipe-id}` recipe automates most of the changes introduced in Spring Boot 3.5. You can use it to update your project to the latest Spring Boot 3.5.x release.
 
 The recipe will:
 
 * Upgrade all `org.springframework.boot` dependencies, the `spring-boot-starter-parent` Maven parent, and the Spring Boot Gradle and Maven plugins to the 3.5.x release line.
-* Rename Spring Boot configuration properties to match the new property names.
+* Rename Spring Boot configuration properties that changed, and comment out those removed so you can address them manually.
+* Convert Actuator endpoint access controls from the removed boolean `management.endpoint.<name>.enabled` to the new `management.endpoint.<name>.access` enum (`true` -> `read_only`, `false` -> `none`).
 * Upgrade xref:spring/spring-framework/6-2.adoc[Spring Framework to 6.2].
 * Upgrade related build plugins: the `io.spring.dependency-management` Gradle plugin to 1.1.x, the GraalVM Native Build Tools plugin to 0.10.x, and the CycloneDX SBOM plugin to 2.x.
 * Chain the xref:spring/spring-cloud/2025-0.adoc[Spring Cloud 2025.0] and xref:spring/spring-ai/1-1.adoc[Spring AI 1.1] upgrade recipes, since their managed versions move with Spring Boot.
@@ -20,6 +21,6 @@ The recipe will:
 
 See its xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot3_UpgradeSpringBoot_3_5[entry in the Recipe Catalog] for the full list of recipes this upgrade applies, each with its options and a before/after example.
 
-== Run the recipe
+== Run the Recipe
 
 include::partial$run-recipe.adoc[]

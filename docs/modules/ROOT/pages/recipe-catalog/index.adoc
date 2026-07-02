@@ -1,7 +1,7 @@
 = Recipe Catalog
 :description: Every Arconia Migrations recipe, grouped by module.
 
-This catalog lists every OpenRewrite recipe published by Arconia Migrations, grouped by the module that ships it and, within each module, by category. Composite recipes are listed before the leaf recipes they compose.
+This catalog lists every OpenRewrite recipe published by Arconia Migrations, grouped by the module that ships it and, within each module, by category.
 
 For curated, step-by-step upgrade guides, see the topic sections in the navigation.
 

@@ -2,3 +2,4 @@ name: arconia-migrations
 title: Arconia Migrations
 nav:
   - modules/ROOT/nav.adoc
+  - modules/ROOT/partials/nav-end.adoc

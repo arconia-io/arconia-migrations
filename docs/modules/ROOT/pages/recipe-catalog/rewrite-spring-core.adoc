@@ -3,7 +3,7 @@
 
 // AUTO-GENERATED from the OpenRewrite recipe model. Do not edit by hand.
 
-The `rewrite-spring-core` module publishes 6 recipes across 1 categories.
+The `rewrite-spring-core` module publishes 6 recipes across 1 category.
 
 [#family-spring-boot-properties]
 == spring › boot › properties

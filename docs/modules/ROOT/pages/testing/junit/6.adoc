@@ -4,7 +4,7 @@
 :recipe-id: io.arconia.rewrite.testing.junit.UpgradeJUnit_6
 :rewrite-module: rewrite-testing
 
-When upgrading to JUnit 6.x, refer to the https://docs.junit.org/6.0.0/release-notes/[JUnit 6.0 Release Notes] to find out about newly introduced APIs, deprecated APIs, and information about breaking changes.
+When upgrading to JUnit 6.x, refer to the https://docs.junit.org/6.0.0/release-notes/[JUnit 6.0 Release Notes] for newly introduced APIs, deprecated APIs, and breaking changes.
 
 The `{recipe-id}` recipe automates most of the changes introduced in JUnit 6.x. You can use it to update your project to the latest JUnit 6.x release.
 
@@ -13,7 +13,7 @@ The recipe will:
 * Upgrade all `org.junit.jupiter:junit-jupiter`, `junit-jupiter-api`, `junit-jupiter-engine`, and `junit-jupiter-params` dependencies to the 6.x release line.
 * Upgrade the Maven Surefire and Failsafe plugins to 3.x, the minimum required for JUnit Platform compatibility.
 * Add the `org.junit.platform:junit-platform-launcher` dependency to Gradle's `testRuntimeOnly` configuration, which is required at runtime by the JUnit 6 platform.
-* Remove the JUnit Platform modules that have been retired in 6: `junit-platform-jfr`, `junit-platform-runner`, and `junit-platform-suite-common`.
+* Remove the JUnit Platform modules that have been retired in 6: `junit-platform-jfr`, `junit-platform-runner`, and `junit-platform-suite-commons`.
 * Remove the retired `org.junit.jupiter:junit-jupiter-migrationsupport` module.
 * Rename `MethodOrderer.Alphanumeric` to `MethodOrderer.MethodName`.
 * Move JUnit Jupiter `Constants` from `org.junit.jupiter.engine` to `org.junit.jupiter.api`.
@@ -25,6 +25,6 @@ The recipe will:
 
 See its xref:recipe-catalog/rewrite-testing.adoc#io_arconia_rewrite_testing_junit_UpgradeJUnit_6[entry in the Recipe Catalog] for the full list of recipes this upgrade applies, each with its options and a before/after example.
 
-== Run the recipe
+== Run the Recipe
 
 include::partial$run-recipe.adoc[]

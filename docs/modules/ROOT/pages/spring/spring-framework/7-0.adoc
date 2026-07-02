@@ -4,7 +4,7 @@
 :recipe-id: io.arconia.rewrite.spring.framework7.UpgradeSpringFramework_7_0
 :rewrite-module: rewrite-spring
 
-When upgrading to Spring Framework 7.0, refer to the https://github.com/spring-projects/spring-framework/wiki/Spring-Framework-7.0-Release-Notes[Spring Framework 7.0 Release Notes] to find out about newly introduced APIs, deprecated APIs, and information about breaking changes.
+When upgrading to Spring Framework 7.0, refer to the https://github.com/spring-projects/spring-framework/wiki/Spring-Framework-7.0-Release-Notes[Spring Framework 7.0 Release Notes] for newly introduced APIs, deprecated APIs, and breaking changes.
 
 The `{recipe-id}` recipe automates most of the changes introduced in Spring Framework 7.0. You can use it to update your project to the latest Spring Framework 7.0.x release.
 
@@ -33,6 +33,6 @@ The recipe will:
 
 See its xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_framework7_UpgradeSpringFramework_7_0[entry in the Recipe Catalog] for the full list of recipes this upgrade applies, each with its options and a before/after example.
 
-== Run the recipe
+== Run the Recipe
 
 include::partial$run-recipe.adoc[]

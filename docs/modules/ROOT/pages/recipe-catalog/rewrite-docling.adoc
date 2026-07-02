@@ -3,7 +3,7 @@
 
 // AUTO-GENERATED from the OpenRewrite recipe model. Do not edit by hand.
 
-The `rewrite-docling` module publishes 2 recipes across 1 categories.
+The `rewrite-docling` module publishes 2 recipes across 1 category.
 
 [#family-docling]
 == docling

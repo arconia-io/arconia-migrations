@@ -4,7 +4,7 @@
 :recipe-id: io.arconia.rewrite.spring.framework6.UpgradeSpringFramework_6_2
 :rewrite-module: rewrite-spring
 
-When upgrading to Spring Framework 6.2, refer to the https://github.com/spring-projects/spring-framework/wiki/Spring-Framework-6.2-Release-Notes[Spring Framework 6.2 Release Notes] to find out about newly introduced APIs, deprecated APIs, and information about breaking changes.
+When upgrading to Spring Framework 6.2, refer to the https://github.com/spring-projects/spring-framework/wiki/Spring-Framework-6.2-Release-Notes[Spring Framework 6.2 Release Notes] for newly introduced APIs, deprecated APIs, and breaking changes.
 
 The `{recipe-id}` recipe automates most of the changes introduced in Spring Framework 6.2. You can use it to update your project to the latest Spring Framework 6.2.x release.
 
@@ -17,10 +17,10 @@ The recipe will:
 * For *Spring Messaging*: rename the async APIs to their `+*Async+` / `CompletableFuture`-based forms, including `AsyncHandlerMethodReturnValueHandler.toListenableFuture(...)` -> `toCompletableFuture(...)`, `ConnectionHandlingStompSession.getSessionFuture()` -> `getSession()`, `ReactorNettyTcpStompClient.connect(...)` -> `connectAsync(...)`, and the `TcpConnection.send(...)`, `TcpOperations.connect(...)`, and `TcpOperations.shutdown()` renames to `sendAsync`, `connectAsync`, and `shutdownAsync`.
 * For *Spring Test*:
 ** Rename `ExchangeResult.getRawStatusCode()` to `getStatus()`.
-** Rename `WebTestClient.Builder.exchangeStrategies(...)` to `codecs(...)` and `WebTestClient.RequestBodySpec.syncBody(...)` to `bodyValue(...)`.
+** Rename `WebTestClient.RequestBodySpec.syncBody(...)` to `bodyValue(...)`.
 ** Rename the `StatusResultMatchers` matchers: `isMovedTemporarily()` -> `isFound()`, `isRequestEntityTooLarge()` -> `isPayloadTooLarge()`, `isRequestUriTooLong()` -> `isUriTooLong()`, and `isCheckpoint()` -> `isEarlyHints()`.
 * For *Spring Web*:
-** Replace `getRawStatusCode()` with `getStatusCode()` on `ResponseEntity`, `ClientHttpResponse` (servlet and reactive), `ServerHttpResponse`, `RestClientResponseException`, and `UnknownContentTypeException`.
+** Replace `getStatusCodeValue()` with `getStatusCode()` on `ResponseEntity`, and `getRawStatusCode()` with `getStatusCode()` on `ClientHttpResponse` (servlet and reactive), `ServerHttpResponse`, `RestClientResponseException`, and `UnknownContentTypeException`.
 ** Rename `getResponseHeaders()` to `getHeaders()` on `MethodNotAllowedException`, `NotAcceptableStatusException`, `ResponseStatusException`, and `UnsupportedMediaTypeStatusException`; rename `ResponseStatusExceptionHandler.determineRawStatusCode(...)` to `determineStatus(...)`.
 ** Rename `UriComponentsBuilder.fromHttpUrl(String)` and `fromOriginHeader(...)` to `fromUriString(...)`.
 ** Replace deprecated `MediaType` constants: `APPLICATION_GRAPHQL` / `_VALUE` -> `APPLICATION_GRAPHQL_RESPONSE` / `_VALUE`, `APPLICATION_JSON_UTF8` / `_VALUE` -> `APPLICATION_JSON` / `_VALUE`, `APPLICATION_PROBLEM_JSON_UTF8` / `_VALUE` -> `APPLICATION_PROBLEM_JSON` / `_VALUE`, and `APPLICATION_STREAM_JSON` / `_VALUE` -> `APPLICATION_NDJSON` / `_VALUE`.
@@ -42,6 +42,6 @@ The recipe will:
 
 See its xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_framework6_UpgradeSpringFramework_6_2[entry in the Recipe Catalog] for the full list of recipes this upgrade applies, each with its options and a before/after example.
 
-== Run the recipe
+== Run the Recipe
 
 include::partial$run-recipe.adoc[]

@@ -4,14 +4,15 @@
 :recipe-id: io.arconia.rewrite.spring.cloud2025.UpgradeSpringCloud_2025_0
 :rewrite-module: rewrite-spring
 
-When upgrading to Spring Cloud 2025.0, refer to the https://github.com/spring-cloud/spring-cloud-release/wiki/Spring-Cloud-2025.0-Release-Notes[Spring Cloud 2025.0 Release Notes] to find out about newly introduced APIs, deprecated APIs, and information about breaking changes.
+When upgrading to Spring Cloud 2025.0, refer to the https://github.com/spring-cloud/spring-cloud-release/wiki/Spring-Cloud-2025.0-Release-Notes[Spring Cloud 2025.0 Release Notes] for newly introduced APIs, deprecated APIs, and breaking changes.
 
 The `{recipe-id}` recipe automates most of the changes introduced in Spring Cloud 2025.0. You can use it to update your project to the latest Spring Cloud 2025.0.x release.
 
 The recipe will:
 
 * Upgrade `org.springframework.cloud:spring-cloud-dependencies` (and the `spring-cloud-starter-parent` Maven parent) to the 2025.0.x release line.
-* Rename Spring Cloud configuration properties to match the new property names.
+* Rename Spring Cloud configuration properties that changed, and comment out those removed so you can address them manually.
+* Convert Actuator endpoint access controls from the removed boolean `management.endpoint.<name>.enabled` to the new `management.endpoint.<name>.access` enum (`true` -> `read_only`, `false` -> `none`).
 * Adopt the new module names for the *Spring Cloud Gateway* dependencies:
 ** `spring-cloud-gateway-server` -> `spring-cloud-gateway-server-webflux` (and the matching `spring-cloud-starter-gateway-server` -> `spring-cloud-starter-gateway-server-webflux`).
 ** `spring-cloud-gateway-server-mvc` -> `spring-cloud-gateway-server-webmvc` (and the matching starter).
@@ -19,6 +20,6 @@ The recipe will:
 
 See its xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_cloud2025_UpgradeSpringCloud_2025_0[entry in the Recipe Catalog] for the full list of recipes this upgrade applies, each with its options and a before/after example.
 
-== Run the recipe
+== Run the Recipe
 
 include::partial$run-recipe.adoc[]

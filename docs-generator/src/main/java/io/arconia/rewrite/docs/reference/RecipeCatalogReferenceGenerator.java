@@ -215,7 +215,8 @@ public final class RecipeCatalogReferenceGenerator {
         sb.append(":description: OpenRewrite recipes published in the ").append(module).append(" module.\n\n");
         sb.append("// AUTO-GENERATED from the OpenRewrite recipe model. Do not edit by hand.\n\n");
         sb.append("The `").append(module).append("` module publishes ").append(recipes.size())
-                .append(" recipes across ").append(families.size()).append(" categories.\n\n");
+                .append(recipes.size() == 1 ? " recipe across " : " recipes across ").append(families.size())
+                .append(families.size() == 1 ? " category.\n\n" : " categories.\n\n");
 
         List<FamilyRef> navFamilies = new ArrayList<>();
         for (Map.Entry<String, List<RecipeDescriptor>> e : families.entrySet()) {
@@ -359,8 +360,7 @@ public final class RecipeCatalogReferenceGenerator {
         sb.append("= ").append(CATALOG_TITLE).append('\n');
         sb.append(":description: Every Arconia Migrations recipe, grouped by module.\n\n");
         sb.append("This catalog lists every OpenRewrite recipe published by Arconia Migrations, ")
-                .append("grouped by the module that ships it and, within each module, by category. ")
-                .append("Composite recipes are listed before the leaf recipes they compose.\n\n");
+                .append("grouped by the module that ships it and, within each module, by category.\n\n");
         sb.append("For curated, step-by-step upgrade guides, see the topic sections in the navigation.\n\n");
         byModule.forEach((module, recipes) ->
                 sb.append("* xref:").append(CATALOG_DIR).append('/').append(module).append(".adoc[")

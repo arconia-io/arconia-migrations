@@ -5,15 +5,19 @@ This page describes how Arconia Migrations is versioned, what stability guarante
 
 NOTE: Releases before 1.0.0 are considered pre-release and carry no compatibility or support guarantees.
 
-== Versioning scheme
+== Versioning Scheme
 
-Arconia Migrations uses a `MAJOR.MINOR.PATCH` version format that gives you predictable, incremental upgrades while keeping pace with the fast-moving https://docs.openrewrite.org[OpenRewrite] ecosystem it builds on. The scheme follows the spirit of https://semver.org[Semantic Versioning], with one deliberate refinement: a backward-incompatible change can arrive in a minor release, and wherever possible only after a deprecation period that gives you advance notice and a working migration path (see <<Deprecations and removals>>). This lets the project deliver improvements promptly, in step with an OpenRewrite catalog that itself evolves recipes outside major releases, rather than holding fixes and new migrations back for a rare major version. Given a version `MAJOR.MINOR.PATCH`:
+Arconia Migrations uses a `MAJOR.MINOR.PATCH` version format for predictable, incremental upgrades, while keeping pace with the fast-moving https://docs.openrewrite.org[OpenRewrite] ecosystem it builds on.
 
-* *PATCH* (for example, 1.2.0 to 1.2.1) contains backward-compatible bug fixes. A recipe may be corrected to do what it already documents, and dependencies may receive patch-level updates (including patch releases of OpenRewrite). No recipes are added, renamed, or removed.
-* *MINOR* (for example, 1.2.0 to 1.3.0) adds new recipes and options, introduces deprecations, and adopts new minor or major versions of dependencies (including OpenRewrite). A minor release may also contain backward-incompatible changes, but only after a deprecation period wherever possible (see <<Deprecations and removals>>), and it may raise the minimum required OpenRewrite version.
+The scheme follows the spirit of https://semver.org[Semantic Versioning], with one deliberate refinement: a backward-incompatible change can arrive in a minor release — wherever possible, only after a deprecation period that gives you advance notice and a working migration path (see <<Deprecations and Removals>>). This keeps the project in step with an OpenRewrite catalog that itself evolves recipes outside major releases, rather than holding fixes and new migrations back for a rare major version.
+
+Given a version `MAJOR.MINOR.PATCH`:
+
+* *PATCH* (for example, 1.2.0 to 1.2.1) contains backward-compatible bug fixes. A recipe may be corrected to do what it already documents, and dependencies may receive patch-level updates (including patch releases of OpenRewrite). New recipes might be added. No recipes are renamed or removed.
+* *MINOR* (for example, 1.2.0 to 1.3.0) adds new recipes and options, introduces deprecations, and adopts new minor or major versions of dependencies (including OpenRewrite). A minor release may also contain backward-incompatible changes, but only after a deprecation period wherever possible (see <<Deprecations and Removals>>), and it may raise the minimum required OpenRewrite version.
 * *MAJOR* (for example, 1.x to 2.0.0) is reserved for substantial, wide-reaching changes that cannot be delivered through the normal deprecation cycle.
 
-== What is covered
+== What Is Covered
 
 The stable contract, the public API that the rules above protect, is the surface you depend on when you run a migration:
 
@@ -28,7 +32,7 @@ The following are implementation details and may change in any release:
 * The contents and structure of the generated recipe YAML.
 * Transitive dependencies, beyond the minimum OpenRewrite version documented for each release.
 
-== Deprecations and removals
+== Deprecations and Removals
 
 Wherever possible, a recipe identifier that is renamed or removed is not dropped abruptly:
 
@@ -37,9 +41,9 @@ Wherever possible, a recipe identifier that is renamed or removed is not dropped
 
 For example, an identifier deprecated in 1.2.0 keeps working throughout the 1.2.x line and is removed in 1.3.0. Deprecations are announced in the release notes and reflected in the recipe description.
 
-== Supported versions
+== Supported Versions
 
-Only the current release train is supported.
+Only the current release line is supported.
 
 * The latest minor version (for example, 1.2) receives patch releases (1.2.1, 1.2.2, and so on) with bug fixes.
 * Older minor versions do not receive patches. Once 1.2.0 is released, there will be no 1.1.1.
@@ -49,8 +53,8 @@ Only the current release train is supported.
 
 Arconia Migrations builds on https://docs.openrewrite.org[OpenRewrite] and its open-source recipe catalog. The OpenRewrite version is an implementation dependency, not a driver of the Arconia Migrations version: a new minor version of OpenRewrite is adopted in an Arconia Migrations minor release, and only patch-level OpenRewrite updates appear in a patch release.
 
-Because OpenRewrite occasionally renames or removes recipes between releases, adopting a new OpenRewrite version may require a backward-incompatible change to an Arconia Migrations recipe. Such changes follow the deprecation cycle above whenever possible, and the minimum compatible OpenRewrite version is noted in the release notes when it changes.
+Because OpenRewrite occasionally renames or removes recipes between releases, adopting a new OpenRewrite version may require a backward-incompatible change to an Arconia Migrations recipe. Such changes follow the deprecation cycle above whenever possible.
 
-== Release notes
+== Release Notes
 
 Every release is published on the project's https://github.com/arconia-io/arconia-migrations/releases[GitHub Releases] page with a generated changelog. Backward-incompatible changes and deprecations are called out there.

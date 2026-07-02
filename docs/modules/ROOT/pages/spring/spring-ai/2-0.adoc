@@ -1,10 +1,10 @@
 = Spring AI 2.0
 :description: Migrate your Spring Boot application to the latest Spring AI 2.0.x release.
-:cli-command: arconia update spring-ai --to-version=2.0
+:cli-command: arconia update spring-ai --to-version 2.0
 :recipe-id: io.arconia.rewrite.spring.ai2.UpgradeSpringAi_2_0
 :rewrite-module: rewrite-spring
 
-When upgrading to Spring AI 2.0, refer to the https://docs.spring.io/spring-ai/reference/2.0/upgrade-notes.html[Upgrade Notes] to find out about newly introduced APIs, deprecated APIs, and information about breaking changes.
+When upgrading to Spring AI 2.0, refer to the https://docs.spring.io/spring-ai/reference/2.0/upgrade-notes.html[Upgrade Notes] for newly introduced APIs, deprecated APIs, and breaking changes.
 
 The `{recipe-id}` recipe automates most of the changes introduced in Spring AI 2.0. You can use it to update your project to the latest Spring AI 2.0.x release.
 
@@ -12,14 +12,14 @@ The recipe will:
 
 * Upgrade all `org.springframework.ai` dependencies to the 2.0.x release line.
 * Rename Spring AI configuration properties to match the new property names (including flattening the `.options.` infix on embedding, image, audio, moderation, and OCR keys, and renaming `spring.ai.ollama.chat.think-option` to `spring.ai.ollama.chat.think`).
-* Comment out properties removed in 2.0, including each provider's `spring.ai.<provider>.chat.options.internal-tool-execution-enabled`, `spring.ai.chat.client.tool-calling.stream-tool-call-responses`, and `spring.ai.chat.client.tool-search-advisor.stream-tool-call-responses`.
+* Comment out properties removed in 2.0, including each provider's `spring.ai.<provider>.chat.options.internal-tool-execution-enabled`, `spring.ai.google.genai.chat.options.tool-names`, `spring.ai.chat.client.tool-calling.stream-tool-call-responses`, and `spring.ai.chat.client.tool-search-advisor.stream-tool-call-responses`.
 * Pass `ChatOptions.Builder` (rather than a built `ChatOptions`) to `ChatClient.options(...)` and `ChatClient.Builder.defaultOptions(...)`.
-* Rename `ChatClient.ChatClientRequestSpec.toolCallbacks(...)` to `tools(...)` to align with the new tool-calling API.
+* Rename the tool-registration methods `ChatClient.ChatClientRequestSpec.toolCallbacks(...)` and `ChatClient.Builder.defaultToolCallbacks(...)` to `tools(...)` and `defaultTools(...)`, aligning with the new tool-calling API.
 * Rename `ChatModel.getDefaultOptions()` to `getOptions()`.
 * Rename `JsonParser.getObjectMapper()` to `JsonParser.getJsonMapper()`.
 * Rename the `N(Integer)` builder method to `n(Integer)` on `ImageOptionsBuilder`, `OpenAiChatOptions.Builder`, and `OpenAiImageOptions.Builder` to align with Java naming conventions.
 * Apply the dependency rename from `spring-ai-advisors-vector-store` to `spring-ai-vector-store-advisor`.
-* Update type references such as `PromptChatMemoryAdvisor` -> `MessageChatMemoryAdvisor` and `OpensearchContainer` -> `OpenSearchContainer`.
+* Update type references such as `PromptChatMemoryAdvisor` -> `MessageChatMemoryAdvisor`, `OpensearchContainer` -> `OpenSearchContainer`, and `ChatClientCustomizer` -> `ChatClientBuilderCustomizer`.
 * For *Anthropic*: relocate Anthropic types (`AnthropicCacheOptions`, `AnthropicCacheStrategy`, `AnthropicCacheTtl`, `CacheEligibilityResolver`, `CitationDocument` -> `AnthropicCitationDocument`) from `org.springframework.ai.anthropic.api` to `org.springframework.ai.anthropic`. Note that constructing `AnthropicChatModel` from an `AnthropicApi` no longer applies in 2.0 because the `AnthropicApi` type and the matching constructor have been removed in favour of the official `com.anthropic:anthropic-java` SDK; that step requires manual migration.
 * For *MCP* (Model Context Protocol): adopt the new `spring-ai-mcp-annotations` artifact in place of `org.springaicommunity:mcp-annotations`; move the MCP Spring WebFlux and WebMvc artifacts from `io.modelcontextprotocol.sdk` to `org.springframework.ai`; relocate the community MCP packages under `org.springaicommunity.mcp` (annotation, context, method, provider) to the corresponding sub-packages of `org.springframework.ai.mcp.annotation`; and move MCP transport types from `io.modelcontextprotocol` to the corresponding `org.springframework.ai.mcp.{client,server}.{webflux,webmvc}.transport` packages. Replace deprecated `McpSchema` record constructors (`TextContent`, `ReadResourceResult`, `GetPromptResult`, `ProgressNotification`) with their `builder(...)` factories.
 * For *Mistral AI*: rename `MistralAiEmbeddingOptions.Builder` methods `withModel(...)` and `withEncodingFormat(...)` to `model(...)` and `encodingFormat(...)`, and consolidate deprecated `MistralAiApi.ChatModel` aliases onto their canonical `+MISTRAL_*+`, `+MINISTRAL_*+`, and `DEVSTRAL` names.
@@ -29,6 +29,6 @@ The recipe will:
 
 See its xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_ai2_UpgradeSpringAi_2_0[entry in the Recipe Catalog] for the full list of recipes this upgrade applies, each with its options and a before/after example.
 
-== Run the recipe
+== Run the Recipe
 
 include::partial$run-recipe.adoc[]

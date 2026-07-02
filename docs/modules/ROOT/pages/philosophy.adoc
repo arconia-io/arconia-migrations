@@ -1,19 +1,20 @@
-= Vision
+= Philosophy
 :description: Why Arconia Migrations exists, what it focuses on, and how it fits into the OpenRewrite ecosystem.
+:page-aliases: vision.adoc
 
 This page explains why Arconia Migrations exists, what it focuses on, and how it fits into the wider https://docs.openrewrite.org[OpenRewrite] ecosystem.
 
-== Our mission
+== Our Mission
 
-Arconia Migrations provides Apache 2.0 licensed https://docs.openrewrite.org[OpenRewrite] recipes that automate upgrades, refactoring, and code transformations for Java projects. We focus on the https://spring.io[Spring] ecosystem and ship the upgrade recipes that accompany every release of the https://docs.arconia.io[Arconia Framework], so that moving to a new version is a single command rather than a manual chore.
+Arconia Migrations provides OSS-licensed (Apache 2.0) https://docs.openrewrite.org[OpenRewrite] recipes that automate upgrades, refactoring, and code transformations for Java projects. We focus on the https://spring.io[Spring] ecosystem and ship the upgrade recipes that accompany every release of the https://docs.arconia.io[Arconia Framework], so that moving to a new version is a single command rather than a manual chore.
 
 Our scope is intentionally focused: we automate the upgrades that Arconia and Spring Boot projects actually run into, rather than aiming to cover every Java framework. Arconia Migrations is a set of standard OpenRewrite recipes. It builds on the OpenRewrite framework rather than replacing it, and you can run it with any OpenRewrite-compatible tool.
 
 Our recipes are not limited to Java source. OpenRewrite parses and transforms Kotlin as well, and changes such as type migrations, method renames, dependency and plugin updates, and configuration property renames apply to Kotlin code just as they do to Java. What is out of scope is Kotlin-specific changes. For example, Spring Boot 4 adopts JSpecify for nullability; if a Kotlin application then resolves null or non-null values incorrectly, such as calling a Spring Boot API that now returns a non-null value, the recipes will not fix that. So you can use Arconia Migrations to upgrade a Spring Boot Kotlin application from 3.5 to 4.1, but any Kotlin-specific follow-up is left to you.
 
-== Working with the OpenRewrite ecosystem
+== Working with the OpenRewrite Ecosystem
 
-Arconia Migrations builds on the Apache 2.0 recipes in the OpenRewrite catalog and contributes back to them. When an equivalent upstream module is available under the Apache 2.0 license, we prefer to add features and bug fixes there rather than maintain a separate copy. The https://github.com/openrewrite/rewrite-jackson[`rewrite-jackson`] recipes are a good example: a new recipe for Jackson 3, for instance, belongs upstream.
+Arconia Migrations builds on the Apache 2.0 recipes in the OpenRewrite catalog and contributes back to them. When an equivalent upstream module is available under the Apache 2.0 license, we prefer to add features and bug fixes there rather than maintain a separate copy. The https://github.com/openrewrite/rewrite-jackson[`rewrite-jackson`] recipes are a good example: a new recipe for Jackson 3 belongs upstream.
 
 To cover the Spring and testing upgrades that Arconia projects rely on, we needed recipes for which no Apache 2.0 module was available in the upstream catalog, so we built our own:
 
