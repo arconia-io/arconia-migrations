@@ -12,8 +12,6 @@ Arconia Migrations is a curated catalog of https://docs.openrewrite.org[OpenRewr
 
 The recipes are designed to be composable. Higher-level upgrade recipes (such as `UpgradeSpringBoot_4_0`) chain together smaller, focused recipes (such as `UpgradeSpringFramework_7_0` and `UpgradeJUnit_6`) so that a single command can take a project across multiple major versions at once.
 
-NOTE: Arconia Migrations is under active development and has not yet reached a GA (1.0.0) release. Recipe identifiers, options, and behavior may change between releases. Try it out and share feedback on https://github.com/arconia-io/arconia-migrations[GitHub].
-
 == OpenRewrite
 
 Arconia Migrations relies on https://docs.openrewrite.org[OpenRewrite], an open-source automated refactoring framework, and builds on top of the open-source recipes from the OpenRewrite catalog, released under the Apache 2.0 license. See the xref:philosophy.adoc[Philosophy] page for what Arconia Migrations focuses on and how it fits into the wider OpenRewrite ecosystem.

@@ -27,9 +27,6 @@
 - **Docling.** Recipes for upgrading the Docling Java library.
 - **Testing.** Recipes for JUnit 6 and Testcontainers 2.
 
-> [!NOTE]
-> Arconia Migrations is under active development and has not yet reached a GA (1.0.0) release. Recipe identifiers, options, and behavior may change between releases. Try it out and [share your feedback](https://github.com/arconia-io/arconia-migrations/discussions).
-
 ## 📙&nbsp; Documentation
 
 The [Arconia Migrations documentation](https://docs.arconia.io/arconia-migrations/latest/index.html) covers all available recipes, supported migrations, and usage details.

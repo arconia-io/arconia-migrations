@@ -1,9 +1,7 @@
 = Versioning and Support
 :description: How Arconia Migrations is versioned, what stability you can rely on, and which releases are supported.
 
-This page describes how Arconia Migrations is versioned, what stability guarantees you can rely on, and which releases are supported. It applies from version 1.0.0 onward.
-
-NOTE: Releases before 1.0.0 are considered pre-release and carry no compatibility or support guarantees.
+This page describes how Arconia Migrations is versioned, what stability guarantees you can rely on, and which releases are supported.
 
 == Versioning Scheme
 
