@@ -5,7 +5,7 @@ plugins {
 
 ext {
     set("errorProneVersion", '2.50.0')
-    set("nullAwayVersion", '0.13.7')
+    set("nullAwayVersion", '0.13.8')
 }
 
 dependencies {
