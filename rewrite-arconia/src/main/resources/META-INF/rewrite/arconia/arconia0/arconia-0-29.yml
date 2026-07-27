@@ -1,0 +1,20 @@
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.framework.UpgradeArconia_0_29
+displayName: Migrate to Arconia 0.29
+description: Migrate a Spring Boot application to the latest Arconia 0.29.x release.
+tags:
+  - arconia
+preconditions:
+  - org.openrewrite.Singleton
+recipeList:
+  - io.arconia.rewrite.framework.UpgradeArconia_0_28
+
+  # Dependency Versions
+  - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
+      groupId: io.arconia
+      artifactId: "*"
+      newVersion: 0.29.x
+
+  # Property Changes
+  - io.arconia.rewrite.framework.bootstrap.MigrateArconiaBootstrapProperties

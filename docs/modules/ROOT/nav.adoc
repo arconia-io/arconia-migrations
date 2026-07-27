@@ -26,6 +26,7 @@
 * xref:recipe-catalog/index.adoc[Recipe Catalog]
 ** xref:recipe-catalog/rewrite-arconia.adoc[rewrite-arconia]
 *** xref:recipe-catalog/rewrite-arconia.adoc#family-framework[framework]
+*** xref:recipe-catalog/rewrite-arconia.adoc#family-framework-bootstrap[framework › bootstrap]
 *** xref:recipe-catalog/rewrite-arconia.adoc#family-framework-docling[framework › docling]
 *** xref:recipe-catalog/rewrite-arconia.adoc#family-framework-multitenancy[framework › multitenancy]
 *** xref:recipe-catalog/rewrite-arconia.adoc#family-framework-opentelemetry[framework › opentelemetry]

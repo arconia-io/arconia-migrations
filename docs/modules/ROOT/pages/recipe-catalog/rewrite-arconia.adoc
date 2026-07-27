@@ -3,7 +3,7 @@
 
 // AUTO-GENERATED from the OpenRewrite recipe model. Do not edit by hand.
 
-The `rewrite-arconia` module publishes 45 recipes across 4 categories.
+The `rewrite-arconia` module publishes 47 recipes across 5 categories.
 
 [#family-framework]
 == framework
@@ -958,6 +958,81 @@ repositories {
 dependencies {
     implementation "org.springframework.cloud:spring-cloud-bindings:2.0.4"
 }
+----
+
+[#io_arconia_rewrite_framework_UpgradeArconia_0_29]
+=== Migrate to Arconia 0.29
+`io.arconia.rewrite.framework.UpgradeArconia_0_29`
+
+Migrate a Spring Boot application to the latest Arconia 0.29.x release.
+
+_Tags: arconia_
+
+.Recipes applied
+[%collapsible]
+====
+* xref:recipe-catalog/rewrite-arconia.adoc#io_arconia_rewrite_framework_UpgradeArconia_0_28[Migrate to Arconia 0.28] (`io.arconia.rewrite.framework.UpgradeArconia_0_28`)
+** xref:recipe-catalog/rewrite-arconia.adoc#io_arconia_rewrite_framework_UpgradeArconia_0_27[Migrate to Arconia 0.27] (`io.arconia.rewrite.framework.UpgradeArconia_0_27`)
+*** xref:recipe-catalog/rewrite-arconia.adoc#io_arconia_rewrite_framework_UpgradeArconia_0_26[Migrate to Arconia 0.26] (`io.arconia.rewrite.framework.UpgradeArconia_0_26`)
+*** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+*** xref:recipe-catalog/rewrite-arconia.adoc#io_arconia_rewrite_framework_multitenancy_UseTenantContextFilterBuilder[Use `TenantContextFilter.Builder` instead of constructor] (`io.arconia.rewrite.framework.multitenancy.UseTenantContextFilterBuilder`)
+*** Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency` ×2)
+*** Change type (`org.openrewrite.java.ChangeType` ×11)
+*** Rename package name (`org.openrewrite.java.ChangePackage` ×4)
+*** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×4)
+*** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKeyIfValue[Rename a Spring Boot configuration property key if its value matches] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKeyIfValue`)
+*** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_ChangeSpringBootPropertyValue[Change the value of a Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue` ×2)
+*** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×3)
+*** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKeyIfValue[Rename a Spring Boot configuration property key if its value matches] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKeyIfValue`)
+*** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_ChangeSpringBootPropertyValue[Change the value of a Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue`)
+*** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×14)
+** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+** Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency`)
+* Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+* xref:recipe-catalog/rewrite-arconia.adoc#io_arconia_rewrite_framework_bootstrap_MigrateArconiaBootstrapProperties[Migrate the Arconia bootstrap properties to `META-INF/arconia-bootstrap.properties`] (`io.arconia.rewrite.framework.bootstrap.MigrateArconiaBootstrapProperties`)
+====
+
+*Example*
+
+.Before
+[source,properties]
+----
+arconia.bootstrap.profiles.enabled=false
+arconia.dev.profiles=local
+spring.application.name=demo
+----
+
+.After
+[source,properties]
+----
+spring.application.name=demo
+----
+
+[#family-framework-bootstrap]
+== framework › bootstrap
+
+*Recipes*
+
+[#io_arconia_rewrite_framework_bootstrap_MigrateArconiaBootstrapProperties]
+=== Migrate the Arconia bootstrap properties to `META-INF/arconia-bootstrap.properties`
+`io.arconia.rewrite.framework.bootstrap.MigrateArconiaBootstrapProperties`
+
+The Arconia bootstrap properties are resolved before the application configuration is loaded, so they are no longer supported in the Spring application configuration files. This recipe moves them to `META-INF/arconia-bootstrap.properties`, creating or updating the file in the same source set and keeping the values already present there. Properties the new file cannot express (values with property placeholders, profile-specific configuration, conflicting values within a source set) are left in place and marked for manual review.
+
+*Example*
+
+.Before
+[source,properties]
+----
+arconia.bootstrap.profiles.enabled=false
+arconia.dev.profiles=local
+spring.application.name=demo
+----
+
+.After
+[source,properties]
+----
+spring.application.name=demo
 ----
 
 [#family-framework-docling]
