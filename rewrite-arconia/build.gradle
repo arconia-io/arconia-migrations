@@ -70,6 +70,7 @@ recipeDependencies {
     testParserClasspath "io.arconia:arconia-dev-services-otel-collector:0.21.+"
 
     testParserClasspath "io.arconia:arconia-dev-services-api:0.29.+"
+    testParserClasspath "io.arconia:arconia-dev-services-oracle-xe:0.29.+"
     testParserClasspath "io.arconia:arconia-dev-services-pulsar:0.29.+"
 
     testParserClasspath "org.springframework.boot:spring-boot-actuator-autoconfigure:3.5.+"

@@ -18,6 +18,7 @@ class UpgradeArconia_0_30_Tests implements RewriteTest {
         spec.recipeFromResources("io.arconia.rewrite.framework.UpgradeArconia_0_30")
             .parser(JavaParser.fromJavaVersion().classpathFromResources(new InMemoryExecutionContext(),
                 "arconia-dev-services-api-0.29",
+                "arconia-dev-services-oracle-xe-0.29",
                 "arconia-dev-services-pulsar-0.29"));
     }
 
@@ -82,6 +83,35 @@ class UpgradeArconia_0_30_Tests implements RewriteTest {
                             void call(PulsarDevServicesProperties properties) {
                                 properties.getAdminPort();
                                 properties.setAdminPort(8080);
+                            }
+                        }
+                        """
+                )
+        );
+    }
+
+    @Test
+    void oracleXeDevServicesTypeChanges() {
+        rewriteRun(
+                //language=java
+                java(
+                        """
+                        import io.arconia.dev.services.oracle.OracleXeDevServicesAutoConfiguration;
+                        import io.arconia.dev.services.oracle.OracleXeDevServicesProperties;
+
+                        class Demo {
+                            void call(OracleXeDevServicesProperties properties) {
+                                Class<?> autoConfiguration = OracleXeDevServicesAutoConfiguration.class;
+                            }
+                        }
+                        """,
+                        """
+                        import io.arconia.dev.services.oracle.xe.OracleXeDevServicesAutoConfiguration;
+                        import io.arconia.dev.services.oracle.xe.OracleXeDevServicesProperties;
+
+                        class Demo {
+                            void call(OracleXeDevServicesProperties properties) {
+                                Class<?> autoConfiguration = OracleXeDevServicesAutoConfiguration.class;
                             }
                         }
                         """

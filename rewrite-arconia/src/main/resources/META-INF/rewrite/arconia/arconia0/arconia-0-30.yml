@@ -21,6 +21,14 @@ recipeList:
       oldPropertyKey: arconia.dev.services.pulsar.management-console-port
       newPropertyKey: arconia.dev.services.pulsar.admin-port
 
+  # Rename Types
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: io.arconia.dev.services.oracle.OracleXeDevServicesAutoConfiguration
+      newFullyQualifiedTypeName: io.arconia.dev.services.oracle.xe.OracleXeDevServicesAutoConfiguration
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: io.arconia.dev.services.oracle.OracleXeDevServicesProperties
+      newFullyQualifiedTypeName: io.arconia.dev.services.oracle.xe.OracleXeDevServicesProperties
+
   # Rename Methods
   - org.openrewrite.java.ChangeMethodName:
       methodPattern: io.arconia.dev.services.pulsar.PulsarDevServicesProperties.getManagementConsolePort()
