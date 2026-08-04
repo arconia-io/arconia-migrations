@@ -3,7 +3,7 @@
 
 // AUTO-GENERATED from the OpenRewrite recipe model. Do not edit by hand.
 
-The `rewrite-arconia` module publishes 47 recipes across 5 categories.
+The `rewrite-arconia` module publishes 48 recipes across 5 categories.
 
 [#family-framework]
 == framework
@@ -1006,6 +1006,43 @@ spring.application.name=demo
 [source,properties]
 ----
 spring.application.name=demo
+----
+
+[#io_arconia_rewrite_framework_UpgradeArconia_0_30]
+=== Migrate to Arconia 0.30
+`io.arconia.rewrite.framework.UpgradeArconia_0_30`
+
+Migrate a Spring Boot application to the latest Arconia 0.30.x release.
+
+_Tags: arconia_
+
+.Recipes applied
+[%collapsible]
+====
+* xref:recipe-catalog/rewrite-arconia.adoc#io_arconia_rewrite_framework_UpgradeArconia_0_29[Migrate to Arconia 0.29] (`io.arconia.rewrite.framework.UpgradeArconia_0_29`)
+** xref:recipe-catalog/rewrite-arconia.adoc#io_arconia_rewrite_framework_UpgradeArconia_0_28[Migrate to Arconia 0.28] (`io.arconia.rewrite.framework.UpgradeArconia_0_28`)
+*** xref:recipe-catalog/rewrite-arconia.adoc#io_arconia_rewrite_framework_UpgradeArconia_0_27[Migrate to Arconia 0.27] (`io.arconia.rewrite.framework.UpgradeArconia_0_27`)
+*** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+*** Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency`)
+** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+** xref:recipe-catalog/rewrite-arconia.adoc#io_arconia_rewrite_framework_bootstrap_MigrateArconiaBootstrapProperties[Migrate the Arconia bootstrap properties to `META-INF/arconia-bootstrap.properties`] (`io.arconia.rewrite.framework.bootstrap.MigrateArconiaBootstrapProperties`)
+* Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+* xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey`)
+* Change method name (`org.openrewrite.java.ChangeMethodName` ×2)
+====
+
+*Example*
+
+.Before
+[source,properties]
+----
+arconia.dev.services.pulsar.management-console-port=8080
+----
+
+.After
+[source,properties]
+----
+arconia.dev.services.pulsar.admin-port=8080
 ----
 
 [#family-framework-bootstrap]
