@@ -276,10 +276,10 @@ class UpgradeArconia_0_27_Tests implements RewriteTest {
                           observations:
                             conventions:
                               opentelemetry:
-                                  ai.enabled: true
-                                  ai.capture-content: span-events
-                                  ai.include-tool-definitions: true
-                                  ai.include-tool-call-content: true
+                                ai.enabled: true
+                                ai.capture-content: span-events
+                                ai.include-tool-definitions: true
+                                ai.include-tool-call-content: true
                         """,
                         s -> s.path("src/main/resources/application.yml"))
         );

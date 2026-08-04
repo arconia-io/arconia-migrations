@@ -117,10 +117,10 @@ arconia:
       postgresql:
         shared: dev-mode
       redis:
-          environment:
-            MY_VAR: value
-          image-name: custom-redis:latest
-          shared: dev-mode
+        environment:
+          MY_VAR: value
+        image-name: custom-redis:latest
+        shared: dev-mode
 ----
 
 [#io_arconia_rewrite_framework_UpgradeArconia_0_12]

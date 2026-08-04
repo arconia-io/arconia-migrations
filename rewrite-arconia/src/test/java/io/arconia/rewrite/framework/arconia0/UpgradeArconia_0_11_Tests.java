@@ -93,10 +93,10 @@ class UpgradeArconia_0_11_Tests implements RewriteTest {
                       postgresql:
                         shared: dev-mode
                       redis:
-                          environment:
-                            MY_VAR: value
-                          image-name: custom-redis:latest
-                          shared: dev-mode
+                        environment:
+                          MY_VAR: value
+                        image-name: custom-redis:latest
+                        shared: dev-mode
                 """,
                 s -> s.path("src/main/resources/application.yml")
             )
@@ -244,7 +244,7 @@ class UpgradeArconia_0_11_Tests implements RewriteTest {
                   dev:
                     services:
                       redis:
-                          image-name: redis:alpine
+                        image-name: redis:alpine
                 """,
                 s -> s.path("src/main/resources/application.yml")
             )

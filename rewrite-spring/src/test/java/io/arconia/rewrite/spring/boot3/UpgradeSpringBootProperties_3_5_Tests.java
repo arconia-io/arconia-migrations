@@ -80,8 +80,8 @@ class UpgradeSpringBootProperties_3_5_Tests implements RewriteTest {
                         """
                         spring:
                           graphql:
-                              http.path: /graphql
-                              http.sse.timeout: 30s
+                            http.path: /graphql
+                            http.sse.timeout: 30s
                         """,
                         s -> s.path("src/main/resources/application.yml"))
         );
