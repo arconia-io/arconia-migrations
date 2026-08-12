@@ -62,6 +62,50 @@ class UpgradeArconia_0_30_Tests implements RewriteTest {
     }
 
     @Test
+    void tenantDetailsSourcePropertyCommented() {
+        rewriteRun(
+                //language=properties
+                properties(
+                        """
+                        arconia.multitenancy.details.source=properties
+                        arconia.multitenancy.details.tenants[0].identifier=acme
+                        """,
+                        """
+                        # Removed. Tenant details are auto-configured from the arconia.multitenancy.details.tenants list or from a tenant details dependency.
+                        # arconia.multitenancy.details.source=properties
+                        arconia.multitenancy.details.tenants[0].identifier=acme
+                        """,
+                        s -> s.path("src/main/resources/application.properties"))
+        );
+    }
+
+    @Test
+    void tenantDetailsSourcePropertyCommentedInYaml() {
+        rewriteRun(
+                //language=yaml
+                yaml(
+                        """
+                        arconia:
+                          multitenancy:
+                            details:
+                              source: properties
+                              tenants:
+                                - identifier: acme
+                        """,
+                        """
+                        arconia:
+                          multitenancy:
+                            details:
+                              # Removed. Tenant details are auto-configured from the arconia.multitenancy.details.tenants list or from a tenant details dependency.
+                              # source: properties
+                              tenants:
+                                - identifier: acme
+                        """,
+                        s -> s.path("src/main/resources/application.yml"))
+        );
+    }
+
+    @Test
     void pulsarDevServicesMethodChanges() {
         rewriteRun(
                 //language=java

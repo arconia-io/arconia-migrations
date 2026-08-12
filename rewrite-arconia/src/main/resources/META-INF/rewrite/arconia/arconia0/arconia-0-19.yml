@@ -40,7 +40,6 @@ recipeList:
   - org.openrewrite.java.ChangeMethodName:
       methodPattern: ai.docling.api.serve.convert.request.ConvertDocumentRequest target()
       newMethodName: getTarget
-  - io.arconia.rewrite.framework.docling.UseConvertDocumentRequestSourcesMethod
 
   # Options
   - org.openrewrite.java.ChangePackage:
@@ -225,6 +224,7 @@ recipeList:
   - org.openrewrite.java.ChangeMethodName:
       methodPattern: ai.docling.api.serve.convert.request.source.HttpSource headers()
       newMethodName: getHeaders
+  - io.arconia.rewrite.framework.docling.UseConvertDocumentRequestSourcesMethod
 
   # Target
   - org.openrewrite.java.ChangePackage:
