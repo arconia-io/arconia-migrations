@@ -21,6 +21,11 @@ recipeList:
       oldPropertyKey: arconia.dev.services.pulsar.management-console-port
       newPropertyKey: arconia.dev.services.pulsar.admin-port
 
+  # Comment Properties
+  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
+      propertyKey: "arconia.multitenancy.details.source"
+      comment: "Removed. Tenant details are auto-configured from the arconia.multitenancy.details.tenants list or from a tenant details dependency."
+
   # Rename Types
   - org.openrewrite.java.ChangeType:
       oldFullyQualifiedTypeName: io.arconia.dev.services.oracle.OracleXeDevServicesAutoConfiguration
