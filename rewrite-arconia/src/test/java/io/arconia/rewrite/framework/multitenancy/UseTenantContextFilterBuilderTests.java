@@ -6,7 +6,6 @@ import org.openrewrite.InMemoryExecutionContext;
 import org.openrewrite.java.JavaParser;
 import org.openrewrite.test.RecipeSpec;
 import org.openrewrite.test.RewriteTest;
-import org.openrewrite.test.TypeValidation;
 
 import static org.openrewrite.java.Assertions.java;
 
@@ -27,7 +26,6 @@ class UseTenantContextFilterBuilderTests implements RewriteTest {
     @DocumentExample
     void useBuilder() {
         rewriteRun(
-                spec -> spec.typeValidationOptions(TypeValidation.builder().methodInvocations(false).build()),
                 //language=java
                 java(
                         """

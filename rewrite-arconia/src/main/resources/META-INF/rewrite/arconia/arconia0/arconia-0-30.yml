@@ -41,3 +41,16 @@ recipeList:
   - org.openrewrite.java.ChangeMethodName:
       methodPattern: io.arconia.dev.services.pulsar.PulsarDevServicesProperties.setManagementConsolePort(int)
       newMethodName: setAdminPort
+
+  # Remove Annotation Attributes
+  - org.openrewrite.java.RemoveAnnotationAttribute:
+      annotationType: io.arconia.core.support.Incubating
+      attributeName: since
+
+  # Use Builders
+  - io.arconia.rewrite.framework.multitenancy.UseFixedTenantResolverBuilder
+  - io.arconia.rewrite.framework.multitenancy.UseMdcTenantEventListenerBuilder
+  - io.arconia.rewrite.framework.multitenancy.UseTenantObservationFilterBuilder
+  - io.arconia.rewrite.framework.multitenancy.UseHeaderTenantResolverBuilder
+  - io.arconia.rewrite.framework.multitenancy.UseCookieTenantResolverBuilder
+  - io.arconia.rewrite.framework.multitenancy.UseTenantBuilderFactoryMethod

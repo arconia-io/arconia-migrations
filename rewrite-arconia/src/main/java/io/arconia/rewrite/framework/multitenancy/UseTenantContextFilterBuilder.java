@@ -58,7 +58,10 @@ public class UseTenantContextFilterBuilder extends Recipe {
                                             + ".tenantVerifier(#{any(io.arconia.multitenancy.core.tenantdetails.TenantVerifier)})"
                                             + ".build()")
                                     .imports(FQN_TENANT_CONTEXT_FILTER)
-                                    .javaParser(JavaParser.fromJavaVersion().classpathFromResources(ctx, "arconia-multitenancy-web-0.27", "spring-context-7.0"))
+                                    .javaParser(JavaParser.fromJavaVersion().classpathFromResources(ctx,
+                                            "arconia-multitenancy-core-0.27", "arconia-multitenancy-web-0.27",
+                                            "jakarta.servlet-api-6.1", "spring-beans-7.0", "spring-context-7.0",
+                                            "spring-core-7.0", "spring-web-7.0"))
                                     .build()
                                     .apply(getCursor(), nc.getCoordinates().replace(), args.get(0), args.get(1), args.get(2), args.get(3));
                         }

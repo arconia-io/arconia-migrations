@@ -3,7 +3,7 @@
 
 // AUTO-GENERATED from the OpenRewrite recipe model. Do not edit by hand.
 
-The `rewrite-arconia` module publishes 48 recipes across 5 categories.
+The `rewrite-arconia` module publishes 54 recipes across 5 categories.
 
 [#family-framework]
 == framework
@@ -1031,6 +1031,13 @@ _Tags: arconia_
 * xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
 * Change type (`org.openrewrite.java.ChangeType` ×2)
 * Change method name (`org.openrewrite.java.ChangeMethodName` ×2)
+* Remove annotation attribute (`org.openrewrite.java.RemoveAnnotationAttribute`)
+* xref:recipe-catalog/rewrite-arconia.adoc#io_arconia_rewrite_framework_multitenancy_UseFixedTenantResolverBuilder[Use `FixedTenantResolver.Builder` instead of constructor] (`io.arconia.rewrite.framework.multitenancy.UseFixedTenantResolverBuilder`)
+* xref:recipe-catalog/rewrite-arconia.adoc#io_arconia_rewrite_framework_multitenancy_UseMdcTenantEventListenerBuilder[Use `MdcTenantEventListener.Builder` instead of constructor] (`io.arconia.rewrite.framework.multitenancy.UseMdcTenantEventListenerBuilder`)
+* xref:recipe-catalog/rewrite-arconia.adoc#io_arconia_rewrite_framework_multitenancy_UseTenantObservationFilterBuilder[Use `TenantObservationFilter.Builder` instead of constructor] (`io.arconia.rewrite.framework.multitenancy.UseTenantObservationFilterBuilder`)
+* xref:recipe-catalog/rewrite-arconia.adoc#io_arconia_rewrite_framework_multitenancy_UseHeaderTenantResolverBuilder[Use `HeaderTenantResolver.Builder` instead of constructor] (`io.arconia.rewrite.framework.multitenancy.UseHeaderTenantResolverBuilder`)
+* xref:recipe-catalog/rewrite-arconia.adoc#io_arconia_rewrite_framework_multitenancy_UseCookieTenantResolverBuilder[Use `CookieTenantResolver.Builder` instead of constructor] (`io.arconia.rewrite.framework.multitenancy.UseCookieTenantResolverBuilder`)
+* xref:recipe-catalog/rewrite-arconia.adoc#io_arconia_rewrite_framework_multitenancy_UseTenantBuilderFactoryMethod[Use `Tenant.builder()` instead of constructor] (`io.arconia.rewrite.framework.multitenancy.UseTenantBuilderFactoryMethod`)
 ====
 
 *Example*
@@ -1122,6 +1129,166 @@ Replace `.addHttpSources()` or `addFileSources()` with `.source()`, wrapping arg
 
 *Recipes*
 
+[#io_arconia_rewrite_framework_multitenancy_UseCookieTenantResolverBuilder]
+=== Use `CookieTenantResolver.Builder` instead of constructor
+`io.arconia.rewrite.framework.multitenancy.UseCookieTenantResolverBuilder`
+
+Replace `new CookieTenantResolver(...)` with `CookieTenantResolver.builder()....build()`.
+
+*Example*
+
+.Before
+[source,java]
+----
+import io.arconia.multitenancy.web.context.resolvers.CookieTenantResolver;
+
+class Demo {
+    CookieTenantResolver create(String tenantCookieName) {
+        return new CookieTenantResolver(tenantCookieName);
+    }
+}
+----
+
+.After
+[source,java]
+----
+import io.arconia.multitenancy.web.context.resolvers.CookieTenantResolver;
+
+class Demo {
+    CookieTenantResolver create(String tenantCookieName) {
+        return CookieTenantResolver.builder().tenantCookieName(tenantCookieName).build();
+    }
+}
+----
+
+[#io_arconia_rewrite_framework_multitenancy_UseFixedTenantResolverBuilder]
+=== Use `FixedTenantResolver.Builder` instead of constructor
+`io.arconia.rewrite.framework.multitenancy.UseFixedTenantResolverBuilder`
+
+Replace `new FixedTenantResolver(...)` with `FixedTenantResolver.builder()....build()`.
+
+*Example*
+
+.Before
+[source,java]
+----
+import io.arconia.multitenancy.core.context.resolvers.FixedTenantResolver;
+
+class Demo {
+    FixedTenantResolver create(String tenantIdentifier) {
+        return new FixedTenantResolver(tenantIdentifier);
+    }
+}
+----
+
+.After
+[source,java]
+----
+import io.arconia.multitenancy.core.context.resolvers.FixedTenantResolver;
+
+class Demo {
+    FixedTenantResolver create(String tenantIdentifier) {
+        return FixedTenantResolver.builder().tenantIdentifier(tenantIdentifier).build();
+    }
+}
+----
+
+[#io_arconia_rewrite_framework_multitenancy_UseHeaderTenantResolverBuilder]
+=== Use `HeaderTenantResolver.Builder` instead of constructor
+`io.arconia.rewrite.framework.multitenancy.UseHeaderTenantResolverBuilder`
+
+Replace `new HeaderTenantResolver(...)` with `HeaderTenantResolver.builder()....build()`.
+
+*Example*
+
+.Before
+[source,java]
+----
+import io.arconia.multitenancy.web.context.resolvers.HeaderTenantResolver;
+
+class Demo {
+    HeaderTenantResolver create(String tenantHeaderName) {
+        return new HeaderTenantResolver(tenantHeaderName);
+    }
+}
+----
+
+.After
+[source,java]
+----
+import io.arconia.multitenancy.web.context.resolvers.HeaderTenantResolver;
+
+class Demo {
+    HeaderTenantResolver create(String tenantHeaderName) {
+        return HeaderTenantResolver.builder().tenantHeaderName(tenantHeaderName).build();
+    }
+}
+----
+
+[#io_arconia_rewrite_framework_multitenancy_UseMdcTenantEventListenerBuilder]
+=== Use `MdcTenantEventListener.Builder` instead of constructor
+`io.arconia.rewrite.framework.multitenancy.UseMdcTenantEventListenerBuilder`
+
+Replace `new MdcTenantEventListener(...)` with `MdcTenantEventListener.builder()....build()`.
+
+*Example*
+
+.Before
+[source,java]
+----
+import io.arconia.multitenancy.core.observability.MdcTenantEventListener;
+
+class Demo {
+    MdcTenantEventListener create(String tenantIdentifierKey) {
+        return new MdcTenantEventListener(tenantIdentifierKey);
+    }
+}
+----
+
+.After
+[source,java]
+----
+import io.arconia.multitenancy.core.observability.MdcTenantEventListener;
+
+class Demo {
+    MdcTenantEventListener create(String tenantIdentifierKey) {
+        return MdcTenantEventListener.builder().tenantIdentifierKey(tenantIdentifierKey).build();
+    }
+}
+----
+
+[#io_arconia_rewrite_framework_multitenancy_UseTenantBuilderFactoryMethod]
+=== Use `Tenant.builder()` instead of constructor
+`io.arconia.rewrite.framework.multitenancy.UseTenantBuilderFactoryMethod`
+
+Replace `new Tenant.Builder()` with `Tenant.builder()`.
+
+*Example*
+
+.Before
+[source,java]
+----
+import io.arconia.multitenancy.core.tenantdetails.Tenant;
+
+class Demo {
+    Tenant create() {
+        return new Tenant.Builder().identifier("acme").build();
+    }
+}
+----
+
+.After
+[source,java]
+----
+import io.arconia.multitenancy.core.tenantdetails.Tenant;
+
+class Demo {
+    Tenant create() {
+        return Tenant.builder().identifier("acme").build();
+    }
+}
+----
+
 [#io_arconia_rewrite_framework_multitenancy_UseTenantContextFilterBuilder]
 === Use `TenantContextFilter.Builder` instead of constructor
 `io.arconia.rewrite.framework.multitenancy.UseTenantContextFilterBuilder`
@@ -1164,6 +1331,40 @@ class Demo {
             ApplicationEventPublisher publisher,
             TenantVerifier verifier) {
         return TenantContextFilter.builder().httpRequestTenantResolver(resolver).tenantContextIgnorePathMatcher(matcher).eventPublisher(publisher).tenantVerifier(verifier).build();
+    }
+}
+----
+
+[#io_arconia_rewrite_framework_multitenancy_UseTenantObservationFilterBuilder]
+=== Use `TenantObservationFilter.Builder` instead of constructor
+`io.arconia.rewrite.framework.multitenancy.UseTenantObservationFilterBuilder`
+
+Replace `new TenantObservationFilter(...)` with `TenantObservationFilter.builder()....build()`.
+
+*Example*
+
+.Before
+[source,java]
+----
+import io.arconia.multitenancy.core.observability.Cardinality;
+import io.arconia.multitenancy.core.observability.TenantObservationFilter;
+
+class Demo {
+    TenantObservationFilter create(String tenantIdentifierKey, Cardinality cardinality) {
+        return new TenantObservationFilter(tenantIdentifierKey, cardinality);
+    }
+}
+----
+
+.After
+[source,java]
+----
+import io.arconia.multitenancy.core.observability.Cardinality;
+import io.arconia.multitenancy.core.observability.TenantObservationFilter;
+
+class Demo {
+    TenantObservationFilter create(String tenantIdentifierKey, Cardinality cardinality) {
+        return TenantObservationFilter.builder().tenantIdentifierKey(tenantIdentifierKey).cardinality(cardinality).build();
     }
 }
 ----

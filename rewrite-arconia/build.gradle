@@ -37,8 +37,16 @@ dependencies {
 
 recipeDependencies {
     parserClasspath "ai.docling:docling-serve-api:0.1.+"
+    parserClasspath "io.arconia:arconia-multitenancy-core:0.27.+"
+    parserClasspath "io.arconia:arconia-multitenancy-core:0.30.+"
     parserClasspath "io.arconia:arconia-multitenancy-web:0.27.+"
+    parserClasspath "io.arconia:arconia-multitenancy-web:0.30.+"
+    parserClasspath "io.micrometer:micrometer-observation:1.16.+"
+    parserClasspath "jakarta.servlet:jakarta.servlet-api:6.1.+"
+    parserClasspath "org.springframework:spring-beans:7.0.+"
     parserClasspath "org.springframework:spring-context:7.0.+"
+    parserClasspath "org.springframework:spring-core:7.0.+"
+    parserClasspath "org.springframework:spring-web:7.0.+"
 
     testParserClasspath "io.arconia:arconia-core:0.9.+"
     testParserClasspath "io.arconia:arconia-core:0.10.+"
@@ -69,9 +77,12 @@ recipeDependencies {
     testParserClasspath "io.arconia:arconia-dev-services-core:0.21.+"
     testParserClasspath "io.arconia:arconia-dev-services-otel-collector:0.21.+"
 
+    testParserClasspath "io.arconia:arconia-core:0.29.+"
     testParserClasspath "io.arconia:arconia-dev-services-api:0.29.+"
     testParserClasspath "io.arconia:arconia-dev-services-oracle-xe:0.29.+"
     testParserClasspath "io.arconia:arconia-dev-services-pulsar:0.29.+"
+    testParserClasspath "io.arconia:arconia-multitenancy-core:0.29.+"
+    testParserClasspath "io.arconia:arconia-multitenancy-web:0.29.+"
 
     testParserClasspath "org.springframework.boot:spring-boot-actuator-autoconfigure:3.5.+"
     testParserClasspath "org.springframework.boot:spring-boot-micrometer-tracing-opentelemetry:4.0.+"

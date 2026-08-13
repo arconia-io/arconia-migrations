@@ -17,9 +17,12 @@ class UpgradeArconia_0_30_Tests implements RewriteTest {
     public void defaults(RecipeSpec spec) {
         spec.recipeFromResources("io.arconia.rewrite.framework.UpgradeArconia_0_30")
             .parser(JavaParser.fromJavaVersion().classpathFromResources(new InMemoryExecutionContext(),
+                "arconia-core-0.29",
                 "arconia-dev-services-api-0.29",
                 "arconia-dev-services-oracle-xe-0.29",
-                "arconia-dev-services-pulsar-0.29"));
+                "arconia-dev-services-pulsar-0.29",
+                "arconia-multitenancy-core-0.29",
+                "arconia-multitenancy-web-0.29"));
     }
 
     @Test
@@ -157,6 +160,105 @@ class UpgradeArconia_0_30_Tests implements RewriteTest {
                             void call(OracleXeDevServicesProperties properties) {
                                 Class<?> autoConfiguration = OracleXeDevServicesAutoConfiguration.class;
                             }
+                        }
+                        """
+                )
+        );
+    }
+
+    @Test
+    void multitenancyCoreBuilderChanges() {
+        rewriteRun(
+                //language=java
+                java(
+                        """
+                        import io.arconia.multitenancy.core.context.resolvers.FixedTenantResolver;
+                        import io.arconia.multitenancy.core.observability.Cardinality;
+                        import io.arconia.multitenancy.core.observability.MdcTenantEventListener;
+                        import io.arconia.multitenancy.core.observability.TenantObservationFilter;
+                        import io.arconia.multitenancy.core.tenantdetails.Tenant;
+
+                        class Demo {
+                            void call(String tenantIdentifierKey, Cardinality cardinality) {
+                                FixedTenantResolver resolver = new FixedTenantResolver("acme");
+                                MdcTenantEventListener listener = new MdcTenantEventListener();
+                                TenantObservationFilter filter = new TenantObservationFilter(tenantIdentifierKey, cardinality);
+                                Tenant tenant = new Tenant.Builder().identifier("acme").build();
+                            }
+                        }
+                        """,
+                        """
+                        import io.arconia.multitenancy.core.context.resolvers.FixedTenantResolver;
+                        import io.arconia.multitenancy.core.observability.Cardinality;
+                        import io.arconia.multitenancy.core.observability.MdcTenantEventListener;
+                        import io.arconia.multitenancy.core.observability.TenantObservationFilter;
+                        import io.arconia.multitenancy.core.tenantdetails.Tenant;
+
+                        class Demo {
+                            void call(String tenantIdentifierKey, Cardinality cardinality) {
+                                FixedTenantResolver resolver = FixedTenantResolver.builder().tenantIdentifier("acme").build();
+                                MdcTenantEventListener listener = MdcTenantEventListener.builder().build();
+                                TenantObservationFilter filter = TenantObservationFilter.builder().tenantIdentifierKey(tenantIdentifierKey).cardinality(cardinality).build();
+                                Tenant tenant = Tenant.builder().identifier("acme").build();
+                            }
+                        }
+                        """
+                )
+        );
+    }
+
+    @Test
+    void multitenancyWebBuilderChanges() {
+        rewriteRun(
+                //language=java
+                java(
+                        """
+                        import io.arconia.multitenancy.web.context.resolvers.CookieTenantResolver;
+                        import io.arconia.multitenancy.web.context.resolvers.HeaderTenantResolver;
+
+                        class Demo {
+                            void call(String name) {
+                                HeaderTenantResolver headerResolver = new HeaderTenantResolver(name);
+                                CookieTenantResolver cookieResolver = new CookieTenantResolver();
+                            }
+                        }
+                        """,
+                        """
+                        import io.arconia.multitenancy.web.context.resolvers.CookieTenantResolver;
+                        import io.arconia.multitenancy.web.context.resolvers.HeaderTenantResolver;
+
+                        class Demo {
+                            void call(String name) {
+                                HeaderTenantResolver headerResolver = HeaderTenantResolver.builder().tenantHeaderName(name).build();
+                                CookieTenantResolver cookieResolver = CookieTenantResolver.builder().build();
+                            }
+                        }
+                        """
+                )
+        );
+    }
+
+    @Test
+    void incubatingSinceAttributeRemoved() {
+        rewriteRun(
+                //language=java
+                java(
+                        """
+                        import io.arconia.core.support.Incubating;
+
+                        @Incubating(since = "0.20.0")
+                        class Demo {
+                            @Incubating(since = "0.20.0")
+                            void call() {}
+                        }
+                        """,
+                        """
+                        import io.arconia.core.support.Incubating;
+
+                        @Incubating
+                        class Demo {
+                            @Incubating
+                            void call() {}
                         }
                         """
                 )

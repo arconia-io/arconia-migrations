@@ -5,7 +5,7 @@ This catalog lists every OpenRewrite recipe published by Arconia Migrations, gro
 
 For curated, step-by-step upgrade guides, see the topic sections in the navigation.
 
-* xref:recipe-catalog/rewrite-arconia.adoc[rewrite-arconia] — 48 recipes
+* xref:recipe-catalog/rewrite-arconia.adoc[rewrite-arconia] — 54 recipes
 * xref:recipe-catalog/rewrite-docling.adoc[rewrite-docling] — 2 recipes
 * xref:recipe-catalog/rewrite-spring.adoc[rewrite-spring] — 259 recipes
 * xref:recipe-catalog/rewrite-spring-core.adoc[rewrite-spring-core] — 6 recipes
