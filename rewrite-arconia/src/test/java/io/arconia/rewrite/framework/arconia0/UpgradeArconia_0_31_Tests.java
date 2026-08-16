@@ -59,7 +59,7 @@ class UpgradeArconia_0_31_Tests implements RewriteTest {
 
                         class Demo {
                             void call(DevServicesRegistry.ContainerSpec container, DevServicesRegistry.DiscoverySpec discovery) {
-                                discovery.shared(true);
+                                container.serviceConnectionName("fancydb");
                             }
                         }
                         """,
@@ -69,7 +69,103 @@ class UpgradeArconia_0_31_Tests implements RewriteTest {
 
                         class Demo {
                             void call(ContainerSpec container, DiscoverySpec discovery) {
+                                container.serviceConnectionName("fancydb");
+                            }
+                        }
+                        """
+                )
+        );
+    }
+
+    @Test
+    void devServicesDiscoverySharedCallRemoved() {
+        rewriteRun(
+                //language=java
+                java(
+                        """
+                        import io.arconia.dev.services.core.registration.DevServicesRegistry;
+
+                        class Demo {
+                            void call(DevServicesRegistry.DiscoverySpec discovery) {
                                 discovery.shared(true);
+                            }
+
+                            DevServicesRegistry.DiscoverySpec chain(DevServicesRegistry.DiscoverySpec discovery) {
+                                return discovery.shared(true);
+                            }
+                        }
+                        """,
+                        """
+                        import io.arconia.dev.services.core.registration.DiscoverySpec;
+
+                        class Demo {
+                            void call(DiscoverySpec discovery) {
+                            }
+
+                            DiscoverySpec chain(DiscoverySpec discovery) {
+                                return discovery;
+                            }
+                        }
+                        """
+                )
+        );
+    }
+
+    @Test
+    void devServiceLabelsMovedToApiModule() {
+        rewriteRun(
+                //language=java
+                java(
+                        """
+                        import io.arconia.dev.services.core.container.DevServiceLabels;
+
+                        class Demo {
+                            String call() {
+                                return DevServiceLabels.NAME;
+                            }
+                        }
+                        """,
+                        """
+                        import io.arconia.dev.services.api.registration.DevServiceLabels;
+
+                        class Demo {
+                            String call() {
+                                return DevServiceLabels.NAME;
+                            }
+                        }
+                        """
+                )
+        );
+    }
+
+    @Test
+    void devServiceLinkProviderMethodRenamed() {
+        rewriteRun(
+                //language=java
+                java(
+                        """
+                        import java.util.List;
+
+                        import io.arconia.dev.services.api.registration.DevServiceLink;
+                        import io.arconia.dev.services.api.registration.DevServiceLinkProvider;
+
+                        class Demo implements DevServiceLinkProvider {
+                            @Override
+                            public List<DevServiceLink> devServiceLinks() {
+                                return List.of();
+                            }
+                        }
+                        """,
+                        """
+                        import java.util.List;
+
+                        import io.arconia.dev.services.api.registration.DevServiceLink;
+                        import io.arconia.dev.services.api.registration.DevServiceLinkProvider;
+
+                        class Demo implements DevServiceLinkProvider {
+                            @Override
+                            public List<DevServiceLink> devServiceLinkDefinitions() {
+                                return List.of();
                             }
                         }
                         """

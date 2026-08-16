@@ -31,6 +31,19 @@ recipeList:
   - org.openrewrite.java.ChangeType:
       oldFullyQualifiedTypeName: io.arconia.dev.services.core.registration.DevServicesRegistry$DiscoverySpec
       newFullyQualifiedTypeName: io.arconia.dev.services.core.registration.DiscoverySpec
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: io.arconia.dev.services.core.container.DevServiceLabels
+      newFullyQualifiedTypeName: io.arconia.dev.services.api.registration.DevServiceLabels
+
+  # Rename Methods
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: io.arconia.dev.services.api.registration.DevServiceLinkProvider devServiceLinks()
+      newMethodName: devServiceLinkDefinitions
+      matchOverrides: true
+
+  # Remove Methods
+  - org.openrewrite.java.RemoveMethodInvocations:
+      methodPattern: io.arconia.dev.services.core.registration.DiscoverySpec shared(boolean)
 
   # Replace Constants
   - org.openrewrite.java.ReplaceConstant:
