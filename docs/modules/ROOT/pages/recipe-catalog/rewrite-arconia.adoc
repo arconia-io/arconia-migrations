@@ -3,7 +3,7 @@
 
 // AUTO-GENERATED from the OpenRewrite recipe model. Do not edit by hand.
 
-The `rewrite-arconia` module publishes 54 recipes across 5 categories.
+The `rewrite-arconia` module publishes 55 recipes across 5 categories.
 
 [#family-framework]
 == framework
@@ -1052,6 +1052,66 @@ arconia.dev.services.pulsar.management-console-port=8080
 [source,properties]
 ----
 arconia.dev.services.pulsar.admin-port=8080
+----
+
+[#io_arconia_rewrite_framework_UpgradeArconia_0_31]
+=== Migrate to Arconia 0.31
+`io.arconia.rewrite.framework.UpgradeArconia_0_31`
+
+Migrate a Spring Boot application to the latest Arconia 0.31.x release.
+
+_Tags: arconia_
+
+.Recipes applied
+[%collapsible]
+====
+* xref:recipe-catalog/rewrite-arconia.adoc#io_arconia_rewrite_framework_UpgradeArconia_0_30[Migrate to Arconia 0.30] (`io.arconia.rewrite.framework.UpgradeArconia_0_30`)
+** xref:recipe-catalog/rewrite-arconia.adoc#io_arconia_rewrite_framework_UpgradeArconia_0_29[Migrate to Arconia 0.29] (`io.arconia.rewrite.framework.UpgradeArconia_0_29`)
+*** xref:recipe-catalog/rewrite-arconia.adoc#io_arconia_rewrite_framework_UpgradeArconia_0_28[Migrate to Arconia 0.28] (`io.arconia.rewrite.framework.UpgradeArconia_0_28`)
+*** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+*** xref:recipe-catalog/rewrite-arconia.adoc#io_arconia_rewrite_framework_bootstrap_MigrateArconiaBootstrapProperties[Migrate the Arconia bootstrap properties to `META-INF/arconia-bootstrap.properties`] (`io.arconia.rewrite.framework.bootstrap.MigrateArconiaBootstrapProperties`)
+** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey`)
+** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
+** Change type (`org.openrewrite.java.ChangeType` ×2)
+** Change method name (`org.openrewrite.java.ChangeMethodName` ×2)
+** Remove annotation attribute (`org.openrewrite.java.RemoveAnnotationAttribute`)
+** xref:recipe-catalog/rewrite-arconia.adoc#io_arconia_rewrite_framework_multitenancy_UseFixedTenantResolverBuilder[Use `FixedTenantResolver.Builder` instead of constructor] (`io.arconia.rewrite.framework.multitenancy.UseFixedTenantResolverBuilder`)
+** xref:recipe-catalog/rewrite-arconia.adoc#io_arconia_rewrite_framework_multitenancy_UseMdcTenantEventListenerBuilder[Use `MdcTenantEventListener.Builder` instead of constructor] (`io.arconia.rewrite.framework.multitenancy.UseMdcTenantEventListenerBuilder`)
+** xref:recipe-catalog/rewrite-arconia.adoc#io_arconia_rewrite_framework_multitenancy_UseTenantObservationFilterBuilder[Use `TenantObservationFilter.Builder` instead of constructor] (`io.arconia.rewrite.framework.multitenancy.UseTenantObservationFilterBuilder`)
+** xref:recipe-catalog/rewrite-arconia.adoc#io_arconia_rewrite_framework_multitenancy_UseHeaderTenantResolverBuilder[Use `HeaderTenantResolver.Builder` instead of constructor] (`io.arconia.rewrite.framework.multitenancy.UseHeaderTenantResolverBuilder`)
+** xref:recipe-catalog/rewrite-arconia.adoc#io_arconia_rewrite_framework_multitenancy_UseCookieTenantResolverBuilder[Use `CookieTenantResolver.Builder` instead of constructor] (`io.arconia.rewrite.framework.multitenancy.UseCookieTenantResolverBuilder`)
+** xref:recipe-catalog/rewrite-arconia.adoc#io_arconia_rewrite_framework_multitenancy_UseTenantBuilderFactoryMethod[Use `Tenant.builder()` instead of constructor] (`io.arconia.rewrite.framework.multitenancy.UseTenantBuilderFactoryMethod`)
+* Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+* xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
+* Change type (`org.openrewrite.java.ChangeType` ×3)
+* Replace constant with literal value (`org.openrewrite.java.ReplaceConstant` ×3)
+====
+
+*Example*
+
+.Before
+[source,java]
+----
+import io.arconia.dev.services.core.registration.DevServicesRegistry;
+
+class Demo {
+    void call(DevServicesRegistry.ServiceSpec service) {
+        service.name("fancydb");
+    }
+}
+----
+
+.After
+[source,java]
+----
+import io.arconia.dev.services.core.registration.ServiceSpec;
+
+class Demo {
+    void call(ServiceSpec service) {
+        service.name("fancydb");
+    }
+}
 ----
 
 [#family-framework-bootstrap]

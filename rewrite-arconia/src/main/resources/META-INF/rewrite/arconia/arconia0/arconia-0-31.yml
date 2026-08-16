@@ -1,0 +1,47 @@
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.framework.UpgradeArconia_0_31
+displayName: Migrate to Arconia 0.31
+description: Migrate a Spring Boot application to the latest Arconia 0.31.x release.
+tags:
+  - arconia
+preconditions:
+  - org.openrewrite.Singleton
+recipeList:
+  - io.arconia.rewrite.framework.UpgradeArconia_0_30
+
+  # Dependency Versions
+  - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
+      groupId: io.arconia
+      artifactId: "*"
+      newVersion: 0.31.x
+
+  # Comment Properties
+  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
+      propertyKey: "arconia.dev.services.startup.log-level"
+      comment: "Removed as redundant. Testcontainers logs startup errors to the console already."
+
+  # Rename Types
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: io.arconia.dev.services.core.registration.DevServicesRegistry$ServiceSpec
+      newFullyQualifiedTypeName: io.arconia.dev.services.core.registration.ServiceSpec
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: io.arconia.dev.services.core.registration.DevServicesRegistry$ContainerSpec
+      newFullyQualifiedTypeName: io.arconia.dev.services.core.registration.ContainerSpec
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: io.arconia.dev.services.core.registration.DevServicesRegistry$DiscoverySpec
+      newFullyQualifiedTypeName: io.arconia.dev.services.core.registration.DiscoverySpec
+
+  # Replace Constants
+  - org.openrewrite.java.ReplaceConstant:
+      owningType: io.arconia.dev.services.api.config.JdbcDevServicesProperties
+      constantName: DEFAULT_USERNAME
+      literalValue: '"arconia"'
+  - org.openrewrite.java.ReplaceConstant:
+      owningType: io.arconia.dev.services.api.config.JdbcDevServicesProperties
+      constantName: DEFAULT_PASSWORD
+      literalValue: '"arconia"'
+  - org.openrewrite.java.ReplaceConstant:
+      owningType: io.arconia.dev.services.api.config.JdbcDevServicesProperties
+      constantName: DEFAULT_DB_NAME
+      literalValue: '"arconia"'

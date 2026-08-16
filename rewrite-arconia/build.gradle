@@ -84,6 +84,9 @@ recipeDependencies {
     testParserClasspath "io.arconia:arconia-multitenancy-core:0.29.+"
     testParserClasspath "io.arconia:arconia-multitenancy-web:0.29.+"
 
+    testParserClasspath "io.arconia:arconia-dev-services-api:0.30.+"
+    testParserClasspath "io.arconia:arconia-dev-services-core:0.30.+"
+
     testParserClasspath "org.springframework.boot:spring-boot-actuator-autoconfigure:3.5.+"
     testParserClasspath "org.springframework.boot:spring-boot-micrometer-tracing-opentelemetry:4.0.+"
     testParserClasspath "org.springframework.boot:spring-boot-opentelemetry:4.0.+"
