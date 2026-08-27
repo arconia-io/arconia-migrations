@@ -114,6 +114,40 @@ recipeList:
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: "spring.ai.bedrock.converse.chat.options.top-p"
       newPropertyKey: "spring.ai.bedrock.converse.chat.top-p"
+  # spring-ai-autoconfigure-model-chat-memory-redis
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "spring.ai.chat.memory.redis.host"
+      newPropertyKey: "spring.ai.chat.memory.repository.redis.host"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "spring.ai.chat.memory.redis.index-name"
+      newPropertyKey: "spring.ai.chat.memory.repository.redis.index-name"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "spring.ai.chat.memory.redis.initialize-schema"
+      newPropertyKey: "spring.ai.chat.memory.repository.redis.initialize-schema"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "spring.ai.chat.memory.redis.key-prefix"
+      newPropertyKey: "spring.ai.chat.memory.repository.redis.key-prefix"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "spring.ai.chat.memory.redis.max-conversation-ids"
+      newPropertyKey: "spring.ai.chat.memory.repository.redis.max-conversation-ids"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "spring.ai.chat.memory.redis.max-messages-per-conversation"
+      newPropertyKey: "spring.ai.chat.memory.repository.redis.max-messages-per-conversation"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "spring.ai.chat.memory.redis.metadata-fields"
+      newPropertyKey: "spring.ai.chat.memory.repository.redis.metadata-fields"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "spring.ai.chat.memory.redis.password"
+      newPropertyKey: "spring.ai.chat.memory.repository.redis.password"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "spring.ai.chat.memory.redis.port"
+      newPropertyKey: "spring.ai.chat.memory.repository.redis.port"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "spring.ai.chat.memory.redis.time-to-live"
+      newPropertyKey: "spring.ai.chat.memory.repository.redis.time-to-live"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "spring.ai.chat.memory.redis.username"
+      newPropertyKey: "spring.ai.chat.memory.repository.redis.username"
   # spring-ai-autoconfigure-model-deepseek
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: "spring.ai.deepseek.chat.options.frequency-penalty"
@@ -131,6 +165,9 @@ recipeList:
       oldPropertyKey: "spring.ai.deepseek.chat.options.presence-penalty"
       newPropertyKey: "spring.ai.deepseek.chat.presence-penalty"
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "spring.ai.deepseek.chat.options.reasoning-effort"
+      newPropertyKey: "spring.ai.deepseek.chat.reasoning-effort"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: "spring.ai.deepseek.chat.options.response-format"
       newPropertyKey: "spring.ai.deepseek.chat.response-format"
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
@@ -139,6 +176,9 @@ recipeList:
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: "spring.ai.deepseek.chat.options.temperature"
       newPropertyKey: "spring.ai.deepseek.chat.temperature"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "spring.ai.deepseek.chat.options.thinking"
+      newPropertyKey: "spring.ai.deepseek.chat.thinking"
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: "spring.ai.deepseek.chat.options.top-logprobs"
       newPropertyKey: "spring.ai.deepseek.chat.top-logprobs"
@@ -615,6 +655,9 @@ recipeList:
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: "spring.ai.openai.embedding.options.encoding-format"
       newPropertyKey: "spring.ai.openai.embedding.encoding-format"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "spring.ai.openai.embedding.options.extra-body"
+      newPropertyKey: "spring.ai.openai.embedding.extra-body"
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: "spring.ai.openai.embedding.options.model"
       newPropertyKey: "spring.ai.openai.embedding.model"
