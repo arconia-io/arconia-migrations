@@ -11,6 +11,10 @@ tags:
 preconditions:
   - org.openrewrite.Singleton
 recipeList:
+  # spring-cloud-config-monitor
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "spring.cloud.config.monitor.endpoint.path"
+      newPropertyKey: "spring.cloud.config.server.monitor.endpoint.path"
   # spring-cloud-consul-config
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: "spring.cloud.consul.config.prefix"
