@@ -9,7 +9,7 @@ repositories {
 
 ext {
     set("cycloneDxVersion", '3.4.1')
-    set("errorPronePluginVersion", '5.1.0')
+    set("errorPronePluginVersion", '5.1.1')
     set("nullAwayPluginVersion", '3.2.0')
     set("openRewriteBuildVersion", '2.21.2')
 }
