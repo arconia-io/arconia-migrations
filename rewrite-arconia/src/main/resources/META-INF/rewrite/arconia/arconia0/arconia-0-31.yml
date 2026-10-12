@@ -20,6 +20,119 @@ recipeList:
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "arconia.dev.services.startup.log-level"
       comment: "Removed as redundant. Testcontainers logs startup errors to the console already."
+  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
+      propertyKey: "arconia.dev.services.artemis.reuse"
+      comment: "Replaced by 'reuse-strategy'. Use 'reuse-strategy: testcontainers' instead of 'reuse: true'."
+  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
+      propertyKey: "arconia.dev.services.artemis.shared"
+      comment: "Replaced by 'reuse-strategy'. Use 'reuse-strategy: none' instead of 'shared: false'. Sharing ('framework') is the default."
+  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
+      propertyKey: "arconia.dev.services.docling.reuse"
+      comment: "Replaced by 'reuse-strategy'. Use 'reuse-strategy: testcontainers' instead of 'reuse: true'."
+  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
+      propertyKey: "arconia.dev.services.docling.shared"
+      comment: "Replaced by 'reuse-strategy'. Use 'reuse-strategy: none' instead of 'shared: false'. Sharing ('framework') is the default."
+  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
+      propertyKey: "arconia.dev.services.elasticsearch.reuse"
+      comment: "Replaced by 'reuse-strategy'. Use 'reuse-strategy: testcontainers' instead of 'reuse: true'."
+  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
+      propertyKey: "arconia.dev.services.floci.reuse"
+      comment: "Replaced by 'reuse-strategy'. Use 'reuse-strategy: testcontainers' instead of 'reuse: true'."
+  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
+      propertyKey: "arconia.dev.services.kafka.reuse"
+      comment: "Replaced by 'reuse-strategy'. Use 'reuse-strategy: testcontainers' instead of 'reuse: true'."
+  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
+      propertyKey: "arconia.dev.services.kafka.shared"
+      comment: "Replaced by 'reuse-strategy'. Use 'reuse-strategy: none' instead of 'shared: false'. Sharing ('framework') is the default."
+  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
+      propertyKey: "arconia.dev.services.keycloak.reuse"
+      comment: "Replaced by 'reuse-strategy'. Use 'reuse-strategy: testcontainers' instead of 'reuse: true'."
+  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
+      propertyKey: "arconia.dev.services.keycloak.shared"
+      comment: "Replaced by 'reuse-strategy'. Use 'reuse-strategy: none' instead of 'shared: false'. Sharing ('framework') is the default."
+  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
+      propertyKey: "arconia.dev.services.lgtm.reuse"
+      comment: "Replaced by 'reuse-strategy'. Use 'reuse-strategy: testcontainers' instead of 'reuse: true'."
+  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
+      propertyKey: "arconia.dev.services.lgtm.shared"
+      comment: "Replaced by 'reuse-strategy'. Use 'reuse-strategy: none' instead of 'shared: false'. Sharing ('framework') is the default."
+  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
+      propertyKey: "arconia.dev.services.lldap.reuse"
+      comment: "Replaced by 'reuse-strategy'. Use 'reuse-strategy: testcontainers' instead of 'reuse: true'."
+  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
+      propertyKey: "arconia.dev.services.mariadb.reuse"
+      comment: "Replaced by 'reuse-strategy'. Use 'reuse-strategy: testcontainers' instead of 'reuse: true'."
+  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
+      propertyKey: "arconia.dev.services.mongodb.reuse"
+      comment: "Replaced by 'reuse-strategy'. Use 'reuse-strategy: testcontainers' instead of 'reuse: true'."
+  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
+      propertyKey: "arconia.dev.services.mongodb-atlas.reuse"
+      comment: "Replaced by 'reuse-strategy'. Use 'reuse-strategy: testcontainers' instead of 'reuse: true'."
+  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
+      propertyKey: "arconia.dev.services.mysql.reuse"
+      comment: "Replaced by 'reuse-strategy'. Use 'reuse-strategy: testcontainers' instead of 'reuse: true'."
+  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
+      propertyKey: "arconia.dev.services.ollama.reuse"
+      comment: "Replaced by 'reuse-strategy'. Use 'reuse-strategy: testcontainers' instead of 'reuse: true'."
+  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
+      propertyKey: "arconia.dev.services.ollama.shared"
+      comment: "Replaced by 'reuse-strategy'. Use 'reuse-strategy: none' instead of 'shared: false'. Sharing ('framework') is the default."
+  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
+      propertyKey: "arconia.dev.services.openlit.reuse"
+      comment: "Replaced by 'reuse-strategy'. Use 'reuse-strategy: testcontainers' instead of 'reuse: true'."
+  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
+      propertyKey: "arconia.dev.services.openlit.shared"
+      comment: "Replaced by 'reuse-strategy'. Use 'reuse-strategy: none' instead of 'shared: false'. Sharing ('framework') is the default."
+  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
+      propertyKey: "arconia.dev.services.oracle.reuse"
+      comment: "Replaced by 'reuse-strategy'. Use 'reuse-strategy: testcontainers' instead of 'reuse: true'."
+  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
+      propertyKey: "arconia.dev.services.oracle-xe.reuse"
+      comment: "Replaced by 'reuse-strategy'. Use 'reuse-strategy: testcontainers' instead of 'reuse: true'."
+  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
+      propertyKey: "arconia.dev.services.otel-collector.reuse"
+      comment: "Replaced by 'reuse-strategy'. Use 'reuse-strategy: testcontainers' instead of 'reuse: true'."
+  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
+      propertyKey: "arconia.dev.services.otel-collector.shared"
+      comment: "Replaced by 'reuse-strategy'. Use 'reuse-strategy: none' instead of 'shared: false'. Sharing ('framework') is the default."
+  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
+      propertyKey: "arconia.dev.services.phoenix.reuse"
+      comment: "Replaced by 'reuse-strategy'. Use 'reuse-strategy: testcontainers' instead of 'reuse: true'."
+  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
+      propertyKey: "arconia.dev.services.phoenix.shared"
+      comment: "Replaced by 'reuse-strategy'. Use 'reuse-strategy: none' instead of 'shared: false'. Sharing ('framework') is the default."
+  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
+      propertyKey: "arconia.dev.services.postgresql.reuse"
+      comment: "Replaced by 'reuse-strategy'. Use 'reuse-strategy: testcontainers' instead of 'reuse: true'."
+  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
+      propertyKey: "arconia.dev.services.pulsar.reuse"
+      comment: "Replaced by 'reuse-strategy'. Use 'reuse-strategy: testcontainers' instead of 'reuse: true'."
+  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
+      propertyKey: "arconia.dev.services.pulsar.shared"
+      comment: "Replaced by 'reuse-strategy'. Use 'reuse-strategy: none' instead of 'shared: false'. Sharing ('framework') is the default."
+  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
+      propertyKey: "arconia.dev.services.rabbitmq.reuse"
+      comment: "Replaced by 'reuse-strategy'. Use 'reuse-strategy: testcontainers' instead of 'reuse: true'."
+  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
+      propertyKey: "arconia.dev.services.rabbitmq.shared"
+      comment: "Replaced by 'reuse-strategy'. Use 'reuse-strategy: none' instead of 'shared: false'. Sharing ('framework') is the default."
+  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
+      propertyKey: "arconia.dev.services.redis.reuse"
+      comment: "Replaced by 'reuse-strategy'. Use 'reuse-strategy: testcontainers' instead of 'reuse: true'."
+  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
+      propertyKey: "arconia.otel.logs.logback-bridge.capture-key-value-pair-attributes"
+      comment: "Replaced by the 'structured-attributes' selector, which also covers Logstash markers and structured arguments. Use 'structured-attributes.included: \"*\"' to capture all key-value pairs."
+  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
+      propertyKey: "arconia.otel.logs.logback-bridge.capture-logstash-marker-attributes"
+      comment: "Replaced by the 'structured-attributes' selector, which also covers SLF4J key-value pairs and Logstash structured arguments. Use 'structured-attributes.included: \"*\"' to capture all Logstash marker attributes."
+  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
+      propertyKey: "arconia.otel.logs.logback-bridge.capture-logger-context"
+      comment: "Replaced by the 'logger-context-attributes' selector. Use 'logger-context-attributes.included: \"*\"' to capture all logger context properties."
+
+  # Rename Properties
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "arconia.otel.logs.logback-bridge.capture-mdc-attributes"
+      newPropertyKey: "arconia.otel.logs.logback-bridge.mdc-attributes.included"
 
   # Rename Types
   - org.openrewrite.java.ChangeType:
@@ -34,6 +147,9 @@ recipeList:
   - org.openrewrite.java.ChangeType:
       oldFullyQualifiedTypeName: io.arconia.dev.services.core.container.DevServiceLabels
       newFullyQualifiedTypeName: io.arconia.dev.services.api.registration.DevServiceLabels
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: io.arconia.dev.services.api.config.SharedDevServicesProperties
+      newFullyQualifiedTypeName: io.arconia.dev.services.api.config.BaseDevServicesProperties
 
   # Rename Methods
   - org.openrewrite.java.ChangeMethodName:

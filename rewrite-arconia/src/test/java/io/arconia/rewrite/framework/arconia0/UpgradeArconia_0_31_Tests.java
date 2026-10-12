@@ -241,4 +241,77 @@ class UpgradeArconia_0_31_Tests implements RewriteTest {
         );
     }
 
+    @Test
+    void logbackBridgeCapturePropertiesMigrated() {
+        rewriteRun(
+                //language=properties
+                properties(
+                        """
+                        arconia.otel.logs.logback-bridge.capture-key-value-pair-attributes=true
+                        arconia.otel.logs.logback-bridge.capture-logstash-marker-attributes=true
+                        arconia.otel.logs.logback-bridge.capture-logger-context=true
+                        arconia.otel.logs.logback-bridge.capture-mdc-attributes=tenant.id,request.id
+                        arconia.otel.logs.logback-bridge.capture-marker-attribute=true
+                        """,
+                        """
+                        # Replaced by the 'structured-attributes' selector, which also covers Logstash markers and structured arguments. Use 'structured-attributes.included: "*"' to capture all key-value pairs.
+                        # arconia.otel.logs.logback-bridge.capture-key-value-pair-attributes=true
+                        # Replaced by the 'structured-attributes' selector, which also covers SLF4J key-value pairs and Logstash structured arguments. Use 'structured-attributes.included: "*"' to capture all Logstash marker attributes.
+                        # arconia.otel.logs.logback-bridge.capture-logstash-marker-attributes=true
+                        # Replaced by the 'logger-context-attributes' selector. Use 'logger-context-attributes.included: "*"' to capture all logger context properties.
+                        # arconia.otel.logs.logback-bridge.capture-logger-context=true
+                        arconia.otel.logs.logback-bridge.mdc-attributes.included=tenant.id,request.id
+                        arconia.otel.logs.logback-bridge.capture-marker-attribute=true
+                        """,
+                        s -> s.path("src/main/resources/application.properties"))
+        );
+    }
+
+    @Test
+    void logbackBridgeCapturePropertiesMigratedInYaml() {
+        rewriteRun(
+                //language=yaml
+                yaml(
+                        """
+                        arconia:
+                          otel:
+                            logs:
+                              logback-bridge:
+                                capture-logger-context: true
+                                capture-mdc-attributes: "*"
+                        """,
+                        """
+                        arconia:
+                          otel:
+                            logs:
+                              logback-bridge:
+                                # Replaced by the 'logger-context-attributes' selector. Use 'logger-context-attributes.included: "*"' to capture all logger context properties.
+                                # capture-logger-context: true
+                                mdc-attributes.included: "*"
+                        """,
+                        s -> s.path("src/main/resources/application.yml"))
+        );
+    }
+
+    @Test
+    void reuseAndSharedPropertiesCommented() {
+        rewriteRun(
+                //language=properties
+                properties(
+                        """
+                        arconia.dev.services.rabbitmq.shared=false
+                        arconia.dev.services.postgresql.reuse=true
+                        arconia.dev.services.enabled=true
+                        """,
+                        """
+                        # Replaced by 'reuse-strategy'. Use 'reuse-strategy: none' instead of 'shared: false'. Sharing ('framework') is the default.
+                        # arconia.dev.services.rabbitmq.shared=false
+                        # Replaced by 'reuse-strategy'. Use 'reuse-strategy: testcontainers' instead of 'reuse: true'.
+                        # arconia.dev.services.postgresql.reuse=true
+                        arconia.dev.services.enabled=true
+                        """,
+                        s -> s.path("src/main/resources/application.properties"))
+        );
+    }
+
 }
