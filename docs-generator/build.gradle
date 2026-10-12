@@ -9,7 +9,7 @@ repositories {
 
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(25)
+        languageVersion = JavaLanguageVersion.of(21)
     }
 }
 
@@ -35,6 +35,7 @@ dependencies {
 }
 
 tasks.withType(JavaCompile).configureEach {
+    options.compilerArgs.add("-XDaddTypeAnnotationsToSymbol=true")
     options.release = 21
 }
 
