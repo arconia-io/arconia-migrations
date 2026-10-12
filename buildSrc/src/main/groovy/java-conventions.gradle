@@ -5,7 +5,7 @@ plugins {
 
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(21)
+        languageVersion = JavaLanguageVersion.of(25)
     }
 }
 
@@ -21,7 +21,6 @@ dependencies {
 
 tasks.withType(JavaCompile).configureEach {
     options.compilerArgs.add("-parameters")
-    // Needed because the OpenRewrite Build plugin forces Java 8 :(
     options.release.set(21)
 }
 

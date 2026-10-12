@@ -9,7 +9,7 @@ repositories {
 
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(21)
+        languageVersion = JavaLanguageVersion.of(25)
     }
 }
 
@@ -32,6 +32,10 @@ dependencies {
     testImplementation "org.assertj:assertj-core:${assertjVersion}"
     testImplementation "org.junit.jupiter:junit-jupiter"
     testRuntimeOnly "org.junit.platform:junit-platform-launcher"
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.release = 21
 }
 
 tasks.named("test") {
