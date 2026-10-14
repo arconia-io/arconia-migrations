@@ -1,0 +1,21 @@
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.ai2.UpgradeSpringAi_2_1
+displayName: Migrate to Spring AI 2.1
+description: Migrate a Spring Boot application to the latest Spring AI 2.1.x release.
+tags:
+  - spring
+  - ai
+preconditions:
+  - org.openrewrite.Singleton
+recipeList:
+
+  # Previous Version
+  - io.arconia.rewrite.spring.ai2.UpgradeSpringAi_2_0
+
+  # Dependency Versions
+  - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
+      groupId: org.springframework.ai
+      artifactId: "*"
+      newVersion: 2.1.x
+      overrideManagedVersion: true

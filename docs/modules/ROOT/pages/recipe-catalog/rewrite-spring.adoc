@@ -3,7 +3,7 @@
 
 // AUTO-GENERATED from the OpenRewrite recipe model. Do not edit by hand.
 
-The `rewrite-spring` module publishes 259 recipes across 8 categories.
+The `rewrite-spring` module publishes 261 recipes across 8 categories.
 
 [#family-spring-ai1]
 == spring › ai1
@@ -538,6 +538,44 @@ class Demo {
     }
 }
 ----
+
+[#io_arconia_rewrite_spring_ai2_UpgradeSpringAi_2_1]
+=== Migrate to Spring AI 2.1
+`io.arconia.rewrite.spring.ai2.UpgradeSpringAi_2_1`
+
+Migrate a Spring Boot application to the latest Spring AI 2.1.x release.
+
+_Tags: spring, ai_
+
+.Recipes applied
+[%collapsible]
+====
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_ai2_UpgradeSpringAi_2_0[Migrate to Spring AI 2.0] (`io.arconia.rewrite.spring.ai2.UpgradeSpringAi_2_0`)
+** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_ai2_UpgradeSpringAiProperties_2_0[Migrate Spring AI properties to 2.0] (`io.arconia.rewrite.spring.ai2.UpgradeSpringAiProperties_2_0`)
+*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_ai2_UpgradeSpringAiPropertiesGenerated_2_0[Migrate Spring AI properties to 2.0 (generated)] (`io.arconia.rewrite.spring.ai2.UpgradeSpringAiPropertiesGenerated_2_0`)
+*** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×10)
+** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_ai2_UseChatOptionsBuilder[Pass `ChatOptions.Builder` to `ChatClient` options methods] (`io.arconia.rewrite.spring.ai2.UseChatOptionsBuilder`)
+** Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency`)
+** Change type (`org.openrewrite.java.ChangeType` ×3)
+** Change method name (`org.openrewrite.java.ChangeMethodName` ×7)
+** Change type (`org.openrewrite.java.ChangeType` ×5)
+** Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
+** Remove a Gradle or Maven dependency (`org.openrewrite.java.dependencies.RemoveDependency`)
+** Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency` ×2)
+** Rename package name (`org.openrewrite.java.ChangePackage` ×4)
+** Change type (`org.openrewrite.java.ChangeType` ×8)
+** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_ai2_mcp_UseTextContentBuilder[Use `McpSchema.TextContent.builder(...)` instead of constructor] (`io.arconia.rewrite.spring.ai2.mcp.UseTextContentBuilder`)
+** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_ai2_mcp_UseReadResourceResultBuilder[Use `McpSchema.ReadResourceResult.builder(...)` instead of constructor] (`io.arconia.rewrite.spring.ai2.mcp.UseReadResourceResultBuilder`)
+** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_ai2_mcp_UseGetPromptResultBuilder[Use `McpSchema.GetPromptResult.builder(...)` instead of constructor] (`io.arconia.rewrite.spring.ai2.mcp.UseGetPromptResultBuilder`)
+** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_ai2_mcp_UseProgressNotificationBuilder[Use `McpSchema.ProgressNotification.builder(...)` instead of constructor] (`io.arconia.rewrite.spring.ai2.mcp.UseProgressNotificationBuilder`)
+** Change method name (`org.openrewrite.java.ChangeMethodName` ×2)
+** Replace constant with another constant (`org.openrewrite.java.ReplaceConstantWithAnotherConstant` ×9)
+** Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency` ×2)
+** Remove a Gradle or Maven dependency (`org.openrewrite.java.dependencies.RemoveDependency` ×6)
+** … and 43 more
+* Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+====
 
 *Recipes*
 
@@ -7897,6 +7935,58 @@ _Tags: spring, boot_
 * Upgrade Maven parent project version (`org.openrewrite.maven.UpgradeParentVersion`)
 * Update a Gradle plugin by id (`org.openrewrite.gradle.plugins.UpgradePluginVersion`)
 * Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion` ×2)
+====
+
+[#io_arconia_rewrite_spring_boot4_UpgradeSpringBoot_4_2]
+=== Migrate to Spring Boot 4.2
+`io.arconia.rewrite.spring.boot4.UpgradeSpringBoot_4_2`
+
+Migrate a Spring Boot application to the latest Spring Boot 4.2.x release.
+
+_Tags: spring, boot_
+
+.Recipes applied
+[%collapsible]
+====
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_UpgradeSpringBoot_4_1[Migrate to Spring Boot 4.1] (`io.arconia.rewrite.spring.boot4.UpgradeSpringBoot_4_1`)
+** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_UpgradeSpringBoot_4_0[Migrate to Spring Boot 4.0] (`io.arconia.rewrite.spring.boot4.UpgradeSpringBoot_4_0`)
+*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot3_UpgradeSpringBoot_3_5[Migrate to Spring Boot 3.5] (`io.arconia.rewrite.spring.boot3.UpgradeSpringBoot_3_5`)
+*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_framework7_UpgradeSpringFramework_7_0[Migrate to Spring Framework 7.0] (`io.arconia.rewrite.spring.framework7.UpgradeSpringFramework_7_0`)
+*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_UpgradeSpringBootProperties_4_0[Migrate Spring Boot properties to 4.0] (`io.arconia.rewrite.spring.boot4.UpgradeSpringBootProperties_4_0`)
+*** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion` ×2)
+*** Update a Gradle plugin by id (`org.openrewrite.gradle.plugins.UpgradePluginVersion`)
+*** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+*** Upgrade Maven plugin version (`org.openrewrite.maven.UpgradePluginVersion`)
+*** Upgrade Maven parent project version (`org.openrewrite.maven.UpgradeParentVersion`)
+*** Update a Gradle plugin by id (`org.openrewrite.gradle.plugins.UpgradePluginVersion`)
+*** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+*** Update a Gradle plugin by id (`org.openrewrite.gradle.plugins.UpgradePluginVersion`)
+*** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion` ×3)
+*** Change Gradle dependency (`org.openrewrite.gradle.ChangeDependency`)
+*** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion` ×2)
+*** xref:recipe-catalog/rewrite-testing.adoc#io_arconia_rewrite_testing_testcontainers_UpgradeTestcontainers_2[Migrate to Testcontainers 2.x] (`io.arconia.rewrite.testing.testcontainers.UpgradeTestcontainers_2`)
+*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_cloud2025_UpgradeSpringCloud_2025_1[Migrate to Spring Cloud 2025.1] (`io.arconia.rewrite.spring.cloud2025.UpgradeSpringCloud_2025_1`)
+*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_ai2_UpgradeSpringAi_2_0[Migrate to Spring AI 2.0] (`io.arconia.rewrite.spring.ai2.UpgradeSpringAi_2_0`)
+*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_MigrateActiveMqModule[Migrate Spring Boot ActiveMQ module to Spring Boot 4.0] (`io.arconia.rewrite.spring.boot4.MigrateActiveMqModule`)
+*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_MigrateActuatorModule[Migrate Spring Boot Actuator module to Spring Boot 4.0] (`io.arconia.rewrite.spring.boot4.MigrateActuatorModule`)
+*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_MigrateAmqpModule[Migrate Spring Boot AMQP module to Spring Boot 4.0] (`io.arconia.rewrite.spring.boot4.MigrateAmqpModule`)
+*** … and 95 more
+** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_UpgradeSpringBootProperties_4_1[Migrate Spring Boot properties to 4.1] (`io.arconia.rewrite.spring.boot4.UpgradeSpringBootProperties_4_1`)
+*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_UpgradeSpringBootPropertiesGenerated_4_1[Migrate Spring Boot properties to 4.1 (generated)] (`io.arconia.rewrite.spring.boot4.UpgradeSpringBootPropertiesGenerated_4_1`)
+*** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×5)
+*** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
+** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion` ×2)
+** Update a Gradle plugin by id (`org.openrewrite.gradle.plugins.UpgradePluginVersion`)
+** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+** Upgrade Maven plugin version (`org.openrewrite.maven.UpgradePluginVersion`)
+** Upgrade Maven parent project version (`org.openrewrite.maven.UpgradeParentVersion`)
+** Update a Gradle plugin by id (`org.openrewrite.gradle.plugins.UpgradePluginVersion`)
+** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion` ×2)
+* Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion` ×2)
+* Update a Gradle plugin by id (`org.openrewrite.gradle.plugins.UpgradePluginVersion`)
+* Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+* Upgrade Maven plugin version (`org.openrewrite.maven.UpgradePluginVersion`)
+* Upgrade Maven parent project version (`org.openrewrite.maven.UpgradeParentVersion`)
 ====
 
 *Recipes*
