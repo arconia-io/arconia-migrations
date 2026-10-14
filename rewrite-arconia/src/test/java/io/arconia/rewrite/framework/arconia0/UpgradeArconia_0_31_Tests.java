@@ -7,6 +7,8 @@ import org.openrewrite.java.JavaParser;
 import org.openrewrite.test.RecipeSpec;
 import org.openrewrite.test.RewriteTest;
 
+import static org.openrewrite.gradle.Assertions.buildGradle;
+import static org.openrewrite.gradle.toolingapi.Assertions.withToolingApi;
 import static org.openrewrite.java.Assertions.java;
 import static org.openrewrite.properties.Assertions.properties;
 import static org.openrewrite.yaml.Assertions.yaml;
@@ -37,73 +39,11 @@ class UpgradeArconia_0_31_Tests implements RewriteTest {
                         }
                         """,
                         """
-                        import io.arconia.dev.services.core.registration.ServiceSpec;
+                        import io.arconia.dev.services.core.registration.DevServiceSpec;
 
                         class Demo {
-                            void call(ServiceSpec service) {
+                            void call(DevServiceSpec service) {
                                 service.name("fancydb");
-                            }
-                        }
-                        """
-                )
-        );
-    }
-
-    @Test
-    void devServicesContainerAndDiscoverySpecTypeChanges() {
-        rewriteRun(
-                //language=java
-                java(
-                        """
-                        import io.arconia.dev.services.core.registration.DevServicesRegistry;
-
-                        class Demo {
-                            void call(DevServicesRegistry.ContainerSpec container, DevServicesRegistry.DiscoverySpec discovery) {
-                                container.serviceConnectionName("fancydb");
-                            }
-                        }
-                        """,
-                        """
-                        import io.arconia.dev.services.core.registration.ContainerSpec;
-                        import io.arconia.dev.services.core.registration.DiscoverySpec;
-
-                        class Demo {
-                            void call(ContainerSpec container, DiscoverySpec discovery) {
-                                container.serviceConnectionName("fancydb");
-                            }
-                        }
-                        """
-                )
-        );
-    }
-
-    @Test
-    void devServicesDiscoverySharedCallRemoved() {
-        rewriteRun(
-                //language=java
-                java(
-                        """
-                        import io.arconia.dev.services.core.registration.DevServicesRegistry;
-
-                        class Demo {
-                            void call(DevServicesRegistry.DiscoverySpec discovery) {
-                                discovery.shared(true);
-                            }
-
-                            DevServicesRegistry.DiscoverySpec chain(DevServicesRegistry.DiscoverySpec discovery) {
-                                return discovery.shared(true);
-                            }
-                        }
-                        """,
-                        """
-                        import io.arconia.dev.services.core.registration.DiscoverySpec;
-
-                        class Demo {
-                            void call(DiscoverySpec discovery) {
-                            }
-
-                            DiscoverySpec chain(DiscoverySpec discovery) {
-                                return discovery;
                             }
                         }
                         """
@@ -139,37 +79,203 @@ class UpgradeArconia_0_31_Tests implements RewriteTest {
     }
 
     @Test
-    void devServiceLinkProviderMethodRenamed() {
+    void devServicesTestsDependencyRemoved() {
+        rewriteRun(
+                spec -> spec.beforeRecipe(withToolingApi()),
+                //language=groovy
+                buildGradle(
+                        """
+                        plugins {
+                            id "java-library"
+                        }
+
+                        repositories {
+                            mavenCentral()
+                        }
+
+                        dependencies {
+                            implementation "org.springframework:spring-core:7.0.0"
+                            testImplementation "io.arconia:arconia-dev-services-tests:0.30.0"
+                        }
+                        """,
+                        """
+                        plugins {
+                            id "java-library"
+                        }
+
+                        repositories {
+                            mavenCentral()
+                        }
+
+                        dependencies {
+                            implementation "org.springframework:spring-core:7.0.0"
+                        }
+                        """
+                )
+        );
+    }
+
+    @Test
+    void devServiceCategoriesMovedToCoreModule() {
+        rewriteRun(
+                //language=java
+                java(
+                        """
+                        import io.arconia.dev.services.api.provider.DevServiceCategories;
+
+                        class Demo {
+                            String category = DevServiceCategories.JDBC;
+                        }
+                        """,
+                        """
+                        import io.arconia.dev.services.core.registration.DevServiceCategories;
+
+                        class Demo {
+                            String category = DevServiceCategories.JDBC;
+                        }
+                        """
+                )
+        );
+    }
+
+    @Test
+    void containerInfoExposedPortsRenamed() {
         rewriteRun(
                 //language=java
                 java(
                         """
                         import java.util.List;
 
-                        import io.arconia.dev.services.api.registration.DevServiceLink;
-                        import io.arconia.dev.services.api.registration.DevServiceLinkProvider;
+                        import io.arconia.dev.services.api.registration.ContainerInfo;
 
-                        class Demo implements DevServiceLinkProvider {
-                            @Override
-                            public List<DevServiceLink> devServiceLinks() {
-                                return List.of();
+                        class Demo {
+                            List<ContainerInfo.ContainerPort> ports(ContainerInfo info) {
+                                return info.exposedPorts();
+                            }
+
+                            ContainerInfo.Builder builder(ContainerInfo.Builder builder) {
+                                return builder.exposedPorts(List.of());
                             }
                         }
                         """,
                         """
                         import java.util.List;
 
-                        import io.arconia.dev.services.api.registration.DevServiceLink;
-                        import io.arconia.dev.services.api.registration.DevServiceLinkProvider;
+                        import io.arconia.dev.services.api.registration.ContainerInfo;
 
-                        class Demo implements DevServiceLinkProvider {
-                            @Override
-                            public List<DevServiceLink> devServiceLinkDefinitions() {
-                                return List.of();
+                        class Demo {
+                            List<ContainerInfo.ContainerPort> ports(ContainerInfo info) {
+                                return info.ports();
+                            }
+
+                            ContainerInfo.Builder builder(ContainerInfo.Builder builder) {
+                                return builder.ports(List.of());
                             }
                         }
                         """
                 )
+        );
+    }
+
+    @Test
+    void mappingAccessorsRenamed() {
+        rewriteRun(
+                //language=java
+                java(
+                        """
+                        import io.arconia.dev.services.api.config.ResourceMapping;
+                        import io.arconia.dev.services.api.config.VolumeMapping;
+
+                        class Demo {
+                            void call(ResourceMapping resource, VolumeMapping volume) {
+                                String sourcePath = resource.getSourcePath();
+                                String resourceContainerPath = resource.getContainerPath();
+                                String hostPath = volume.getHostPath();
+                                String volumeContainerPath = volume.getContainerPath();
+                            }
+                        }
+                        """,
+                        """
+                        import io.arconia.dev.services.api.config.ResourceMapping;
+                        import io.arconia.dev.services.api.config.VolumeMapping;
+
+                        class Demo {
+                            void call(ResourceMapping resource, VolumeMapping volume) {
+                                String sourcePath = resource.sourcePath();
+                                String resourceContainerPath = resource.containerPath();
+                                String hostPath = volume.hostPath();
+                                String volumeContainerPath = volume.containerPath();
+                            }
+                        }
+                        """
+                )
+        );
+    }
+
+    @Test
+    void containerConfigurerCallsRemoved() {
+        rewriteRun(
+                spec -> spec.parser(JavaParser.fromJavaVersion()
+                        .classpathFromResources(new InMemoryExecutionContext(),
+                                "arconia-dev-services-api-0.30",
+                                "arconia-dev-services-core-0.30")
+                        //language=java
+                        .dependsOn(
+                                """
+                                package org.testcontainers.containers;
+
+                                public class GenericContainer<SELF extends GenericContainer<SELF>> {
+                                    public GenericContainer(String image) {}
+                                    public SELF withExposedPorts(Integer... ports) { return null; }
+                                }
+                                """)),
+                //language=java
+                java(
+                        """
+                        import org.testcontainers.containers.GenericContainer;
+
+                        import io.arconia.dev.services.api.config.BaseDevServicesProperties;
+                        import io.arconia.dev.services.core.container.ContainerConfigurer;
+
+                        class FancyDbContainer extends GenericContainer<FancyDbContainer> {
+                            FancyDbContainer(BaseDevServicesProperties properties) {
+                                super(properties.getImageName());
+                                withExposedPorts(8090);
+                                ContainerConfigurer.base(this, properties);
+                            }
+                        }
+                        """,
+                        """
+                        import org.testcontainers.containers.GenericContainer;
+
+                        import io.arconia.dev.services.api.config.BaseDevServicesProperties;
+
+                        class FancyDbContainer extends GenericContainer<FancyDbContainer> {
+                            FancyDbContainer(BaseDevServicesProperties properties) {
+                                super(properties.getImageName());
+                                withExposedPorts(8090);
+                            }
+                        }
+                        """
+                )
+        );
+    }
+
+    @Test
+    void networkNamePropertyCommented() {
+        rewriteRun(
+                //language=properties
+                properties(
+                        """
+                        arconia.dev.services.network.enabled=true
+                        arconia.dev.services.network.name=arconia
+                        """,
+                        """
+                        arconia.dev.services.network.enabled=true
+                        # Removed. Cross-application networks are no longer managed by Arconia. To join a network you manage, define your own Network bean.
+                        # arconia.dev.services.network.name=arconia
+                        """,
+                        s -> s.path("src/main/resources/application.properties"))
         );
     }
 

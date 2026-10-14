@@ -9,6 +9,12 @@ preconditions:
   - org.openrewrite.Singleton
 recipeList:
   - io.arconia.rewrite.framework.UpgradeArconia_0_30
+  - io.arconia.rewrite.docling.UpgradeDocling_0_7
+
+  # Remove Dependencies
+  - org.openrewrite.java.dependencies.RemoveDependency:
+      groupId: io.arconia
+      artifactId: arconia-dev-services-tests
 
   # Dependency Versions
   - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
@@ -20,6 +26,9 @@ recipeList:
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "arconia.dev.services.startup.log-level"
       comment: "Removed as redundant. Testcontainers logs startup errors to the console already."
+  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
+      propertyKey: "arconia.dev.services.network.name"
+      comment: "Removed. Cross-application networks are no longer managed by Arconia. To join a network you manage, define your own Network bean."
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "arconia.dev.services.artemis.reuse"
       comment: "Replaced by 'reuse-strategy'. Use 'reuse-strategy: testcontainers' instead of 'reuse: true'."
@@ -131,29 +140,49 @@ recipeList:
   # Rename Types
   - org.openrewrite.java.ChangeType:
       oldFullyQualifiedTypeName: io.arconia.dev.services.core.registration.DevServicesRegistry$ServiceSpec
-      newFullyQualifiedTypeName: io.arconia.dev.services.core.registration.ServiceSpec
-  - org.openrewrite.java.ChangeType:
-      oldFullyQualifiedTypeName: io.arconia.dev.services.core.registration.DevServicesRegistry$ContainerSpec
-      newFullyQualifiedTypeName: io.arconia.dev.services.core.registration.ContainerSpec
-  - org.openrewrite.java.ChangeType:
-      oldFullyQualifiedTypeName: io.arconia.dev.services.core.registration.DevServicesRegistry$DiscoverySpec
-      newFullyQualifiedTypeName: io.arconia.dev.services.core.registration.DiscoverySpec
+      newFullyQualifiedTypeName: io.arconia.dev.services.core.registration.DevServiceSpec
   - org.openrewrite.java.ChangeType:
       oldFullyQualifiedTypeName: io.arconia.dev.services.core.container.DevServiceLabels
       newFullyQualifiedTypeName: io.arconia.dev.services.api.registration.DevServiceLabels
   - org.openrewrite.java.ChangeType:
       oldFullyQualifiedTypeName: io.arconia.dev.services.api.config.SharedDevServicesProperties
       newFullyQualifiedTypeName: io.arconia.dev.services.api.config.BaseDevServicesProperties
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: io.arconia.dev.services.api.provider.DevServiceCategories
+      newFullyQualifiedTypeName: io.arconia.dev.services.core.registration.DevServiceCategories
 
   # Rename Methods
   - org.openrewrite.java.ChangeMethodName:
-      methodPattern: io.arconia.dev.services.api.registration.DevServiceLinkProvider devServiceLinks()
-      newMethodName: devServiceLinkDefinitions
-      matchOverrides: true
+      methodPattern: io.arconia.dev.services.api.registration.ContainerInfo exposedPorts()
+      newMethodName: ports
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: io.arconia.dev.services.api.registration.ContainerInfo$Builder exposedPorts(java.util.List)
+      newMethodName: ports
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: io.arconia.dev.services.api.config.ResourceMapping getSourcePath()
+      newMethodName: sourcePath
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: io.arconia.dev.services.api.config.ResourceMapping getContainerPath()
+      newMethodName: containerPath
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: io.arconia.dev.services.api.config.VolumeMapping getHostPath()
+      newMethodName: hostPath
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: io.arconia.dev.services.api.config.VolumeMapping getContainerPath()
+      newMethodName: containerPath
 
   # Remove Methods
+  # The common properties are now applied by the framework when it creates the container.
   - org.openrewrite.java.RemoveMethodInvocations:
-      methodPattern: io.arconia.dev.services.core.registration.DiscoverySpec shared(boolean)
+      methodPattern: io.arconia.dev.services.core.container.ContainerConfigurer base(..)
+  - org.openrewrite.java.RemoveMethodInvocations:
+      methodPattern: io.arconia.dev.services.core.container.ContainerConfigurer reuse(..)
+  - org.openrewrite.java.RemoveMethodInvocations:
+      methodPattern: io.arconia.dev.services.core.container.ContainerConfigurer resources(..)
+  - org.openrewrite.java.RemoveMethodInvocations:
+      methodPattern: io.arconia.dev.services.core.container.ContainerConfigurer volumes(..)
+  - org.openrewrite.java.RemoveMethodInvocations:
+      methodPattern: io.arconia.dev.services.core.container.ContainerConfigurer jdbc(..)
 
   # Replace Constants
   - org.openrewrite.java.ReplaceConstant:
