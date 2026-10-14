@@ -1,0 +1,16 @@
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.docling.UpgradeDocling_0_4
+displayName: Migrate to Docling 0.4
+description: Migrate a Java application to the latest Docling 0.4.x release.
+tags:
+  - docling
+preconditions:
+  - org.openrewrite.Singleton
+recipeList:
+  - io.arconia.rewrite.docling.UpgradeDocling_0_3
+
+  - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
+      groupId: ai.docling
+      artifactId: "*"
+      newVersion: 0.4.x

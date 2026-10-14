@@ -8,7 +8,7 @@ tags:
 preconditions:
   - org.openrewrite.Singleton
 recipeList:
-  - io.arconia.rewrite.docling.UpgradeDocling_0_3
+  - io.arconia.rewrite.docling.UpgradeDocling_0_6
 
   - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
       groupId: ai.docling
