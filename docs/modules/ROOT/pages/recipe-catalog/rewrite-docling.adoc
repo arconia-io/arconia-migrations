@@ -3,7 +3,7 @@
 
 // AUTO-GENERATED from the OpenRewrite recipe model. Do not edit by hand.
 
-The `rewrite-docling` module publishes 2 recipes across 1 category.
+The `rewrite-docling` module publishes 4 recipes across 1 category.
 
 [#family-docling]
 == docling
@@ -88,6 +88,103 @@ import ai.docling.core.DoclingDocument;
 
 class Demo {
     DoclingDocument document = null;
+}
+----
+
+[#io_arconia_rewrite_docling_UpgradeDocling_0_7]
+=== Migrate to Docling 0.7
+`io.arconia.rewrite.docling.UpgradeDocling_0_7`
+
+Migrate a Java application to the latest Docling 0.7.x release.
+
+_Tags: docling_
+
+.Recipes applied
+[%collapsible]
+====
+* xref:recipe-catalog/rewrite-docling.adoc#io_arconia_rewrite_docling_UpgradeDocling_0_3[Migrate to Docling 0.3] (`io.arconia.rewrite.docling.UpgradeDocling_0_3`)
+** xref:recipe-catalog/rewrite-docling.adoc#io_arconia_rewrite_docling_UpgradeDocling_0_2[Migrate to Docling 0.2] (`io.arconia.rewrite.docling.UpgradeDocling_0_2`)
+*** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+*** Rename package name (`org.openrewrite.java.ChangePackage` ×2)
+** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+** Rename package name (`org.openrewrite.java.ChangePackage`)
+* Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+* xref:recipe-catalog/rewrite-docling.adoc#io_arconia_rewrite_docling_UseDoclingServeApiConfigToBuilder[Use `DoclingServeApi.config().toBuilder()` instead of `toBuilder()`] (`io.arconia.rewrite.docling.UseDoclingServeApiConfigToBuilder`)
+* Change method target to static (`org.openrewrite.java.ChangeMethodTargetToStatic`)
+* Change method name (`org.openrewrite.java.ChangeMethodName`)
+====
+
+*Example*
+
+.Before
+[source,java]
+----
+import ai.docling.serve.api.DoclingServeApi;
+import ai.docling.serve.client.DoclingServeClientBuilderFactory;
+
+class Demo {
+    DoclingServeApi create() {
+        return DoclingServeClientBuilderFactory.newBuilder()
+                .baseUrl("http://localhost:5001")
+                .build();
+    }
+
+    DoclingServeApi copy(DoclingServeApi api) {
+        return api.toBuilder().logRequests().build();
+    }
+}
+----
+
+.After
+[source,java]
+----
+import ai.docling.serve.api.DoclingServeApi;
+import ai.docling.serve.client.DoclingServeClient;
+
+class Demo {
+    DoclingServeApi create() {
+        return DoclingServeClient.builder()
+                .baseUrl("http://localhost:5001")
+                .build();
+    }
+
+    DoclingServeApi copy(DoclingServeApi api) {
+        return api.config().toBuilder().logRequests().build();
+    }
+}
+----
+
+*Recipes*
+
+[#io_arconia_rewrite_docling_UseDoclingServeApiConfigToBuilder]
+=== Use `DoclingServeApi.config().toBuilder()` instead of `toBuilder()`
+`io.arconia.rewrite.docling.UseDoclingServeApiConfigToBuilder`
+
+Replace the deprecated `DoclingServeApi.toBuilder()` with `config().toBuilder()`, which creates a modified copy of the API through the available `DoclingServeApiProvider`.
+
+*Example*
+
+.Before
+[source,java]
+----
+import ai.docling.serve.api.DoclingServeApi;
+
+class Demo {
+    DoclingServeApi copy(DoclingServeApi api) {
+        return api.toBuilder().logRequests().build();
+    }
+}
+----
+
+.After
+[source,java]
+----
+import ai.docling.serve.api.DoclingServeApi;
+
+class Demo {
+    DoclingServeApi copy(DoclingServeApi api) {
+        return api.config().toBuilder().logRequests().build();
+    }
 }
 ----
 

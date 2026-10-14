@@ -1,0 +1,27 @@
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.docling.UpgradeDocling_0_7
+displayName: Migrate to Docling 0.7
+description: Migrate a Java application to the latest Docling 0.7.x release.
+tags:
+  - docling
+preconditions:
+  - org.openrewrite.Singleton
+recipeList:
+  - io.arconia.rewrite.docling.UpgradeDocling_0_3
+
+  - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
+      groupId: ai.docling
+      artifactId: "*"
+      newVersion: 0.7.x
+
+  # DoclingServeApi.toBuilder() is deprecated for removal in favor of config().toBuilder()
+  - io.arconia.rewrite.docling.UseDoclingServeApiConfigToBuilder
+
+  # DoclingServeClientBuilderFactory.newBuilder() is deprecated for removal in favor of DoclingServeClient.builder()
+  - org.openrewrite.java.ChangeMethodTargetToStatic:
+      methodPattern: ai.docling.serve.client.DoclingServeClientBuilderFactory newBuilder()
+      fullyQualifiedTargetTypeName: ai.docling.serve.client.DoclingServeClient
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: ai.docling.serve.client.DoclingServeClient newBuilder()
+      newMethodName: builder

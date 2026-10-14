@@ -32,8 +32,12 @@ dependencies {
 }
 
 recipeDependencies {
+    parserClasspath "ai.docling:docling-serve-api:0.7.+"
+
     testParserClasspath "ai.docling:docling-serve-api:0.1.+"
+    testParserClasspath "ai.docling:docling-serve-api:0.6.+"
     testParserClasspath "ai.docling:docling-serve-client:0.1.+"
+    testParserClasspath "ai.docling:docling-serve-client:0.6.+"
 
     testParserClasspath "ai.docling:docling-core:0.2.+"
 }
