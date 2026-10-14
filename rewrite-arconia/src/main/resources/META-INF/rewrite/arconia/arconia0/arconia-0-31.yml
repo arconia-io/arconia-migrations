@@ -45,12 +45,6 @@ recipeList:
       propertyKey: "arconia.dev.services.kafka.shared"
       comment: "Replaced by 'reuse-strategy'. Use 'reuse-strategy: none' instead of 'shared: false'. Sharing ('framework') is the default."
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
-      propertyKey: "arconia.dev.services.keycloak.reuse"
-      comment: "Replaced by 'reuse-strategy'. Use 'reuse-strategy: testcontainers' instead of 'reuse: true'."
-  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
-      propertyKey: "arconia.dev.services.keycloak.shared"
-      comment: "Replaced by 'reuse-strategy'. Use 'reuse-strategy: none' instead of 'shared: false'. Sharing ('framework') is the default."
-  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "arconia.dev.services.lgtm.reuse"
       comment: "Replaced by 'reuse-strategy'. Use 'reuse-strategy: testcontainers' instead of 'reuse: true'."
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
