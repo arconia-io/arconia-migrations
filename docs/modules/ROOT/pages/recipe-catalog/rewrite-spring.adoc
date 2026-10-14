@@ -7664,7 +7664,7 @@ _Tags: spring, boot_
 * Update a Gradle plugin by id (`org.openrewrite.gradle.plugins.UpgradePluginVersion`)
 * Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
 * Update a Gradle plugin by id (`org.openrewrite.gradle.plugins.UpgradePluginVersion`)
-* Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion` ×2)
+* Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion` ×3)
 * Change Gradle dependency (`org.openrewrite.gradle.ChangeDependency`)
 * Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion` ×2)
 * xref:recipe-catalog/rewrite-testing.adoc#io_arconia_rewrite_testing_testcontainers_UpgradeTestcontainers_2[Migrate to Testcontainers 2.x] (`io.arconia.rewrite.testing.testcontainers.UpgradeTestcontainers_2`)
@@ -7803,7 +7803,7 @@ _Tags: spring, boot_
 ** Update a Gradle plugin by id (`org.openrewrite.gradle.plugins.UpgradePluginVersion`)
 ** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
 ** Update a Gradle plugin by id (`org.openrewrite.gradle.plugins.UpgradePluginVersion`)
-** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion` ×2)
+** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion` ×3)
 ** Change Gradle dependency (`org.openrewrite.gradle.ChangeDependency`)
 ** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion` ×2)
 ** xref:recipe-catalog/rewrite-testing.adoc#io_arconia_rewrite_testing_testcontainers_UpgradeTestcontainers_2[Migrate to Testcontainers 2.x] (`io.arconia.rewrite.testing.testcontainers.UpgradeTestcontainers_2`)
@@ -7896,7 +7896,7 @@ _Tags: spring, boot_
 * Upgrade Maven plugin version (`org.openrewrite.maven.UpgradePluginVersion`)
 * Upgrade Maven parent project version (`org.openrewrite.maven.UpgradeParentVersion`)
 * Update a Gradle plugin by id (`org.openrewrite.gradle.plugins.UpgradePluginVersion`)
-* Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+* Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion` ×2)
 ====
 
 *Recipes*

@@ -65,6 +65,11 @@ recipeList:
 
   # Other Dependencies
   - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
+      groupId: org.springframework.modulith
+      artifactId: "*"
+      newVersion: 2.0.x
+      overrideManagedVersion: true
+  - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
       groupId: org.springdoc
       artifactId: "*"
       newVersion: 3.0.x
