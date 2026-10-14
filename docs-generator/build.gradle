@@ -10,6 +10,8 @@ repositories {
 java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(21)
+        // NullAway JSpecify mode needs JDK 21.0.8+; Temurin matches CI and devenv.
+        vendor = JvmVendorSpec.ADOPTIUM
     }
 }
 
