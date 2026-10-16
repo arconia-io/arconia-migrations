@@ -1,0 +1,23 @@
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.framework.UpgradeArconia_0_32
+displayName: Migrate to Arconia 0.32
+description: Migrate a Spring Boot application to the latest Arconia 0.32.x release.
+tags:
+  - arconia
+preconditions:
+  - org.openrewrite.Singleton
+recipeList:
+  - io.arconia.rewrite.framework.UpgradeArconia_0_31
+
+  # Dependency Versions
+  - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
+      groupId: io.arconia
+      artifactId: "*"
+      newVersion: 0.32.x
+
+  # Rename Properties
+  # The Keycloak Dev Service imports several realm files, so the single path became a list.
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: arconia.dev.services.keycloak.realm.import-path
+      newPropertyKey: arconia.dev.services.keycloak.realm.import-paths
