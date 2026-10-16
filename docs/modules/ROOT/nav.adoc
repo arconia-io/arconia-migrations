@@ -39,6 +39,7 @@
 *** xref:recipe-catalog/rewrite-spring.adoc#family-spring-boot3[spring › boot3]
 *** xref:recipe-catalog/rewrite-spring.adoc#family-spring-boot4[spring › boot4]
 *** xref:recipe-catalog/rewrite-spring.adoc#family-spring-cloud2025[spring › cloud2025]
+*** xref:recipe-catalog/rewrite-spring.adoc#family-spring-cloud2026[spring › cloud2026]
 *** xref:recipe-catalog/rewrite-spring.adoc#family-spring-framework6[spring › framework6]
 *** xref:recipe-catalog/rewrite-spring.adoc#family-spring-framework7[spring › framework7]
 ** xref:recipe-catalog/rewrite-spring-core.adoc[rewrite-spring-core]

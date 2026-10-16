@@ -1,0 +1,12 @@
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.cloud2026.UpgradeSpringCloudProperties_2026_0
+displayName: Migrate Spring Cloud properties to 2026.0
+description: Migrate Spring Cloud configuration properties that were renamed or deprecated in the 2026.0 release, across YAML and Properties configuration files.
+tags:
+  - spring
+  - cloud
+preconditions:
+  - org.openrewrite.Singleton
+recipeList:
+  - io.arconia.rewrite.spring.cloud2026.UpgradeSpringCloudPropertiesGenerated_2026_0

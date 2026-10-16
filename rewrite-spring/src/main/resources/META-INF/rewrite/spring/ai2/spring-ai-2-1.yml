@@ -10,9 +10,6 @@ preconditions:
   - org.openrewrite.Singleton
 recipeList:
 
-  # Previous Version
-  - io.arconia.rewrite.spring.ai2.UpgradeSpringAi_2_0
-
   # Configuration Properties
   - io.arconia.rewrite.spring.ai2.UpgradeSpringAiProperties_2_1
 
