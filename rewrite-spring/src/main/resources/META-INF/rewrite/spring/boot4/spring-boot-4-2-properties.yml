@@ -1,0 +1,12 @@
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.UpgradeSpringBootProperties_4_2
+displayName: Migrate Spring Boot properties to 4.2
+description: Migrate Spring Boot configuration properties that were renamed or deprecated in the 4.2 release, across YAML and Properties configuration files.
+tags:
+  - spring
+  - boot
+preconditions:
+  - org.openrewrite.Singleton
+recipeList:
+  - io.arconia.rewrite.spring.boot4.UpgradeSpringBootPropertiesGenerated_4_2
