@@ -3,7 +3,7 @@
 
 // AUTO-GENERATED from the OpenRewrite recipe model. Do not edit by hand.
 
-The `rewrite-spring` module publishes 261 recipes across 8 categories.
+The `rewrite-spring` module publishes 263 recipes across 8 categories.
 
 [#family-spring-ai1]
 == spring › ai1
@@ -454,6 +454,37 @@ _Tags: spring, ai_
 `io.arconia.rewrite.spring.ai2.UpgradeSpringAiPropertiesGenerated_2_0`
 
 Migrate Spring AI configuration properties that were renamed or deprecated in the 2.0 release, across YAML and Properties configuration files.
+
+_Tags: spring, ai_
+
+.Recipes applied
+[%collapsible]
+====
+* xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×5)
+* xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×240)
+====
+
+[#io_arconia_rewrite_spring_ai2_UpgradeSpringAiProperties_2_1]
+=== Migrate Spring AI properties to 2.1
+`io.arconia.rewrite.spring.ai2.UpgradeSpringAiProperties_2_1`
+
+Migrate Spring AI configuration properties that were renamed or deprecated in the 2.1 release, across YAML and Properties configuration files.
+
+_Tags: spring, ai_
+
+.Recipes applied
+[%collapsible]
+====
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_ai2_UpgradeSpringAiPropertiesGenerated_2_1[Migrate Spring AI properties to 2.1 (generated)] (`io.arconia.rewrite.spring.ai2.UpgradeSpringAiPropertiesGenerated_2_1`)
+** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×5)
+** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×240)
+====
+
+[#io_arconia_rewrite_spring_ai2_UpgradeSpringAiPropertiesGenerated_2_1]
+=== Migrate Spring AI properties to 2.1 (generated)
+`io.arconia.rewrite.spring.ai2.UpgradeSpringAiPropertiesGenerated_2_1`
+
+Migrate Spring AI configuration properties that were renamed or deprecated in the 2.1 release, across YAML and Properties configuration files.
 
 _Tags: spring, ai_
 
