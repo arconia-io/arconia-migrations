@@ -17,7 +17,60 @@ recipeList:
       newVersion: 0.32.x
 
   # Rename Properties
-  # The Keycloak Dev Service imports several realm files, so the single path became a list.
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: arconia.dev.services.keycloak.realm.import-path
       newPropertyKey: arconia.dev.services.keycloak.realm.import-paths
+
+  # Comment Properties
+  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
+      propertyKey: "arconia.multitenancy.resolution.fixed.enabled"
+      comment: "Removed. The fixed tenant is now a resolution mode. Set 'arconia.multitenancy.resolution.http.resolution-mode' to 'fixed' for a single-tenant deployment, or list 'fixed' last, as in 'header, fixed', to use it as the default tenant."
+
+  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
+      propertyKey: "management.health.tenantdetails.enabled"
+      comment: "Removed with the tenant details health indicator. The 'db' health indicator already reports whether the database holding the tenant details can be reached."
+
+  # Rename Packages
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: io.arconia.multitenancy.core.context.resolvers
+      newPackageName: io.arconia.multitenancy.core.resolution
+      recursive: false
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: io.arconia.multitenancy.core.context.events
+      newPackageName: io.arconia.multitenancy.core.context
+      recursive: false
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: io.arconia.multitenancy.web.context.filters
+      newPackageName: io.arconia.multitenancy.web.context
+      recursive: false
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: io.arconia.multitenancy.web.context.annotations
+      newPackageName: io.arconia.multitenancy.web.context
+      recursive: false
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: io.arconia.multitenancy.web.context.resolvers
+      newPackageName: io.arconia.multitenancy.web.resolution
+      recursive: false
+
+  # Rename Types
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: io.arconia.multitenancy.core.exceptions.TenantNotFoundException
+      newFullyQualifiedTypeName: io.arconia.multitenancy.core.context.TenantNotFoundException
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: io.arconia.multitenancy.core.exceptions.TenantVerificationException
+      newFullyQualifiedTypeName: io.arconia.multitenancy.core.resolution.TenantVerificationException
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: io.arconia.multitenancy.core.tenantdetails.TenantIdentifierValidator
+      newFullyQualifiedTypeName: io.arconia.multitenancy.core.resolution.TenantIdentifierValidator
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: io.arconia.multitenancy.core.tenantdetails.DefaultTenantIdentifierValidator
+      newFullyQualifiedTypeName: io.arconia.multitenancy.core.resolution.DefaultTenantIdentifierValidator
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: io.arconia.multitenancy.core.tenantdetails.TenantVerifier
+      newFullyQualifiedTypeName: io.arconia.multitenancy.core.resolution.TenantVerifier
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: io.arconia.multitenancy.core.tenantdetails.DefaultTenantVerifier
+      newFullyQualifiedTypeName: io.arconia.multitenancy.core.resolution.DefaultTenantVerifier
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: io.arconia.multitenancy.core.autoconfigure.PropertiesTenantDetailsService
+      newFullyQualifiedTypeName: io.arconia.multitenancy.core.tenantdetails.InMemoryTenantDetailsService

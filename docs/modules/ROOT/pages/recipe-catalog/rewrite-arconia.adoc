@@ -1168,6 +1168,9 @@ _Tags: arconia_
 ** Replace constant with literal value (`org.openrewrite.java.ReplaceConstant` ×3)
 * Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
 * xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey`)
+* xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×2)
+* Rename package name (`org.openrewrite.java.ChangePackage` ×5)
+* Change type (`org.openrewrite.java.ChangeType` ×7)
 ====
 
 *Example*
