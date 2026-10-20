@@ -2,6 +2,10 @@ version: 2
 updates:
   - package-ecosystem: "github-actions"
     directory: "/"
+    groups:
+      codeql-action:
+        patterns:
+          - "github/codeql-action/*"
     schedule:
       interval: daily
       time: "00:30"
