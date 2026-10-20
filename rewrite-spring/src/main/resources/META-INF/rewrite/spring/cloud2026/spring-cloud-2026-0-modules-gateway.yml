@@ -1,0 +1,14 @@
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.cloud2026.MigrateSpringCloudGateway_5_1
+displayName: Migrate Spring Cloud Gateway to 5.1
+description: Migrate Spring Cloud Gateway usages that changed in the 5.1 release shipped with Spring Cloud 2026.0. The retry filter moved from Reactor Addons to the retry support built into Reactor, dropping the `basedOnPreviousValue` backoff flag.
+preconditions:
+  - org.openrewrite.Singleton
+recipeList:
+  - org.openrewrite.java.DeleteMethodArgument:
+      methodPattern: org.springframework.cloud.gateway.filter.factory.RetryGatewayFilterFactory$RetryConfig setBackoff(java.time.Duration, java.time.Duration, int, boolean)
+      argumentIndex: 3
+  - org.openrewrite.java.DeleteMethodArgument:
+      methodPattern: org.springframework.cloud.gateway.filter.factory.RetryGatewayFilterFactory$BackoffConfig <constructor>(java.time.Duration, java.time.Duration, int, boolean)
+      argumentIndex: 3

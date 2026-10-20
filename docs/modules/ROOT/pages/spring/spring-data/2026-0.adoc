@@ -1,0 +1,21 @@
+= Spring Data 2026.0
+:description: Migrate your Spring application to the latest Spring Data 2026.0.x release train.
+:cli-command: arconia rewrite run --recipe-name io.arconia.rewrite.spring.data2026.UpgradeSpringData_2026_0
+:recipe-id: io.arconia.rewrite.spring.data2026.UpgradeSpringData_2026_0
+:rewrite-module: rewrite-spring
+
+When upgrading to Spring Data 2026.0, refer to the https://github.com/spring-projects/spring-data-commons/wiki/Spring-Data-2026.0-Release-Notes[Spring Data 2026.0 Release Notes] for newly introduced APIs, deprecated APIs, and breaking changes. Spring Data 2026.0 is the release train for Spring Boot 4.1, and the xref:spring/spring-boot/4-1.adoc[Spring Boot 4.1] upgrade recipe chains this recipe.
+
+The `{recipe-id}` recipe automates the changes introduced in Spring Data 2026.0. You can use it to update your project to the latest Spring Data 2026.0.x release train.
+
+The recipe will:
+
+* Upgrade `org.springframework.data:spring-data-bom` to the 2026.0.x release train, and each Spring Data module to its own release line within that train.
+
+Spring Data 2026.0 removes no public API. Two changes still deserve attention: projection parameter types of web handler methods now have to be annotated with `@ProjectedPayload`, and the Spring Data Redis constructors that accept the older Jedis client types are deprecated in favor of `UnifiedJedis`.
+
+See its xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_data2026_UpgradeSpringData_2026_0[entry in the Recipe Catalog] for the full list of recipes this upgrade applies, each with its options and a before/after example.
+
+== Run the Recipe
+
+include::partial$run-recipe.adoc[]

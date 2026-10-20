@@ -1,0 +1,21 @@
+= Spring Modulith 2.0
+:description: Migrate your Spring Boot application to the latest Spring Modulith 2.0.x release.
+:cli-command: arconia rewrite run --recipe-name io.arconia.rewrite.spring.modulith2.UpgradeSpringModulith_2_0
+:recipe-id: io.arconia.rewrite.spring.modulith2.UpgradeSpringModulith_2_0
+:rewrite-module: rewrite-spring
+
+When upgrading to Spring Modulith 2.0, refer to the https://github.com/spring-projects/spring-modulith/releases/tag/2.0.0[Spring Modulith 2.0.0 Release Notes] for newly introduced APIs, deprecated APIs, and breaking changes. Spring Modulith 2.0 is the release line for Spring Boot 4.0, and the xref:spring/spring-boot/4-0.adoc[Spring Boot 4.0] upgrade recipe chains this recipe.
+
+The `{recipe-id}` recipe automates most of the changes introduced in Spring Modulith 2.0. You can use it to update your project to the latest Spring Modulith 2.0.x release.
+
+The recipe will:
+
+* Upgrade all `org.springframework.modulith` dependencies to the 2.0.x release line.
+* Rename Spring Modulith configuration properties that were deprecated with a replacement: the event publication registry properties moved beneath `spring.modulith.events`, and the misspelled staleness check-interval and resubmission keys were corrected.
+* Replace the removed `org.springframework.modulith.ApplicationModuleListener` annotation with its successor in the `org.springframework.modulith.events` package.
+
+See its xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_modulith2_UpgradeSpringModulith_2_0[entry in the Recipe Catalog] for the full list of recipes this upgrade applies, each with its options and a before/after example.
+
+== Run the Recipe
+
+include::partial$run-recipe.adoc[]

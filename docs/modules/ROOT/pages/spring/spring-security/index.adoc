@@ -1,0 +1,12 @@
+= Spring Security
+:description: Upgrade recipes for Spring Security 7.x.
+
+Arconia Migrations ships an upgrade recipe for each minor release of Spring Security that it supports. Spring Security releases move together with Spring Boot, so each xref:spring/spring-boot/index.adoc[Spring Boot] upgrade recipe chains the matching Spring Security recipe. You can also run a Spring Security recipe on its own.
+
+The Spring Security recipes do not chain earlier Spring Security releases. When you skip releases, run the recipe for each intermediate release, or let the Spring Boot upgrade recipe do it for you.
+
+== Upgrade Guides
+
+* *xref:spring/spring-security/7-0.adoc[Spring Security 7.0].* Migrate to the latest Spring Security 7.0.x release.
+* *xref:spring/spring-security/7-1.adoc[Spring Security 7.1].* Migrate to the latest Spring Security 7.1.x release.
+* *xref:spring/spring-security/7-2.adoc[Spring Security 7.2].* Migrate to the latest Spring Security 7.2.x release.

@@ -112,6 +112,28 @@ recipeDependencies {
     testParserClasspath "org.springframework.boot:spring-boot-test:4.0.+"
     testParserClasspath "org.springframework.boot:spring-boot-webmvc-test:4.0.+"
 
+    testParserClasspath "org.springframework.modulith:spring-modulith-api:1.4.+"
+    testParserClasspath "org.springframework.modulith:spring-modulith-observability:2.0.+"
+    testParserClasspath "io.micrometer:micrometer-observation:1.16.+"
+
+    testParserClasspath "org.springframework.boot:spring-boot-amqp:4.1.+"
+    testParserClasspath "org.springframework.boot:spring-boot-health:4.1.+"
+    testParserClasspath "org.springframework.boot:spring-boot-http-converter:4.1.+"
+
+    testParserClasspath "org.springframework.data:spring-data-commons:3.5.+"
+    testParserClasspath "org.springframework.data:spring-data-jdbc:3.5.+"
+    testParserClasspath "org.springframework.data:spring-data-cassandra:4.5.+"
+    testParserClasspath "org.springframework.data:spring-data-mongodb:4.5.+"
+
+    testParserClasspath "org.springframework.security:spring-security-core:6.5.+"
+    testParserClasspath "org.springframework.security:spring-security-config:6.5.+"
+    testParserClasspath "org.springframework.security:spring-security-web:6.5.+"
+    testParserClasspath "org.springframework.security:spring-security-oauth2-core:6.5.+"
+    testParserClasspath "org.springframework.security:spring-security-oauth2-client:6.5.+"
+    testParserClasspath "org.springframework.security:spring-security-oauth2-resource-server:6.5.+"
+    testParserClasspath "org.springframework.security:spring-security-saml2-service-provider:6.5.+"
+    testParserClasspath "org.springframework.security:spring-security-cas:6.5.+"
+
     testParserClasspath "org.springframework:spring-beans:6.1.+"
     testParserClasspath "org.springframework:spring-context:6.1.+"
     testParserClasspath "org.springframework:spring-core:6.1.+"
@@ -131,10 +153,15 @@ recipeDependencies {
     testParserClasspath "org.springframework:spring-beans:7.0.+"
     testParserClasspath "org.springframework:spring-context:7.0.+"
     testParserClasspath "org.springframework:spring-test:7.0.+"
+    testParserClasspath "org.springframework:spring-web:7.0.+"
 
     testParserClasspath "com.openai:openai-java-core:4.38.+"
 
+    testParserClasspath "junit:junit:4.13.+"
+
+    testParserClasspath "org.springframework.cloud:spring-cloud-contract-stub-runner:4.3.+"
     testParserClasspath "org.springframework.cloud:spring-cloud-contract-wiremock:4.3.+"
+    testParserClasspath "org.springframework.cloud:spring-cloud-gateway-server-webflux:5.0.+"
 }
 
 // Re-enable if and when starting using Refaster
@@ -155,6 +182,14 @@ tasks.register("generateSpringBootProperties", JavaExec) {
     group = "build"
     classpath = sourceSets.test.runtimeClasspath
     mainClass = "io.arconia.rewrite.spring.util.SpringBootPropertiesMigrationGenerator"
+    workingDir = rootProject.projectDir
+}
+
+tasks.register("generateSpringModulithProperties", JavaExec) {
+    description = "Generate Spring Modulith properties migration recipes from a given spring-modulith-bom version, e.g. --args='2.2.0'."
+    group = "build"
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = "io.arconia.rewrite.spring.util.SpringModulithPropertiesMigrationGenerator"
     workingDir = rootProject.projectDir
 }
 

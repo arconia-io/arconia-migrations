@@ -3,7 +3,7 @@
 
 // AUTO-GENERATED from the OpenRewrite recipe model. Do not edit by hand.
 
-The `rewrite-spring` module publishes 268 recipes across 9 categories.
+The `rewrite-spring` module publishes 305 recipes across 13 categories.
 
 [#family-spring-ai1]
 == spring › ai1
@@ -7635,6 +7635,105 @@ Migrate Web Services Starter.
 * Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency`)
 ====
 
+[#io_arconia_rewrite_spring_boot4_MigrateSpringBootRabbitMq_4_2]
+=== Migrate the Spring Boot AMQP module to the RabbitMQ module in Spring Boot 4.2
+`io.arconia.rewrite.spring.boot4.MigrateSpringBootRabbitMq_4_2`
+
+Keep an application on AMQP 0.9 when upgrading to Spring Boot 4.2 by moving from the AMQP starter and module, which now provide AMQP 1.0 support, to the RabbitMQ starter and module. Adopting AMQP 1.0 instead is a separate, manual migration to the `spring-boot-starter-amqp-rabbitmq` starter.
+
+_Tags: spring, boot_
+
+.Recipes applied
+[%collapsible]
+====
+* Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency` ×3)
+* Rename package name (`org.openrewrite.java.ChangePackage` ×5)
+====
+
+*Example*
+
+.Before
+[source,groovy]
+----
+plugins {
+    id 'java-library'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation "org.springframework.boot:spring-boot-starter-amqp"
+    implementation "org.springframework.boot:spring-boot-amqp"
+    testImplementation "org.springframework.boot:spring-boot-starter-amqp-test"
+}
+----
+
+.After
+[source,groovy]
+----
+plugins {
+    id 'java-library'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation "org.springframework.boot:spring-boot-starter-rabbitmq"
+    implementation "org.springframework.boot:spring-boot-rabbitmq"
+    testImplementation "org.springframework.boot:spring-boot-starter-rabbitmq-test"
+}
+----
+
+[#io_arconia_rewrite_spring_boot4_MigrateSpringBootHttp_4_2]
+=== Migrate the Spring Boot HTTP modules to Spring Boot 4.2
+`io.arconia.rewrite.spring.boot4.MigrateSpringBootHttp_4_2`
+
+Update usages of Spring Boot HTTP module APIs that were removed or replaced in Spring Boot 4.2. The `HttpMessageConverters` class removed from the HTTP Converter module is replaced with the Spring Framework interface of the same name. Both are iterable over the configured converters. Code that constructs the removed class needs to be reworked manually around the Spring Framework builders.
+
+_Tags: spring, boot_
+
+.Recipes applied
+[%collapsible]
+====
+* Change type (`org.openrewrite.java.ChangeType`)
+====
+
+*Example*
+
+.Before
+[source,java]
+----
+import org.springframework.boot.http.converter.autoconfigure.HttpMessageConverters;
+import org.springframework.http.converter.HttpMessageConverter;
+
+class Demo {
+    void test(HttpMessageConverters converters) {
+        for (HttpMessageConverter<?> converter : converters) {
+            System.out.println(converter);
+        }
+    }
+}
+----
+
+.After
+[source,java]
+----
+import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.http.converter.HttpMessageConverters;
+
+class Demo {
+    void test(HttpMessageConverters converters) {
+        for (HttpMessageConverter<?> converter : converters) {
+            System.out.println(converter);
+        }
+    }
+}
+----
+
 [#io_arconia_rewrite_spring_boot4_UpgradeSpringBoot_4_0]
 === Migrate to Spring Boot 4.0
 `io.arconia.rewrite.spring.boot4.UpgradeSpringBoot_4_0`
@@ -7782,7 +7881,7 @@ _Tags: spring, boot_
 * Update a Gradle plugin by id (`org.openrewrite.gradle.plugins.UpgradePluginVersion`)
 * Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
 * Update a Gradle plugin by id (`org.openrewrite.gradle.plugins.UpgradePluginVersion`)
-* Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion` ×3)
+* Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion` ×2)
 * Change Gradle dependency (`org.openrewrite.gradle.ChangeDependency`)
 * Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion` ×2)
 * xref:recipe-catalog/rewrite-testing.adoc#io_arconia_rewrite_testing_testcontainers_UpgradeTestcontainers_2[Migrate to Testcontainers 2.x] (`io.arconia.rewrite.testing.testcontainers.UpgradeTestcontainers_2`)
@@ -7845,21 +7944,50 @@ _Tags: spring, boot_
 ** Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency` ×2)
 ** Remove a Gradle or Maven dependency (`org.openrewrite.java.dependencies.RemoveDependency` ×6)
 ** … and 43 more
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_MigrateActiveMqModule[Migrate Spring Boot ActiveMQ module to Spring Boot 4.0] (`io.arconia.rewrite.spring.boot4.MigrateActiveMqModule`)
-** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddActiveMqStarterTest[Add ActiveMQ Starter Test] (`io.arconia.rewrite.spring.boot4.AddActiveMqStarterTest`)
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_modulith2_UpgradeSpringModulith_2_0[Migrate to Spring Modulith 2.0] (`io.arconia.rewrite.spring.modulith2.UpgradeSpringModulith_2_0`)
+** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_modulith2_UpgradeSpringModulithProperties_2_0[Migrate Spring Modulith properties to 2.0] (`io.arconia.rewrite.spring.modulith2.UpgradeSpringModulithProperties_2_0`)
+*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_modulith2_UpgradeSpringModulithPropertiesGenerated_2_0[Migrate Spring Modulith properties to 2.0 (generated)] (`io.arconia.rewrite.spring.modulith2.UpgradeSpringModulithPropertiesGenerated_2_0`)
+** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+** Change type (`org.openrewrite.java.ChangeType`)
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_security7_UpgradeSpringSecurity_7_0[Migrate to Spring Security 7.0] (`io.arconia.rewrite.spring.security7.UpgradeSpringSecurity_7_0`)
+** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_security7_MigrateSpringSecurityCore_7_0[Migrate the Spring Security Core module to Spring Security 7.0] (`io.arconia.rewrite.spring.security7.MigrateSpringSecurityCore_7_0`)
+*** Change method name (`org.openrewrite.java.ChangeMethodName` ×2)
+*** Change type (`org.openrewrite.java.ChangeType`)
+** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_security7_MigrateSpringSecurityConfig_7_0[Migrate the Spring Security Config module to Spring Security 7.0] (`io.arconia.rewrite.spring.security7.MigrateSpringSecurityConfig_7_0`)
+*** Change type (`org.openrewrite.java.ChangeType` ×2)
+** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_security7_MigrateSpringSecurityWeb_7_0[Migrate the Spring Security Web module to Spring Security 7.0] (`io.arconia.rewrite.spring.security7.MigrateSpringSecurityWeb_7_0`)
 *** Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
-** Change type (`org.openrewrite.java.ChangeType` ×4)
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_MigrateActuatorModule[Migrate Spring Boot Actuator module to Spring Boot 4.0] (`io.arconia.rewrite.spring.boot4.MigrateActuatorModule`)
-** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddActuatorStarterTest[Add Actuator Starter Test] (`io.arconia.rewrite.spring.boot4.AddActuatorStarterTest`)
-*** Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
-* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_MigrateAmqpModule[Migrate Spring Boot AMQP module to Spring Boot 4.0] (`io.arconia.rewrite.spring.boot4.MigrateAmqpModule`)
-** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_MigrateAmqpTest[Migrate AMQP Test] (`io.arconia.rewrite.spring.boot4.MigrateAmqpTest`)
-*** Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency`)
-** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddAmqpStarterTest[Add AMQP Starter Test] (`io.arconia.rewrite.spring.boot4.AddAmqpStarterTest`)
-*** Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
-** Rename package name (`org.openrewrite.java.ChangePackage`)
-** Change type (`org.openrewrite.java.ChangeType` ×4)
-* … and 95 more
+** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_security7_MigrateSpringSecurityAccess_7_0[Migrate the legacy Spring Security Access API to Spring Security 7.0] (`io.arconia.rewrite.spring.security7.MigrateSpringSecurityAccess_7_0`)
+*** Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency` ×15)
+** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_security7_MigrateSpringSecurityOAuth2Client_7_0[Migrate the Spring Security OAuth2 Client module to Spring Security 7.0] (`io.arconia.rewrite.spring.security7.MigrateSpringSecurityOAuth2Client_7_0`)
+*** Change type (`org.openrewrite.java.ChangeType` ×5)
+** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_security7_MigrateSpringSecurityOAuth2ResourceServer_7_0[Migrate the Spring Security OAuth2 Resource Server module to Spring Security 7.0] (`io.arconia.rewrite.spring.security7.MigrateSpringSecurityOAuth2ResourceServer_7_0`)
+*** Change type (`org.openrewrite.java.ChangeType` ×4)
+** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_security7_MigrateSpringSecuritySaml2_7_0[Migrate the Spring Security SAML2 Service Provider module to Spring Security 7.0] (`io.arconia.rewrite.spring.security7.MigrateSpringSecuritySaml2_7_0`)
+*** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+*** Change type (`org.openrewrite.java.ChangeType` ×15)
+*** Change method name (`org.openrewrite.java.ChangeMethodName` ×2)
+** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_security7_MigrateSpringSecurityCas_7_0[Migrate the Spring Security CAS module to Spring Security 7.0] (`io.arconia.rewrite.spring.security7.MigrateSpringSecurityCas_7_0`)
+*** Change type (`org.openrewrite.java.ChangeType`)
+** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_security7_MigrateSpringSecurityKerberos_7_0[Migrate the Spring Security Kerberos extension to Spring Security 7.0] (`io.arconia.rewrite.spring.security7.MigrateSpringSecurityKerberos_7_0`)
+*** Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency` ×3)
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_data2025_UpgradeSpringData_2025_1[Migrate to Spring Data 2025.1] (`io.arconia.rewrite.spring.data2025.UpgradeSpringData_2025_1`)
+** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion` ×16)
+** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_data2025_MigrateSpringDataCommons_2025_1[Migrate the Spring Data Commons module to Spring Data 2025.1] (`io.arconia.rewrite.spring.data2025.MigrateSpringDataCommons_2025_1`)
+*** Change type (`org.openrewrite.java.ChangeType`)
+*** Change method name (`org.openrewrite.java.ChangeMethodName` ×5)
+*** Change type (`org.openrewrite.java.ChangeType` ×10)
+*** Change method name (`org.openrewrite.java.ChangeMethodName` ×2)
+** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_data2025_MigrateSpringDataJpa_2025_1[Migrate the Spring Data JPA module to Spring Data 2025.1] (`io.arconia.rewrite.spring.data2025.MigrateSpringDataJpa_2025_1`)
+*** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
+** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_data2025_MigrateSpringDataJdbc_2025_1[Migrate the Spring Data JDBC module to Spring Data 2025.1] (`io.arconia.rewrite.spring.data2025.MigrateSpringDataJdbc_2025_1`)
+*** Change type (`org.openrewrite.java.ChangeType`)
+** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_data2025_MigrateSpringDataMongoDb_2025_1[Migrate the Spring Data MongoDB module to Spring Data 2025.1] (`io.arconia.rewrite.spring.data2025.MigrateSpringDataMongoDb_2025_1`)
+*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_data2025_UseStringValueForMetaAllowDiskUse[Use a string value for the `allowDiskUse` attribute of `@Meta`] (`io.arconia.rewrite.spring.data2025.UseStringValueForMetaAllowDiskUse`)
+** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_data2025_MigrateSpringDataCassandra_2025_1[Migrate the Spring Data for Apache Cassandra module to Spring Data 2025.1] (`io.arconia.rewrite.spring.data2025.MigrateSpringDataCassandra_2025_1`)
+*** Change type (`org.openrewrite.java.ChangeType` ×7)
+* … and 98 more
 ====
 
 [#io_arconia_rewrite_spring_boot4_UpgradeSpringBoot_4_1]
@@ -7921,7 +8049,7 @@ _Tags: spring, boot_
 ** Update a Gradle plugin by id (`org.openrewrite.gradle.plugins.UpgradePluginVersion`)
 ** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
 ** Update a Gradle plugin by id (`org.openrewrite.gradle.plugins.UpgradePluginVersion`)
-** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion` ×3)
+** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion` ×2)
 ** Change Gradle dependency (`org.openrewrite.gradle.ChangeDependency`)
 ** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion` ×2)
 ** xref:recipe-catalog/rewrite-testing.adoc#io_arconia_rewrite_testing_testcontainers_UpgradeTestcontainers_2[Migrate to Testcontainers 2.x] (`io.arconia.rewrite.testing.testcontainers.UpgradeTestcontainers_2`)
@@ -7972,17 +8100,29 @@ _Tags: spring, boot_
 *** Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency` ×2)
 *** Remove a Gradle or Maven dependency (`org.openrewrite.java.dependencies.RemoveDependency` ×6)
 *** … and 43 more
-** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_MigrateActiveMqModule[Migrate Spring Boot ActiveMQ module to Spring Boot 4.0] (`io.arconia.rewrite.spring.boot4.MigrateActiveMqModule`)
-*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddActiveMqStarterTest[Add ActiveMQ Starter Test] (`io.arconia.rewrite.spring.boot4.AddActiveMqStarterTest`)
-*** Change type (`org.openrewrite.java.ChangeType` ×4)
-** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_MigrateActuatorModule[Migrate Spring Boot Actuator module to Spring Boot 4.0] (`io.arconia.rewrite.spring.boot4.MigrateActuatorModule`)
-*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddActuatorStarterTest[Add Actuator Starter Test] (`io.arconia.rewrite.spring.boot4.AddActuatorStarterTest`)
-** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_MigrateAmqpModule[Migrate Spring Boot AMQP module to Spring Boot 4.0] (`io.arconia.rewrite.spring.boot4.MigrateAmqpModule`)
-*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_MigrateAmqpTest[Migrate AMQP Test] (`io.arconia.rewrite.spring.boot4.MigrateAmqpTest`)
-*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_AddAmqpStarterTest[Add AMQP Starter Test] (`io.arconia.rewrite.spring.boot4.AddAmqpStarterTest`)
-*** Rename package name (`org.openrewrite.java.ChangePackage`)
-*** Change type (`org.openrewrite.java.ChangeType` ×4)
-** … and 95 more
+** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_modulith2_UpgradeSpringModulith_2_0[Migrate to Spring Modulith 2.0] (`io.arconia.rewrite.spring.modulith2.UpgradeSpringModulith_2_0`)
+*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_modulith2_UpgradeSpringModulithProperties_2_0[Migrate Spring Modulith properties to 2.0] (`io.arconia.rewrite.spring.modulith2.UpgradeSpringModulithProperties_2_0`)
+*** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+*** Change type (`org.openrewrite.java.ChangeType`)
+** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_security7_UpgradeSpringSecurity_7_0[Migrate to Spring Security 7.0] (`io.arconia.rewrite.spring.security7.UpgradeSpringSecurity_7_0`)
+*** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_security7_MigrateSpringSecurityCore_7_0[Migrate the Spring Security Core module to Spring Security 7.0] (`io.arconia.rewrite.spring.security7.MigrateSpringSecurityCore_7_0`)
+*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_security7_MigrateSpringSecurityConfig_7_0[Migrate the Spring Security Config module to Spring Security 7.0] (`io.arconia.rewrite.spring.security7.MigrateSpringSecurityConfig_7_0`)
+*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_security7_MigrateSpringSecurityWeb_7_0[Migrate the Spring Security Web module to Spring Security 7.0] (`io.arconia.rewrite.spring.security7.MigrateSpringSecurityWeb_7_0`)
+*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_security7_MigrateSpringSecurityAccess_7_0[Migrate the legacy Spring Security Access API to Spring Security 7.0] (`io.arconia.rewrite.spring.security7.MigrateSpringSecurityAccess_7_0`)
+*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_security7_MigrateSpringSecurityOAuth2Client_7_0[Migrate the Spring Security OAuth2 Client module to Spring Security 7.0] (`io.arconia.rewrite.spring.security7.MigrateSpringSecurityOAuth2Client_7_0`)
+*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_security7_MigrateSpringSecurityOAuth2ResourceServer_7_0[Migrate the Spring Security OAuth2 Resource Server module to Spring Security 7.0] (`io.arconia.rewrite.spring.security7.MigrateSpringSecurityOAuth2ResourceServer_7_0`)
+*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_security7_MigrateSpringSecuritySaml2_7_0[Migrate the Spring Security SAML2 Service Provider module to Spring Security 7.0] (`io.arconia.rewrite.spring.security7.MigrateSpringSecuritySaml2_7_0`)
+*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_security7_MigrateSpringSecurityCas_7_0[Migrate the Spring Security CAS module to Spring Security 7.0] (`io.arconia.rewrite.spring.security7.MigrateSpringSecurityCas_7_0`)
+*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_security7_MigrateSpringSecurityKerberos_7_0[Migrate the Spring Security Kerberos extension to Spring Security 7.0] (`io.arconia.rewrite.spring.security7.MigrateSpringSecurityKerberos_7_0`)
+** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_data2025_UpgradeSpringData_2025_1[Migrate to Spring Data 2025.1] (`io.arconia.rewrite.spring.data2025.UpgradeSpringData_2025_1`)
+*** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion` ×16)
+*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_data2025_MigrateSpringDataCommons_2025_1[Migrate the Spring Data Commons module to Spring Data 2025.1] (`io.arconia.rewrite.spring.data2025.MigrateSpringDataCommons_2025_1`)
+*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_data2025_MigrateSpringDataJpa_2025_1[Migrate the Spring Data JPA module to Spring Data 2025.1] (`io.arconia.rewrite.spring.data2025.MigrateSpringDataJpa_2025_1`)
+*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_data2025_MigrateSpringDataJdbc_2025_1[Migrate the Spring Data JDBC module to Spring Data 2025.1] (`io.arconia.rewrite.spring.data2025.MigrateSpringDataJdbc_2025_1`)
+*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_data2025_MigrateSpringDataMongoDb_2025_1[Migrate the Spring Data MongoDB module to Spring Data 2025.1] (`io.arconia.rewrite.spring.data2025.MigrateSpringDataMongoDb_2025_1`)
+*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_data2025_MigrateSpringDataCassandra_2025_1[Migrate the Spring Data for Apache Cassandra module to Spring Data 2025.1] (`io.arconia.rewrite.spring.data2025.MigrateSpringDataCassandra_2025_1`)
+** … and 98 more
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_UpgradeSpringBootProperties_4_1[Migrate Spring Boot properties to 4.1] (`io.arconia.rewrite.spring.boot4.UpgradeSpringBootProperties_4_1`)
 ** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_UpgradeSpringBootPropertiesGenerated_4_1[Migrate Spring Boot properties to 4.1 (generated)] (`io.arconia.rewrite.spring.boot4.UpgradeSpringBootPropertiesGenerated_4_1`)
 *** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×2)
@@ -8014,7 +8154,17 @@ _Tags: spring, boot_
 * Upgrade Maven plugin version (`org.openrewrite.maven.UpgradePluginVersion`)
 * Upgrade Maven parent project version (`org.openrewrite.maven.UpgradeParentVersion`)
 * Update a Gradle plugin by id (`org.openrewrite.gradle.plugins.UpgradePluginVersion`)
-* Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion` ×2)
+* Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_modulith2_UpgradeSpringModulith_2_1[Migrate to Spring Modulith 2.1] (`io.arconia.rewrite.spring.modulith2.UpgradeSpringModulith_2_1`)
+** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_modulith2_UpgradeSpringModulithProperties_2_1[Migrate Spring Modulith properties to 2.1] (`io.arconia.rewrite.spring.modulith2.UpgradeSpringModulithProperties_2_1`)
+*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_modulith2_UpgradeSpringModulithPropertiesGenerated_2_1[Migrate Spring Modulith properties to 2.1 (generated)] (`io.arconia.rewrite.spring.modulith2.UpgradeSpringModulithPropertiesGenerated_2_1`)
+** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+** Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency`)
+** Change type (`org.openrewrite.java.ChangeType` ×4)
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_security7_UpgradeSpringSecurity_7_1[Migrate to Spring Security 7.1] (`io.arconia.rewrite.spring.security7.UpgradeSpringSecurity_7_1`)
+** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_data2026_UpgradeSpringData_2026_0[Migrate to Spring Data 2026.0] (`io.arconia.rewrite.spring.data2026.UpgradeSpringData_2026_0`)
+** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion` ×16)
 ====
 
 [#io_arconia_rewrite_spring_boot4_UpgradeSpringBoot_4_2]
@@ -8041,16 +8191,16 @@ _Tags: spring, boot_
 *** Update a Gradle plugin by id (`org.openrewrite.gradle.plugins.UpgradePluginVersion`)
 *** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
 *** Update a Gradle plugin by id (`org.openrewrite.gradle.plugins.UpgradePluginVersion`)
-*** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion` ×3)
+*** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion` ×2)
 *** Change Gradle dependency (`org.openrewrite.gradle.ChangeDependency`)
 *** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion` ×2)
 *** xref:recipe-catalog/rewrite-testing.adoc#io_arconia_rewrite_testing_testcontainers_UpgradeTestcontainers_2[Migrate to Testcontainers 2.x] (`io.arconia.rewrite.testing.testcontainers.UpgradeTestcontainers_2`)
 *** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_cloud2025_UpgradeSpringCloud_2025_1[Migrate to Spring Cloud 2025.1] (`io.arconia.rewrite.spring.cloud2025.UpgradeSpringCloud_2025_1`)
 *** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_ai2_UpgradeSpringAi_2_0[Migrate to Spring AI 2.0] (`io.arconia.rewrite.spring.ai2.UpgradeSpringAi_2_0`)
-*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_MigrateActiveMqModule[Migrate Spring Boot ActiveMQ module to Spring Boot 4.0] (`io.arconia.rewrite.spring.boot4.MigrateActiveMqModule`)
-*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_MigrateActuatorModule[Migrate Spring Boot Actuator module to Spring Boot 4.0] (`io.arconia.rewrite.spring.boot4.MigrateActuatorModule`)
-*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_MigrateAmqpModule[Migrate Spring Boot AMQP module to Spring Boot 4.0] (`io.arconia.rewrite.spring.boot4.MigrateAmqpModule`)
-*** … and 95 more
+*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_modulith2_UpgradeSpringModulith_2_0[Migrate to Spring Modulith 2.0] (`io.arconia.rewrite.spring.modulith2.UpgradeSpringModulith_2_0`)
+*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_security7_UpgradeSpringSecurity_7_0[Migrate to Spring Security 7.0] (`io.arconia.rewrite.spring.security7.UpgradeSpringSecurity_7_0`)
+*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_data2025_UpgradeSpringData_2025_1[Migrate to Spring Data 2025.1] (`io.arconia.rewrite.spring.data2025.UpgradeSpringData_2025_1`)
+*** … and 98 more
 ** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_UpgradeSpringBootProperties_4_1[Migrate Spring Boot properties to 4.1] (`io.arconia.rewrite.spring.boot4.UpgradeSpringBootProperties_4_1`)
 *** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_UpgradeSpringBootPropertiesGenerated_4_1[Migrate Spring Boot properties to 4.1 (generated)] (`io.arconia.rewrite.spring.boot4.UpgradeSpringBootPropertiesGenerated_4_1`)
 *** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×5)
@@ -8061,7 +8211,21 @@ _Tags: spring, boot_
 ** Upgrade Maven plugin version (`org.openrewrite.maven.UpgradePluginVersion`)
 ** Upgrade Maven parent project version (`org.openrewrite.maven.UpgradeParentVersion`)
 ** Update a Gradle plugin by id (`org.openrewrite.gradle.plugins.UpgradePluginVersion`)
-** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion` ×2)
+** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_modulith2_UpgradeSpringModulith_2_1[Migrate to Spring Modulith 2.1] (`io.arconia.rewrite.spring.modulith2.UpgradeSpringModulith_2_1`)
+*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_modulith2_UpgradeSpringModulithProperties_2_1[Migrate Spring Modulith properties to 2.1] (`io.arconia.rewrite.spring.modulith2.UpgradeSpringModulithProperties_2_1`)
+*** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+*** Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency`)
+*** Change type (`org.openrewrite.java.ChangeType` ×4)
+** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_security7_UpgradeSpringSecurity_7_1[Migrate to Spring Security 7.1] (`io.arconia.rewrite.spring.security7.UpgradeSpringSecurity_7_1`)
+*** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_data2026_UpgradeSpringData_2026_0[Migrate to Spring Data 2026.0] (`io.arconia.rewrite.spring.data2026.UpgradeSpringData_2026_0`)
+*** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion` ×16)
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_framework7_UpgradeSpringFramework_7_1[Migrate to Spring Framework 7.1] (`io.arconia.rewrite.spring.framework7.UpgradeSpringFramework_7_1`)
+** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion` ×4)
+** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_framework7_MigrateSpringWeb_7_1[Migrate the Spring Web module to Spring Framework 7.1] (`io.arconia.rewrite.spring.framework7.MigrateSpringWeb_7_1`)
+*** Change type (`org.openrewrite.java.ChangeType`)
+*** Add a literal method argument (`org.openrewrite.java.AddLiteralMethodArgument` ×2)
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_UpgradeSpringBootProperties_4_2[Migrate Spring Boot properties to 4.2] (`io.arconia.rewrite.spring.boot4.UpgradeSpringBootProperties_4_2`)
 ** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_UpgradeSpringBootPropertiesGenerated_4_2[Migrate Spring Boot properties to 4.2 (generated)] (`io.arconia.rewrite.spring.boot4.UpgradeSpringBootPropertiesGenerated_4_2`)
 *** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×2)
@@ -8094,11 +8258,57 @@ _Tags: spring, boot_
 ** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_cloud2026_UpgradeSpringCloudProperties_2026_0[Migrate Spring Cloud properties to 2026.0] (`io.arconia.rewrite.spring.cloud2026.UpgradeSpringCloudProperties_2026_0`)
 *** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_cloud2026_UpgradeSpringCloudPropertiesGenerated_2026_0[Migrate Spring Cloud properties to 2026.0 (generated)] (`io.arconia.rewrite.spring.cloud2026.UpgradeSpringCloudPropertiesGenerated_2026_0`)
 ** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion` ×2)
+** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_cloud2026_MigrateSpringCloudGateway_5_1[Migrate Spring Cloud Gateway to 5.1] (`io.arconia.rewrite.spring.cloud2026.MigrateSpringCloudGateway_5_1`)
+*** Delete method argument (`org.openrewrite.java.DeleteMethodArgument` ×2)
+** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_cloud2026_MigrateSpringCloudContractToStubbornContract[Migrate Spring Cloud Contract to Stubborn Contract] (`io.arconia.rewrite.spring.cloud2026.MigrateSpringCloudContractToStubbornContract`)
+*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_cloud2026_MigrateStubRunnerRuleAnnotation[Migrate the stub runner JUnit 4 rule annotation to the JUnit 5 extension annotation] (`io.arconia.rewrite.spring.cloud2026.MigrateStubRunnerRuleAnnotation`)
+*** Change type (`org.openrewrite.java.ChangeType` ×2)
+*** Rename package name (`org.openrewrite.java.ChangePackage` ×3)
+*** Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency` ×14)
+*** Change Maven plugin group and artifact ID (`org.openrewrite.maven.ChangePluginGroupIdAndArtifactId`)
+*** Upgrade Maven plugin version (`org.openrewrite.maven.UpgradePluginVersion`)
+*** Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency`)
+*** Change a Gradle plugin (`org.openrewrite.gradle.plugins.ChangePlugin`)
+*** Change property key (`org.openrewrite.properties.ChangePropertyKey`)
+*** Change property key (`org.openrewrite.yaml.ChangePropertyKey`)
+*** Change property key (`org.openrewrite.properties.ChangePropertyKey`)
+*** Change property key (`org.openrewrite.yaml.ChangePropertyKey`)
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_ai2_UpgradeSpringAi_2_1[Migrate to Spring AI 2.1] (`io.arconia.rewrite.spring.ai2.UpgradeSpringAi_2_1`)
 ** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_ai2_UpgradeSpringAiProperties_2_1[Migrate Spring AI properties to 2.1] (`io.arconia.rewrite.spring.ai2.UpgradeSpringAiProperties_2_1`)
 *** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_ai2_UpgradeSpringAiPropertiesGenerated_2_1[Migrate Spring AI properties to 2.1 (generated)] (`io.arconia.rewrite.spring.ai2.UpgradeSpringAiPropertiesGenerated_2_1`)
 ** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_modulith2_UpgradeSpringModulith_2_2[Migrate to Spring Modulith 2.2] (`io.arconia.rewrite.spring.modulith2.UpgradeSpringModulith_2_2`)
+** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_modulith2_UpgradeSpringModulithProperties_2_2[Migrate Spring Modulith properties to 2.2] (`io.arconia.rewrite.spring.modulith2.UpgradeSpringModulithProperties_2_2`)
+*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_modulith2_UpgradeSpringModulithPropertiesGenerated_2_2[Migrate Spring Modulith properties to 2.2 (generated)] (`io.arconia.rewrite.spring.modulith2.UpgradeSpringModulithPropertiesGenerated_2_2`)
+** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_security7_UpgradeSpringSecurity_7_2[Migrate to Spring Security 7.2] (`io.arconia.rewrite.spring.security7.UpgradeSpringSecurity_7_2`)
+** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_data2026_UpgradeSpringData_2026_1[Migrate to Spring Data 2026.1] (`io.arconia.rewrite.spring.data2026.UpgradeSpringData_2026_1`)
+** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion` ×16)
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_MigrateSpringBootHttp_4_2[Migrate the Spring Boot HTTP modules to Spring Boot 4.2] (`io.arconia.rewrite.spring.boot4.MigrateSpringBootHttp_4_2`)
+** Change type (`org.openrewrite.java.ChangeType`)
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_MigrateSpringBootRabbitMq_4_2[Migrate the Spring Boot AMQP module to the RabbitMQ module in Spring Boot 4.2] (`io.arconia.rewrite.spring.boot4.MigrateSpringBootRabbitMq_4_2`)
+** Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency` ×3)
+** Rename package name (`org.openrewrite.java.ChangePackage` ×5)
 ====
+
+*Example*
+
+.Before
+[source,properties]
+----
+spring.modulith.republish-outstanding-events-on-restart=true
+spring.modulith.events.staleness.check-intervall=30s
+spring.modulith.events.staleness.resubmission=5m
+----
+
+.After
+[source,properties]
+----
+spring.modulith.events.republish-outstanding-events-on-restart=true
+spring.modulith.events.staleness.check-interval=30s
+spring.modulith.events.staleness.resubmitted=5m
+----
 
 *Recipes*
 
@@ -8490,6 +8700,76 @@ spring.cloud.gateway.server.webflux.metrics.path-tags.enabled=true
 
 *Composite recipes*
 
+[#io_arconia_rewrite_spring_cloud2026_MigrateSpringCloudContractToStubbornContract]
+=== Migrate Spring Cloud Contract to Stubborn Contract
+`io.arconia.rewrite.spring.cloud2026.MigrateSpringCloudContractToStubbornContract`
+
+Migrate from Spring Cloud Contract, which was archived and is no longer part of the Spring Cloud 2026.0 release train, to Stubborn Contract, its continuation. Moves build coordinates, build plugins, Java packages, configuration property prefixes, and the JUnit 4 stub runner rule to their Stubborn Contract equivalents.
+
+.Recipes applied
+[%collapsible]
+====
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_cloud2026_MigrateStubRunnerRuleAnnotation[Migrate the stub runner JUnit 4 rule annotation to the JUnit 5 extension annotation] (`io.arconia.rewrite.spring.cloud2026.MigrateStubRunnerRuleAnnotation`)
+** Change type (`org.openrewrite.java.ChangeType`)
+* Change type (`org.openrewrite.java.ChangeType` ×2)
+* Rename package name (`org.openrewrite.java.ChangePackage` ×3)
+* Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency` ×14)
+* Change Maven plugin group and artifact ID (`org.openrewrite.maven.ChangePluginGroupIdAndArtifactId`)
+* Upgrade Maven plugin version (`org.openrewrite.maven.UpgradePluginVersion`)
+* Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency`)
+* Change a Gradle plugin (`org.openrewrite.gradle.plugins.ChangePlugin`)
+* Change property key (`org.openrewrite.properties.ChangePropertyKey`)
+* Change property key (`org.openrewrite.yaml.ChangePropertyKey`)
+* Change property key (`org.openrewrite.properties.ChangePropertyKey`)
+* Change property key (`org.openrewrite.yaml.ChangePropertyKey`)
+====
+
+[#io_arconia_rewrite_spring_cloud2026_MigrateSpringCloudGateway_5_1]
+=== Migrate Spring Cloud Gateway to 5.1
+`io.arconia.rewrite.spring.cloud2026.MigrateSpringCloudGateway_5_1`
+
+Migrate Spring Cloud Gateway usages that changed in the 5.1 release shipped with Spring Cloud 2026.0. The retry filter moved from Reactor Addons to the retry support built into Reactor, dropping the `basedOnPreviousValue` backoff flag.
+
+.Recipes applied
+[%collapsible]
+====
+* Delete method argument (`org.openrewrite.java.DeleteMethodArgument` ×2)
+====
+
+*Example*
+
+.Before
+[source,java]
+----
+import java.time.Duration;
+
+import org.springframework.cloud.gateway.filter.factory.RetryGatewayFilterFactory;
+
+class Demo {
+    RetryGatewayFilterFactory.RetryConfig config = new RetryGatewayFilterFactory.RetryConfig()
+            .setBackoff(Duration.ofMillis(10), Duration.ofMillis(50), 2, false);
+
+    RetryGatewayFilterFactory.BackoffConfig backoff =
+            new RetryGatewayFilterFactory.BackoffConfig(Duration.ofMillis(10), Duration.ofMillis(50), 2, true);
+}
+----
+
+.After
+[source,java]
+----
+import java.time.Duration;
+
+import org.springframework.cloud.gateway.filter.factory.RetryGatewayFilterFactory;
+
+class Demo {
+    RetryGatewayFilterFactory.RetryConfig config = new RetryGatewayFilterFactory.RetryConfig()
+            .setBackoff(Duration.ofMillis(10), Duration.ofMillis(50), 2);
+
+    RetryGatewayFilterFactory.BackoffConfig backoff =
+            new RetryGatewayFilterFactory.BackoffConfig(Duration.ofMillis(10), Duration.ofMillis(50), 2);
+}
+----
+
 [#io_arconia_rewrite_spring_cloud2026_UpgradeSpringCloudProperties_2026_0]
 === Migrate Spring Cloud properties to 2026.0
 `io.arconia.rewrite.spring.cloud2026.UpgradeSpringCloudProperties_2026_0`
@@ -8521,6 +8801,18 @@ _Tags: spring, cloud_
 * xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×13)
 ====
 
+[#io_arconia_rewrite_spring_cloud2026_MigrateStubRunnerRuleAnnotation]
+=== Migrate the stub runner JUnit 4 rule annotation to the JUnit 5 extension annotation
+`io.arconia.rewrite.spring.cloud2026.MigrateStubRunnerRuleAnnotation`
+
+Replace the `@Rule` annotation with `@RegisterExtension` in test classes that use the Spring Cloud Contract stub runner rule, ahead of migrating the rule itself to the Stubborn Contract extension.
+
+.Recipes applied
+[%collapsible]
+====
+* Change type (`org.openrewrite.java.ChangeType`)
+====
+
 [#io_arconia_rewrite_spring_cloud2026_UpgradeSpringCloud_2026_0]
 === Migrate to Spring Cloud 2026.0
 `io.arconia.rewrite.spring.cloud2026.UpgradeSpringCloud_2026_0`
@@ -8537,6 +8829,234 @@ _Tags: spring, cloud_
 *** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×3)
 *** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×13)
 * Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion` ×2)
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_cloud2026_MigrateSpringCloudGateway_5_1[Migrate Spring Cloud Gateway to 5.1] (`io.arconia.rewrite.spring.cloud2026.MigrateSpringCloudGateway_5_1`)
+** Delete method argument (`org.openrewrite.java.DeleteMethodArgument` ×2)
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_cloud2026_MigrateSpringCloudContractToStubbornContract[Migrate Spring Cloud Contract to Stubborn Contract] (`io.arconia.rewrite.spring.cloud2026.MigrateSpringCloudContractToStubbornContract`)
+** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_cloud2026_MigrateStubRunnerRuleAnnotation[Migrate the stub runner JUnit 4 rule annotation to the JUnit 5 extension annotation] (`io.arconia.rewrite.spring.cloud2026.MigrateStubRunnerRuleAnnotation`)
+*** Change type (`org.openrewrite.java.ChangeType`)
+** Change type (`org.openrewrite.java.ChangeType` ×2)
+** Rename package name (`org.openrewrite.java.ChangePackage` ×3)
+** Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency` ×14)
+** Change Maven plugin group and artifact ID (`org.openrewrite.maven.ChangePluginGroupIdAndArtifactId`)
+** Upgrade Maven plugin version (`org.openrewrite.maven.UpgradePluginVersion`)
+** Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency`)
+** Change a Gradle plugin (`org.openrewrite.gradle.plugins.ChangePlugin`)
+** Change property key (`org.openrewrite.properties.ChangePropertyKey`)
+** Change property key (`org.openrewrite.yaml.ChangePropertyKey`)
+** Change property key (`org.openrewrite.properties.ChangePropertyKey`)
+** Change property key (`org.openrewrite.yaml.ChangePropertyKey`)
+====
+
+*Example*
+
+.Before
+[source,properties]
+----
+spring.cloud.consul.config.prefix=config
+spring.cloud.gateway.server.webflux.metrics.tags.path.enabled=true
+----
+
+.After
+[source,properties]
+----
+spring.cloud.consul.config.prefixes=config
+spring.cloud.gateway.server.webflux.metrics.path-tags.enabled=true
+----
+
+[#family-spring-data2025]
+== spring › data2025
+
+*Composite recipes*
+
+[#io_arconia_rewrite_spring_data2025_MigrateSpringDataCommons_2025_1]
+=== Migrate the Spring Data Commons module to Spring Data 2025.1
+`io.arconia.rewrite.spring.data2025.MigrateSpringDataCommons_2025_1`
+
+Update usages of Spring Data Commons APIs that were removed, relocated, or renamed in the Spring Data 2025.1 release train. The persistence constructor annotation gave way to the persistence creator one, several core types moved to the new `core` package, and the constructor-oriented mapping metadata methods were renamed to their creator-oriented successors.
+
+.Recipes applied
+[%collapsible]
+====
+* Change type (`org.openrewrite.java.ChangeType`)
+* Change method name (`org.openrewrite.java.ChangeMethodName` ×5)
+* Change type (`org.openrewrite.java.ChangeType` ×10)
+* Change method name (`org.openrewrite.java.ChangeMethodName` ×2)
+====
+
+[#io_arconia_rewrite_spring_data2025_MigrateSpringDataJdbc_2025_1]
+=== Migrate the Spring Data JDBC module to Spring Data 2025.1
+`io.arconia.rewrite.spring.data2025.MigrateSpringDataJdbc_2025_1`
+
+Update usages of Spring Data JDBC APIs that were relocated in the Spring Data 2025.1 release train. The query mapping configuration moved to the conversion package.
+
+.Recipes applied
+[%collapsible]
+====
+* Change type (`org.openrewrite.java.ChangeType`)
+====
+
+[#io_arconia_rewrite_spring_data2025_MigrateSpringDataJpa_2025_1]
+=== Migrate the Spring Data JPA module to Spring Data 2025.1
+`io.arconia.rewrite.spring.data2025.MigrateSpringDataJpa_2025_1`
+
+Flag the native query parser property removed in Spring Data JPA 4.0. The query enhancer is now selected through the `queryEnhancerSelector` attribute of `@EnableJpaRepositories`.
+
+.Recipes applied
+[%collapsible]
+====
+* xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
+====
+
+[#io_arconia_rewrite_spring_data2025_MigrateSpringDataMongoDb_2025_1]
+=== Migrate the Spring Data MongoDB module to Spring Data 2025.1
+`io.arconia.rewrite.spring.data2025.MigrateSpringDataMongoDb_2025_1`
+
+Update usages of Spring Data MongoDB APIs that changed in the Spring Data 2025.1 release train. The `allowDiskUse` attribute of the `@Meta` annotation changed from a boolean to a string so that the server default can be expressed.
+
+.Recipes applied
+[%collapsible]
+====
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_data2025_UseStringValueForMetaAllowDiskUse[Use a string value for the `allowDiskUse` attribute of `@Meta`] (`io.arconia.rewrite.spring.data2025.UseStringValueForMetaAllowDiskUse`)
+====
+
+[#io_arconia_rewrite_spring_data2025_MigrateSpringDataCassandra_2025_1]
+=== Migrate the Spring Data for Apache Cassandra module to Spring Data 2025.1
+`io.arconia.rewrite.spring.data2025.MigrateSpringDataCassandra_2025_1`
+
+Update usages of Spring Data for Apache Cassandra APIs that were removed in the Spring Data 2025.1 release train. The legacy asynchronous templates and operations that returned `ListenableFuture` were replaced by the `CompletableFuture` based ones, and the deprecated mapping context and session factory beans were replaced by their successors.
+
+.Recipes applied
+[%collapsible]
+====
+* Change type (`org.openrewrite.java.ChangeType` ×7)
+====
+
+[#io_arconia_rewrite_spring_data2025_UpgradeSpringData_2025_1]
+=== Migrate to Spring Data 2025.1
+`io.arconia.rewrite.spring.data2025.UpgradeSpringData_2025_1`
+
+Migrate a Spring application to the latest Spring Data 2025.1.x release train.
+
+_Tags: spring, data_
+
+.Recipes applied
+[%collapsible]
+====
+* Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion` ×16)
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_data2025_MigrateSpringDataCommons_2025_1[Migrate the Spring Data Commons module to Spring Data 2025.1] (`io.arconia.rewrite.spring.data2025.MigrateSpringDataCommons_2025_1`)
+** Change type (`org.openrewrite.java.ChangeType`)
+** Change method name (`org.openrewrite.java.ChangeMethodName` ×5)
+** Change type (`org.openrewrite.java.ChangeType` ×10)
+** Change method name (`org.openrewrite.java.ChangeMethodName` ×2)
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_data2025_MigrateSpringDataJpa_2025_1[Migrate the Spring Data JPA module to Spring Data 2025.1] (`io.arconia.rewrite.spring.data2025.MigrateSpringDataJpa_2025_1`)
+** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_data2025_MigrateSpringDataJdbc_2025_1[Migrate the Spring Data JDBC module to Spring Data 2025.1] (`io.arconia.rewrite.spring.data2025.MigrateSpringDataJdbc_2025_1`)
+** Change type (`org.openrewrite.java.ChangeType`)
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_data2025_MigrateSpringDataMongoDb_2025_1[Migrate the Spring Data MongoDB module to Spring Data 2025.1] (`io.arconia.rewrite.spring.data2025.MigrateSpringDataMongoDb_2025_1`)
+** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_data2025_UseStringValueForMetaAllowDiskUse[Use a string value for the `allowDiskUse` attribute of `@Meta`] (`io.arconia.rewrite.spring.data2025.UseStringValueForMetaAllowDiskUse`)
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_data2025_MigrateSpringDataCassandra_2025_1[Migrate the Spring Data for Apache Cassandra module to Spring Data 2025.1] (`io.arconia.rewrite.spring.data2025.MigrateSpringDataCassandra_2025_1`)
+** Change type (`org.openrewrite.java.ChangeType` ×7)
+====
+
+*Example*
+
+.Before
+[source,java]
+----
+import org.springframework.data.annotation.PersistenceConstructor;
+import org.springframework.data.mapping.PersistentEntity;
+import org.springframework.data.mapping.PersistentProperty;
+import org.springframework.data.mapping.PersistentPropertyPath;
+import org.springframework.data.mapping.PropertyPath;
+import org.springframework.data.util.TypeInformation;
+
+class Person {
+
+    @PersistenceConstructor
+    Person(String name) {
+    }
+
+    PropertyPath path = PropertyPath.from("name", Person.class);
+    TypeInformation<Person> type = null;
+
+    boolean creatorArgument(PersistentEntity<?, ?> entity, PersistentProperty<?> property) {
+        return entity.isConstructorArgument(property);
+    }
+
+    PersistentProperty<?> leaf(PersistentPropertyPath<PersistentProperty<?>> path) {
+        return path.getRequiredLeafProperty();
+    }
+}
+----
+
+.After
+[source,java]
+----
+import org.springframework.data.annotation.PersistenceCreator;
+import org.springframework.data.core.PropertyPath;
+import org.springframework.data.core.TypeInformation;
+import org.springframework.data.mapping.PersistentEntity;
+import org.springframework.data.mapping.PersistentProperty;
+import org.springframework.data.mapping.PersistentPropertyPath;
+
+class Person {
+
+    @PersistenceCreator
+    Person(String name) {
+    }
+
+    PropertyPath path = PropertyPath.from("name", Person.class);
+    TypeInformation<Person> type = null;
+
+    boolean creatorArgument(PersistentEntity<?, ?> entity, PersistentProperty<?> property) {
+        return entity.isCreatorArgument(property);
+    }
+
+    PersistentProperty<?> leaf(PersistentPropertyPath<PersistentProperty<?>> path) {
+        return path.getLeafProperty();
+    }
+}
+----
+
+*Recipes*
+
+[#io_arconia_rewrite_spring_data2025_UseStringValueForMetaAllowDiskUse]
+=== Use a string value for the `allowDiskUse` attribute of `@Meta`
+`io.arconia.rewrite.spring.data2025.UseStringValueForMetaAllowDiskUse`
+
+Replace boolean `allowDiskUse` values on the Spring Data MongoDB `@Meta` annotation with the equivalent string values, since the attribute changed from `boolean` to `String` in Spring Data MongoDB 5.0.
+
+[#family-spring-data2026]
+== spring › data2026
+
+*Composite recipes*
+
+[#io_arconia_rewrite_spring_data2026_UpgradeSpringData_2026_0]
+=== Migrate to Spring Data 2026.0
+`io.arconia.rewrite.spring.data2026.UpgradeSpringData_2026_0`
+
+Migrate a Spring application to the latest Spring Data 2026.0.x release train.
+
+_Tags: spring, data_
+
+.Recipes applied
+[%collapsible]
+====
+* Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion` ×16)
+====
+
+[#io_arconia_rewrite_spring_data2026_UpgradeSpringData_2026_1]
+=== Migrate to Spring Data 2026.1
+`io.arconia.rewrite.spring.data2026.UpgradeSpringData_2026_1`
+
+Migrate a Spring application to the latest Spring Data 2026.1.x release train.
+
+_Tags: spring, data_
+
+.Recipes applied
+[%collapsible]
+====
+* Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion` ×16)
 ====
 
 [#family-spring-framework6]
@@ -8731,6 +9251,19 @@ Update usages of Spring Web APIs that were renamed or replaced in Spring Framewo
 * Replace constant with another constant (`org.openrewrite.java.ReplaceConstantWithAnotherConstant` ×2)
 ====
 
+[#io_arconia_rewrite_spring_framework7_MigrateSpringWeb_7_1]
+=== Migrate the Spring Web module to Spring Framework 7.1
+`io.arconia.rewrite.spring.framework7.MigrateSpringWeb_7_1`
+
+Update usages of Spring Web APIs that were deprecated or replaced in Spring Framework 7.1. The forwarded-header filter and transformer are switched to the explicit constructor that selects the "X-Forwarded" header family, matching the Spring Boot default. Applications relying on the standard "Forwarded" header or on "X-Forwarded-Prefix" need to adjust the result.
+
+.Recipes applied
+[%collapsible]
+====
+* Change type (`org.openrewrite.java.ChangeType`)
+* Add a literal method argument (`org.openrewrite.java.AddLiteralMethodArgument` ×2)
+====
+
 [#io_arconia_rewrite_spring_framework7_MigrateSpringWebFlux_7_0]
 === Migrate the Spring WebFlux module to Spring Framework 7.0
 `io.arconia.rewrite.spring.framework7.MigrateSpringWebFlux_7_0`
@@ -8819,6 +9352,476 @@ _Tags: spring, framework_
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_framework7_MigrateSpringWebMvc_7_0[Migrate the Spring Web MVC module to Spring Framework 7.0] (`io.arconia.rewrite.spring.framework7.MigrateSpringWebMvc_7_0`)
 ** Change method name (`org.openrewrite.java.ChangeMethodName` ×4)
 ** Replace constant with another constant (`org.openrewrite.java.ReplaceConstantWithAnotherConstant`)
+====
+
+[#io_arconia_rewrite_spring_framework7_UpgradeSpringFramework_7_1]
+=== Migrate to Spring Framework 7.1
+`io.arconia.rewrite.spring.framework7.UpgradeSpringFramework_7_1`
+
+Migrate a Spring application to the latest Spring Framework 7.1.x release.
+
+_Tags: spring, framework_
+
+.Recipes applied
+[%collapsible]
+====
+* Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion` ×4)
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_framework7_MigrateSpringWeb_7_1[Migrate the Spring Web module to Spring Framework 7.1] (`io.arconia.rewrite.spring.framework7.MigrateSpringWeb_7_1`)
+** Change type (`org.openrewrite.java.ChangeType`)
+** Add a literal method argument (`org.openrewrite.java.AddLiteralMethodArgument` ×2)
+====
+
+*Example*
+
+.Before
+[source,java]
+----
+import org.springframework.web.filter.ForwardedHeaderFilter;
+import org.springframework.web.server.adapter.ForwardedHeaderTransformer;
+
+class Demo {
+    ForwardedHeaderFilter filter() {
+        return new ForwardedHeaderFilter();
+    }
+
+    ForwardedHeaderTransformer transformer() {
+        return new ForwardedHeaderTransformer();
+    }
+}
+----
+
+.After
+[source,java]
+----
+import org.springframework.web.filter.ForwardedHeaderFilter;
+import org.springframework.web.server.adapter.ForwardedHeaderTransformer;
+
+class Demo {
+    ForwardedHeaderFilter filter() {
+        return new ForwardedHeaderFilter(false);
+    }
+
+    ForwardedHeaderTransformer transformer() {
+        return new ForwardedHeaderTransformer(false);
+    }
+}
+----
+
+[#family-spring-modulith2]
+== spring › modulith2
+
+*Composite recipes*
+
+[#io_arconia_rewrite_spring_modulith2_UpgradeSpringModulithProperties_2_0]
+=== Migrate Spring Modulith properties to 2.0
+`io.arconia.rewrite.spring.modulith2.UpgradeSpringModulithProperties_2_0`
+
+Migrate Spring Modulith configuration properties that were renamed or deprecated in the 2.0 release, across YAML and Properties configuration files.
+
+_Tags: spring, modulith_
+
+.Recipes applied
+[%collapsible]
+====
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_modulith2_UpgradeSpringModulithPropertiesGenerated_2_0[Migrate Spring Modulith properties to 2.0 (generated)] (`io.arconia.rewrite.spring.modulith2.UpgradeSpringModulithPropertiesGenerated_2_0`)
+** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×3)
+====
+
+[#io_arconia_rewrite_spring_modulith2_UpgradeSpringModulithPropertiesGenerated_2_0]
+=== Migrate Spring Modulith properties to 2.0 (generated)
+`io.arconia.rewrite.spring.modulith2.UpgradeSpringModulithPropertiesGenerated_2_0`
+
+Migrate Spring Modulith configuration properties that were renamed or deprecated in the 2.0 release, across YAML and Properties configuration files.
+
+_Tags: spring, modulith_
+
+.Recipes applied
+[%collapsible]
+====
+* xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×3)
+====
+
+[#io_arconia_rewrite_spring_modulith2_UpgradeSpringModulithProperties_2_1]
+=== Migrate Spring Modulith properties to 2.1
+`io.arconia.rewrite.spring.modulith2.UpgradeSpringModulithProperties_2_1`
+
+Migrate Spring Modulith configuration properties that were renamed or deprecated in the 2.1 release, across YAML and Properties configuration files.
+
+_Tags: spring, modulith_
+
+.Recipes applied
+[%collapsible]
+====
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_modulith2_UpgradeSpringModulithPropertiesGenerated_2_1[Migrate Spring Modulith properties to 2.1 (generated)] (`io.arconia.rewrite.spring.modulith2.UpgradeSpringModulithPropertiesGenerated_2_1`)
+** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×3)
+====
+
+[#io_arconia_rewrite_spring_modulith2_UpgradeSpringModulithPropertiesGenerated_2_1]
+=== Migrate Spring Modulith properties to 2.1 (generated)
+`io.arconia.rewrite.spring.modulith2.UpgradeSpringModulithPropertiesGenerated_2_1`
+
+Migrate Spring Modulith configuration properties that were renamed or deprecated in the 2.1 release, across YAML and Properties configuration files.
+
+_Tags: spring, modulith_
+
+.Recipes applied
+[%collapsible]
+====
+* xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×3)
+====
+
+[#io_arconia_rewrite_spring_modulith2_UpgradeSpringModulithProperties_2_2]
+=== Migrate Spring Modulith properties to 2.2
+`io.arconia.rewrite.spring.modulith2.UpgradeSpringModulithProperties_2_2`
+
+Migrate Spring Modulith configuration properties that were renamed or deprecated in the 2.2 release, across YAML and Properties configuration files.
+
+_Tags: spring, modulith_
+
+.Recipes applied
+[%collapsible]
+====
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_modulith2_UpgradeSpringModulithPropertiesGenerated_2_2[Migrate Spring Modulith properties to 2.2 (generated)] (`io.arconia.rewrite.spring.modulith2.UpgradeSpringModulithPropertiesGenerated_2_2`)
+====
+
+[#io_arconia_rewrite_spring_modulith2_UpgradeSpringModulith_2_0]
+=== Migrate to Spring Modulith 2.0
+`io.arconia.rewrite.spring.modulith2.UpgradeSpringModulith_2_0`
+
+Migrate a Spring Boot application to the latest Spring Modulith 2.0.x release.
+
+_Tags: spring, modulith_
+
+.Recipes applied
+[%collapsible]
+====
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_modulith2_UpgradeSpringModulithProperties_2_0[Migrate Spring Modulith properties to 2.0] (`io.arconia.rewrite.spring.modulith2.UpgradeSpringModulithProperties_2_0`)
+** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_modulith2_UpgradeSpringModulithPropertiesGenerated_2_0[Migrate Spring Modulith properties to 2.0 (generated)] (`io.arconia.rewrite.spring.modulith2.UpgradeSpringModulithPropertiesGenerated_2_0`)
+*** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×3)
+* Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+* Change type (`org.openrewrite.java.ChangeType`)
+====
+
+*Example*
+
+.Before
+[source,properties]
+----
+spring.modulith.republish-outstanding-events-on-restart=true
+spring.modulith.events.staleness.check-intervall=30s
+spring.modulith.events.staleness.resubmission=5m
+----
+
+.After
+[source,properties]
+----
+spring.modulith.events.republish-outstanding-events-on-restart=true
+spring.modulith.events.staleness.check-interval=30s
+spring.modulith.events.staleness.resubmitted=5m
+----
+
+[#io_arconia_rewrite_spring_modulith2_UpgradeSpringModulith_2_1]
+=== Migrate to Spring Modulith 2.1
+`io.arconia.rewrite.spring.modulith2.UpgradeSpringModulith_2_1`
+
+Migrate a Spring Boot application to the latest Spring Modulith 2.1.x release.
+
+_Tags: spring, modulith_
+
+.Recipes applied
+[%collapsible]
+====
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_modulith2_UpgradeSpringModulithProperties_2_1[Migrate Spring Modulith properties to 2.1] (`io.arconia.rewrite.spring.modulith2.UpgradeSpringModulithProperties_2_1`)
+** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_modulith2_UpgradeSpringModulithPropertiesGenerated_2_1[Migrate Spring Modulith properties to 2.1 (generated)] (`io.arconia.rewrite.spring.modulith2.UpgradeSpringModulithPropertiesGenerated_2_1`)
+*** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×3)
+* Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+* Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency`)
+* Change type (`org.openrewrite.java.ChangeType` ×4)
+====
+
+*Example*
+
+.Before
+[source,groovy]
+----
+plugins {
+    id 'java-library'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation "org.springframework.modulith:spring-modulith-observability"
+}
+----
+
+.After
+[source,groovy]
+----
+plugins {
+    id 'java-library'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation "org.springframework.modulith:spring-modulith-observability-core"
+}
+----
+
+[#io_arconia_rewrite_spring_modulith2_UpgradeSpringModulith_2_2]
+=== Migrate to Spring Modulith 2.2
+`io.arconia.rewrite.spring.modulith2.UpgradeSpringModulith_2_2`
+
+Migrate a Spring Boot application to the latest Spring Modulith 2.2.x release.
+
+_Tags: spring, modulith_
+
+.Recipes applied
+[%collapsible]
+====
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_modulith2_UpgradeSpringModulithProperties_2_2[Migrate Spring Modulith properties to 2.2] (`io.arconia.rewrite.spring.modulith2.UpgradeSpringModulithProperties_2_2`)
+** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_modulith2_UpgradeSpringModulithPropertiesGenerated_2_2[Migrate Spring Modulith properties to 2.2 (generated)] (`io.arconia.rewrite.spring.modulith2.UpgradeSpringModulithPropertiesGenerated_2_2`)
+* Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+====
+
+*Recipes*
+
+[#io_arconia_rewrite_spring_modulith2_UpgradeSpringModulithPropertiesGenerated_2_2]
+=== Migrate Spring Modulith properties to 2.2 (generated)
+`io.arconia.rewrite.spring.modulith2.UpgradeSpringModulithPropertiesGenerated_2_2`
+
+Migrate Spring Modulith configuration properties that were renamed or deprecated in the 2.2 release, across YAML and Properties configuration files.
+
+_Tags: spring, modulith_
+
+[#family-spring-security7]
+== spring › security7
+
+*Composite recipes*
+
+[#io_arconia_rewrite_spring_security7_MigrateSpringSecurityCas_7_0]
+=== Migrate the Spring Security CAS module to Spring Security 7.0
+`io.arconia.rewrite.spring.security7.MigrateSpringSecurityCas_7_0`
+
+Update usages of Spring Security CAS APIs that were removed in Spring Security 7.0. The service authentication details type moved out of the web package.
+
+.Recipes applied
+[%collapsible]
+====
+* Change type (`org.openrewrite.java.ChangeType`)
+====
+
+[#io_arconia_rewrite_spring_security7_MigrateSpringSecurityConfig_7_0]
+=== Migrate the Spring Security Config module to Spring Security 7.0
+`io.arconia.rewrite.spring.security7.MigrateSpringSecurityConfig_7_0`
+
+Update usages of Spring Security Config APIs that were removed in Spring Security 7.0. The object post processor moved out of the annotation package, and the Spring MVC security annotation was folded into the web security one.
+
+.Recipes applied
+[%collapsible]
+====
+* Change type (`org.openrewrite.java.ChangeType` ×2)
+====
+
+[#io_arconia_rewrite_spring_security7_MigrateSpringSecurityCore_7_0]
+=== Migrate the Spring Security Core module to Spring Security 7.0
+`io.arconia.rewrite.spring.security7.MigrateSpringSecurityCore_7_0`
+
+Update usages of Spring Security Core APIs that were renamed or replaced in Spring Security 7.0. The `check` method of the authorization managers became `authorize`, and the pre/post template defaults were replaced by the annotation template expression defaults.
+
+.Recipes applied
+[%collapsible]
+====
+* Change method name (`org.openrewrite.java.ChangeMethodName` ×2)
+* Change type (`org.openrewrite.java.ChangeType`)
+====
+
+[#io_arconia_rewrite_spring_security7_MigrateSpringSecurityKerberos_7_0]
+=== Migrate the Spring Security Kerberos extension to Spring Security 7.0
+`io.arconia.rewrite.spring.security7.MigrateSpringSecurityKerberos_7_0`
+
+Move the Spring Security Kerberos artifacts, which became part of Spring Security in the 7.0 release, from the `org.springframework.security.kerberos` group to the `org.springframework.security` group. The packages are unchanged.
+
+.Recipes applied
+[%collapsible]
+====
+* Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency` ×3)
+====
+
+[#io_arconia_rewrite_spring_security7_MigrateSpringSecurityOAuth2Client_7_0]
+=== Migrate the Spring Security OAuth2 Client module to Spring Security 7.0
+`io.arconia.rewrite.spring.security7.MigrateSpringSecurityOAuth2Client_7_0`
+
+Replace the token response clients removed in Spring Security 7.0 with their `RestClient` based successors. Code that customized the removed clients through their request entity converter or `RestOperations` setters needs to move to the parameters converter and `RestClient` setters of the new clients. The password grant was removed without replacement.
+
+.Recipes applied
+[%collapsible]
+====
+* Change type (`org.openrewrite.java.ChangeType` ×5)
+====
+
+[#io_arconia_rewrite_spring_security7_MigrateSpringSecurityOAuth2ResourceServer_7_0]
+=== Migrate the Spring Security OAuth2 Resource Server module to Spring Security 7.0
+`io.arconia.rewrite.spring.security7.MigrateSpringSecurityOAuth2ResourceServer_7_0`
+
+Update usages of Spring Security OAuth2 Resource Server APIs that were removed in Spring Security 7.0. The bearer token authentication token and filter moved to their `authentication` subpackages, and the Nimbus opaque token introspectors were replaced by the Spring ones with the same constructors.
+
+.Recipes applied
+[%collapsible]
+====
+* Change type (`org.openrewrite.java.ChangeType` ×4)
+====
+
+[#io_arconia_rewrite_spring_security7_MigrateSpringSecuritySaml2_7_0]
+=== Migrate the Spring Security SAML2 Service Provider module to Spring Security 7.0
+`io.arconia.rewrite.spring.security7.MigrateSpringSecuritySaml2_7_0`
+
+Update usages of Spring Security SAML2 APIs that were removed in Spring Security 7.0. The OpenSAML 4 components were removed in favor of the OpenSAML 5 ones, explicitly declared OpenSAML dependencies move to the 5.x line, and the asserting party details accessors were replaced by the asserting party metadata ones.
+
+.Recipes applied
+[%collapsible]
+====
+* Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+* Change type (`org.openrewrite.java.ChangeType` ×15)
+* Change method name (`org.openrewrite.java.ChangeMethodName` ×2)
+====
+
+[#io_arconia_rewrite_spring_security7_MigrateSpringSecurityWeb_7_0]
+=== Migrate the Spring Security Web module to Spring Security 7.0
+`io.arconia.rewrite.spring.security7.MigrateSpringSecurityWeb_7_0`
+
+Add the `spring-security-webauthn` module, which Spring Security 7.0 split out of the web module, to projects that use the WebAuthn support.
+
+.Recipes applied
+[%collapsible]
+====
+* Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
+====
+
+[#io_arconia_rewrite_spring_security7_MigrateSpringSecurityAccess_7_0]
+=== Migrate the legacy Spring Security Access API to Spring Security 7.0
+`io.arconia.rewrite.spring.security7.MigrateSpringSecurityAccess_7_0`
+
+Add the `spring-security-access` module to projects that still use the legacy Access API, such as access decision managers and voters, which Spring Security 7.0 moved out of the core, web, ACL, and messaging modules. The Access API has been deprecated in favor of the Authorization API since Spring Security 5.
+
+.Recipes applied
+[%collapsible]
+====
+* Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency` ×15)
+====
+
+[#io_arconia_rewrite_spring_security7_UpgradeSpringSecurity_7_0]
+=== Migrate to Spring Security 7.0
+`io.arconia.rewrite.spring.security7.UpgradeSpringSecurity_7_0`
+
+Migrate a Spring application to the latest Spring Security 7.0.x release.
+
+_Tags: spring, security_
+
+.Recipes applied
+[%collapsible]
+====
+* Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_security7_MigrateSpringSecurityCore_7_0[Migrate the Spring Security Core module to Spring Security 7.0] (`io.arconia.rewrite.spring.security7.MigrateSpringSecurityCore_7_0`)
+** Change method name (`org.openrewrite.java.ChangeMethodName` ×2)
+** Change type (`org.openrewrite.java.ChangeType`)
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_security7_MigrateSpringSecurityConfig_7_0[Migrate the Spring Security Config module to Spring Security 7.0] (`io.arconia.rewrite.spring.security7.MigrateSpringSecurityConfig_7_0`)
+** Change type (`org.openrewrite.java.ChangeType` ×2)
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_security7_MigrateSpringSecurityWeb_7_0[Migrate the Spring Security Web module to Spring Security 7.0] (`io.arconia.rewrite.spring.security7.MigrateSpringSecurityWeb_7_0`)
+** Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_security7_MigrateSpringSecurityAccess_7_0[Migrate the legacy Spring Security Access API to Spring Security 7.0] (`io.arconia.rewrite.spring.security7.MigrateSpringSecurityAccess_7_0`)
+** Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency` ×15)
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_security7_MigrateSpringSecurityOAuth2Client_7_0[Migrate the Spring Security OAuth2 Client module to Spring Security 7.0] (`io.arconia.rewrite.spring.security7.MigrateSpringSecurityOAuth2Client_7_0`)
+** Change type (`org.openrewrite.java.ChangeType` ×5)
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_security7_MigrateSpringSecurityOAuth2ResourceServer_7_0[Migrate the Spring Security OAuth2 Resource Server module to Spring Security 7.0] (`io.arconia.rewrite.spring.security7.MigrateSpringSecurityOAuth2ResourceServer_7_0`)
+** Change type (`org.openrewrite.java.ChangeType` ×4)
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_security7_MigrateSpringSecuritySaml2_7_0[Migrate the Spring Security SAML2 Service Provider module to Spring Security 7.0] (`io.arconia.rewrite.spring.security7.MigrateSpringSecuritySaml2_7_0`)
+** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+** Change type (`org.openrewrite.java.ChangeType` ×15)
+** Change method name (`org.openrewrite.java.ChangeMethodName` ×2)
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_security7_MigrateSpringSecurityCas_7_0[Migrate the Spring Security CAS module to Spring Security 7.0] (`io.arconia.rewrite.spring.security7.MigrateSpringSecurityCas_7_0`)
+** Change type (`org.openrewrite.java.ChangeType`)
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_security7_MigrateSpringSecurityKerberos_7_0[Migrate the Spring Security Kerberos extension to Spring Security 7.0] (`io.arconia.rewrite.spring.security7.MigrateSpringSecurityKerberos_7_0`)
+** Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency` ×3)
+====
+
+*Example*
+
+.Before
+[source,java]
+----
+import java.util.function.Supplier;
+
+import org.springframework.security.authorization.AuthorizationDecision;
+import org.springframework.security.authorization.AuthorizationManager;
+import org.springframework.security.core.Authentication;
+
+class AlwaysGranted implements AuthorizationManager<Object> {
+
+    @Override
+    public AuthorizationDecision check(Supplier<Authentication> authentication, Object object) {
+        return new AuthorizationDecision(true);
+    }
+
+    AuthorizationDecision delegate(AuthorizationManager<Object> manager, Supplier<Authentication> authentication) {
+        return manager.check(authentication, new Object());
+    }
+}
+----
+
+.After
+[source,java]
+----
+import java.util.function.Supplier;
+
+import org.springframework.security.authorization.AuthorizationDecision;
+import org.springframework.security.authorization.AuthorizationManager;
+import org.springframework.security.core.Authentication;
+
+class AlwaysGranted implements AuthorizationManager<Object> {
+
+    @Override
+    public AuthorizationDecision authorize(Supplier<Authentication> authentication, Object object) {
+        return new AuthorizationDecision(true);
+    }
+
+    AuthorizationDecision delegate(AuthorizationManager<Object> manager, Supplier<Authentication> authentication) {
+        return manager.authorize(authentication, new Object());
+    }
+}
+----
+
+[#io_arconia_rewrite_spring_security7_UpgradeSpringSecurity_7_1]
+=== Migrate to Spring Security 7.1
+`io.arconia.rewrite.spring.security7.UpgradeSpringSecurity_7_1`
+
+Migrate a Spring application to the latest Spring Security 7.1.x release.
+
+_Tags: spring, security_
+
+.Recipes applied
+[%collapsible]
+====
+* Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+====
+
+[#io_arconia_rewrite_spring_security7_UpgradeSpringSecurity_7_2]
+=== Migrate to Spring Security 7.2
+`io.arconia.rewrite.spring.security7.UpgradeSpringSecurity_7_2`
+
+Migrate a Spring application to the latest Spring Security 7.2.x release.
+
+_Tags: spring, security_
+
+.Recipes applied
+[%collapsible]
+====
+* Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
 ====
 
 == Deprecated recipes

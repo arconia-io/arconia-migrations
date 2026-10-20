@@ -1,0 +1,21 @@
+= Spring Security 7.1
+:description: Migrate your Spring application to the latest Spring Security 7.1.x release.
+:cli-command: arconia rewrite run --recipe-name io.arconia.rewrite.spring.security7.UpgradeSpringSecurity_7_1
+:recipe-id: io.arconia.rewrite.spring.security7.UpgradeSpringSecurity_7_1
+:rewrite-module: rewrite-spring
+
+When upgrading to Spring Security 7.1, refer to https://docs.spring.io/spring-security/reference/7.1/whats-new.html[What's New in Spring Security 7.1] for newly introduced APIs, deprecated APIs, and breaking changes. Spring Security 7.1 is the release line for Spring Boot 4.1, and the xref:spring/spring-boot/4-1.adoc[Spring Boot 4.1] upgrade recipe chains this recipe.
+
+The `{recipe-id}` recipe automates the changes introduced in Spring Security 7.1. You can use it to update your project to the latest Spring Security 7.1.x release.
+
+The recipe will:
+
+* Upgrade all `org.springframework.security` dependencies to the 7.1.x release line.
+
+Spring Security 7.1 adds features without removing or renaming public APIs, so no source changes are needed beyond the version upgrade.
+
+See its xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_security7_UpgradeSpringSecurity_7_1[entry in the Recipe Catalog] for the full list of recipes this upgrade applies, each with its options and a before/after example.
+
+== Run the Recipe
+
+include::partial$run-recipe.adoc[]

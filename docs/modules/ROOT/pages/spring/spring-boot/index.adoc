@@ -8,3 +8,4 @@ Arconia Migrations ships an upgrade recipe for each minor release of Spring Boot
 * *xref:spring/spring-boot/3-5.adoc[Spring Boot 3.5].* Migrate to the latest Spring Boot 3.5.x release.
 * *xref:spring/spring-boot/4-0.adoc[Spring Boot 4.0].* Migrate to the latest Spring Boot 4.0.x release.
 * *xref:spring/spring-boot/4-1.adoc[Spring Boot 4.1].* Migrate to the latest Spring Boot 4.1.x release.
+* *xref:spring/spring-boot/4-2.adoc[Spring Boot 4.2].* Migrate to the latest Spring Boot 4.2.x release.

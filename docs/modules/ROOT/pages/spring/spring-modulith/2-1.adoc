@@ -1,0 +1,22 @@
+= Spring Modulith 2.1
+:description: Migrate your Spring Boot application to the latest Spring Modulith 2.1.x release.
+:cli-command: arconia rewrite run --recipe-name io.arconia.rewrite.spring.modulith2.UpgradeSpringModulith_2_1
+:recipe-id: io.arconia.rewrite.spring.modulith2.UpgradeSpringModulith_2_1
+:rewrite-module: rewrite-spring
+
+When upgrading to Spring Modulith 2.1, refer to the https://github.com/spring-projects/spring-modulith/releases/tag/2.1.0[Spring Modulith 2.1.0 Release Notes] for newly introduced APIs, deprecated APIs, and breaking changes. Spring Modulith 2.1 is the release line for Spring Boot 4.1, and the xref:spring/spring-boot/4-1.adoc[Spring Boot 4.1] upgrade recipe chains this recipe.
+
+The `{recipe-id}` recipe automates most of the changes introduced in Spring Modulith 2.1. You can use it to update your project to the latest Spring Modulith 2.1.x release.
+
+The recipe will:
+
+* Upgrade all `org.springframework.modulith` dependencies to the 2.1.x release line.
+* Rename Spring Modulith configuration properties that were deprecated with a replacement, including the misspelled `spring.modulith.events.staleness.check-intervall` key, which was the only spelling available in 2.1.0 and is corrected to `check-interval`.
+* Move a direct dependency on `spring-modulith-observability` to `spring-modulith-observability-core`, since the observability support was split into an API and a core artifact and the original artifact no longer ships any classes.
+* Relocate the public observability types `ModulithContext`, `ModulithObservationConvention`, `ObservedModule`, and `ObservedModuleType` from the `support` package to the `org.springframework.modulith.observability` package.
+
+See its xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_modulith2_UpgradeSpringModulith_2_1[entry in the Recipe Catalog] for the full list of recipes this upgrade applies, each with its options and a before/after example.
+
+== Run the Recipe
+
+include::partial$run-recipe.adoc[]

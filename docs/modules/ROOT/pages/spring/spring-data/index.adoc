@@ -1,0 +1,12 @@
+= Spring Data
+:description: Upgrade recipes for the Spring Data 2025.x and 2026.x release trains.
+
+Arconia Migrations ships an upgrade recipe for each Spring Data release train that it supports. Spring Data release trains move together with Spring Boot, so each xref:spring/spring-boot/index.adoc[Spring Boot] upgrade recipe chains the matching Spring Data recipe. You can also run a Spring Data recipe on its own.
+
+The Spring Data recipes do not chain earlier release trains. When you skip release trains, run the recipe for each intermediate one, or let the Spring Boot upgrade recipe do it for you.
+
+== Upgrade Guides
+
+* *xref:spring/spring-data/2025-1.adoc[Spring Data 2025.1].* Migrate to the latest Spring Data 2025.1.x release train.
+* *xref:spring/spring-data/2026-0.adoc[Spring Data 2026.0].* Migrate to the latest Spring Data 2026.0.x release train.
+* *xref:spring/spring-data/2026-1.adoc[Spring Data 2026.1].* Migrate to the latest Spring Data 2026.1.x release train.

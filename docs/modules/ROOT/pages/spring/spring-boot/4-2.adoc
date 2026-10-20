@@ -1,0 +1,28 @@
+= Spring Boot 4.2
+:description: Migrate your Spring Boot application to the latest Spring Boot 4.2.x release.
+:cli-command: arconia update spring-boot --to-version 4.2
+:recipe-id: io.arconia.rewrite.spring.boot4.UpgradeSpringBoot_4_2
+:rewrite-module: rewrite-spring
+
+When upgrading to Spring Boot 4.2, refer to the https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-4.2-Release-Notes[Spring Boot 4.2 Release Notes] for newly introduced APIs, deprecated APIs, and breaking changes.
+
+The `{recipe-id}` recipe automates most of the changes introduced in Spring Boot 4.2. It also chains the Spring Boot 4.1 upgrade recipe, so you can apply it to projects that are still on earlier 4.x or 3.x lines.
+
+The recipe will:
+
+* Apply the full xref:spring/spring-boot/4-1.adoc[Spring Boot 4.1] upgrade as a prerequisite (which itself chains Spring Boot 4.0 and 3.5).
+* Upgrade all `org.springframework.boot` dependencies, the `spring-boot-starter-parent` Maven parent, and the Spring Boot Gradle and Maven plugins to the 4.2.x release line.
+* Rename Spring Boot configuration properties that changed, such as the servlet-specific Tomcat properties that moved beneath `server.tomcat.servlet`, and comment out those removed so you can address them manually.
+* Upgrade xref:spring/spring-framework/7-1.adoc[Spring Framework to 7.1].
+* Chain the xref:spring/spring-cloud/2026-0.adoc[Spring Cloud 2026.0] and xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_ai2_UpgradeSpringAi_2_1[Spring AI 2.1] upgrade recipes, since their managed versions move with Spring Boot.
+* Chain the xref:spring/spring-modulith/2-2.adoc[Spring Modulith 2.2], xref:spring/spring-security/7-2.adoc[Spring Security 7.2], and xref:spring/spring-data/2026-1.adoc[Spring Data 2026.1] upgrade recipes, since their managed versions move with Spring Boot. The event publication properties whose deprecated spellings are removed in Spring Modulith 2.2 are renamed by the chained Spring Boot 4.0 and 4.1 upgrades.
+* Keep the application on AMQP 0.9 by moving from the `spring-boot-starter-amqp` starter and the `spring-boot-amqp` module, which now provide AMQP 1.0 support, to the `spring-boot-starter-rabbitmq` starter and the `spring-boot-rabbitmq` module, including their test starters and the `org.springframework.boot.rabbitmq` packages. Configuration properties under `spring.rabbitmq` are unchanged. Adopting AMQP 1.0 instead means migrating to the `spring-boot-starter-amqp-rabbitmq` starter and its new template and listener APIs, which is a manual migration.
+* Replace the `HttpMessageConverters` class removed from the Spring Boot HTTP Converter module with the Spring Framework interface of the same name. Both are iterable over the configured converters, so injection points and loops keep working. Code that constructed the removed class needs to be reworked manually around the `HttpMessageConverters.forServer()` and `forClient()` builders.
+
+Some changes in Spring Boot 4.2 are deliberately not automated. `RestTemplateBuilder`, `TestRestTemplate`, and their supporting types are deprecated in favor of `RestClient` and `RestTestClient`, but still work, and moving to the new clients is a code change you should make on your own terms. The `KafkaProperties` methods that build client configuration are deprecated in favor of `KafkaConfigBuilder`. Several defaults also changed, such as Tomcat now using relative redirects and `spring.test.database.replace` defaulting to `non-test`, so review the release notes for behavior changes that may affect your application.
+
+See its xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_UpgradeSpringBoot_4_2[entry in the Recipe Catalog] for the full list of recipes this upgrade applies, each with its options and a before/after example.
+
+== Run the Recipe
+
+include::partial$run-recipe.adoc[]

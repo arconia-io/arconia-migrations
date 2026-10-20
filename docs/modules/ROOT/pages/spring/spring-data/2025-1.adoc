@@ -1,0 +1,26 @@
+= Spring Data 2025.1
+:description: Migrate your Spring application to the latest Spring Data 2025.1.x release train.
+:cli-command: arconia rewrite run --recipe-name io.arconia.rewrite.spring.data2025.UpgradeSpringData_2025_1
+:recipe-id: io.arconia.rewrite.spring.data2025.UpgradeSpringData_2025_1
+:rewrite-module: rewrite-spring
+
+When upgrading to Spring Data 2025.1, refer to the https://github.com/spring-projects/spring-data-commons/wiki/Spring-Data-2025.1-Release-Notes[Spring Data 2025.1 Release Notes] for newly introduced APIs, deprecated APIs, and breaking changes. Spring Data 2025.1 is the release train for Spring Boot 4.0, and the xref:spring/spring-boot/4-0.adoc[Spring Boot 4.0] upgrade recipe chains this recipe.
+
+The `{recipe-id}` recipe automates the mechanical changes introduced in Spring Data 2025.1. You can use it to update your project to the latest Spring Data 2025.1.x release train.
+
+The recipe will:
+
+* Upgrade `org.springframework.data:spring-data-bom` to the 2025.1.x release train, and each Spring Data module to its own release line within that train, such as 4.0.x for Spring Data Commons and JPA, 5.0.x for MongoDB and REST, 6.0.x for Elasticsearch, and 8.0.x for Neo4j.
+* For *Spring Data Commons*: replace `@PersistenceConstructor` with `@PersistenceCreator`, move `PropertyPath`, `PropertyReferenceException`, `TypeInformation`, and the other relocated core types to the new `org.springframework.data.core` package, and rename the constructor-oriented mapping methods to their creator-oriented successors, such as `isConstructorArgument` to `isCreatorArgument`, `getRequiredLeafProperty` to `getLeafProperty`, and `getTargetRepositoryViaReflection` to `instantiateClass`.
+* For *Spring Data JPA*: comment out the removed `spring.data.jpa.query.native.parser` property, since the query enhancer is now selected through the `queryEnhancerSelector` attribute of `@EnableJpaRepositories`.
+* For *Spring Data JDBC*: move `QueryMappingConfiguration` to the conversion package.
+* For *Spring Data MongoDB*: rewrite boolean `allowDiskUse` values on the `@Meta` annotation to the string values the attribute now accepts.
+* For *Spring Data for Apache Cassandra*: replace the legacy asynchronous templates and operations that returned `ListenableFuture` with the `CompletableFuture` based ones, and replace the deprecated mapping context and session factory beans with `CassandraMappingContext` and `CqlSessionFactoryBean`.
+
+Some changes in Spring Data 2025.1 are deliberately not automated. `ListenableFuture` support is gone, so asynchronous query methods and callers of the Cassandra asynchronous templates need to work with `CompletableFuture`. The SpEL evaluators and the query method evaluation context providers were replaced by the value expression infrastructure, `CastUtils` and the repository `ClassUtils` were removed, MongoDB dropped its JMX support, Spring Data Redis dropped `MicrometerTracingAdapter` in favor of the tracing built into Lettuce, and `QuerydslJpaRepository` gave way to the predicate executor. Spring Data Redis also renamed its Jackson 2 object reader and writer to `Jackson2ObjectReader` and `Jackson2ObjectWriter` and reused the old names for Jackson 3, which the Spring Framework 7.0 upgrade already moves you to, so the recipe leaves those names alone. Several defaults changed in ways that affect stored data or generated queries: MongoDB's `BigDecimal` and UUID representations, R2DBC quoting all identifiers, Spring Data JDBC no longer wrapping exceptions, and Spring Data JPA deriving JPQL instead of Criteria queries. Review the release notes for the parts that apply to your application.
+
+See its xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_data2025_UpgradeSpringData_2025_1[entry in the Recipe Catalog] for the full list of recipes this upgrade applies, each with its options and a before/after example.
+
+== Run the Recipe
+
+include::partial$run-recipe.adoc[]

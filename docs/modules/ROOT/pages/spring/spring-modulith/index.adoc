@@ -1,0 +1,12 @@
+= Spring Modulith
+:description: Upgrade recipes for Spring Modulith 2.x.
+
+Arconia Migrations ships an upgrade recipe for each minor release of Spring Modulith that it supports. Spring Modulith releases move together with Spring Boot, so each xref:spring/spring-boot/index.adoc[Spring Boot] upgrade recipe chains the matching Spring Modulith recipe. You can also run a Spring Modulith recipe on its own.
+
+The Spring Modulith recipes do not chain earlier Spring Modulith releases. When you skip releases, run the recipe for each intermediate release, or let the Spring Boot upgrade recipe do it for you.
+
+== Upgrade Guides
+
+* *xref:spring/spring-modulith/2-0.adoc[Spring Modulith 2.0].* Migrate to the latest Spring Modulith 2.0.x release.
+* *xref:spring/spring-modulith/2-1.adoc[Spring Modulith 2.1].* Migrate to the latest Spring Modulith 2.1.x release.
+* *xref:spring/spring-modulith/2-2.adoc[Spring Modulith 2.2].* Migrate to the latest Spring Modulith 2.2.x release.

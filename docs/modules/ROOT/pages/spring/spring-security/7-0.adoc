@@ -1,0 +1,29 @@
+= Spring Security 7.0
+:description: Migrate your Spring application to the latest Spring Security 7.0.x release.
+:cli-command: arconia rewrite run --recipe-name io.arconia.rewrite.spring.security7.UpgradeSpringSecurity_7_0
+:recipe-id: io.arconia.rewrite.spring.security7.UpgradeSpringSecurity_7_0
+:rewrite-module: rewrite-spring
+
+When upgrading to Spring Security 7.0, refer to https://docs.spring.io/spring-security/reference/7.0/whats-new.html[What's New in Spring Security 7.0], the https://docs.spring.io/spring-security/reference/7.0/migration/index.html[Spring Security 7.0 migration guide], and the https://docs.spring.io/spring-security/reference/6.5/migration-7/index.html[Preparing for 7.0] guide in the Spring Security 6.5 documentation for newly introduced APIs, deprecated APIs, and breaking changes. Spring Security 7.0 is the release line for Spring Boot 4.0, and the xref:spring/spring-boot/4-0.adoc[Spring Boot 4.0] upgrade recipe chains this recipe.
+
+The `{recipe-id}` recipe automates the mechanical changes introduced in Spring Security 7.0. You can use it to update your project to the latest Spring Security 7.0.x release.
+
+The recipe will:
+
+* Upgrade all `org.springframework.security` dependencies to the 7.0.x release line, which now includes Spring Authorization Server.
+* Move the Spring Security Kerberos artifacts, which became part of Spring Security, from the `org.springframework.security.kerberos` group to the `org.springframework.security` group. The packages are unchanged.
+* Add the `spring-security-access` module to projects that use the legacy Access API, such as access decision managers, voters, security metadata sources, and the filter and method security interceptors, which moved out of the core, web, ACL, and messaging modules. Add the `spring-security-webauthn` module to projects that use the WebAuthn support, which moved out of the web module.
+* For *Spring Security Core*: rename the `check` method of `AuthorizationManager` and `ReactiveAuthorizationManager` to `authorize`, on callers and implementations alike, and replace `PrePostTemplateDefaults` with `AnnotationTemplateExpressionDefaults`.
+* For *Spring Security Config*: move `ObjectPostProcessor` out of the annotation package, and replace `@EnableWebMvcSecurity` with `@EnableWebSecurity`.
+* For *OAuth2 Client*: replace the removed `Default` token response clients for the authorization code, client credentials, JWT bearer, refresh token, and token exchange grants with their `RestClient` successors. Code that customized the removed clients through their request entity converter or `RestOperations` setters needs to move to the parameters converter and `RestClient` setters of the new clients.
+* For *OAuth2 Resource Server*: move `BearerTokenAuthenticationToken` and `BearerTokenAuthenticationFilter` to their `authentication` subpackages, and replace the Nimbus opaque token introspectors with the Spring ones, which share the same constructors.
+* For *SAML2 Service Provider*: replace the removed OpenSAML 4 components, and the un-numbered ones that wrapped them, with their OpenSAML 5 equivalents, raise explicitly declared OpenSAML dependencies to the 5.x line, and rename the asserting party details accessors on `RelyingPartyRegistration` and its builder to the asserting party metadata ones.
+* For *CAS*: move `ServiceAuthenticationDetails` out of the web package.
+
+Some changes in Spring Security 7.0 are deliberately not automated. The pre-lambda configuration style is gone: `and()` and the no-argument configurer methods on `HttpSecurity` were removed, so chained configuration must be rewritten with the Lambda DSL. `authorizeRequests` was removed in favor of `authorizeHttpRequests`, whose registry has no string `access` or `hasIpAddress` methods, so those rules need an authorization manager instead. `AntPathRequestMatcher` and `MvcRequestMatcher` were removed in favor of `PathPatternRequestMatcher`, whose patterns only allow `**` at the end. The password grant, the OAuth2 request entity converters, the Jackson 2 security modules, the `Base64` codec, `PortResolver`, `LazyCsrfTokenRepository`, the WebSocket message broker configurer, and the ApacheDS embedded server were removed or superseded by differently shaped APIs. Behavior also changed for JWT type validation, login redirects, SAML logout responses, SAML GET requests, and the JWK Set fetch timeouts, so review the guides above for the parts that apply to your application.
+
+See its xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_security7_UpgradeSpringSecurity_7_0[entry in the Recipe Catalog] for the full list of recipes this upgrade applies, each with its options and a before/after example.
+
+== Run the Recipe
+
+include::partial$run-recipe.adoc[]

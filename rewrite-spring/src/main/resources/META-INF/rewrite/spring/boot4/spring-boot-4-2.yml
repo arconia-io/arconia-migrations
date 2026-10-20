@@ -1,4 +1,4 @@
-# Based on https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-4.2-Migration-Guide
+# Based on https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-4.2-Release-Notes
 ---
 type: specs.openrewrite.org/v1beta/recipe
 name: io.arconia.rewrite.spring.boot4.UpgradeSpringBoot_4_2
@@ -12,6 +12,9 @@ preconditions:
 recipeList:
   # Previous Version
   - io.arconia.rewrite.spring.boot4.UpgradeSpringBoot_4_1
+
+  # Spring Framework
+  - io.arconia.rewrite.spring.framework7.UpgradeSpringFramework_7_1
 
   # Configuration Properties
   - io.arconia.rewrite.spring.boot4.UpgradeSpringBootProperties_4_2
@@ -45,3 +48,10 @@ recipeList:
   # Managed Dependencies
   - io.arconia.rewrite.spring.cloud2026.UpgradeSpringCloud_2026_0
   - io.arconia.rewrite.spring.ai2.UpgradeSpringAi_2_1
+  - io.arconia.rewrite.spring.modulith2.UpgradeSpringModulith_2_2
+  - io.arconia.rewrite.spring.security7.UpgradeSpringSecurity_7_2
+  - io.arconia.rewrite.spring.data2026.UpgradeSpringData_2026_1
+
+  # Modules
+  - io.arconia.rewrite.spring.boot4.MigrateSpringBootHttp_4_2
+  - io.arconia.rewrite.spring.boot4.MigrateSpringBootRabbitMq_4_2

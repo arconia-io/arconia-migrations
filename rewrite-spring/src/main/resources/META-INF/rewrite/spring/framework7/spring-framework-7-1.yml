@@ -1,0 +1,57 @@
+# Based on https://github.com/spring-projects/spring-framework/wiki/Spring-Framework-7.1-Release-Notes
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.framework7.UpgradeSpringFramework_7_1
+displayName: Migrate to Spring Framework 7.1
+description: Migrate a Spring application to the latest Spring Framework 7.1.x release.
+tags:
+  - spring
+  - framework
+preconditions:
+  - org.openrewrite.Singleton
+recipeList:
+
+  # Dependency Versions
+  - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
+      groupId: org.springframework
+      artifactId: "*"
+      newVersion: 7.1.x
+
+  # Minimum Requirements
+  - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
+      groupId: tools.jackson
+      artifactId: jackson-bom
+      newVersion: 3.1.x
+  - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
+      groupId: tools.jackson.core
+      artifactId: "*"
+      newVersion: 3.1.x
+  - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
+      groupId: org.htmlunit
+      artifactId: htmlunit
+      newVersion: 5.4.x
+
+  # Spring Framework Modules
+  - io.arconia.rewrite.spring.framework7.MigrateSpringWeb_7_1
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.framework7.MigrateSpringWeb_7_1
+displayName: Migrate the Spring Web module to Spring Framework 7.1
+description: Update usages of Spring Web APIs that were deprecated or replaced in Spring Framework 7.1. The forwarded-header filter and transformer are switched to the explicit constructor that selects the "X-Forwarded" header family, matching the Spring Boot default. Applications relying on the standard "Forwarded" header or on "X-Forwarded-Prefix" need to adjust the result.
+preconditions:
+  - org.openrewrite.Singleton
+recipeList:
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.http.converter.support.AllEncompassingFormHttpMessageConverter
+      newFullyQualifiedTypeName: org.springframework.http.converter.multipart.MultipartHttpMessageConverter
+  - org.openrewrite.java.AddLiteralMethodArgument:
+      methodPattern: org.springframework.web.filter.ForwardedHeaderFilter <constructor>()
+      argumentIndex: 0
+      literal: false
+      primitiveType: boolean
+  - org.openrewrite.java.AddLiteralMethodArgument:
+      methodPattern: org.springframework.web.server.adapter.ForwardedHeaderTransformer <constructor>()
+      argumentIndex: 0
+      literal: false
+      primitiveType: boolean

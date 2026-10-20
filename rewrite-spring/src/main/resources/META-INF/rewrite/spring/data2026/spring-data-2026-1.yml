@@ -1,0 +1,78 @@
+# Based on https://github.com/spring-projects/spring-data-commons/wiki/Spring-Data-2026.1-Release-Notes
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.data2026.UpgradeSpringData_2026_1
+displayName: Migrate to Spring Data 2026.1
+description: Migrate a Spring application to the latest Spring Data 2026.1.x release train.
+tags:
+  - spring
+  - data
+preconditions:
+  - org.openrewrite.Singleton
+recipeList:
+
+  # Dependency Versions
+  - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
+      groupId: org.springframework.data
+      artifactId: spring-data-bom
+      newVersion: 2026.1.x
+  - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
+      groupId: org.springframework.data
+      artifactId: "spring-data-commons"
+      newVersion: 4.2.x
+  - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
+      groupId: org.springframework.data
+      artifactId: "spring-data-envers"
+      newVersion: 4.2.x
+  - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
+      groupId: org.springframework.data
+      artifactId: "spring-data-jdbc"
+      newVersion: 4.2.x
+  - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
+      groupId: org.springframework.data
+      artifactId: "spring-data-jpa"
+      newVersion: 4.2.x
+  - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
+      groupId: org.springframework.data
+      artifactId: "spring-data-keyvalue"
+      newVersion: 4.2.x
+  - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
+      groupId: org.springframework.data
+      artifactId: "spring-data-ldap"
+      newVersion: 4.2.x
+  - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
+      groupId: org.springframework.data
+      artifactId: "spring-data-r2dbc"
+      newVersion: 4.2.x
+  - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
+      groupId: org.springframework.data
+      artifactId: "spring-data-redis"
+      newVersion: 4.2.x
+  - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
+      groupId: org.springframework.data
+      artifactId: "spring-data-relational"
+      newVersion: 4.2.x
+  - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
+      groupId: org.springframework.data
+      artifactId: "spring-data-cassandra"
+      newVersion: 5.2.x
+  - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
+      groupId: org.springframework.data
+      artifactId: "spring-data-mongodb"
+      newVersion: 5.2.x
+  - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
+      groupId: org.springframework.data
+      artifactId: "spring-data-rest-*"
+      newVersion: 5.2.x
+  - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
+      groupId: org.springframework.data
+      artifactId: "spring-data-couchbase"
+      newVersion: 6.2.x
+  - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
+      groupId: org.springframework.data
+      artifactId: "spring-data-elasticsearch"
+      newVersion: 6.2.x
+  - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
+      groupId: org.springframework.data
+      artifactId: "spring-data-neo4j"
+      newVersion: 8.2.x

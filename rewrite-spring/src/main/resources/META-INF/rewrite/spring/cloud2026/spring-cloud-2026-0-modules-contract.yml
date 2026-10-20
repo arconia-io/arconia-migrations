@@ -1,0 +1,196 @@
+# Spring Cloud Contract was archived and is not part of the Spring Cloud 2026.0 release train.
+# Stubborn Contract is its continuation. The migration below follows the Stubborn transition guide
+# (https://stubborn.sh/transition-guide/) and migration documentation
+# (https://docs.stubborn.sh/contract/migration/from-spring-cloud-contract), and takes the Stubborn
+# migration recipe (sh.stubborn:stubborn-contract-migration) as a reference for the coordinate,
+# package, and property mappings.
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.cloud2026.MigrateSpringCloudContractToStubbornContract
+displayName: Migrate Spring Cloud Contract to Stubborn Contract
+description: Migrate from Spring Cloud Contract, which was archived and is no longer part of the Spring Cloud 2026.0 release train, to Stubborn Contract, its continuation. Moves build coordinates, build plugins, Java packages, configuration property prefixes, and the JUnit 4 stub runner rule to their Stubborn Contract equivalents.
+preconditions:
+  - org.openrewrite.Singleton
+recipeList:
+  # JUnit 4 rule to JUnit 5 extension. The annotation swap is scoped to files that use the rule.
+  - io.arconia.rewrite.spring.cloud2026.MigrateStubRunnerRuleAnnotation
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.cloud.contract.stubrunner.junit.StubRunnerRule
+      newFullyQualifiedTypeName: sh.stubborn.contract.stubrunner.junit.StubRunnerExtension
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.cloud.contract.stubrunner.junit.StubRunnerRuleOptions
+      newFullyQualifiedTypeName: sh.stubborn.contract.stubrunner.junit.StubRunnerExtensionOptions
+
+  # Packages
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.cloud.contract
+      newPackageName: sh.stubborn.contract
+      recursive: true
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: com.toomuchcoding.jsonassert
+      newPackageName: sh.stubborn.jsonassert
+      recursive: true
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: com.toomuchcoding.xmlassert
+      newPackageName: sh.stubborn.xmlassert
+      recursive: true
+
+  # Starters
+  - org.openrewrite.java.dependencies.ChangeDependency:
+      oldGroupId: org.springframework.cloud
+      oldArtifactId: spring-cloud-starter-contract-verifier
+      newGroupId: sh.stubborn
+      newArtifactId: stubborn-contract-starter-verifier
+      newVersion: 0.1.x
+      overrideManagedVersion: true
+  - org.openrewrite.java.dependencies.ChangeDependency:
+      oldGroupId: org.springframework.cloud
+      oldArtifactId: spring-cloud-starter-contract-stub-runner
+      newGroupId: sh.stubborn
+      newArtifactId: stubborn-contract-starter-stub-runner
+      newVersion: 0.1.x
+      overrideManagedVersion: true
+  - org.openrewrite.java.dependencies.ChangeDependency:
+      oldGroupId: org.springframework.cloud
+      oldArtifactId: spring-cloud-starter-contract-stub-runner-jetty
+      newGroupId: sh.stubborn
+      newArtifactId: stubborn-contract-starter-stub-runner-jetty
+      newVersion: 0.1.x
+      overrideManagedVersion: true
+
+  # Modules. Stubborn splits the Spring integration out of the verifier, stub runner, and WireMock
+  # modules. The Spring Cloud and Spring variants pull in the base modules, so they are the targets
+  # that keep every class a direct dependency on the Spring Cloud Contract module used to provide.
+  - org.openrewrite.java.dependencies.ChangeDependency:
+      oldGroupId: org.springframework.cloud
+      oldArtifactId: spring-cloud-contract-verifier
+      newGroupId: sh.stubborn
+      newArtifactId: stubborn-contract-verifier-spring-cloud
+      newVersion: 0.1.x
+      overrideManagedVersion: true
+  - org.openrewrite.java.dependencies.ChangeDependency:
+      oldGroupId: org.springframework.cloud
+      oldArtifactId: spring-cloud-contract-stub-runner
+      newGroupId: sh.stubborn
+      newArtifactId: stubborn-contract-stub-runner-spring-cloud
+      newVersion: 0.1.x
+      overrideManagedVersion: true
+  - org.openrewrite.java.dependencies.ChangeDependency:
+      oldGroupId: org.springframework.cloud
+      oldArtifactId: spring-cloud-contract-wiremock
+      newGroupId: sh.stubborn
+      newArtifactId: stubborn-contract-wiremock-spring
+      newVersion: 0.1.x
+      overrideManagedVersion: true
+  - org.openrewrite.java.dependencies.ChangeDependency:
+      oldGroupId: org.springframework.cloud
+      oldArtifactId: spring-cloud-contract-converters
+      newGroupId: sh.stubborn
+      newArtifactId: stubborn-contract-converters
+      newVersion: 0.1.x
+      overrideManagedVersion: true
+  - org.openrewrite.java.dependencies.ChangeDependency:
+      oldGroupId: org.springframework.cloud
+      oldArtifactId: spring-cloud-contract-spec
+      newGroupId: sh.stubborn
+      newArtifactId: stubborn-contract-spec
+      newVersion: 0.1.x
+      overrideManagedVersion: true
+  - org.openrewrite.java.dependencies.ChangeDependency:
+      oldGroupId: org.springframework.cloud
+      oldArtifactId: spring-cloud-contract-spec-java
+      newGroupId: sh.stubborn
+      newArtifactId: stubborn-contract-spec-java
+      newVersion: 0.1.x
+      overrideManagedVersion: true
+  - org.openrewrite.java.dependencies.ChangeDependency:
+      oldGroupId: org.springframework.cloud
+      oldArtifactId: spring-cloud-contract-spec-groovy
+      newGroupId: sh.stubborn
+      newArtifactId: stubborn-contract-spec-groovy
+      newVersion: 0.1.x
+      overrideManagedVersion: true
+  - org.openrewrite.java.dependencies.ChangeDependency:
+      oldGroupId: org.springframework.cloud
+      oldArtifactId: spring-cloud-contract-spec-kotlin
+      newGroupId: sh.stubborn
+      newArtifactId: stubborn-contract-spec-kotlin
+      newVersion: 0.1.x
+      overrideManagedVersion: true
+  - org.openrewrite.java.dependencies.ChangeDependency:
+      oldGroupId: com.toomuchcoding.jsonassert
+      oldArtifactId: jsonassert
+      newGroupId: sh.stubborn
+      newArtifactId: stubborn-contract-jsonassert
+      newVersion: 0.1.x
+      overrideManagedVersion: true
+  - org.openrewrite.java.dependencies.ChangeDependency:
+      oldGroupId: com.toomuchcoding.xmlassert
+      oldArtifactId: xmlassert
+      newGroupId: sh.stubborn
+      newArtifactId: stubborn-contract-xmlassert
+      newVersion: 0.1.x
+      overrideManagedVersion: true
+
+  # Dependency Management and Build Plugins
+  - org.openrewrite.java.dependencies.ChangeDependency:
+      oldGroupId: org.springframework.cloud
+      oldArtifactId: spring-cloud-contract-dependencies
+      newGroupId: sh.stubborn
+      newArtifactId: stubborn-contract-dependencies
+      newVersion: 0.1.x
+      overrideManagedVersion: true
+  # The plugin rename writes the version verbatim, and a version upgrade will not move the plugin
+  # from the old 5.x line down to 0.1.x. The rename therefore pins the first 0.1.x release, and the
+  # upgrade that follows moves it to the latest 0.1.x patch.
+  - org.openrewrite.maven.ChangePluginGroupIdAndArtifactId:
+      oldGroupId: org.springframework.cloud
+      oldArtifactId: spring-cloud-contract-maven-plugin
+      newGroupId: sh.stubborn
+      newArtifactId: stubborn-contract-maven-plugin
+      newVersion: 0.1.0
+  - org.openrewrite.maven.UpgradePluginVersion:
+      groupId: sh.stubborn
+      artifactId: stubborn-contract-maven-plugin
+      newVersion: 0.1.x
+  - org.openrewrite.java.dependencies.ChangeDependency:
+      oldGroupId: org.springframework.cloud
+      oldArtifactId: spring-cloud-contract-gradle-plugin
+      newGroupId: sh.stubborn
+      newArtifactId: stubborn-contract-gradle-plugin
+      newVersion: 0.1.x
+      overrideManagedVersion: true
+  - org.openrewrite.gradle.plugins.ChangePlugin:
+      pluginId: org.springframework.cloud.contract
+      newPluginId: sh.stubborn.contract
+      newVersion: 0.1.x
+
+  # Configuration Properties. The legacy prefixes still bind in Stubborn Contract with a warning.
+  - org.openrewrite.properties.ChangePropertyKey:
+      oldPropertyKey: spring\.cloud\.contract\.stubrunner\.(.+)
+      newPropertyKey: stubborn.contract.stubrunner.$1
+      regex: true
+  - org.openrewrite.yaml.ChangePropertyKey:
+      oldPropertyKey: spring.cloud.contract.stubrunner
+      newPropertyKey: stubborn.contract.stubrunner
+  - org.openrewrite.properties.ChangePropertyKey:
+      oldPropertyKey: spring\.cloud\.contract\.verifier\.(.+)
+      newPropertyKey: stubborn.contract.verifier.$1
+      regex: true
+  - org.openrewrite.yaml.ChangePropertyKey:
+      oldPropertyKey: spring.cloud.contract.verifier
+      newPropertyKey: stubborn.contract.verifier
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.cloud2026.MigrateStubRunnerRuleAnnotation
+displayName: Migrate the stub runner JUnit 4 rule annotation to the JUnit 5 extension annotation
+description: Replace the `@Rule` annotation with `@RegisterExtension` in test classes that use the Spring Cloud Contract stub runner rule, ahead of migrating the rule itself to the Stubborn Contract extension.
+preconditions:
+  - org.openrewrite.java.search.FindTypes:
+      fullyQualifiedTypeName: org.springframework.cloud.contract.stubrunner.junit.StubRunnerRule
+  - org.openrewrite.Singleton
+recipeList:
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.junit.Rule
+      newFullyQualifiedTypeName: org.junit.jupiter.api.extension.RegisterExtension

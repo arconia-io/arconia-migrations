@@ -1,0 +1,14 @@
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.MigrateSpringBootHttp_4_2
+displayName: Migrate the Spring Boot HTTP modules to Spring Boot 4.2
+description: Update usages of Spring Boot HTTP module APIs that were removed or replaced in Spring Boot 4.2. The `HttpMessageConverters` class removed from the HTTP Converter module is replaced with the Spring Framework interface of the same name. Both are iterable over the configured converters. Code that constructs the removed class needs to be reworked manually around the Spring Framework builders.
+tags:
+  - spring
+  - boot
+preconditions:
+  - org.openrewrite.Singleton
+recipeList:
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.http.converter.autoconfigure.HttpMessageConverters
+      newFullyQualifiedTypeName: org.springframework.http.converter.HttpMessageConverters

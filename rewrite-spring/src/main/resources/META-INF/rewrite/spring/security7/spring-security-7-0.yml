@@ -1,0 +1,330 @@
+# Based on https://docs.spring.io/spring-security/reference/7.0/whats-new.html
+# and https://docs.spring.io/spring-security/reference/7.0/migration/index.html
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.security7.UpgradeSpringSecurity_7_0
+displayName: Migrate to Spring Security 7.0
+description: Migrate a Spring application to the latest Spring Security 7.0.x release.
+tags:
+  - spring
+  - security
+preconditions:
+  - org.openrewrite.Singleton
+recipeList:
+
+  # Dependency Versions
+  - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
+      groupId: org.springframework.security
+      artifactId: "*"
+      newVersion: 7.0.x
+
+  # Spring Security Modules
+  - io.arconia.rewrite.spring.security7.MigrateSpringSecurityCore_7_0
+  - io.arconia.rewrite.spring.security7.MigrateSpringSecurityConfig_7_0
+  - io.arconia.rewrite.spring.security7.MigrateSpringSecurityWeb_7_0
+  - io.arconia.rewrite.spring.security7.MigrateSpringSecurityAccess_7_0
+  - io.arconia.rewrite.spring.security7.MigrateSpringSecurityOAuth2Client_7_0
+  - io.arconia.rewrite.spring.security7.MigrateSpringSecurityOAuth2ResourceServer_7_0
+  - io.arconia.rewrite.spring.security7.MigrateSpringSecuritySaml2_7_0
+  - io.arconia.rewrite.spring.security7.MigrateSpringSecurityCas_7_0
+  - io.arconia.rewrite.spring.security7.MigrateSpringSecurityKerberos_7_0
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.security7.MigrateSpringSecurityCore_7_0
+displayName: Migrate the Spring Security Core module to Spring Security 7.0
+description: Update usages of Spring Security Core APIs that were renamed or replaced in Spring Security 7.0. The `check` method of the authorization managers became `authorize`, and the pre/post template defaults were replaced by the annotation template expression defaults.
+preconditions:
+  - org.openrewrite.Singleton
+recipeList:
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: org.springframework.security.authorization.AuthorizationManager check(..)
+      newMethodName: authorize
+      matchOverrides: true
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: org.springframework.security.authorization.ReactiveAuthorizationManager check(..)
+      newMethodName: authorize
+      matchOverrides: true
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.security.authorization.method.PrePostTemplateDefaults
+      newFullyQualifiedTypeName: org.springframework.security.core.annotation.AnnotationTemplateExpressionDefaults
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.security7.MigrateSpringSecurityConfig_7_0
+displayName: Migrate the Spring Security Config module to Spring Security 7.0
+description: Update usages of Spring Security Config APIs that were removed in Spring Security 7.0. The object post processor moved out of the annotation package, and the Spring MVC security annotation was folded into the web security one.
+preconditions:
+  - org.openrewrite.Singleton
+recipeList:
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.security.config.annotation.ObjectPostProcessor
+      newFullyQualifiedTypeName: org.springframework.security.config.ObjectPostProcessor
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.security.config.annotation.web.servlet.configuration.EnableWebMvcSecurity
+      newFullyQualifiedTypeName: org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.security7.MigrateSpringSecurityWeb_7_0
+displayName: Migrate the Spring Security Web module to Spring Security 7.0
+description: Add the `spring-security-webauthn` module, which Spring Security 7.0 split out of the web module, to projects that use the WebAuthn support.
+preconditions:
+  - org.openrewrite.Singleton
+recipeList:
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: org.springframework.security
+      artifactId: spring-security-webauthn
+      version: 7.0.x
+      onlyIfUsing: org.springframework.security.web.webauthn..*
+      acceptTransitive: true
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.security7.MigrateSpringSecurityAccess_7_0
+displayName: Migrate the legacy Spring Security Access API to Spring Security 7.0
+description: Add the `spring-security-access` module to projects that still use the legacy Access API, such as access decision managers and voters, which Spring Security 7.0 moved out of the core, web, ACL, and messaging modules. The Access API has been deprecated in favor of the Authorization API since Spring Security 5.
+preconditions:
+  - org.openrewrite.Singleton
+recipeList:
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: org.springframework.security
+      artifactId: spring-security-access
+      version: 7.0.x
+      onlyIfUsing: org.springframework.security.access.AccessDecisionManager
+      acceptTransitive: true
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: org.springframework.security
+      artifactId: spring-security-access
+      version: 7.0.x
+      onlyIfUsing: org.springframework.security.access.AccessDecisionVoter
+      acceptTransitive: true
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: org.springframework.security
+      artifactId: spring-security-access
+      version: 7.0.x
+      onlyIfUsing: org.springframework.security.access.SecurityMetadataSource
+      acceptTransitive: true
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: org.springframework.security
+      artifactId: spring-security-access
+      version: 7.0.x
+      onlyIfUsing: org.springframework.security.access.ConfigAttribute
+      acceptTransitive: true
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: org.springframework.security
+      artifactId: spring-security-access
+      version: 7.0.x
+      onlyIfUsing: org.springframework.security.access.vote.*
+      acceptTransitive: true
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: org.springframework.security
+      artifactId: spring-security-access
+      version: 7.0.x
+      onlyIfUsing: org.springframework.security.access.intercept..*
+      acceptTransitive: true
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: org.springframework.security
+      artifactId: spring-security-access
+      version: 7.0.x
+      onlyIfUsing: org.springframework.security.access.event.*
+      acceptTransitive: true
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: org.springframework.security
+      artifactId: spring-security-access
+      version: 7.0.x
+      onlyIfUsing: org.springframework.security.access.method.*
+      acceptTransitive: true
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: org.springframework.security
+      artifactId: spring-security-access
+      version: 7.0.x
+      onlyIfUsing: org.springframework.security.web.access.intercept.FilterSecurityInterceptor
+      acceptTransitive: true
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: org.springframework.security
+      artifactId: spring-security-access
+      version: 7.0.x
+      onlyIfUsing: org.springframework.security.web.access.intercept.FilterInvocationSecurityMetadataSource
+      acceptTransitive: true
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: org.springframework.security
+      artifactId: spring-security-access
+      version: 7.0.x
+      onlyIfUsing: org.springframework.security.web.access.expression.WebExpressionVoter
+      acceptTransitive: true
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: org.springframework.security
+      artifactId: spring-security-access
+      version: 7.0.x
+      onlyIfUsing: org.springframework.security.web.access.channel.*
+      acceptTransitive: true
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: org.springframework.security
+      artifactId: spring-security-access
+      version: 7.0.x
+      onlyIfUsing: org.springframework.security.acls.AclEntryVoter
+      acceptTransitive: true
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: org.springframework.security
+      artifactId: spring-security-access
+      version: 7.0.x
+      onlyIfUsing: org.springframework.security.acls.afterinvocation.*
+      acceptTransitive: true
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: org.springframework.security
+      artifactId: spring-security-access
+      version: 7.0.x
+      onlyIfUsing: org.springframework.security.messaging.access.intercept.ChannelSecurityInterceptor
+      acceptTransitive: true
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.security7.MigrateSpringSecurityOAuth2Client_7_0
+displayName: Migrate the Spring Security OAuth2 Client module to Spring Security 7.0
+description: Replace the token response clients removed in Spring Security 7.0 with their `RestClient` based successors. Code that customized the removed clients through their request entity converter or `RestOperations` setters needs to move to the parameters converter and `RestClient` setters of the new clients. The password grant was removed without replacement.
+preconditions:
+  - org.openrewrite.Singleton
+recipeList:
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.security.oauth2.client.endpoint.DefaultAuthorizationCodeTokenResponseClient
+      newFullyQualifiedTypeName: org.springframework.security.oauth2.client.endpoint.RestClientAuthorizationCodeTokenResponseClient
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.security.oauth2.client.endpoint.DefaultClientCredentialsTokenResponseClient
+      newFullyQualifiedTypeName: org.springframework.security.oauth2.client.endpoint.RestClientClientCredentialsTokenResponseClient
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.security.oauth2.client.endpoint.DefaultJwtBearerTokenResponseClient
+      newFullyQualifiedTypeName: org.springframework.security.oauth2.client.endpoint.RestClientJwtBearerTokenResponseClient
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.security.oauth2.client.endpoint.DefaultRefreshTokenTokenResponseClient
+      newFullyQualifiedTypeName: org.springframework.security.oauth2.client.endpoint.RestClientRefreshTokenTokenResponseClient
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.security.oauth2.client.endpoint.DefaultTokenExchangeTokenResponseClient
+      newFullyQualifiedTypeName: org.springframework.security.oauth2.client.endpoint.RestClientTokenExchangeTokenResponseClient
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.security7.MigrateSpringSecurityOAuth2ResourceServer_7_0
+displayName: Migrate the Spring Security OAuth2 Resource Server module to Spring Security 7.0
+description: Update usages of Spring Security OAuth2 Resource Server APIs that were removed in Spring Security 7.0. The bearer token authentication token and filter moved to their `authentication` subpackages, and the Nimbus opaque token introspectors were replaced by the Spring ones with the same constructors.
+preconditions:
+  - org.openrewrite.Singleton
+recipeList:
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.security.oauth2.server.resource.BearerTokenAuthenticationToken
+      newFullyQualifiedTypeName: org.springframework.security.oauth2.server.resource.authentication.BearerTokenAuthenticationToken
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.security.oauth2.server.resource.web.BearerTokenAuthenticationFilter
+      newFullyQualifiedTypeName: org.springframework.security.oauth2.server.resource.web.authentication.BearerTokenAuthenticationFilter
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.security.oauth2.server.resource.introspection.NimbusOpaqueTokenIntrospector
+      newFullyQualifiedTypeName: org.springframework.security.oauth2.server.resource.introspection.SpringOpaqueTokenIntrospector
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.security.oauth2.server.resource.introspection.NimbusReactiveOpaqueTokenIntrospector
+      newFullyQualifiedTypeName: org.springframework.security.oauth2.server.resource.introspection.SpringReactiveOpaqueTokenIntrospector
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.security7.MigrateSpringSecuritySaml2_7_0
+displayName: Migrate the Spring Security SAML2 Service Provider module to Spring Security 7.0
+description: Update usages of Spring Security SAML2 APIs that were removed in Spring Security 7.0. The OpenSAML 4 components were removed in favor of the OpenSAML 5 ones, explicitly declared OpenSAML dependencies move to the 5.x line, and the asserting party details accessors were replaced by the asserting party metadata ones.
+preconditions:
+  - org.openrewrite.Singleton
+recipeList:
+  # OpenSAML 5
+  - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
+      groupId: org.opensaml
+      artifactId: "*"
+      newVersion: 5.x
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.security.saml2.provider.service.authentication.OpenSaml4AuthenticationProvider
+      newFullyQualifiedTypeName: org.springframework.security.saml2.provider.service.authentication.OpenSaml5AuthenticationProvider
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.security.saml2.provider.service.authentication.logout.OpenSaml4LogoutRequestValidator
+      newFullyQualifiedTypeName: org.springframework.security.saml2.provider.service.authentication.logout.OpenSaml5LogoutRequestValidator
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.security.saml2.provider.service.authentication.logout.OpenSamlLogoutRequestValidator
+      newFullyQualifiedTypeName: org.springframework.security.saml2.provider.service.authentication.logout.OpenSaml5LogoutRequestValidator
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.security.saml2.provider.service.authentication.logout.OpenSaml4LogoutResponseValidator
+      newFullyQualifiedTypeName: org.springframework.security.saml2.provider.service.authentication.logout.OpenSaml5LogoutResponseValidator
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.security.saml2.provider.service.authentication.logout.OpenSamlLogoutResponseValidator
+      newFullyQualifiedTypeName: org.springframework.security.saml2.provider.service.authentication.logout.OpenSaml5LogoutResponseValidator
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.security.saml2.provider.service.metadata.OpenSaml4MetadataResolver
+      newFullyQualifiedTypeName: org.springframework.security.saml2.provider.service.metadata.OpenSaml5MetadataResolver
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.security.saml2.provider.service.metadata.OpenSamlMetadataResolver
+      newFullyQualifiedTypeName: org.springframework.security.saml2.provider.service.metadata.OpenSaml5MetadataResolver
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.security.saml2.provider.service.registration.OpenSaml4AssertingPartyMetadataRepository
+      newFullyQualifiedTypeName: org.springframework.security.saml2.provider.service.registration.OpenSaml5AssertingPartyMetadataRepository
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.security.saml2.provider.service.web.OpenSaml4AuthenticationTokenConverter
+      newFullyQualifiedTypeName: org.springframework.security.saml2.provider.service.web.OpenSaml5AuthenticationTokenConverter
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.security.saml2.provider.service.web.OpenSamlAuthenticationTokenConverter
+      newFullyQualifiedTypeName: org.springframework.security.saml2.provider.service.web.OpenSaml5AuthenticationTokenConverter
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.security.saml2.provider.service.web.authentication.OpenSaml4AuthenticationRequestResolver
+      newFullyQualifiedTypeName: org.springframework.security.saml2.provider.service.web.authentication.OpenSaml5AuthenticationRequestResolver
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.security.saml2.provider.service.web.authentication.logout.OpenSaml4LogoutRequestResolver
+      newFullyQualifiedTypeName: org.springframework.security.saml2.provider.service.web.authentication.logout.OpenSaml5LogoutRequestResolver
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.security.saml2.provider.service.web.authentication.logout.OpenSaml4LogoutResponseResolver
+      newFullyQualifiedTypeName: org.springframework.security.saml2.provider.service.web.authentication.logout.OpenSaml5LogoutResponseResolver
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.security.saml2.provider.service.web.authentication.logout.OpenSaml4LogoutRequestValidatorParametersResolver
+      newFullyQualifiedTypeName: org.springframework.security.saml2.provider.service.web.authentication.logout.OpenSaml5LogoutRequestValidatorParametersResolver
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.security.saml2.provider.service.web.authentication.logout.OpenSamlLogoutRequestValidatorParametersResolver
+      newFullyQualifiedTypeName: org.springframework.security.saml2.provider.service.web.authentication.logout.OpenSaml5LogoutRequestValidatorParametersResolver
+
+  # Asserting Party Metadata
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: org.springframework.security.saml2.provider.service.registration.RelyingPartyRegistration getAssertingPartyDetails()
+      newMethodName: getAssertingPartyMetadata
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: org.springframework.security.saml2.provider.service.registration.RelyingPartyRegistration$Builder assertingPartyDetails(..)
+      newMethodName: assertingPartyMetadata
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.security7.MigrateSpringSecurityCas_7_0
+displayName: Migrate the Spring Security CAS module to Spring Security 7.0
+description: Update usages of Spring Security CAS APIs that were removed in Spring Security 7.0. The service authentication details type moved out of the web package.
+preconditions:
+  - org.openrewrite.Singleton
+recipeList:
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.security.cas.web.authentication.ServiceAuthenticationDetails
+      newFullyQualifiedTypeName: org.springframework.security.cas.authentication.ServiceAuthenticationDetails
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.security7.MigrateSpringSecurityKerberos_7_0
+displayName: Migrate the Spring Security Kerberos extension to Spring Security 7.0
+description: Move the Spring Security Kerberos artifacts, which became part of Spring Security in the 7.0 release, from the `org.springframework.security.kerberos` group to the `org.springframework.security` group. The packages are unchanged.
+preconditions:
+  - org.openrewrite.Singleton
+recipeList:
+  - org.openrewrite.java.dependencies.ChangeDependency:
+      oldGroupId: org.springframework.security.kerberos
+      oldArtifactId: spring-security-kerberos-core
+      newGroupId: org.springframework.security
+      newArtifactId: spring-security-kerberos-core
+      newVersion: 7.0.x
+  - org.openrewrite.java.dependencies.ChangeDependency:
+      oldGroupId: org.springframework.security.kerberos
+      oldArtifactId: spring-security-kerberos-client
+      newGroupId: org.springframework.security
+      newArtifactId: spring-security-kerberos-client
+      newVersion: 7.0.x
+  - org.openrewrite.java.dependencies.ChangeDependency:
+      oldGroupId: org.springframework.security.kerberos
+      oldArtifactId: spring-security-kerberos-web
+      newGroupId: org.springframework.security
+      newArtifactId: spring-security-kerberos-web
+      newVersion: 7.0.x

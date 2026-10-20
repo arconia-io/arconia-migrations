@@ -14,6 +14,7 @@ The recipe will:
 * Upgrade all `org.springframework.boot` dependencies, the `spring-boot-starter-parent` Maven parent, and the Spring Boot Gradle and Maven plugins to the 4.1.x release line.
 * Rename Spring Boot configuration properties that changed, and comment out those removed so you can address them manually.
 * Upgrade the GraalVM Native Build Tools plugin to 1.1.x.
+* Chain the xref:spring/spring-modulith/2-1.adoc[Spring Modulith 2.1], xref:spring/spring-security/7-1.adoc[Spring Security 7.1], and xref:spring/spring-data/2026-0.adoc[Spring Data 2026.0] upgrade recipes, since their managed versions move with Spring Boot.
 
 See its xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_UpgradeSpringBoot_4_1[entry in the Recipe Catalog] for the full list of recipes this upgrade applies, each with its options and a before/after example.
 

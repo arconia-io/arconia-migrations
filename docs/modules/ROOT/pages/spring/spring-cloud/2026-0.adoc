@@ -1,0 +1,25 @@
+= Spring Cloud 2026.0
+:description: Migrate your Spring application to the latest Spring Cloud 2026.0.x release.
+:cli-command: arconia rewrite run --recipe-name io.arconia.rewrite.spring.cloud2026.UpgradeSpringCloud_2026_0
+:recipe-id: io.arconia.rewrite.spring.cloud2026.UpgradeSpringCloud_2026_0
+:rewrite-module: rewrite-spring
+
+When upgrading to Spring Cloud 2026.0, refer to the https://github.com/spring-cloud/spring-cloud-release/wiki/Spring-Cloud-2026.0-Release-Notes[Spring Cloud 2026.0 Release Notes] for newly introduced APIs, deprecated APIs, and breaking changes. Spring Cloud 2026.0 is the release train for Spring Boot 4.2, and the xref:spring/spring-boot/4-2.adoc[Spring Boot 4.2] upgrade recipe chains this recipe.
+
+The `{recipe-id}` recipe automates most of the changes introduced in Spring Cloud 2026.0. You can use it to update your project to the latest Spring Cloud 2026.0.x release.
+
+The recipe will:
+
+* Upgrade `org.springframework.cloud:spring-cloud-dependencies` to the 2026.0.x release line.
+* Upgrade all other `org.springframework.cloud` dependencies to the 5.1.x release line.
+* Rename Spring Cloud configuration properties that changed, such as the Consul config prefix and the Gateway metrics path tags, and comment out those removed so you can address them manually, such as the Vault key-value backend version and the Vault database backends.
+* Migrate *Spring Cloud Gateway* usages to the 5.1 release: the retry filter moved from Reactor Addons to the retry support built into Reactor and dropped the `basedOnPreviousValue` backoff flag, so the recipe removes that argument from `RetryConfig.setBackoff(...)` calls and `BackoffConfig` constructors.
+* Migrate *Spring Cloud Contract* to https://stubborn.sh[Stubborn Contract], its continuation, since Spring Cloud Contract was archived and is no longer part of the release train. The recipe moves the starters, modules, BOM, Maven plugin, and Gradle plugin to the `sh.stubborn` coordinates on the 0.1.x line, renames the `org.springframework.cloud.contract` packages and the JSON and XML assertion packages, renames the `spring.cloud.contract.stubrunner` and `spring.cloud.contract.verifier` property prefixes to their `stubborn.contract` equivalents, and replaces the JUnit 4 stub runner rule and its `@Rule` annotation with the JUnit 5 extension and `@RegisterExtension`. Stubborn Contract splits its Spring integration into separate artifacts, so a direct dependency on a Spring Cloud Contract module is moved to the Spring Cloud or Spring variant that still provides every class the original module did. Existing contracts and WireMock stubs run unchanged. This step is also available on its own as the xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_cloud2026_MigrateSpringCloudContractToStubbornContract[`MigrateSpringCloudContractToStubbornContract`] recipe, and it follows the https://docs.stubborn.sh/contract/migration/from-spring-cloud-contract[Stubborn Contract migration guide].
+
+Some changes in Spring Cloud 2026.0 are deliberately not automated. Stubborn Contract 0.1.x targets Spring Boot 4.1 and its BOM manages Spring Cloud Stream and REST Assured versions, so review those against the versions Spring Boot 4.2 manages. The standalone `spring-cloud-contract-stub-runner-boot` application has no Stubborn Contract counterpart. Gateway no longer depends on `reactor-extra`, so code that used Reactor Addons types through Gateway must declare that dependency itself, and the `apply(...)` overload of the retry filter factory now takes Reactor's own retry and repeat types. A `basedOnPreviousValue` entry in the backoff arguments of a route definition is silently ignored and can be removed. Spring Cloud Consul no longer declares or manages the `com.ecwid.consul:consul-api` and Gson dependencies, so a project that declared the Consul client without a version has to pin one.
+
+See its xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_cloud2026_UpgradeSpringCloud_2026_0[entry in the Recipe Catalog] for the full list of recipes this upgrade applies, each with its options and a before/after example.
+
+== Run the Recipe
+
+include::partial$run-recipe.adoc[]

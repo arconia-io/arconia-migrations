@@ -1,0 +1,21 @@
+= Spring Modulith 2.2
+:description: Migrate your Spring Boot application to the latest Spring Modulith 2.2.x release.
+:cli-command: arconia rewrite run --recipe-name io.arconia.rewrite.spring.modulith2.UpgradeSpringModulith_2_2
+:recipe-id: io.arconia.rewrite.spring.modulith2.UpgradeSpringModulith_2_2
+:rewrite-module: rewrite-spring
+
+When upgrading to Spring Modulith 2.2, refer to the https://github.com/spring-projects/spring-modulith/releases[Spring Modulith Release Notes] for newly introduced APIs, deprecated APIs, and breaking changes. Spring Modulith 2.2 is the release line for Spring Boot 4.2, and the xref:spring/spring-boot/4-2.adoc[Spring Boot 4.2] upgrade recipe chains this recipe.
+
+The `{recipe-id}` recipe automates the changes introduced in Spring Modulith 2.2. You can use it to update your project to the latest Spring Modulith 2.2.x release.
+
+The recipe will:
+
+* Upgrade all `org.springframework.modulith` dependencies to the 2.2.x release line.
+
+Spring Modulith 2.2 removes the configuration properties that earlier releases had deprecated, rather than deprecating new ones. Those renames are applied by the xref:spring/spring-modulith/2-0.adoc[Spring Modulith 2.0] and xref:spring/spring-modulith/2-1.adoc[Spring Modulith 2.1] recipes, which the Spring Boot upgrade recipe runs before this one. If you run this recipe on its own from an earlier release, run those recipes first.
+
+See its xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_modulith2_UpgradeSpringModulith_2_2[entry in the Recipe Catalog] for the full list of recipes this upgrade applies, each with its options and a before/after example.
+
+== Run the Recipe
+
+include::partial$run-recipe.adoc[]

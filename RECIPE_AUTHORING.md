@@ -26,12 +26,13 @@ UpgradeSpring<Area>_X_Y    (the version aggregate users run)
 
 ## Generating property-migration recipes
 
-Spring publishes deprecation information in each module's `META-INF/spring-configuration-metadata.json`. Three Gradle tasks turn that metadata into a generated recipe, one per ecosystem:
+Spring publishes deprecation information in each module's `META-INF/spring-configuration-metadata.json`. Four Gradle tasks turn that metadata into a generated recipe, one per ecosystem:
 
 ```shell
-./gradlew generateSpringAiProperties    --args='2.0.0'      # spring-ai-bom version
-./gradlew generateSpringBootProperties  --args='4.1.0'      # spring-boot-dependencies version
-./gradlew generateSpringCloudProperties --args='2025.0.0'   # spring-cloud-dependencies version
+./gradlew generateSpringAiProperties       --args='2.0.0'      # spring-ai-bom version
+./gradlew generateSpringBootProperties     --args='4.1.0'      # spring-boot-dependencies version
+./gradlew generateSpringCloudProperties    --args='2025.0.0'   # spring-cloud-dependencies version
+./gradlew generateSpringModulithProperties --args='2.2.0'      # spring-modulith-bom version
 ```
 
 Each task runs a `*PropertiesMigrationGenerator` entry point that supplies a `Spec` (BOM coordinates, module prefix, output path, recipe-name pattern) to the shared `PropertiesMigrationGenerator`. The generator:
@@ -40,7 +41,7 @@ Each task runs a `*PropertiesMigrationGenerator` entry point that supplies a `Sp
 2. Selects the modules whose artifact id starts with the configured prefix (for example `spring-ai-autoconfigure-`).
 3. Downloads each module jar (cached under `.generated/`) and reads its `spring-configuration-metadata.json`.
 4. Emits one entry per deprecated property: a `RenameSpringBootPropertyKey` when the metadata carries a `replacement`, otherwise a `CommentSpringBootProperty` (for removed or unbindable properties, including the deprecation reason when present).
-5. Writes a `…-properties-generated.yml` file named `UpgradeSpring<Area>PropertiesGenerated_X_Y`, with a header marking it as generated.
+5. Writes a `…-properties-generated.yml` file named `UpgradeSpring<Area>PropertiesGenerated_X_Y`, with a header marking it as generated. A release without deprecated properties yields an empty `recipeList: []`, so the wrapper can compose it unconditionally.
 
 The generated file starts with:
 

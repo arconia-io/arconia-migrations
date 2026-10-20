@@ -1,0 +1,225 @@
+# Based on https://github.com/spring-projects/spring-data-commons/wiki/Spring-Data-2025.1-Release-Notes
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.data2025.UpgradeSpringData_2025_1
+displayName: Migrate to Spring Data 2025.1
+description: Migrate a Spring application to the latest Spring Data 2025.1.x release train.
+tags:
+  - spring
+  - data
+preconditions:
+  - org.openrewrite.Singleton
+recipeList:
+
+  # Dependency Versions
+  - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
+      groupId: org.springframework.data
+      artifactId: spring-data-bom
+      newVersion: 2025.1.x
+  - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
+      groupId: org.springframework.data
+      artifactId: "spring-data-commons"
+      newVersion: 4.0.x
+  - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
+      groupId: org.springframework.data
+      artifactId: "spring-data-envers"
+      newVersion: 4.0.x
+  - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
+      groupId: org.springframework.data
+      artifactId: "spring-data-jdbc"
+      newVersion: 4.0.x
+  - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
+      groupId: org.springframework.data
+      artifactId: "spring-data-jpa"
+      newVersion: 4.0.x
+  - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
+      groupId: org.springframework.data
+      artifactId: "spring-data-keyvalue"
+      newVersion: 4.0.x
+  - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
+      groupId: org.springframework.data
+      artifactId: "spring-data-ldap"
+      newVersion: 4.0.x
+  - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
+      groupId: org.springframework.data
+      artifactId: "spring-data-r2dbc"
+      newVersion: 4.0.x
+  - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
+      groupId: org.springframework.data
+      artifactId: "spring-data-redis"
+      newVersion: 4.0.x
+  - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
+      groupId: org.springframework.data
+      artifactId: "spring-data-relational"
+      newVersion: 4.0.x
+  - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
+      groupId: org.springframework.data
+      artifactId: "spring-data-cassandra"
+      newVersion: 5.0.x
+  - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
+      groupId: org.springframework.data
+      artifactId: "spring-data-mongodb"
+      newVersion: 5.0.x
+  - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
+      groupId: org.springframework.data
+      artifactId: "spring-data-rest-*"
+      newVersion: 5.0.x
+  - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
+      groupId: org.springframework.data
+      artifactId: "spring-data-couchbase"
+      newVersion: 6.0.x
+  - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
+      groupId: org.springframework.data
+      artifactId: "spring-data-elasticsearch"
+      newVersion: 6.0.x
+  - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
+      groupId: org.springframework.data
+      artifactId: "spring-data-neo4j"
+      newVersion: 8.0.x
+
+  # Spring Data Modules
+  - io.arconia.rewrite.spring.data2025.MigrateSpringDataCommons_2025_1
+  - io.arconia.rewrite.spring.data2025.MigrateSpringDataJpa_2025_1
+  - io.arconia.rewrite.spring.data2025.MigrateSpringDataJdbc_2025_1
+  - io.arconia.rewrite.spring.data2025.MigrateSpringDataMongoDb_2025_1
+  - io.arconia.rewrite.spring.data2025.MigrateSpringDataCassandra_2025_1
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.data2025.MigrateSpringDataCommons_2025_1
+displayName: Migrate the Spring Data Commons module to Spring Data 2025.1
+description: Update usages of Spring Data Commons APIs that were removed, relocated, or renamed in the Spring Data 2025.1 release train. The persistence constructor annotation gave way to the persistence creator one, several core types moved to the new `core` package, and the constructor-oriented mapping metadata methods were renamed to their creator-oriented successors.
+preconditions:
+  - org.openrewrite.Singleton
+recipeList:
+  # Persistence Creator
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.data.annotation.PersistenceConstructor
+      newFullyQualifiedTypeName: org.springframework.data.annotation.PersistenceCreator
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: org.springframework.data.mapping.PersistentEntity getPersistenceConstructor()
+      newMethodName: getInstanceCreatorMetadata
+      matchOverrides: true
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: org.springframework.data.mapping.PersistentEntity isConstructorArgument(..)
+      newMethodName: isCreatorArgument
+      matchOverrides: true
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: org.springframework.data.mapping.PreferredConstructor isConstructorParameter(..)
+      newMethodName: isCreatorParameter
+      matchOverrides: true
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: org.springframework.data.mapping.model.MappingInstantiationException getConstructor()
+      newMethodName: getEntityCreator
+
+  # Value Expressions
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: org.springframework.data.mapping.model.ValueExpressionParameterValueProvider potentiallyConvertSpelValue(..)
+      newMethodName: potentiallyConvertExpressionValue
+      matchOverrides: true
+
+  # Core Package
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.data.mapping.PropertyPath
+      newFullyQualifiedTypeName: org.springframework.data.core.PropertyPath
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.data.mapping.PropertyReferenceException
+      newFullyQualifiedTypeName: org.springframework.data.core.PropertyReferenceException
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.data.util.TypeInformation
+      newFullyQualifiedTypeName: org.springframework.data.core.TypeInformation
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.data.util.TypeDiscoverer
+      newFullyQualifiedTypeName: org.springframework.data.core.TypeDiscoverer
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.data.util.CustomCollections
+      newFullyQualifiedTypeName: org.springframework.data.core.CustomCollections
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.data.util.CustomCollectionRegistrar
+      newFullyQualifiedTypeName: org.springframework.data.core.CustomCollectionRegistrar
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.data.util.NullableWrapper
+      newFullyQualifiedTypeName: org.springframework.data.core.NullableWrapper
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.data.util.NullableWrapperConverters
+      newFullyQualifiedTypeName: org.springframework.data.core.NullableWrapperConverters
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.data.util.ReactiveWrappers
+      newFullyQualifiedTypeName: org.springframework.data.core.ReactiveWrappers
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.data.repository.util.ReactiveWrappers
+      newFullyQualifiedTypeName: org.springframework.data.core.ReactiveWrappers
+
+  # Other Renames
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: org.springframework.data.mapping.PersistentPropertyPath getRequiredLeafProperty()
+      newMethodName: getLeafProperty
+      matchOverrides: true
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: org.springframework.data.repository.core.support.RepositoryFactorySupport getTargetRepositoryViaReflection(..)
+      newMethodName: instantiateClass
+      matchOverrides: true
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.data2025.MigrateSpringDataJpa_2025_1
+displayName: Migrate the Spring Data JPA module to Spring Data 2025.1
+description: Flag the native query parser property removed in Spring Data JPA 4.0. The query enhancer is now selected through the `queryEnhancerSelector` attribute of `@EnableJpaRepositories`.
+preconditions:
+  - org.openrewrite.Singleton
+recipeList:
+  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
+      propertyKey: spring.data.jpa.query.native.parser
+      comment: Removed in Spring Data JPA 4.0. Configure the query enhancer through the queryEnhancerSelector attribute of @EnableJpaRepositories instead.
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.data2025.MigrateSpringDataJdbc_2025_1
+displayName: Migrate the Spring Data JDBC module to Spring Data 2025.1
+description: Update usages of Spring Data JDBC APIs that were relocated in the Spring Data 2025.1 release train. The query mapping configuration moved to the conversion package.
+preconditions:
+  - org.openrewrite.Singleton
+recipeList:
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.data.jdbc.repository.QueryMappingConfiguration
+      newFullyQualifiedTypeName: org.springframework.data.jdbc.core.convert.QueryMappingConfiguration
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.data2025.MigrateSpringDataMongoDb_2025_1
+displayName: Migrate the Spring Data MongoDB module to Spring Data 2025.1
+description: Update usages of Spring Data MongoDB APIs that changed in the Spring Data 2025.1 release train. The `allowDiskUse` attribute of the `@Meta` annotation changed from a boolean to a string so that the server default can be expressed.
+preconditions:
+  - org.openrewrite.Singleton
+recipeList:
+  - io.arconia.rewrite.spring.data2025.UseStringValueForMetaAllowDiskUse
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.data2025.MigrateSpringDataCassandra_2025_1
+displayName: Migrate the Spring Data for Apache Cassandra module to Spring Data 2025.1
+description: Update usages of Spring Data for Apache Cassandra APIs that were removed in the Spring Data 2025.1 release train. The legacy asynchronous templates and operations that returned `ListenableFuture` were replaced by the `CompletableFuture` based ones, and the deprecated mapping context and session factory beans were replaced by their successors.
+preconditions:
+  - org.openrewrite.Singleton
+recipeList:
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.data.cassandra.core.cql.legacy.AsyncCqlTemplate
+      newFullyQualifiedTypeName: org.springframework.data.cassandra.core.cql.AsyncCqlTemplate
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.data.cassandra.core.cql.legacy.AsyncCqlOperations
+      newFullyQualifiedTypeName: org.springframework.data.cassandra.core.cql.AsyncCqlOperations
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.data.cassandra.core.legacy.AsyncCassandraTemplate
+      newFullyQualifiedTypeName: org.springframework.data.cassandra.core.AsyncCassandraTemplate
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.data.cassandra.core.legacy.AsyncCassandraOperations
+      newFullyQualifiedTypeName: org.springframework.data.cassandra.core.AsyncCassandraOperations
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.data.cassandra.core.mapping.BasicCassandraMappingContext
+      newFullyQualifiedTypeName: org.springframework.data.cassandra.core.mapping.CassandraMappingContext
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.data.cassandra.config.CassandraCqlSessionFactoryBean
+      newFullyQualifiedTypeName: org.springframework.data.cassandra.config.CqlSessionFactoryBean
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.data.cassandra.config.CassandraSessionFactoryBean
+      newFullyQualifiedTypeName: org.springframework.data.cassandra.config.CqlSessionFactoryBean

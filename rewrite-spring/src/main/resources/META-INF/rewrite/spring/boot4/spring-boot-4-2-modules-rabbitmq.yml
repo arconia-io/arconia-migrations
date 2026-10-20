@@ -1,0 +1,44 @@
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.MigrateSpringBootRabbitMq_4_2
+displayName: Migrate the Spring Boot AMQP module to the RabbitMQ module in Spring Boot 4.2
+description: Keep an application on AMQP 0.9 when upgrading to Spring Boot 4.2 by moving from the AMQP starter and module, which now provide AMQP 1.0 support, to the RabbitMQ starter and module. Adopting AMQP 1.0 instead is a separate, manual migration to the `spring-boot-starter-amqp-rabbitmq` starter.
+tags:
+  - spring
+  - boot
+preconditions:
+  - org.openrewrite.Singleton
+recipeList:
+  # Dependencies
+  - org.openrewrite.java.dependencies.ChangeDependency:
+      oldGroupId: org.springframework.boot
+      oldArtifactId: spring-boot-starter-amqp
+      newGroupId: org.springframework.boot
+      newArtifactId: spring-boot-starter-rabbitmq
+  - org.openrewrite.java.dependencies.ChangeDependency:
+      oldGroupId: org.springframework.boot
+      oldArtifactId: spring-boot-starter-amqp-test
+      newGroupId: org.springframework.boot
+      newArtifactId: spring-boot-starter-rabbitmq-test
+  - org.openrewrite.java.dependencies.ChangeDependency:
+      oldGroupId: org.springframework.boot
+      oldArtifactId: spring-boot-amqp
+      newGroupId: org.springframework.boot
+      newArtifactId: spring-boot-rabbitmq
+
+  # Packages
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.amqp.autoconfigure
+      newPackageName: org.springframework.boot.rabbitmq.autoconfigure
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.amqp.autoconfigure.health
+      newPackageName: org.springframework.boot.rabbitmq.autoconfigure.health
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.amqp.autoconfigure.metrics
+      newPackageName: org.springframework.boot.rabbitmq.autoconfigure.metrics
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.amqp.health
+      newPackageName: org.springframework.boot.rabbitmq.health
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.springframework.boot.amqp.metrics
+      newPackageName: org.springframework.boot.rabbitmq.metrics

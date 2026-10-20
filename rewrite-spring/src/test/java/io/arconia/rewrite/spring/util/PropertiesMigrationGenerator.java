@@ -519,6 +519,13 @@ public final class PropertiesMigrationGenerator {
             }
         });
 
+        // A release without deprecated properties still gets a well-formed, empty recipe,
+        // so the hand-written wrapper can compose it unconditionally.
+        if (propertiesByModule.isEmpty()) {
+            out.setLength(out.length() - 1);
+            out.append(" []\n");
+        }
+
         Files.writeString(recipePath, out.toString());
     }
 

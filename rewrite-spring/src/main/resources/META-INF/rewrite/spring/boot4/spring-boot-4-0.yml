@@ -65,11 +65,6 @@ recipeList:
 
   # Other Dependencies
   - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
-      groupId: org.springframework.modulith
-      artifactId: "*"
-      newVersion: 2.0.x
-      overrideManagedVersion: true
-  - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
       groupId: org.springdoc
       artifactId: "*"
       newVersion: 3.0.x
@@ -95,6 +90,9 @@ recipeList:
   - io.arconia.rewrite.testing.testcontainers.UpgradeTestcontainers_2
   - io.arconia.rewrite.spring.cloud2025.UpgradeSpringCloud_2025_1
   - io.arconia.rewrite.spring.ai2.UpgradeSpringAi_2_0
+  - io.arconia.rewrite.spring.modulith2.UpgradeSpringModulith_2_0
+  - io.arconia.rewrite.spring.security7.UpgradeSpringSecurity_7_0
+  - io.arconia.rewrite.spring.data2025.UpgradeSpringData_2025_1
 
   # Modules
   - io.arconia.rewrite.spring.boot4.MigrateActiveMqModule
