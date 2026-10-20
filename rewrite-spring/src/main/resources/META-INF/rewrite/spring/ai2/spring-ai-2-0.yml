@@ -27,6 +27,11 @@ recipeList:
   # Dependency Changes
   - org.openrewrite.java.dependencies.ChangeDependency:
       oldGroupId: org.springframework.ai
+      oldArtifactId: spring-ai-autoconfigure-model-chat-memory-redis
+      newGroupId: org.springframework.ai
+      newArtifactId: spring-ai-autoconfigure-model-chat-memory-repository-redis
+  - org.openrewrite.java.dependencies.ChangeDependency:
+      oldGroupId: org.springframework.ai
       oldArtifactId: spring-ai-advisors-vector-store
       newGroupId: org.springframework.ai
       newArtifactId: spring-ai-vector-store-advisor
@@ -177,15 +182,25 @@ recipeList:
       newMethodName: encodingFormat
       matchOverrides: true
 
-  # Enum Changes
+  # Enum Changes. Spring AI 2.0.1 removed the constants of retired models (Devstral, Magistral,
+  # and Open Mistral Nemo), so the aliases map onto the closest supported model instead.
   - org.openrewrite.java.ReplaceConstantWithAnotherConstant:
       existingFullyQualifiedConstantName: org.springframework.ai.mistralai.api.MistralAiApi.ChatModel.DEVSTRAL_SMALL
-      fullyQualifiedConstantName: org.springframework.ai.mistralai.api.MistralAiApi.ChatModel.DEVSTRAL
+      fullyQualifiedConstantName: org.springframework.ai.mistralai.api.MistralAiApi.ChatModel.CODESTRAL
   - org.openrewrite.java.ReplaceConstantWithAnotherConstant:
       existingFullyQualifiedConstantName: org.springframework.ai.mistralai.api.MistralAiApi.ChatModel.DEVSTRAL_MEDIUM
-      fullyQualifiedConstantName: org.springframework.ai.mistralai.api.MistralAiApi.ChatModel.DEVSTRAL
+      fullyQualifiedConstantName: org.springframework.ai.mistralai.api.MistralAiApi.ChatModel.CODESTRAL
+  - org.openrewrite.java.ReplaceConstantWithAnotherConstant:
+      existingFullyQualifiedConstantName: org.springframework.ai.mistralai.api.MistralAiApi.ChatModel.DEVSTRAL
+      fullyQualifiedConstantName: org.springframework.ai.mistralai.api.MistralAiApi.ChatModel.CODESTRAL
   - org.openrewrite.java.ReplaceConstantWithAnotherConstant:
       existingFullyQualifiedConstantName: org.springframework.ai.mistralai.api.MistralAiApi.ChatModel.MAGISTRAL_SMALL
+      fullyQualifiedConstantName: org.springframework.ai.mistralai.api.MistralAiApi.ChatModel.MISTRAL_SMALL
+  - org.openrewrite.java.ReplaceConstantWithAnotherConstant:
+      existingFullyQualifiedConstantName: org.springframework.ai.mistralai.api.MistralAiApi.ChatModel.MAGISTRAL_MEDIUM
+      fullyQualifiedConstantName: org.springframework.ai.mistralai.api.MistralAiApi.ChatModel.MISTRAL_MEDIUM
+  - org.openrewrite.java.ReplaceConstantWithAnotherConstant:
+      existingFullyQualifiedConstantName: org.springframework.ai.mistralai.api.MistralAiApi.ChatModel.OPEN_MISTRAL_NEMO
       fullyQualifiedConstantName: org.springframework.ai.mistralai.api.MistralAiApi.ChatModel.MISTRAL_SMALL
   - org.openrewrite.java.ReplaceConstantWithAnotherConstant:
       existingFullyQualifiedConstantName: org.springframework.ai.mistralai.api.MistralAiApi.ChatModel.MINISTRAL_3B_LATEST

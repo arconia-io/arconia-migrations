@@ -1,0 +1,23 @@
+= Spring AI 2.1
+:description: Migrate your Spring Boot application to the latest Spring AI 2.1.x release.
+:cli-command: arconia update spring-ai --to-version 2.1
+:recipe-id: io.arconia.rewrite.spring.ai2.UpgradeSpringAi_2_1
+:rewrite-module: rewrite-spring
+
+When upgrading to Spring AI 2.1, refer to the https://docs.spring.io/spring-ai/reference/2.1/upgrade-notes.html[Upgrade Notes] for newly introduced APIs, deprecated APIs, and breaking changes. Spring AI 2.1 is the release line for Spring Boot 4.2, and the xref:spring/spring-boot/4-2.adoc[Spring Boot 4.2] upgrade recipe chains this recipe.
+
+The `{recipe-id}` recipe automates the changes introduced in Spring AI 2.1. You can use it to update your project to the latest Spring AI 2.1.x release.
+
+The recipe will:
+
+* Upgrade all `org.springframework.ai` dependencies to the 2.1.x release line.
+* Rename Spring AI configuration properties that changed, and comment out those removed so you can address them manually, such as the MCP server SSE endpoint properties.
+* For *MCP* (Model Context Protocol): drop the `toolCallExceptionClass` argument from the constructors of the MCP tool method callbacks, which is ignored since exception dispatch became type-based in Spring AI 2.0.1 and is removed in Spring AI 2.1.
+
+Spring AI 2.1 introduces message parts without requiring source changes: the message constructors and builders keep working, and `getText()`, `getMedia()`, and `getToolCalls()` are now views over the parts. The protected `textContent`, `media`, and `responses` fields of the message classes are deprecated, so subclasses that read them directly should switch to the accessors.
+
+See its xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_ai2_UpgradeSpringAi_2_1[entry in the Recipe Catalog] for the full list of recipes this upgrade applies, each with its options and a before/after example.
+
+== Run the Recipe
+
+include::partial$run-recipe.adoc[]

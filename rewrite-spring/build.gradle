@@ -98,6 +98,7 @@ recipeDependencies {
     testParserClasspath "io.modelcontextprotocol.sdk:mcp-spring-webflux:0.18.+"
     testParserClasspath "io.modelcontextprotocol.sdk:mcp-spring-webmvc:0.18.+"
     testParserClasspath "org.springaicommunity:mcp-annotations:0.9.+"
+    testParserClasspath "org.springframework.ai:spring-ai-mcp-annotations:2.0.+"
 
     testParserClasspath "org.springframework.boot:spring-boot-autoconfigure:3.4.+"
     testParserClasspath "org.springframework.boot:spring-boot-test:3.4.+"

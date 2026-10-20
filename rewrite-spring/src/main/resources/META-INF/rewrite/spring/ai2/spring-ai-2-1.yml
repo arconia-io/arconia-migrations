@@ -19,3 +19,27 @@ recipeList:
       artifactId: "*"
       newVersion: 2.1.x
       overrideManagedVersion: true
+
+  # Modules
+  - io.arconia.rewrite.spring.ai2.MigrateSpringAiMcp_2_1
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.ai2.MigrateSpringAiMcp_2_1
+displayName: Migrate the Spring AI MCP module to Spring AI 2.1
+description: Update usages of Spring AI MCP APIs that were deprecated for removal in Spring AI 2.1. The `toolCallExceptionClass` parameter of the MCP tool method callbacks is no longer used, since exception dispatch became type-based in Spring AI 2.0.1, so the constructors that accept it give way to the three-argument ones.
+preconditions:
+  - org.openrewrite.Singleton
+recipeList:
+  - org.openrewrite.java.DeleteMethodArgument:
+      methodPattern: org.springframework.ai.mcp.annotation.method.tool.SyncMcpToolMethodCallback <constructor>(org.springframework.ai.mcp.annotation.method.tool.ReturnMode, java.lang.reflect.Method, java.lang.Object, java.lang.Class)
+      argumentIndex: 3
+  - org.openrewrite.java.DeleteMethodArgument:
+      methodPattern: org.springframework.ai.mcp.annotation.method.tool.AsyncMcpToolMethodCallback <constructor>(org.springframework.ai.mcp.annotation.method.tool.ReturnMode, java.lang.reflect.Method, java.lang.Object, java.lang.Class)
+      argumentIndex: 3
+  - org.openrewrite.java.DeleteMethodArgument:
+      methodPattern: org.springframework.ai.mcp.annotation.method.tool.SyncStatelessMcpToolMethodCallback <constructor>(org.springframework.ai.mcp.annotation.method.tool.ReturnMode, java.lang.reflect.Method, java.lang.Object, java.lang.Class)
+      argumentIndex: 3
+  - org.openrewrite.java.DeleteMethodArgument:
+      methodPattern: org.springframework.ai.mcp.annotation.method.tool.AsyncStatelessMcpToolMethodCallback <constructor>(org.springframework.ai.mcp.annotation.method.tool.ReturnMode, java.lang.reflect.Method, java.lang.Object, java.lang.Class)
+      argumentIndex: 3

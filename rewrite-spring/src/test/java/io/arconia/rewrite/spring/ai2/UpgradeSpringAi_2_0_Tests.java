@@ -647,14 +647,16 @@ class UpgradeSpringAi_2_0_Tests implements RewriteTest {
                             String modelName7 = MistralAiApi.ChatModel.SMALL.getName();
                             String modelName8 = MistralAiApi.ChatModel.PIXTRAL.getName();
                             String modelName9 = MistralAiApi.ChatModel.PIXTRAL_LARGE.getName();
+                            String modelName10 = MistralAiApi.ChatModel.MAGISTRAL_MEDIUM.getName();
+                            String modelName11 = MistralAiApi.ChatModel.OPEN_MISTRAL_NEMO.getName();
                         }
                         """,
                         """
                         import org.springframework.ai.mistralai.api.MistralAiApi.ChatModel;
 
                         class Demo {
-                            String modelName1 = ChatModel.DEVSTRAL.getName();
-                            String modelName2 = ChatModel.DEVSTRAL.getName();
+                            String modelName1 = ChatModel.CODESTRAL.getName();
+                            String modelName2 = ChatModel.CODESTRAL.getName();
                             String modelName3 = ChatModel.MISTRAL_SMALL.getName();
                             String modelName4 = ChatModel.MINISTRAL_3B.getName();
                             String modelName5 = ChatModel.MINISTRAL_8B.getName();
@@ -662,6 +664,8 @@ class UpgradeSpringAi_2_0_Tests implements RewriteTest {
                             String modelName7 = ChatModel.MISTRAL_SMALL.getName();
                             String modelName8 = ChatModel.MINISTRAL_14B.getName();
                             String modelName9 = ChatModel.MISTRAL_LARGE.getName();
+                            String modelName10 = ChatModel.MISTRAL_MEDIUM.getName();
+                            String modelName11 = ChatModel.MISTRAL_SMALL.getName();
                         }
                         """
                 )

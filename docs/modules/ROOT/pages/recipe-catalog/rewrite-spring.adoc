@@ -3,7 +3,7 @@
 
 // AUTO-GENERATED from the OpenRewrite recipe model. Do not edit by hand.
 
-The `rewrite-spring` module publishes 305 recipes across 13 categories.
+The `rewrite-spring` module publishes 306 recipes across 13 categories.
 
 [#family-spring-ai1]
 == spring › ai1
@@ -495,6 +495,18 @@ _Tags: spring, ai_
 * xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×240)
 ====
 
+[#io_arconia_rewrite_spring_ai2_MigrateSpringAiMcp_2_1]
+=== Migrate the Spring AI MCP module to Spring AI 2.1
+`io.arconia.rewrite.spring.ai2.MigrateSpringAiMcp_2_1`
+
+Update usages of Spring AI MCP APIs that were deprecated for removal in Spring AI 2.1. The `toolCallExceptionClass` parameter of the MCP tool method callbacks is no longer used, since exception dispatch became type-based in Spring AI 2.0.1, so the constructors that accept it give way to the three-argument ones.
+
+.Recipes applied
+[%collapsible]
+====
+* Delete method argument (`org.openrewrite.java.DeleteMethodArgument` ×4)
+====
+
 [#io_arconia_rewrite_spring_ai2_UpgradeSpringAi_2_0]
 === Migrate to Spring AI 2.0
 `io.arconia.rewrite.spring.ai2.UpgradeSpringAi_2_0`
@@ -513,7 +525,7 @@ _Tags: spring, ai_
 ** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×10)
 * Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_ai2_UseChatOptionsBuilder[Pass `ChatOptions.Builder` to `ChatClient` options methods] (`io.arconia.rewrite.spring.ai2.UseChatOptionsBuilder`)
-* Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency`)
+* Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency` ×2)
 * Change type (`org.openrewrite.java.ChangeType` ×3)
 * Change method name (`org.openrewrite.java.ChangeMethodName` ×7)
 * Change type (`org.openrewrite.java.ChangeType` ×5)
@@ -527,7 +539,7 @@ _Tags: spring, ai_
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_ai2_mcp_UseGetPromptResultBuilder[Use `McpSchema.GetPromptResult.builder(...)` instead of constructor] (`io.arconia.rewrite.spring.ai2.mcp.UseGetPromptResultBuilder`)
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_ai2_mcp_UseProgressNotificationBuilder[Use `McpSchema.ProgressNotification.builder(...)` instead of constructor] (`io.arconia.rewrite.spring.ai2.mcp.UseProgressNotificationBuilder`)
 * Change method name (`org.openrewrite.java.ChangeMethodName` ×2)
-* Replace constant with another constant (`org.openrewrite.java.ReplaceConstantWithAnotherConstant` ×9)
+* Replace constant with another constant (`org.openrewrite.java.ReplaceConstantWithAnotherConstant` ×12)
 * Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency` ×2)
 * Remove a Gradle or Maven dependency (`org.openrewrite.java.dependencies.RemoveDependency` ×6)
 * … and 43 more
@@ -586,7 +598,51 @@ _Tags: spring, ai_
 *** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×5)
 *** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×240)
 * Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_ai2_MigrateSpringAiMcp_2_1[Migrate the Spring AI MCP module to Spring AI 2.1] (`io.arconia.rewrite.spring.ai2.MigrateSpringAiMcp_2_1`)
+** Delete method argument (`org.openrewrite.java.DeleteMethodArgument` ×4)
 ====
+
+*Example*
+
+.Before
+[source,java]
+----
+import java.lang.reflect.Method;
+
+import org.springframework.ai.mcp.annotation.method.tool.AsyncMcpToolMethodCallback;
+import org.springframework.ai.mcp.annotation.method.tool.ReturnMode;
+import org.springframework.ai.mcp.annotation.method.tool.SyncMcpToolMethodCallback;
+
+class Demo {
+    SyncMcpToolMethodCallback sync(Method method, Object provider) {
+        return new SyncMcpToolMethodCallback(ReturnMode.TEXT, method, provider, Exception.class);
+    }
+
+    AsyncMcpToolMethodCallback async(Method method, Object provider) {
+        return new AsyncMcpToolMethodCallback(ReturnMode.TEXT, method, provider, RuntimeException.class);
+    }
+}
+----
+
+.After
+[source,java]
+----
+import java.lang.reflect.Method;
+
+import org.springframework.ai.mcp.annotation.method.tool.AsyncMcpToolMethodCallback;
+import org.springframework.ai.mcp.annotation.method.tool.ReturnMode;
+import org.springframework.ai.mcp.annotation.method.tool.SyncMcpToolMethodCallback;
+
+class Demo {
+    SyncMcpToolMethodCallback sync(Method method, Object provider) {
+        return new SyncMcpToolMethodCallback(ReturnMode.TEXT, method, provider);
+    }
+
+    AsyncMcpToolMethodCallback async(Method method, Object provider) {
+        return new AsyncMcpToolMethodCallback(ReturnMode.TEXT, method, provider);
+    }
+}
+----
 
 *Recipes*
 
@@ -7926,7 +7982,7 @@ _Tags: spring, boot_
 *** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×10)
 ** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
 ** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_ai2_UseChatOptionsBuilder[Pass `ChatOptions.Builder` to `ChatClient` options methods] (`io.arconia.rewrite.spring.ai2.UseChatOptionsBuilder`)
-** Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency`)
+** Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency` ×2)
 ** Change type (`org.openrewrite.java.ChangeType` ×3)
 ** Change method name (`org.openrewrite.java.ChangeMethodName` ×7)
 ** Change type (`org.openrewrite.java.ChangeType` ×5)
@@ -7940,7 +7996,7 @@ _Tags: spring, boot_
 ** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_ai2_mcp_UseGetPromptResultBuilder[Use `McpSchema.GetPromptResult.builder(...)` instead of constructor] (`io.arconia.rewrite.spring.ai2.mcp.UseGetPromptResultBuilder`)
 ** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_ai2_mcp_UseProgressNotificationBuilder[Use `McpSchema.ProgressNotification.builder(...)` instead of constructor] (`io.arconia.rewrite.spring.ai2.mcp.UseProgressNotificationBuilder`)
 ** Change method name (`org.openrewrite.java.ChangeMethodName` ×2)
-** Replace constant with another constant (`org.openrewrite.java.ReplaceConstantWithAnotherConstant` ×9)
+** Replace constant with another constant (`org.openrewrite.java.ReplaceConstantWithAnotherConstant` ×12)
 ** Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency` ×2)
 ** Remove a Gradle or Maven dependency (`org.openrewrite.java.dependencies.RemoveDependency` ×6)
 ** … and 43 more
@@ -8082,7 +8138,7 @@ _Tags: spring, boot_
 *** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_ai2_UpgradeSpringAiProperties_2_0[Migrate Spring AI properties to 2.0] (`io.arconia.rewrite.spring.ai2.UpgradeSpringAiProperties_2_0`)
 *** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
 *** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_ai2_UseChatOptionsBuilder[Pass `ChatOptions.Builder` to `ChatClient` options methods] (`io.arconia.rewrite.spring.ai2.UseChatOptionsBuilder`)
-*** Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency`)
+*** Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency` ×2)
 *** Change type (`org.openrewrite.java.ChangeType` ×3)
 *** Change method name (`org.openrewrite.java.ChangeMethodName` ×7)
 *** Change type (`org.openrewrite.java.ChangeType` ×5)
@@ -8096,7 +8152,7 @@ _Tags: spring, boot_
 *** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_ai2_mcp_UseGetPromptResultBuilder[Use `McpSchema.GetPromptResult.builder(...)` instead of constructor] (`io.arconia.rewrite.spring.ai2.mcp.UseGetPromptResultBuilder`)
 *** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_ai2_mcp_UseProgressNotificationBuilder[Use `McpSchema.ProgressNotification.builder(...)` instead of constructor] (`io.arconia.rewrite.spring.ai2.mcp.UseProgressNotificationBuilder`)
 *** Change method name (`org.openrewrite.java.ChangeMethodName` ×2)
-*** Replace constant with another constant (`org.openrewrite.java.ReplaceConstantWithAnotherConstant` ×9)
+*** Replace constant with another constant (`org.openrewrite.java.ReplaceConstantWithAnotherConstant` ×12)
 *** Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency` ×2)
 *** Remove a Gradle or Maven dependency (`org.openrewrite.java.dependencies.RemoveDependency` ×6)
 *** … and 43 more
@@ -8277,6 +8333,8 @@ _Tags: spring, boot_
 ** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_ai2_UpgradeSpringAiProperties_2_1[Migrate Spring AI properties to 2.1] (`io.arconia.rewrite.spring.ai2.UpgradeSpringAiProperties_2_1`)
 *** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_ai2_UpgradeSpringAiPropertiesGenerated_2_1[Migrate Spring AI properties to 2.1 (generated)] (`io.arconia.rewrite.spring.ai2.UpgradeSpringAiPropertiesGenerated_2_1`)
 ** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_ai2_MigrateSpringAiMcp_2_1[Migrate the Spring AI MCP module to Spring AI 2.1] (`io.arconia.rewrite.spring.ai2.MigrateSpringAiMcp_2_1`)
+*** Delete method argument (`org.openrewrite.java.DeleteMethodArgument` ×4)
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_modulith2_UpgradeSpringModulith_2_2[Migrate to Spring Modulith 2.2] (`io.arconia.rewrite.spring.modulith2.UpgradeSpringModulith_2_2`)
 ** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_modulith2_UpgradeSpringModulithProperties_2_2[Migrate Spring Modulith properties to 2.2] (`io.arconia.rewrite.spring.modulith2.UpgradeSpringModulithProperties_2_2`)
 *** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_modulith2_UpgradeSpringModulithPropertiesGenerated_2_2[Migrate Spring Modulith properties to 2.2 (generated)] (`io.arconia.rewrite.spring.modulith2.UpgradeSpringModulithPropertiesGenerated_2_2`)
