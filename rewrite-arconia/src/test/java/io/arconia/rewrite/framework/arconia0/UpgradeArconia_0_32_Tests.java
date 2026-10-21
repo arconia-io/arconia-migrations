@@ -18,7 +18,7 @@ class UpgradeArconia_0_32_Tests implements RewriteTest {
         spec.recipeFromResources("io.arconia.rewrite.framework.UpgradeArconia_0_32")
                 .parser(JavaParser.fromJavaVersion().classpathFromResources(new InMemoryExecutionContext(),
                         "arconia-multitenancy-core-0.30", "arconia-multitenancy-web-0.30", "jakarta.servlet-api-6.1",
-                        "spring-context-7.0"));
+                        "spring-context-7.0", "arconia-dev-services-api-0.31"));
     }
 
     @Test
@@ -203,6 +203,96 @@ class UpgradeArconia_0_32_Tests implements RewriteTest {
                         # management.health.tenantdetails.enabled=false
                         """,
                         s -> s.path("src/main/resources/application.properties"))
+        );
+    }
+
+    @Test
+    void devServicesPropertiesRenamed() {
+        rewriteRun(
+                //language=java
+                java(
+                        """
+                        package com.yourorg;
+
+                        import io.arconia.dev.services.api.config.BaseDevServicesProperties;
+
+                        class FancyDbDevServicesProperties implements BaseDevServicesProperties {
+                            @Override
+                            public String getImageName() {
+                                return "acme/fancydb";
+                            }
+                        }
+                        """,
+                        """
+                        package com.yourorg;
+
+                        import io.arconia.dev.services.api.config.DevServicesProperties;
+
+                        class FancyDbDevServicesProperties implements DevServicesProperties {
+                            @Override
+                            public String getImageName() {
+                                return "acme/fancydb";
+                            }
+                        }
+                        """
+                )
+        );
+    }
+
+    @Test
+    void devServiceRegistrationAccessorsRenamed() {
+        rewriteRun(
+                //language=java
+                java(
+                        """
+                        package com.yourorg;
+
+                        import io.arconia.dev.services.api.registration.ContainerInfo;
+                        import io.arconia.dev.services.api.registration.DevServiceRegistration;
+
+                        class Demo {
+                            void describe(DevServiceRegistration registration) {
+                                String name = registration.name();
+                                String description = registration.description();
+                                DevServiceRegistration.Origin origin = registration.origin();
+                                int links = registration.links().size();
+                                String sslBundleName = registration.sslBundleName();
+                                ContainerInfo containerInfo = registration.containerInfo().get();
+                                String id = containerInfo.id();
+                                String imageName = containerInfo.imageName();
+                                int names = containerInfo.names().size();
+                                int ports = containerInfo.ports().size();
+                                int labels = containerInfo.labels().size();
+                                String state = containerInfo.state();
+                                String status = containerInfo.status();
+                            }
+                        }
+                        """,
+                        """
+                        package com.yourorg;
+
+                        import io.arconia.dev.services.api.registration.ContainerInfo;
+                        import io.arconia.dev.services.api.registration.DevServiceRegistration;
+
+                        class Demo {
+                            void describe(DevServiceRegistration registration) {
+                                String name = registration.getName();
+                                String description = registration.getDescription();
+                                DevServiceRegistration.Origin origin = registration.getOrigin();
+                                int links = registration.getLinks().size();
+                                String sslBundleName = registration.getSslBundleName();
+                                ContainerInfo containerInfo = registration.getContainerInfo().get();
+                                String id = containerInfo.getId();
+                                String imageName = containerInfo.getImageName();
+                                int names = containerInfo.getNames().size();
+                                int ports = containerInfo.getPorts().size();
+                                int labels = containerInfo.getLabels().size();
+                                String state = containerInfo.getState();
+                                String status = containerInfo.getStatus();
+                            }
+                        }
+                        """
+                )
         );
     }
 

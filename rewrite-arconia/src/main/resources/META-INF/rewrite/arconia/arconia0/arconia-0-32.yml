@@ -74,3 +74,47 @@ recipeList:
   - org.openrewrite.java.ChangeType:
       oldFullyQualifiedTypeName: io.arconia.multitenancy.core.autoconfigure.PropertiesTenantDetailsService
       newFullyQualifiedTypeName: io.arconia.multitenancy.core.tenantdetails.InMemoryTenantDetailsService
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: io.arconia.dev.services.api.config.BaseDevServicesProperties
+      newFullyQualifiedTypeName: io.arconia.dev.services.api.config.DevServicesProperties
+
+  # Rename Methods
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: io.arconia.dev.services.api.registration.DevServiceRegistration name()
+      newMethodName: getName
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: io.arconia.dev.services.api.registration.DevServiceRegistration description()
+      newMethodName: getDescription
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: io.arconia.dev.services.api.registration.DevServiceRegistration origin()
+      newMethodName: getOrigin
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: io.arconia.dev.services.api.registration.DevServiceRegistration containerInfo()
+      newMethodName: getContainerInfo
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: io.arconia.dev.services.api.registration.DevServiceRegistration links()
+      newMethodName: getLinks
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: io.arconia.dev.services.api.registration.DevServiceRegistration sslBundleName()
+      newMethodName: getSslBundleName
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: io.arconia.dev.services.api.registration.ContainerInfo id()
+      newMethodName: getId
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: io.arconia.dev.services.api.registration.ContainerInfo imageName()
+      newMethodName: getImageName
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: io.arconia.dev.services.api.registration.ContainerInfo names()
+      newMethodName: getNames
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: io.arconia.dev.services.api.registration.ContainerInfo ports()
+      newMethodName: getPorts
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: io.arconia.dev.services.api.registration.ContainerInfo labels()
+      newMethodName: getLabels
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: io.arconia.dev.services.api.registration.ContainerInfo state()
+      newMethodName: getState
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: io.arconia.dev.services.api.registration.ContainerInfo status()
+      newMethodName: getStatus
