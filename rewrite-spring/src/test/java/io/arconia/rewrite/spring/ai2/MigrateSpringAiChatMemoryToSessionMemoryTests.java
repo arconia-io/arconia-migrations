@@ -11,6 +11,7 @@ import org.openrewrite.test.SourceSpecs;
 import static org.openrewrite.gradle.Assertions.buildGradle;
 import static org.openrewrite.gradle.toolingapi.Assertions.withToolingApi;
 import static org.openrewrite.java.Assertions.java;
+import static org.openrewrite.java.Assertions.mavenProject;
 import static org.openrewrite.maven.Assertions.pomXml;
 import static org.openrewrite.properties.Assertions.properties;
 import static org.openrewrite.yaml.Assertions.yaml;
@@ -324,6 +325,82 @@ class MigrateSpringAiChatMemoryToSessionMemoryTests implements RewriteTest {
         rewriteRun(
                 pomXml(pom("spring-ai-starter-model-chat-memory")),
                 chatServiceUnchanged()
+        );
+    }
+
+    @Test
+    void migrateEachProjectOnItsOwn() {
+        // A project without a session counterpart leaves the other projects of the build free to migrate.
+        rewriteRun(
+                mavenProject("jdbc",
+                        pomXml(POM_BEFORE, POM_AFTER),
+                        //language=java
+                        java(
+                                """
+                                package com.example;
+
+                                import org.springframework.ai.chat.client.ChatClient;
+                                import org.springframework.ai.chat.client.advisor.MessageChatMemoryAdvisor;
+                                import org.springframework.ai.chat.memory.ChatMemory;
+
+                                class ChatService {
+
+                                    private final ChatClient chatClient;
+
+                                    ChatService(ChatClient.Builder chatClientBuilder, ChatMemory chatMemory) {
+                                        this.chatClient = chatClientBuilder
+                                                .defaultAdvisors(MessageChatMemoryAdvisor.builder(chatMemory).build())
+                                                .build();
+                                    }
+
+                                }
+                                """,
+                                """
+                                package com.example;
+
+                                import org.springframework.ai.chat.client.ChatClient;
+                                import org.springframework.ai.session.EventFilter;
+                                import org.springframework.ai.session.SessionService;
+                                import org.springframework.ai.session.advisor.SessionAdvisors;
+
+                                class ChatService {
+
+                                    private final ChatClient chatClient;
+
+                                    ChatService(ChatClient.Builder chatClientBuilder, SessionService chatMemory) {
+                                        this.chatClient = chatClientBuilder
+                                                .defaultAdvisors(SessionAdvisors.builder(chatMemory).memory(memory -> memory.eventFilter(EventFilter.lastN(20))).build())
+                                                .build();
+                                    }
+
+                                }
+                                """
+                        )
+                ),
+                mavenProject("in-memory",
+                        pomXml(pom("spring-ai-starter-model-chat-memory")),
+                        //language=java
+                        java(
+                                """
+                                package com.example;
+
+                                import org.springframework.ai.chat.memory.ChatMemory;
+                                import org.springframework.ai.chat.memory.ChatMemoryRepository;
+                                import org.springframework.ai.chat.memory.MessageWindowChatMemory;
+
+                                class ChatMemoryConfiguration {
+
+                                    ChatMemory chatMemory(ChatMemoryRepository chatMemoryRepository) {
+                                        return MessageWindowChatMemory.builder()
+                                                .chatMemoryRepository(chatMemoryRepository)
+                                                .maxMessages(50)
+                                                .build();
+                                    }
+
+                                }
+                                """
+                        )
+                )
         );
     }
 
