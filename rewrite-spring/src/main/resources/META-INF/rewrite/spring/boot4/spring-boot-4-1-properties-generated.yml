@@ -1558,7 +1558,7 @@ recipeList:
       oldPropertyKey: "management.metrics.web.server.requests-metric-name"
       newPropertyKey: "management.observations.http.server.requests.name"
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
-      oldPropertyKey: "management.promethus.metrics.export.pushgateway.base-url"
+      oldPropertyKey: "management.prometheus.metrics.export.pushgateway.base-url"
       newPropertyKey: "management.prometheus.metrics.export.pushgateway.address"
   # spring-boot-micrometer-tracing
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
