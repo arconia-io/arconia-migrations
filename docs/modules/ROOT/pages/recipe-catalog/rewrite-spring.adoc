@@ -3,7 +3,7 @@
 
 // AUTO-GENERATED from the OpenRewrite recipe model. Do not edit by hand.
 
-The `rewrite-spring` module publishes 309 recipes across 13 categories.
+The `rewrite-spring` module publishes 313 recipes across 13 categories.
 
 [#family-spring-ai1]
 == spring › ai1
@@ -8415,6 +8415,11 @@ _Tags: spring, boot_
 *** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion` ×16)
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_framework7_UpgradeSpringFramework_7_1[Migrate to Spring Framework 7.1] (`io.arconia.rewrite.spring.framework7.UpgradeSpringFramework_7_1`)
 ** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion` ×4)
+** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_framework7_MigrateSpringExpression_7_1[Migrate the Spring Expression module to Spring Framework 7.1] (`io.arconia.rewrite.spring.framework7.MigrateSpringExpression_7_1`)
+*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_framework7_UseSpelParserConfigurationBuilder[Use the `SpelParserConfiguration` builder] (`io.arconia.rewrite.spring.framework7.UseSpelParserConfigurationBuilder`)
+** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_framework7_MigrateSpringTest_7_1[Migrate the Spring Test module to Spring Framework 7.1] (`io.arconia.rewrite.spring.framework7.MigrateSpringTest_7_1`)
+*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_framework7_UseJsonConverterDelegateFactory[Use the `JsonConverterDelegate` factory method] (`io.arconia.rewrite.spring.framework7.UseJsonConverterDelegateFactory`)
+*** Change type (`org.openrewrite.java.ChangeType`)
 ** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_framework7_MigrateSpringWeb_7_1[Migrate the Spring Web module to Spring Framework 7.1] (`io.arconia.rewrite.spring.framework7.MigrateSpringWeb_7_1`)
 *** Change type (`org.openrewrite.java.ChangeType`)
 *** Add a literal method argument (`org.openrewrite.java.AddLiteralMethodArgument` ×2)
@@ -9406,6 +9411,18 @@ Update usages of Spring Core APIs that were renamed or replaced in Spring Framew
 * Replace constant with another constant (`org.openrewrite.java.ReplaceConstantWithAnotherConstant` ×2)
 ====
 
+[#io_arconia_rewrite_spring_framework7_MigrateSpringExpression_7_1]
+=== Migrate the Spring Expression module to Spring Framework 7.1
+`io.arconia.rewrite.spring.framework7.MigrateSpringExpression_7_1`
+
+Update usages of Spring Expression APIs that were deprecated or replaced in Spring Framework 7.1.
+
+.Recipes applied
+[%collapsible]
+====
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_framework7_UseSpelParserConfigurationBuilder[Use the `SpelParserConfiguration` builder] (`io.arconia.rewrite.spring.framework7.UseSpelParserConfigurationBuilder`)
+====
+
 [#io_arconia_rewrite_spring_framework7_MigrateSpringTest_7_0]
 === Migrate the Spring Test module to Spring Framework 7.0
 `io.arconia.rewrite.spring.framework7.MigrateSpringTest_7_0`
@@ -9416,6 +9433,19 @@ Update usages of Spring Test APIs that were renamed or replaced in Spring Framew
 [%collapsible]
 ====
 * Change method name (`org.openrewrite.java.ChangeMethodName` ×2)
+====
+
+[#io_arconia_rewrite_spring_framework7_MigrateSpringTest_7_1]
+=== Migrate the Spring Test module to Spring Framework 7.1
+`io.arconia.rewrite.spring.framework7.MigrateSpringTest_7_1`
+
+Update usages of Spring Test APIs that were removed or replaced in Spring Framework 7.1.
+
+.Recipes applied
+[%collapsible]
+====
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_framework7_UseJsonConverterDelegateFactory[Use the `JsonConverterDelegate` factory method] (`io.arconia.rewrite.spring.framework7.UseJsonConverterDelegateFactory`)
+* Change type (`org.openrewrite.java.ChangeType`)
 ====
 
 [#io_arconia_rewrite_spring_framework7_MigrateSpringWebMvc_7_0]
@@ -9560,6 +9590,11 @@ _Tags: spring, framework_
 [%collapsible]
 ====
 * Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion` ×4)
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_framework7_MigrateSpringExpression_7_1[Migrate the Spring Expression module to Spring Framework 7.1] (`io.arconia.rewrite.spring.framework7.MigrateSpringExpression_7_1`)
+** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_framework7_UseSpelParserConfigurationBuilder[Use the `SpelParserConfiguration` builder] (`io.arconia.rewrite.spring.framework7.UseSpelParserConfigurationBuilder`)
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_framework7_MigrateSpringTest_7_1[Migrate the Spring Test module to Spring Framework 7.1] (`io.arconia.rewrite.spring.framework7.MigrateSpringTest_7_1`)
+** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_framework7_UseJsonConverterDelegateFactory[Use the `JsonConverterDelegate` factory method] (`io.arconia.rewrite.spring.framework7.UseJsonConverterDelegateFactory`)
+** Change type (`org.openrewrite.java.ChangeType`)
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_framework7_MigrateSpringWeb_7_1[Migrate the Spring Web module to Spring Framework 7.1] (`io.arconia.rewrite.spring.framework7.MigrateSpringWeb_7_1`)
 ** Change type (`org.openrewrite.java.ChangeType`)
 ** Add a literal method argument (`org.openrewrite.java.AddLiteralMethodArgument` ×2)
@@ -9600,6 +9635,20 @@ class Demo {
     }
 }
 ----
+
+*Recipes*
+
+[#io_arconia_rewrite_spring_framework7_UseJsonConverterDelegateFactory]
+=== Use the `JsonConverterDelegate` factory method
+`io.arconia.rewrite.spring.framework7.UseJsonConverterDelegateFactory`
+
+Replace the `HttpMessageContentConverter.of(..)` factory methods, removed in Spring Framework 7.1, with `JsonConverterDelegate.of(Iterable)`, collecting converters passed individually with `List.of(..)`.
+
+[#io_arconia_rewrite_spring_framework7_UseSpelParserConfigurationBuilder]
+=== Use the `SpelParserConfiguration` builder
+`io.arconia.rewrite.spring.framework7.UseSpelParserConfigurationBuilder`
+
+Replace the `SpelParserConfiguration` constructors, deprecated in Spring Framework 7.1, with `SpelParserConfiguration.withDefaults()` or the builder API, setting each constructor argument through its named builder method. Constructor calls whose auto-grow flags are not literals are left unchanged.
 
 [#family-spring-modulith2]
 == spring › modulith2

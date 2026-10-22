@@ -65,6 +65,10 @@ recipeDependencies {
     parserClasspath "org.springframework.boot:spring-boot-webtestclient:4.0.+"
 
     parserClasspath "org.springframework:spring-core:7.0.+"
+    parserClasspath "org.springframework:spring-test:7.0.+"
+    parserClasspath "org.springframework:spring-web:7.0.+"
+
+    parserClasspath "org.springframework:spring-expression:7.1.+"
 
     testParserClasspath "jakarta.servlet:jakarta.servlet-api:6.0.+"
 
@@ -158,8 +162,7 @@ recipeDependencies {
 
     testParserClasspath "org.springframework:spring-beans:7.0.+"
     testParserClasspath "org.springframework:spring-context:7.0.+"
-    testParserClasspath "org.springframework:spring-test:7.0.+"
-    testParserClasspath "org.springframework:spring-web:7.0.+"
+    testParserClasspath "org.springframework:spring-expression:7.0.+"
 
     testParserClasspath "com.openai:openai-java-core:4.38.+"
 

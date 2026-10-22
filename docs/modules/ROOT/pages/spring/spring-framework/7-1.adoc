@@ -4,20 +4,23 @@
 :recipe-id: io.arconia.rewrite.spring.framework7.UpgradeSpringFramework_7_1
 :rewrite-module: rewrite-spring
 
-When upgrading to Spring Framework 7.1, refer to the https://github.com/spring-projects/spring-framework/wiki/Spring-Framework-7.1-Release-Notes[Spring Framework 7.1 Release Notes] for newly introduced APIs, deprecated APIs, and breaking changes.
+When upgrading to Spring Framework 7.1, refer to the https://github.com/spring-projects/spring-framework/wiki/Spring-Framework-7.1-Release-Notes[Spring Framework 7.1 Release Notes] for newly introduced APIs, deprecated APIs, and breaking changes. Spring Framework 7.1 is the release line for Spring Boot 4.2, and the xref:spring/spring-boot/4-2.adoc[Spring Boot 4.2] upgrade recipe chains this recipe.
 
-The `{recipe-id}` recipe automates most of the changes introduced in Spring Framework 7.1. It also chains the Spring Framework 7.0 upgrade recipe, so you can apply it to projects that are still on 6.x.
+The `{recipe-id}` recipe automates most of the changes introduced in Spring Framework 7.1. It does not apply the xref:spring/spring-framework/7-0.adoc[Spring Framework 7.0] upgrade, so run that recipe first for projects that are still on 6.x, or let the Spring Boot upgrade recipe do it for you.
 
 The recipe will:
 
-* Apply the full xref:spring/spring-framework/7-0.adoc[Spring Framework 7.0] upgrade as a prerequisite.
 * Upgrade all `org.springframework` dependencies to the 7.1.x release line.
 * Raise explicitly declared Jackson dependencies to 3.1.x and HtmlUnit to 5.4.x, matching the new minimum requirements. Versions managed by Spring Boot are left to the Spring Boot upgrade.
+* For *Spring Expression*:
+** Replace the deprecated `SpelParserConfiguration` constructors with `SpelParserConfiguration.withDefaults()` or the builder API, setting each constructor argument through its named builder method. Constructor calls passing an auto-grow flag that is not a literal are left unchanged, since the builder only offers opt-in methods for those flags.
+* For *Spring Test*:
+** Replace the removed `HttpMessageContentConverter` with `JsonConverterDelegate`, collecting converters passed individually to its factory method with `List.of(...)`. The `convert(...)` and `convertViaJson(...)` methods have no counterpart on `JsonConverterDelegate`, so calls to them need to be replaced manually.
 * For *Spring Web*:
 ** Replace the deprecated `AllEncompassingFormHttpMessageConverter` with the new `MultipartHttpMessageConverter`, which can both read and write multipart payloads. Neither converter is registered by default anymore in HTTP clients and server applications.
 ** Replace the deprecated no-argument constructors of `ForwardedHeaderFilter` and `ForwardedHeaderTransformer` with the explicit form that selects the `X-Forwarded` header family, matching the Spring Boot default. The old constructors accepted both the standard `Forwarded` header and the `X-Forwarded` headers and enabled `X-Forwarded-Prefix` handling. If your proxy sends the standard `Forwarded` header, pass `true` instead, and if you rely on the prefix header, enable it separately with `setUseForwardedPrefix(true)`.
 
-Some changes in Spring Framework 7.1 are deliberately not automated. `HandlerMappingIntrospector` has been removed without a replacement, as it was only intended for Spring Security, which no longer needs it as of Spring Security 7.2. `RestTemplate` and its related types are formally deprecated in favor of `RestClient`, but still work. `DataBinder.setDisallowedFields(...)` is deprecated in favor of `setAllowedFields(...)` or constructor binding, which requires a design decision per binder. Several behaviors also changed, such as JAXB converters no longer being auto-detected for server applications, default limits for WebFlux multipart parsing, and server errors now being recorded on HTTP server observations, so review the release notes for behavior changes that may affect your application.
+Some changes in Spring Framework 7.1 are deliberately not automated. `HandlerMappingIntrospector` and `MatchableHandlerMapping` have been removed without a replacement, as they were only intended for Spring Security, which no longer needs them as of Spring Security 7.2. The multi-batch `JdbcTemplate.batchUpdate(...)` variant is deprecated, so split large batches into several `batchUpdate(...)` calls yourself if you still need to. `RestTemplate` and its related types are formally deprecated in favor of `RestClient`, but still work. `DataBinder.setDisallowedFields(...)` is deprecated in favor of `setAllowedFields(...)` or constructor binding, which requires a design decision per binder. Several behaviors also changed, such as JAXB converters no longer being auto-detected for server applications, default limits for WebFlux multipart parsing, server errors now being recorded on HTTP server observations, a timeout of `0` now consistently meaning no timeout across HTTP clients, `WebTestClient`, MockMvc, and RSocket service proxies, `RestClient.Builder.configureMessageConverters(...)` requiring an explicit `registerDefaults()` call to keep the default converters, and the `ProblemDetail` instance no longer being set from the request path, so review the release notes for behavior changes that may affect your application.
 
 See its xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_framework7_UpgradeSpringFramework_7_1[entry in the Recipe Catalog] for the full list of recipes this upgrade applies, each with its options and a before/after example.
 

@@ -32,7 +32,32 @@ recipeList:
       newVersion: 5.4.x
 
   # Spring Framework Modules
+  - io.arconia.rewrite.spring.framework7.MigrateSpringExpression_7_1
+  - io.arconia.rewrite.spring.framework7.MigrateSpringTest_7_1
   - io.arconia.rewrite.spring.framework7.MigrateSpringWeb_7_1
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.framework7.MigrateSpringExpression_7_1
+displayName: Migrate the Spring Expression module to Spring Framework 7.1
+description: Update usages of Spring Expression APIs that were deprecated or replaced in Spring Framework 7.1.
+preconditions:
+  - org.openrewrite.Singleton
+recipeList:
+  - io.arconia.rewrite.spring.framework7.UseSpelParserConfigurationBuilder
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.framework7.MigrateSpringTest_7_1
+displayName: Migrate the Spring Test module to Spring Framework 7.1
+description: Update usages of Spring Test APIs that were removed or replaced in Spring Framework 7.1.
+preconditions:
+  - org.openrewrite.Singleton
+recipeList:
+  - io.arconia.rewrite.spring.framework7.UseJsonConverterDelegateFactory
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.test.http.HttpMessageContentConverter
+      newFullyQualifiedTypeName: org.springframework.test.json.JsonConverterDelegate
 
 ---
 type: specs.openrewrite.org/v1beta/recipe

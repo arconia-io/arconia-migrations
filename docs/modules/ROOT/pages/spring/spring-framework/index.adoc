@@ -1,7 +1,9 @@
 = Spring Framework
 :description: Upgrade recipes for the Spring Framework.
 
-Arconia Migrations ships an upgrade recipe for each minor release of Spring Framework that it supports.
+Arconia Migrations ships an upgrade recipe for each minor release of Spring Framework that it supports. Spring Framework releases move together with Spring Boot, so each xref:spring/spring-boot/index.adoc[Spring Boot] upgrade recipe chains the matching Spring Framework recipe. You can also run a Spring Framework recipe on its own.
+
+The Spring Framework recipes do not chain earlier Spring Framework releases. When you skip releases, run the recipe for each intermediate release, or let the Spring Boot upgrade recipe do it for you.
 
 == Upgrade Guides
 
