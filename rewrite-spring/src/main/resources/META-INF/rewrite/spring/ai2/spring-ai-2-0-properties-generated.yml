@@ -614,6 +614,9 @@ recipeList:
       oldPropertyKey: "spring.ai.openai.chat.options.reasoning-effort"
       newPropertyKey: "spring.ai.openai.chat.reasoning-effort"
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "spring.ai.openai.chat.options.replay-reasoning-content"
+      newPropertyKey: "spring.ai.openai.chat.replay-reasoning-content"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: "spring.ai.openai.chat.options.response-format"
       newPropertyKey: "spring.ai.openai.chat.response-format"
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
