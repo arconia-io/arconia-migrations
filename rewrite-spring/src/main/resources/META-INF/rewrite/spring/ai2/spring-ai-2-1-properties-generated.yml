@@ -148,6 +148,61 @@ recipeList:
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: "spring.ai.chat.memory.redis.username"
       newPropertyKey: "spring.ai.chat.memory.repository.redis.username"
+  # spring-ai-autoconfigure-model-chat-memory-repository-cassandra
+  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
+      propertyKey: "spring.ai.chat.memory.repository.cassandra.initialize-schema"
+      comment: "Deprecated property removed in Spring AI 2.1."
+  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
+      propertyKey: "spring.ai.chat.memory.repository.cassandra.keyspace"
+      comment: "Deprecated property removed in Spring AI 2.1."
+  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
+      propertyKey: "spring.ai.chat.memory.repository.cassandra.messages-column"
+      comment: "Deprecated property removed in Spring AI 2.1."
+  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
+      propertyKey: "spring.ai.chat.memory.repository.cassandra.table"
+      comment: "Deprecated property removed in Spring AI 2.1."
+  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
+      propertyKey: "spring.ai.chat.memory.repository.cassandra.time-to-live"
+      comment: "Deprecated property removed in Spring AI 2.1."
+  # spring-ai-autoconfigure-model-chat-memory-repository-jdbc
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "spring.ai.chat.memory.repository.jdbc.continue-on-error"
+      newPropertyKey: "spring.ai.session.repository.jdbc.continue-on-error"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "spring.ai.chat.memory.repository.jdbc.initialize-schema"
+      newPropertyKey: "spring.ai.session.repository.jdbc.initialize-schema"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "spring.ai.chat.memory.repository.jdbc.platform"
+      newPropertyKey: "spring.ai.session.repository.jdbc.platform"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "spring.ai.chat.memory.repository.jdbc.schema"
+      newPropertyKey: "spring.ai.session.repository.jdbc.schema"
+  # spring-ai-autoconfigure-model-chat-memory-repository-mongodb
+  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
+      propertyKey: "spring.ai.chat.memory.repository.mongo.create-indices"
+      comment: "Deprecated property removed in Spring AI 2.1."
+  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
+      propertyKey: "spring.ai.chat.memory.repository.mongo.ttl"
+      comment: "Deprecated property removed in Spring AI 2.1."
+  # spring-ai-autoconfigure-model-chat-memory-repository-neo4j
+  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
+      propertyKey: "spring.ai.chat.memory.repository.neo4j.media-label"
+      comment: "Deprecated property removed in Spring AI 2.1."
+  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
+      propertyKey: "spring.ai.chat.memory.repository.neo4j.message-label"
+      comment: "Deprecated property removed in Spring AI 2.1."
+  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
+      propertyKey: "spring.ai.chat.memory.repository.neo4j.metadata-label"
+      comment: "Deprecated property removed in Spring AI 2.1."
+  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
+      propertyKey: "spring.ai.chat.memory.repository.neo4j.session-label"
+      comment: "Deprecated property removed in Spring AI 2.1."
+  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
+      propertyKey: "spring.ai.chat.memory.repository.neo4j.tool-call-label"
+      comment: "Deprecated property removed in Spring AI 2.1."
+  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
+      propertyKey: "spring.ai.chat.memory.repository.neo4j.tool-response-label"
+      comment: "Deprecated property removed in Spring AI 2.1."
   # spring-ai-autoconfigure-model-deepseek
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: "spring.ai.deepseek.chat.options.frequency-penalty"
@@ -613,6 +668,9 @@ recipeList:
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: "spring.ai.openai.chat.options.reasoning-effort"
       newPropertyKey: "spring.ai.openai.chat.reasoning-effort"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "spring.ai.openai.chat.options.replay-reasoning-content"
+      newPropertyKey: "spring.ai.openai.chat.replay-reasoning-content"
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: "spring.ai.openai.chat.options.response-format"
       newPropertyKey: "spring.ai.openai.chat.response-format"
