@@ -1,0 +1,33 @@
+= Spring AI Session Memory
+:description: Migrate your Spring AI application from chat memory to session memory.
+:cli-command: arconia rewrite run --recipe-name io.arconia.rewrite.spring.ai2.MigrateSpringAiChatMemoryToSessionMemory
+:recipe-id: io.arconia.rewrite.spring.ai2.MigrateSpringAiChatMemoryToSessionMemory
+:rewrite-module: rewrite-spring
+
+Spring AI 2.1 deprecates the `ChatMemory` API, the `MessageChatMemoryAdvisor`, and the chat memory repositories for removal in Spring AI 3.0, in favor of https://docs.spring.io/spring-ai/reference/2.1/api/session.html[session memory]. Refer to https://docs.spring.io/spring-ai/reference/2.1/api/chat-memory.html#chat-memory-migration[Migrating to Session Memory] for how one maps onto the other.
+
+The `{recipe-id}` recipe automates that migration for applications that use the auto-configured JDBC chat memory. It is not part of the xref:spring/spring-ai/2-1.adoc[Spring AI 2.1] upgrade recipe, since the deprecated API keeps working until Spring AI 3.0 and moving to session memory starts from an empty conversation history. Run it on its own, on a project that is already on Spring AI 2.1.
+
+The recipe will:
+
+* Replace the `spring-ai-starter-model-chat-memory-repository-jdbc` starter with the `spring-ai-starter-model-session-jdbc` starter.
+* Rename the `initialize-schema`, `continue-on-error`, and `platform` properties under `spring.ai.chat.memory.repository.jdbc` to their `spring.ai.session.repository.jdbc` equivalents, and comment out the `schema` property, since the chat memory schema script does not create the session memory tables.
+* Replace a `MessageChatMemoryAdvisor` passed to `defaultAdvisors()` or `advisors()` with the advisors built by `SessionAdvisors`, keeping the advisor order. The session memory advisor reads the last 20 events, the window of the auto-configured chat memory. Other advisors passed in the same call stay there, and the session advisors move to a call of their own.
+* Replace `ChatMemory.CONVERSATION_ID` with `MemoryAdvisor.CONVERSATION_ID`, which holds the same key, so requests keep passing their conversation identifier to the session advisors.
+* Change the `ChatMemory` bean to the auto-configured `SessionService`, replacing `get()` with `getActiveMessages()` and `clear()` with `delete()`.
+
+The recipe changes the whole project or nothing. It only runs when every chat memory usage has a session memory equivalent, and leaves the project unchanged when any of the following is true:
+
+* The project depends on another chat memory store, such as Cassandra, MongoDB, Neo4j, Redis, or the in-memory one, which have no session memory counterpart yet.
+* The project builds or implements a chat memory or a chat memory repository in code, for example with `MessageWindowChatMemory`, which sets a store and window of its own.
+* The code calls `ChatMemory.add()`, since a session must be created before messages are appended to it.
+* A `MessageChatMemoryAdvisor` is held in a variable or a bean, or passed together with another `MessageChatMemoryAdvisor`, since the session advisors are a list rather than a single advisor.
+* The code uses `PromptChatMemoryAdvisor` or another Spring AI API that takes a `ChatMemory`.
+
+Session memory stores conversations in its own tables, so the conversations already kept in the `SPRING_AI_CHAT_MEMORY` table are not carried over. Plan how to handle existing conversations before deploying the change. Sessions created by the session service also expire after 60 days by default. Expired sessions are only deleted when the application calls `deleteExpiredSessions()`, and the `spring.ai.session.time-to-live` property changes the default.
+
+See its xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_ai2_MigrateSpringAiChatMemoryToSessionMemory[entry in the Recipe Catalog] for the full list of recipes it applies, each with its options and a before/after example.
+
+== Run the Recipe
+
+include::partial$run-recipe.adoc[]

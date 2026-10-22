@@ -1,5 +1,5 @@
 = Spring AI
-:description: Upgrade recipes for Spring AI 1.x and Spring AI 2.x.
+:description: Upgrade and migration recipes for Spring AI 1.x and Spring AI 2.x.
 
 Arconia Migrations ships an upgrade recipe for each minor release of Spring AI that it supports.
 
@@ -9,3 +9,7 @@ Arconia Migrations ships an upgrade recipe for each minor release of Spring AI t
 * *xref:spring/spring-ai/1-1.adoc[Spring AI 1.1].* Migrate to the latest Spring AI 1.1.x release.
 * *xref:spring/spring-ai/2-0.adoc[Spring AI 2.0].* Migrate to the latest Spring AI 2.0.x release.
 * *xref:spring/spring-ai/2-1.adoc[Spring AI 2.1].* Migrate to the latest Spring AI 2.1.x release.
+
+== Migration Guides
+
+* *xref:spring/spring-ai/session-memory.adoc[Session Memory].* Migrate from the chat memory deprecated in Spring AI 2.1 to session memory.

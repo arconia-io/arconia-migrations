@@ -3,7 +3,7 @@
 
 // AUTO-GENERATED from the OpenRewrite recipe model. Do not edit by hand.
 
-The `rewrite-spring` module publishes 306 recipes across 13 categories.
+The `rewrite-spring` module publishes 309 recipes across 13 categories.
 
 [#family-spring-ai1]
 == spring › ai1
@@ -432,6 +432,118 @@ class Demo {
 
 *Composite recipes*
 
+[#io_arconia_rewrite_spring_ai2_MigrateSpringAiChatMemoryToSessionMemory]
+=== Migrate Spring AI chat memory to session memory
+`io.arconia.rewrite.spring.ai2.MigrateSpringAiChatMemoryToSessionMemory`
+
+Migrate an application that uses the auto-configured JDBC chat memory, deprecated in Spring AI 2.1, to the session memory that replaces it. The recipe swaps the JDBC chat memory starter for the JDBC session starter, renames the JDBC repository properties, replaces `MessageChatMemoryAdvisor` with the session advisors reading the same 20-message window, and moves the `ChatMemory` bean and its `get` and `clear` calls to `SessionService`. It applies to the whole project or not at all, and only when every chat memory usage maps one to one onto session memory, so a project with another chat memory store, a chat memory or repository built in code, or direct appends to the chat memory is left unchanged. Conversations already stored in the chat memory table are not carried over, since session memory uses its own tables. Run it on a project that is already on Spring AI 2.1.
+
+_Tags: spring, ai_
+
+.Recipes applied
+[%collapsible]
+====
+* Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency`)
+* xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×3)
+* xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
+* Replace constant with another constant (`org.openrewrite.java.ReplaceConstantWithAnotherConstant`)
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_ai2_UseSpringAiSessionAdvisors[Use the Spring AI session advisors instead of `MessageChatMemoryAdvisor`] (`io.arconia.rewrite.spring.ai2.UseSpringAiSessionAdvisors`)
+* Change method name (`org.openrewrite.java.ChangeMethodName` ×2)
+* Change type (`org.openrewrite.java.ChangeType`)
+====
+
+*Example*
+
+.Before
+[source,java]
+----
+package com.example;
+
+import java.util.List;
+
+import org.springframework.ai.chat.client.ChatClient;
+import org.springframework.ai.chat.client.advisor.MessageChatMemoryAdvisor;
+import org.springframework.ai.chat.memory.ChatMemory;
+import org.springframework.ai.chat.messages.Message;
+
+class ChatService {
+
+    private final ChatClient chatClient;
+
+    private final ChatMemory chatMemory;
+
+    ChatService(ChatClient.Builder chatClientBuilder, ChatMemory chatMemory) {
+        this.chatClient = chatClientBuilder
+                .defaultAdvisors(MessageChatMemoryAdvisor.builder(chatMemory).build())
+                .build();
+        this.chatMemory = chatMemory;
+    }
+
+    String chat(String conversationId, String message) {
+        return chatClient.prompt()
+                .user(message)
+                .advisors(advisors -> advisors.param(ChatMemory.CONVERSATION_ID, conversationId))
+                .call()
+                .content();
+    }
+
+    List<Message> history(String conversationId) {
+        return chatMemory.get(conversationId);
+    }
+
+    void reset(String conversationId) {
+        chatMemory.clear(conversationId);
+    }
+
+}
+----
+
+.After
+[source,java]
+----
+package com.example;
+
+import java.util.List;
+
+import org.springframework.ai.chat.client.ChatClient;
+import org.springframework.ai.chat.client.advisor.api.MemoryAdvisor;
+import org.springframework.ai.chat.messages.Message;
+import org.springframework.ai.session.EventFilter;
+import org.springframework.ai.session.SessionService;
+import org.springframework.ai.session.advisor.SessionAdvisors;
+
+class ChatService {
+
+    private final ChatClient chatClient;
+
+    private final SessionService chatMemory;
+
+    ChatService(ChatClient.Builder chatClientBuilder, SessionService chatMemory) {
+        this.chatClient = chatClientBuilder
+                .defaultAdvisors(SessionAdvisors.builder(chatMemory).memory(memory -> memory.eventFilter(EventFilter.lastN(20))).build())
+                .build();
+        this.chatMemory = chatMemory;
+    }
+
+    String chat(String conversationId, String message) {
+        return chatClient.prompt()
+                .user(message)
+                .advisors(advisors -> advisors.param(MemoryAdvisor.CONVERSATION_ID, conversationId))
+                .call()
+                .content();
+    }
+
+    List<Message> history(String conversationId) {
+        return chatMemory.getActiveMessages(conversationId);
+    }
+
+    void reset(String conversationId) {
+        chatMemory.delete(conversationId);
+    }
+
+}
+----
+
 [#io_arconia_rewrite_spring_ai2_UpgradeSpringAiProperties_2_0]
 === Migrate Spring AI properties to 2.0
 `io.arconia.rewrite.spring.ai2.UpgradeSpringAiProperties_2_0`
@@ -445,7 +557,7 @@ _Tags: spring, ai_
 ====
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_ai2_UpgradeSpringAiPropertiesGenerated_2_0[Migrate Spring AI properties to 2.0 (generated)] (`io.arconia.rewrite.spring.ai2.UpgradeSpringAiPropertiesGenerated_2_0`)
 ** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×5)
-** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×240)
+** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×241)
 * xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×10)
 ====
 
@@ -461,7 +573,7 @@ _Tags: spring, ai_
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×5)
-* xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×240)
+* xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×241)
 ====
 
 [#io_arconia_rewrite_spring_ai2_UpgradeSpringAiProperties_2_1]
@@ -477,7 +589,11 @@ _Tags: spring, ai_
 ====
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_ai2_UpgradeSpringAiPropertiesGenerated_2_1[Migrate Spring AI properties to 2.1 (generated)] (`io.arconia.rewrite.spring.ai2.UpgradeSpringAiPropertiesGenerated_2_1`)
 ** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×5)
-** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×240)
+** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×39)
+** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×5)
+** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×4)
+** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×8)
+** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×202)
 ====
 
 [#io_arconia_rewrite_spring_ai2_UpgradeSpringAiPropertiesGenerated_2_1]
@@ -492,7 +608,11 @@ _Tags: spring, ai_
 [%collapsible]
 ====
 * xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×5)
-* xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×240)
+* xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×39)
+* xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×5)
+* xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×4)
+* xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×8)
+* xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×202)
 ====
 
 [#io_arconia_rewrite_spring_ai2_MigrateSpringAiMcp_2_1]
@@ -521,7 +641,7 @@ _Tags: spring, ai_
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_ai2_UpgradeSpringAiProperties_2_0[Migrate Spring AI properties to 2.0] (`io.arconia.rewrite.spring.ai2.UpgradeSpringAiProperties_2_0`)
 ** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_ai2_UpgradeSpringAiPropertiesGenerated_2_0[Migrate Spring AI properties to 2.0 (generated)] (`io.arconia.rewrite.spring.ai2.UpgradeSpringAiPropertiesGenerated_2_0`)
 *** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×5)
-*** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×240)
+*** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×241)
 ** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×10)
 * Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_ai2_UseChatOptionsBuilder[Pass `ChatOptions.Builder` to `ChatClient` options methods] (`io.arconia.rewrite.spring.ai2.UseChatOptionsBuilder`)
@@ -596,7 +716,11 @@ _Tags: spring, ai_
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_ai2_UpgradeSpringAiProperties_2_1[Migrate Spring AI properties to 2.1] (`io.arconia.rewrite.spring.ai2.UpgradeSpringAiProperties_2_1`)
 ** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_ai2_UpgradeSpringAiPropertiesGenerated_2_1[Migrate Spring AI properties to 2.1 (generated)] (`io.arconia.rewrite.spring.ai2.UpgradeSpringAiPropertiesGenerated_2_1`)
 *** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×5)
-*** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×240)
+*** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×39)
+*** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×5)
+*** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×4)
+*** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×8)
+*** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×202)
 * Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_ai2_MigrateSpringAiMcp_2_1[Migrate the Spring AI MCP module to Spring AI 2.1] (`io.arconia.rewrite.spring.ai2.MigrateSpringAiMcp_2_1`)
 ** Delete method argument (`org.openrewrite.java.DeleteMethodArgument` ×4)
@@ -645,6 +769,12 @@ class Demo {
 ----
 
 *Recipes*
+
+[#io_arconia_rewrite_spring_ai2_FindMigratableSpringAiChatMemory]
+=== Find projects whose Spring AI chat memory can be migrated to session memory
+`io.arconia.rewrite.spring.ai2.FindMigratableSpringAiChatMemory`
+
+Find the source files of a project that uses the auto-configured JDBC chat memory only in ways that map one to one onto Spring AI session memory. A project that uses another chat memory store, builds or implements a chat memory or repository in code, appends messages to the chat memory directly, or holds a `MessageChatMemoryAdvisor` outside a `ChatClient` advisors call does not qualify.
 
 [#io_arconia_rewrite_spring_ai2_UseChatOptionsBuilder]
 === Pass `ChatOptions.Builder` to `ChatClient` options methods
@@ -730,6 +860,12 @@ class Demo {
     }
 }
 ----
+
+[#io_arconia_rewrite_spring_ai2_UseSpringAiSessionAdvisors]
+=== Use the Spring AI session advisors instead of `MessageChatMemoryAdvisor`
+`io.arconia.rewrite.spring.ai2.UseSpringAiSessionAdvisors`
+
+Replace a `MessageChatMemoryAdvisor` passed to a `ChatClient` advisors method with the advisors built by `SessionAdvisors`, reading the same 20-message window as the auto-configured chat memory and keeping the advisor order. Other advisors passed in the same call stay in place, and the session advisors move to a call of their own.
 
 [#family-spring-ai2-mcp]
 == spring › ai2 › mcp

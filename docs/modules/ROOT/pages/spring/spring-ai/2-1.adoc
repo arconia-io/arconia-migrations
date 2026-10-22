@@ -16,6 +16,8 @@ The recipe will:
 
 Spring AI 2.1 introduces message parts without requiring source changes: the message constructors and builders keep working, and `getText()`, `getMedia()`, and `getToolCalls()` are now views over the parts. The protected `textContent`, `media`, and `responses` fields of the message classes are deprecated, so subclasses that read them directly should switch to the accessors.
 
+Spring AI 2.1 also deprecates the `ChatMemory` API in favor of session memory. The upgrade recipe leaves chat memory in place, since it keeps working until Spring AI 3.0. To move an application that uses the auto-configured JDBC chat memory, run the separate xref:spring/spring-ai/session-memory.adoc[session memory migration recipe].
+
 See its xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_ai2_UpgradeSpringAi_2_1[entry in the Recipe Catalog] for the full list of recipes this upgrade applies, each with its options and a before/after example.
 
 == Run the Recipe

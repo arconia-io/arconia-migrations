@@ -1,0 +1,61 @@
+# Based on https://docs.spring.io/spring-ai/reference/2.1/api/chat-memory.html#chat-memory-migration
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.ai2.MigrateSpringAiChatMemoryToSessionMemory
+displayName: Migrate Spring AI chat memory to session memory
+description: >-
+  Migrate an application that uses the auto-configured JDBC chat memory, deprecated in Spring AI 2.1, to the session
+  memory that replaces it. The recipe swaps the JDBC chat memory starter for the JDBC session starter, renames the JDBC
+  repository properties, replaces `MessageChatMemoryAdvisor` with the session advisors reading the same 20-message window,
+  and moves the `ChatMemory` bean and its `get` and `clear` calls to `SessionService`. It applies to the whole project or
+  not at all, and only when every chat memory usage maps one to one onto session memory, so a project with another chat
+  memory store, a chat memory or repository built in code, or direct appends to the chat memory is left unchanged.
+  Conversations already stored in the chat memory table are not carried over, since session memory uses its own tables.
+  Run it on a project that is already on Spring AI 2.1.
+tags:
+  - spring
+  - ai
+preconditions:
+  - io.arconia.rewrite.spring.ai2.FindMigratableSpringAiChatMemory
+recipeList:
+
+  # Dependencies
+  - org.openrewrite.java.dependencies.ChangeDependency:
+      oldGroupId: org.springframework.ai
+      oldArtifactId: spring-ai-starter-model-chat-memory-repository-jdbc
+      newArtifactId: spring-ai-starter-model-session-jdbc
+
+  # Configuration Properties
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "spring.ai.chat.memory.repository.jdbc.initialize-schema"
+      newPropertyKey: "spring.ai.session.repository.jdbc.initialize-schema"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "spring.ai.chat.memory.repository.jdbc.continue-on-error"
+      newPropertyKey: "spring.ai.session.repository.jdbc.continue-on-error"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "spring.ai.chat.memory.repository.jdbc.platform"
+      newPropertyKey: "spring.ai.session.repository.jdbc.platform"
+  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
+      propertyKey: "spring.ai.chat.memory.repository.jdbc.schema"
+      comment: "The chat memory schema script does not create the session memory tables. Use spring.ai.session.repository.jdbc.schema with a session schema script instead."
+
+  # Conversation Identifier
+  - org.openrewrite.java.ReplaceConstantWithAnotherConstant:
+      existingFullyQualifiedConstantName: org.springframework.ai.chat.memory.ChatMemory.CONVERSATION_ID
+      fullyQualifiedConstantName: org.springframework.ai.chat.client.advisor.api.MemoryAdvisor.CONVERSATION_ID
+
+  # Advisors
+  - io.arconia.rewrite.spring.ai2.UseSpringAiSessionAdvisors
+
+  # Chat Memory
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: org.springframework.ai.chat.memory.ChatMemory get(java.lang.String)
+      newMethodName: getActiveMessages
+      matchOverrides: true
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: org.springframework.ai.chat.memory.ChatMemory clear(java.lang.String)
+      newMethodName: delete
+      matchOverrides: true
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.ai.chat.memory.ChatMemory
+      newFullyQualifiedTypeName: org.springframework.ai.session.SessionService
