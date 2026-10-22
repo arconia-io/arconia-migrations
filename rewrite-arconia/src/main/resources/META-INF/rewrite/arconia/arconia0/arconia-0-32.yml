@@ -20,6 +20,9 @@ recipeList:
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: arconia.dev.services.keycloak.realm.import-path
       newPropertyKey: arconia.dev.services.keycloak.realm.import-paths
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: arconia.dev.services.docling.enable-ui
+      newPropertyKey: arconia.dev.services.docling.ui-enabled
 
   # Comment Properties
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:

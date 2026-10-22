@@ -69,6 +69,21 @@ class UpgradeArconia_0_32_Tests implements RewriteTest {
     }
 
     @Test
+    void doclingEnableUiRenamed() {
+        rewriteRun(
+                //language=properties
+                properties(
+                        """
+                        arconia.dev.services.docling.enable-ui=false
+                        """,
+                        """
+                        arconia.dev.services.docling.ui-enabled=false
+                        """,
+                        s -> s.path("src/main/resources/application.properties"))
+        );
+    }
+
+    @Test
     void multitenancyPackagesRenamed() {
         rewriteRun(
                 //language=java
