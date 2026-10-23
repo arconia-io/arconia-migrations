@@ -124,6 +124,9 @@ recipeDependencies {
 
     testParserClasspath "org.springframework.modulith:spring-modulith-api:1.4.+"
     testParserClasspath "org.springframework.modulith:spring-modulith-observability:2.0.+"
+    testParserClasspath "org.springframework.modulith:spring-modulith-test:2.0.+"
+    testParserClasspath "org.springframework.modulith:spring-modulith-events-api:2.1.+"
+    testParserClasspath "org.assertj:assertj-core:3.27.+"
     testParserClasspath "io.micrometer:micrometer-observation:1.16.+"
 
     testParserClasspath "org.springframework.boot:spring-boot-amqp:4.1.+"

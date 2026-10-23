@@ -3,7 +3,7 @@
 
 // AUTO-GENERATED from the OpenRewrite recipe model. Do not edit by hand.
 
-The `rewrite-spring` module publishes 313 recipes across 13 categories.
+The `rewrite-spring` module publishes 316 recipes across 13 categories.
 
 [#family-spring-ai1]
 == spring › ai1
@@ -8353,6 +8353,7 @@ _Tags: spring, boot_
 ** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
 ** Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency`)
 ** Change type (`org.openrewrite.java.ChangeType` ×4)
+** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_modulith2_UsePublishedEventAssertMatchingValue[Use `matchingValue` to match a Spring Modulith published event against a value] (`io.arconia.rewrite.spring.modulith2.UsePublishedEventAssertMatchingValue`)
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_security7_UpgradeSpringSecurity_7_1[Migrate to Spring Security 7.1] (`io.arconia.rewrite.spring.security7.UpgradeSpringSecurity_7_1`)
 ** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_data2026_UpgradeSpringData_2026_0[Migrate to Spring Data 2026.0] (`io.arconia.rewrite.spring.data2026.UpgradeSpringData_2026_0`)
@@ -8409,6 +8410,7 @@ _Tags: spring, boot_
 *** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
 *** Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency`)
 *** Change type (`org.openrewrite.java.ChangeType` ×4)
+*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_modulith2_UsePublishedEventAssertMatchingValue[Use `matchingValue` to match a Spring Modulith published event against a value] (`io.arconia.rewrite.spring.modulith2.UsePublishedEventAssertMatchingValue`)
 ** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_security7_UpgradeSpringSecurity_7_1[Migrate to Spring Security 7.1] (`io.arconia.rewrite.spring.security7.UpgradeSpringSecurity_7_1`)
 *** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
 ** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_data2026_UpgradeSpringData_2026_0[Migrate to Spring Data 2026.0] (`io.arconia.rewrite.spring.data2026.UpgradeSpringData_2026_0`)
@@ -8480,6 +8482,9 @@ _Tags: spring, boot_
 ** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_modulith2_UpgradeSpringModulithProperties_2_2[Migrate Spring Modulith properties to 2.2] (`io.arconia.rewrite.spring.modulith2.UpgradeSpringModulithProperties_2_2`)
 *** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_modulith2_UpgradeSpringModulithPropertiesGenerated_2_2[Migrate Spring Modulith properties to 2.2 (generated)] (`io.arconia.rewrite.spring.modulith2.UpgradeSpringModulithPropertiesGenerated_2_2`)
 ** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_modulith2_MigrateSpringModulithIncompleteEventPublications_2_2[Migrate Spring Modulith `IncompleteEventPublications` to `FailedEventPublications`] (`io.arconia.rewrite.spring.modulith2.MigrateSpringModulithIncompleteEventPublications_2_2`)
+*** Change method name (`org.openrewrite.java.ChangeMethodName`)
+*** Change type (`org.openrewrite.java.ChangeType`)
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_security7_UpgradeSpringSecurity_7_2[Migrate to Spring Security 7.2] (`io.arconia.rewrite.spring.security7.UpgradeSpringSecurity_7_2`)
 ** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_data2026_UpgradeSpringData_2026_1[Migrate to Spring Data 2026.1] (`io.arconia.rewrite.spring.data2026.UpgradeSpringData_2026_1`)
@@ -9655,6 +9660,61 @@ Replace the `SpelParserConfiguration` constructors, deprecated in Spring Framewo
 
 *Composite recipes*
 
+[#io_arconia_rewrite_spring_modulith2_MigrateSpringModulithIncompleteEventPublications_2_2]
+=== Migrate Spring Modulith `IncompleteEventPublications` to `FailedEventPublications`
+`io.arconia.rewrite.spring.modulith2.MigrateSpringModulithIncompleteEventPublications_2_2`
+
+Migrate usages of `IncompleteEventPublications`, deprecated in Spring Modulith 2.2, to `FailedEventPublications`, replacing `resubmitIncompletePublications(ResubmissionOptions)` with `resubmit(ResubmissionOptions)`. It applies to the whole project or not at all, so a project that calls the overloads taking a `Predicate` or a `Duration`, which resubmit every incomplete publication rather than only the failed ones, or that implements `IncompleteEventPublications`, is left unchanged.
+
+_Tags: spring, modulith_
+
+.Recipes applied
+[%collapsible]
+====
+* Change method name (`org.openrewrite.java.ChangeMethodName`)
+* Change type (`org.openrewrite.java.ChangeType`)
+====
+
+*Example*
+
+.Before
+[source,java]
+----
+import org.springframework.modulith.events.IncompleteEventPublications;
+import org.springframework.modulith.events.ResubmissionOptions;
+
+class Resubmitter {
+    private final IncompleteEventPublications publications;
+
+    Resubmitter(IncompleteEventPublications publications) {
+        this.publications = publications;
+    }
+
+    void resubmit() {
+        publications.resubmitIncompletePublications(ResubmissionOptions.defaults());
+    }
+}
+----
+
+.After
+[source,java]
+----
+import org.springframework.modulith.events.FailedEventPublications;
+import org.springframework.modulith.events.ResubmissionOptions;
+
+class Resubmitter {
+    private final FailedEventPublications publications;
+
+    Resubmitter(FailedEventPublications publications) {
+        this.publications = publications;
+    }
+
+    void resubmit() {
+        publications.resubmit(ResubmissionOptions.defaults());
+    }
+}
+----
+
 [#io_arconia_rewrite_spring_modulith2_UpgradeSpringModulithProperties_2_0]
 === Migrate Spring Modulith properties to 2.0
 `io.arconia.rewrite.spring.modulith2.UpgradeSpringModulithProperties_2_0`
@@ -9780,6 +9840,7 @@ _Tags: spring, modulith_
 * Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
 * Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency`)
 * Change type (`org.openrewrite.java.ChangeType` ×4)
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_modulith2_UsePublishedEventAssertMatchingValue[Use `matchingValue` to match a Spring Modulith published event against a value] (`io.arconia.rewrite.spring.modulith2.UsePublishedEventAssertMatchingValue`)
 ====
 
 *Example*
@@ -9830,9 +9891,18 @@ _Tags: spring, modulith_
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_modulith2_UpgradeSpringModulithProperties_2_2[Migrate Spring Modulith properties to 2.2] (`io.arconia.rewrite.spring.modulith2.UpgradeSpringModulithProperties_2_2`)
 ** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_modulith2_UpgradeSpringModulithPropertiesGenerated_2_2[Migrate Spring Modulith properties to 2.2 (generated)] (`io.arconia.rewrite.spring.modulith2.UpgradeSpringModulithPropertiesGenerated_2_2`)
 * Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_modulith2_MigrateSpringModulithIncompleteEventPublications_2_2[Migrate Spring Modulith `IncompleteEventPublications` to `FailedEventPublications`] (`io.arconia.rewrite.spring.modulith2.MigrateSpringModulithIncompleteEventPublications_2_2`)
+** Change method name (`org.openrewrite.java.ChangeMethodName`)
+** Change type (`org.openrewrite.java.ChangeType`)
 ====
 
 *Recipes*
+
+[#io_arconia_rewrite_spring_modulith2_FindMigratableIncompleteEventPublications]
+=== Find projects whose Spring Modulith `IncompleteEventPublications` usages can be migrated
+`io.arconia.rewrite.spring.modulith2.FindMigratableIncompleteEventPublications`
+
+Find the Java source files of a project that uses `IncompleteEventPublications` only through `resubmitIncompletePublications(ResubmissionOptions)`, which maps one to one onto `FailedEventPublications.resubmit(ResubmissionOptions)`. A project that calls the overloads taking a `Predicate` or a `Duration`, or implements `IncompleteEventPublications`, does not qualify.
 
 [#io_arconia_rewrite_spring_modulith2_UpgradeSpringModulithPropertiesGenerated_2_2]
 === Migrate Spring Modulith properties to 2.2 (generated)
@@ -9841,6 +9911,44 @@ _Tags: spring, modulith_
 Migrate Spring Modulith configuration properties that were renamed or deprecated in the 2.2 release, across YAML and Properties configuration files.
 
 _Tags: spring, modulith_
+
+[#io_arconia_rewrite_spring_modulith2_UsePublishedEventAssertMatchingValue]
+=== Use `matchingValue` to match a Spring Modulith published event against a value
+`io.arconia.rewrite.spring.modulith2.UsePublishedEventAssertMatchingValue`
+
+Replace `PublishedEventAssert.matching(Function, Object)`, deprecated in Spring Modulith 2.1 and removed in 2.2, with `matchingValue(Function, Object)`. Calls passing a `Predicate` keep using `matching`.
+
+*Example*
+
+.Before
+[source,java]
+----
+import org.springframework.modulith.test.PublishedEventsAssert.PublishedEventAssert;
+
+class Demo {
+    void verify(PublishedEventAssert<OrderCompleted> event) {
+        event.matching(OrderCompleted::orderId, "42");
+    }
+
+    record OrderCompleted(String orderId) {
+    }
+}
+----
+
+.After
+[source,java]
+----
+import org.springframework.modulith.test.PublishedEventsAssert.PublishedEventAssert;
+
+class Demo {
+    void verify(PublishedEventAssert<OrderCompleted> event) {
+        event.matchingValue(OrderCompleted::orderId, "42");
+    }
+
+    record OrderCompleted(String orderId) {
+    }
+}
+----
 
 [#family-spring-security7]
 == spring › security7

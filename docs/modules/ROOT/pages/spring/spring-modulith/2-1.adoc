@@ -14,6 +14,7 @@ The recipe will:
 * Rename Spring Modulith configuration properties that were deprecated with a replacement, including the misspelled `spring.modulith.events.staleness.check-intervall` key, which was the only spelling available in 2.1.0 and is corrected to `check-interval`.
 * Move a direct dependency on `spring-modulith-observability` to `spring-modulith-observability-core`, since the observability support was split into an API and a core artifact and the original artifact no longer ships any classes.
 * Relocate the public observability types `ModulithContext`, `ModulithObservationConvention`, `ObservedModule`, and `ObservedModuleType` from the `support` package to the `org.springframework.modulith.observability` package.
+* Replace calls to the deprecated `PublishedEventAssert.matching(Function, Object)` with `matchingValue(Function, Object)`, since the deprecated method is removed in Spring Modulith 2.2. Calls passing a `Predicate` keep using `matching`.
 
 See its xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_modulith2_UpgradeSpringModulith_2_1[entry in the Recipe Catalog] for the full list of recipes this upgrade applies, each with its options and a before/after example.
 

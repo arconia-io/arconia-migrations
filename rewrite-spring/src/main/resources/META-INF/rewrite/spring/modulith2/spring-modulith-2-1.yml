@@ -39,3 +39,6 @@ recipeList:
   - org.openrewrite.java.ChangeType:
       oldFullyQualifiedTypeName: org.springframework.modulith.observability.support.ObservedModuleType
       newFullyQualifiedTypeName: org.springframework.modulith.observability.ObservedModuleType
+
+  # Testing
+  - io.arconia.rewrite.spring.modulith2.UsePublishedEventAssertMatchingValue

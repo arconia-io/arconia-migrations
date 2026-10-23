@@ -1,4 +1,4 @@
-# Based on https://github.com/spring-projects/spring-modulith/releases/tag/2.2.0-M1
+# Based on https://github.com/spring-projects/spring-modulith/releases/tag/2.2.0-RC1
 ---
 type: specs.openrewrite.org/v1beta/recipe
 name: io.arconia.rewrite.spring.modulith2.UpgradeSpringModulith_2_2
@@ -20,3 +20,29 @@ recipeList:
       artifactId: "*"
       newVersion: 2.2.x
       overrideManagedVersion: true
+
+  # Event Publication Registry
+  - io.arconia.rewrite.spring.modulith2.MigrateSpringModulithIncompleteEventPublications_2_2
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.modulith2.MigrateSpringModulithIncompleteEventPublications_2_2
+displayName: Migrate Spring Modulith `IncompleteEventPublications` to `FailedEventPublications`
+description: >-
+  Migrate usages of `IncompleteEventPublications`, deprecated in Spring Modulith 2.2, to `FailedEventPublications`,
+  replacing `resubmitIncompletePublications(ResubmissionOptions)` with `resubmit(ResubmissionOptions)`. It applies to
+  the whole project or not at all, so a project that calls the overloads taking a `Predicate` or a `Duration`, which
+  resubmit every incomplete publication rather than only the failed ones, or that implements
+  `IncompleteEventPublications`, is left unchanged.
+tags:
+  - spring
+  - modulith
+preconditions:
+  - io.arconia.rewrite.spring.modulith2.FindMigratableIncompleteEventPublications
+  - org.openrewrite.Singleton
+recipeList:
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: org.springframework.modulith.events.IncompleteEventPublications resubmitIncompletePublications(org.springframework.modulith.events.ResubmissionOptions)
+      newMethodName: resubmit
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.modulith.events.IncompleteEventPublications
+      newFullyQualifiedTypeName: org.springframework.modulith.events.FailedEventPublications

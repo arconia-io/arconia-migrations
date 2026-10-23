@@ -11,8 +11,14 @@ The `{recipe-id}` recipe automates the changes introduced in Spring Modulith 2.2
 The recipe will:
 
 * Upgrade all `org.springframework.modulith` dependencies to the 2.2.x release line.
+* Replace the deprecated `IncompleteEventPublications` with `FailedEventPublications`, and `resubmitIncompletePublications(ResubmissionOptions)` with `resubmit(ResubmissionOptions)`. The change applies to a whole project or not at all: a project that calls the overloads taking a `Predicate` or a `Duration`, or that implements `IncompleteEventPublications`, is left unchanged, since those overloads resubmit every incomplete publication rather than only the failed ones and have no direct replacement.
 
 Spring Modulith 2.2 removes the configuration properties that earlier releases had deprecated, rather than deprecating new ones. Those renames are applied by the xref:spring/spring-modulith/2-0.adoc[Spring Modulith 2.0] and xref:spring/spring-modulith/2-1.adoc[Spring Modulith 2.1] recipes, which the Spring Boot upgrade recipe runs before this one. If you run this recipe on its own from an earlier release, run those recipes first.
+
+Some changes in Spring Modulith 2.2 affect behavior without requiring code changes, so the recipe does not apply them. Review them when upgrading:
+
+* Transactional event listeners now complete their event publication within the listener's transaction, so the completion and the listener's changes are committed or rolled back together. Set `spring.modulith.events.completion=in-interceptor` to complete publications after the listener's transaction instead, as earlier releases did.
+* The staleness timeouts under `spring.modulith.events.staleness` must be greater than zero, and the application fails to start otherwise. Remove a timeout set to zero to leave it unconfigured.
 
 See its xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_modulith2_UpgradeSpringModulith_2_2[entry in the Recipe Catalog] for the full list of recipes this upgrade applies, each with its options and a before/after example.
 
