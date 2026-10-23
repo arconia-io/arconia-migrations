@@ -24,5 +24,6 @@ recipeList:
       newVersion: 5.1.x
 
   # Modules
+  - io.arconia.rewrite.spring.cloud2026.MigrateSpringCloudConfig_5_1
   - io.arconia.rewrite.spring.cloud2026.MigrateSpringCloudGateway_5_1
   - io.arconia.rewrite.spring.cloud2026.MigrateSpringCloudContractToStubbornContract

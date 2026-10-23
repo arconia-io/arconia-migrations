@@ -3,7 +3,7 @@
 
 // AUTO-GENERATED from the OpenRewrite recipe model. Do not edit by hand.
 
-The `rewrite-spring` module publishes 316 recipes across 13 categories.
+The `rewrite-spring` module publishes 317 recipes across 13 categories.
 
 [#family-spring-ai1]
 == spring › ai1
@@ -8457,6 +8457,9 @@ _Tags: spring, boot_
 ** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_cloud2026_UpgradeSpringCloudProperties_2026_0[Migrate Spring Cloud properties to 2026.0] (`io.arconia.rewrite.spring.cloud2026.UpgradeSpringCloudProperties_2026_0`)
 *** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_cloud2026_UpgradeSpringCloudPropertiesGenerated_2026_0[Migrate Spring Cloud properties to 2026.0 (generated)] (`io.arconia.rewrite.spring.cloud2026.UpgradeSpringCloudPropertiesGenerated_2026_0`)
 ** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion` ×2)
+** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_cloud2026_MigrateSpringCloudConfig_5_1[Migrate Spring Cloud Config to 5.1] (`io.arconia.rewrite.spring.cloud2026.MigrateSpringCloudConfig_5_1`)
+*** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_AddSpringBootProperty[Add a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.AddSpringBootProperty`)
+*** Remove a Gradle or Maven dependency (`org.openrewrite.java.dependencies.RemoveDependency`)
 ** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_cloud2026_MigrateSpringCloudGateway_5_1[Migrate Spring Cloud Gateway to 5.1] (`io.arconia.rewrite.spring.cloud2026.MigrateSpringCloudGateway_5_1`)
 *** Delete method argument (`org.openrewrite.java.DeleteMethodArgument` ×2)
 ** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_cloud2026_MigrateSpringCloudContractToStubbornContract[Migrate Spring Cloud Contract to Stubborn Contract] (`io.arconia.rewrite.spring.cloud2026.MigrateSpringCloudContractToStubbornContract`)
@@ -8904,6 +8907,73 @@ spring.cloud.gateway.server.webflux.metrics.path-tags.enabled=true
 
 *Composite recipes*
 
+[#io_arconia_rewrite_spring_cloud2026_MigrateSpringCloudConfig_5_1]
+=== Migrate Spring Cloud Config to 5.1
+`io.arconia.rewrite.spring.cloud2026.MigrateSpringCloudConfig_5_1`
+
+Migrate Spring Cloud Config usages that changed in the 5.1 release shipped with Spring Cloud 2026.0. Config Client retry moved from Spring Retry to the retry support built into Spring Framework, and it is no longer enabled by having Spring Retry on the classpath. In a module that uses the Config Client and depends on Spring Retry, the recipe sets `spring.cloud.config.retry.enabled=true` in the configuration files that set `spring.cloud.config.fail-fast`, so retry stays enabled, and removes the Spring Retry dependency unless the code uses it.
+
+.Recipes applied
+[%collapsible]
+====
+* xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_AddSpringBootProperty[Add a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.AddSpringBootProperty`)
+* Remove a Gradle or Maven dependency (`org.openrewrite.java.dependencies.RemoveDependency`)
+====
+
+*Example*
+
+.Before
+[source,properties]
+----
+spring.config.import=configserver:http://localhost:8888
+spring.cloud.config.fail-fast=true
+spring.cloud.config.retry.max-attempts=10
+----
+
+.After
+[source,properties]
+----
+spring.config.import=configserver:http://localhost:8888
+spring.cloud.config.fail-fast=true
+spring.cloud.config.retry.enabled=true
+spring.cloud.config.retry.max-attempts=10
+----
+
+.Before
+[source,yaml]
+----
+spring:
+  cloud:
+    config:
+      fail-fast: true
+      retry:
+        max-attempts: 10
+---
+spring:
+  config:
+    activate:
+      on-profile: local
+    import: "optional:configserver:"
+----
+
+.After
+[source,yaml]
+----
+spring:
+  cloud:
+    config:
+      fail-fast: true
+      retry:
+        max-attempts: 10
+        enabled: true
+---
+spring:
+  config:
+    activate:
+      on-profile: local
+    import: "optional:configserver:"
+----
+
 [#io_arconia_rewrite_spring_cloud2026_MigrateSpringCloudContractToStubbornContract]
 === Migrate Spring Cloud Contract to Stubborn Contract
 `io.arconia.rewrite.spring.cloud2026.MigrateSpringCloudContractToStubbornContract`
@@ -9033,6 +9103,9 @@ _Tags: spring, cloud_
 *** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×3)
 *** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×13)
 * Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion` ×2)
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_cloud2026_MigrateSpringCloudConfig_5_1[Migrate Spring Cloud Config to 5.1] (`io.arconia.rewrite.spring.cloud2026.MigrateSpringCloudConfig_5_1`)
+** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_AddSpringBootProperty[Add a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.AddSpringBootProperty`)
+** Remove a Gradle or Maven dependency (`org.openrewrite.java.dependencies.RemoveDependency`)
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_cloud2026_MigrateSpringCloudGateway_5_1[Migrate Spring Cloud Gateway to 5.1] (`io.arconia.rewrite.spring.cloud2026.MigrateSpringCloudGateway_5_1`)
 ** Delete method argument (`org.openrewrite.java.DeleteMethodArgument` ×2)
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_cloud2026_MigrateSpringCloudContractToStubbornContract[Migrate Spring Cloud Contract to Stubborn Contract] (`io.arconia.rewrite.spring.cloud2026.MigrateSpringCloudContractToStubbornContract`)

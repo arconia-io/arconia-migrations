@@ -1,0 +1,29 @@
+# Based on https://github.com/spring-cloud/spring-cloud-config/pull/3303 and the Config Client retry documentation
+# (https://docs.spring.io/spring-cloud-config/reference/client.html#config-client-retry).
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.cloud2026.MigrateSpringCloudConfig_5_1
+displayName: Migrate Spring Cloud Config to 5.1
+description: >-
+  Migrate Spring Cloud Config usages that changed in the 5.1 release shipped with Spring Cloud 2026.0. Config Client
+  retry moved from Spring Retry to the retry support built into Spring Framework, and it is no longer enabled by having
+  Spring Retry on the classpath. In a module that uses the Config Client and depends on Spring Retry, the recipe sets
+  `spring.cloud.config.retry.enabled=true` in the configuration files that set `spring.cloud.config.fail-fast`, so retry
+  stays enabled, and removes the Spring Retry dependency unless the code uses it.
+preconditions:
+  - org.openrewrite.java.dependencies.search.ModuleHasDependency:
+      groupIdPattern: org.springframework.cloud
+      artifactIdPattern: spring-cloud-config-client
+  - org.openrewrite.java.dependencies.search.ModuleHasDependency:
+      groupIdPattern: org.springframework.retry
+      artifactIdPattern: spring-retry
+  - org.openrewrite.Singleton
+recipeList:
+  - io.arconia.rewrite.spring.boot.properties.AddSpringBootProperty:
+      propertyKey: spring.cloud.config.retry.enabled
+      propertyValue: "true"
+      requiredPropertyKey: spring.cloud.config.fail-fast
+  - org.openrewrite.java.dependencies.RemoveDependency:
+      groupId: org.springframework.retry
+      artifactId: spring-retry
+      unlessUsing: org.springframework.retry..*
