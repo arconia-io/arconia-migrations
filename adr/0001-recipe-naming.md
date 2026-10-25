@@ -14,9 +14,9 @@ Recipe identifiers, display names, and descriptions are public API. Users refere
 
 ### Package and identifier
 
-- Start every recipe package with `io.arconia.rewrite.<area>`, where `<area>` matches the Arconia Migration modules: `spring`, `testing`, `docling`, or `framework` (for Arconia Framework recipes).
+- Start every recipe package with `io.arconia.rewrite.<area>`, where `<area>` matches the Arconia Migration modules: `spring`, `testing`, `openapi`, `docling`, or `framework` (for Arconia Framework recipes).
 - Where an area hosts several technologies that each maintain concurrent major-version trains, as `rewrite-spring` does, group recipes by a subarea that combines the technology and its major version in a single, collapsed segment: `spring.boot4`, `spring.ai1`, `spring.cloud2025`, `spring.framework7` (not the nested `spring.boot.boot4`).
-- Where a single line evolves over time, keep a flat per-technology subarea and carry the version in the recipe name instead: `testing.junit`, `testing.testcontainers`, `docling`, `framework`.
+- Where a single line evolves over time, keep a flat per-technology subarea and carry the version in the recipe name instead: `testing.junit`, `testing.testcontainers`, `openapi.swagger`, `docling`, `framework`. Where the technology is a project with several libraries, the recipe name identifies the library: `openapi.swagger.UpgradeSwaggerCore_3`.
 - Group cross-version or functional helpers under a plain subarea: `spring.boot.properties`, `framework.opentelemetry`.
 - Place an imperative recipe in the same package as the declarative recipes that compose it; its identifier is its fully qualified class name.
 - Name classes in PascalCase. Capitalize only the first letter of an acronym within an identifier: `Ai`, `Mcp`, `Otlp`.

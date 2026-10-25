@@ -21,6 +21,7 @@ Arconia Migrations relies on https://docs.openrewrite.org[OpenRewrite], an open-
 * *xref:arconia.adoc[Arconia].* Recipes for upgrading the Arconia Framework across versions.
 * *xref:spring/index.adoc[Spring].* Recipes for xref:spring/spring-boot/index.adoc[Spring Boot], xref:spring/spring-framework/index.adoc[Spring Framework], xref:spring/spring-cloud/index.adoc[Spring Cloud], and xref:spring/spring-ai/index.adoc[Spring AI].
 * *xref:testing/index.adoc[Testing].* Recipes for xref:testing/junit/index.adoc[JUnit] and xref:testing/testcontainers/index.adoc[Testcontainers].
+* *xref:openapi/index.adoc[OpenAPI].* Recipes for xref:openapi/swagger/index.adoc[Swagger].
 
 == Modules
 
@@ -35,6 +36,9 @@ The recipes are published as Maven artifacts under the `io.arconia.migrations` g
 
 | `rewrite-docling`
 | https://github.com/docling-project/docling-java[Docling Java]
+
+| `rewrite-openapi`
+| https://github.com/swagger-api/swagger-core[Swagger]
 
 | `rewrite-spring`
 | https://spring.io/projects/spring-ai[Spring AI], https://spring.io/projects/spring-boot[Spring Boot], https://spring.io/projects/spring-cloud[Spring Cloud], https://spring.io/projects/spring-framework[Spring Framework]

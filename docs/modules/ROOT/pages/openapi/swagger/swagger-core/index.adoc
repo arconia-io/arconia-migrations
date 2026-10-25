@@ -1,0 +1,8 @@
+= Swagger Core
+:description: Upgrade recipes for Swagger Core 3.x.
+
+Arconia Migrations ships an upgrade recipe for each major release of https://github.com/swagger-api/swagger-core[Swagger Core] that it supports.
+
+== Upgrade Guides
+
+* *xref:openapi/swagger/swagger-core/3.adoc[Swagger Core 3].* Migrate to the latest Swagger Core 3.x release.

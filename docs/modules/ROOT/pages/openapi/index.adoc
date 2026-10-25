@@ -1,0 +1,10 @@
+= OpenAPI
+:description: Upgrade recipes for OpenAPI libraries, such as Swagger.
+
+Arconia Migrations provides OpenRewrite recipes for the Java libraries that generate and serve OpenAPI documents. They apply to any Java project, not only to Spring applications. All recipes in this category are published in the `rewrite-openapi` module. Browse them all in the xref:recipe-catalog/rewrite-openapi.adoc[Recipe Catalog].
+
+== Upgrade Guides
+
+* *xref:openapi/swagger/index.adoc[Swagger].* Recipes for upgrading to Swagger Core 3.x.
+
+Each upgrade page shows how to apply the recipe with the Arconia CLI, the OpenRewrite Gradle plugin, and the OpenRewrite Maven plugin.

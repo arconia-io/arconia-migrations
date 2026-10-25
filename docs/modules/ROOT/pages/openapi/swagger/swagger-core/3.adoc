@@ -1,0 +1,47 @@
+= Swagger Core 3
+:description: Migrate your project to the latest Swagger Core 3.x release.
+:cli-command: arconia rewrite run --recipe-name io.arconia.rewrite.openapi.swagger.UpgradeSwaggerCore_3
+:recipe-id: io.arconia.rewrite.openapi.swagger.UpgradeSwaggerCore_3
+:rewrite-module: rewrite-openapi
+
+When upgrading to Swagger Core 3, refer to the https://github.com/swagger-api/swagger-core/blob/3.0.0/MIGRATION.md[Swagger Core 3.0 Migration Guide] for the breaking changes, including the move from Jackson 2 to Jackson 3.
+
+The `{recipe-id}` recipe automates most of the changes introduced in Swagger Core 3.x. You can use it to update your project to the latest Swagger Core 3.x release.
+
+== Prerequisites
+
+Swagger Core 3 supports only the `jakarta` namespace. The recipe migrates a project only when its code uses none of the `javax` REST, Servlet, Bean Validation, or JAXB APIs and it doesn't depend on the `javax` variant of the Swagger REST artifacts (`swagger-jaxrs2` and `swagger-jaxrs2-servlet-initializer-v2`). Otherwise, it leaves the project unchanged, so it is never left half migrated. In a multi-module build, each module is checked on its own.
+
+If your project still uses the `javax` namespace, migrate it to Jakarta EE first, then run this recipe.
+
+== What the Recipe Changes
+
+The recipe will:
+
+* Replace the retired Swagger Core artifacts with their 3.x counterparts: `swagger-annotations-jakarta`, `swagger-models-jakarta`, `swagger-core-jakarta`, and `swagger-integration-jakarta` drop the `-jakarta` suffix, `swagger-jaxrs2-jakarta` becomes `swagger-rest`, and `swagger-jaxrs2-servlet-initializer-v2-jakarta` becomes `swagger-rest-servlet-initializer`.
+* Upgrade all `io.swagger.core.v3` dependencies, the Swagger Gradle plugin, and the Swagger Maven plugin to the 3.x release line, replacing the retired `swagger-maven-plugin-jakarta` with `swagger-maven-plugin`.
+* Remove the `swagger-java17-support` dependency, which is no longer published.
+* Upgrade the Jakarta REST API to 4.0 and the Jakarta Servlet API to 6.1, as required by Jakarta EE 11.
+* Upgrade Jersey to 4.x, which implements Jakarta REST 4.0, and replace `jersey-media-json-jackson` with `jersey-media-json-jackson3`, so that your resources keep serializing JSON through Jackson 3.
+* Move the REST integration from the `io.swagger.v3.jaxrs2` packages to `io.swagger.v3.rest`, and rename the `Jaxrs`-prefixed types to their `Rest` counterparts (for example, `JaxrsOpenApiContextBuilder` becomes `RestOpenApiContextBuilder`). The recipe updates these names in Java code, in string literals (such as a scanner class passed to `SwaggerConfiguration`), in XML files (such as the servlet declarations in `web.xml`), in `module-info.java`, and in the `META-INF/services` descriptor of a custom `OpenAPIExtension`.
+* Change the `ObjectMapperProcessor` implementations to return the mapper they receive, and remove the deprecated `processYamlObjectMapper` method, which Swagger Core no longer calls.
+* Migrate the project to Jackson 3, moving the Jackson dependencies and imports from `com.fasterxml.jackson` to `tools.jackson`. The Jackson annotations keep their `com.fasterxml.jackson.annotation` package.
+
+See its xref:recipe-catalog/rewrite-openapi.adoc#io_arconia_rewrite_openapi_swagger_UpgradeSwaggerCore_3[entry in the Recipe Catalog] for the full list of recipes this upgrade applies, each with its options and a before/after example.
+
+== Manual Follow-Up
+
+Some changes need a decision or can't be made safely by a recipe:
+
+* Mapper defaults. Swagger Core 3 builds its mappers from the Jackson 3 defaults, which change the generated output. For example, `java.time.Month` values are written as numbers, and an accessor such as `getURL()` produces a `URL` property instead of `url`. Compare the generated OpenAPI document with the previous one. To restore most of the Jackson 2 behavior, call `ObjectMapperFactory.setJackson2Compatibility(true)` at startup, before the first mapper is used.
+* Mappers configured in place. Jackson 3 mappers are immutable. An `ObjectMapperProcessor` method that configured the mapper it received, such as with `mapper.enable(...)`, must now return a new one built with `mapper.rebuild()`.
+* Cached mappers. A component that keeps the result of `Json.mapper()` or `Yaml.mapper()` from startup doesn't see customizers registered later with `ObjectMapperFactory.addCustomizer(...)`. Get the mapper when you use it instead.
+* Configuration files. Class names in Swagger configuration files, such as a `scannerClass` or `readerClass` in `openapi-configuration.yaml`, are not updated.
+* Jersey JSON support. If your Jersey application didn't use `jersey-media-json-jackson` before, add `org.glassfish.jersey.media:jersey-media-json-jackson3` so that your resources can read and write JSON.
+* Libraries built for Swagger Core 2. A third-party library compiled against Swagger Core 2.x needs a release compatible with Swagger Core 3.
+
+After running the recipe, check that the resolved runtime classpath contains only Swagger Core 3.x artifacts.
+
+== Run the Recipe
+
+include::partial$run-recipe.adoc[]

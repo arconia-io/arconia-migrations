@@ -26,6 +26,7 @@
 - **Arconia.** Recipes for upgrading the Arconia Framework across versions.
 - **Docling.** Recipes for upgrading the Docling Java library.
 - **Testing.** Recipes for JUnit 6 and Testcontainers 2.
+- **OpenAPI.** Recipes for upgrading to Swagger Core 3.x.
 
 ## 📙&nbsp; Documentation
 

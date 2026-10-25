@@ -1,0 +1,10 @@
+= Swagger
+:description: Upgrade recipes for Swagger Core.
+
+Arconia Migrations provides OpenRewrite recipes for the https://swagger.io[Swagger] libraries. All recipes in this category are published in the `rewrite-openapi` module. Browse them all in the xref:recipe-catalog/rewrite-openapi.adoc[Recipe Catalog].
+
+== Upgrade Guides
+
+* *xref:openapi/swagger/swagger-core/index.adoc[Swagger Core].* Recipes for upgrading to Swagger Core 3.x.
+
+Each upgrade page shows how to apply the recipe with the Arconia CLI, the OpenRewrite Gradle plugin, and the OpenRewrite Maven plugin.

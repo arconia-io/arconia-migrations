@@ -1,0 +1,221 @@
+= rewrite-openapi
+:description: OpenRewrite recipes published in the rewrite-openapi module.
+
+// AUTO-GENERATED from the OpenRewrite recipe model. Do not edit by hand.
+
+The `rewrite-openapi` module publishes 3 recipes across 1 category.
+
+[#family-openapi-swagger]
+== openapi › swagger
+
+*Composite recipes*
+
+[#io_arconia_rewrite_openapi_swagger_UpgradeSwaggerCore_3]
+=== Migrate to Swagger Core 3.x
+`io.arconia.rewrite.openapi.swagger.UpgradeSwaggerCore_3`
+
+Migrate a Java application to the latest Swagger Core 3.x release, including the move to Jackson 3. Swagger Core 3 supports only the `jakarta` namespace. The recipe migrates a project only when its code uses no `javax` REST, Servlet, Bean Validation, or JAXB APIs and it doesn't depend on the `javax` variant of the Swagger REST artifacts, and otherwise leaves the project unchanged, so it is never left half migrated. In a multi-module build, each module is checked on its own.
+
+_Tags: swagger_
+
+.Recipes applied
+[%collapsible]
+====
+* Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency` ×6)
+* Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+* Remove a Gradle or Maven dependency (`org.openrewrite.java.dependencies.RemoveDependency`)
+* Change Maven plugin group and artifact ID (`org.openrewrite.maven.ChangePluginGroupIdAndArtifactId`)
+* Upgrade Maven plugin version (`org.openrewrite.maven.UpgradePluginVersion`)
+* Update a Gradle plugin by id (`org.openrewrite.gradle.plugins.UpgradePluginVersion`)
+* Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion` ×2)
+* Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency`)
+* Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
+* xref:recipe-catalog/rewrite-openapi.adoc#io_arconia_rewrite_openapi_swagger_ChangeObjectMapperProcessorMethods[Return the mapper from `ObjectMapperProcessor` methods] (`io.arconia.rewrite.openapi.swagger.ChangeObjectMapperProcessorMethods`)
+* Rename package name (`org.openrewrite.java.ChangePackage`)
+* Change type (`org.openrewrite.java.ChangeType` ×7)
+* Rename package name in String literals (`org.openrewrite.java.ChangePackageInStringLiteral`)
+* Change type in String literals (`org.openrewrite.java.ChangeTypeInStringLiteral` ×7)
+* Change XML tag value (`org.openrewrite.xml.ChangeTagValue` ×2)
+* Find and replace (`org.openrewrite.text.FindAndReplace`)
+* Migrates from Jackson 2.x to Jackson 3.x (`org.openrewrite.java.jackson.UpgradeJackson_2_3`)
+** Migrate from Jackson Codehaus (legacy) to Jackson FasterXML (`org.openrewrite.java.jackson.CodehausToFasterXML`)
+*** Transfer @JsonSerialize arguments from Codehaus to FasterXML (`org.openrewrite.java.jackson.codehaus.TransferJsonSerializeArgumentsFromCodehausToFasterXML`)
+*** Migrate classes from Jackson Codehaus (legacy) to Jackson FasterXML (`org.openrewrite.java.jackson.CodehausClassesToFasterXML`)
+*** Migrate dependencies from Jackson Codehaus (legacy) to FasterXML (`org.openrewrite.java.jackson.codehaus.CodehausDependencyToFasterXML`)
+** Replace `IOException` with `JacksonException` in catch clauses (`org.openrewrite.java.jackson.IOExceptionToJacksonException`)
+** Replace `throw new IOException(..)` inside Jackson serializer / deserializer overrides (`org.openrewrite.java.jackson.ReplaceIOExceptionThrowInJacksonOverrides`)
+*** Remove elements from a method declaration `throws` clause (`org.openrewrite.java.RemoveMethodThrows` ×2)
+** Replace `null` type in `StdDeserializer` constructor with actual type (`org.openrewrite.java.jackson.StdDeserializerNullConstructor`)
+** Use `DeserializationContext.readTreeAsValue()` instead of `ObjectCodec.treeToValue()` (`org.openrewrite.java.jackson.UseReadTreeAsValueInDeserializer`)
+** Update `lombok.config` for Jackson 3 compatibility (`org.openrewrite.java.jackson.LombokJacksonizedConfig`)
+** Use format alignment `ObjectMappers` (`org.openrewrite.java.jackson.UseFormatAlignedObjectMappers`)
+** Modernize legacy `jackson-core` feature constants (`org.openrewrite.java.jackson.UpgradeJackson_2_3_ModernizeJacksonCoreFeatures`)
+*** Replace constant with another constant (`org.openrewrite.java.ReplaceConstantWithAnotherConstant` ×34)
+** Remove redundant Jackson 3 feature flag configurations (`org.openrewrite.java.jackson.UpgradeJackson_2_3_RemoveRedundantFeatureFlags`)
+*** Remove redundant Jackson 3 feature flag configurations (`org.openrewrite.java.jackson.RemoveRedundantFeatureFlags` ×20)
+** Remove registrations of modules built-in to Jackson 3 (`org.openrewrite.java.jackson.RemoveBuiltInModuleRegistrations`)
+** Migrate mapper setter calls to builder pattern (`org.openrewrite.java.jackson.MigrateMapperSettersToBuilder`)
+** Migrate factory setter calls to builder pattern (`org.openrewrite.java.jackson.MigrateFactorySettersToBuilder`)
+** Update configuration of serialization inclusion in `ObjectMapper` for Jackson 3 (`org.openrewrite.java.jackson.UpdateSerializationInclusionConfiguration`)
+** Replace `disable(MapperFeature.AUTO_DETECT_*)` with `changeDefaultVisibility()` for Jackson 3 (`org.openrewrite.java.jackson.UpdateAutoDetectVisibilityConfiguration`)
+** Reorder method arguments (`org.openrewrite.java.ReorderMethodArguments` ×3)
+** Add missing Jackson dataformat dependencies (`org.openrewrite.java.jackson.AddMissingJacksonDependencies`)
+*** Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency` ×8)
+** Upgrade Jackson 2.x dependencies to 3.x (`org.openrewrite.java.jackson.UpgradeJackson_2_3_Dependencies`)
+*** Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency` ×26)
+*** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion` ×2)
+** Rename Jackson 2.x methods to 3.x equivalents (`org.openrewrite.java.jackson.UpgradeJackson_2_3_MethodRenames`)
+*** Rename Jackson 2.x methods to 3.x equivalents for JsonGenerator (`org.openrewrite.java.jackson.UpgradeJackson_2_3_JsonGeneratorMethodRenames`)
+*** Rename Jackson 2.x methods to 3.x equivalents for JsonParser (`org.openrewrite.java.jackson.UpgradeJackson_2_3_JsonParserMethodRenames`)
+*** Rename Jackson 2.x methods to 3.x equivalents for JsonNode (`org.openrewrite.java.jackson.UpgradeJackson_2_3_JsonNodeMethodRenames`)
+*** Rename Jackson 2.x methods to 3.x equivalents for ObjectNode (`org.openrewrite.java.jackson.UpgradeJackson_2_3_ObjectNodeMethodRenames`)
+*** Change method name (`org.openrewrite.java.ChangeMethodName` ×4)
+** Migrate relocated feature constants to DateTimeFeature and EnumFeature (`org.openrewrite.java.jackson.UpgradeJackson_2_3_RelocatedFeatureConstants`)
+*** Replace constant with another constant (`org.openrewrite.java.ReplaceConstantWithAnotherConstant` ×21)
+** Replace constant with another constant (`org.openrewrite.java.ReplaceConstantWithAnotherConstant`)
+** … and 16 more
+====
+
+*Example*
+
+.Before
+[source,java]
+----
+import io.swagger.v3.jaxrs2.integration.JaxrsOpenApiContextBuilder;
+import io.swagger.v3.oas.integration.OpenApiConfigurationException;
+import io.swagger.v3.oas.integration.SwaggerConfiguration;
+import io.swagger.v3.oas.integration.api.OpenApiContext;
+
+class OpenApiSetup {
+    OpenApiContext context() throws OpenApiConfigurationException {
+        SwaggerConfiguration configuration = new SwaggerConfiguration()
+                .scannerClass("io.swagger.v3.jaxrs2.integration.JaxrsAnnotationScanner");
+        return new JaxrsOpenApiContextBuilder<>()
+                .openApiConfiguration(configuration)
+                .buildContext(true);
+    }
+}
+----
+
+.After
+[source,java]
+----
+import io.swagger.v3.oas.integration.OpenApiConfigurationException;
+import io.swagger.v3.oas.integration.SwaggerConfiguration;
+import io.swagger.v3.oas.integration.api.OpenApiContext;
+import io.swagger.v3.rest.integration.RestOpenApiContextBuilder;
+
+class OpenApiSetup {
+    OpenApiContext context() throws OpenApiConfigurationException {
+        SwaggerConfiguration configuration = new SwaggerConfiguration()
+                .scannerClass("io.swagger.v3.rest.integration.RestAnnotationScanner");
+        return new RestOpenApiContextBuilder<>()
+                .openApiConfiguration(configuration)
+                .buildContext(true);
+    }
+}
+----
+
+.Before
+[source,xml]
+----
+<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee" version="6.0">
+    <servlet>
+        <servlet-name>openapi</servlet-name>
+        <servlet-class>io.swagger.v3.jaxrs2.integration.OpenApiServlet</servlet-class>
+        <init-param>
+            <param-name>openApi.configuration.scannerClass</param-name>
+            <param-value>io.swagger.v3.jaxrs2.integration.JaxrsApplicationAndAnnotationScanner</param-value>
+        </init-param>
+    </servlet>
+</web-app>
+----
+
+.After
+[source,xml]
+----
+<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee" version="6.0">
+    <servlet>
+        <servlet-name>openapi</servlet-name>
+        <servlet-class>io.swagger.v3.rest.integration.OpenApiServlet</servlet-class>
+        <init-param>
+            <param-name>openApi.configuration.scannerClass</param-name>
+            <param-value>io.swagger.v3.rest.integration.RestApplicationAndAnnotationScanner</param-value>
+        </init-param>
+    </servlet>
+</web-app>
+----
+
+*Recipes*
+
+[#io_arconia_rewrite_openapi_swagger_FindProjectsWithoutJavaxEnterpriseApis]
+=== Find projects that use no `javax` Jakarta EE APIs read by Swagger Core
+`io.arconia.rewrite.openapi.swagger.FindProjectsWithoutJavaxEnterpriseApis`
+
+Find the source files of a project whose code uses none of the `javax` REST, Servlet, Bean Validation, or JAXB APIs. Swagger Core 3 supports only the `jakarta` namespace, so a project that still uses them does not qualify.
+
+[#io_arconia_rewrite_openapi_swagger_ChangeObjectMapperProcessorMethods]
+=== Return the mapper from `ObjectMapperProcessor` methods
+`io.arconia.rewrite.openapi.swagger.ChangeObjectMapperProcessorMethods`
+
+Change the `void` methods of `ObjectMapperProcessor` implementations to return the `ObjectMapper` they receive, as the Swagger Core 3 interface expects, and remove the deprecated `processYamlObjectMapper` method, which Swagger Core no longer calls. A method that configures the mapper in place still needs to build a new one with `mapper.rebuild()`, since Jackson 3 mappers are immutable.
+
+*Example*
+
+.Before
+[source,java]
+----
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import io.swagger.v3.oas.integration.api.ObjectMapperProcessor;
+
+class IndentingProcessor implements ObjectMapperProcessor {
+    @Override
+    public void processJsonObjectMapper(ObjectMapper mapper) {
+        mapper.enable(SerializationFeature.INDENT_OUTPUT);
+    }
+
+    @Override
+    public void processOutputJsonObjectMapper(ObjectMapper mapper) {
+    }
+
+    @Override
+    public void processOutputYamlObjectMapper(ObjectMapper mapper) {
+        if (mapper.isEnabled(SerializationFeature.INDENT_OUTPUT)) {
+            return;
+        }
+        mapper.enable(SerializationFeature.INDENT_OUTPUT);
+    }
+}
+----
+
+.After
+[source,java]
+----
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import io.swagger.v3.oas.integration.api.ObjectMapperProcessor;
+
+class IndentingProcessor implements ObjectMapperProcessor {
+    @Override
+    public ObjectMapper processJsonObjectMapper(ObjectMapper mapper) {
+        mapper.enable(SerializationFeature.INDENT_OUTPUT);
+        return mapper;
+    }
+
+    @Override
+    public ObjectMapper processOutputJsonObjectMapper(ObjectMapper mapper) {
+        return mapper;
+    }
+
+    @Override
+    public ObjectMapper processOutputYamlObjectMapper(ObjectMapper mapper) {
+        if (mapper.isEnabled(SerializationFeature.INDENT_OUTPUT)) {
+            return mapper;
+        }
+        mapper.enable(SerializationFeature.INDENT_OUTPUT);
+        return mapper;
+    }
+}
+----
+

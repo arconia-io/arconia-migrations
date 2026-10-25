@@ -1,0 +1,182 @@
+# Based on https://github.com/swagger-api/swagger-core/blob/3.0.0/MIGRATION.md
+# Swagger Core 3.0.0 is not released yet: the recipe targets 3.0.0-SNAPSHOT until it ships, then 3.x.
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.openapi.swagger.UpgradeSwaggerCore_3
+displayName: Migrate to Swagger Core 3.x
+description: >-
+  Migrate a Java application to the latest Swagger Core 3.x release, including the move to Jackson 3.
+  Swagger Core 3 supports only the `jakarta` namespace. The recipe migrates a project only when its code uses no
+  `javax` REST, Servlet, Bean Validation, or JAXB APIs and it doesn't depend on the `javax` variant of the Swagger REST
+  artifacts, and otherwise leaves the project unchanged, so it is never left half migrated. In a multi-module build,
+  each module is checked on its own.
+tags:
+  - swagger
+preconditions:
+  - org.openrewrite.Singleton
+  - org.openrewrite.java.dependencies.search.ModuleHasDependency:
+      groupIdPattern: io.swagger.core.v3
+      artifactIdPattern: "*"
+  - org.openrewrite.java.dependencies.search.ModuleHasDependency:
+      groupIdPattern: io.swagger.core.v3
+      artifactIdPattern: swagger-jaxrs2
+      invertMarking: true
+  - org.openrewrite.java.dependencies.search.ModuleHasDependency:
+      groupIdPattern: io.swagger.core.v3
+      artifactIdPattern: swagger-jaxrs2-servlet-initializer-v2
+      invertMarking: true
+  - io.arconia.rewrite.openapi.swagger.FindProjectsWithoutJavaxEnterpriseApis
+recipeList:
+
+  # Swagger Core artifacts
+  - org.openrewrite.java.dependencies.ChangeDependency:
+      oldGroupId: io.swagger.core.v3
+      oldArtifactId: swagger-annotations-jakarta
+      newArtifactId: swagger-annotations
+      newVersion: 3.0.0-SNAPSHOT
+  - org.openrewrite.java.dependencies.ChangeDependency:
+      oldGroupId: io.swagger.core.v3
+      oldArtifactId: swagger-models-jakarta
+      newArtifactId: swagger-models
+      newVersion: 3.0.0-SNAPSHOT
+  - org.openrewrite.java.dependencies.ChangeDependency:
+      oldGroupId: io.swagger.core.v3
+      oldArtifactId: swagger-core-jakarta
+      newArtifactId: swagger-core
+      newVersion: 3.0.0-SNAPSHOT
+  - org.openrewrite.java.dependencies.ChangeDependency:
+      oldGroupId: io.swagger.core.v3
+      oldArtifactId: swagger-integration-jakarta
+      newArtifactId: swagger-integration
+      newVersion: 3.0.0-SNAPSHOT
+  - org.openrewrite.java.dependencies.ChangeDependency:
+      oldGroupId: io.swagger.core.v3
+      oldArtifactId: swagger-jaxrs2-jakarta
+      newArtifactId: swagger-rest
+      newVersion: 3.0.0-SNAPSHOT
+  - org.openrewrite.java.dependencies.ChangeDependency:
+      oldGroupId: io.swagger.core.v3
+      oldArtifactId: swagger-jaxrs2-servlet-initializer-v2-jakarta
+      newArtifactId: swagger-rest-servlet-initializer
+      newVersion: 3.0.0-SNAPSHOT
+  - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
+      groupId: io.swagger.core.v3
+      artifactId: "*"
+      newVersion: 3.0.0-SNAPSHOT
+  # A test-only module of Swagger Core 2, not published for 3.0
+  - org.openrewrite.java.dependencies.RemoveDependency:
+      groupId: io.swagger.core.v3
+      artifactId: swagger-java17-support
+
+  # Swagger Core build plugins
+  - org.openrewrite.maven.ChangePluginGroupIdAndArtifactId:
+      oldGroupId: io.swagger.core.v3
+      oldArtifactId: swagger-maven-plugin-jakarta
+      newArtifactId: swagger-maven-plugin
+      newVersion: 3.0.0-SNAPSHOT
+  - org.openrewrite.maven.UpgradePluginVersion:
+      groupId: io.swagger.core.v3
+      artifactId: swagger-maven-plugin
+      newVersion: 3.0.0-SNAPSHOT
+  - org.openrewrite.gradle.plugins.UpgradePluginVersion:
+      pluginIdPattern: io.swagger.core.v3.swagger-gradle-plugin
+      newVersion: 3.0.0-SNAPSHOT
+
+  # Jakarta EE 11 APIs
+  - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
+      groupId: jakarta.ws.rs
+      artifactId: jakarta.ws.rs-api
+      newVersion: 4.0.x
+  - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
+      groupId: jakarta.servlet
+      artifactId: jakarta.servlet-api
+      newVersion: 6.1.x
+
+  # Jersey 4, which implements Jakarta REST 4.0, with JSON support through Jackson 3
+  - org.openrewrite.java.dependencies.ChangeDependency:
+      oldGroupId: org.glassfish.jersey.media
+      oldArtifactId: jersey-media-json-jackson
+      newArtifactId: jersey-media-json-jackson3
+      newVersion: 4.0.x
+  - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
+      groupId: org.glassfish.jersey*
+      artifactId: "*"
+      newVersion: 4.0.x
+
+  # ObjectMapperProcessor returns the mapper to use
+  - io.arconia.rewrite.openapi.swagger.ChangeObjectMapperProcessorMethods
+
+  # REST integration packages and types
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: io.swagger.v3.jaxrs2
+      newPackageName: io.swagger.v3.rest
+      recursive: true
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: io.swagger.v3.rest.integration.JaxrsOpenApiContextBuilder
+      newFullyQualifiedTypeName: io.swagger.v3.rest.integration.RestOpenApiContextBuilder
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: io.swagger.v3.rest.integration.JaxrsOpenApiContext
+      newFullyQualifiedTypeName: io.swagger.v3.rest.integration.RestOpenApiContext
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: io.swagger.v3.rest.integration.JaxrsAnnotationScanner
+      newFullyQualifiedTypeName: io.swagger.v3.rest.integration.RestAnnotationScanner
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: io.swagger.v3.rest.integration.JaxrsApplicationScanner
+      newFullyQualifiedTypeName: io.swagger.v3.rest.integration.RestApplicationScanner
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: io.swagger.v3.rest.integration.JaxrsApplicationAndAnnotationScanner
+      newFullyQualifiedTypeName: io.swagger.v3.rest.integration.RestApplicationAndAnnotationScanner
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: io.swagger.v3.rest.integration.JaxrsApplicationAndResourcePackagesAnnotationScanner
+      newFullyQualifiedTypeName: io.swagger.v3.rest.integration.RestApplicationAndResourcePackagesAnnotationScanner
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: io.swagger.v3.rest.integration.api.JaxrsOpenApiScanner
+      newFullyQualifiedTypeName: io.swagger.v3.rest.integration.api.RestOpenApiScanner
+
+  # Class and package names in string literals, such as a scanner class or the packages to scan
+  - org.openrewrite.java.ChangePackageInStringLiteral:
+      oldPackageName: io.swagger.v3.jaxrs2
+      newPackageName: io.swagger.v3.rest
+  - org.openrewrite.java.ChangeTypeInStringLiteral:
+      oldFullyQualifiedTypeName: io.swagger.v3.rest.integration.JaxrsOpenApiContextBuilder
+      newFullyQualifiedTypeName: io.swagger.v3.rest.integration.RestOpenApiContextBuilder
+  - org.openrewrite.java.ChangeTypeInStringLiteral:
+      oldFullyQualifiedTypeName: io.swagger.v3.rest.integration.JaxrsOpenApiContext
+      newFullyQualifiedTypeName: io.swagger.v3.rest.integration.RestOpenApiContext
+  - org.openrewrite.java.ChangeTypeInStringLiteral:
+      oldFullyQualifiedTypeName: io.swagger.v3.rest.integration.JaxrsAnnotationScanner
+      newFullyQualifiedTypeName: io.swagger.v3.rest.integration.RestAnnotationScanner
+  - org.openrewrite.java.ChangeTypeInStringLiteral:
+      oldFullyQualifiedTypeName: io.swagger.v3.rest.integration.JaxrsApplicationScanner
+      newFullyQualifiedTypeName: io.swagger.v3.rest.integration.RestApplicationScanner
+  - org.openrewrite.java.ChangeTypeInStringLiteral:
+      oldFullyQualifiedTypeName: io.swagger.v3.rest.integration.JaxrsApplicationAndAnnotationScanner
+      newFullyQualifiedTypeName: io.swagger.v3.rest.integration.RestApplicationAndAnnotationScanner
+  - org.openrewrite.java.ChangeTypeInStringLiteral:
+      oldFullyQualifiedTypeName: io.swagger.v3.rest.integration.JaxrsApplicationAndResourcePackagesAnnotationScanner
+      newFullyQualifiedTypeName: io.swagger.v3.rest.integration.RestApplicationAndResourcePackagesAnnotationScanner
+  - org.openrewrite.java.ChangeTypeInStringLiteral:
+      oldFullyQualifiedTypeName: io.swagger.v3.rest.integration.api.JaxrsOpenApiScanner
+      newFullyQualifiedTypeName: io.swagger.v3.rest.integration.api.RestOpenApiScanner
+
+  # Class and package names in XML, such as servlet declarations in web.xml and Swagger Maven plugin configuration
+  - org.openrewrite.xml.ChangeTagValue:
+      elementName: //*
+      oldValue: \bio\.swagger\.v3\.jaxrs2\b
+      newValue: io.swagger.v3.rest
+      regex: true
+  - org.openrewrite.xml.ChangeTagValue:
+      elementName: //*
+      oldValue: \bio\.swagger\.v3\.rest\.integration\.(api\.)?Jaxrs(\w+)
+      newValue: io.swagger.v3.rest.integration.$1Rest$2
+      regex: true
+
+  # Module names in module-info.java
+  - org.openrewrite.text.FindAndReplace:
+      find: \bio\.swagger\.v3\.jaxrs2\b
+      replace: io.swagger.v3.rest
+      regex: true
+      filePattern: "**/module-info.java"
+
+  # Jackson 3
+  - org.openrewrite.java.jackson.UpgradeJackson_2_3

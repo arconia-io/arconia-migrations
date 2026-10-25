@@ -1,0 +1,56 @@
+plugins {
+    id "code-quality-conventions"
+    id "java-conventions"
+    id "sbom-conventions"
+    id "release-conventions"
+}
+
+dependencies {
+    implementation "org.jspecify:jspecify:${jSpecifyVersion}"
+    implementation "org.slf4j:slf4j-api:${slf4jVersion}"
+
+    // OpenRewrite Core
+    implementation "org.openrewrite:rewrite-gradle"
+    implementation "org.openrewrite:rewrite-java"
+    implementation "org.openrewrite:rewrite-maven"
+    implementation "org.openrewrite:rewrite-xml"
+    implementation "org.openrewrite.recipe:rewrite-jackson"
+    implementation "org.openrewrite.recipe:rewrite-java-dependencies"
+
+    runtimeOnly "org.openrewrite:rewrite-java-21"
+    runtimeOnly "org.openrewrite:rewrite-java-25"
+
+    testImplementation "org.openrewrite:rewrite-test"
+    testImplementation "ch.qos.logback:logback-core:${logbackVersion}"
+    testImplementation "org.assertj:assertj-core:${assertjVersion}"
+    testImplementation "org.junit.jupiter:junit-jupiter:${jUnitVersion}"
+    testImplementation "org.mockito:mockito-junit-jupiter:${mockitoVersion}"
+    testImplementation "org.mockito:mockito-core:${mockitoVersion}"
+    testImplementation "org.openrewrite.gradle.tooling:model"
+
+    testRuntimeOnly gradleApi()
+}
+
+recipeDependencies {
+    testParserClasspath "io.swagger.core.v3:swagger-core-jakarta:2.2.+"
+    testParserClasspath "io.swagger.core.v3:swagger-integration-jakarta:2.2.+"
+    testParserClasspath "io.swagger.core.v3:swagger-jaxrs2-jakarta:2.2.+"
+    testParserClasspath "io.swagger.core.v3:swagger-models-jakarta:2.2.+"
+
+    testParserClasspath "com.fasterxml.jackson.core:jackson-core:2.20.+"
+    testParserClasspath "com.fasterxml.jackson.core:jackson-databind:2.20.+"
+
+    testParserClasspath "jakarta.ws.rs:jakarta.ws.rs-api:3.1.+"
+    testParserClasspath "javax.ws.rs:javax.ws.rs-api:2.1.+"
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            pom {
+                name = "Arconia OpenRewrite Recipes for OpenAPI"
+                description = "Arconia OpenRewrite Recipes for OpenAPI libraries, such as Swagger."
+            }
+        }
+    }
+}
