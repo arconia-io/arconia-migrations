@@ -28,6 +28,9 @@ recipeList:
   - io.arconia.rewrite.spring.framework7.MigrateSpringWebFlux_7_0
   - io.arconia.rewrite.spring.framework7.MigrateSpringWebMvc_7_0
 
+  # Spring Retry
+  - io.arconia.rewrite.spring.framework7.MigrateSpringRetryToSpringFramework
+
 ---
 type: specs.openrewrite.org/v1beta/recipe
 name: io.arconia.rewrite.spring.framework7.MigrateSpringCore_7_0

@@ -16,7 +16,7 @@ The recipe will:
 * Replace `ChatMemory.CONVERSATION_ID` with `MemoryAdvisor.CONVERSATION_ID`, which holds the same key, so requests keep passing their conversation identifier to the session advisors.
 * Change the `ChatMemory` bean to the auto-configured `SessionService`, replacing `get()` with `getActiveMessages()` and `clear()` with `delete()`.
 
-The recipe changes the whole project or nothing. In a multi-module build, each module counts as a project of its own. It only runs when every chat memory usage has a session memory equivalent, and leaves the project unchanged when any of the following is true:
+The recipe migrates a project only when every chat memory usage in it has a session memory equivalent, and otherwise leaves the project unchanged, so it is never left half migrated. In a multi-module build, each module is checked on its own. A project is left unchanged when any of the following is true:
 
 * The project depends on another chat memory store, such as Cassandra, MongoDB, Neo4j, Redis, or the in-memory one, which have no session memory counterpart yet.
 * The project builds or implements a chat memory or a chat memory repository in code, for example with `MessageWindowChatMemory`, which sets a store and window of its own.

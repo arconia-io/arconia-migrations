@@ -29,10 +29,12 @@ name: io.arconia.rewrite.spring.modulith2.MigrateSpringModulithIncompleteEventPu
 displayName: Migrate Spring Modulith `IncompleteEventPublications` to `FailedEventPublications`
 description: >-
   Migrate usages of `IncompleteEventPublications`, deprecated in Spring Modulith 2.2, to `FailedEventPublications`,
-  replacing `resubmitIncompletePublications(ResubmissionOptions)` with `resubmit(ResubmissionOptions)`. It applies to
-  the whole project or not at all, so a project that calls the overloads taking a `Predicate` or a `Duration`, which
-  resubmit every incomplete publication rather than only the failed ones, or that implements
-  `IncompleteEventPublications`, is left unchanged.
+  replacing `resubmitIncompletePublications(ResubmissionOptions)` with `resubmit(ResubmissionOptions)`. It migrates a
+  project only when every `IncompleteEventPublications` usage in it has a `FailedEventPublications` equivalent, and
+  otherwise leaves the project unchanged, so it is never left half migrated. In a multi-module build, each module is
+  checked on its own. A project that calls the overloads taking a `Predicate` or a `Duration`, which resubmit every
+  incomplete publication rather than only the failed ones, or that implements `IncompleteEventPublications`, is
+  therefore left unchanged.
 tags:
   - spring
   - modulith

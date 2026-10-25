@@ -1,0 +1,47 @@
+# Based on https://docs.spring.io/spring-framework/reference/core/resilience.html and
+# https://spring.io/blog/2025/09/09/core-spring-resilience-features
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.framework7.MigrateSpringRetryToSpringFramework
+displayName: Migrate Spring Retry to the Spring Framework retry support
+description: >-
+  Migrate annotation-based Spring Retry usage to the retry support built into Spring Framework 7.0, which succeeds
+  Spring Retry. The recipe replaces `@EnableRetry` with `@EnableResilientMethods` and the Spring Retry `@Retryable`
+  with the Spring Framework one, carrying over the exception types, the number of attempts, and the backoff, and
+  removes the Spring Retry dependency. It migrates a project only when every Spring Retry usage in it has a Spring
+  Framework equivalent, and otherwise leaves the project unchanged, so it is never left half migrated. In a
+  multi-module build, each module is checked on its own. A project that uses `RetryTemplate` or another Spring Retry
+  API, recovery, stateful retry, listeners, SpEL expressions, a random backoff, or retries a method with a reactive
+  return type is therefore left unchanged. The Spring Retry dependency is kept in a project that uses Spring Cloud,
+  where it enables retry features such as load-balanced and OpenFeign client retry and Config Client, Consul, and
+  Kubernetes config retry.
+tags:
+  - spring
+  - framework
+preconditions:
+  - io.arconia.rewrite.spring.framework7.FindMigratableSpringRetry
+  - org.openrewrite.Singleton
+recipeList:
+  - io.arconia.rewrite.spring.framework7.UseSpringFrameworkRetryable
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.retry.annotation.EnableRetry
+      newFullyQualifiedTypeName: org.springframework.resilience.annotation.EnableResilientMethods
+  - io.arconia.rewrite.spring.framework7.RemoveSpringRetryDependency
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.framework7.RemoveSpringRetryDependency
+displayName: Remove the Spring Retry dependency
+description: >-
+  Remove the Spring Retry dependency from a project that does not use Spring Cloud, where Spring Retry on the classpath
+  enables retry features such as load-balanced and OpenFeign client retry and Config Client, Consul, and Kubernetes
+  config retry.
+preconditions:
+  - org.openrewrite.java.dependencies.search.ModuleHasDependency:
+      groupIdPattern: org.springframework.cloud
+      artifactIdPattern: "*"
+      invertMarking: true
+recipeList:
+  - org.openrewrite.java.dependencies.RemoveDependency:
+      groupId: org.springframework.retry
+      artifactId: spring-retry

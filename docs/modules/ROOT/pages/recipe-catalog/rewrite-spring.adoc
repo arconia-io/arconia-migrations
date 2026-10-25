@@ -3,7 +3,7 @@
 
 // AUTO-GENERATED from the OpenRewrite recipe model. Do not edit by hand.
 
-The `rewrite-spring` module publishes 317 recipes across 13 categories.
+The `rewrite-spring` module publishes 321 recipes across 13 categories.
 
 [#family-spring-ai1]
 == spring › ai1
@@ -436,7 +436,7 @@ class Demo {
 === Migrate Spring AI chat memory to session memory
 `io.arconia.rewrite.spring.ai2.MigrateSpringAiChatMemoryToSessionMemory`
 
-Migrate an application that uses the auto-configured JDBC chat memory, deprecated in Spring AI 2.1, to the session memory that replaces it. The recipe swaps the JDBC chat memory starter for the JDBC session starter, renames the JDBC repository properties, replaces `MessageChatMemoryAdvisor` with the session advisors reading the same 20-message window, and moves the `ChatMemory` bean and its `get` and `clear` calls to `SessionService`. It applies to the whole project or not at all, and only when every chat memory usage maps one to one onto session memory, so a project with another chat memory store, a chat memory or repository built in code, or direct appends to the chat memory is left unchanged. Conversations already stored in the chat memory table are not carried over, since session memory uses its own tables. Run it on a project that is already on Spring AI 2.1.
+Migrate an application that uses the auto-configured JDBC chat memory, deprecated in Spring AI 2.1, to the session memory that replaces it. The recipe swaps the JDBC chat memory starter for the JDBC session starter, renames the JDBC repository properties, replaces `MessageChatMemoryAdvisor` with the session advisors reading the same 20-message window, and moves the `ChatMemory` bean and its `get` and `clear` calls to `SessionService`. It migrates a project only when every chat memory usage in it has a session memory equivalent, and otherwise leaves the project unchanged, so it is never left half migrated. In a multi-module build, each module is checked on its own. A project with another chat memory store, a chat memory or repository built in code, or direct appends to the chat memory is therefore left unchanged. Conversations already stored in the chat memory table are not carried over, since session memory uses its own tables. Run it on a project that is already on Spring AI 2.1.
 
 _Tags: spring, ai_
 
@@ -8036,6 +8036,10 @@ _Tags: spring, boot_
 ** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_framework7_MigrateSpringWebMvc_7_0[Migrate the Spring Web MVC module to Spring Framework 7.0] (`io.arconia.rewrite.spring.framework7.MigrateSpringWebMvc_7_0`)
 *** Change method name (`org.openrewrite.java.ChangeMethodName` ×4)
 *** Replace constant with another constant (`org.openrewrite.java.ReplaceConstantWithAnotherConstant`)
+** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_framework7_MigrateSpringRetryToSpringFramework[Migrate Spring Retry to the Spring Framework retry support] (`io.arconia.rewrite.spring.framework7.MigrateSpringRetryToSpringFramework`)
+*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_framework7_UseSpringFrameworkRetryable[Use the Spring Framework `@Retryable` annotation instead of the Spring Retry one] (`io.arconia.rewrite.spring.framework7.UseSpringFrameworkRetryable`)
+*** Change type (`org.openrewrite.java.ChangeType`)
+*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_framework7_RemoveSpringRetryDependency[Remove the Spring Retry dependency] (`io.arconia.rewrite.spring.framework7.RemoveSpringRetryDependency`)
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_UpgradeSpringBootProperties_4_0[Migrate Spring Boot properties to 4.0] (`io.arconia.rewrite.spring.boot4.UpgradeSpringBootProperties_4_0`)
 ** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_UpgradeSpringBootPropertiesGenerated_4_0[Migrate Spring Boot properties to 4.0 (generated)] (`io.arconia.rewrite.spring.boot4.UpgradeSpringBootPropertiesGenerated_4_0`)
 *** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×2)
@@ -8225,6 +8229,7 @@ _Tags: spring, boot_
 *** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_framework7_MigrateSpringWeb_7_0[Migrate the Spring Web module to Spring Framework 7.0] (`io.arconia.rewrite.spring.framework7.MigrateSpringWeb_7_0`)
 *** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_framework7_MigrateSpringWebFlux_7_0[Migrate the Spring WebFlux module to Spring Framework 7.0] (`io.arconia.rewrite.spring.framework7.MigrateSpringWebFlux_7_0`)
 *** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_framework7_MigrateSpringWebMvc_7_0[Migrate the Spring Web MVC module to Spring Framework 7.0] (`io.arconia.rewrite.spring.framework7.MigrateSpringWebMvc_7_0`)
+*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_framework7_MigrateSpringRetryToSpringFramework[Migrate Spring Retry to the Spring Framework retry support] (`io.arconia.rewrite.spring.framework7.MigrateSpringRetryToSpringFramework`)
 ** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_UpgradeSpringBootProperties_4_0[Migrate Spring Boot properties to 4.0] (`io.arconia.rewrite.spring.boot4.UpgradeSpringBootProperties_4_0`)
 *** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_UpgradeSpringBootPropertiesGenerated_4_0[Migrate Spring Boot properties to 4.0 (generated)] (`io.arconia.rewrite.spring.boot4.UpgradeSpringBootPropertiesGenerated_4_0`)
 *** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×2)
@@ -9475,6 +9480,74 @@ _Tags: spring, framework_
 
 *Composite recipes*
 
+[#io_arconia_rewrite_spring_framework7_MigrateSpringRetryToSpringFramework]
+=== Migrate Spring Retry to the Spring Framework retry support
+`io.arconia.rewrite.spring.framework7.MigrateSpringRetryToSpringFramework`
+
+Migrate annotation-based Spring Retry usage to the retry support built into Spring Framework 7.0, which succeeds Spring Retry. The recipe replaces `@EnableRetry` with `@EnableResilientMethods` and the Spring Retry `@Retryable` with the Spring Framework one, carrying over the exception types, the number of attempts, and the backoff, and removes the Spring Retry dependency. It migrates a project only when every Spring Retry usage in it has a Spring Framework equivalent, and otherwise leaves the project unchanged, so it is never left half migrated. In a multi-module build, each module is checked on its own. A project that uses `RetryTemplate` or another Spring Retry API, recovery, stateful retry, listeners, SpEL expressions, a random backoff, or retries a method with a reactive return type is therefore left unchanged. The Spring Retry dependency is kept in a project that uses Spring Cloud, where it enables retry features such as load-balanced and OpenFeign client retry and Config Client, Consul, and Kubernetes config retry.
+
+_Tags: spring, framework_
+
+.Recipes applied
+[%collapsible]
+====
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_framework7_UseSpringFrameworkRetryable[Use the Spring Framework `@Retryable` annotation instead of the Spring Retry one] (`io.arconia.rewrite.spring.framework7.UseSpringFrameworkRetryable`)
+* Change type (`org.openrewrite.java.ChangeType`)
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_framework7_RemoveSpringRetryDependency[Remove the Spring Retry dependency] (`io.arconia.rewrite.spring.framework7.RemoveSpringRetryDependency`)
+** Remove a Gradle or Maven dependency (`org.openrewrite.java.dependencies.RemoveDependency`)
+====
+
+*Example*
+
+.Before
+[source,java]
+----
+import org.springframework.retry.annotation.EnableRetry;
+
+@EnableRetry
+class RetryConfiguration {
+}
+----
+
+.After
+[source,java]
+----
+import org.springframework.resilience.annotation.EnableResilientMethods;
+
+@EnableResilientMethods
+class RetryConfiguration {
+}
+----
+
+.Before
+[source,java]
+----
+import java.io.IOException;
+
+import org.springframework.retry.annotation.Backoff;
+import org.springframework.retry.annotation.Retryable;
+
+class NotificationService {
+    @Retryable(retryFor = IOException.class, maxAttempts = 5, backoff = @Backoff(delay = 100, multiplier = 2))
+    void send() throws IOException {
+    }
+}
+----
+
+.After
+[source,java]
+----
+import org.springframework.resilience.annotation.Retryable;
+
+import java.io.IOException;
+
+class NotificationService {
+    @Retryable(includes = IOException.class, maxRetries = 4, delay = 100, multiplier = 2, maxDelay = 30000)
+    void send() throws IOException {
+    }
+}
+----
+
 [#io_arconia_rewrite_spring_framework7_MigrateSpringCore_7_0]
 === Migrate the Spring Core module to Spring Framework 7.0
 `io.arconia.rewrite.spring.framework7.MigrateSpringCore_7_0`
@@ -9654,6 +9727,11 @@ _Tags: spring, framework_
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_framework7_MigrateSpringWebMvc_7_0[Migrate the Spring Web MVC module to Spring Framework 7.0] (`io.arconia.rewrite.spring.framework7.MigrateSpringWebMvc_7_0`)
 ** Change method name (`org.openrewrite.java.ChangeMethodName` ×4)
 ** Replace constant with another constant (`org.openrewrite.java.ReplaceConstantWithAnotherConstant`)
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_framework7_MigrateSpringRetryToSpringFramework[Migrate Spring Retry to the Spring Framework retry support] (`io.arconia.rewrite.spring.framework7.MigrateSpringRetryToSpringFramework`)
+** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_framework7_UseSpringFrameworkRetryable[Use the Spring Framework `@Retryable` annotation instead of the Spring Retry one] (`io.arconia.rewrite.spring.framework7.UseSpringFrameworkRetryable`)
+** Change type (`org.openrewrite.java.ChangeType`)
+** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_framework7_RemoveSpringRetryDependency[Remove the Spring Retry dependency] (`io.arconia.rewrite.spring.framework7.RemoveSpringRetryDependency`)
+*** Remove a Gradle or Maven dependency (`org.openrewrite.java.dependencies.RemoveDependency`)
 ====
 
 [#io_arconia_rewrite_spring_framework7_UpgradeSpringFramework_7_1]
@@ -9714,7 +9792,31 @@ class Demo {
 }
 ----
 
+[#io_arconia_rewrite_spring_framework7_RemoveSpringRetryDependency]
+=== Remove the Spring Retry dependency
+`io.arconia.rewrite.spring.framework7.RemoveSpringRetryDependency`
+
+Remove the Spring Retry dependency from a project that does not use Spring Cloud, where Spring Retry on the classpath enables retry features such as load-balanced and OpenFeign client retry and Config Client, Consul, and Kubernetes config retry.
+
+.Recipes applied
+[%collapsible]
+====
+* Remove a Gradle or Maven dependency (`org.openrewrite.java.dependencies.RemoveDependency`)
+====
+
 *Recipes*
+
+[#io_arconia_rewrite_spring_framework7_FindMigratableSpringRetry]
+=== Find projects whose Spring Retry usage can be migrated to Spring Framework
+`io.arconia.rewrite.spring.framework7.FindMigratableSpringRetry`
+
+Find the source files of a project that uses Spring Retry only through `@EnableRetry` and `@Retryable` annotations that map one to one onto the retry support built into Spring Framework. A project that uses another Spring Retry API, recovery, stateful retry, listeners, SpEL expressions, a random backoff, or retries a method with a reactive return type does not qualify.
+
+[#io_arconia_rewrite_spring_framework7_UseSpringFrameworkRetryable]
+=== Use the Spring Framework `@Retryable` annotation instead of the Spring Retry one
+`io.arconia.rewrite.spring.framework7.UseSpringFrameworkRetryable`
+
+Replace the Spring Retry `@Retryable` annotation with the Spring Framework `@Retryable` annotation, carrying over the exception types, the number of attempts, and the backoff, so that methods retry the same way. Spring Retry counts the initial invocation in `maxAttempts`, while Spring Framework counts only the retries in `maxRetries`. Annotations that use recovery, stateful retry, listeners, SpEL expressions, or a random backoff, or that apply to a method with a reactive return type, are left unchanged.
 
 [#io_arconia_rewrite_spring_framework7_UseJsonConverterDelegateFactory]
 === Use the `JsonConverterDelegate` factory method
@@ -9737,7 +9839,7 @@ Replace the `SpelParserConfiguration` constructors, deprecated in Spring Framewo
 === Migrate Spring Modulith `IncompleteEventPublications` to `FailedEventPublications`
 `io.arconia.rewrite.spring.modulith2.MigrateSpringModulithIncompleteEventPublications_2_2`
 
-Migrate usages of `IncompleteEventPublications`, deprecated in Spring Modulith 2.2, to `FailedEventPublications`, replacing `resubmitIncompletePublications(ResubmissionOptions)` with `resubmit(ResubmissionOptions)`. It applies to the whole project or not at all, so a project that calls the overloads taking a `Predicate` or a `Duration`, which resubmit every incomplete publication rather than only the failed ones, or that implements `IncompleteEventPublications`, is left unchanged.
+Migrate usages of `IncompleteEventPublications`, deprecated in Spring Modulith 2.2, to `FailedEventPublications`, replacing `resubmitIncompletePublications(ResubmissionOptions)` with `resubmit(ResubmissionOptions)`. It migrates a project only when every `IncompleteEventPublications` usage in it has a `FailedEventPublications` equivalent, and otherwise leaves the project unchanged, so it is never left half migrated. In a multi-module build, each module is checked on its own. A project that calls the overloads taking a `Predicate` or a `Duration`, which resubmit every incomplete publication rather than only the failed ones, or that implements `IncompleteEventPublications`, is therefore left unchanged.
 
 _Tags: spring, modulith_
 

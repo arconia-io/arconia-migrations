@@ -1,7 +1,7 @@
 package io.arconia.rewrite.spring.modulith2;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.jspecify.annotations.Nullable;
 import org.openrewrite.ExecutionContext;
@@ -21,7 +21,8 @@ import org.openrewrite.marker.SearchResult;
 /**
  * Finds the Java source files of a project whose {@code IncompleteEventPublications} usages can be moved to
  * {@code FailedEventPublications} without changing what the application does. Meant as the precondition of
- * {@code MigrateSpringModulithIncompleteEventPublications_2_2}, which must apply to the whole project or not at all.
+ * {@code MigrateSpringModulithIncompleteEventPublications_2_2}, which migrates a project only when every
+ * {@code IncompleteEventPublications} usage in it can be migrated.
  * Each project of a multi-project build, identified by its {@link JavaProject} marker, qualifies on its own.
  *
  * <p>Only the {@code resubmitIncompletePublications(ResubmissionOptions)} overload maps one to one onto
@@ -64,9 +65,13 @@ public class FindMigratableIncompleteEventPublications extends ScanningRecipe<Fi
             @Override
             public @Nullable Tree visit(@Nullable Tree tree, ExecutionContext ctx) {
                 if (tree instanceof JavaSourceFile sourceFile) {
-                    ProjectUsage usage = acc.usage(sourceFile);
-                    if (!usage.unsupported) {
-                        new UsageScanner().visit(sourceFile, usage);
+                    JavaProject project = project(sourceFile);
+                    if (!acc.unsupportedProjects.contains(project)) {
+                        UsageScanner scanner = new UsageScanner();
+                        scanner.visit(sourceFile, ctx);
+                        if (scanner.unsupported) {
+                            acc.unsupportedProjects.add(project);
+                        }
                     }
                 }
                 return tree;
@@ -79,7 +84,7 @@ public class FindMigratableIncompleteEventPublications extends ScanningRecipe<Fi
         return new TreeVisitor<>() {
             @Override
             public @Nullable Tree visit(@Nullable Tree tree, ExecutionContext ctx) {
-                if (tree instanceof JavaSourceFile sourceFile && !acc.usage(sourceFile).unsupported) {
+                if (tree instanceof JavaSourceFile sourceFile && !acc.unsupportedProjects.contains(project(sourceFile))) {
                     return sourceFile.withMarkers(sourceFile.getMarkers().addIfAbsent(
                             new SearchResult(Tree.randomId(), "IncompleteEventPublications can be migrated to FailedEventPublications")));
                 }
@@ -88,52 +93,48 @@ public class FindMigratableIncompleteEventPublications extends ScanningRecipe<Fi
         };
     }
 
-    private static class UsageScanner extends JavaIsoVisitor<ProjectUsage> {
+    private static class UsageScanner extends JavaIsoVisitor<ExecutionContext> {
+
+        // Whether anything in the scanned source file rules out the migration.
+        boolean unsupported;
 
         @Override
-        public J.ClassDeclaration visitClassDeclaration(J.ClassDeclaration classDecl, ProjectUsage usage) {
+        public J.ClassDeclaration visitClassDeclaration(J.ClassDeclaration classDecl, ExecutionContext ctx) {
             JavaType.FullyQualified type = classDecl.getType();
             if (type != null && !TypeUtils.isOfClassType(type, INCOMPLETE_EVENT_PUBLICATIONS_FQN)
                     && TypeUtils.isAssignableTo(INCOMPLETE_EVENT_PUBLICATIONS_FQN, type)) {
-                usage.unsupported = true;
+                unsupported = true;
             }
-            return super.visitClassDeclaration(classDecl, usage);
+            return super.visitClassDeclaration(classDecl, ctx);
         }
 
         @Override
-        public J.MethodInvocation visitMethodInvocation(J.MethodInvocation method, ProjectUsage usage) {
+        public J.MethodInvocation visitMethodInvocation(J.MethodInvocation method, ExecutionContext ctx) {
             if (RESUBMIT_WITH_FILTER.matches(method) || RESUBMIT_OLDER_THAN.matches(method)) {
-                usage.unsupported = true;
+                unsupported = true;
             }
-            return super.visitMethodInvocation(method, usage);
+            return super.visitMethodInvocation(method, ctx);
         }
 
         @Override
-        public J.MemberReference visitMemberReference(J.MemberReference memberRef, ProjectUsage usage) {
+        public J.MemberReference visitMemberReference(J.MemberReference memberRef, ExecutionContext ctx) {
             if (RESUBMIT_WITH_FILTER.matches(memberRef) || RESUBMIT_OLDER_THAN.matches(memberRef)) {
-                usage.unsupported = true;
+                unsupported = true;
             }
-            return super.visitMemberReference(memberRef, usage);
+            return super.visitMemberReference(memberRef, ctx);
         }
 
+    }
+
+    // Files without a JavaProject marker, such as in tests, count as a single project.
+    private static @Nullable JavaProject project(SourceFile sourceFile) {
+        return sourceFile.getMarkers().findFirst(JavaProject.class).orElse(null);
     }
 
     public static class Accumulator {
 
-        // IncompleteEventPublications usage of each project, keyed by the project the source files belong to.
-        private final Map<@Nullable JavaProject, ProjectUsage> projects = new HashMap<>();
-
-        ProjectUsage usage(SourceFile sourceFile) {
-            return projects.computeIfAbsent(sourceFile.getMarkers().findFirst(JavaProject.class).orElse(null),
-                    project -> new ProjectUsage());
-        }
-
-    }
-
-    static class ProjectUsage {
-
-        // Whether anything in the project rules out the migration.
-        boolean unsupported;
+        // The projects in which something rules out the migration.
+        private final Set<@Nullable JavaProject> unsupportedProjects = new HashSet<>();
 
     }
 

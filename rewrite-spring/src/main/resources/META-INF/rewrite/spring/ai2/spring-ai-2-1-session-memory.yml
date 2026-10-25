@@ -6,12 +6,13 @@ displayName: Migrate Spring AI chat memory to session memory
 description: >-
   Migrate an application that uses the auto-configured JDBC chat memory, deprecated in Spring AI 2.1, to the session
   memory that replaces it. The recipe swaps the JDBC chat memory starter for the JDBC session starter, renames the JDBC
-  repository properties, replaces `MessageChatMemoryAdvisor` with the session advisors reading the same 20-message window,
-  and moves the `ChatMemory` bean and its `get` and `clear` calls to `SessionService`. It applies to the whole project or
-  not at all, and only when every chat memory usage maps one to one onto session memory, so a project with another chat
-  memory store, a chat memory or repository built in code, or direct appends to the chat memory is left unchanged.
-  Conversations already stored in the chat memory table are not carried over, since session memory uses its own tables.
-  Run it on a project that is already on Spring AI 2.1.
+  repository properties, replaces `MessageChatMemoryAdvisor` with the session advisors reading the same 20-message
+  window, and moves the `ChatMemory` bean and its `get` and `clear` calls to `SessionService`. It migrates a project
+  only when every chat memory usage in it has a session memory equivalent, and otherwise leaves the project unchanged,
+  so it is never left half migrated. In a multi-module build, each module is checked on its own. A project with another
+  chat memory store, a chat memory or repository built in code, or direct appends to the chat memory is therefore left
+  unchanged. Conversations already stored in the chat memory table are not carried over, since session memory uses its
+  own tables. Run it on a project that is already on Spring AI 2.1.
 tags:
   - spring
   - ai

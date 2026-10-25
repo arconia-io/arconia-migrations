@@ -1,8 +1,8 @@
 package io.arconia.rewrite.spring.ai2;
 
-import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
+import java.util.Set;
 
 import org.jspecify.annotations.Nullable;
 import org.openrewrite.ExecutionContext;
@@ -26,7 +26,8 @@ import org.openrewrite.maven.tree.MavenResolutionResult;
 /**
  * Finds the source files of a project whose Spring AI chat memory can be migrated to session memory
  * without changing what the application does. Meant as the precondition of
- * {@code MigrateSpringAiChatMemoryToSessionMemory}, which must apply to the whole project or not at all.
+ * {@code MigrateSpringAiChatMemoryToSessionMemory}, which migrates a project only when every chat memory usage in
+ * it can be migrated.
  * Each project of a multi-project build, identified by its {@link JavaProject} marker, qualifies on its own.
  *
  * <p>A project qualifies when it depends on the JDBC chat memory starter, which auto-configures the
@@ -82,16 +83,20 @@ public class FindMigratableSpringAiChatMemory extends ScanningRecipe<FindMigrata
                 if (!(tree instanceof SourceFile sourceFile)) {
                     return tree;
                 }
-                ProjectUsage usage = acc.usage(sourceFile);
+                JavaProject project = project(sourceFile);
                 sourceFile.getMarkers().findFirst(MavenResolutionResult.class).ifPresent(result ->
-                        result.getPom().getRequestedDependencies().forEach(dependency -> recordDependency(usage, dependency)));
-                sourceFile.getMarkers().findFirst(GradleProject.class).ifPresent(project -> {
-                    for (GradleDependencyConfiguration configuration : project.getConfigurations()) {
-                        configuration.getRequested().forEach(dependency -> recordDependency(usage, dependency));
+                        result.getPom().getRequestedDependencies().forEach(dependency -> recordDependency(acc, project, dependency)));
+                sourceFile.getMarkers().findFirst(GradleProject.class).ifPresent(gradleProject -> {
+                    for (GradleDependencyConfiguration configuration : gradleProject.getConfigurations()) {
+                        configuration.getRequested().forEach(dependency -> recordDependency(acc, project, dependency));
                     }
                 });
-                if (sourceFile instanceof JavaSourceFile && !usage.unsupported) {
-                    new UsageScanner().visit(sourceFile, usage);
+                if (sourceFile instanceof JavaSourceFile && !acc.unsupportedProjects.contains(project)) {
+                    UsageScanner scanner = new UsageScanner();
+                    scanner.visit(sourceFile, ctx);
+                    if (scanner.unsupported) {
+                        acc.unsupportedProjects.add(project);
+                    }
                 }
                 return tree;
             }
@@ -103,7 +108,7 @@ public class FindMigratableSpringAiChatMemory extends ScanningRecipe<FindMigrata
         return new TreeVisitor<>() {
             @Override
             public @Nullable Tree visit(@Nullable Tree tree, ExecutionContext ctx) {
-                if (tree instanceof SourceFile sourceFile && acc.usage(sourceFile).isMigratable()) {
+                if (tree instanceof SourceFile sourceFile && acc.isMigratable(project(sourceFile))) {
                     return sourceFile.withMarkers(sourceFile.getMarkers().addIfAbsent(
                             new SearchResult(Tree.randomId(), "Spring AI chat memory can be migrated to session memory")));
                 }
@@ -112,16 +117,16 @@ public class FindMigratableSpringAiChatMemory extends ScanningRecipe<FindMigrata
         };
     }
 
-    private static void recordDependency(ProjectUsage usage, Dependency dependency) {
+    private static void recordDependency(Accumulator acc, @Nullable JavaProject project, Dependency dependency) {
         if (!SPRING_AI_GROUP_ID.equals(dependency.getGroupId())) {
             return;
         }
         String artifactId = dependency.getArtifactId();
         if (JDBC_STARTER.equals(artifactId)) {
-            usage.jdbcStarter = true;
+            acc.jdbcStarterProjects.add(project);
         }
         else if (artifactId.contains("chat-memory")) {
-            usage.unsupported = true;
+            acc.unsupportedProjects.add(project);
         }
     }
 
@@ -142,103 +147,99 @@ public class FindMigratableSpringAiChatMemory extends ScanningRecipe<FindMigrata
         return methodType.getParameterTypes().stream().anyMatch(type -> TypeUtils.isOfClassType(type, CHAT_MEMORY_FQN));
     }
 
-    private static class UsageScanner extends JavaIsoVisitor<ProjectUsage> {
+    private static class UsageScanner extends JavaIsoVisitor<ExecutionContext> {
+
+        // Whether anything in the scanned source file rules out the migration.
+        boolean unsupported;
 
         private int advisorBuilders;
 
         private int migratableChains;
 
         @Override
-        public J.CompilationUnit visitCompilationUnit(J.CompilationUnit cu, ProjectUsage usage) {
+        public J.CompilationUnit visitCompilationUnit(J.CompilationUnit cu, ExecutionContext ctx) {
             advisorBuilders = 0;
             migratableChains = 0;
-            J.CompilationUnit c = super.visitCompilationUnit(cu, usage);
+            J.CompilationUnit c = super.visitCompilationUnit(cu, ctx);
             if (advisorBuilders != migratableChains) {
-                usage.unsupported = true;
+                unsupported = true;
             }
             return c;
         }
 
         @Override
-        public J.Import visitImport(J.Import anImport, ProjectUsage usage) {
+        public J.Import visitImport(J.Import anImport, ExecutionContext ctx) {
             return anImport;
         }
 
         @Override
-        public J.ClassDeclaration visitClassDeclaration(J.ClassDeclaration classDecl, ProjectUsage usage) {
+        public J.ClassDeclaration visitClassDeclaration(J.ClassDeclaration classDecl, ExecutionContext ctx) {
             JavaType.FullyQualified type = classDecl.getType();
             if (type != null && (TypeUtils.isAssignableTo(CHAT_MEMORY_FQN, type) || TypeUtils.isAssignableTo(CHAT_MEMORY_REPOSITORY_FQN, type))) {
-                usage.unsupported = true;
+                unsupported = true;
             }
-            return super.visitClassDeclaration(classDecl, usage);
+            return super.visitClassDeclaration(classDecl, ctx);
         }
 
         @Override
-        public J.MethodInvocation visitMethodInvocation(J.MethodInvocation method, ProjectUsage usage) {
+        public J.MethodInvocation visitMethodInvocation(J.MethodInvocation method, ExecutionContext ctx) {
             if (MessageChatMemoryAdvisorChain.BUILDER.matches(method)) {
                 advisorBuilders++;
             }
             else if (CHAT_MEMORY_ADD.matches(method) || takesChatMemory(method.getMethodType())) {
-                usage.unsupported = true;
+                unsupported = true;
             }
             if (MessageChatMemoryAdvisorChain.find(method) != null) {
                 migratableChains++;
             }
-            return super.visitMethodInvocation(method, usage);
+            return super.visitMethodInvocation(method, ctx);
         }
 
         @Override
-        public J.NewClass visitNewClass(J.NewClass newClass, ProjectUsage usage) {
+        public J.NewClass visitNewClass(J.NewClass newClass, ExecutionContext ctx) {
             if (takesChatMemory(newClass.getConstructorType())) {
-                usage.unsupported = true;
+                unsupported = true;
             }
-            return super.visitNewClass(newClass, usage);
+            return super.visitNewClass(newClass, ctx);
         }
 
         @Override
-        public J.Identifier visitIdentifier(J.Identifier identifier, ProjectUsage usage) {
+        public J.Identifier visitIdentifier(J.Identifier identifier, ExecutionContext ctx) {
             Object parent = getCursor().getParentTreeCursor().getValue();
             boolean methodName = parent instanceof J.MethodInvocation invocation && invocation.getName() == identifier;
             boolean builderReceiver = parent instanceof J.MethodInvocation invocation && invocation.getSelect() == identifier
                     && MessageChatMemoryAdvisorChain.BUILDER.matches(invocation);
             if (!methodName && !builderReceiver && isUnsupportedType(identifier.getType())) {
-                usage.unsupported = true;
+                unsupported = true;
             }
-            return super.visitIdentifier(identifier, usage);
+            return super.visitIdentifier(identifier, ctx);
         }
 
         @Override
-        public J.FieldAccess visitFieldAccess(J.FieldAccess fieldAccess, ProjectUsage usage) {
+        public J.FieldAccess visitFieldAccess(J.FieldAccess fieldAccess, ExecutionContext ctx) {
             if (isUnsupportedType(fieldAccess.getType())) {
-                usage.unsupported = true;
+                unsupported = true;
             }
-            return super.visitFieldAccess(fieldAccess, usage);
+            return super.visitFieldAccess(fieldAccess, ctx);
         }
 
+    }
+
+    // Files without a JavaProject marker, such as in tests, count as a single project.
+    private static @Nullable JavaProject project(SourceFile sourceFile) {
+        return sourceFile.getMarkers().findFirst(JavaProject.class).orElse(null);
     }
 
     public static class Accumulator {
 
-        // Chat memory usage of each project, keyed by the project the source files belong to.
-        private final Map<@Nullable JavaProject, ProjectUsage> projects = new HashMap<>();
+        // The projects that declare the JDBC chat memory starter.
+        private final Set<@Nullable JavaProject> jdbcStarterProjects = new HashSet<>();
 
-        ProjectUsage usage(SourceFile sourceFile) {
-            return projects.computeIfAbsent(sourceFile.getMarkers().findFirst(JavaProject.class).orElse(null),
-                    project -> new ProjectUsage());
-        }
+        // The projects in which something rules out the migration.
+        private final Set<@Nullable JavaProject> unsupportedProjects = new HashSet<>();
 
-    }
-
-    static class ProjectUsage {
-
-        // Whether a build file declares the JDBC chat memory starter.
-        boolean jdbcStarter;
-
-        // Whether anything in the project rules out the migration.
-        boolean unsupported;
-
-        boolean isMigratable() {
-            return jdbcStarter && !unsupported;
+        boolean isMigratable(@Nullable JavaProject project) {
+            return jdbcStarterProjects.contains(project) && !unsupportedProjects.contains(project);
         }
 
     }
