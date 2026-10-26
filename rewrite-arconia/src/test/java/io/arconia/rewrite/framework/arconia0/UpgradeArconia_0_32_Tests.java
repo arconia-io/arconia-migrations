@@ -84,6 +84,21 @@ class UpgradeArconia_0_32_Tests implements RewriteTest {
     }
 
     @Test
+    void httpConventionsIncludeUrlQueryRenamed() {
+        rewriteRun(
+                //language=properties
+                properties(
+                        """
+                        arconia.observations.conventions.opentelemetry.http.include-url-query=true
+                        """,
+                        """
+                        arconia.observations.conventions.opentelemetry.http.capture-url-query=true
+                        """,
+                        s -> s.path("src/main/resources/application.properties"))
+        );
+    }
+
+    @Test
     void aiConventionsToolPropertiesRenamed() {
         rewriteRun(
                 //language=properties

@@ -24,6 +24,11 @@ recipeList:
       oldPropertyKey: arconia.dev.services.docling.enable-ui
       newPropertyKey: arconia.dev.services.docling.ui-enabled
 
+  # OpenTelemetry Conventions: HTTP
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: arconia.observations.conventions.opentelemetry.http.include-url-query
+      newPropertyKey: arconia.observations.conventions.opentelemetry.http.capture-url-query
+
   # OpenTelemetry AI Conventions: content capturing
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: arconia.observations.conventions.opentelemetry.ai.include-tool-definitions
