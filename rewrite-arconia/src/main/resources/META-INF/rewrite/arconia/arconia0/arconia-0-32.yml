@@ -24,6 +24,41 @@ recipeList:
       oldPropertyKey: arconia.dev.services.docling.enable-ui
       newPropertyKey: arconia.dev.services.docling.ui-enabled
 
+  # OpenTelemetry AI Conventions: content capturing
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: arconia.observations.conventions.opentelemetry.ai.include-tool-definitions
+      newPropertyKey: arconia.observations.conventions.opentelemetry.ai.capture-tool-definitions
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: arconia.observations.conventions.opentelemetry.ai.include-tool-call-content
+      newPropertyKey: arconia.observations.conventions.opentelemetry.ai.capture-tool-call-content
+  # 'capture-content=span-events' becomes the destination, and enables message capturing
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKeyIfValue:
+      oldPropertyKey: arconia.observations.conventions.opentelemetry.ai.capture-content
+      propertyValue: span-events
+      newPropertyKey: arconia.observations.conventions.opentelemetry.ai.inference-content-destination
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKeyIfValue:
+      oldPropertyKey: arconia.observations.conventions.opentelemetry.ai.capture-content
+      propertyValue: SPAN_EVENTS
+      newPropertyKey: arconia.observations.conventions.opentelemetry.ai.inference-content-destination
+  - io.arconia.rewrite.spring.boot.properties.AddSpringBootProperty:
+      propertyKey: arconia.observations.conventions.opentelemetry.ai.capture-message-content
+      propertyValue: "true"
+      requiredPropertyKey: arconia.observations.conventions.opentelemetry.ai.inference-content-destination
+  # 'none' and 'span-attributes' become the message capturing switch ('span-attributes' is the default destination)
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: arconia.observations.conventions.opentelemetry.ai.capture-content
+      newPropertyKey: arconia.observations.conventions.opentelemetry.ai.capture-message-content
+  - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
+      propertyKey: arconia.observations.conventions.opentelemetry.ai.capture-message-content
+      oldPropertyValue: "(?i)^none$"
+      newPropertyValue: "false"
+      useRegex: true
+  - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
+      propertyKey: arconia.observations.conventions.opentelemetry.ai.capture-message-content
+      oldPropertyValue: "(?i)^span[-_]attributes$"
+      newPropertyValue: "true"
+      useRegex: true
+
   # Comment Properties
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "arconia.multitenancy.resolution.fixed.enabled"

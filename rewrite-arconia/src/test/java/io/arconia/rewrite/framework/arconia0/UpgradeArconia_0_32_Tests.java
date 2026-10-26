@@ -84,6 +84,97 @@ class UpgradeArconia_0_32_Tests implements RewriteTest {
     }
 
     @Test
+    void aiConventionsToolPropertiesRenamed() {
+        rewriteRun(
+                //language=properties
+                properties(
+                        """
+                        arconia.observations.conventions.opentelemetry.ai.include-tool-definitions=true
+                        arconia.observations.conventions.opentelemetry.ai.include-tool-call-content=false
+                        """,
+                        """
+                        arconia.observations.conventions.opentelemetry.ai.capture-tool-definitions=true
+                        arconia.observations.conventions.opentelemetry.ai.capture-tool-call-content=false
+                        """,
+                        s -> s.path("src/main/resources/application.properties"))
+        );
+    }
+
+    @Test
+    void aiConventionsCaptureContentNoneMigrated() {
+        rewriteRun(
+                //language=properties
+                properties(
+                        """
+                        arconia.observations.conventions.opentelemetry.ai.capture-content=none
+                        """,
+                        """
+                        arconia.observations.conventions.opentelemetry.ai.capture-message-content=false
+                        """,
+                        s -> s.path("src/main/resources/application.properties"))
+        );
+    }
+
+    @Test
+    void aiConventionsCaptureContentSpanAttributesMigrated() {
+        rewriteRun(
+                //language=properties
+                properties(
+                        """
+                        arconia.observations.conventions.opentelemetry.ai.capture-content=SPAN_ATTRIBUTES
+                        """,
+                        """
+                        arconia.observations.conventions.opentelemetry.ai.capture-message-content=true
+                        """,
+                        s -> s.path("src/main/resources/application.properties"))
+        );
+    }
+
+    @Test
+    void aiConventionsCaptureContentSpanEventsMigrated() {
+        rewriteRun(
+                //language=properties
+                properties(
+                        """
+                        arconia.observations.conventions.opentelemetry.ai.capture-content=span-events
+                        """,
+                        """
+                        arconia.observations.conventions.opentelemetry.ai.inference-content-destination=span-events
+                        arconia.observations.conventions.opentelemetry.ai.capture-message-content=true
+                        """,
+                        s -> s.path("src/main/resources/application.properties"))
+        );
+    }
+
+    @Test
+    void aiConventionsCaptureContentSpanEventsMigratedInYaml() {
+        rewriteRun(
+                //language=yaml
+                yaml(
+                        """
+                        arconia:
+                          observations:
+                            conventions:
+                              opentelemetry:
+                                ai:
+                                  capture-content: span-events
+                                  include-tool-definitions: true
+                        """,
+                        """
+                        arconia:
+                          observations:
+                            conventions:
+                              opentelemetry:
+                                ai:
+                                  capture-tool-definitions: true
+                                  inference-content-destination: span-events
+                                  capture-message-content: true
+                        """,
+                        s -> s.path("src/main/resources/application.yml"))
+        );
+    }
+
+    @Test
     void multitenancyPackagesRenamed() {
         rewriteRun(
                 //language=java
