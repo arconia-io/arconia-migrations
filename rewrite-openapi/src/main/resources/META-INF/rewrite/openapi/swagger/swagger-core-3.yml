@@ -1,5 +1,4 @@
-# Based on https://github.com/swagger-api/swagger-core/blob/3.0.0/MIGRATION.md
-# Swagger Core 3.0.0 is not released yet: the recipe targets 3.0.0-SNAPSHOT until it ships, then 3.x.
+# Based on https://github.com/swagger-api/swagger-core/blob/v3.0.0/MIGRATION.md
 ---
 type: specs.openrewrite.org/v1beta/recipe
 name: io.arconia.rewrite.openapi.swagger.UpgradeSwaggerCore_3
@@ -7,7 +6,7 @@ displayName: Migrate to Swagger Core 3.x
 description: >-
   Migrate a Java application to the latest Swagger Core 3.x release, including the move to Jackson 3.
   Swagger Core 3 supports only the `jakarta` namespace. The recipe migrates a project only when its code uses no
-  `javax` REST, Servlet, Bean Validation, or JAXB APIs and it doesn't depend on the `javax` variant of the Swagger REST
+  `javax` REST, Servlet, Bean Validation, or JAXB APIs and it doesn't declare the `javax` variant of the Swagger REST
   artifacts, and otherwise leaves the project unchanged, so it is never left half migrated. In a multi-module build,
   each module is checked on its own.
 tags:
@@ -17,14 +16,7 @@ preconditions:
   - org.openrewrite.java.dependencies.search.ModuleHasDependency:
       groupIdPattern: io.swagger.core.v3
       artifactIdPattern: "*"
-  - org.openrewrite.java.dependencies.search.ModuleHasDependency:
-      groupIdPattern: io.swagger.core.v3
-      artifactIdPattern: swagger-jaxrs2
-      invertMarking: true
-  - org.openrewrite.java.dependencies.search.ModuleHasDependency:
-      groupIdPattern: io.swagger.core.v3
-      artifactIdPattern: swagger-jaxrs2-servlet-initializer-v2
-      invertMarking: true
+  - io.arconia.rewrite.openapi.swagger.FindProjectsWithoutJavaxSwaggerArtifacts
   - io.arconia.rewrite.openapi.swagger.FindProjectsWithoutJavaxEnterpriseApis
 recipeList:
 
@@ -33,54 +25,66 @@ recipeList:
       oldGroupId: io.swagger.core.v3
       oldArtifactId: swagger-annotations-jakarta
       newArtifactId: swagger-annotations
-      newVersion: 3.0.0-SNAPSHOT
+      newVersion: 3.x
   - org.openrewrite.java.dependencies.ChangeDependency:
       oldGroupId: io.swagger.core.v3
       oldArtifactId: swagger-models-jakarta
       newArtifactId: swagger-models
-      newVersion: 3.0.0-SNAPSHOT
+      newVersion: 3.x
   - org.openrewrite.java.dependencies.ChangeDependency:
       oldGroupId: io.swagger.core.v3
       oldArtifactId: swagger-core-jakarta
       newArtifactId: swagger-core
-      newVersion: 3.0.0-SNAPSHOT
+      newVersion: 3.x
   - org.openrewrite.java.dependencies.ChangeDependency:
       oldGroupId: io.swagger.core.v3
       oldArtifactId: swagger-integration-jakarta
       newArtifactId: swagger-integration
-      newVersion: 3.0.0-SNAPSHOT
+      newVersion: 3.x
   - org.openrewrite.java.dependencies.ChangeDependency:
       oldGroupId: io.swagger.core.v3
       oldArtifactId: swagger-jaxrs2-jakarta
       newArtifactId: swagger-rest
-      newVersion: 3.0.0-SNAPSHOT
+      newVersion: 3.x
   - org.openrewrite.java.dependencies.ChangeDependency:
       oldGroupId: io.swagger.core.v3
       oldArtifactId: swagger-jaxrs2-servlet-initializer-v2-jakarta
       newArtifactId: swagger-rest-servlet-initializer
-      newVersion: 3.0.0-SNAPSHOT
+      newVersion: 3.x
+  # The deprecated predecessor of the v2 initializer, with the same behavior
+  - org.openrewrite.java.dependencies.ChangeDependency:
+      oldGroupId: io.swagger.core.v3
+      oldArtifactId: swagger-jaxrs2-servlet-initializer-jakarta
+      newArtifactId: swagger-rest-servlet-initializer
+      newVersion: 3.x
   - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
       groupId: io.swagger.core.v3
       artifactId: "*"
-      newVersion: 3.0.0-SNAPSHOT
+      newVersion: 3.x
   # A test-only module of Swagger Core 2, not published for 3.0
   - org.openrewrite.java.dependencies.RemoveDependency:
       groupId: io.swagger.core.v3
       artifactId: swagger-java17-support
+  # Swagger Core 3 no longer brings commons-lang3 transitively
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: org.apache.commons
+      artifactId: commons-lang3
+      version: 3.x
+      onlyIfUsing: org.apache.commons.lang3..*
 
   # Swagger Core build plugins
   - org.openrewrite.maven.ChangePluginGroupIdAndArtifactId:
       oldGroupId: io.swagger.core.v3
       oldArtifactId: swagger-maven-plugin-jakarta
       newArtifactId: swagger-maven-plugin
-      newVersion: 3.0.0-SNAPSHOT
+      newVersion: 3.x
   - org.openrewrite.maven.UpgradePluginVersion:
       groupId: io.swagger.core.v3
       artifactId: swagger-maven-plugin
-      newVersion: 3.0.0-SNAPSHOT
+      newVersion: 3.x
   - org.openrewrite.gradle.plugins.UpgradePluginVersion:
       pluginIdPattern: io.swagger.core.v3.swagger-gradle-plugin
-      newVersion: 3.0.0-SNAPSHOT
+      newVersion: 3.x
 
   # Jakarta EE 11 APIs
   - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
@@ -132,6 +136,9 @@ recipeList:
   - org.openrewrite.java.ChangeType:
       oldFullyQualifiedTypeName: io.swagger.v3.rest.integration.api.JaxrsOpenApiScanner
       newFullyQualifiedTypeName: io.swagger.v3.rest.integration.api.RestOpenApiScanner
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: io.swagger.v3.rest.integration.SwaggerServletInitializer
+      newFullyQualifiedTypeName: io.swagger.v3.rest.integration.servlet.SwaggerServletInitializer
 
   # Class and package names in string literals, such as a scanner class or the packages to scan
   - org.openrewrite.java.ChangePackageInStringLiteral:
@@ -158,6 +165,9 @@ recipeList:
   - org.openrewrite.java.ChangeTypeInStringLiteral:
       oldFullyQualifiedTypeName: io.swagger.v3.rest.integration.api.JaxrsOpenApiScanner
       newFullyQualifiedTypeName: io.swagger.v3.rest.integration.api.RestOpenApiScanner
+  - org.openrewrite.java.ChangeTypeInStringLiteral:
+      oldFullyQualifiedTypeName: io.swagger.v3.rest.integration.SwaggerServletInitializer
+      newFullyQualifiedTypeName: io.swagger.v3.rest.integration.servlet.SwaggerServletInitializer
 
   # Class and package names in XML, such as servlet declarations in web.xml and Swagger Maven plugin configuration
   - org.openrewrite.xml.ChangeTagValue:

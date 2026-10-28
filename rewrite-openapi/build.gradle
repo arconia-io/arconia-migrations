@@ -35,11 +35,15 @@ recipeDependencies {
     testParserClasspath "io.swagger.core.v3:swagger-core-jakarta:2.2.+"
     testParserClasspath "io.swagger.core.v3:swagger-integration-jakarta:2.2.+"
     testParserClasspath "io.swagger.core.v3:swagger-jaxrs2-jakarta:2.2.+"
+    testParserClasspath "io.swagger.core.v3:swagger-jaxrs2-servlet-initializer-jakarta:2.2.+"
     testParserClasspath "io.swagger.core.v3:swagger-models-jakarta:2.2.+"
+
+    testParserClasspath "org.apache.commons:commons-lang3:3.+"
 
     testParserClasspath "com.fasterxml.jackson.core:jackson-core:2.20.+"
     testParserClasspath "com.fasterxml.jackson.core:jackson-databind:2.20.+"
 
+    testParserClasspath "jakarta.servlet:jakarta.servlet-api:6.0.+"
     testParserClasspath "jakarta.ws.rs:jakarta.ws.rs-api:3.1.+"
     testParserClasspath "javax.ws.rs:javax.ws.rs-api:2.1.+"
 }

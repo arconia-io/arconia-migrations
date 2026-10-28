@@ -8,8 +8,11 @@ import org.openrewrite.test.RecipeSpec;
 import org.openrewrite.test.RewriteTest;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.openrewrite.gradle.Assertions.buildGradle;
+import static org.openrewrite.gradle.toolingapi.Assertions.withToolingApi;
 import static org.openrewrite.java.Assertions.java;
 import static org.openrewrite.java.Assertions.mavenProject;
+import static org.openrewrite.java.Assertions.srcMainJava;
 import static org.openrewrite.maven.Assertions.pomXml;
 import static org.openrewrite.test.SourceSpecs.text;
 import static org.openrewrite.xml.Assertions.xml;
@@ -30,18 +33,6 @@ class UpgradeSwaggerCore_3_Tests implements RewriteTest {
                         <version>2.2.55</version>
                     </dependency>
                 </dependencies>
-                <repositories>
-                    <repository>
-                        <id>central-snapshots</id>
-                        <url>https://central.sonatype.com/repository/maven-snapshots/</url>
-                        <releases>
-                            <enabled>false</enabled>
-                        </releases>
-                        <snapshots>
-                            <enabled>true</enabled>
-                        </snapshots>
-                    </repository>
-                </repositories>
             </project>
             """;
 
@@ -56,21 +47,9 @@ class UpgradeSwaggerCore_3_Tests implements RewriteTest {
                     <dependency>
                         <groupId>io.swagger.core.v3</groupId>
                         <artifactId>swagger-rest</artifactId>
-                        <version>3.0.0-SNAPSHOT</version>
+                        <version>3.0.0</version>
                     </dependency>
                 </dependencies>
-                <repositories>
-                    <repository>
-                        <id>central-snapshots</id>
-                        <url>https://central.sonatype.com/repository/maven-snapshots/</url>
-                        <releases>
-                            <enabled>false</enabled>
-                        </releases>
-                        <snapshots>
-                            <enabled>true</enabled>
-                        </snapshots>
-                    </repository>
-                </repositories>
             </project>
             """;
 
@@ -78,9 +57,10 @@ class UpgradeSwaggerCore_3_Tests implements RewriteTest {
     public void defaults(RecipeSpec spec) {
         spec.recipeFromResources("io.arconia.rewrite.openapi.swagger.UpgradeSwaggerCore_3")
                 .parser(JavaParser.fromJavaVersion().classpathFromResources(new InMemoryExecutionContext(),
-                        "swagger-jaxrs2-jakarta-2.2", "swagger-integration-jakarta-2.2", "swagger-core-jakarta-2.2",
-                        "swagger-models-jakarta-2.2", "jackson-databind-2.20", "jackson-core-2.20",
-                        "jakarta.ws.rs-api-3.1", "javax.ws.rs-api-2.1"));
+                        "swagger-jaxrs2-jakarta-2.2", "swagger-jaxrs2-servlet-initializer-jakarta-2.2",
+                        "swagger-integration-jakarta-2.2", "swagger-core-jakarta-2.2", "swagger-models-jakarta-2.2",
+                        "jackson-databind-2.20", "jackson-core-2.20", "jakarta.servlet-api-6.0",
+                        "jakarta.ws.rs-api-3.1", "javax.ws.rs-api-2.1", "commons-lang3"));
     }
 
     @Test
@@ -288,30 +268,6 @@ class UpgradeSwaggerCore_3_Tests implements RewriteTest {
                                             </plugin>
                                         </plugins>
                                     </build>
-                                    <repositories>
-                                        <repository>
-                                            <id>central-snapshots</id>
-                                            <url>https://central.sonatype.com/repository/maven-snapshots/</url>
-                                            <releases>
-                                                <enabled>false</enabled>
-                                            </releases>
-                                            <snapshots>
-                                                <enabled>true</enabled>
-                                            </snapshots>
-                                        </repository>
-                                    </repositories>
-                                    <pluginRepositories>
-                                        <pluginRepository>
-                                            <id>central-snapshots</id>
-                                            <url>https://central.sonatype.com/repository/maven-snapshots/</url>
-                                            <releases>
-                                                <enabled>false</enabled>
-                                            </releases>
-                                            <snapshots>
-                                                <enabled>true</enabled>
-                                            </snapshots>
-                                        </pluginRepository>
-                                    </pluginRepositories>
                                 </project>
                                 """,
                                 """
@@ -324,12 +280,12 @@ class UpgradeSwaggerCore_3_Tests implements RewriteTest {
                                             <dependency>
                                                 <groupId>io.swagger.core.v3</groupId>
                                                 <artifactId>swagger-annotations</artifactId>
-                                                <version>3.0.0-SNAPSHOT</version>
+                                                <version>3.0.0</version>
                                             </dependency>
                                             <dependency>
                                                 <groupId>io.swagger.core.v3</groupId>
                                                 <artifactId>swagger-rest-servlet-initializer</artifactId>
-                                                <version>3.0.0-SNAPSHOT</version>
+                                                <version>3.0.0</version>
                                             </dependency>
                                             <dependency>
                                                 <groupId>jakarta.ws.rs</groupId>
@@ -352,36 +308,172 @@ class UpgradeSwaggerCore_3_Tests implements RewriteTest {
                                             <plugin>
                                                 <groupId>io.swagger.core.v3</groupId>
                                                 <artifactId>swagger-maven-plugin</artifactId>
-                                                <version>3.0.0-SNAPSHOT</version>
+                                                <version>3.0.0</version>
                                             </plugin>
                                         </plugins>
                                     </build>
-                                    <repositories>
-                                        <repository>
-                                            <id>central-snapshots</id>
-                                            <url>https://central.sonatype.com/repository/maven-snapshots/</url>
-                                            <releases>
-                                                <enabled>false</enabled>
-                                            </releases>
-                                            <snapshots>
-                                                <enabled>true</enabled>
-                                            </snapshots>
-                                        </repository>
-                                    </repositories>
-                                    <pluginRepositories>
-                                        <pluginRepository>
-                                            <id>central-snapshots</id>
-                                            <url>https://central.sonatype.com/repository/maven-snapshots/</url>
-                                            <releases>
-                                                <enabled>false</enabled>
-                                            </releases>
-                                            <snapshots>
-                                                <enabled>true</enabled>
-                                            </snapshots>
-                                        </pluginRepository>
-                                    </pluginRepositories>
                                 </project>
                                 """
+                        )
+                )
+        );
+    }
+
+    @Test
+    void deprecatedServletInitializer() {
+        rewriteRun(
+                mavenProject("demo",
+                        //language=xml
+                        pomXml(
+                                """
+                                <project>
+                                    <modelVersion>4.0.0</modelVersion>
+                                    <groupId>com.example</groupId>
+                                    <artifactId>demo</artifactId>
+                                    <version>0.0.1</version>
+                                    <dependencies>
+                                        <dependency>
+                                            <groupId>io.swagger.core.v3</groupId>
+                                            <artifactId>swagger-jaxrs2-jakarta</artifactId>
+                                            <version>2.2.55</version>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>io.swagger.core.v3</groupId>
+                                            <artifactId>swagger-jaxrs2-servlet-initializer-jakarta</artifactId>
+                                            <version>2.2.55</version>
+                                        </dependency>
+                                    </dependencies>
+                                </project>
+                                """,
+                                """
+                                <project>
+                                    <modelVersion>4.0.0</modelVersion>
+                                    <groupId>com.example</groupId>
+                                    <artifactId>demo</artifactId>
+                                    <version>0.0.1</version>
+                                    <dependencies>
+                                        <dependency>
+                                            <groupId>io.swagger.core.v3</groupId>
+                                            <artifactId>swagger-rest</artifactId>
+                                            <version>3.0.0</version>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>io.swagger.core.v3</groupId>
+                                            <artifactId>swagger-rest-servlet-initializer</artifactId>
+                                            <version>3.0.0</version>
+                                        </dependency>
+                                    </dependencies>
+                                </project>
+                                """
+                        ),
+                        //language=java
+                        java(
+                                """
+                                import io.swagger.v3.jaxrs2.integration.SwaggerServletInitializer;
+                                import jakarta.servlet.ServletContainerInitializer;
+
+                                class Initializers {
+                                    ServletContainerInitializer swagger() {
+                                        return new SwaggerServletInitializer();
+                                    }
+                                }
+                                """,
+                                """
+                                import io.swagger.v3.rest.integration.servlet.SwaggerServletInitializer;
+                                import jakarta.servlet.ServletContainerInitializer;
+
+                                class Initializers {
+                                    ServletContainerInitializer swagger() {
+                                        return new SwaggerServletInitializer();
+                                    }
+                                }
+                                """
+                        )
+                )
+        );
+    }
+
+    @Test
+    void gradleDependenciesAndPlugin() {
+        rewriteRun(
+                spec -> spec.beforeRecipe(withToolingApi()),
+                mavenProject("demo",
+                        //language=groovy
+                        buildGradle(
+                                """
+                                plugins {
+                                    id 'java'
+                                    id 'io.swagger.core.v3.swagger-gradle-plugin' version '2.2.55'
+                                }
+
+                                repositories {
+                                    mavenCentral()
+                                }
+
+                                dependencies {
+                                    implementation 'io.swagger.core.v3:swagger-annotations-jakarta:2.2.55'
+                                    implementation 'io.swagger.core.v3:swagger-jaxrs2-jakarta:2.2.55'
+                                }
+                                """,
+                                """
+                                plugins {
+                                    id 'java'
+                                    id 'io.swagger.core.v3.swagger-gradle-plugin' version '3.0.0'
+                                }
+
+                                repositories {
+                                    mavenCentral()
+                                }
+
+                                dependencies {
+                                    implementation 'io.swagger.core.v3:swagger-annotations:3.0.0'
+                                    implementation 'io.swagger.core.v3:swagger-rest:3.0.0'
+                                }
+                                """
+                        )
+                )
+        );
+    }
+
+    @Test
+    void commonsLang3DeclaredWhenUsed() {
+        rewriteRun(
+                mavenProject("demo",
+                        //language=xml
+                        pomXml(POM_SWAGGER_2,
+                                """
+                                <project>
+                                    <modelVersion>4.0.0</modelVersion>
+                                    <groupId>com.example</groupId>
+                                    <artifactId>demo</artifactId>
+                                    <version>0.0.1</version>
+                                    <dependencies>
+                                        <dependency>
+                                            <groupId>io.swagger.core.v3</groupId>
+                                            <artifactId>swagger-rest</artifactId>
+                                            <version>3.0.0</version>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>org.apache.commons</groupId>
+                                            <artifactId>commons-lang3</artifactId>
+                                            <version>3.21.0</version>
+                                        </dependency>
+                                    </dependencies>
+                                </project>
+                                """),
+                        srcMainJava(
+                                //language=java
+                                java(
+                                        """
+                                        import org.apache.commons.lang3.StringUtils;
+
+                                        class Names {
+                                            boolean isBlank(String name) {
+                                                return StringUtils.isBlank(name);
+                                            }
+                                        }
+                                        """
+                                )
                         )
                 )
         );
@@ -429,6 +521,83 @@ class UpgradeSwaggerCore_3_Tests implements RewriteTest {
                                         </dependency>
                                     </dependencies>
                                 </project>
+                                """
+                        )
+                )
+        );
+    }
+
+    @Test
+    void javaxSwaggerArtifactFromLibraryMigratesProject() {
+        rewriteRun(
+                mavenProject("demo",
+                        //language=xml
+                        pomXml(
+                                """
+                                <project>
+                                    <modelVersion>4.0.0</modelVersion>
+                                    <groupId>com.example</groupId>
+                                    <artifactId>demo</artifactId>
+                                    <version>0.0.1</version>
+                                    <dependencies>
+                                        <dependency>
+                                            <groupId>io.swagger.core.v3</groupId>
+                                            <artifactId>swagger-annotations-jakarta</artifactId>
+                                            <version>2.2.55</version>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>org.apache.cxf</groupId>
+                                            <artifactId>cxf-rt-rs-service-description-openapi-v3</artifactId>
+                                            <version>3.6.5</version>
+                                        </dependency>
+                                    </dependencies>
+                                </project>
+                                """,
+                                """
+                                <project>
+                                    <modelVersion>4.0.0</modelVersion>
+                                    <groupId>com.example</groupId>
+                                    <artifactId>demo</artifactId>
+                                    <version>0.0.1</version>
+                                    <dependencies>
+                                        <dependency>
+                                            <groupId>io.swagger.core.v3</groupId>
+                                            <artifactId>swagger-annotations</artifactId>
+                                            <version>3.0.0</version>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>org.apache.cxf</groupId>
+                                            <artifactId>cxf-rt-rs-service-description-openapi-v3</artifactId>
+                                            <version>3.6.5</version>
+                                        </dependency>
+                                    </dependencies>
+                                </project>
+                                """
+                        )
+                )
+        );
+    }
+
+    @Test
+    void javaxSwaggerArtifactLeavesGradleProjectUnchanged() {
+        rewriteRun(
+                spec -> spec.beforeRecipe(withToolingApi()),
+                mavenProject("demo",
+                        //language=groovy
+                        buildGradle(
+                                """
+                                plugins {
+                                    id 'java'
+                                }
+
+                                repositories {
+                                    mavenCentral()
+                                }
+
+                                dependencies {
+                                    implementation 'io.swagger.core.v3:swagger-annotations-jakarta:2.2.55'
+                                    runtimeOnly 'io.swagger.core.v3:swagger-jaxrs2:2.2.55'
+                                }
                                 """
                         )
                 )
