@@ -18,7 +18,8 @@ class UpgradeArconia_0_32_Tests implements RewriteTest {
         spec.recipeFromResources("io.arconia.rewrite.framework.UpgradeArconia_0_32")
                 .parser(JavaParser.fromJavaVersion().classpathFromResources(new InMemoryExecutionContext(),
                         "arconia-multitenancy-core-0.30", "arconia-multitenancy-web-0.30", "jakarta.servlet-api-6.1",
-                        "spring-context-7.0", "arconia-dev-services-api-0.31"));
+                        "spring-context-7.0", "arconia-dev-services-api-0.31",
+                        "arconia-opentelemetry-ai-semantic-conventions-0.31", "arconia-opentelemetry-semantic-conventions-0.31"));
     }
 
     @Test
@@ -312,6 +313,27 @@ class UpgradeArconia_0_32_Tests implements RewriteTest {
     }
 
     @Test
+    void openInferenceCompletionsPropertiesCommented() {
+        rewriteRun(
+                //language=properties
+                properties(
+                        """
+                        arconia.observations.conventions.openinference.ai.hide-prompts=true
+                        arconia.observations.conventions.openinference.ai.hide-choices=true
+                        arconia.observations.conventions.openinference.ai.hide-inputs=true
+                        """,
+                        """
+                        # Removed. It hid the prompts of the completions API, which Spring AI doesn't use, so it had no effect. Use 'arconia.observations.conventions.openinference.ai.hide-input-messages' to hide the input messages of the chat completions API.
+                        # arconia.observations.conventions.openinference.ai.hide-prompts=true
+                        # Removed. It hid the choices of the completions API, which Spring AI doesn't use, so it had no effect. Use 'arconia.observations.conventions.openinference.ai.hide-output-messages' to hide the output messages of the chat completions API.
+                        # arconia.observations.conventions.openinference.ai.hide-choices=true
+                        arconia.observations.conventions.openinference.ai.hide-inputs=true
+                        """,
+                        s -> s.path("src/main/resources/application.properties"))
+        );
+    }
+
+    @Test
     void tenantDetailsHealthPropertyCommented() {
         rewriteRun(
                 //language=properties
@@ -414,6 +436,182 @@ class UpgradeArconia_0_32_Tests implements RewriteTest {
                         }
                         """
                 )
+        );
+    }
+
+    @Test
+    void langSmithObservationTypesReplaced() {
+        rewriteRun(
+                //language=java
+                java(
+                        """
+                        package com.yourorg;
+
+                        import io.arconia.observation.opentelemetry.ai.autoconfigure.OpenTelemetryAiConventionsProperties;
+                        import io.arconia.observation.opentelemetry.ai.instrumentation.langsmith.LangSmithAiAdvisorConvention;
+                        import io.arconia.observation.opentelemetry.ai.instrumentation.langsmith.LangSmithChatModelObservationHandler;
+                        import io.arconia.observation.opentelemetry.ai.instrumentation.langsmith.LangSmithEmbeddingModelObservationHandler;
+
+                        class ObservationConfig {
+
+                            LangSmithChatModelObservationHandler chatModelHandler(OpenTelemetryAiConventionsProperties properties) {
+                                return new LangSmithChatModelObservationHandler(properties);
+                            }
+
+                            LangSmithEmbeddingModelObservationHandler embeddingModelHandler() {
+                                return new LangSmithEmbeddingModelObservationHandler();
+                            }
+
+                            LangSmithAiAdvisorConvention advisorConvention() {
+                                return new LangSmithAiAdvisorConvention();
+                            }
+
+                        }
+                        """,
+                        """
+                        package com.yourorg;
+
+                        import io.arconia.observation.opentelemetry.ai.autoconfigure.OpenTelemetryAiConventionsProperties;
+                        import io.arconia.observation.opentelemetry.ai.instrumentation.langsmith.LangSmithAdvisorObservationConvention;
+                        import io.arconia.observation.opentelemetry.ai.instrumentation.langsmith.LangSmithTokenUsageObservationHandler;
+
+                        class ObservationConfig {
+
+                            LangSmithTokenUsageObservationHandler chatModelHandler(OpenTelemetryAiConventionsProperties properties) {
+                                return new LangSmithTokenUsageObservationHandler();
+                            }
+
+                            LangSmithTokenUsageObservationHandler embeddingModelHandler() {
+                                return new LangSmithTokenUsageObservationHandler();
+                            }
+
+                            LangSmithAdvisorObservationConvention advisorConvention() {
+                                return new LangSmithAdvisorObservationConvention();
+                            }
+
+                        }
+                        """)
+        );
+    }
+
+    @Test
+    void openLitAndOpenLLMetryConventionsReplacedWithOpenTelemetryOnes() {
+        rewriteRun(
+                //language=java
+                java(
+                        """
+                        package com.yourorg;
+
+                        import io.arconia.observation.opentelemetry.ai.autoconfigure.OpenTelemetryAiConventionsProperties;
+                        import io.arconia.observation.opentelemetry.ai.instrumentation.openlit.OpenLitAdvisorObservationConvention;
+                        import io.arconia.observation.opentelemetry.ai.instrumentation.openlit.OpenLitToolCallingObservationConvention;
+                        import io.arconia.observation.opentelemetry.ai.instrumentation.openllmetry.OpenLLMetryEmbeddingModelObservationConvention;
+
+                        class ObservationConfig {
+
+                            OpenLitAdvisorObservationConvention advisorConvention() {
+                                return new OpenLitAdvisorObservationConvention();
+                            }
+
+                            OpenLitToolCallingObservationConvention toolCallingConvention(OpenTelemetryAiConventionsProperties properties) {
+                                return new OpenLitToolCallingObservationConvention(properties);
+                            }
+
+                            OpenLLMetryEmbeddingModelObservationConvention embeddingModelConvention() {
+                                return new OpenLLMetryEmbeddingModelObservationConvention();
+                            }
+
+                        }
+                        """,
+                        """
+                        package com.yourorg;
+
+                        import io.arconia.observation.opentelemetry.ai.autoconfigure.OpenTelemetryAiConventionsProperties;
+                        import io.arconia.observation.opentelemetry.ai.instrumentation.opentelemetry.OpenTelemetryAdvisorObservationConvention;
+                        import io.arconia.observation.opentelemetry.ai.instrumentation.opentelemetry.OpenTelemetryEmbeddingModelObservationConvention;
+                        import io.arconia.observation.opentelemetry.ai.instrumentation.opentelemetry.OpenTelemetryToolCallingObservationConvention;
+
+                        class ObservationConfig {
+
+                            OpenTelemetryAdvisorObservationConvention advisorConvention() {
+                                return new OpenTelemetryAdvisorObservationConvention();
+                            }
+
+                            OpenTelemetryToolCallingObservationConvention toolCallingConvention(OpenTelemetryAiConventionsProperties properties) {
+                                return new OpenTelemetryToolCallingObservationConvention(properties);
+                            }
+
+                            OpenTelemetryEmbeddingModelObservationConvention embeddingModelConvention() {
+                                return new OpenTelemetryEmbeddingModelObservationConvention();
+                            }
+
+                        }
+                        """)
+        );
+    }
+
+    @Test
+    void conventionsAccessorsAndConstantsMigrated() {
+        rewriteRun(
+                //language=java
+                java(
+                        """
+                        package com.yourorg;
+
+                        import io.arconia.observation.opentelemetry.ai.autoconfigure.OpenTelemetryAiConventionsProperties;
+                        import io.arconia.observation.opentelemetry.ai.instrumentation.shared.GenAiAttributes;
+                        import io.arconia.observation.opentelemetry.instrumentation.http.OpenTelemetryHttpOptions;
+
+                        class ConventionsSetup {
+
+                            void configure(OpenTelemetryAiConventionsProperties ai, OpenTelemetryHttpOptions http) {
+                                ai.setIncludeToolDefinitions(true);
+                                ai.setIncludeToolCallContent(true);
+                                boolean toolDefinitions = ai.isIncludeToolDefinitions();
+                                boolean toolCallContent = ai.isIncludeToolCallContent();
+                                http.setIncludeUrlQuery(true);
+                                boolean urlQuery = http.isIncludeUrlQuery();
+                            }
+
+                            String eventName() {
+                                return GenAiAttributes.GEN_AI_CLIENT_INFERENCE_OPERATION_DETAILS;
+                            }
+
+                            String metricName() {
+                                return GenAiAttributes.GEN_AI_CLIENT_TOKEN_USAGE;
+                            }
+
+                        }
+                        """,
+                        """
+                        package com.yourorg;
+
+                        import io.arconia.observation.opentelemetry.ai.autoconfigure.OpenTelemetryAiConventionsProperties;
+                        import io.arconia.observation.opentelemetry.instrumentation.http.OpenTelemetryHttpOptions;
+                        import io.opentelemetry.semconv.incubating.GenAiIncubatingEvents;
+                        import io.opentelemetry.semconv.incubating.GenAiIncubatingMetrics;
+
+                        class ConventionsSetup {
+
+                            void configure(OpenTelemetryAiConventionsProperties ai, OpenTelemetryHttpOptions http) {
+                                ai.setCaptureToolDefinitions(true);
+                                ai.setCaptureToolCallContent(true);
+                                boolean toolDefinitions = ai.capturesToolDefinitions();
+                                boolean toolCallContent = ai.capturesToolCallContent();
+                                http.setCaptureUrlQuery(true);
+                                boolean urlQuery = http.isCaptureUrlQuery();
+                            }
+
+                            String eventName() {
+                                return GenAiIncubatingEvents.GEN_AI_CLIENT_INFERENCE_OPERATION_DETAILS;
+                            }
+
+                            String metricName() {
+                                return GenAiIncubatingMetrics.GEN_AI_CLIENT_TOKEN_USAGE_NAME;
+                            }
+
+                        }
+                        """)
         );
     }
 

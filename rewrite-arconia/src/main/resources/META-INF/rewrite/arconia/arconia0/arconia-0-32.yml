@@ -16,7 +16,7 @@ recipeList:
       artifactId: "*"
       newVersion: 0.32.x
 
-  # Rename Properties
+  # Dev Services - Rename Properties
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: arconia.dev.services.keycloak.realm.import-path
       newPropertyKey: arconia.dev.services.keycloak.realm.import-paths
@@ -24,104 +24,12 @@ recipeList:
       oldPropertyKey: arconia.dev.services.docling.enable-ui
       newPropertyKey: arconia.dev.services.docling.ui-enabled
 
-  # OpenTelemetry Conventions: HTTP
-  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
-      oldPropertyKey: arconia.observations.conventions.opentelemetry.http.include-url-query
-      newPropertyKey: arconia.observations.conventions.opentelemetry.http.capture-url-query
-
-  # OpenTelemetry AI Conventions: content capturing
-  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
-      oldPropertyKey: arconia.observations.conventions.opentelemetry.ai.include-tool-definitions
-      newPropertyKey: arconia.observations.conventions.opentelemetry.ai.capture-tool-definitions
-  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
-      oldPropertyKey: arconia.observations.conventions.opentelemetry.ai.include-tool-call-content
-      newPropertyKey: arconia.observations.conventions.opentelemetry.ai.capture-tool-call-content
-  # 'capture-content=span-events' becomes the destination, and enables message capturing
-  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKeyIfValue:
-      oldPropertyKey: arconia.observations.conventions.opentelemetry.ai.capture-content
-      propertyValue: span-events
-      newPropertyKey: arconia.observations.conventions.opentelemetry.ai.inference-content-destination
-  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKeyIfValue:
-      oldPropertyKey: arconia.observations.conventions.opentelemetry.ai.capture-content
-      propertyValue: SPAN_EVENTS
-      newPropertyKey: arconia.observations.conventions.opentelemetry.ai.inference-content-destination
-  - io.arconia.rewrite.spring.boot.properties.AddSpringBootProperty:
-      propertyKey: arconia.observations.conventions.opentelemetry.ai.capture-message-content
-      propertyValue: "true"
-      requiredPropertyKey: arconia.observations.conventions.opentelemetry.ai.inference-content-destination
-  # 'none' and 'span-attributes' become the message capturing switch ('span-attributes' is the default destination)
-  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
-      oldPropertyKey: arconia.observations.conventions.opentelemetry.ai.capture-content
-      newPropertyKey: arconia.observations.conventions.opentelemetry.ai.capture-message-content
-  - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
-      propertyKey: arconia.observations.conventions.opentelemetry.ai.capture-message-content
-      oldPropertyValue: "(?i)^none$"
-      newPropertyValue: "false"
-      useRegex: true
-  - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
-      propertyKey: arconia.observations.conventions.opentelemetry.ai.capture-message-content
-      oldPropertyValue: "(?i)^span[-_]attributes$"
-      newPropertyValue: "true"
-      useRegex: true
-
-  # Comment Properties
-  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
-      propertyKey: "arconia.multitenancy.resolution.fixed.enabled"
-      comment: "Removed. The fixed tenant is now a resolution mode. Set 'arconia.multitenancy.resolution.http.resolution-mode' to 'fixed' for a single-tenant deployment, or list 'fixed' last, as in 'header, fixed', to use it as the default tenant."
-
-  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
-      propertyKey: "management.health.tenantdetails.enabled"
-      comment: "Removed with the tenant details health indicator. The 'db' health indicator already reports whether the database holding the tenant details can be reached."
-
-  # Rename Packages
-  - org.openrewrite.java.ChangePackage:
-      oldPackageName: io.arconia.multitenancy.core.context.resolvers
-      newPackageName: io.arconia.multitenancy.core.resolution
-      recursive: false
-  - org.openrewrite.java.ChangePackage:
-      oldPackageName: io.arconia.multitenancy.core.context.events
-      newPackageName: io.arconia.multitenancy.core.context
-      recursive: false
-  - org.openrewrite.java.ChangePackage:
-      oldPackageName: io.arconia.multitenancy.web.context.filters
-      newPackageName: io.arconia.multitenancy.web.context
-      recursive: false
-  - org.openrewrite.java.ChangePackage:
-      oldPackageName: io.arconia.multitenancy.web.context.annotations
-      newPackageName: io.arconia.multitenancy.web.context
-      recursive: false
-  - org.openrewrite.java.ChangePackage:
-      oldPackageName: io.arconia.multitenancy.web.context.resolvers
-      newPackageName: io.arconia.multitenancy.web.resolution
-      recursive: false
-
-  # Rename Types
-  - org.openrewrite.java.ChangeType:
-      oldFullyQualifiedTypeName: io.arconia.multitenancy.core.exceptions.TenantNotFoundException
-      newFullyQualifiedTypeName: io.arconia.multitenancy.core.context.TenantNotFoundException
-  - org.openrewrite.java.ChangeType:
-      oldFullyQualifiedTypeName: io.arconia.multitenancy.core.exceptions.TenantVerificationException
-      newFullyQualifiedTypeName: io.arconia.multitenancy.core.resolution.TenantVerificationException
-  - org.openrewrite.java.ChangeType:
-      oldFullyQualifiedTypeName: io.arconia.multitenancy.core.tenantdetails.TenantIdentifierValidator
-      newFullyQualifiedTypeName: io.arconia.multitenancy.core.resolution.TenantIdentifierValidator
-  - org.openrewrite.java.ChangeType:
-      oldFullyQualifiedTypeName: io.arconia.multitenancy.core.tenantdetails.DefaultTenantIdentifierValidator
-      newFullyQualifiedTypeName: io.arconia.multitenancy.core.resolution.DefaultTenantIdentifierValidator
-  - org.openrewrite.java.ChangeType:
-      oldFullyQualifiedTypeName: io.arconia.multitenancy.core.tenantdetails.TenantVerifier
-      newFullyQualifiedTypeName: io.arconia.multitenancy.core.resolution.TenantVerifier
-  - org.openrewrite.java.ChangeType:
-      oldFullyQualifiedTypeName: io.arconia.multitenancy.core.tenantdetails.DefaultTenantVerifier
-      newFullyQualifiedTypeName: io.arconia.multitenancy.core.resolution.DefaultTenantVerifier
-  - org.openrewrite.java.ChangeType:
-      oldFullyQualifiedTypeName: io.arconia.multitenancy.core.autoconfigure.PropertiesTenantDetailsService
-      newFullyQualifiedTypeName: io.arconia.multitenancy.core.tenantdetails.InMemoryTenantDetailsService
+  # Dev Services - Rename Types
   - org.openrewrite.java.ChangeType:
       oldFullyQualifiedTypeName: io.arconia.dev.services.api.config.BaseDevServicesProperties
       newFullyQualifiedTypeName: io.arconia.dev.services.api.config.DevServicesProperties
 
-  # Rename Methods
+  # Dev Services - Rename Methods
   - org.openrewrite.java.ChangeMethodName:
       methodPattern: io.arconia.dev.services.api.registration.DevServiceRegistration name()
       newMethodName: getName
@@ -161,3 +69,159 @@ recipeList:
   - org.openrewrite.java.ChangeMethodName:
       methodPattern: io.arconia.dev.services.api.registration.ContainerInfo status()
       newMethodName: getStatus
+
+  # Multitenancy - Comment Properties
+  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
+      propertyKey: "arconia.multitenancy.resolution.fixed.enabled"
+      comment: "Removed. The fixed tenant is now a resolution mode. Set 'arconia.multitenancy.resolution.http.resolution-mode' to 'fixed' for a single-tenant deployment, or list 'fixed' last, as in 'header, fixed', to use it as the default tenant."
+  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
+      propertyKey: "management.health.tenantdetails.enabled"
+      comment: "Removed with the tenant details health indicator. The 'db' health indicator already reports whether the database holding the tenant details can be reached."
+
+  # Multitenancy - Rename Packages
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: io.arconia.multitenancy.core.context.resolvers
+      newPackageName: io.arconia.multitenancy.core.resolution
+      recursive: false
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: io.arconia.multitenancy.core.context.events
+      newPackageName: io.arconia.multitenancy.core.context
+      recursive: false
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: io.arconia.multitenancy.web.context.filters
+      newPackageName: io.arconia.multitenancy.web.context
+      recursive: false
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: io.arconia.multitenancy.web.context.annotations
+      newPackageName: io.arconia.multitenancy.web.context
+      recursive: false
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: io.arconia.multitenancy.web.context.resolvers
+      newPackageName: io.arconia.multitenancy.web.resolution
+      recursive: false
+
+  # Multitenancy - Rename Types
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: io.arconia.multitenancy.core.exceptions.TenantNotFoundException
+      newFullyQualifiedTypeName: io.arconia.multitenancy.core.context.TenantNotFoundException
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: io.arconia.multitenancy.core.exceptions.TenantVerificationException
+      newFullyQualifiedTypeName: io.arconia.multitenancy.core.resolution.TenantVerificationException
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: io.arconia.multitenancy.core.tenantdetails.TenantIdentifierValidator
+      newFullyQualifiedTypeName: io.arconia.multitenancy.core.resolution.TenantIdentifierValidator
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: io.arconia.multitenancy.core.tenantdetails.DefaultTenantIdentifierValidator
+      newFullyQualifiedTypeName: io.arconia.multitenancy.core.resolution.DefaultTenantIdentifierValidator
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: io.arconia.multitenancy.core.tenantdetails.TenantVerifier
+      newFullyQualifiedTypeName: io.arconia.multitenancy.core.resolution.TenantVerifier
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: io.arconia.multitenancy.core.tenantdetails.DefaultTenantVerifier
+      newFullyQualifiedTypeName: io.arconia.multitenancy.core.resolution.DefaultTenantVerifier
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: io.arconia.multitenancy.core.autoconfigure.PropertiesTenantDetailsService
+      newFullyQualifiedTypeName: io.arconia.multitenancy.core.tenantdetails.InMemoryTenantDetailsService
+
+  # OpenTelemetry Semantic Conventions - Rename Properties
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: arconia.observations.conventions.opentelemetry.http.include-url-query
+      newPropertyKey: arconia.observations.conventions.opentelemetry.http.capture-url-query
+
+  # OpenTelemetry Semantic Conventions - Rename Methods
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: io.arconia.observation.opentelemetry.instrumentation.http.OpenTelemetryHttpOptions isIncludeUrlQuery()
+      newMethodName: isCaptureUrlQuery
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: io.arconia.observation.opentelemetry.instrumentation.http.OpenTelemetryHttpOptions setIncludeUrlQuery(boolean)
+      newMethodName: setCaptureUrlQuery
+
+  # OpenTelemetry AI Semantic Conventions - Rename Properties
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: arconia.observations.conventions.opentelemetry.ai.include-tool-definitions
+      newPropertyKey: arconia.observations.conventions.opentelemetry.ai.capture-tool-definitions
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: arconia.observations.conventions.opentelemetry.ai.include-tool-call-content
+      newPropertyKey: arconia.observations.conventions.opentelemetry.ai.capture-tool-call-content
+
+  # OpenTelemetry AI Semantic Conventions - Migrate Properties
+  # 'capture-content=span-events' becomes the destination, and enables message capturing
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKeyIfValue:
+      oldPropertyKey: arconia.observations.conventions.opentelemetry.ai.capture-content
+      propertyValue: span-events
+      newPropertyKey: arconia.observations.conventions.opentelemetry.ai.inference-content-destination
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKeyIfValue:
+      oldPropertyKey: arconia.observations.conventions.opentelemetry.ai.capture-content
+      propertyValue: SPAN_EVENTS
+      newPropertyKey: arconia.observations.conventions.opentelemetry.ai.inference-content-destination
+  - io.arconia.rewrite.spring.boot.properties.AddSpringBootProperty:
+      propertyKey: arconia.observations.conventions.opentelemetry.ai.capture-message-content
+      propertyValue: "true"
+      requiredPropertyKey: arconia.observations.conventions.opentelemetry.ai.inference-content-destination
+  # 'none' and 'span-attributes' become the message capturing switch ('span-attributes' is the default destination)
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: arconia.observations.conventions.opentelemetry.ai.capture-content
+      newPropertyKey: arconia.observations.conventions.opentelemetry.ai.capture-message-content
+  - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
+      propertyKey: arconia.observations.conventions.opentelemetry.ai.capture-message-content
+      oldPropertyValue: "(?i)^none$"
+      newPropertyValue: "false"
+      useRegex: true
+  - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
+      propertyKey: arconia.observations.conventions.opentelemetry.ai.capture-message-content
+      oldPropertyValue: "(?i)^span[-_]attributes$"
+      newPropertyValue: "true"
+      useRegex: true
+
+  # OpenTelemetry AI Semantic Conventions - Rename Types
+  - org.openrewrite.java.DeleteMethodArgument:
+      methodPattern: io.arconia.observation.opentelemetry.ai.instrumentation.langsmith.LangSmithChatModelObservationHandler <constructor>(..)
+      argumentIndex: 0
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: io.arconia.observation.opentelemetry.ai.instrumentation.langsmith.LangSmithChatModelObservationHandler
+      newFullyQualifiedTypeName: io.arconia.observation.opentelemetry.ai.instrumentation.langsmith.LangSmithTokenUsageObservationHandler
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: io.arconia.observation.opentelemetry.ai.instrumentation.langsmith.LangSmithEmbeddingModelObservationHandler
+      newFullyQualifiedTypeName: io.arconia.observation.opentelemetry.ai.instrumentation.langsmith.LangSmithTokenUsageObservationHandler
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: io.arconia.observation.opentelemetry.ai.instrumentation.langsmith.LangSmithAiAdvisorConvention
+      newFullyQualifiedTypeName: io.arconia.observation.opentelemetry.ai.instrumentation.langsmith.LangSmithAdvisorObservationConvention
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: io.arconia.observation.opentelemetry.ai.instrumentation.openlit.OpenLitAdvisorObservationConvention
+      newFullyQualifiedTypeName: io.arconia.observation.opentelemetry.ai.instrumentation.opentelemetry.OpenTelemetryAdvisorObservationConvention
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: io.arconia.observation.opentelemetry.ai.instrumentation.openlit.OpenLitToolCallingObservationConvention
+      newFullyQualifiedTypeName: io.arconia.observation.opentelemetry.ai.instrumentation.opentelemetry.OpenTelemetryToolCallingObservationConvention
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: io.arconia.observation.opentelemetry.ai.instrumentation.openllmetry.OpenLLMetryEmbeddingModelObservationConvention
+      newFullyQualifiedTypeName: io.arconia.observation.opentelemetry.ai.instrumentation.opentelemetry.OpenTelemetryEmbeddingModelObservationConvention
+
+  # OpenTelemetry AI Semantic Conventions - Rename Methods
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: io.arconia.observation.opentelemetry.ai.autoconfigure.OpenTelemetryAiConventionsProperties isIncludeToolDefinitions()
+      newMethodName: capturesToolDefinitions
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: io.arconia.observation.opentelemetry.ai.autoconfigure.OpenTelemetryAiConventionsProperties isIncludeToolCallContent()
+      newMethodName: capturesToolCallContent
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: io.arconia.observation.opentelemetry.ai.autoconfigure.OpenTelemetryAiConventionsProperties setIncludeToolDefinitions(boolean)
+      newMethodName: setCaptureToolDefinitions
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: io.arconia.observation.opentelemetry.ai.autoconfigure.OpenTelemetryAiConventionsProperties setIncludeToolCallContent(boolean)
+      newMethodName: setCaptureToolCallContent
+
+  # OpenTelemetry AI Semantic Conventions - Replace Constants
+  - org.openrewrite.java.ReplaceConstantWithAnotherConstant:
+      existingFullyQualifiedConstantName: io.arconia.observation.opentelemetry.ai.instrumentation.shared.GenAiAttributes.GEN_AI_CLIENT_INFERENCE_OPERATION_DETAILS
+      fullyQualifiedConstantName: io.opentelemetry.semconv.incubating.GenAiIncubatingEvents.GEN_AI_CLIENT_INFERENCE_OPERATION_DETAILS
+  - org.openrewrite.java.ReplaceConstantWithAnotherConstant:
+      existingFullyQualifiedConstantName: io.arconia.observation.opentelemetry.ai.instrumentation.shared.GenAiAttributes.GEN_AI_CLIENT_TOKEN_USAGE
+      fullyQualifiedConstantName: io.opentelemetry.semconv.incubating.GenAiIncubatingMetrics.GEN_AI_CLIENT_TOKEN_USAGE_NAME
+
+  # OpenInference Semantic Conventions - Comment Properties
+  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
+      propertyKey: "arconia.observations.conventions.openinference.ai.hide-prompts"
+      comment: "Removed. It hid the prompts of the completions API, which Spring AI doesn't use, so it had no effect. Use 'arconia.observations.conventions.openinference.ai.hide-input-messages' to hide the input messages of the chat completions API."
+  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
+      propertyKey: "arconia.observations.conventions.openinference.ai.hide-choices"
+      comment: "Removed. It hid the choices of the completions API, which Spring AI doesn't use, so it had no effect. Use 'arconia.observations.conventions.openinference.ai.hide-output-messages' to hide the output messages of the chat completions API."
