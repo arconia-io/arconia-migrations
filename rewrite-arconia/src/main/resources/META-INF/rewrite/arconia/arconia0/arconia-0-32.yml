@@ -16,6 +16,32 @@ recipeList:
       artifactId: "*"
       newVersion: 0.32.x
 
+  # Core - Rename Modules
+  - org.openrewrite.java.dependencies.ChangeDependency:
+      oldGroupId: io.arconia
+      oldArtifactId: arconia-core
+      newGroupId: io.arconia
+      newArtifactId: arconia-core-annotations
+  - org.openrewrite.java.dependencies.ChangeDependency:
+      oldGroupId: io.arconia
+      oldArtifactId: arconia-spring-boot
+      newGroupId: io.arconia
+      newArtifactId: arconia-core-bootstrap
+
+  # Core - Rename Packages
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: io.arconia.core.support
+      newPackageName: io.arconia.core.annotations
+      recursive: false
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: io.arconia.boot.bootstrap
+      newPackageName: io.arconia.core.bootstrap
+      recursive: false
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: io.arconia.boot.autoconfigure.bootstrap
+      newPackageName: io.arconia.core.bootstrap.autoconfigure
+      recursive: false
+
   # Dev Services - Rename Properties
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: arconia.dev.services.keycloak.realm.import-path

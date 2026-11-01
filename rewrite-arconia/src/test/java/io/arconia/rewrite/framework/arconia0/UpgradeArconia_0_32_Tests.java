@@ -1,5 +1,6 @@
 package io.arconia.rewrite.framework.arconia0;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.openrewrite.DocumentExample;
 import org.openrewrite.InMemoryExecutionContext;
@@ -7,6 +8,8 @@ import org.openrewrite.java.JavaParser;
 import org.openrewrite.test.RecipeSpec;
 import org.openrewrite.test.RewriteTest;
 
+import static org.openrewrite.gradle.Assertions.buildGradle;
+import static org.openrewrite.gradle.toolingapi.Assertions.withToolingApi;
 import static org.openrewrite.java.Assertions.java;
 import static org.openrewrite.properties.Assertions.properties;
 import static org.openrewrite.yaml.Assertions.yaml;
@@ -17,6 +20,7 @@ class UpgradeArconia_0_32_Tests implements RewriteTest {
     public void defaults(RecipeSpec spec) {
         spec.recipeFromResources("io.arconia.rewrite.framework.UpgradeArconia_0_32")
                 .parser(JavaParser.fromJavaVersion().classpathFromResources(new InMemoryExecutionContext(),
+                        "arconia-core-0.31", "arconia-spring-boot-0.31",
                         "arconia-multitenancy-core-0.30", "arconia-multitenancy-web-0.30", "jakarta.servlet-api-6.1",
                         "spring-context-7.0", "arconia-dev-services-api-0.31",
                         "arconia-opentelemetry-ai-semantic-conventions-0.31", "arconia-opentelemetry-semantic-conventions-0.31"));
@@ -187,6 +191,85 @@ class UpgradeArconia_0_32_Tests implements RewriteTest {
                                   capture-message-content: true
                         """,
                         s -> s.path("src/main/resources/application.yml"))
+        );
+    }
+
+    @Test
+    @Disabled("Enable once Arconia 0.32 is released: the recipe then upgrades the renamed artifacts to 0.32.x, "
+            + "which needs their metadata on Maven Central")
+    void coreModulesRenamed() {
+        rewriteRun(
+                spec -> spec.beforeRecipe(withToolingApi()),
+                //language=groovy
+                buildGradle(
+                        """
+                        plugins {
+                            id 'java-library'
+                        }
+
+                        repositories {
+                            mavenCentral()
+                        }
+
+                        dependencies {
+                            implementation "io.arconia:arconia-core"
+                            implementation "io.arconia:arconia-spring-boot"
+                        }
+                        """,
+                        """
+                        plugins {
+                            id 'java-library'
+                        }
+
+                        repositories {
+                            mavenCentral()
+                        }
+
+                        dependencies {
+                            implementation "io.arconia:arconia-core-annotations"
+                            implementation "io.arconia:arconia-core-bootstrap"
+                        }
+                        """
+                )
+        );
+    }
+
+    @Test
+    void corePackagesRenamed() {
+        rewriteRun(
+                //language=java
+                java(
+                        """
+                        package com.yourorg;
+
+                        import io.arconia.boot.autoconfigure.bootstrap.ConditionalOnDevMode;
+                        import io.arconia.boot.bootstrap.BootstrapMode;
+                        import io.arconia.core.support.Incubating;
+
+                        @Incubating
+                        class Demo {
+                            @ConditionalOnDevMode
+                            BootstrapMode mode() {
+                                return BootstrapMode.detect();
+                            }
+                        }
+                        """,
+                        """
+                        package com.yourorg;
+
+                        import io.arconia.core.bootstrap.autoconfigure.ConditionalOnDevMode;
+                        import io.arconia.core.bootstrap.BootstrapMode;
+                        import io.arconia.core.annotations.Incubating;
+
+                        @Incubating
+                        class Demo {
+                            @ConditionalOnDevMode
+                            BootstrapMode mode() {
+                                return BootstrapMode.detect();
+                            }
+                        }
+                        """
+                )
         );
     }
 
