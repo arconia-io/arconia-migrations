@@ -42,6 +42,11 @@ recipeList:
       newPackageName: io.arconia.core.bootstrap.autoconfigure
       recursive: false
 
+  # Data - Rename Types
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: io.arconia.data.jdbc.sqlite.dialect.SqliteDialect
+      newFullyQualifiedTypeName: io.arconia.data.jdbc.sqlite.dialect.JdbcSqliteDialect
+
   # Dev Services - Rename Properties
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: arconia.dev.services.keycloak.realm.import-path
@@ -95,6 +100,11 @@ recipeList:
   - org.openrewrite.java.ChangeMethodName:
       methodPattern: io.arconia.dev.services.api.registration.ContainerInfo status()
       newMethodName: getStatus
+
+  # Docling - Replace Constants
+  - org.openrewrite.java.ReplaceConstantWithAnotherConstant:
+      existingFullyQualifiedConstantName: io.arconia.docling.autoconfigure.DoclingProperties.API_KEY_HEADER_NAME
+      fullyQualifiedConstantName: io.arconia.docling.client.DoclingServeClient.API_KEY_HEADER_NAME
 
   # Multitenancy - Comment Properties
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:

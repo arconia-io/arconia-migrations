@@ -88,7 +88,9 @@ recipeDependencies {
     testParserClasspath "io.arconia:arconia-dev-services-core:0.30.+"
 
     testParserClasspath "io.arconia:arconia-core:0.31.+"
+    testParserClasspath "io.arconia:arconia-data-jdbc-sqlite:0.31.+"
     testParserClasspath "io.arconia:arconia-dev-services-api:0.31.+"
+    testParserClasspath "io.arconia:arconia-docling:0.31.+"
     testParserClasspath "io.arconia:arconia-opentelemetry-ai-semantic-conventions:0.31.+"
     testParserClasspath "io.arconia:arconia-opentelemetry-semantic-conventions:0.31.+"
     testParserClasspath "io.arconia:arconia-spring-boot:0.31.+"

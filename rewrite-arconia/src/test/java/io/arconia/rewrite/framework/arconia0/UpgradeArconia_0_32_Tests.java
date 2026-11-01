@@ -22,7 +22,7 @@ class UpgradeArconia_0_32_Tests implements RewriteTest {
                 .parser(JavaParser.fromJavaVersion().classpathFromResources(new InMemoryExecutionContext(),
                         "arconia-core-0.31", "arconia-spring-boot-0.31",
                         "arconia-multitenancy-core-0.30", "arconia-multitenancy-web-0.30", "jakarta.servlet-api-6.1",
-                        "spring-context-7.0", "arconia-dev-services-api-0.31",
+                        "spring-context-7.0", "arconia-data-jdbc-sqlite-0.31", "arconia-dev-services-api-0.31", "arconia-docling-0.31",
                         "arconia-opentelemetry-ai-semantic-conventions-0.31", "arconia-opentelemetry-semantic-conventions-0.31"));
     }
 
@@ -70,6 +70,40 @@ class UpgradeArconia_0_32_Tests implements RewriteTest {
                                   enabled: false
                         """,
                         s -> s.path("src/main/resources/application.yml"))
+        );
+    }
+
+    @Test
+    void doclingApiKeyHeaderNameMoved() {
+        rewriteRun(
+                //language=java
+                java(
+                        """
+                        package com.yourorg;
+
+                        import io.arconia.docling.autoconfigure.DoclingProperties;
+
+                        class DoclingHeaders {
+
+                            String apiKeyHeader() {
+                                return DoclingProperties.API_KEY_HEADER_NAME;
+                            }
+
+                        }
+                        """,
+                        """
+                        package com.yourorg;
+
+                        import io.arconia.docling.client.DoclingServeClient;
+
+                        class DoclingHeaders {
+
+                            String apiKeyHeader() {
+                                return DoclingServeClient.API_KEY_HEADER_NAME;
+                            }
+
+                        }
+                        """)
         );
     }
 
@@ -267,6 +301,38 @@ class UpgradeArconia_0_32_Tests implements RewriteTest {
                             BootstrapMode mode() {
                                 return BootstrapMode.detect();
                             }
+                        }
+                        """
+                )
+        );
+    }
+
+    @Test
+    void sqliteDialectRenamed() {
+        rewriteRun(
+                //language=java
+                java(
+                        """
+                        package com.yourorg;
+
+                        import io.arconia.data.jdbc.sqlite.dialect.JdbcSqliteDialect;
+                        import io.arconia.data.jdbc.sqlite.dialect.SqliteDialect;
+
+                        class DialectHolder {
+
+                            private final SqliteDialect dialect = JdbcSqliteDialect.INSTANCE;
+
+                        }
+                        """,
+                        """
+                        package com.yourorg;
+
+                        import io.arconia.data.jdbc.sqlite.dialect.JdbcSqliteDialect;
+
+                        class DialectHolder {
+
+                            private final JdbcSqliteDialect dialect = JdbcSqliteDialect.INSTANCE;
+
                         }
                         """
                 )
