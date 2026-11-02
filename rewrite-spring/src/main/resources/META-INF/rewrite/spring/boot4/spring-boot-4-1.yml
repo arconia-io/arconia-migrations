@@ -55,3 +55,10 @@ recipeList:
   - io.arconia.rewrite.spring.modulith2.UpgradeSpringModulith_2_1
   - io.arconia.rewrite.spring.security7.UpgradeSpringSecurity_7_1
   - io.arconia.rewrite.spring.data2026.UpgradeSpringData_2026_0
+
+  # Other Dependencies
+  - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
+      groupId: org.springdoc
+      artifactId: "*"
+      newVersion: 3.2.x
+      overrideManagedVersion: true

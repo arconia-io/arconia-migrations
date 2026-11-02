@@ -8332,6 +8332,7 @@ _Tags: spring, boot_
 ** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_data2026_UpgradeSpringData_2026_0[Migrate to Spring Data 2026.0] (`io.arconia.rewrite.spring.data2026.UpgradeSpringData_2026_0`)
 ** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion` ×16)
+* Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
 ====
 
 [#io_arconia_rewrite_spring_boot4_UpgradeSpringBoot_4_2]
@@ -8389,6 +8390,7 @@ _Tags: spring, boot_
 *** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
 ** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_data2026_UpgradeSpringData_2026_0[Migrate to Spring Data 2026.0] (`io.arconia.rewrite.spring.data2026.UpgradeSpringData_2026_0`)
 *** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion` ×16)
+** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_framework7_UpgradeSpringFramework_7_1[Migrate to Spring Framework 7.1] (`io.arconia.rewrite.spring.framework7.UpgradeSpringFramework_7_1`)
 ** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion` ×4)
 ** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_framework7_MigrateSpringExpression_7_1[Migrate the Spring Expression module to Spring Framework 7.1] (`io.arconia.rewrite.spring.framework7.MigrateSpringExpression_7_1`)
