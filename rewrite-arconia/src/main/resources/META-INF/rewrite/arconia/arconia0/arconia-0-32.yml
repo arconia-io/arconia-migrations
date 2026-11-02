@@ -231,6 +231,19 @@ recipeList:
   - io.arconia.rewrite.spring.boot.properties.DeleteSpringBootProperty:
       propertyKey: arconia.otel.metrics.exemplars.enabled
 
+  # OpenTelemetry - Rename Types
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: io.arconia.opentelemetry.autoconfigure.traces.bridge.MicrometerTracingOpenTelemetryContextStorageTextExecutionListener
+      newFullyQualifiedTypeName: io.arconia.opentelemetry.autoconfigure.traces.bridge.MicrometerTracingOpenTelemetryContextStorageTestExecutionListener
+
+  # OpenTelemetry - Change Exclusions
+  # The starter includes the Arconia HTTP sender instead of the OpenTelemetry JDK sender
+  - org.openrewrite.maven.ChangeExclusion:
+      oldGroupId: io.opentelemetry
+      oldArtifactId: opentelemetry-exporter-sender-jdk
+      newGroupId: io.arconia
+      newArtifactId: arconia-opentelemetry-exporter-sender-http
+
   # OpenTelemetry Semantic Conventions - Rename Properties
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: arconia.observations.conventions.opentelemetry.http.include-url-query

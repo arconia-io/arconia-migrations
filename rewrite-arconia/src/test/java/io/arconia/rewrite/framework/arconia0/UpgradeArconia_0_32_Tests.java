@@ -11,6 +11,7 @@ import org.openrewrite.test.RewriteTest;
 import static org.openrewrite.gradle.Assertions.buildGradle;
 import static org.openrewrite.gradle.toolingapi.Assertions.withToolingApi;
 import static org.openrewrite.java.Assertions.java;
+import static org.openrewrite.maven.Assertions.pomXml;
 import static org.openrewrite.properties.Assertions.properties;
 import static org.openrewrite.yaml.Assertions.yaml;
 
@@ -23,7 +24,7 @@ class UpgradeArconia_0_32_Tests implements RewriteTest {
                         "arconia-core-0.31", "arconia-spring-boot-0.31",
                         "arconia-multitenancy-core-0.30", "arconia-multitenancy-web-0.30", "jakarta.servlet-api-6.1", "micrometer-observation-1.16", "spring-web-7.0", "spring-core-7.0", "spring-beans-7.0",
                         "spring-context-7.0", "arconia-data-jdbc-sqlite-0.31", "arconia-dev-services-api-0.31", "arconia-docling-0.31",
-                        "arconia-opentelemetry-ai-semantic-conventions-0.31", "arconia-opentelemetry-semantic-conventions-0.31"));
+                        "arconia-opentelemetry-0.31", "arconia-opentelemetry-ai-semantic-conventions-0.31", "arconia-opentelemetry-semantic-conventions-0.31"));
     }
 
     @Test
@@ -282,6 +283,80 @@ class UpgradeArconia_0_32_Tests implements RewriteTest {
                                   capture-message-content: true
                         """,
                         s -> s.path("src/main/resources/application.yml"))
+        );
+    }
+
+    @Test
+    void openTelemetryContextStorageListenerRenamed() {
+        rewriteRun(
+                //language=java
+                java(
+                        """
+                        import io.arconia.opentelemetry.autoconfigure.traces.bridge.MicrometerTracingOpenTelemetryContextStorageTextExecutionListener;
+
+                        class Demo {
+                            MicrometerTracingOpenTelemetryContextStorageTextExecutionListener listener = new MicrometerTracingOpenTelemetryContextStorageTextExecutionListener();
+                        }
+                        """,
+                        """
+                        import io.arconia.opentelemetry.autoconfigure.traces.bridge.MicrometerTracingOpenTelemetryContextStorageTestExecutionListener;
+
+                        class Demo {
+                            MicrometerTracingOpenTelemetryContextStorageTestExecutionListener listener = new MicrometerTracingOpenTelemetryContextStorageTestExecutionListener();
+                        }
+                        """
+                )
+        );
+    }
+
+    @Test
+    @Disabled("Enable once Arconia 0.32 is released: the recipe then upgrades the Arconia artifacts to 0.32.x, "
+            + "which needs their metadata on Maven Central")
+    void openTelemetrySenderExclusionChanged() {
+        rewriteRun(
+                //language=xml
+                pomXml(
+                        """
+                        <project>
+                            <groupId>com.example</groupId>
+                            <artifactId>demo</artifactId>
+                            <version>1.0.0</version>
+                            <dependencies>
+                                <dependency>
+                                    <groupId>io.arconia</groupId>
+                                    <artifactId>arconia-opentelemetry-spring-boot-starter</artifactId>
+                                    <version>0.31.0</version>
+                                    <exclusions>
+                                        <exclusion>
+                                            <groupId>io.opentelemetry</groupId>
+                                            <artifactId>opentelemetry-exporter-sender-jdk</artifactId>
+                                        </exclusion>
+                                    </exclusions>
+                                </dependency>
+                            </dependencies>
+                        </project>
+                        """,
+                        """
+                        <project>
+                            <groupId>com.example</groupId>
+                            <artifactId>demo</artifactId>
+                            <version>1.0.0</version>
+                            <dependencies>
+                                <dependency>
+                                    <groupId>io.arconia</groupId>
+                                    <artifactId>arconia-opentelemetry-spring-boot-starter</artifactId>
+                                    <version>0.32.0</version>
+                                    <exclusions>
+                                        <exclusion>
+                                            <groupId>io.arconia</groupId>
+                                            <artifactId>arconia-opentelemetry-exporter-sender-http</artifactId>
+                                        </exclusion>
+                                    </exclusions>
+                                </dependency>
+                            </dependencies>
+                        </project>
+                        """
+                )
         );
     }
 

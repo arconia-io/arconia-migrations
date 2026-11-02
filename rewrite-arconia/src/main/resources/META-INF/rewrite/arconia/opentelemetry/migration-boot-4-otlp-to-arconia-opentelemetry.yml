@@ -155,6 +155,13 @@ recipeList:
   - org.openrewrite.java.dependencies.RemoveDependency:
       groupId: io.opentelemetry
       artifactId: opentelemetry-exporter-otlp
+  # The starter includes the Arconia sender, and two senders on the classpath make the OpenTelemetry SDK pick one at random.
+  - org.openrewrite.java.dependencies.RemoveDependency:
+      groupId: io.opentelemetry
+      artifactId: opentelemetry-exporter-sender-jdk
+  - org.openrewrite.java.dependencies.RemoveDependency:
+      groupId: io.opentelemetry
+      artifactId: opentelemetry-exporter-sender-okhttp
   - org.openrewrite.java.dependencies.RemoveDependency:
       groupId: io.opentelemetry.instrumentation
       artifactId: opentelemetry-logback-appender

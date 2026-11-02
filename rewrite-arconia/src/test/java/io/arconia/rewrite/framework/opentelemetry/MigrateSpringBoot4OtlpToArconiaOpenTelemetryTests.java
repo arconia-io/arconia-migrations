@@ -7,6 +7,8 @@ import org.openrewrite.java.JavaParser;
 import org.openrewrite.test.RecipeSpec;
 import org.openrewrite.test.RewriteTest;
 
+import static org.openrewrite.gradle.Assertions.buildGradle;
+import static org.openrewrite.gradle.toolingapi.Assertions.withToolingApi;
 import static org.openrewrite.java.Assertions.java;
 import static org.openrewrite.java.Assertions.mavenProject;
 import static org.openrewrite.java.Assertions.srcMainJava;
@@ -199,6 +201,43 @@ class MigrateSpringBoot4OtlpToArconiaOpenTelemetryTests implements RewriteTest {
                         arconia.otel.exporter.otlp.micrometer.max-scale=20
                         """,
                         s -> s.path("src/main/resources/application.properties")
+                )
+        );
+    }
+
+    @Test
+    void removeOpenTelemetrySenderDependencies() {
+        rewriteRun(
+                spec -> spec.beforeRecipe(withToolingApi()),
+                //language=groovy
+                buildGradle(
+                        """
+                        plugins {
+                            id "java-library"
+                        }
+
+                        repositories {
+                            mavenCentral()
+                        }
+
+                        dependencies {
+                            implementation "org.springframework.boot:spring-boot-starter-opentelemetry:4.0.0"
+                            runtimeOnly "io.opentelemetry:opentelemetry-exporter-sender-jdk:1.55.0"
+                        }
+                        """,
+                        """
+                        plugins {
+                            id "java-library"
+                        }
+
+                        repositories {
+                            mavenCentral()
+                        }
+
+                        dependencies {
+                            implementation "io.arconia:arconia-opentelemetry-spring-boot-starter"
+                        }
+                        """
                 )
         );
     }

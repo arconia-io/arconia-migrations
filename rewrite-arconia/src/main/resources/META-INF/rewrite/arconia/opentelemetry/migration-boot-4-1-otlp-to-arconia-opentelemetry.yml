@@ -1,0 +1,80 @@
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.framework.opentelemetry.MigrateSpringBoot4_1_OtlpToArconiaOpenTelemetry
+displayName: Migrate from Spring Boot 4.1 OTLP to Arconia OpenTelemetry
+description: Migrate a Spring Boot 4.1 application from the Spring Boot OpenTelemetry support to Arconia OpenTelemetry, including the properties added in Spring Boot 4.1.
+tags:
+  - arconia
+  - opentelemetry
+preconditions:
+  - org.openrewrite.Singleton
+recipeList:
+  - io.arconia.rewrite.framework.opentelemetry.MigrateSpringBoot4_0_OtlpToArconiaOpenTelemetry
+
+  # General
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "management.opentelemetry.enabled"
+      newPropertyKey: "arconia.otel.enabled"
+  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
+      propertyKey: "management.opentelemetry.map-environment-variables"
+      comment: "Not supported by Arconia OpenTelemetry, which always maps the OpenTelemetry environment variables."
+
+  # Logs
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "management.opentelemetry.logging.export.max-batch-size"
+      newPropertyKey: "arconia.otel.logs.processor.max-export-batch-size"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "management.opentelemetry.logging.export.max-queue-size"
+      newPropertyKey: "arconia.otel.logs.processor.max-queue-size"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "management.opentelemetry.logging.export.schedule-delay"
+      newPropertyKey: "arconia.otel.logs.processor.schedule-delay"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "management.opentelemetry.logging.export.timeout"
+      newPropertyKey: "arconia.otel.logs.processor.export-timeout"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "management.opentelemetry.logging.export.otlp.ssl.bundle"
+      newPropertyKey: "arconia.otel.logs.exporter.otlp.ssl.bundle"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "management.opentelemetry.logging.limits.max-attribute-value-length"
+      newPropertyKey: "arconia.otel.logs.limits.max-attribute-value-length"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "management.opentelemetry.logging.limits.max-attributes"
+      newPropertyKey: "arconia.otel.logs.limits.max-number-of-attributes"
+
+  # Metrics
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "management.otlp.metrics.export.compression-mode"
+      newPropertyKey: "arconia.otel.metrics.exporter.otlp.compression"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "management.otlp.metrics.export.ssl.bundle"
+      newPropertyKey: "arconia.otel.metrics.exporter.otlp.ssl.bundle"
+  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
+      propertyKey: "management.otlp.metrics.export.publish-max-gauge-for-histograms"
+      comment: "Not supported by Arconia OpenTelemetry."
+
+  # Traces
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "management.opentelemetry.tracing.sampler"
+      newPropertyKey: "arconia.otel.traces.sampling.strategy"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "management.opentelemetry.tracing.export.otlp.ssl.bundle"
+      newPropertyKey: "arconia.otel.traces.exporter.otlp.ssl.bundle"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "management.opentelemetry.tracing.limits.max-attribute-value-length"
+      newPropertyKey: "arconia.otel.traces.limits.max-attribute-value-length"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "management.opentelemetry.tracing.limits.max-attributes"
+      newPropertyKey: "arconia.otel.traces.limits.max-number-of-attributes"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "management.opentelemetry.tracing.limits.max-attributes-per-event"
+      newPropertyKey: "arconia.otel.traces.limits.max-number-of-attributes-per-event"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "management.opentelemetry.tracing.limits.max-attributes-per-link"
+      newPropertyKey: "arconia.otel.traces.limits.max-number-of-attributes-per-link"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "management.opentelemetry.tracing.limits.max-events"
+      newPropertyKey: "arconia.otel.traces.limits.max-number-of-events"
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "management.opentelemetry.tracing.limits.max-links"
+      newPropertyKey: "arconia.otel.traces.limits.max-number-of-links"
