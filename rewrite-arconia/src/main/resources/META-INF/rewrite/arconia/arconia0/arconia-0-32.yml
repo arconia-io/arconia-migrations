@@ -158,6 +158,64 @@ recipeList:
   - org.openrewrite.java.ChangeType:
       oldFullyQualifiedTypeName: io.arconia.multitenancy.core.autoconfigure.PropertiesTenantDetailsService
       newFullyQualifiedTypeName: io.arconia.multitenancy.core.tenantdetails.InMemoryTenantDetailsService
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: io.arconia.multitenancy.core.cache.DefaultTenantKeyGenerator
+      newFullyQualifiedTypeName: io.arconia.multitenancy.core.cache.TenantKeyGenerator
+
+  # Multitenancy - Rename Properties
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: arconia.multitenancy.resolution.http.header.header-name
+      newPropertyKey: arconia.multitenancy.resolution.http.header.name
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: arconia.multitenancy.resolution.http.cookie.cookie-name
+      newPropertyKey: arconia.multitenancy.resolution.http.cookie.name
+
+  # Multitenancy - Rename Methods
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: io.arconia.multitenancy.web.resolution.HeaderTenantResolver getTenantHeaderName()
+      newMethodName: getHeaderName
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: io.arconia.multitenancy.web.resolution.HeaderTenantResolver$Builder tenantHeaderName(String)
+      newMethodName: headerName
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: io.arconia.multitenancy.web.resolution.CookieTenantResolver getTenantCookieName()
+      newMethodName: getCookieName
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: io.arconia.multitenancy.web.resolution.CookieTenantResolver$Builder tenantCookieName(String)
+      newMethodName: cookieName
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: io.arconia.multitenancy.web.resolution.OAuth2TenantResolver getTenantClaimName()
+      newMethodName: getClaimName
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: io.arconia.multitenancy.web.resolution.OAuth2TenantResolver$Builder tenantClaimName(String)
+      newMethodName: claimName
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: io.arconia.multitenancy.web.context.TenantContextFilter$Builder httpRequestTenantResolver(..)
+      newMethodName: tenantResolver
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: io.arconia.multitenancy.web.autoconfigure.HttpTenantResolutionProperties$Header getHeaderName()
+      newMethodName: getName
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: io.arconia.multitenancy.web.autoconfigure.HttpTenantResolutionProperties$Header setHeaderName(String)
+      newMethodName: setName
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: io.arconia.multitenancy.web.autoconfigure.HttpTenantResolutionProperties$Cookie getCookieName()
+      newMethodName: getName
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: io.arconia.multitenancy.web.autoconfigure.HttpTenantResolutionProperties$Cookie setCookieName(String)
+      newMethodName: setName
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: io.arconia.multitenancy.core.observability.TenantObservationFilter getTenantIdentifierKey()
+      newMethodName: getKeyName
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: io.arconia.multitenancy.core.observability.TenantObservationFilter$Builder tenantIdentifierKey(String)
+      newMethodName: keyName
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: io.arconia.multitenancy.core.observability.MdcTenantEventListener getTenantIdentifierKey()
+      newMethodName: getKeyName
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: io.arconia.multitenancy.core.observability.MdcTenantEventListener$Builder tenantIdentifierKey(String)
+      newMethodName: keyName
 
   # OpenTelemetry Semantic Conventions - Rename Properties
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
