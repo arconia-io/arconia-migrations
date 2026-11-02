@@ -217,6 +217,20 @@ recipeList:
       methodPattern: io.arconia.multitenancy.core.observability.MdcTenantEventListener$Builder tenantIdentifierKey(String)
       newMethodName: keyName
 
+  # OpenTelemetry - Migrate Properties
+  # 'exemplars.enabled=false' becomes the 'always-off' exemplar filter, 'exemplars.enabled=true' was the default
+  - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
+      propertyKey: arconia.otel.metrics.exemplars.enabled
+      oldPropertyValue: "(?i)^false$"
+      newPropertyValue: always-off
+      useRegex: true
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKeyIfValue:
+      oldPropertyKey: arconia.otel.metrics.exemplars.enabled
+      propertyValue: always-off
+      newPropertyKey: arconia.otel.metrics.exemplars.filter
+  - io.arconia.rewrite.spring.boot.properties.DeleteSpringBootProperty:
+      propertyKey: arconia.otel.metrics.exemplars.enabled
+
   # OpenTelemetry Semantic Conventions - Rename Properties
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: arconia.observations.conventions.opentelemetry.http.include-url-query

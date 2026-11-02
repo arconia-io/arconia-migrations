@@ -123,6 +123,63 @@ class UpgradeArconia_0_32_Tests implements RewriteTest {
     }
 
     @Test
+    void otelExemplarsDisabledMigratedToFilter() {
+        rewriteRun(
+                //language=properties
+                properties(
+                        """
+                        arconia.otel.metrics.exemplars.enabled=false
+                        arconia.otel.metrics.cardinality-limit=500
+                        """,
+                        """
+                        arconia.otel.metrics.exemplars.filter=always-off
+                        arconia.otel.metrics.cardinality-limit=500
+                        """,
+                        s -> s.path("src/main/resources/application.properties"))
+        );
+    }
+
+    @Test
+    void otelExemplarsEnabledRemoved() {
+        rewriteRun(
+                //language=properties
+                properties(
+                        """
+                        arconia.otel.metrics.exemplars.enabled=true
+                        arconia.otel.metrics.exemplars.filter=always-on
+                        """,
+                        """
+                        arconia.otel.metrics.exemplars.filter=always-on
+                        """,
+                        s -> s.path("src/main/resources/application.properties"))
+        );
+    }
+
+    @Test
+    void otelExemplarsDisabledMigratedToFilterInYaml() {
+        rewriteRun(
+                //language=yaml
+                yaml(
+                        """
+                        arconia:
+                          otel:
+                            metrics:
+                              exemplars:
+                                enabled: false
+                                filter: always-on
+                        """,
+                        """
+                        arconia:
+                          otel:
+                            metrics:
+                              exemplars:
+                                filter: always-off
+                        """,
+                        s -> s.path("src/main/resources/application.yml"))
+        );
+    }
+
+    @Test
     void httpConventionsIncludeUrlQueryRenamed() {
         rewriteRun(
                 //language=properties
