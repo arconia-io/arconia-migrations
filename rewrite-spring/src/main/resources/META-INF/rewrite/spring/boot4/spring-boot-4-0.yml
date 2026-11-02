@@ -90,11 +90,11 @@ recipeList:
   - io.arconia.rewrite.testing.testcontainers.UpgradeTestcontainers_2
   - io.arconia.rewrite.spring.cloud2025.UpgradeSpringCloud_2025_1
   - io.arconia.rewrite.spring.ai2.UpgradeSpringAi_2_0
-  - io.arconia- io.arconia.rewrite.spring.security7.UpgradeSpringSecurity_7_0
+  - io.arconia.rewrite.spring.modulith2.UpgradeSpringModulith_2_0
+  - io.arconia.rewrite.spring.security7.UpgradeSpringSecurity_7_0
   - io.arconia.rewrite.spring.data2025.UpgradeSpringData_2025_1
 
-  - # Modules.rewrite.spring.modulith2.UpgradeSpringModulith_2_0
-
+  # Modules
   - io.arconia.rewrite.spring.boot4.MigrateActiveMqModule
   - io.arconia.rewrite.spring.boot4.MigrateActuatorModule
   - io.arconia.rewrite.spring.boot4.MigrateAmqpModule
