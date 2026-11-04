@@ -1,6 +1,5 @@
 package io.arconia.rewrite.framework.arconia0;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.openrewrite.DocumentExample;
 import org.openrewrite.InMemoryExecutionContext;
@@ -310,8 +309,6 @@ class UpgradeArconia_0_32_Tests implements RewriteTest {
     }
 
     @Test
-    @Disabled("Enable once Arconia 0.32 is released: the recipe then upgrades the Arconia artifacts to 0.32.x, "
-            + "which needs their metadata on Maven Central")
     void openTelemetrySenderExclusionChanged() {
         rewriteRun(
                 //language=xml
@@ -361,8 +358,6 @@ class UpgradeArconia_0_32_Tests implements RewriteTest {
     }
 
     @Test
-    @Disabled("Enable once Arconia 0.32 is released: the recipe then upgrades the renamed artifacts to 0.32.x, "
-            + "which needs their metadata on Maven Central")
     void coreModulesRenamed() {
         rewriteRun(
                 spec -> spec.beforeRecipe(withToolingApi()),
