@@ -14,6 +14,7 @@ The recipe will:
 * Rename Spring AI configuration properties to match the new property names (including flattening the `.options.` infix on embedding, image, audio, moderation, and OCR keys, and renaming `spring.ai.ollama.chat.think-option` to `spring.ai.ollama.chat.think`).
 * Comment out properties removed in 2.0, including each provider's `spring.ai.<provider>.chat.options.internal-tool-execution-enabled`, `spring.ai.google.genai.chat.options.tool-names`, `spring.ai.chat.client.tool-calling.stream-tool-call-responses`, and `spring.ai.chat.client.tool-search-advisor.stream-tool-call-responses`.
 * Pass `ChatOptions.Builder` (rather than a built `ChatOptions`) to `ChatClient.options(...)` and `ChatClient.Builder.defaultOptions(...)`.
+* Replace the deprecated `TokenTextSplitter` constructors with the equivalent `TokenTextSplitter.builder()` chain. Subclasses that call a `TokenTextSplitter` constructor through `super(...)`, as well as anonymous subclasses, require manual migration.
 * Rename the tool-registration methods `ChatClient.ChatClientRequestSpec.toolCallbacks(...)` and `ChatClient.Builder.defaultToolCallbacks(...)` to `tools(...)` and `defaultTools(...)`, aligning with the new tool-calling API.
 * Rename `ChatModel.getDefaultOptions()` to `getOptions()`.
 * Rename `JsonParser.getObjectMapper()` to `JsonParser.getJsonMapper()`.

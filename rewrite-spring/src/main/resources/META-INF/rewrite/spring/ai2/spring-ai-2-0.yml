@@ -24,6 +24,9 @@ recipeList:
 
   - io.arconia.rewrite.spring.ai2.UseChatOptionsBuilder
 
+  # Constructor Changes
+  - io.arconia.rewrite.spring.ai2.UseTokenTextSplitterBuilder
+
   # Dependency Changes
   - org.openrewrite.java.dependencies.ChangeDependency:
       oldGroupId: org.springframework.ai

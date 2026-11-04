@@ -3,7 +3,7 @@
 
 // AUTO-GENERATED from the OpenRewrite recipe model. Do not edit by hand.
 
-The `rewrite-spring` module publishes 321 recipes across 13 categories.
+The `rewrite-spring` module publishes 322 recipes across 13 categories.
 
 [#family-spring-ai1]
 == spring › ai1
@@ -645,6 +645,7 @@ _Tags: spring, ai_
 ** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×10)
 * Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_ai2_UseChatOptionsBuilder[Pass `ChatOptions.Builder` to `ChatClient` options methods] (`io.arconia.rewrite.spring.ai2.UseChatOptionsBuilder`)
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_ai2_UseTokenTextSplitterBuilder[Use `TokenTextSplitter.builder()` instead of constructor] (`io.arconia.rewrite.spring.ai2.UseTokenTextSplitterBuilder`)
 * Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency` ×2)
 * Change type (`org.openrewrite.java.ChangeType` ×3)
 * Change method name (`org.openrewrite.java.ChangeMethodName` ×7)
@@ -661,8 +662,7 @@ _Tags: spring, ai_
 * Change method name (`org.openrewrite.java.ChangeMethodName` ×2)
 * Replace constant with another constant (`org.openrewrite.java.ReplaceConstantWithAnotherConstant` ×12)
 * Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency` ×2)
-* Remove a Gradle or Maven dependency (`org.openrewrite.java.dependencies.RemoveDependency` ×6)
-* … and 43 more
+* … and 49 more
 ====
 
 *Example*
@@ -857,6 +857,44 @@ class Demo {
         return OpenAiEmbeddingOptions.builder()
                 .encodingFormat(OpenAiEmbeddingOptions.EncodingFormat.FLOAT)
                 .build();
+    }
+}
+----
+
+[#io_arconia_rewrite_spring_ai2_UseTokenTextSplitterBuilder]
+=== Use `TokenTextSplitter.builder()` instead of constructor
+`io.arconia.rewrite.spring.ai2.UseTokenTextSplitterBuilder`
+
+Replace the deprecated `new TokenTextSplitter(...)` constructors with `TokenTextSplitter.builder()....build()`.
+
+*Example*
+
+.Before
+[source,java]
+----
+import java.util.List;
+
+import org.springframework.ai.document.Document;
+import org.springframework.ai.transformer.splitter.TokenTextSplitter;
+
+class Demo {
+    List<Document> split(List<Document> documents) {
+        return new TokenTextSplitter().split(documents);
+    }
+}
+----
+
+.After
+[source,java]
+----
+import java.util.List;
+
+import org.springframework.ai.document.Document;
+import org.springframework.ai.transformer.splitter.TokenTextSplitter;
+
+class Demo {
+    List<Document> split(List<Document> documents) {
+        return TokenTextSplitter.builder().build().split(documents);
     }
 }
 ----
@@ -8122,6 +8160,7 @@ _Tags: spring, boot_
 *** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×10)
 ** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
 ** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_ai2_UseChatOptionsBuilder[Pass `ChatOptions.Builder` to `ChatClient` options methods] (`io.arconia.rewrite.spring.ai2.UseChatOptionsBuilder`)
+** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_ai2_UseTokenTextSplitterBuilder[Use `TokenTextSplitter.builder()` instead of constructor] (`io.arconia.rewrite.spring.ai2.UseTokenTextSplitterBuilder`)
 ** Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency` ×2)
 ** Change type (`org.openrewrite.java.ChangeType` ×3)
 ** Change method name (`org.openrewrite.java.ChangeMethodName` ×7)
@@ -8138,8 +8177,7 @@ _Tags: spring, boot_
 ** Change method name (`org.openrewrite.java.ChangeMethodName` ×2)
 ** Replace constant with another constant (`org.openrewrite.java.ReplaceConstantWithAnotherConstant` ×12)
 ** Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency` ×2)
-** Remove a Gradle or Maven dependency (`org.openrewrite.java.dependencies.RemoveDependency` ×6)
-** … and 43 more
+** … and 49 more
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_modulith2_UpgradeSpringModulith_2_0[Migrate to Spring Modulith 2.0] (`io.arconia.rewrite.spring.modulith2.UpgradeSpringModulith_2_0`)
 ** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_modulith2_UpgradeSpringModulithProperties_2_0[Migrate Spring Modulith properties to 2.0] (`io.arconia.rewrite.spring.modulith2.UpgradeSpringModulithProperties_2_0`)
 *** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_modulith2_UpgradeSpringModulithPropertiesGenerated_2_0[Migrate Spring Modulith properties to 2.0 (generated)] (`io.arconia.rewrite.spring.modulith2.UpgradeSpringModulithPropertiesGenerated_2_0`)
@@ -8279,6 +8317,7 @@ _Tags: spring, boot_
 *** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_ai2_UpgradeSpringAiProperties_2_0[Migrate Spring AI properties to 2.0] (`io.arconia.rewrite.spring.ai2.UpgradeSpringAiProperties_2_0`)
 *** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
 *** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_ai2_UseChatOptionsBuilder[Pass `ChatOptions.Builder` to `ChatClient` options methods] (`io.arconia.rewrite.spring.ai2.UseChatOptionsBuilder`)
+*** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_ai2_UseTokenTextSplitterBuilder[Use `TokenTextSplitter.builder()` instead of constructor] (`io.arconia.rewrite.spring.ai2.UseTokenTextSplitterBuilder`)
 *** Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency` ×2)
 *** Change type (`org.openrewrite.java.ChangeType` ×3)
 *** Change method name (`org.openrewrite.java.ChangeMethodName` ×7)
@@ -8295,8 +8334,7 @@ _Tags: spring, boot_
 *** Change method name (`org.openrewrite.java.ChangeMethodName` ×2)
 *** Replace constant with another constant (`org.openrewrite.java.ReplaceConstantWithAnotherConstant` ×12)
 *** Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency` ×2)
-*** Remove a Gradle or Maven dependency (`org.openrewrite.java.dependencies.RemoveDependency` ×6)
-*** … and 43 more
+*** … and 49 more
 ** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_modulith2_UpgradeSpringModulith_2_0[Migrate to Spring Modulith 2.0] (`io.arconia.rewrite.spring.modulith2.UpgradeSpringModulith_2_0`)
 *** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_modulith2_UpgradeSpringModulithProperties_2_0[Migrate Spring Modulith properties to 2.0] (`io.arconia.rewrite.spring.modulith2.UpgradeSpringModulithProperties_2_0`)
 *** Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)

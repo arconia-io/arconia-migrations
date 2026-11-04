@@ -61,6 +61,31 @@ class UpgradeSpringAi_2_0_Tests implements RewriteTest {
     }
 
     @Test
+    void useTokenTextSplitterBuilder() {
+        rewriteRun(
+                spec -> spec.parser(JavaParser.fromJavaVersion().classpathFromResources(new InMemoryExecutionContext(),
+                        "spring-ai-commons-1.1")),
+                //language=java
+                java(
+                        """
+                        import org.springframework.ai.transformer.splitter.TokenTextSplitter;
+
+                        class Demo {
+                            TokenTextSplitter splitter = new TokenTextSplitter();
+                        }
+                        """,
+                        """
+                        import org.springframework.ai.transformer.splitter.TokenTextSplitter;
+
+                        class Demo {
+                            TokenTextSplitter splitter = TokenTextSplitter.builder().build();
+                        }
+                        """
+                )
+        );
+    }
+
+    @Test
     void openSearchContainerTypeChange() {
         rewriteRun(
                 spec -> spec.parser(JavaParser.fromJavaVersion().classpathFromResources(new InMemoryExecutionContext(),
