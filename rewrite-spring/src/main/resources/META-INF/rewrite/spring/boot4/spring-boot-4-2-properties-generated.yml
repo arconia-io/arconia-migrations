@@ -383,9 +383,6 @@ recipeList:
       comment: "Deprecated property removed in Spring Boot 4.2."
   # spring-boot-data-mongodb
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
-      oldPropertyKey: "management.health.mongo.enabled"
-      newPropertyKey: "management.health.mongodb.enabled"
-  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: "spring.data.mongodb.grid-fs-database"
       newPropertyKey: "spring.data.mongodb.gridfs.database"
   # spring-boot-data-neo4j
@@ -1611,6 +1608,9 @@ recipeList:
       oldPropertyKey: "management.tracing.opentelemetry.export.timeout"
       newPropertyKey: "management.opentelemetry.tracing.export.timeout"
   # spring-boot-mongodb
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: "management.health.mongo.enabled"
+      newPropertyKey: "management.health.mongodb.enabled"
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: "management.metrics.mongo.command.enabled"
       newPropertyKey: "management.metrics.mongodb.command.enabled"
