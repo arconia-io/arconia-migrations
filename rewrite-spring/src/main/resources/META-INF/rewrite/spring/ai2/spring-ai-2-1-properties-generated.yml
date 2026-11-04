@@ -59,24 +59,33 @@ recipeList:
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: "spring.ai.anthropic.chat.options.stop-sequences"
       newPropertyKey: "spring.ai.anthropic.chat.stop-sequences"
-  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
-      oldPropertyKey: "spring.ai.anthropic.chat.options.temperature"
-      newPropertyKey: "spring.ai.anthropic.chat.temperature"
+  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
+      propertyKey: "spring.ai.anthropic.chat.options.temperature"
+      comment: "Deprecated property removed in Spring AI 2.1. Anthropic API 2026-10-21 rejects sampling options"
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: "spring.ai.anthropic.chat.options.thinking"
       newPropertyKey: "spring.ai.anthropic.chat.thinking"
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: "spring.ai.anthropic.chat.options.tool-choice"
       newPropertyKey: "spring.ai.anthropic.chat.tool-choice"
-  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
-      oldPropertyKey: "spring.ai.anthropic.chat.options.top-k"
-      newPropertyKey: "spring.ai.anthropic.chat.top-k"
-  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
-      oldPropertyKey: "spring.ai.anthropic.chat.options.top-p"
-      newPropertyKey: "spring.ai.anthropic.chat.top-p"
+  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
+      propertyKey: "spring.ai.anthropic.chat.options.top-k"
+      comment: "Deprecated property removed in Spring AI 2.1. Anthropic API 2026-10-21 rejects sampling options"
+  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
+      propertyKey: "spring.ai.anthropic.chat.options.top-p"
+      comment: "Deprecated property removed in Spring AI 2.1. Anthropic API 2026-10-21 rejects sampling options"
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: "spring.ai.anthropic.chat.options.web-search-tool"
       newPropertyKey: "spring.ai.anthropic.chat.web-search-tool"
+  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
+      propertyKey: "spring.ai.anthropic.chat.temperature"
+      comment: "Deprecated property removed in Spring AI 2.1. Anthropic API 2026-10-21 rejects sampling options"
+  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
+      propertyKey: "spring.ai.anthropic.chat.top-k"
+      comment: "Deprecated property removed in Spring AI 2.1. Anthropic API 2026-10-21 rejects sampling options"
+  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
+      propertyKey: "spring.ai.anthropic.chat.top-p"
+      comment: "Deprecated property removed in Spring AI 2.1. Anthropic API 2026-10-21 rejects sampling options"
   # spring-ai-autoconfigure-model-bedrock-ai
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: "spring.ai.bedrock.cohere.embedding.options.input-type"
