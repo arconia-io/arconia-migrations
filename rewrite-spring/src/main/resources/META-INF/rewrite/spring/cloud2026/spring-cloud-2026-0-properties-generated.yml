@@ -11,6 +11,10 @@ tags:
 preconditions:
   - org.openrewrite.Singleton
 recipeList:
+  # spring-cloud-config-client
+  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
+      propertyKey: "spring.cloud.config.retry.use-random-policy"
+      comment: "Deprecated property removed in Spring Cloud 2026.0. Randomized backoff will be removed in favor of the deterministic exponential backoff."
   # spring-cloud-config-monitor
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: "spring.cloud.config.monitor.endpoint.path"
