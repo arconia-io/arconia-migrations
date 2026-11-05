@@ -19,7 +19,7 @@ class UpgradeSpringAi_2_1_Tests implements RewriteTest {
     public void defaults(RecipeSpec spec) {
         spec.recipeFromResources("io.arconia.rewrite.spring.ai2.UpgradeSpringAi_2_1")
                 .parser(JavaParser.fromJavaVersion().classpathFromResources(new InMemoryExecutionContext(),
-                        "spring-ai-mcp-annotations-2.0"));
+                        "spring-ai-anthropic-2\\.0\\.[1-9]", "spring-ai-commons-2\\.0\\.[1-9]", "spring-ai-deepseek-2.0", "spring-ai-mcp-annotations-2.0", "spring-ai-model-2\\.0\\.[1-9]"));
     }
 
     @Test
@@ -59,6 +59,130 @@ class UpgradeSpringAi_2_1_Tests implements RewriteTest {
 
                             AsyncMcpToolMethodCallback async(Method method, Object provider) {
                                 return new AsyncMcpToolMethodCallback(ReturnMode.TEXT, method, provider);
+                            }
+                        }
+                        """
+                )
+        );
+    }
+
+    @Test
+    void anthropicSamplingOptions() {
+        rewriteRun(
+                //language=java
+                java(
+                        """
+                        import org.springframework.ai.anthropic.AnthropicChatOptions;
+
+                        class Demo {
+                            AnthropicChatOptions options() {
+                                return AnthropicChatOptions.builder()
+                                        .temperature(0.7)
+                                        .topP(0.9)
+                                        .topK(40)
+                                        .maxTokens(1000)
+                                        .build();
+                            }
+                        }
+                        """,
+                        """
+                        import org.springframework.ai.anthropic.AnthropicChatOptions;
+
+                        class Demo {
+                            AnthropicChatOptions options() {
+                                return AnthropicChatOptions.builder()
+                                        .maxTokens(1000)
+                                        .build();
+                            }
+                        }
+                        """
+                )
+        );
+    }
+
+    @Test
+    void anthropicSamplingOptionsOnBuilderVariable() {
+        rewriteRun(
+                //language=java
+                java(
+                        """
+                        import org.springframework.ai.anthropic.AnthropicChatOptions;
+
+                        class Demo {
+                            AnthropicChatOptions options(AnthropicChatOptions.Builder builder) {
+                                builder.temperature(0.7);
+                                builder.maxTokens(1000).topP(0.9);
+                                return builder.build();
+                            }
+                        }
+                        """,
+                        """
+                        import org.springframework.ai.anthropic.AnthropicChatOptions;
+
+                        class Demo {
+                            AnthropicChatOptions options(AnthropicChatOptions.Builder builder) {
+                                builder.maxTokens(1000);
+                                return builder.build();
+                            }
+                        }
+                        """
+                )
+        );
+    }
+
+    @Test
+    void samplingOptionsOfOtherProvidersAreKept() {
+        rewriteRun(
+                //language=java
+                java(
+                        """
+                        import org.springframework.ai.anthropic.AnthropicChatOptions;
+                        import org.springframework.ai.chat.prompt.ChatOptions;
+
+                        class Demo {
+                            ChatOptions generic() {
+                                return ChatOptions.builder().temperature(0.7).topP(0.9).topK(40).build();
+                            }
+
+                            AnthropicChatOptions anthropic() {
+                                return AnthropicChatOptions.builder().maxTokens(1000).build();
+                            }
+                        }
+                        """
+                )
+        );
+    }
+
+    @Test
+    void deepSeekPrefixAssistantMessage() {
+        rewriteRun(
+                //language=java
+                java(
+                        """
+                        import org.springframework.ai.chat.messages.Message;
+                        import org.springframework.ai.deepseek.DeepSeekAssistantMessage;
+
+                        class Demo {
+                            Message prefix(String content) {
+                                return DeepSeekAssistantMessage.prefixAssistantMessage(content);
+                            }
+
+                            DeepSeekAssistantMessage prefixWithReasoning(String reasoning) {
+                                return DeepSeekAssistantMessage.prefixAssistantMessage("```python", reasoning);
+                            }
+                        }
+                        """,
+                        """
+                        import org.springframework.ai.chat.messages.Message;
+                        import org.springframework.ai.deepseek.DeepSeekAssistantMessage;
+
+                        class Demo {
+                            Message prefix(String content) {
+                                return DeepSeekAssistantMessage.builder().content(content).prefix(true).build();
+                            }
+
+                            DeepSeekAssistantMessage prefixWithReasoning(String reasoning) {
+                                return DeepSeekAssistantMessage.builder().content("```python").prefix(true).reasoningContent(reasoning).build();
                             }
                         }
                         """

@@ -21,7 +21,29 @@ recipeList:
       overrideManagedVersion: true
 
   # Modules
+  - io.arconia.rewrite.spring.ai2.MigrateSpringAiAnthropic_2_1
+  - io.arconia.rewrite.spring.ai2.MigrateSpringAiDeepSeek_2_1
   - io.arconia.rewrite.spring.ai2.MigrateSpringAiMcp_2_1
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.ai2.MigrateSpringAiAnthropic_2_1
+displayName: Migrate the Spring AI Anthropic module to Spring AI 2.1
+description: Update usages of Spring AI Anthropic APIs that were deprecated in Spring AI 2.1. Anthropic API version `2026-10-21` rejects sampling options, so they are removed from `AnthropicChatOptions` builders.
+preconditions:
+  - org.openrewrite.Singleton
+recipeList:
+  - io.arconia.rewrite.spring.ai2.RemoveAnthropicSamplingOptions
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.ai2.MigrateSpringAiDeepSeek_2_1
+displayName: Migrate the Spring AI DeepSeek module to Spring AI 2.1
+description: Replace the `DeepSeekAssistantMessage.prefixAssistantMessage` factory methods, removed in Spring AI 2.1, with the equivalent `DeepSeekAssistantMessage.builder()` chain.
+preconditions:
+  - org.openrewrite.Singleton
+recipeList:
+  - io.arconia.rewrite.spring.ai2.UseDeepSeekAssistantMessageBuilder
 
 ---
 type: specs.openrewrite.org/v1beta/recipe

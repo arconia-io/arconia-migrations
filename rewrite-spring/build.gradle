@@ -59,10 +59,9 @@ recipeDependencies {
 
     parserClasspath "io.modelcontextprotocol.sdk:mcp-core:2.0.+"
 
-    parserClasspath "org.springframework.ai:spring-ai-client-chat:2.1.+"
+    parserClasspath "org.springframework.ai:spring-ai-commons:2.1.+"
+    parserClasspath "org.springframework.ai:spring-ai-deepseek:2.1.+"
     parserClasspath "org.springframework.ai:spring-ai-model:2.1.+"
-    parserClasspath "org.springframework.ai:spring-ai-session:2.1.+"
-    parserClasspath "org.springframework.ai:spring-ai-session-advisor:2.1.+"
 
     parserClasspath "org.springframework.boot:spring-boot-resttestclient:4.0.+"
     parserClasspath "org.springframework.boot:spring-boot-webtestclient:4.0.+"
@@ -101,6 +100,10 @@ recipeDependencies {
     testParserClasspath "org.springframework.ai:spring-ai-openai:1.1.+"
 
     testParserClasspath "org.springframework.ai:spring-ai-anthropic:2.0.0-M2"
+    testParserClasspath "org.springframework.ai:spring-ai-anthropic:2.0.+"
+
+    testParserClasspath "org.springframework.ai:spring-ai-deepseek:2.0.+"
+    testParserClasspath "org.springframework.ai:spring-ai-model:2.0.+"
 
     testParserClasspath "org.springframework.ai:spring-ai-client-chat:2.0.0-M4"
     testParserClasspath "org.springframework.ai:spring-ai-model:2.0.0-M4"
