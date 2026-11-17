@@ -96,6 +96,8 @@ recipeDependencies {
     testParserClasspath "io.arconia:arconia-opentelemetry-semantic-conventions:0.31.+"
     testParserClasspath "io.arconia:arconia-spring-boot:0.31.+"
 
+    testParserClasspath "io.arconia:arconia-ai-docling-document-reader:0.32.+"
+
     testParserClasspath "org.springframework.boot:spring-boot-actuator-autoconfigure:3.5.+"
     testParserClasspath "org.springframework.boot:spring-boot-micrometer-tracing-opentelemetry:4.0.+"
     testParserClasspath "org.springframework.boot:spring-boot-opentelemetry:4.0.+"
