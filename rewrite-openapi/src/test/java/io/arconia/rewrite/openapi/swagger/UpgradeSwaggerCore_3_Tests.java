@@ -441,26 +441,14 @@ class UpgradeSwaggerCore_3_Tests implements RewriteTest {
                 mavenProject("demo",
                         //language=xml
                         pomXml(POM_SWAGGER_2,
-                                """
-                                <project>
-                                    <modelVersion>4.0.0</modelVersion>
-                                    <groupId>com.example</groupId>
-                                    <artifactId>demo</artifactId>
-                                    <version>0.0.1</version>
-                                    <dependencies>
-                                        <dependency>
-                                            <groupId>io.swagger.core.v3</groupId>
-                                            <artifactId>swagger-rest</artifactId>
-                                            <version>3.0.0</version>
-                                        </dependency>
-                                        <dependency>
-                                            <groupId>org.apache.commons</groupId>
-                                            <artifactId>commons-lang3</artifactId>
-                                            <version>3.21.0</version>
-                                        </dependency>
-                                    </dependencies>
-                                </project>
-                                """),
+                                spec -> spec.after(actual -> {
+                                    assertThat(actual)
+                                            .as("swagger-jaxrs2-jakarta replaced by swagger-rest")
+                                            .containsPattern("<artifactId>swagger-rest</artifactId>\\s*<version>3\\.0\\.0</version>")
+                                            .as("commons-lang3 declared explicitly at the latest 3.x")
+                                            .containsPattern("<groupId>org\\.apache\\.commons</groupId>\\s*<artifactId>commons-lang3</artifactId>\\s*<version>3\\.\\d+\\.\\d+</version>");
+                                    return actual;
+                                })),
                         srcMainJava(
                                 //language=java
                                 java(
