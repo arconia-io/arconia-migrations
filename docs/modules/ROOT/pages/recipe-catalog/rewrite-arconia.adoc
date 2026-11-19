@@ -1249,6 +1249,8 @@ _Tags: arconia_
 ** … and 25 more
 * Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
 * Change type (`org.openrewrite.java.ChangeType`)
+* Replace constant with another constant (`org.openrewrite.java.ReplaceConstantWithAnotherConstant`)
+* Change method name (`org.openrewrite.java.ChangeMethodName`)
 ====
 
 *Example*

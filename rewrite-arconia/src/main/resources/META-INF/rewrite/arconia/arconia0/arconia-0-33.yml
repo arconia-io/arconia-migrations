@@ -20,3 +20,11 @@ recipeList:
   - org.openrewrite.java.ChangeType:
       oldFullyQualifiedTypeName: io.arconia.ai.document.docling.DocumentMetadata
       newFullyQualifiedTypeName: io.arconia.ai.document.docling.DoclingDocumentMetadata
+
+  # Phoenix Testcontainers - Rename Members
+  - org.openrewrite.java.ReplaceConstantWithAnotherConstant:
+      existingFullyQualifiedConstantName: io.arconia.testcontainers.phoenix.PhoenixContainer.GRPC_PORT
+      fullyQualifiedConstantName: io.arconia.testcontainers.phoenix.PhoenixContainer.OTLP_GRPC_PORT
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: io.arconia.testcontainers.phoenix.PhoenixContainer getGrpcPort()
+      newMethodName: getOtlpGrpcPort
