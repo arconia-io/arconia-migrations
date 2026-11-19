@@ -137,9 +137,19 @@ recipeList:
   - org.openrewrite.java.dependencies.RemoveDependency:
       groupId: org.springframework.boot
       artifactId: spring-boot-opentelemetry
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: io.arconia
+      artifactId: arconia-opentelemetry-spring-boot-starter-test
+      acceptTransitive: true
+      configuration: testImplementation
+      scope: test
   - org.openrewrite.java.dependencies.RemoveDependency:
       groupId: org.springframework.boot
       artifactId: spring-boot-starter-opentelemetry
+  # The Spring Boot starter for testing brings in the Spring Boot OpenTelemetry starter.
+  - org.openrewrite.java.dependencies.RemoveDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-opentelemetry-test
   - org.openrewrite.java.dependencies.RemoveDependency:
       groupId: io.micrometer
       artifactId: micrometer-registry-otlp

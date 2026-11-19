@@ -3,7 +3,7 @@
 
 // AUTO-GENERATED from the OpenRewrite recipe model. Do not edit by hand.
 
-The `rewrite-arconia` module publishes 58 recipes across 5 categories.
+The `rewrite-arconia` module publishes 59 recipes across 5 categories.
 
 [#family-framework]
 == framework
@@ -1251,6 +1251,8 @@ _Tags: arconia_
 * Change type (`org.openrewrite.java.ChangeType`)
 * Replace constant with another constant (`org.openrewrite.java.ReplaceConstantWithAnotherConstant`)
 * Change method name (`org.openrewrite.java.ChangeMethodName`)
+* xref:recipe-catalog/rewrite-arconia.adoc#io_arconia_rewrite_framework_opentelemetry_AddArconiaOpenTelemetryTestStarter[Add the Arconia OpenTelemetry Spring Boot Starter for testing] (`io.arconia.rewrite.framework.opentelemetry.AddArconiaOpenTelemetryTestStarter`)
+** Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
 ====
 
 *Example*
@@ -1607,6 +1609,57 @@ class Demo {
 
 *Composite recipes*
 
+[#io_arconia_rewrite_framework_opentelemetry_AddArconiaOpenTelemetryTestStarter]
+=== Add the Arconia OpenTelemetry Spring Boot Starter for testing
+`io.arconia.rewrite.framework.opentelemetry.AddArconiaOpenTelemetryTestStarter`
+
+Add the Arconia OpenTelemetry Spring Boot Starter for testing, which turns off the export of telemetry in tests, to the modules using the Arconia OpenTelemetry Spring Boot Starter.
+
+_Tags: arconia, opentelemetry_
+
+.Recipes applied
+[%collapsible]
+====
+* Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
+====
+
+*Example*
+
+.Before
+[source,groovy]
+----
+plugins {
+    id "java-library"
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation "io.arconia:arconia-opentelemetry-spring-boot-starter"
+    testImplementation "org.springframework.boot:spring-boot-starter-test"
+}
+----
+
+.After
+[source,groovy]
+----
+plugins {
+    id "java-library"
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation "io.arconia:arconia-opentelemetry-spring-boot-starter"
+    testImplementation "io.arconia:arconia-opentelemetry-spring-boot-starter-test"
+    testImplementation "org.springframework.boot:spring-boot-starter-test"
+}
+----
+
 [#io_arconia_rewrite_framework_opentelemetry_MigrateSpringBoot3OtlpToArconiaOpenTelemetry]
 === Migrate from Spring Boot 3 OTLP to Arconia OpenTelemetry
 `io.arconia.rewrite.framework.opentelemetry.MigrateSpringBoot3OtlpToArconiaOpenTelemetry`
@@ -1675,6 +1728,8 @@ _Tags: arconia, opentelemetry_
 * xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×2)
 * Change type (`org.openrewrite.java.ChangeType` ×2)
 * Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
+* Remove a Gradle or Maven dependency (`org.openrewrite.java.dependencies.RemoveDependency`)
+* Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
 * Remove a Gradle or Maven dependency (`org.openrewrite.java.dependencies.RemoveDependency` ×12)
 ====
 
@@ -1724,6 +1779,8 @@ _Tags: arconia, opentelemetry_
 ** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_ChangeSpringBootPropertyValue[Change the value of a Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue`)
 ** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey` ×2)
 ** Change type (`org.openrewrite.java.ChangeType` ×2)
+** Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
+** Remove a Gradle or Maven dependency (`org.openrewrite.java.dependencies.RemoveDependency`)
 ** Add Gradle or Maven dependency (`org.openrewrite.java.dependencies.AddDependency`)
 ** Remove a Gradle or Maven dependency (`org.openrewrite.java.dependencies.RemoveDependency` ×12)
 * xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey`)

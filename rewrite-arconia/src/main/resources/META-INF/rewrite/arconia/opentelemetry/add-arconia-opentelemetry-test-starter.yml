@@ -1,0 +1,19 @@
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.framework.opentelemetry.AddArconiaOpenTelemetryTestStarter
+displayName: Add the Arconia OpenTelemetry Spring Boot Starter for testing
+description: Add the Arconia OpenTelemetry Spring Boot Starter for testing, which turns off the export of telemetry in tests, to the modules using the Arconia OpenTelemetry Spring Boot Starter.
+tags:
+  - arconia
+  - opentelemetry
+preconditions:
+  - org.openrewrite.java.dependencies.search.ModuleHasDependency:
+      groupIdPattern: io.arconia
+      artifactIdPattern: arconia-opentelemetry-spring-boot-starter
+recipeList:
+  - org.openrewrite.java.dependencies.AddDependency:
+      groupId: io.arconia
+      artifactId: arconia-opentelemetry-spring-boot-starter-test
+      acceptTransitive: true
+      configuration: testImplementation
+      scope: test

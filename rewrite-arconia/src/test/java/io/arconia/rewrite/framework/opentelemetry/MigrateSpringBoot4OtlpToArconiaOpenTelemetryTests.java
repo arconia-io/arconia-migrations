@@ -223,6 +223,7 @@ class MigrateSpringBoot4OtlpToArconiaOpenTelemetryTests implements RewriteTest {
                         dependencies {
                             implementation "org.springframework.boot:spring-boot-starter-opentelemetry:4.0.0"
                             runtimeOnly "io.opentelemetry:opentelemetry-exporter-sender-jdk:1.55.0"
+                            testImplementation "org.springframework.boot:spring-boot-starter-opentelemetry-test:4.0.0"
                         }
                         """,
                         """
@@ -236,6 +237,7 @@ class MigrateSpringBoot4OtlpToArconiaOpenTelemetryTests implements RewriteTest {
 
                         dependencies {
                             implementation "io.arconia:arconia-opentelemetry-spring-boot-starter"
+                            testImplementation "io.arconia:arconia-opentelemetry-spring-boot-starter-test"
                         }
                         """
                 )
