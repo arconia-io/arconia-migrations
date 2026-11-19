@@ -131,6 +131,9 @@ recipeList:
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.rabbitmq.publisher-confirms"
       comment: "Deprecated property removed in Spring Boot 4.1."
+  - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
+      propertyKey: "spring.rabbitmq.ssl.verify-hostname"
+      comment: "Deprecated property removed in Spring Boot 4.1. Hostname verification cannot be independently disabled"
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: "spring.rabbitmq.template.queue"
       newPropertyKey: "spring.rabbitmq.template.default-receive-queue"
