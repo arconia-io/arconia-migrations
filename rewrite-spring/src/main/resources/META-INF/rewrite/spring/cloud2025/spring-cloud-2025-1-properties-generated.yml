@@ -26,42 +26,55 @@ recipeList:
   # spring-cloud-task-batch
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.task.batch.command-line-runner-order"
-      comment: "Deprecated property removed in Spring Cloud 2025.1."
+      comment: "Deprecated Spring Cloud property."
+      commentOutProperty: false
   # spring-cloud-vault-config
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.vault.config.order"
-      comment: "Deprecated property removed in Spring Cloud 2025.1. Only required for deprecated Bootstrap Context usage"
+      comment: "Deprecated Spring Cloud property. Only required for deprecated Bootstrap Context usage"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.vault.kv.backend-version"
-      comment: "Deprecated property removed in Spring Cloud 2025.1. Backend version no longer required. The kv version is determined during secret retrieval"
+      comment: "Deprecated Spring Cloud property. Backend version no longer required. The kv version is determined during secret retrieval"
+      commentOutProperty: false
   # spring-cloud-vault-config-databases
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.vault.mysql.backend"
-      comment: "Deprecated property removed in Spring Cloud 2025.1."
+      comment: "Deprecated Spring Cloud property."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.vault.mysql.enabled"
-      comment: "Deprecated property removed in Spring Cloud 2025.1."
+      comment: "Deprecated Spring Cloud property."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.vault.mysql.password-property"
-      comment: "Deprecated property removed in Spring Cloud 2025.1."
+      comment: "Deprecated Spring Cloud property."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.vault.mysql.role"
-      comment: "Deprecated property removed in Spring Cloud 2025.1."
+      comment: "Deprecated Spring Cloud property."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.vault.mysql.username-property"
-      comment: "Deprecated property removed in Spring Cloud 2025.1."
+      comment: "Deprecated Spring Cloud property."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.vault.postgresql.backend"
-      comment: "Deprecated property removed in Spring Cloud 2025.1."
+      comment: "Deprecated Spring Cloud property."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.vault.postgresql.enabled"
-      comment: "Deprecated property removed in Spring Cloud 2025.1."
+      comment: "Deprecated Spring Cloud property."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.vault.postgresql.password-property"
-      comment: "Deprecated property removed in Spring Cloud 2025.1."
+      comment: "Deprecated Spring Cloud property."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.vault.postgresql.role"
-      comment: "Deprecated property removed in Spring Cloud 2025.1."
+      comment: "Deprecated Spring Cloud property."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.vault.postgresql.username-property"
-      comment: "Deprecated property removed in Spring Cloud 2025.1."
+      comment: "Deprecated Spring Cloud property."
+      commentOutProperty: false

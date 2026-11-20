@@ -547,7 +547,8 @@ recipeList:
       newPropertyKey: "spring.http.client.ssl.bundle"
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.gateway.mvc.http-client.type"
-      comment: "Deprecated property removed in Spring Cloud 2025.0."
+      comment: "Deprecated Spring Cloud property."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: "spring.cloud.gateway.mvc.remove-content-length-request-headers-filter.enabled"
       newPropertyKey: "spring.cloud.gateway.server.webmvc.remove-content-length-request-headers-filter.enabled"
@@ -628,11 +629,13 @@ recipeList:
       newPropertyKey: "spring.http.client.ssl.bundle"
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.gateway.server.webmvc.http-client.type"
-      comment: "Deprecated property removed in Spring Cloud 2025.0."
+      comment: "Deprecated Spring Cloud property."
+      commentOutProperty: false
   # spring-cloud-kubernetes-commons
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.kubernetes.client.rolling-timeout"
-      comment: "Deprecated property removed in Spring Cloud 2025.0."
+      comment: "Deprecated Spring Cloud property."
+      commentOutProperty: false
   # spring-cloud-stream
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: "management.endpoint.bindings.enabled"
@@ -643,121 +646,160 @@ recipeList:
   # spring-cloud-stream-binder-kafka-reactive
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.stream.kafka.binder.authorization-exception-retry-interval"
-      comment: "Deprecated property removed in Spring Cloud 2025.0."
+      comment: "Deprecated Spring Cloud property."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.stream.kafka.binder.auto-add-partitions"
-      comment: "Deprecated property removed in Spring Cloud 2025.0."
+      comment: "Deprecated Spring Cloud property."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.stream.kafka.binder.auto-alter-topics"
-      comment: "Deprecated property removed in Spring Cloud 2025.0."
+      comment: "Deprecated Spring Cloud property."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.stream.kafka.binder.auto-create-topics"
-      comment: "Deprecated property removed in Spring Cloud 2025.0."
+      comment: "Deprecated Spring Cloud property."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.stream.kafka.binder.brokers"
-      comment: "Deprecated property removed in Spring Cloud 2025.0."
+      comment: "Deprecated Spring Cloud property."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.stream.kafka.binder.certificate-store-directory"
-      comment: "Deprecated property removed in Spring Cloud 2025.0."
+      comment: "Deprecated Spring Cloud property."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.stream.kafka.binder.configuration"
-      comment: "Deprecated property removed in Spring Cloud 2025.0."
+      comment: "Deprecated Spring Cloud property."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.stream.kafka.binder.consider-down-when-any-partition-has-no-leader"
-      comment: "Deprecated property removed in Spring Cloud 2025.0."
+      comment: "Deprecated Spring Cloud property."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.stream.kafka.binder.consumer-properties"
-      comment: "Deprecated property removed in Spring Cloud 2025.0."
+      comment: "Deprecated Spring Cloud property."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.stream.kafka.binder.enable-observation"
-      comment: "Deprecated property removed in Spring Cloud 2025.0."
+      comment: "Deprecated Spring Cloud property."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.stream.kafka.binder.header-mapper-bean-name"
-      comment: "Deprecated property removed in Spring Cloud 2025.0."
+      comment: "Deprecated Spring Cloud property."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.stream.kafka.binder.headers"
-      comment: "Deprecated property removed in Spring Cloud 2025.0."
+      comment: "Deprecated Spring Cloud property."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.stream.kafka.binder.health-indicator-consumer-group"
-      comment: "Deprecated property removed in Spring Cloud 2025.0."
+      comment: "Deprecated Spring Cloud property."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.stream.kafka.binder.health-timeout"
-      comment: "Deprecated property removed in Spring Cloud 2025.0."
+      comment: "Deprecated Spring Cloud property."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.stream.kafka.binder.jaas"
-      comment: "Deprecated property removed in Spring Cloud 2025.0."
+      comment: "Deprecated Spring Cloud property."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.stream.kafka.binder.metrics.default-offset-lag-metrics-enabled"
-      comment: "Deprecated property removed in Spring Cloud 2025.0."
+      comment: "Deprecated Spring Cloud property."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.stream.kafka.binder.metrics.offset-lag-metrics-interval"
-      comment: "Deprecated property removed in Spring Cloud 2025.0."
+      comment: "Deprecated Spring Cloud property."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.stream.kafka.binder.min-partition-count"
-      comment: "Deprecated property removed in Spring Cloud 2025.0."
+      comment: "Deprecated Spring Cloud property."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.stream.kafka.binder.producer-properties"
-      comment: "Deprecated property removed in Spring Cloud 2025.0."
+      comment: "Deprecated Spring Cloud property."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.stream.kafka.binder.replication-factor"
-      comment: "Deprecated property removed in Spring Cloud 2025.0."
+      comment: "Deprecated Spring Cloud property."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.stream.kafka.binder.required-acks"
-      comment: "Deprecated property removed in Spring Cloud 2025.0."
+      comment: "Deprecated Spring Cloud property."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.stream.kafka.binder.transaction.producer.batch-timeout"
-      comment: "Deprecated property removed in Spring Cloud 2025.0."
+      comment: "Deprecated Spring Cloud property."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.stream.kafka.binder.transaction.producer.buffer-size"
-      comment: "Deprecated property removed in Spring Cloud 2025.0."
+      comment: "Deprecated Spring Cloud property."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.stream.kafka.binder.transaction.producer.compression-type"
-      comment: "Deprecated property removed in Spring Cloud 2025.0."
+      comment: "Deprecated Spring Cloud property."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.stream.kafka.binder.transaction.producer.configuration"
-      comment: "Deprecated property removed in Spring Cloud 2025.0."
+      comment: "Deprecated Spring Cloud property."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.stream.kafka.binder.transaction.producer.error-channel-enabled"
-      comment: "Deprecated property removed in Spring Cloud 2025.0."
+      comment: "Deprecated Spring Cloud property."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.stream.kafka.binder.transaction.producer.header-mode"
-      comment: "Deprecated property removed in Spring Cloud 2025.0."
+      comment: "Deprecated Spring Cloud property."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.stream.kafka.binder.transaction.producer.header-patterns"
-      comment: "Deprecated property removed in Spring Cloud 2025.0."
+      comment: "Deprecated Spring Cloud property."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.stream.kafka.binder.transaction.producer.message-key-expression"
-      comment: "Deprecated property removed in Spring Cloud 2025.0."
+      comment: "Deprecated Spring Cloud property."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.stream.kafka.binder.transaction.producer.partition-count"
-      comment: "Deprecated property removed in Spring Cloud 2025.0."
+      comment: "Deprecated Spring Cloud property."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.stream.kafka.binder.transaction.producer.partition-key-expression"
-      comment: "Deprecated property removed in Spring Cloud 2025.0."
+      comment: "Deprecated Spring Cloud property."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.stream.kafka.binder.transaction.producer.partition-key-extractor-name"
-      comment: "Deprecated property removed in Spring Cloud 2025.0."
+      comment: "Deprecated Spring Cloud property."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.stream.kafka.binder.transaction.producer.partition-selector-expression"
-      comment: "Deprecated property removed in Spring Cloud 2025.0."
+      comment: "Deprecated Spring Cloud property."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.stream.kafka.binder.transaction.producer.partition-selector-name"
-      comment: "Deprecated property removed in Spring Cloud 2025.0."
+      comment: "Deprecated Spring Cloud property."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.stream.kafka.binder.transaction.producer.required-groups"
-      comment: "Deprecated property removed in Spring Cloud 2025.0."
+      comment: "Deprecated Spring Cloud property."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.stream.kafka.binder.transaction.producer.sync"
-      comment: "Deprecated property removed in Spring Cloud 2025.0."
+      comment: "Deprecated Spring Cloud property."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.stream.kafka.binder.transaction.producer.topic"
-      comment: "Deprecated property removed in Spring Cloud 2025.0."
+      comment: "Deprecated Spring Cloud property."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.stream.kafka.binder.transaction.producer.use-native-encoding"
-      comment: "Deprecated property removed in Spring Cloud 2025.0."
+      comment: "Deprecated Spring Cloud property."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.stream.kafka.binder.transaction.transaction-id-prefix"
-      comment: "Deprecated property removed in Spring Cloud 2025.0."
+      comment: "Deprecated Spring Cloud property."
+      commentOutProperty: false
   # spring-cloud-stream-binder-kafka-streams
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: "management.endpoint.kafkastreamstopology.enabled"
@@ -765,42 +807,55 @@ recipeList:
   # spring-cloud-task-batch
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.task.batch.command-line-runner-order"
-      comment: "Deprecated property removed in Spring Cloud 2025.0."
+      comment: "Deprecated Spring Cloud property."
+      commentOutProperty: false
   # spring-cloud-vault-config
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.vault.config.order"
-      comment: "Deprecated property removed in Spring Cloud 2025.0. Only required for deprecated Bootstrap Context usage"
+      comment: "Deprecated Spring Cloud property. Only required for deprecated Bootstrap Context usage"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.vault.kv.backend-version"
-      comment: "Deprecated property removed in Spring Cloud 2025.0. Backend version no longer required. The kv version is determined during secret retrieval"
+      comment: "Deprecated Spring Cloud property. Backend version no longer required. The kv version is determined during secret retrieval"
+      commentOutProperty: false
   # spring-cloud-vault-config-databases
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.vault.mysql.backend"
-      comment: "Deprecated property removed in Spring Cloud 2025.0."
+      comment: "Deprecated Spring Cloud property."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.vault.mysql.enabled"
-      comment: "Deprecated property removed in Spring Cloud 2025.0."
+      comment: "Deprecated Spring Cloud property."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.vault.mysql.password-property"
-      comment: "Deprecated property removed in Spring Cloud 2025.0."
+      comment: "Deprecated Spring Cloud property."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.vault.mysql.role"
-      comment: "Deprecated property removed in Spring Cloud 2025.0."
+      comment: "Deprecated Spring Cloud property."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.vault.mysql.username-property"
-      comment: "Deprecated property removed in Spring Cloud 2025.0."
+      comment: "Deprecated Spring Cloud property."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.vault.postgresql.backend"
-      comment: "Deprecated property removed in Spring Cloud 2025.0."
+      comment: "Deprecated Spring Cloud property."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.vault.postgresql.enabled"
-      comment: "Deprecated property removed in Spring Cloud 2025.0."
+      comment: "Deprecated Spring Cloud property."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.vault.postgresql.password-property"
-      comment: "Deprecated property removed in Spring Cloud 2025.0."
+      comment: "Deprecated Spring Cloud property."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.vault.postgresql.role"
-      comment: "Deprecated property removed in Spring Cloud 2025.0."
+      comment: "Deprecated Spring Cloud property."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.vault.postgresql.username-property"
-      comment: "Deprecated property removed in Spring Cloud 2025.0."
+      comment: "Deprecated Spring Cloud property."
+      commentOutProperty: false

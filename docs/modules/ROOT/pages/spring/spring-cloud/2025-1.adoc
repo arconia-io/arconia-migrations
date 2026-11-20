@@ -12,7 +12,7 @@ The recipe will:
 
 * Upgrade `org.springframework.cloud:spring-cloud-dependencies` to the 2025.1.x release line.
 * Upgrade all other `org.springframework.cloud` dependencies to the 5.0.x release line.
-* Rename Spring Cloud configuration properties that changed, and comment out those removed so you can address them manually.
+* Rename Spring Cloud configuration properties that changed, and comment out those removed so you can address them manually. Deprecated properties that still work stay active and get a comment flagging them.
 * Migrate *Spring Cloud Contract* usages to the 5.0 release: swap the WireMock dependency `com.github.tomakehurst:wiremock-jre8-standalone` for `org.wiremock:wiremock-standalone`, add the `org.wiremock.integrations:wiremock-spring-boot` test dependency where `@AutoConfigureWireMock` is used, and replace `@AutoConfigureWireMock` (dropping its `port` attribute) with `@EnableWireMock`.
 
 See its xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_cloud2025_UpgradeSpringCloud_2025_1[entry in the Recipe Catalog] for the full list of recipes this upgrade applies, each with its options and a before/after example.

@@ -768,31 +768,40 @@ recipeList:
       newPropertyKey: "management.server.base-path"
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "management.signalfx.metrics.export.access-token"
-      comment: "Deprecated property removed in Spring Boot 3.5. Deprecated in Micrometer 1.15.0"
+      comment: "Deprecated Spring Boot property. Deprecated in Micrometer 1.15.0"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "management.signalfx.metrics.export.batch-size"
-      comment: "Deprecated property removed in Spring Boot 3.5. Deprecated in Micrometer 1.15.0"
+      comment: "Deprecated Spring Boot property. Deprecated in Micrometer 1.15.0"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "management.signalfx.metrics.export.connect-timeout"
-      comment: "Deprecated property removed in Spring Boot 3.5. Deprecated in Micrometer 1.15.0"
+      comment: "Deprecated Spring Boot property. Deprecated in Micrometer 1.15.0"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "management.signalfx.metrics.export.enabled"
-      comment: "Deprecated property removed in Spring Boot 3.5. Deprecated in Micrometer 1.15.0"
+      comment: "Deprecated Spring Boot property. Deprecated in Micrometer 1.15.0"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "management.signalfx.metrics.export.published-histogram-type"
-      comment: "Deprecated property removed in Spring Boot 3.5. Deprecated in Micrometer 1.15.0"
+      comment: "Deprecated Spring Boot property. Deprecated in Micrometer 1.15.0"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "management.signalfx.metrics.export.read-timeout"
-      comment: "Deprecated property removed in Spring Boot 3.5. Deprecated in Micrometer 1.15.0"
+      comment: "Deprecated Spring Boot property. Deprecated in Micrometer 1.15.0"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "management.signalfx.metrics.export.source"
-      comment: "Deprecated property removed in Spring Boot 3.5. Deprecated in Micrometer 1.15.0"
+      comment: "Deprecated Spring Boot property. Deprecated in Micrometer 1.15.0"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "management.signalfx.metrics.export.step"
-      comment: "Deprecated property removed in Spring Boot 3.5. Deprecated in Micrometer 1.15.0"
+      comment: "Deprecated Spring Boot property. Deprecated in Micrometer 1.15.0"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "management.signalfx.metrics.export.uri"
-      comment: "Deprecated property removed in Spring Boot 3.5. Deprecated in Micrometer 1.15.0"
+      comment: "Deprecated Spring Boot property. Deprecated in Micrometer 1.15.0"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: "management.trace.http.enabled"
       newPropertyKey: "management.httpexchanges.recording.enabled"
@@ -1096,34 +1105,43 @@ recipeList:
       newPropertyKey: "spring.sql.init.username"
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.datasource.dbcp2.default-query-timeout"
-      comment: "Deprecated property removed in Spring Boot 3.5."
+      comment: "Deprecated Spring Boot property."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.datasource.dbcp2.driver"
       comment: "Unbindable property in Spring Boot 3.5. The framework does not bind it."
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.datasource.dbcp2.enable-auto-commit-on-return"
-      comment: "Deprecated property removed in Spring Boot 3.5."
+      comment: "Deprecated Spring Boot property."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.datasource.dbcp2.max-conn-lifetime-millis"
-      comment: "Deprecated property removed in Spring Boot 3.5."
+      comment: "Deprecated Spring Boot property."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.datasource.dbcp2.max-wait-millis"
-      comment: "Deprecated property removed in Spring Boot 3.5."
+      comment: "Deprecated Spring Boot property."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.datasource.dbcp2.min-evictable-idle-time-millis"
-      comment: "Deprecated property removed in Spring Boot 3.5."
+      comment: "Deprecated Spring Boot property."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.datasource.dbcp2.remove-abandoned-timeout"
-      comment: "Deprecated property removed in Spring Boot 3.5."
+      comment: "Deprecated Spring Boot property."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.datasource.dbcp2.soft-min-evictable-idle-time-millis"
-      comment: "Deprecated property removed in Spring Boot 3.5."
+      comment: "Deprecated Spring Boot property."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.datasource.dbcp2.time-between-eviction-runs-millis"
-      comment: "Deprecated property removed in Spring Boot 3.5."
+      comment: "Deprecated Spring Boot property."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.datasource.dbcp2.validation-query-timeout"
-      comment: "Deprecated property removed in Spring Boot 3.5."
+      comment: "Deprecated Spring Boot property."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.datasource.hikari.credentials"
       comment: "Unbindable property in Spring Boot 3.5. The framework does not bind it."
@@ -1147,7 +1165,8 @@ recipeList:
       comment: "Unbindable property in Spring Boot 3.5. The framework does not bind it."
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.datasource.oracleucp.connection-wait-timeout"
-      comment: "Deprecated property removed in Spring Boot 3.5."
+      comment: "Deprecated Spring Boot property."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.datasource.oracleucp.hostname-resolver"
       comment: "Unbindable property in Spring Boot 3.5. The framework does not bind it."
@@ -1207,7 +1226,8 @@ recipeList:
       comment: "Deprecated property removed in Spring Boot 3.5. Removed in Flyway 10"
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.flyway.clean-on-validation-error"
-      comment: "Deprecated property removed in Spring Boot 3.5. Deprecated in Flyway 10.18 and removed in Flyway 11.0"
+      comment: "Deprecated Spring Boot property. Deprecated in Flyway 10.18 and removed in Flyway 11.0"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.flyway.dry-run-output"
       comment: "Deprecated property removed in Spring Boot 3.5. Flyway Teams only."

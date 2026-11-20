@@ -19,6 +19,10 @@ Some changes in Spring Modulith 2.2 affect behavior without requiring code chang
 
 * Transactional event listeners now complete their event publication within the listener's transaction, so the completion and the listener's changes are committed or rolled back together. Set `spring.modulith.events.completion=in-interceptor` to complete publications after the listener's transaction instead, as earlier releases did.
 * The staleness timeouts under `spring.modulith.events.staleness` must be greater than zero, and the application fails to start otherwise. Remove a timeout set to zero to leave it unconfigured.
+* The SpEL expressions that compute the routing target and key of an externalized event are now evaluated against the original event rather than the mapped payload. Adjust expressions that refer to properties only the mapped payload has.
+* Scheduling is no longer activated in tests when Spring Modulith Moments is used, so the passage-of-time events are only published when the test shifts time.
+
+The `DelegatingEventExternalizer` class, deprecated in Spring Modulith 2.1, is removed. Custom broker integrations built on it need to be reworked manually around `EventExternalizerModuleListener` and an `EventExternalizationTransport`, which have a different shape.
 
 See its xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_modulith2_UpgradeSpringModulith_2_2[entry in the Recipe Catalog] for the full list of recipes this upgrade applies, each with its options and a before/after example.
 

@@ -191,7 +191,7 @@ class UpgradeSpringAi_2_1_Tests implements RewriteTest {
     }
 
     @Test
-    void removedMcpServerProperties() {
+    void deprecatedMcpServerProperties() {
         rewriteRun(
                 //language=properties
                 properties(
@@ -199,8 +199,8 @@ class UpgradeSpringAi_2_1_Tests implements RewriteTest {
                         spring.ai.mcp.server.sse-endpoint=/sse
                         """,
                         """
-                        # Deprecated property removed in Spring AI 2.1.
-                        # spring.ai.mcp.server.sse-endpoint=/sse
+                        # Deprecated Spring AI property.
+                        spring.ai.mcp.server.sse-endpoint=/sse
                         """,
                         s -> s.path("src/main/resources/application.properties"))
         );

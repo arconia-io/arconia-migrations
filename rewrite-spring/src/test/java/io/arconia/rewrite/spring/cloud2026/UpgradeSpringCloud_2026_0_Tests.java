@@ -33,7 +33,7 @@ class UpgradeSpringCloud_2026_0_Tests implements RewriteTest {
     }
 
     @Test
-    void removedPropertiesAreFlagged() {
+    void deprecatedPropertiesAreFlagged() {
         rewriteRun(
                 //language=properties
                 properties(
@@ -41,8 +41,8 @@ class UpgradeSpringCloud_2026_0_Tests implements RewriteTest {
                         spring.cloud.vault.kv.backend-version=2
                         """,
                         """
-                        # Deprecated property removed in Spring Cloud 2026.0. Backend version no longer required. The kv version is determined during secret retrieval
-                        # spring.cloud.vault.kv.backend-version=2
+                        # Deprecated Spring Cloud property. Backend version no longer required. The kv version is determined during secret retrieval
+                        spring.cloud.vault.kv.backend-version=2
                         """,
                         s -> s.path("src/main/resources/application.properties"))
         );

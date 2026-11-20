@@ -11,7 +11,7 @@ The `{recipe-id}` recipe automates most of the changes introduced in Spring AI 1
 The recipe will:
 
 * Upgrade all `org.springframework.ai` dependencies to the 1.0.x release line.
-* Rename Spring AI configuration properties that changed, and comment out those removed so you can address them manually.
+* Rename Spring AI configuration properties that changed, and comment out those removed so you can address them manually. Deprecated properties that still work stay active and get a comment flagging them.
 * Remove Spring AI configuration properties that were dropped in 1.0, such as the per-provider `spring.ai.<provider>.<capability>.enabled` flags, and adjust changed values (for example, `spring.ai.chat.memory.repository.jdbc.initialize-schema` from `true`/`false` to `always`/`never`).
 * Rename the model provider starters to the new `spring-ai-starter-model-<provider>` scheme. This covers Anthropic, Azure OpenAI, Bedrock (and Bedrock Converse), Hugging Face, MiniMax, Mistral AI, OCI GenAI, Ollama, OpenAI, PostgresML, Stability AI, Transformers, Vertex AI (embedding and Gemini), Watsonx AI, and ZhipuAI.
 * Rename the vector store starters to the new `spring-ai-starter-vector-store-<store>` scheme. This covers Azure (and Azure Cosmos DB), MariaDB, Chroma, AWS OpenSearch, Neo4j, Milvus, Couchbase, Cassandra, Elasticsearch, pgvector, Typesense, Oracle, OpenSearch, SAP HANA, Pinecone, GemFire, Weaviate, MongoDB Atlas, Qdrant, and Redis.

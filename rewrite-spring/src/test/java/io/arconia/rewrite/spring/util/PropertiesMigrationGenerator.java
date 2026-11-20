@@ -149,7 +149,7 @@ public final class PropertiesMigrationGenerator {
     sealed interface ModuleProperty permits ModuleProperty.Renamed, ModuleProperty.Commented {
         String name();
         record Renamed(String name, String replacement) implements ModuleProperty {}
-        record Commented(String name, String comment) implements ModuleProperty {}
+        record Commented(String name, String comment, boolean commentOut) implements ModuleProperty {}
     }
 
     public static void run(String[] args, Class<?> entryPoint, Spec spec) throws IOException, InterruptedException {
@@ -228,7 +228,7 @@ public final class PropertiesMigrationGenerator {
                         if (jar == null) {
                             return null;
                         }
-                        return readModuleProperties(jar, productLabel);
+                        return readModuleProperties(jar, spec.productName(), productLabel);
                     } catch (IOException | InterruptedException e) {
                         throw new CompletionException(e);
                     } finally {
@@ -416,7 +416,7 @@ public final class PropertiesMigrationGenerator {
         return bytes == null ? null : target;
     }
 
-    private static List<ModuleProperty> readModuleProperties(Path jar, String productLabel) throws IOException {
+    private static List<ModuleProperty> readModuleProperties(Path jar, String productName, String productLabel) throws IOException {
         try (JarFile jarFile = new JarFile(jar.toFile())) {
             JarEntry entry = jarFile.getJarEntry("META-INF/spring-configuration-metadata.json");
             if (entry == null) {
@@ -435,9 +435,12 @@ public final class PropertiesMigrationGenerator {
                             result.add(new ModuleProperty.Renamed(p.name(), d.replacement()));
                         } else {
                             String reason = d.reason();
-                            String comment = "Deprecated property removed in " + productLabel + "."
+                            // Only error-level deprecations are no longer bound; the others still work and stay active.
+                            // Their comment carries no version, so chained upgrades flag a property once.
+                            boolean removed = "error".equalsIgnoreCase(d.level());
+                            String comment = (removed ? "Deprecated property removed in " + productLabel : "Deprecated " + productName + " property") + "."
                                     + (reason != null && !reason.isBlank() ? " " + reason.trim() : "");
-                            result.add(new ModuleProperty.Commented(p.name(), comment));
+                            result.add(new ModuleProperty.Commented(p.name(), comment, removed));
                         }
                     }
                 }
@@ -445,7 +448,8 @@ public final class PropertiesMigrationGenerator {
                     for (IgnoredProperty ip : metadata.ignored().properties()) {
                         result.add(new ModuleProperty.Commented(
                                 ip.name(),
-                                "Unbindable property in " + productLabel + ". The framework does not bind it."));
+                                "Unbindable property in " + productLabel + ". The framework does not bind it.",
+                                true));
                     }
                 }
                 return result;
@@ -540,7 +544,8 @@ public final class PropertiesMigrationGenerator {
                       - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
                           propertyKey: "%s"
                           comment: "%s"
-                    """.formatted(c.name(), yamlEscape(c.comment()));
+                    %s""".formatted(c.name(), yamlEscape(c.comment()),
+                    c.commentOut() ? "" : "      commentOutProperty: false\n");
         };
     }
 

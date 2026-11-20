@@ -14,20 +14,25 @@ recipeList:
   # spring-ai-autoconfigure-mcp-client-common
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.ai.mcp.client.sse.connections"
-      comment: "Deprecated property removed in Spring AI 2.0."
+      comment: "Deprecated Spring AI property."
+      commentOutProperty: false
   # spring-ai-autoconfigure-mcp-server-common
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.ai.mcp.server.base-url"
-      comment: "Deprecated property removed in Spring AI 2.0."
+      comment: "Deprecated Spring AI property."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.ai.mcp.server.keep-alive-interval"
-      comment: "Deprecated property removed in Spring AI 2.0."
+      comment: "Deprecated Spring AI property."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.ai.mcp.server.sse-endpoint"
-      comment: "Deprecated property removed in Spring AI 2.0."
+      comment: "Deprecated Spring AI property."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.ai.mcp.server.sse-message-endpoint"
-      comment: "Deprecated property removed in Spring AI 2.0."
+      comment: "Deprecated Spring AI property."
+      commentOutProperty: false
   # spring-ai-autoconfigure-model-anthropic
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: "spring.ai.anthropic.chat.options.cache-options"

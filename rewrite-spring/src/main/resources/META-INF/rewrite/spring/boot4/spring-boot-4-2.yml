@@ -55,3 +55,4 @@ recipeList:
   # Modules
   - io.arconia.rewrite.spring.boot4.MigrateSpringBootHttp_4_2
   - io.arconia.rewrite.spring.boot4.MigrateSpringBootRabbitMq_4_2
+  - io.arconia.rewrite.spring.boot4.MigrateSpringBootWebServer_4_2

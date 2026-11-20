@@ -201,24 +201,24 @@ class UpgradeSpringBootProperties_3_5_Tests implements RewriteTest {
                         management.signalfx.metrics.export.uri=https://ingest.signalfx.com
                         """,
                         """
-                        # Deprecated property removed in Spring Boot 3.5. Deprecated in Micrometer 1.15.0
-                        # management.signalfx.metrics.export.access-token=my-token
-                        # Deprecated property removed in Spring Boot 3.5. Deprecated in Micrometer 1.15.0
-                        # management.signalfx.metrics.export.batch-size=10000
-                        # Deprecated property removed in Spring Boot 3.5. Deprecated in Micrometer 1.15.0
-                        # management.signalfx.metrics.export.connect-timeout=1s
-                        # Deprecated property removed in Spring Boot 3.5. Deprecated in Micrometer 1.15.0
-                        # management.signalfx.metrics.export.enabled=true
-                        # Deprecated property removed in Spring Boot 3.5. Deprecated in Micrometer 1.15.0
-                        # management.signalfx.metrics.export.published-histogram-type=cumulative
-                        # Deprecated property removed in Spring Boot 3.5. Deprecated in Micrometer 1.15.0
-                        # management.signalfx.metrics.export.read-timeout=10s
-                        # Deprecated property removed in Spring Boot 3.5. Deprecated in Micrometer 1.15.0
-                        # management.signalfx.metrics.export.source=my-source
-                        # Deprecated property removed in Spring Boot 3.5. Deprecated in Micrometer 1.15.0
-                        # management.signalfx.metrics.export.step=1m
-                        # Deprecated property removed in Spring Boot 3.5. Deprecated in Micrometer 1.15.0
-                        # management.signalfx.metrics.export.uri=https://ingest.signalfx.com
+                        # Deprecated Spring Boot property. Deprecated in Micrometer 1.15.0
+                        management.signalfx.metrics.export.access-token=my-token
+                        # Deprecated Spring Boot property. Deprecated in Micrometer 1.15.0
+                        management.signalfx.metrics.export.batch-size=10000
+                        # Deprecated Spring Boot property. Deprecated in Micrometer 1.15.0
+                        management.signalfx.metrics.export.connect-timeout=1s
+                        # Deprecated Spring Boot property. Deprecated in Micrometer 1.15.0
+                        management.signalfx.metrics.export.enabled=true
+                        # Deprecated Spring Boot property. Deprecated in Micrometer 1.15.0
+                        management.signalfx.metrics.export.published-histogram-type=cumulative
+                        # Deprecated Spring Boot property. Deprecated in Micrometer 1.15.0
+                        management.signalfx.metrics.export.read-timeout=10s
+                        # Deprecated Spring Boot property. Deprecated in Micrometer 1.15.0
+                        management.signalfx.metrics.export.source=my-source
+                        # Deprecated Spring Boot property. Deprecated in Micrometer 1.15.0
+                        management.signalfx.metrics.export.step=1m
+                        # Deprecated Spring Boot property. Deprecated in Micrometer 1.15.0
+                        management.signalfx.metrics.export.uri=https://ingest.signalfx.com
                         """,
                         s -> s.path("src/main/resources/application.properties"))
         );

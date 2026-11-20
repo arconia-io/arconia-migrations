@@ -11,12 +11,22 @@ The `{recipe-id}` recipe automates the changes introduced in Spring AI 2.1. You 
 The recipe will:
 
 * Upgrade all `org.springframework.ai` dependencies to the 2.1.x release line.
-* Rename Spring AI configuration properties that changed, and comment out those removed so you can address them manually, such as the MCP server SSE endpoint properties.
+* Rename Spring AI configuration properties that changed, and comment out those removed so you can address them manually. Deprecated properties that still work, such as the MCP server SSE endpoint properties, stay active and get a comment flagging them.
 * For *Anthropic*: remove the `temperature`, `topP`, and `topK` calls from `AnthropicChatOptions` builders, since Anthropic API version `2026-10-21` rejects these options and Spring AI discards their values.
 * For *DeepSeek*: replace the `DeepSeekAssistantMessage.prefixAssistantMessage()` factory methods, removed in Spring AI 2.1, with the equivalent `DeepSeekAssistantMessage.builder()` chain. The builder keeps the code compiling, but `DeepSeekAssistantMessage` is itself deprecated for removal, so plan to move to a plain `AssistantMessage`.
-* For *MCP* (Model Context Protocol): drop the `toolCallExceptionClass` argument from the constructors of the MCP tool method callbacks, which is ignored since exception dispatch became type-based in Spring AI 2.0.1 and is removed in Spring AI 2.1.
+* For *MCP* (Model Context Protocol): drop the `toolCallExceptionClass` argument from the constructors of the MCP tool method callbacks, which is ignored since exception dispatch became type-based in Spring AI 2.0.1 and is deprecated for removal in Spring AI 2.1.
 
 Spring AI 2.1 introduces message parts without requiring source changes: the message constructors and builders keep working, and `getText()`, `getMedia()`, and `getToolCalls()` are now views over the parts. The protected `textContent`, `media`, and `responses` fields of the message classes are deprecated, so subclasses that read them directly should switch to the accessors.
+
+Some changes in Spring AI 2.1 are deliberately not automated:
+
+* The Anthropic, Bedrock Converse, and Google GenAI chat models now return thinking as `ReasoningPart` entries of a single `Generation` instead of separate generations. Read it with `getResult().getOutput().getReasoning()`, and rework code that filters generations, such as on the removed `GoogleGenAiChatModel.THOUGHT_METADATA_KEY`.
+* `DeepSeekAssistantMessage.getReasoningContent()` gives way to `AssistantMessage.getReasoning()`, which returns the reasoning parts rather than a `String`. `DeepSeekChatModel` now streams through `DeepSeekApi.chatCompletionStreamRaw`, so override or stub that method instead of the deprecated `chatCompletionStream`.
+* `BedrockChatOptions.requestParameters` is widened from `Map<String, String>` to `Map<String, Object>`. Change the declared type of any explicitly typed variable passed to it.
+* The `McpSyncServerCustomizer`, `McpAsyncServerCustomizer`, `McpStatelessSyncServerCustomizer`, and `McpStatelessAsyncServerCustomizer` interfaces are deprecated in favor of the generic `McpServerCustomizer`, parameterized with the matching `McpServer` specification type. They still work.
+* `ChatClient.entity(...)` now throws a `ContentFilteredException` when a filtered response cannot be converted, and a `GuardrailRefusalException` when a `SafeGuardAdvisor` refuses the request, where it used to fail with the parsing error of the converter or return `null`.
+* Anthropic API keys are now sent in the `Authorization: Bearer` header instead of `X-Api-Key`, so update proxies, interceptors, and header allowlists that depend on the previous header.
+* `PgVectorStore` no longer overwrites a `distance` key stored in the metadata of a document with the computed similarity distance. Read the similarity from `Document.getScore()` instead.
 
 Spring AI 2.1 also deprecates the `ChatMemory` API in favor of session memory. The upgrade recipe leaves chat memory in place, since it keeps working until Spring AI 3.0. To move an application to session memory, follow the https://docs.spring.io/spring-ai/reference/2.1/api/chat-memory.html#chat-memory-migration[Spring AI migration guide].
 

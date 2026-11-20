@@ -12,7 +12,7 @@ The recipe will:
 
 * Upgrade `org.springframework.data:spring-data-bom` to the 2026.1.x release train, and each Spring Data module to its own release line within that train.
 
-Spring Data 2026.1 removes no public API. Note that Spring Data JPA now fails at startup when the `name` or `countName` attribute of `@Query` references a named query that does not exist, where it used to fall back to a derived query silently.
+Spring Data 2026.1 removes no public API. Note that Spring Data JPA now fails at startup when the `name` or `countName` attribute of `@Query` references a named query that does not exist, where it used to fall back to a derived query silently. String-based `@Query` methods returning a static DTO projection are now validated at startup as well, so a projection that does not match the query fails early instead of on first invocation. In Spring Data Redis, the converter helpers in the `org.springframework.data.redis.connection.convert` package, such as `LongToBooleanConverter` and the converter factory methods of `Converters`, are deprecated in favor of the plain `Converters` conversion methods used through method references, and the Jedis cluster command callbacks now work with `UnifiedJedis`. In Spring Data REST, JSON Patch requests can no longer update identifier and version properties, and `PUT` requests can no longer change the version property of immutable aggregates. In Spring Data JDBC, schema generation now creates foreign key constraints for `AggregateReference` properties.
 
 See its xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_data2026_UpgradeSpringData_2026_1[entry in the Recipe Catalog] for the full list of recipes this upgrade applies, each with its options and a before/after example.
 

@@ -30,7 +30,8 @@ recipeList:
       newPropertyKey: "management.endpoints.access.default"
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "management.endpoints.jackson2.isolated-object-mapper"
-      comment: "Deprecated property removed in Spring Boot 4.2. Jackson 3 is preferred."
+      comment: "Deprecated Spring Boot property. Jackson 3 is preferred."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: "management.endpoints.jmx.unique-names"
       newPropertyKey: "spring.jmx.unique-names"
@@ -519,10 +520,12 @@ recipeList:
   # spring-boot-devtools
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.devtools.livereload.enabled"
-      comment: "Deprecated property removed in Spring Boot 4.2. Deprecated with no replacement"
+      comment: "Deprecated Spring Boot property. Deprecated with no replacement"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.devtools.livereload.port"
-      comment: "Deprecated property removed in Spring Boot 4.2. Deprecated with no replacement"
+      comment: "Deprecated Spring Boot property. Deprecated with no replacement"
+      commentOutProperty: false
   # spring-boot-elasticsearch
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "management.health.elasticsearch.indices"
@@ -676,49 +679,64 @@ recipeList:
   # spring-boot-jackson2
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.jackson2.constructor-detector"
-      comment: "Deprecated property removed in Spring Boot 4.2. Deprecated in favor of Jackson 3"
+      comment: "Deprecated Spring Boot property. Deprecated in favor of Jackson 3"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.jackson2.datatype.enum"
-      comment: "Deprecated property removed in Spring Boot 4.2. Deprecated in favor of Jackson 3"
+      comment: "Deprecated Spring Boot property. Deprecated in favor of Jackson 3"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.jackson2.datatype.json-node"
-      comment: "Deprecated property removed in Spring Boot 4.2. Deprecated in favor of Jackson 3"
+      comment: "Deprecated Spring Boot property. Deprecated in favor of Jackson 3"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.jackson2.date-format"
-      comment: "Deprecated property removed in Spring Boot 4.2. Deprecated in favor of Jackson 3"
+      comment: "Deprecated Spring Boot property. Deprecated in favor of Jackson 3"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.jackson2.default-leniency"
-      comment: "Deprecated property removed in Spring Boot 4.2. Deprecated in favor of Jackson 3"
+      comment: "Deprecated Spring Boot property. Deprecated in favor of Jackson 3"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.jackson2.default-property-inclusion"
-      comment: "Deprecated property removed in Spring Boot 4.2. Deprecated in favor of Jackson 3"
+      comment: "Deprecated Spring Boot property. Deprecated in favor of Jackson 3"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.jackson2.deserialization"
-      comment: "Deprecated property removed in Spring Boot 4.2. Deprecated in favor of Jackson 3"
+      comment: "Deprecated Spring Boot property. Deprecated in favor of Jackson 3"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.jackson2.generator"
-      comment: "Deprecated property removed in Spring Boot 4.2. Deprecated in favor of Jackson 3"
+      comment: "Deprecated Spring Boot property. Deprecated in favor of Jackson 3"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.jackson2.locale"
-      comment: "Deprecated property removed in Spring Boot 4.2. Deprecated in favor of Jackson 3"
+      comment: "Deprecated Spring Boot property. Deprecated in favor of Jackson 3"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.jackson2.mapper"
-      comment: "Deprecated property removed in Spring Boot 4.2. Deprecated in favor of Jackson 3"
+      comment: "Deprecated Spring Boot property. Deprecated in favor of Jackson 3"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.jackson2.parser"
-      comment: "Deprecated property removed in Spring Boot 4.2. Deprecated in favor of Jackson 3"
+      comment: "Deprecated Spring Boot property. Deprecated in favor of Jackson 3"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.jackson2.property-naming-strategy"
-      comment: "Deprecated property removed in Spring Boot 4.2. Deprecated in favor of Jackson 3"
+      comment: "Deprecated Spring Boot property. Deprecated in favor of Jackson 3"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.jackson2.serialization"
-      comment: "Deprecated property removed in Spring Boot 4.2. Deprecated in favor of Jackson 3"
+      comment: "Deprecated Spring Boot property. Deprecated in favor of Jackson 3"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.jackson2.time-zone"
-      comment: "Deprecated property removed in Spring Boot 4.2. Deprecated in favor of Jackson 3"
+      comment: "Deprecated Spring Boot property. Deprecated in favor of Jackson 3"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.jackson2.visibility"
-      comment: "Deprecated property removed in Spring Boot 4.2. Deprecated in favor of Jackson 3"
+      comment: "Deprecated Spring Boot property. Deprecated in favor of Jackson 3"
+      commentOutProperty: false
   # spring-boot-jdbc
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: "spring.datasource.continue-on-error"
@@ -734,34 +752,43 @@ recipeList:
       newPropertyKey: "spring.sql.init.username"
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.datasource.dbcp2.default-query-timeout"
-      comment: "Deprecated property removed in Spring Boot 4.2."
+      comment: "Deprecated Spring Boot property."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.datasource.dbcp2.driver"
       comment: "Unbindable property in Spring Boot 4.2. The framework does not bind it."
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.datasource.dbcp2.enable-auto-commit-on-return"
-      comment: "Deprecated property removed in Spring Boot 4.2."
+      comment: "Deprecated Spring Boot property."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.datasource.dbcp2.max-conn-lifetime-millis"
-      comment: "Deprecated property removed in Spring Boot 4.2."
+      comment: "Deprecated Spring Boot property."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.datasource.dbcp2.max-wait-millis"
-      comment: "Deprecated property removed in Spring Boot 4.2."
+      comment: "Deprecated Spring Boot property."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.datasource.dbcp2.min-evictable-idle-time-millis"
-      comment: "Deprecated property removed in Spring Boot 4.2."
+      comment: "Deprecated Spring Boot property."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.datasource.dbcp2.remove-abandoned-timeout"
-      comment: "Deprecated property removed in Spring Boot 4.2."
+      comment: "Deprecated Spring Boot property."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.datasource.dbcp2.soft-min-evictable-idle-time-millis"
-      comment: "Deprecated property removed in Spring Boot 4.2."
+      comment: "Deprecated Spring Boot property."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.datasource.dbcp2.time-between-eviction-runs-millis"
-      comment: "Deprecated property removed in Spring Boot 4.2."
+      comment: "Deprecated Spring Boot property."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.datasource.dbcp2.validation-query-timeout"
-      comment: "Deprecated property removed in Spring Boot 4.2."
+      comment: "Deprecated Spring Boot property."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.datasource.hikari.credentials"
       comment: "Unbindable property in Spring Boot 4.2. The framework does not bind it."
@@ -788,7 +815,8 @@ recipeList:
       comment: "Unbindable property in Spring Boot 4.2. The framework does not bind it."
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.datasource.oracleucp.connection-wait-timeout"
-      comment: "Deprecated property removed in Spring Boot 4.2."
+      comment: "Deprecated Spring Boot property."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.datasource.oracleucp.hostname-resolver"
       comment: "Unbindable property in Spring Boot 4.2. The framework does not bind it."
@@ -925,31 +953,40 @@ recipeList:
   # spring-boot-micrometer-metrics
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "management.appoptics.metrics.export.api-token"
-      comment: "Deprecated property removed in Spring Boot 4.2."
+      comment: "Deprecated Spring Boot property."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "management.appoptics.metrics.export.batch-size"
-      comment: "Deprecated property removed in Spring Boot 4.2."
+      comment: "Deprecated Spring Boot property."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "management.appoptics.metrics.export.connect-timeout"
-      comment: "Deprecated property removed in Spring Boot 4.2."
+      comment: "Deprecated Spring Boot property."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "management.appoptics.metrics.export.floor-times"
-      comment: "Deprecated property removed in Spring Boot 4.2."
+      comment: "Deprecated Spring Boot property."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "management.appoptics.metrics.export.host-tag"
-      comment: "Deprecated property removed in Spring Boot 4.2."
+      comment: "Deprecated Spring Boot property."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "management.appoptics.metrics.export.uri"
-      comment: "Deprecated property removed in Spring Boot 4.2."
+      comment: "Deprecated Spring Boot property."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "management.dynatrace.metrics.export.v1.device-id"
-      comment: "Deprecated property removed in Spring Boot 4.2. Dynatrace V1 API is deprecated, use the V2 API instead."
+      comment: "Deprecated Spring Boot property. Dynatrace V1 API is deprecated, use the V2 API instead."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "management.dynatrace.metrics.export.v1.group"
-      comment: "Deprecated property removed in Spring Boot 4.2. Dynatrace V1 API is deprecated, use the V2 API instead."
+      comment: "Deprecated Spring Boot property. Dynatrace V1 API is deprecated, use the V2 API instead."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "management.dynatrace.metrics.export.v1.technology-type"
-      comment: "Deprecated property removed in Spring Boot 4.2. Dynatrace V1 API is deprecated, use the V2 API instead."
+      comment: "Deprecated Spring Boot property. Dynatrace V1 API is deprecated, use the V2 API instead."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "management.metrics.binders.files.enabled"
       comment: "Deprecated property removed in Spring Boot 4.2. Instead, filter 'process.files' metrics."
@@ -1693,181 +1730,240 @@ recipeList:
   # spring-boot-pulsar
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.pulsar.admin.authentication.param"
-      comment: "Deprecated property removed in Spring Boot 4.2. module deprecated in favor of pulsar-spring"
+      comment: "Deprecated Spring Boot property. module deprecated in favor of pulsar-spring"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.pulsar.admin.authentication.plugin-class-name"
-      comment: "Deprecated property removed in Spring Boot 4.2. module deprecated in favor of pulsar-spring"
+      comment: "Deprecated Spring Boot property. module deprecated in favor of pulsar-spring"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.pulsar.admin.connection-timeout"
-      comment: "Deprecated property removed in Spring Boot 4.2. module deprecated in favor of pulsar-spring"
+      comment: "Deprecated Spring Boot property. module deprecated in favor of pulsar-spring"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.pulsar.admin.read-timeout"
-      comment: "Deprecated property removed in Spring Boot 4.2. module deprecated in favor of pulsar-spring"
+      comment: "Deprecated Spring Boot property. module deprecated in favor of pulsar-spring"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.pulsar.admin.request-timeout"
-      comment: "Deprecated property removed in Spring Boot 4.2. module deprecated in favor of pulsar-spring"
+      comment: "Deprecated Spring Boot property. module deprecated in favor of pulsar-spring"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.pulsar.admin.service-url"
-      comment: "Deprecated property removed in Spring Boot 4.2. module deprecated in favor of pulsar-spring"
+      comment: "Deprecated Spring Boot property. module deprecated in favor of pulsar-spring"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.pulsar.client.authentication.param"
-      comment: "Deprecated property removed in Spring Boot 4.2. module deprecated in favor of pulsar-spring"
+      comment: "Deprecated Spring Boot property. module deprecated in favor of pulsar-spring"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.pulsar.client.authentication.plugin-class-name"
-      comment: "Deprecated property removed in Spring Boot 4.2. module deprecated in favor of pulsar-spring"
+      comment: "Deprecated Spring Boot property. module deprecated in favor of pulsar-spring"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.pulsar.client.connection-timeout"
-      comment: "Deprecated property removed in Spring Boot 4.2. module deprecated in favor of pulsar-spring"
+      comment: "Deprecated Spring Boot property. module deprecated in favor of pulsar-spring"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.pulsar.client.failover.backup-clusters"
-      comment: "Deprecated property removed in Spring Boot 4.2. module deprecated in favor of pulsar-spring"
+      comment: "Deprecated Spring Boot property. module deprecated in favor of pulsar-spring"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.pulsar.client.failover.check-interval"
-      comment: "Deprecated property removed in Spring Boot 4.2. module deprecated in favor of pulsar-spring"
+      comment: "Deprecated Spring Boot property. module deprecated in favor of pulsar-spring"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.pulsar.client.failover.delay"
-      comment: "Deprecated property removed in Spring Boot 4.2. module deprecated in favor of pulsar-spring"
+      comment: "Deprecated Spring Boot property. module deprecated in favor of pulsar-spring"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.pulsar.client.failover.policy"
-      comment: "Deprecated property removed in Spring Boot 4.2. module deprecated in favor of pulsar-spring"
+      comment: "Deprecated Spring Boot property. module deprecated in favor of pulsar-spring"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.pulsar.client.failover.switch-back-delay"
-      comment: "Deprecated property removed in Spring Boot 4.2. module deprecated in favor of pulsar-spring"
+      comment: "Deprecated Spring Boot property. module deprecated in favor of pulsar-spring"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.pulsar.client.lookup-timeout"
-      comment: "Deprecated property removed in Spring Boot 4.2. module deprecated in favor of pulsar-spring"
+      comment: "Deprecated Spring Boot property. module deprecated in favor of pulsar-spring"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.pulsar.client.operation-timeout"
-      comment: "Deprecated property removed in Spring Boot 4.2. module deprecated in favor of pulsar-spring"
+      comment: "Deprecated Spring Boot property. module deprecated in favor of pulsar-spring"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.pulsar.client.service-url"
-      comment: "Deprecated property removed in Spring Boot 4.2. module deprecated in favor of pulsar-spring"
+      comment: "Deprecated Spring Boot property. module deprecated in favor of pulsar-spring"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.pulsar.client.threads.io"
-      comment: "Deprecated property removed in Spring Boot 4.2. module deprecated in favor of pulsar-spring"
+      comment: "Deprecated Spring Boot property. module deprecated in favor of pulsar-spring"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.pulsar.client.threads.listener"
-      comment: "Deprecated property removed in Spring Boot 4.2. module deprecated in favor of pulsar-spring"
+      comment: "Deprecated Spring Boot property. module deprecated in favor of pulsar-spring"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.pulsar.consumer.dead-letter-policy.dead-letter-topic"
-      comment: "Deprecated property removed in Spring Boot 4.2. module deprecated in favor of pulsar-spring"
+      comment: "Deprecated Spring Boot property. module deprecated in favor of pulsar-spring"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.pulsar.consumer.dead-letter-policy.initial-subscription-name"
-      comment: "Deprecated property removed in Spring Boot 4.2. module deprecated in favor of pulsar-spring"
+      comment: "Deprecated Spring Boot property. module deprecated in favor of pulsar-spring"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.pulsar.consumer.dead-letter-policy.max-redeliver-count"
-      comment: "Deprecated property removed in Spring Boot 4.2. module deprecated in favor of pulsar-spring"
+      comment: "Deprecated Spring Boot property. module deprecated in favor of pulsar-spring"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.pulsar.consumer.dead-letter-policy.retry-letter-topic"
-      comment: "Deprecated property removed in Spring Boot 4.2. module deprecated in favor of pulsar-spring"
+      comment: "Deprecated Spring Boot property. module deprecated in favor of pulsar-spring"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.pulsar.consumer.name"
-      comment: "Deprecated property removed in Spring Boot 4.2. module deprecated in favor of pulsar-spring"
+      comment: "Deprecated Spring Boot property. module deprecated in favor of pulsar-spring"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.pulsar.consumer.priority-level"
-      comment: "Deprecated property removed in Spring Boot 4.2. module deprecated in favor of pulsar-spring"
+      comment: "Deprecated Spring Boot property. module deprecated in favor of pulsar-spring"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.pulsar.consumer.read-compacted"
-      comment: "Deprecated property removed in Spring Boot 4.2. module deprecated in favor of pulsar-spring"
+      comment: "Deprecated Spring Boot property. module deprecated in favor of pulsar-spring"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.pulsar.consumer.retry-enable"
-      comment: "Deprecated property removed in Spring Boot 4.2. module deprecated in favor of pulsar-spring"
+      comment: "Deprecated Spring Boot property. module deprecated in favor of pulsar-spring"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.pulsar.consumer.subscription.initial-position"
-      comment: "Deprecated property removed in Spring Boot 4.2. module deprecated in favor of pulsar-spring"
+      comment: "Deprecated Spring Boot property. module deprecated in favor of pulsar-spring"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.pulsar.consumer.subscription.mode"
-      comment: "Deprecated property removed in Spring Boot 4.2. module deprecated in favor of pulsar-spring"
+      comment: "Deprecated Spring Boot property. module deprecated in favor of pulsar-spring"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.pulsar.consumer.subscription.topics-mode"
-      comment: "Deprecated property removed in Spring Boot 4.2. module deprecated in favor of pulsar-spring"
+      comment: "Deprecated Spring Boot property. module deprecated in favor of pulsar-spring"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.pulsar.consumer.subscription.type"
-      comment: "Deprecated property removed in Spring Boot 4.2. module deprecated in favor of pulsar-spring"
+      comment: "Deprecated Spring Boot property. module deprecated in favor of pulsar-spring"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.pulsar.consumer.topics"
-      comment: "Deprecated property removed in Spring Boot 4.2. module deprecated in favor of pulsar-spring"
+      comment: "Deprecated Spring Boot property. module deprecated in favor of pulsar-spring"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.pulsar.consumer.topics-pattern"
-      comment: "Deprecated property removed in Spring Boot 4.2. module deprecated in favor of pulsar-spring"
+      comment: "Deprecated Spring Boot property. module deprecated in favor of pulsar-spring"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.pulsar.defaults.topic.namespace"
-      comment: "Deprecated property removed in Spring Boot 4.2. module deprecated in favor of pulsar-spring"
+      comment: "Deprecated Spring Boot property. module deprecated in favor of pulsar-spring"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.pulsar.defaults.topic.tenant"
-      comment: "Deprecated property removed in Spring Boot 4.2. module deprecated in favor of pulsar-spring"
+      comment: "Deprecated Spring Boot property. module deprecated in favor of pulsar-spring"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.pulsar.function.fail-fast"
-      comment: "Deprecated property removed in Spring Boot 4.2. module deprecated in favor of pulsar-spring"
+      comment: "Deprecated Spring Boot property. module deprecated in favor of pulsar-spring"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.pulsar.function.propagate-failures"
-      comment: "Deprecated property removed in Spring Boot 4.2. module deprecated in favor of pulsar-spring"
+      comment: "Deprecated Spring Boot property. module deprecated in favor of pulsar-spring"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.pulsar.function.propagate-stop-failures"
-      comment: "Deprecated property removed in Spring Boot 4.2. module deprecated in favor of pulsar-spring"
+      comment: "Deprecated Spring Boot property. module deprecated in favor of pulsar-spring"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.pulsar.listener.concurrency"
-      comment: "Deprecated property removed in Spring Boot 4.2. module deprecated in favor of pulsar-spring"
+      comment: "Deprecated Spring Boot property. module deprecated in favor of pulsar-spring"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.pulsar.listener.observation-enabled"
-      comment: "Deprecated property removed in Spring Boot 4.2. module deprecated in favor of pulsar-spring"
+      comment: "Deprecated Spring Boot property. module deprecated in favor of pulsar-spring"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.pulsar.producer.access-mode"
-      comment: "Deprecated property removed in Spring Boot 4.2. module deprecated in favor of pulsar-spring"
+      comment: "Deprecated Spring Boot property. module deprecated in favor of pulsar-spring"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.pulsar.producer.batching-enabled"
-      comment: "Deprecated property removed in Spring Boot 4.2. module deprecated in favor of pulsar-spring"
+      comment: "Deprecated Spring Boot property. module deprecated in favor of pulsar-spring"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.pulsar.producer.cache.expire-after-access"
-      comment: "Deprecated property removed in Spring Boot 4.2. module deprecated in favor of pulsar-spring"
+      comment: "Deprecated Spring Boot property. module deprecated in favor of pulsar-spring"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.pulsar.producer.cache.initial-capacity"
-      comment: "Deprecated property removed in Spring Boot 4.2. module deprecated in favor of pulsar-spring"
+      comment: "Deprecated Spring Boot property. module deprecated in favor of pulsar-spring"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.pulsar.producer.cache.maximum-size"
-      comment: "Deprecated property removed in Spring Boot 4.2. module deprecated in favor of pulsar-spring"
+      comment: "Deprecated Spring Boot property. module deprecated in favor of pulsar-spring"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.pulsar.producer.chunking-enabled"
-      comment: "Deprecated property removed in Spring Boot 4.2. module deprecated in favor of pulsar-spring"
+      comment: "Deprecated Spring Boot property. module deprecated in favor of pulsar-spring"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.pulsar.producer.compression-type"
-      comment: "Deprecated property removed in Spring Boot 4.2. module deprecated in favor of pulsar-spring"
+      comment: "Deprecated Spring Boot property. module deprecated in favor of pulsar-spring"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.pulsar.producer.hashing-scheme"
-      comment: "Deprecated property removed in Spring Boot 4.2. module deprecated in favor of pulsar-spring"
+      comment: "Deprecated Spring Boot property. module deprecated in favor of pulsar-spring"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.pulsar.producer.message-routing-mode"
-      comment: "Deprecated property removed in Spring Boot 4.2. module deprecated in favor of pulsar-spring"
+      comment: "Deprecated Spring Boot property. module deprecated in favor of pulsar-spring"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.pulsar.producer.name"
-      comment: "Deprecated property removed in Spring Boot 4.2. module deprecated in favor of pulsar-spring"
+      comment: "Deprecated Spring Boot property. module deprecated in favor of pulsar-spring"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.pulsar.producer.send-timeout"
-      comment: "Deprecated property removed in Spring Boot 4.2. module deprecated in favor of pulsar-spring"
+      comment: "Deprecated Spring Boot property. module deprecated in favor of pulsar-spring"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.pulsar.producer.topic-name"
-      comment: "Deprecated property removed in Spring Boot 4.2. module deprecated in favor of pulsar-spring"
+      comment: "Deprecated Spring Boot property. module deprecated in favor of pulsar-spring"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.pulsar.reader.name"
-      comment: "Deprecated property removed in Spring Boot 4.2. module deprecated in favor of pulsar-spring"
+      comment: "Deprecated Spring Boot property. module deprecated in favor of pulsar-spring"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.pulsar.reader.read-compacted"
-      comment: "Deprecated property removed in Spring Boot 4.2. module deprecated in favor of pulsar-spring"
+      comment: "Deprecated Spring Boot property. module deprecated in favor of pulsar-spring"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.pulsar.reader.subscription-name"
-      comment: "Deprecated property removed in Spring Boot 4.2. module deprecated in favor of pulsar-spring"
+      comment: "Deprecated Spring Boot property. module deprecated in favor of pulsar-spring"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.pulsar.reader.subscription-role-prefix"
-      comment: "Deprecated property removed in Spring Boot 4.2. module deprecated in favor of pulsar-spring"
+      comment: "Deprecated Spring Boot property. module deprecated in favor of pulsar-spring"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.pulsar.reader.topics"
-      comment: "Deprecated property removed in Spring Boot 4.2. module deprecated in favor of pulsar-spring"
+      comment: "Deprecated Spring Boot property. module deprecated in favor of pulsar-spring"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.pulsar.template.observations-enabled"
-      comment: "Deprecated property removed in Spring Boot 4.2. module deprecated in favor of pulsar-spring"
+      comment: "Deprecated Spring Boot property. module deprecated in favor of pulsar-spring"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.pulsar.transaction.enabled"
-      comment: "Deprecated property removed in Spring Boot 4.2. module deprecated in favor of pulsar-spring"
+      comment: "Deprecated Spring Boot property. module deprecated in favor of pulsar-spring"
+      commentOutProperty: false
   # spring-boot-rabbitmq
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: "spring.rabbitmq.listener.direct.retry.max-attempts"
@@ -1883,7 +1979,8 @@ recipeList:
       comment: "Deprecated property removed in Spring Boot 4.2."
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.rabbitmq.ssl.verify-hostname"
-      comment: "Deprecated property removed in Spring Boot 4.2. Hostname verification cannot be independently disabled"
+      comment: "Deprecated Spring Boot property. Hostname verification cannot be independently disabled"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: "spring.rabbitmq.template.queue"
       newPropertyKey: "spring.rabbitmq.template.default-receive-queue"
@@ -2058,7 +2155,8 @@ recipeList:
       newPropertyKey: "spring.web.locale-resolver"
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.mvc.pathmatch.matching-strategy"
-      comment: "Deprecated property removed in Spring Boot 4.2. Path matching is no longer configurable"
+      comment: "Deprecated Spring Boot property. Path matching is no longer configurable"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.mvc.throw-exception-if-no-handler-found"
       comment: "Deprecated property removed in Spring Boot 4.2. DispatcherServlet property is deprecated for removal and should no longer need to be configured."

@@ -11,7 +11,7 @@ The `{recipe-id}` recipe automates most of the changes introduced in Spring Boot
 The recipe will:
 
 * Upgrade all `org.springframework.boot` dependencies, the `spring-boot-starter-parent` Maven parent, and the Spring Boot Gradle and Maven plugins to the 3.5.x release line.
-* Rename Spring Boot configuration properties that changed, and comment out those removed so you can address them manually.
+* Rename Spring Boot configuration properties that changed, and comment out those removed so you can address them manually. Deprecated properties that still work stay active and get a comment flagging them.
 * Convert Actuator endpoint access controls from the removed boolean `management.endpoint.<name>.enabled` to the new `management.endpoint.<name>.access` enum (`true` -> `read_only`, `false` -> `none`).
 * Upgrade xref:spring/spring-framework/6-2.adoc[Spring Framework to 6.2].
 * Upgrade related build plugins: the `io.spring.dependency-management` Gradle plugin to 1.1.x, the GraalVM Native Build Tools plugin to 0.10.x, and the CycloneDX SBOM plugin to 2.x.

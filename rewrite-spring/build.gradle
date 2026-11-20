@@ -66,6 +66,9 @@ recipeDependencies {
     parserClasspath "org.springframework.boot:spring-boot-resttestclient:4.0.+"
     parserClasspath "org.springframework.boot:spring-boot-webtestclient:4.0.+"
 
+    parserClasspath "org.springframework.boot:spring-boot:4.2.+"
+    parserClasspath "org.springframework.boot:spring-boot-web-server:4.2.+"
+
     parserClasspath "org.springframework:spring-core:7.0.+"
     parserClasspath "org.springframework:spring-context:7.0.+"
     parserClasspath "org.springframework:spring-test:7.0.+"
@@ -136,9 +139,13 @@ recipeDependencies {
     testParserClasspath "org.assertj:assertj-core:3.27.+"
     testParserClasspath "io.micrometer:micrometer-observation:1.16.+"
 
+    testParserClasspath "org.springframework.boot:spring-boot:4.1.+"
     testParserClasspath "org.springframework.boot:spring-boot-amqp:4.1.+"
     testParserClasspath "org.springframework.boot:spring-boot-health:4.1.+"
     testParserClasspath "org.springframework.boot:spring-boot-http-converter:4.1.+"
+    testParserClasspath "org.springframework.boot:spring-boot-jetty:4.1.+"
+    testParserClasspath "org.springframework.boot:spring-boot-reactor-netty:4.1.+"
+    testParserClasspath "org.springframework.boot:spring-boot-web-server:4.1.+"
 
     testParserClasspath "org.springframework.data:spring-data-commons:3.5.+"
     testParserClasspath "org.springframework.data:spring-data-jdbc:3.5.+"

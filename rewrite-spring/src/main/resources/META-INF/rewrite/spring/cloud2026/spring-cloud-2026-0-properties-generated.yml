@@ -14,7 +14,8 @@ recipeList:
   # spring-cloud-config-client
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.config.retry.use-random-policy"
-      comment: "Deprecated property removed in Spring Cloud 2026.0. Randomized backoff will be removed in favor of the deterministic exponential backoff."
+      comment: "Deprecated Spring Cloud property. Randomized backoff will be removed in favor of the deterministic exponential backoff."
+      commentOutProperty: false
   # spring-cloud-config-monitor
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: "spring.cloud.config.monitor.endpoint.path"
@@ -30,199 +31,264 @@ recipeList:
   # spring-cloud-stream-binder-pulsar
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.stream.pulsar.binder.consumer.dead-letter-policy.dead-letter-topic"
-      comment: "Deprecated property removed in Spring Cloud 2026.0. module deprecated in favor of pulsar-spring"
+      comment: "Deprecated Spring Cloud property. module deprecated in favor of pulsar-spring"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.stream.pulsar.binder.consumer.dead-letter-policy.initial-subscription-name"
-      comment: "Deprecated property removed in Spring Cloud 2026.0. module deprecated in favor of pulsar-spring"
+      comment: "Deprecated Spring Cloud property. module deprecated in favor of pulsar-spring"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.stream.pulsar.binder.consumer.dead-letter-policy.max-redeliver-count"
-      comment: "Deprecated property removed in Spring Cloud 2026.0. module deprecated in favor of pulsar-spring"
+      comment: "Deprecated Spring Cloud property. module deprecated in favor of pulsar-spring"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.stream.pulsar.binder.consumer.dead-letter-policy.retry-letter-topic"
-      comment: "Deprecated property removed in Spring Cloud 2026.0. module deprecated in favor of pulsar-spring"
+      comment: "Deprecated Spring Cloud property. module deprecated in favor of pulsar-spring"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.stream.pulsar.binder.consumer.name"
-      comment: "Deprecated property removed in Spring Cloud 2026.0. module deprecated in favor of pulsar-spring"
+      comment: "Deprecated Spring Cloud property. module deprecated in favor of pulsar-spring"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.stream.pulsar.binder.consumer.priority-level"
-      comment: "Deprecated property removed in Spring Cloud 2026.0. module deprecated in favor of pulsar-spring"
+      comment: "Deprecated Spring Cloud property. module deprecated in favor of pulsar-spring"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.stream.pulsar.binder.consumer.read-compacted"
-      comment: "Deprecated property removed in Spring Cloud 2026.0. module deprecated in favor of pulsar-spring"
+      comment: "Deprecated Spring Cloud property. module deprecated in favor of pulsar-spring"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.stream.pulsar.binder.consumer.retry-enable"
-      comment: "Deprecated property removed in Spring Cloud 2026.0. module deprecated in favor of pulsar-spring"
+      comment: "Deprecated Spring Cloud property. module deprecated in favor of pulsar-spring"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.stream.pulsar.binder.consumer.subscription.initial-position"
-      comment: "Deprecated property removed in Spring Cloud 2026.0. module deprecated in favor of pulsar-spring"
+      comment: "Deprecated Spring Cloud property. module deprecated in favor of pulsar-spring"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.stream.pulsar.binder.consumer.subscription.mode"
-      comment: "Deprecated property removed in Spring Cloud 2026.0. module deprecated in favor of pulsar-spring"
+      comment: "Deprecated Spring Cloud property. module deprecated in favor of pulsar-spring"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.stream.pulsar.binder.consumer.subscription.topics-mode"
-      comment: "Deprecated property removed in Spring Cloud 2026.0. module deprecated in favor of pulsar-spring"
+      comment: "Deprecated Spring Cloud property. module deprecated in favor of pulsar-spring"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.stream.pulsar.binder.consumer.subscription.type"
-      comment: "Deprecated property removed in Spring Cloud 2026.0. module deprecated in favor of pulsar-spring"
+      comment: "Deprecated Spring Cloud property. module deprecated in favor of pulsar-spring"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.stream.pulsar.binder.consumer.topics"
-      comment: "Deprecated property removed in Spring Cloud 2026.0. module deprecated in favor of pulsar-spring"
+      comment: "Deprecated Spring Cloud property. module deprecated in favor of pulsar-spring"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.stream.pulsar.binder.consumer.topics-pattern"
-      comment: "Deprecated property removed in Spring Cloud 2026.0. module deprecated in favor of pulsar-spring"
+      comment: "Deprecated Spring Cloud property. module deprecated in favor of pulsar-spring"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.stream.pulsar.binder.producer.access-mode"
-      comment: "Deprecated property removed in Spring Cloud 2026.0. module deprecated in favor of pulsar-spring"
+      comment: "Deprecated Spring Cloud property. module deprecated in favor of pulsar-spring"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.stream.pulsar.binder.producer.batching-enabled"
-      comment: "Deprecated property removed in Spring Cloud 2026.0. module deprecated in favor of pulsar-spring"
+      comment: "Deprecated Spring Cloud property. module deprecated in favor of pulsar-spring"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.stream.pulsar.binder.producer.cache.expire-after-access"
-      comment: "Deprecated property removed in Spring Cloud 2026.0. module deprecated in favor of pulsar-spring"
+      comment: "Deprecated Spring Cloud property. module deprecated in favor of pulsar-spring"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.stream.pulsar.binder.producer.cache.initial-capacity"
-      comment: "Deprecated property removed in Spring Cloud 2026.0. module deprecated in favor of pulsar-spring"
+      comment: "Deprecated Spring Cloud property. module deprecated in favor of pulsar-spring"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.stream.pulsar.binder.producer.cache.maximum-size"
-      comment: "Deprecated property removed in Spring Cloud 2026.0. module deprecated in favor of pulsar-spring"
+      comment: "Deprecated Spring Cloud property. module deprecated in favor of pulsar-spring"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.stream.pulsar.binder.producer.chunking-enabled"
-      comment: "Deprecated property removed in Spring Cloud 2026.0. module deprecated in favor of pulsar-spring"
+      comment: "Deprecated Spring Cloud property. module deprecated in favor of pulsar-spring"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.stream.pulsar.binder.producer.compression-type"
-      comment: "Deprecated property removed in Spring Cloud 2026.0. module deprecated in favor of pulsar-spring"
+      comment: "Deprecated Spring Cloud property. module deprecated in favor of pulsar-spring"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.stream.pulsar.binder.producer.hashing-scheme"
-      comment: "Deprecated property removed in Spring Cloud 2026.0. module deprecated in favor of pulsar-spring"
+      comment: "Deprecated Spring Cloud property. module deprecated in favor of pulsar-spring"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.stream.pulsar.binder.producer.message-routing-mode"
-      comment: "Deprecated property removed in Spring Cloud 2026.0. module deprecated in favor of pulsar-spring"
+      comment: "Deprecated Spring Cloud property. module deprecated in favor of pulsar-spring"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.stream.pulsar.binder.producer.name"
-      comment: "Deprecated property removed in Spring Cloud 2026.0. module deprecated in favor of pulsar-spring"
+      comment: "Deprecated Spring Cloud property. module deprecated in favor of pulsar-spring"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.stream.pulsar.binder.producer.send-timeout"
-      comment: "Deprecated property removed in Spring Cloud 2026.0. module deprecated in favor of pulsar-spring"
+      comment: "Deprecated Spring Cloud property. module deprecated in favor of pulsar-spring"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.stream.pulsar.binder.producer.topic-name"
-      comment: "Deprecated property removed in Spring Cloud 2026.0. module deprecated in favor of pulsar-spring"
+      comment: "Deprecated Spring Cloud property. module deprecated in favor of pulsar-spring"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.stream.pulsar.bindings.for-docs-only.consumer.dead-letter-policy.dead-letter-topic"
-      comment: "Deprecated property removed in Spring Cloud 2026.0. module deprecated in favor of pulsar-spring"
+      comment: "Deprecated Spring Cloud property. module deprecated in favor of pulsar-spring"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.stream.pulsar.bindings.for-docs-only.consumer.dead-letter-policy.initial-subscription-name"
-      comment: "Deprecated property removed in Spring Cloud 2026.0. module deprecated in favor of pulsar-spring"
+      comment: "Deprecated Spring Cloud property. module deprecated in favor of pulsar-spring"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.stream.pulsar.bindings.for-docs-only.consumer.dead-letter-policy.max-redeliver-count"
-      comment: "Deprecated property removed in Spring Cloud 2026.0. module deprecated in favor of pulsar-spring"
+      comment: "Deprecated Spring Cloud property. module deprecated in favor of pulsar-spring"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.stream.pulsar.bindings.for-docs-only.consumer.dead-letter-policy.retry-letter-topic"
-      comment: "Deprecated property removed in Spring Cloud 2026.0. module deprecated in favor of pulsar-spring"
+      comment: "Deprecated Spring Cloud property. module deprecated in favor of pulsar-spring"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.stream.pulsar.bindings.for-docs-only.consumer.name"
-      comment: "Deprecated property removed in Spring Cloud 2026.0. module deprecated in favor of pulsar-spring"
+      comment: "Deprecated Spring Cloud property. module deprecated in favor of pulsar-spring"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.stream.pulsar.bindings.for-docs-only.consumer.priority-level"
-      comment: "Deprecated property removed in Spring Cloud 2026.0. module deprecated in favor of pulsar-spring"
+      comment: "Deprecated Spring Cloud property. module deprecated in favor of pulsar-spring"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.stream.pulsar.bindings.for-docs-only.consumer.read-compacted"
-      comment: "Deprecated property removed in Spring Cloud 2026.0. module deprecated in favor of pulsar-spring"
+      comment: "Deprecated Spring Cloud property. module deprecated in favor of pulsar-spring"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.stream.pulsar.bindings.for-docs-only.consumer.retry-enable"
-      comment: "Deprecated property removed in Spring Cloud 2026.0. module deprecated in favor of pulsar-spring"
+      comment: "Deprecated Spring Cloud property. module deprecated in favor of pulsar-spring"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.stream.pulsar.bindings.for-docs-only.consumer.subscription.initial-position"
-      comment: "Deprecated property removed in Spring Cloud 2026.0. module deprecated in favor of pulsar-spring"
+      comment: "Deprecated Spring Cloud property. module deprecated in favor of pulsar-spring"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.stream.pulsar.bindings.for-docs-only.consumer.subscription.mode"
-      comment: "Deprecated property removed in Spring Cloud 2026.0. module deprecated in favor of pulsar-spring"
+      comment: "Deprecated Spring Cloud property. module deprecated in favor of pulsar-spring"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.stream.pulsar.bindings.for-docs-only.consumer.subscription.topics-mode"
-      comment: "Deprecated property removed in Spring Cloud 2026.0. module deprecated in favor of pulsar-spring"
+      comment: "Deprecated Spring Cloud property. module deprecated in favor of pulsar-spring"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.stream.pulsar.bindings.for-docs-only.consumer.subscription.type"
-      comment: "Deprecated property removed in Spring Cloud 2026.0. module deprecated in favor of pulsar-spring"
+      comment: "Deprecated Spring Cloud property. module deprecated in favor of pulsar-spring"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.stream.pulsar.bindings.for-docs-only.consumer.topics"
-      comment: "Deprecated property removed in Spring Cloud 2026.0. module deprecated in favor of pulsar-spring"
+      comment: "Deprecated Spring Cloud property. module deprecated in favor of pulsar-spring"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.stream.pulsar.bindings.for-docs-only.consumer.topics-pattern"
-      comment: "Deprecated property removed in Spring Cloud 2026.0. module deprecated in favor of pulsar-spring"
+      comment: "Deprecated Spring Cloud property. module deprecated in favor of pulsar-spring"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.stream.pulsar.bindings.for-docs-only.producer.access-mode"
-      comment: "Deprecated property removed in Spring Cloud 2026.0. module deprecated in favor of pulsar-spring"
+      comment: "Deprecated Spring Cloud property. module deprecated in favor of pulsar-spring"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.stream.pulsar.bindings.for-docs-only.producer.batching-enabled"
-      comment: "Deprecated property removed in Spring Cloud 2026.0. module deprecated in favor of pulsar-spring"
+      comment: "Deprecated Spring Cloud property. module deprecated in favor of pulsar-spring"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.stream.pulsar.bindings.for-docs-only.producer.cache.expire-after-access"
-      comment: "Deprecated property removed in Spring Cloud 2026.0. module deprecated in favor of pulsar-spring"
+      comment: "Deprecated Spring Cloud property. module deprecated in favor of pulsar-spring"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.stream.pulsar.bindings.for-docs-only.producer.cache.initial-capacity"
-      comment: "Deprecated property removed in Spring Cloud 2026.0. module deprecated in favor of pulsar-spring"
+      comment: "Deprecated Spring Cloud property. module deprecated in favor of pulsar-spring"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.stream.pulsar.bindings.for-docs-only.producer.cache.maximum-size"
-      comment: "Deprecated property removed in Spring Cloud 2026.0. module deprecated in favor of pulsar-spring"
+      comment: "Deprecated Spring Cloud property. module deprecated in favor of pulsar-spring"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.stream.pulsar.bindings.for-docs-only.producer.chunking-enabled"
-      comment: "Deprecated property removed in Spring Cloud 2026.0. module deprecated in favor of pulsar-spring"
+      comment: "Deprecated Spring Cloud property. module deprecated in favor of pulsar-spring"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.stream.pulsar.bindings.for-docs-only.producer.compression-type"
-      comment: "Deprecated property removed in Spring Cloud 2026.0. module deprecated in favor of pulsar-spring"
+      comment: "Deprecated Spring Cloud property. module deprecated in favor of pulsar-spring"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.stream.pulsar.bindings.for-docs-only.producer.hashing-scheme"
-      comment: "Deprecated property removed in Spring Cloud 2026.0. module deprecated in favor of pulsar-spring"
+      comment: "Deprecated Spring Cloud property. module deprecated in favor of pulsar-spring"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.stream.pulsar.bindings.for-docs-only.producer.message-routing-mode"
-      comment: "Deprecated property removed in Spring Cloud 2026.0. module deprecated in favor of pulsar-spring"
+      comment: "Deprecated Spring Cloud property. module deprecated in favor of pulsar-spring"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.stream.pulsar.bindings.for-docs-only.producer.name"
-      comment: "Deprecated property removed in Spring Cloud 2026.0. module deprecated in favor of pulsar-spring"
+      comment: "Deprecated Spring Cloud property. module deprecated in favor of pulsar-spring"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.stream.pulsar.bindings.for-docs-only.producer.send-timeout"
-      comment: "Deprecated property removed in Spring Cloud 2026.0. module deprecated in favor of pulsar-spring"
+      comment: "Deprecated Spring Cloud property. module deprecated in favor of pulsar-spring"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.stream.pulsar.bindings.for-docs-only.producer.topic-name"
-      comment: "Deprecated property removed in Spring Cloud 2026.0. module deprecated in favor of pulsar-spring"
+      comment: "Deprecated Spring Cloud property. module deprecated in favor of pulsar-spring"
+      commentOutProperty: false
   # spring-cloud-task-batch
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.task.batch.command-line-runner-order"
-      comment: "Deprecated property removed in Spring Cloud 2026.0."
+      comment: "Deprecated Spring Cloud property."
+      commentOutProperty: false
   # spring-cloud-vault-config
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.vault.config.order"
-      comment: "Deprecated property removed in Spring Cloud 2026.0. Only required for deprecated Bootstrap Context usage"
+      comment: "Deprecated Spring Cloud property. Only required for deprecated Bootstrap Context usage"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.vault.kv.backend-version"
-      comment: "Deprecated property removed in Spring Cloud 2026.0. Backend version no longer required. The kv version is determined during secret retrieval"
+      comment: "Deprecated Spring Cloud property. Backend version no longer required. The kv version is determined during secret retrieval"
+      commentOutProperty: false
   # spring-cloud-vault-config-databases
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.vault.mysql.backend"
-      comment: "Deprecated property removed in Spring Cloud 2026.0."
+      comment: "Deprecated Spring Cloud property."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.vault.mysql.enabled"
-      comment: "Deprecated property removed in Spring Cloud 2026.0."
+      comment: "Deprecated Spring Cloud property."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.vault.mysql.password-property"
-      comment: "Deprecated property removed in Spring Cloud 2026.0."
+      comment: "Deprecated Spring Cloud property."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.vault.mysql.role"
-      comment: "Deprecated property removed in Spring Cloud 2026.0."
+      comment: "Deprecated Spring Cloud property."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.vault.mysql.username-property"
-      comment: "Deprecated property removed in Spring Cloud 2026.0."
+      comment: "Deprecated Spring Cloud property."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.vault.postgresql.backend"
-      comment: "Deprecated property removed in Spring Cloud 2026.0."
+      comment: "Deprecated Spring Cloud property."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.vault.postgresql.enabled"
-      comment: "Deprecated property removed in Spring Cloud 2026.0."
+      comment: "Deprecated Spring Cloud property."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.vault.postgresql.password-property"
-      comment: "Deprecated property removed in Spring Cloud 2026.0."
+      comment: "Deprecated Spring Cloud property."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.vault.postgresql.role"
-      comment: "Deprecated property removed in Spring Cloud 2026.0."
+      comment: "Deprecated Spring Cloud property."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.cloud.vault.postgresql.username-property"
-      comment: "Deprecated property removed in Spring Cloud 2026.0."
+      comment: "Deprecated Spring Cloud property."
+      commentOutProperty: false

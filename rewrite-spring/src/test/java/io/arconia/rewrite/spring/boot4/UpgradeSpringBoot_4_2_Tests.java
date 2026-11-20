@@ -6,6 +6,7 @@ import org.openrewrite.test.RecipeSpec;
 import org.openrewrite.test.RewriteTest;
 
 import static org.openrewrite.properties.Assertions.properties;
+import static org.openrewrite.yaml.Assertions.yaml;
 
 class UpgradeSpringBoot_4_2_Tests implements RewriteTest {
 
@@ -31,6 +32,39 @@ class UpgradeSpringBoot_4_2_Tests implements RewriteTest {
                         spring.modulith.events.staleness.resubmitted=5m
                         """,
                         s -> s.path("src/main/resources/application.properties"))
+        );
+    }
+
+    @Test
+    void deprecatedPropertiesFlaggedOnceThroughChainedUpgrades() {
+        rewriteRun(
+                //language=properties
+                properties(
+                        """
+                        spring.jackson2.constructor-detector=default
+                        spring.pulsar.client.service-url=pulsar://localhost:6650
+                        """,
+                        """
+                        # Deprecated Spring Boot property. Deprecated in favor of Jackson 3
+                        spring.jackson2.constructor-detector=default
+                        # Deprecated Spring Boot property. module deprecated in favor of pulsar-spring
+                        spring.pulsar.client.service-url=pulsar://localhost:6650
+                        """,
+                        s -> s.path("src/main/resources/application-deprecated.properties")),
+                //language=yaml
+                yaml(
+                        """
+                        spring:
+                          jackson2:
+                            constructor-detector: default
+                        """,
+                        """
+                        spring:
+                          jackson2:
+                            # Deprecated Spring Boot property. Deprecated in favor of Jackson 3
+                            constructor-detector: default
+                        """,
+                        s -> s.path("src/main/resources/application.yml"))
         );
     }
 

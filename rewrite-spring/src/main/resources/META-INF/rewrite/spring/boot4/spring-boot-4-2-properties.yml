@@ -9,4 +9,16 @@ tags:
 preconditions:
   - org.openrewrite.Singleton
 recipeList:
+  # The set of ignored meters is replaced by an opt-in flag, and the long task timer is no longer created by default.
+  # Deleting the property keeps it ignored, where the generated rename would bind the old value to a boolean.
+  - io.arconia.rewrite.spring.boot.properties.DeleteSpringBootProperty:
+      propertyKey: management.metrics.observations.ignored-meters
+
   - io.arconia.rewrite.spring.boot4.UpgradeSpringBootPropertiesGenerated_4_2
+
+  # The renamed forwarded header strategy property is backed by a new enum, where "native" became "web-server".
+  - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
+      propertyKey: server.request.header.forwarded.strategy
+      oldPropertyValue: (?i)^native$
+      newPropertyValue: web-server
+      useRegex: true

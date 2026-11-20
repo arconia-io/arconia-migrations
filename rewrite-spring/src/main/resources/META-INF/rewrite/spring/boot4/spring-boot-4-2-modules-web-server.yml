@@ -1,0 +1,12 @@
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.arconia.rewrite.spring.boot4.MigrateSpringBootWebServer_4_2
+displayName: Migrate the Spring Boot Web Server modules to Spring Boot 4.2
+description: Update usages of Spring Boot Web Server module APIs that were deprecated or replaced in Spring Boot 4.2. The `setUseForwardHeaders(boolean)` method of the Jetty and Reactor Netty web server factories is replaced with `setForwardedRequestHeaders(ForwardedRequestHeaders)`, selecting the "X-Forwarded" header family without prefix handling to keep the previous behavior.
+tags:
+  - spring
+  - boot
+preconditions:
+  - org.openrewrite.Singleton
+recipeList:
+  - io.arconia.rewrite.spring.boot4.UseForwardedRequestHeaders

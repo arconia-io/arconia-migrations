@@ -11,7 +11,7 @@ The `{recipe-id}` recipe automates most of the changes introduced in Spring Clou
 The recipe will:
 
 * Upgrade `org.springframework.cloud:spring-cloud-dependencies` (and the `spring-cloud-starter-parent` Maven parent) to the 2025.0.x release line.
-* Rename Spring Cloud configuration properties that changed, and comment out those removed so you can address them manually.
+* Rename Spring Cloud configuration properties that changed, and comment out those removed so you can address them manually. Deprecated properties that still work stay active and get a comment flagging them.
 * Convert Actuator endpoint access controls from the removed boolean `management.endpoint.<name>.enabled` to the new `management.endpoint.<name>.access` enum (`true` -> `read_only`, `false` -> `none`).
 * Adopt the new module names for the *Spring Cloud Gateway* dependencies:
 ** `spring-cloud-gateway-server` -> `spring-cloud-gateway-server-webflux` (and the matching `spring-cloud-starter-gateway-server` -> `spring-cloud-starter-gateway-server-webflux`).

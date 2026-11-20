@@ -30,7 +30,8 @@ recipeList:
       newPropertyKey: "management.endpoints.access.default"
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "management.endpoints.jackson2.isolated-object-mapper"
-      comment: "Deprecated property removed in Spring Boot 4.1. Jackson 3 is preferred."
+      comment: "Deprecated Spring Boot property. Jackson 3 is preferred."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: "management.endpoints.jmx.unique-names"
       newPropertyKey: "spring.jmx.unique-names"
@@ -133,7 +134,8 @@ recipeList:
       comment: "Deprecated property removed in Spring Boot 4.1."
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.rabbitmq.ssl.verify-hostname"
-      comment: "Deprecated property removed in Spring Boot 4.1. Hostname verification cannot be independently disabled"
+      comment: "Deprecated Spring Boot property. Hostname verification cannot be independently disabled"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: "spring.rabbitmq.template.queue"
       newPropertyKey: "spring.rabbitmq.template.default-receive-queue"
@@ -541,10 +543,12 @@ recipeList:
   # spring-boot-devtools
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.devtools.livereload.enabled"
-      comment: "Deprecated property removed in Spring Boot 4.1. Deprecated with no replacement"
+      comment: "Deprecated Spring Boot property. Deprecated with no replacement"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.devtools.livereload.port"
-      comment: "Deprecated property removed in Spring Boot 4.1. Deprecated with no replacement"
+      comment: "Deprecated Spring Boot property. Deprecated with no replacement"
+      commentOutProperty: false
   # spring-boot-elasticsearch
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "management.health.elasticsearch.indices"
@@ -698,49 +702,64 @@ recipeList:
   # spring-boot-jackson2
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.jackson2.constructor-detector"
-      comment: "Deprecated property removed in Spring Boot 4.1. Deprecated in favor of Jackson 3"
+      comment: "Deprecated Spring Boot property. Deprecated in favor of Jackson 3"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.jackson2.datatype.enum"
-      comment: "Deprecated property removed in Spring Boot 4.1. Deprecated in favor of Jackson 3"
+      comment: "Deprecated Spring Boot property. Deprecated in favor of Jackson 3"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.jackson2.datatype.json-node"
-      comment: "Deprecated property removed in Spring Boot 4.1. Deprecated in favor of Jackson 3"
+      comment: "Deprecated Spring Boot property. Deprecated in favor of Jackson 3"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.jackson2.date-format"
-      comment: "Deprecated property removed in Spring Boot 4.1. Deprecated in favor of Jackson 3"
+      comment: "Deprecated Spring Boot property. Deprecated in favor of Jackson 3"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.jackson2.default-leniency"
-      comment: "Deprecated property removed in Spring Boot 4.1. Deprecated in favor of Jackson 3"
+      comment: "Deprecated Spring Boot property. Deprecated in favor of Jackson 3"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.jackson2.default-property-inclusion"
-      comment: "Deprecated property removed in Spring Boot 4.1. Deprecated in favor of Jackson 3"
+      comment: "Deprecated Spring Boot property. Deprecated in favor of Jackson 3"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.jackson2.deserialization"
-      comment: "Deprecated property removed in Spring Boot 4.1. Deprecated in favor of Jackson 3"
+      comment: "Deprecated Spring Boot property. Deprecated in favor of Jackson 3"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.jackson2.generator"
-      comment: "Deprecated property removed in Spring Boot 4.1. Deprecated in favor of Jackson 3"
+      comment: "Deprecated Spring Boot property. Deprecated in favor of Jackson 3"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.jackson2.locale"
-      comment: "Deprecated property removed in Spring Boot 4.1. Deprecated in favor of Jackson 3"
+      comment: "Deprecated Spring Boot property. Deprecated in favor of Jackson 3"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.jackson2.mapper"
-      comment: "Deprecated property removed in Spring Boot 4.1. Deprecated in favor of Jackson 3"
+      comment: "Deprecated Spring Boot property. Deprecated in favor of Jackson 3"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.jackson2.parser"
-      comment: "Deprecated property removed in Spring Boot 4.1. Deprecated in favor of Jackson 3"
+      comment: "Deprecated Spring Boot property. Deprecated in favor of Jackson 3"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.jackson2.property-naming-strategy"
-      comment: "Deprecated property removed in Spring Boot 4.1. Deprecated in favor of Jackson 3"
+      comment: "Deprecated Spring Boot property. Deprecated in favor of Jackson 3"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.jackson2.serialization"
-      comment: "Deprecated property removed in Spring Boot 4.1. Deprecated in favor of Jackson 3"
+      comment: "Deprecated Spring Boot property. Deprecated in favor of Jackson 3"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.jackson2.time-zone"
-      comment: "Deprecated property removed in Spring Boot 4.1. Deprecated in favor of Jackson 3"
+      comment: "Deprecated Spring Boot property. Deprecated in favor of Jackson 3"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.jackson2.visibility"
-      comment: "Deprecated property removed in Spring Boot 4.1. Deprecated in favor of Jackson 3"
+      comment: "Deprecated Spring Boot property. Deprecated in favor of Jackson 3"
+      commentOutProperty: false
   # spring-boot-jdbc
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: "spring.datasource.continue-on-error"
@@ -756,34 +775,43 @@ recipeList:
       newPropertyKey: "spring.sql.init.username"
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.datasource.dbcp2.default-query-timeout"
-      comment: "Deprecated property removed in Spring Boot 4.1."
+      comment: "Deprecated Spring Boot property."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.datasource.dbcp2.driver"
       comment: "Unbindable property in Spring Boot 4.1. The framework does not bind it."
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.datasource.dbcp2.enable-auto-commit-on-return"
-      comment: "Deprecated property removed in Spring Boot 4.1."
+      comment: "Deprecated Spring Boot property."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.datasource.dbcp2.max-conn-lifetime-millis"
-      comment: "Deprecated property removed in Spring Boot 4.1."
+      comment: "Deprecated Spring Boot property."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.datasource.dbcp2.max-wait-millis"
-      comment: "Deprecated property removed in Spring Boot 4.1."
+      comment: "Deprecated Spring Boot property."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.datasource.dbcp2.min-evictable-idle-time-millis"
-      comment: "Deprecated property removed in Spring Boot 4.1."
+      comment: "Deprecated Spring Boot property."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.datasource.dbcp2.remove-abandoned-timeout"
-      comment: "Deprecated property removed in Spring Boot 4.1."
+      comment: "Deprecated Spring Boot property."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.datasource.dbcp2.soft-min-evictable-idle-time-millis"
-      comment: "Deprecated property removed in Spring Boot 4.1."
+      comment: "Deprecated Spring Boot property."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.datasource.dbcp2.time-between-eviction-runs-millis"
-      comment: "Deprecated property removed in Spring Boot 4.1."
+      comment: "Deprecated Spring Boot property."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.datasource.dbcp2.validation-query-timeout"
-      comment: "Deprecated property removed in Spring Boot 4.1."
+      comment: "Deprecated Spring Boot property."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.datasource.hikari.credentials"
       comment: "Unbindable property in Spring Boot 4.1. The framework does not bind it."
@@ -810,7 +838,8 @@ recipeList:
       comment: "Unbindable property in Spring Boot 4.1. The framework does not bind it."
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.datasource.oracleucp.connection-wait-timeout"
-      comment: "Deprecated property removed in Spring Boot 4.1."
+      comment: "Deprecated Spring Boot property."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.datasource.oracleucp.hostname-resolver"
       comment: "Unbindable property in Spring Boot 4.1. The framework does not bind it."
@@ -947,13 +976,16 @@ recipeList:
   # spring-boot-micrometer-metrics
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "management.dynatrace.metrics.export.v1.device-id"
-      comment: "Deprecated property removed in Spring Boot 4.1. Dynatrace V1 API is deprecated, use the V2 API instead."
+      comment: "Deprecated Spring Boot property. Dynatrace V1 API is deprecated, use the V2 API instead."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "management.dynatrace.metrics.export.v1.group"
-      comment: "Deprecated property removed in Spring Boot 4.1. Dynatrace V1 API is deprecated, use the V2 API instead."
+      comment: "Deprecated Spring Boot property. Dynatrace V1 API is deprecated, use the V2 API instead."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "management.dynatrace.metrics.export.v1.technology-type"
-      comment: "Deprecated property removed in Spring Boot 4.1. Dynatrace V1 API is deprecated, use the V2 API instead."
+      comment: "Deprecated Spring Boot property. Dynatrace V1 API is deprecated, use the V2 API instead."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "management.metrics.binders.files.enabled"
       comment: "Deprecated property removed in Spring Boot 4.1. Instead, filter 'process.files' metrics."

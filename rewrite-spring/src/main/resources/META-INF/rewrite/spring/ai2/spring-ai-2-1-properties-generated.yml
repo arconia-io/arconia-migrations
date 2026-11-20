@@ -14,20 +14,25 @@ recipeList:
   # spring-ai-autoconfigure-mcp-client-common
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.ai.mcp.client.sse.connections"
-      comment: "Deprecated property removed in Spring AI 2.1."
+      comment: "Deprecated Spring AI property."
+      commentOutProperty: false
   # spring-ai-autoconfigure-mcp-server-common
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.ai.mcp.server.base-url"
-      comment: "Deprecated property removed in Spring AI 2.1."
+      comment: "Deprecated Spring AI property."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.ai.mcp.server.keep-alive-interval"
-      comment: "Deprecated property removed in Spring AI 2.1."
+      comment: "Deprecated Spring AI property."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.ai.mcp.server.sse-endpoint"
-      comment: "Deprecated property removed in Spring AI 2.1."
+      comment: "Deprecated Spring AI property."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.ai.mcp.server.sse-message-endpoint"
-      comment: "Deprecated property removed in Spring AI 2.1."
+      comment: "Deprecated Spring AI property."
+      commentOutProperty: false
   # spring-ai-autoconfigure-model-anthropic
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: "spring.ai.anthropic.chat.options.cache-options"
@@ -61,7 +66,8 @@ recipeList:
       newPropertyKey: "spring.ai.anthropic.chat.stop-sequences"
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.ai.anthropic.chat.options.temperature"
-      comment: "Deprecated property removed in Spring AI 2.1. Anthropic API 2026-10-21 rejects sampling options"
+      comment: "Deprecated Spring AI property. Anthropic API 2026-10-21 rejects sampling options"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: "spring.ai.anthropic.chat.options.thinking"
       newPropertyKey: "spring.ai.anthropic.chat.thinking"
@@ -70,22 +76,27 @@ recipeList:
       newPropertyKey: "spring.ai.anthropic.chat.tool-choice"
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.ai.anthropic.chat.options.top-k"
-      comment: "Deprecated property removed in Spring AI 2.1. Anthropic API 2026-10-21 rejects sampling options"
+      comment: "Deprecated Spring AI property. Anthropic API 2026-10-21 rejects sampling options"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.ai.anthropic.chat.options.top-p"
-      comment: "Deprecated property removed in Spring AI 2.1. Anthropic API 2026-10-21 rejects sampling options"
+      comment: "Deprecated Spring AI property. Anthropic API 2026-10-21 rejects sampling options"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: "spring.ai.anthropic.chat.options.web-search-tool"
       newPropertyKey: "spring.ai.anthropic.chat.web-search-tool"
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.ai.anthropic.chat.temperature"
-      comment: "Deprecated property removed in Spring AI 2.1. Anthropic API 2026-10-21 rejects sampling options"
+      comment: "Deprecated Spring AI property. Anthropic API 2026-10-21 rejects sampling options"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.ai.anthropic.chat.top-k"
-      comment: "Deprecated property removed in Spring AI 2.1. Anthropic API 2026-10-21 rejects sampling options"
+      comment: "Deprecated Spring AI property. Anthropic API 2026-10-21 rejects sampling options"
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.ai.anthropic.chat.top-p"
-      comment: "Deprecated property removed in Spring AI 2.1. Anthropic API 2026-10-21 rejects sampling options"
+      comment: "Deprecated Spring AI property. Anthropic API 2026-10-21 rejects sampling options"
+      commentOutProperty: false
   # spring-ai-autoconfigure-model-bedrock-ai
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: "spring.ai.bedrock.cohere.embedding.options.input-type"
@@ -160,19 +171,24 @@ recipeList:
   # spring-ai-autoconfigure-model-chat-memory-repository-cassandra
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.ai.chat.memory.repository.cassandra.initialize-schema"
-      comment: "Deprecated property removed in Spring AI 2.1."
+      comment: "Deprecated Spring AI property."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.ai.chat.memory.repository.cassandra.keyspace"
-      comment: "Deprecated property removed in Spring AI 2.1."
+      comment: "Deprecated Spring AI property."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.ai.chat.memory.repository.cassandra.messages-column"
-      comment: "Deprecated property removed in Spring AI 2.1."
+      comment: "Deprecated Spring AI property."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.ai.chat.memory.repository.cassandra.table"
-      comment: "Deprecated property removed in Spring AI 2.1."
+      comment: "Deprecated Spring AI property."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.ai.chat.memory.repository.cassandra.time-to-live"
-      comment: "Deprecated property removed in Spring AI 2.1."
+      comment: "Deprecated Spring AI property."
+      commentOutProperty: false
   # spring-ai-autoconfigure-model-chat-memory-repository-jdbc
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: "spring.ai.chat.memory.repository.jdbc.continue-on-error"
@@ -189,29 +205,37 @@ recipeList:
   # spring-ai-autoconfigure-model-chat-memory-repository-mongodb
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.ai.chat.memory.repository.mongo.create-indices"
-      comment: "Deprecated property removed in Spring AI 2.1."
+      comment: "Deprecated Spring AI property."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.ai.chat.memory.repository.mongo.ttl"
-      comment: "Deprecated property removed in Spring AI 2.1."
+      comment: "Deprecated Spring AI property."
+      commentOutProperty: false
   # spring-ai-autoconfigure-model-chat-memory-repository-neo4j
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.ai.chat.memory.repository.neo4j.media-label"
-      comment: "Deprecated property removed in Spring AI 2.1."
+      comment: "Deprecated Spring AI property."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.ai.chat.memory.repository.neo4j.message-label"
-      comment: "Deprecated property removed in Spring AI 2.1."
+      comment: "Deprecated Spring AI property."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.ai.chat.memory.repository.neo4j.metadata-label"
-      comment: "Deprecated property removed in Spring AI 2.1."
+      comment: "Deprecated Spring AI property."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.ai.chat.memory.repository.neo4j.session-label"
-      comment: "Deprecated property removed in Spring AI 2.1."
+      comment: "Deprecated Spring AI property."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.ai.chat.memory.repository.neo4j.tool-call-label"
-      comment: "Deprecated property removed in Spring AI 2.1."
+      comment: "Deprecated Spring AI property."
+      commentOutProperty: false
   - io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty:
       propertyKey: "spring.ai.chat.memory.repository.neo4j.tool-response-label"
-      comment: "Deprecated property removed in Spring AI 2.1."
+      comment: "Deprecated Spring AI property."
+      commentOutProperty: false
   # spring-ai-autoconfigure-model-deepseek
   - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
       oldPropertyKey: "spring.ai.deepseek.chat.options.frequency-penalty"

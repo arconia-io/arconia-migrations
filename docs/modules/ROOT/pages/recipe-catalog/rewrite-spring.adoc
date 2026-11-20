@@ -3,7 +3,7 @@
 
 // AUTO-GENERATED from the OpenRewrite recipe model. Do not edit by hand.
 
-The `rewrite-spring` module publishes 323 recipes across 13 categories.
+The `rewrite-spring` module publishes 325 recipes across 13 categories.
 
 [#family-spring-ai1]
 == spring › ai1
@@ -7717,6 +7717,7 @@ _Tags: spring, boot_
 .Recipes applied
 [%collapsible]
 ====
+* xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_DeleteSpringBootProperty[Delete a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.DeleteSpringBootProperty`)
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_UpgradeSpringBootPropertiesGenerated_4_2[Migrate Spring Boot properties to 4.2 (generated)] (`io.arconia.rewrite.spring.boot4.UpgradeSpringBootPropertiesGenerated_4_2`)
 ** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×2)
 ** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey`)
@@ -7739,7 +7740,48 @@ _Tags: spring, boot_
 ** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
 ** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey`)
 ** … and 579 more
+* xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_ChangeSpringBootPropertyValue[Change the value of a Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue`)
 ====
+
+*Example*
+
+.Before
+[source,properties]
+----
+server.forward-headers-strategy=native
+----
+
+.After
+[source,properties]
+----
+server.request.header.forwarded.strategy=web-server
+----
+
+.Before
+[source,yaml]
+----
+server:
+  forward-headers-strategy: NATIVE
+----
+
+.After
+[source,yaml]
+----
+server:
+  request.header.forwarded.strategy: web-server
+----
+
+.Before
+[source,properties]
+----
+server.forward-headers-strategy=framework
+----
+
+.After
+[source,properties]
+----
+server.request.header.forwarded.strategy=framework
+----
 
 [#io_arconia_rewrite_spring_boot4_UpgradeSpringBootPropertiesGenerated_4_2]
 === Migrate Spring Boot properties to 4.2 (generated)
@@ -7894,6 +7936,65 @@ class Demo {
         for (HttpMessageConverter<?> converter : converters) {
             System.out.println(converter);
         }
+    }
+}
+----
+
+[#io_arconia_rewrite_spring_boot4_MigrateSpringBootWebServer_4_2]
+=== Migrate the Spring Boot Web Server modules to Spring Boot 4.2
+`io.arconia.rewrite.spring.boot4.MigrateSpringBootWebServer_4_2`
+
+Update usages of Spring Boot Web Server module APIs that were deprecated or replaced in Spring Boot 4.2. The `setUseForwardHeaders(boolean)` method of the Jetty and Reactor Netty web server factories is replaced with `setForwardedRequestHeaders(ForwardedRequestHeaders)`, selecting the "X-Forwarded" header family without prefix handling to keep the previous behavior.
+
+_Tags: spring, boot_
+
+.Recipes applied
+[%collapsible]
+====
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_UseForwardedRequestHeaders[Use `setForwardedRequestHeaders` on web server factories] (`io.arconia.rewrite.spring.boot4.UseForwardedRequestHeaders`)
+====
+
+*Example*
+
+.Before
+[source,java]
+----
+import org.springframework.boot.jetty.ConfigurableJettyWebServerFactory;
+import org.springframework.boot.reactor.netty.NettyReactiveWebServerFactory;
+
+class Demo {
+    void jetty(ConfigurableJettyWebServerFactory factory) {
+        factory.setUseForwardHeaders(true);
+    }
+
+    void jettyDisabled(ConfigurableJettyWebServerFactory factory) {
+        factory.setUseForwardHeaders(false);
+    }
+
+    void netty(NettyReactiveWebServerFactory factory) {
+        factory.setUseForwardHeaders(true);
+    }
+}
+----
+
+.After
+[source,java]
+----
+import org.springframework.boot.jetty.ConfigurableJettyWebServerFactory;
+import org.springframework.boot.reactor.netty.NettyReactiveWebServerFactory;
+import org.springframework.boot.web.server.ForwardedRequestHeaders;
+
+class Demo {
+    void jetty(ConfigurableJettyWebServerFactory factory) {
+        factory.setForwardedRequestHeaders(ForwardedRequestHeaders.X_FORWARDED_WITHOUT_PREFIX);
+    }
+
+    void jettyDisabled(ConfigurableJettyWebServerFactory factory) {
+        factory.setForwardedRequestHeaders(null);
+    }
+
+    void netty(NettyReactiveWebServerFactory factory) {
+        factory.setForwardedRequestHeaders(ForwardedRequestHeaders.X_FORWARDED_WITHOUT_PREFIX);
     }
 }
 ----
@@ -8405,6 +8506,7 @@ _Tags: spring, boot_
 *** Change type (`org.openrewrite.java.ChangeType`)
 *** Add a literal method argument (`org.openrewrite.java.AddLiteralMethodArgument` ×2)
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_UpgradeSpringBootProperties_4_2[Migrate Spring Boot properties to 4.2] (`io.arconia.rewrite.spring.boot4.UpgradeSpringBootProperties_4_2`)
+** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_DeleteSpringBootProperty[Delete a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.DeleteSpringBootProperty`)
 ** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_UpgradeSpringBootPropertiesGenerated_4_2[Migrate Spring Boot properties to 4.2 (generated)] (`io.arconia.rewrite.spring.boot4.UpgradeSpringBootPropertiesGenerated_4_2`)
 *** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty` ×2)
 *** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey`)
@@ -8427,6 +8529,7 @@ _Tags: spring, boot_
 *** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_CommentSpringBootProperty[Add a comment to a Spring Boot configuration property] (`io.arconia.rewrite.spring.boot.properties.CommentSpringBootProperty`)
 *** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_RenameSpringBootPropertyKey[Rename Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey`)
 *** … and 579 more
+** xref:recipe-catalog/rewrite-spring-core.adoc#io_arconia_rewrite_spring_boot_properties_ChangeSpringBootPropertyValue[Change the value of a Spring Boot configuration property key] (`io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue`)
 * Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion` ×2)
 * Update a Gradle plugin by id (`org.openrewrite.gradle.plugins.UpgradePluginVersion`)
 * Upgrade Gradle or Maven dependency versions (`org.openrewrite.java.dependencies.UpgradeDependencyVersion`)
@@ -8480,6 +8583,8 @@ _Tags: spring, boot_
 * xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_MigrateSpringBootRabbitMq_4_2[Migrate the Spring Boot AMQP module to the RabbitMQ module in Spring Boot 4.2] (`io.arconia.rewrite.spring.boot4.MigrateSpringBootRabbitMq_4_2`)
 ** Change Gradle or Maven dependency (`org.openrewrite.java.dependencies.ChangeDependency` ×3)
 ** Rename package name (`org.openrewrite.java.ChangePackage` ×5)
+* xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_MigrateSpringBootWebServer_4_2[Migrate the Spring Boot Web Server modules to Spring Boot 4.2] (`io.arconia.rewrite.spring.boot4.MigrateSpringBootWebServer_4_2`)
+** xref:recipe-catalog/rewrite-spring.adoc#io_arconia_rewrite_spring_boot4_UseForwardedRequestHeaders[Use `setForwardedRequestHeaders` on web server factories] (`io.arconia.rewrite.spring.boot4.UseForwardedRequestHeaders`)
 ====
 
 *Example*
@@ -8615,6 +8720,12 @@ class MyControllerTest {
   private WebTestClient webTestClient;
 }
 ----
+
+[#io_arconia_rewrite_spring_boot4_UseForwardedRequestHeaders]
+=== Use `setForwardedRequestHeaders` on web server factories
+`io.arconia.rewrite.spring.boot4.UseForwardedRequestHeaders`
+
+Replace the `setUseForwardHeaders(boolean)` method of the Jetty and Reactor Netty web server factories, deprecated in Spring Boot 4.2, with `setForwardedRequestHeaders(ForwardedRequestHeaders)`. Calls passing an argument that is not a boolean literal are left unchanged.
 
 [#family-spring-cloud2025]
 == spring › cloud2025
