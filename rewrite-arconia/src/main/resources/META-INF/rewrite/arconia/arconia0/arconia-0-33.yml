@@ -115,5 +115,25 @@ recipeList:
   - io.arconia.rewrite.spring.boot.properties.DeleteSpringBootProperty:
       propertyKey: arconia.dev.services.phoenix.export-in-tests
 
+  # OpenTelemetry - The exemplars follow the Spring Boot property, which applies to all the metrics
+  - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
+      propertyKey: arconia.otel.metrics.exemplars.filter
+      oldPropertyValue: "(?i)^always[-_]on$"
+      newPropertyValue: all
+      useRegex: true
+  - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
+      propertyKey: arconia.otel.metrics.exemplars.filter
+      oldPropertyValue: "(?i)^always[-_]off$"
+      newPropertyValue: none
+      useRegex: true
+  - io.arconia.rewrite.spring.boot.properties.ChangeSpringBootPropertyValue:
+      propertyKey: arconia.otel.metrics.exemplars.filter
+      oldPropertyValue: "(?i)^trace[-_]based$"
+      newPropertyValue: sampled-traces
+      useRegex: true
+  - io.arconia.rewrite.spring.boot.properties.RenameSpringBootPropertyKey:
+      oldPropertyKey: arconia.otel.metrics.exemplars.filter
+      newPropertyKey: management.tracing.exemplars.include
+
   # OpenTelemetry - Test Starter
   - io.arconia.rewrite.framework.opentelemetry.AddArconiaOpenTelemetryTestStarter

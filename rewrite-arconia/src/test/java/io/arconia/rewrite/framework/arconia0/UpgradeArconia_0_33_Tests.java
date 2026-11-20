@@ -179,4 +179,61 @@ class UpgradeArconia_0_33_Tests implements RewriteTest {
         );
     }
 
+    @Test
+    void exemplarsFilterBecomesSpringBootExemplarsInclude() {
+        rewriteRun(
+                //language=properties
+                properties(
+                        """
+                        arconia.otel.metrics.exemplars.filter=always-off
+                        arconia.otel.metrics.cardinality-limit=1000
+                        """,
+                        """
+                        management.tracing.exemplars.include=none
+                        arconia.otel.metrics.cardinality-limit=1000
+                        """,
+                        s -> s.path("src/main/resources/application.properties"))
+        );
+    }
+
+    @Test
+    void exemplarsFilterValuesMapped() {
+        rewriteRun(
+                //language=properties
+                properties(
+                        "arconia.otel.metrics.exemplars.filter=always-on",
+                        "management.tracing.exemplars.include=all",
+                        s -> s.path("src/main/resources/application.properties")),
+                //language=properties
+                properties(
+                        "arconia.otel.metrics.exemplars.filter=TRACE_BASED",
+                        "management.tracing.exemplars.include=sampled-traces",
+                        s -> s.path("src/main/resources/application-prod.properties"))
+        );
+    }
+
+    @Test
+    void exemplarsFilterBecomesSpringBootExemplarsIncludeInYaml() {
+        rewriteRun(
+                //language=yaml
+                yaml(
+                        """
+                        arconia:
+                          otel:
+                            metrics:
+                              cardinality-limit: 1000
+                              exemplars:
+                                filter: always-off
+                        """,
+                        """
+                        arconia:
+                          otel:
+                            metrics:
+                              cardinality-limit: 1000
+                        management.tracing.exemplars.include: none
+                        """,
+                        s -> s.path("src/main/resources/application.yml"))
+        );
+    }
+
 }
